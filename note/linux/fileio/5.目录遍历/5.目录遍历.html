@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Dongnian"><meta name="copyright" content="Dongnian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="5.目录遍历 - wolai 笔记众所周知，Linux的目录是一个树状结构，了解数据结构的小伙伴都明白，遍历一棵树最简单的方式是递归。在我们已经掌握了递归的使用方法之后，遍历树状目录也不是一件难事儿。Linux给我们提供了相关的目录遍历的函数，分别为：opendir(), readdir(), closedir()。目录的操作方式和标准C库提供的文件操作步骤是类似的。下面来依次介绍一下这几个函数">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/linux/fileio/5.%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86/5.%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="5.目录遍历 - wolai 笔记众所周知，Linux的目录是一个树状结构，了解数据结构的小伙伴都明白，遍历一棵树最简单的方式是递归。在我们已经掌握了递归的使用方法之后，遍历树状目录也不是一件难事儿。Linux给我们提供了相关的目录遍历的函数，分别为：opendir(), readdir(), closedir()。目录的操作方式和标准C库提供的文件操作步骤是类似的。下面来依次介绍一下这几个函数">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2024-01-20T06:39:44.792Z">
+<meta property="article:modified_time" content="2024-01-20T06:39:44.792Z">
+<meta property="article:author" content="Dongnian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/linux/fileio/5.%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86/5.%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Dongnian","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-20 14:39:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../css/wolai.css"/><title>5.目录遍历 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="5.目录遍历" class="main-title"></div></div></header><article><div id="i4iZ6qXBs968DDbS7eprNM" class="wolai-block wolai-text"><div><span class="inline-wrap">众所周知，Linux<span class="jill"></span>的目录是一个树状结构，了解数据结构的小伙伴都明白，遍历一棵树最简单的方式是递归。在我们已经掌握了递归的使用方法之后，遍历树状目录也不是一件难事儿。</span></div></div><div id="7kzY3jAwfRmqtBS9SYynLH" class="wolai-block wolai-text"><div><span class="inline-wrap">Linux<span class="jill"></span>给我们提供了相关的目录遍历的函数，分别为：</span><span class="inline-wrap"><code>opendir()</code></span><span class="inline-wrap">, </span><span class="inline-wrap"><code>readdir()</code></span><span class="inline-wrap">, </span><span class="inline-wrap"><code>closedir()</code></span><span class="inline-wrap">。目录的操作方式和标准<span class="jill"></span>C<span class="jill"></span>库提供的文件操作步骤是类似的。下面来依次介绍一下这几个函数。</span></div></div><h1 id="9HPXyvBTszbkdvsJtytEa" class="wolai-block"><span class="inline-wrap">1.目录三剑客</span></h1><h2 id="8i7LjEZR86MG4GMJYSDDsJ" class="wolai-block"><span class="inline-wrap">1.1 opendir</span></h2><div id="6PxEvsgb8x5MFKki3pcmg6" class="wolai-block wolai-text"><div><span class="inline-wrap">在目录操作之前必须要先通过 </span><span class="inline-wrap"><code>opendir() </code></span><span class="inline-wrap">函数打开这个目录，函数原型如下：</span></div></div><code-block id="vbSDjPwmK91fGo8Va6tdnh" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;dirent.h></span></span>
+<span class="token comment">// 打开目录</span>
+DIR <span class="token operator">*</span><span class="token function">opendir</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><ul class="wolai-block"><li id="aG2sh965XrunSA29daXYDy"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数: </span><span class="inline-wrap"><code>name </code></span><span class="inline-wrap">-&gt; 要打开的目录的名字</span></li><li id="77WSZJ5G93M2MPwgpxFKMy"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值: </span><span class="inline-wrap"><code>DIR*</code></span><span class="inline-wrap">, 结构体类型指针。打开成功返回目录的实例，打开失败返回 NULL</span></li></ul><h2 id="hbsMR7quPs3FGyKmipYpbN" class="wolai-block"><span class="inline-wrap">1.2 readdir</span></h2><div id="h2qbEcfzFU96zeubsBhMVG" class="wolai-block wolai-text"><div><span class="inline-wrap">目录打开之后，就可以通过</span><span class="inline-wrap"><code> readdir()</code></span><span class="inline-wrap"> 函数遍历目录中的文件信息了。每调用一次这个函数就可以得到目录中的一个文件信息，当目录中的文件信息被全部遍历完毕会得到一个空对象。先来看一下这个函数原型：</span></div></div><code-block id="3XHsKT9z4zHvqMgD6kf4Tx" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;dirent.h></span></span>
+<span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token function">readdir</span><span class="token punctuation">(</span>DIR <span class="token operator">*</span>dirp<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><ul class="wolai-block"><li id="gupb6qaVwVSqHWaQg8jxzU"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数：</span><span class="inline-wrap"><code>dirp </code></span><span class="inline-wrap">-&gt; opendir() 函数的返回值</span></li><li id="wtG35rpcMx9ddXcDj8xPVc"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值：函数调用成功，返回读到的文件的信息, 目录文件被读完了或者函数调用失败返回 NULL</span></li></ul><div id="3zNUme8c98pkhc5ZaHkfzJ" class="wolai-block wolai-text"><div><span class="inline-wrap">函数返回值 </span><span class="inline-wrap"><code>struct dirent</code></span><span class="inline-wrap"> 结构体原型如下:</span></div></div><code-block id="h6dUgCbCTAyetavmgVcvND" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">ino_t</span>          d_ino<span class="token punctuation">;</span>       <span class="token comment">/* 文件对应的inode编号, 定位文件存储在磁盘的那个数据块上 */</span>
+    <span class="token class-name">off_t</span>          d_off<span class="token punctuation">;</span>       <span class="token comment">/* 文件在当前目录中的偏移量 */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">short</span> d_reclen<span class="token punctuation">;</span>    <span class="token comment">/* 文件名字的实际长度 */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">char</span>  d_type<span class="token punctuation">;</span>      <span class="token comment">/* 文件的类型, linux中有7中文件类型 */</span>
+    <span class="token keyword">char</span>           d_name<span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">/* 文件的名字 */</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+</pre></div></code-block><div id="8KG8wCqJPT4y9BFg2w74Fw" class="wolai-block wolai-text"><div><span class="inline-wrap">关于结构体中的文件类型</span><span class="inline-wrap"><code>d_type</code></span><span class="inline-wrap">，可使用的宏值如下：</span></div></div><ul class="wolai-block"><li id="8irWKtSya5869dz7Qf8oHg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DT_BLK</code></span><span class="inline-wrap">：块设备文件</span></li><li id="6SnY7vykj5DZ9q6FiaUPLs"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DT_CHR</code></span><span class="inline-wrap">：字符设备文件</span></li><li id="58HgKQt64nTnZZDYjEcvDF"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DT_DIR</code></span><span class="inline-wrap">：目录文件</span></li><li id="fawozm9CmTXG68dHLqhjRh"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DT_FIFO</code></span><span class="inline-wrap"> ：管道文件</span></li><li id="gxVZXfqYgLYpRsXfKdqXco"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DT_LNK</code></span><span class="inline-wrap">：软连接文件</span></li><li id="fQ8oNKGqE4TecK6JMfW1hP"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DT_REG</code></span><span class="inline-wrap"> ：普通文件</span></li><li id="3dYrRLYVDpmZ1cVm9eu2xt"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DT_SOCK</code></span><span class="inline-wrap">：本地套接字文件</span></li><li id="p8mqGqUkudy3Pn7qhLLebk"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DT_UNKNOWN</code></span><span class="inline-wrap">：无法识别的文件类型</span></li></ul><div id="6ksVK7vNSgUMWakaxCPcQJ" class="wolai-block wolai-text"><div><span class="inline-wrap">那么，如何通过 readdir() 函数遍历某一个目录中的文件呢？</span></div></div><code-block id="BWSndiyPaLWGqhGmtBkbj" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// 打开目录</span>
+DIR<span class="token operator">*</span> dir <span class="token operator">=</span> <span class="token function">opendir</span><span class="token punctuation">(</span><span class="token string">"/home/test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">struct</span> <span class="token class-name">dirent</span><span class="token operator">*</span> ptr <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token comment">// 遍历目录</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span> <span class="token punctuation">(</span>ptr<span class="token operator">=</span><span class="token function">readdir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h2 id="tTHitZjJMnTU2Ubp3pUNWU" class="wolai-block"><span class="inline-wrap">1.3 closedir</span></h2><div id="9jYhoX8qnUyGKoxXTF22B3" class="wolai-block wolai-text"><div><span class="inline-wrap">目录操作完毕之后, 需要通过 </span><span class="inline-wrap"><code>closedir()</code></span><span class="inline-wrap">关闭通过</span><span class="inline-wrap"><code>opendir()</code></span><span class="inline-wrap">得到的实例，释放资源。函数原型如下：</span></div></div><code-block id="cZ8yzfZfYSKCvrb9euFedN" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token keyword">int</span> <span class="token function">closedir</span><span class="token punctuation">(</span>DIR <span class="token operator">*</span>dirp<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><ul class="wolai-block"><li id="iXwxm5t9yeK761cSHM3Lwv"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数：</span><span class="inline-wrap"><code>dirp</code></span><span class="inline-wrap">-&gt; opendir() 函数的返回值</span></li><li id="xw4hFQbCqZeop9x9yXqAzE"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值: 目录关闭成功返回<span class="jill"></span>0, 失败返回 -1</span></li></ul><h1 id="8a8fCT1vfyF1xkAoFa8A5C" class="wolai-block"><span class="inline-wrap">2.遍历目录</span></h1><h2 id="x67poCReVBDiZvDa3V3wmY" class="wolai-block"><span class="inline-wrap">2.1 遍历单层目录</span></h2><div id="4cfeCU56kuc6JG9TCwbWLJ" class="wolai-block wolai-text"><div><span class="inline-wrap">如果只遍历单层目录是不需要递归的，按照上边介绍的函数的使用方法，依次继续调用即可。假设我们需要得到某个指定目录下 </span><span class="inline-wrap"><code>mp3</code></span><span class="inline-wrap"> 格式文件的个数，示例代码如下：</span></div></div><code-block id="fSVYbbxZyKBiMDT2cPUVgS" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// filenum.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;dirent.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 打开目录</span>
+    DIR<span class="token operator">*</span> dir <span class="token operator">=</span> <span class="token function">opendir</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>dir <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"opendir"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 2. 遍历当前目录中的文件</span>
+    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">struct</span> <span class="token class-name">dirent</span><span class="token operator">*</span> ptr <span class="token operator">=</span> <span class="token function">readdir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>ptr <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"目录读完了...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 读到了一个文件</span>
+        <span class="token comment">// 判断文件类型</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_type <span class="token operator">==</span> DT_REG<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">char</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token function">strstr</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_name<span class="token punctuation">,</span> <span class="token string">".mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>p <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token char">'\0'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                count<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"file %d: %s\n"</span><span class="token punctuation">,</span> count<span class="token punctuation">,</span> ptr<span class="token operator">-></span>d_name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s目录中mp3文件的个数: %d\n"</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 关闭目录</span>
+    <span class="token function">closedir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><div id="8V4e5icMbDCFefR22UsJoR" class="wolai-block wolai-text"><div><span class="inline-wrap">编译名执行程序</span></div></div><code-block id="fABWfkV86YkNbFyEkdD299" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ gcc filenum.c
+<span class="token comment"># 读当前目录中mp3文件个数</span>
+$ ./a.out <span class="token builtin class-name">.</span>
+<span class="token function">file</span> <span class="token number">1</span>: <span class="token number">1</span>.mp3
+目录读完了<span class="token punctuation">..</span>.
+.目录中mp3文件的个数: <span class="token number">1</span>
+
+<span class="token comment"># 读 ./sub 目录中mp3文件个数</span>
+$ ./a.out ./sub/
+<span class="token function">file</span> <span class="token number">1</span>: <span class="token number">3</span>.mp3
+<span class="token function">file</span> <span class="token number">2</span>: <span class="token number">1</span>.mp3
+<span class="token function">file</span> <span class="token number">3</span>: <span class="token number">5</span>.mp3
+<span class="token function">file</span> <span class="token number">4</span>: <span class="token number">4</span>.mp3
+<span class="token function">file</span> <span class="token number">5</span>: <span class="token number">2</span>.mp3
+目录读完了<span class="token punctuation">..</span>.
+./sub/目录中mp3文件的个数: <span class="token number">5</span></pre></div></code-block><h2 id="8YgDZ3v8JCBNT65H4NusQ1" class="wolai-block"><span class="inline-wrap">2.2 遍历多层目录</span></h2><div id="nxbyn4yZYcmvzYW966VfpE" class="wolai-block wolai-text"><div><span class="inline-wrap">Linux 的目录是树状结构，遍历每层目录的方式都是一样的，也就是说最简单的遍历方式是递归。程序的重点就是确定递归结束的条件：</span><span class="red inline-wrap"><b>遍历的文件如果不是目录类型就结束递归。</b></span></div></div><div id="bJjrQDif1BPYCcMHooMPXY" class="wolai-block wolai-text"><div><span class="inline-wrap">示例代码如下：</span></div></div><code-block id="p9wBuhNffH4JejudVDpBTW" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// filenum.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;dirent.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">getMp3Num</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> path<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 打开目录</span>
+    DIR<span class="token operator">*</span> dir <span class="token operator">=</span> <span class="token function">opendir</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>dir <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"opendir"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 2. 遍历当前目录</span>
+    <span class="token keyword">struct</span> <span class="token class-name">dirent</span><span class="token operator">*</span> ptr <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ptr <span class="token operator">=</span> <span class="token function">readdir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 如果是目录 . .. 跳过不处理</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">strcmp</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_name<span class="token punctuation">,</span> <span class="token string">"."</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span> <span class="token operator">||</span>
+           <span class="token function">strcmp</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_name<span class="token punctuation">,</span> <span class="token string">".."</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">continue</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 假设读到的当前文件是目录</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_type <span class="token operator">==</span> DT_DIR<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 目录</span>
+            <span class="token keyword">char</span> newPath<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token function">sprintf</span><span class="token punctuation">(</span>newPath<span class="token punctuation">,</span> <span class="token string">"%s/%s"</span><span class="token punctuation">,</span> path<span class="token punctuation">,</span> ptr<span class="token operator">-></span>d_name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 读当前目录的子目录</span>
+            count <span class="token operator">+=</span> <span class="token function">getMp3Num</span><span class="token punctuation">(</span>newPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_type <span class="token operator">==</span> DT_REG<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 普通文件</span>
+            <span class="token keyword">char</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token function">strstr</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_name<span class="token punctuation">,</span> <span class="token string">".mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 判断文件后缀是不是 .mp3</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>p <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token char">'\0'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                count<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s/%s\n"</span><span class="token punctuation">,</span> path<span class="token punctuation">,</span> ptr<span class="token operator">-></span>d_name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">closedir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> count<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// ./a.out path</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>argc <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"./a.out path\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">getMp3Num</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s 目录中mp3文件个数: %d\n"</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><div id="8QSchW4AKfDYFpw6xA2AVu" class="wolai-block wolai-text"><div><span class="inline-wrap">编译并运行程序：</span></div></div><code-block id="5V2hnJeWn78uhB2JG8CnoY" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ gcc filenum.c
+<span class="token comment"># 查看 abc 目录中mp3 文件个数</span>
+$ ./a.out abc
+abc/sub/3.mp3
+abc/sub/1.mp3
+abc/sub/5.mp3
+abc/sub/4.mp3
+abc/sub/2.mp3
+abc/sub/music/test2.mp3
+abc/sub/music/test3.mp3
+abc/sub/music/test1.mp3
+abc/hello.mp3
+abc 目录中mp3文件个数: <span class="token number">9</span></pre></div></code-block><h1 id="hYfLgeJEEdAbipou7beon4" class="wolai-block"><span class="inline-wrap">3.scandir<span class="jill"></span>函数</span></h1><div id="8n3UyB3Xnntck2QRFWCqME" class="wolai-block wolai-text"><div><span class="inline-wrap">除了使用上边介绍的目录三剑客遍历目录，也可以使用</span><span class="inline-wrap"><code>scandir()</code></span><span class="inline-wrap">函数进行目录的遍历（只遍历指定目录，不进入到子目录中进行递归遍历），它的参数并不简单，涉及到三级指针和回调函数的使用。</span></div></div><div id="dmXKP6FUXdituSkbjfR2kA" class="wolai-block wolai-text"><div><span class="inline-wrap">其函数原型如下：</span></div></div><code-block id="7gZDuHX3S72yVhkzyAcK6k" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// 头文件</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;dirent.h></span> </span>
+<span class="token keyword">int</span> <span class="token function">scandir</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>dirp<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>namelist<span class="token punctuation">,</span>
+              <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>filter<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>compar<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">alphasort</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">versionsort</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="j5qmEAWsx6xqodwkEuQdcF" class="wolai-block wolai-text"><div><span class="inline-wrap">参数:</span></div></div><ul class="wolai-block"><li id="5Qy6ULwcMrt71fWfTUGZQg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>dirp</code></span><span class="inline-wrap">: 需要遍历的目录的名字</span></li><li id="oKUXMFrQ9YLVUpLzoy6haH"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>namelist</code></span><span class="inline-wrap">: 三级指针, 传出参数, 需要在指向的地址中存储遍历目录得到的所有文件的信息</span><ul class="wolai-block"><li id="7e7L877pvxmF21Jb8sZuxp"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap">在函数内部会给这个指针指向的地址分配内存，要注意在程序中释放内存</span></li></ul></li><li id="wdcpJm6pvhYVRDpz1ZYzV7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>filter</code></span><span class="inline-wrap">: 函数指针, 指针指向的函数就是回调函数, 需要在自定义函数中指定如果过滤目录中的文件</span><ul class="wolai-block"><li id="92eYUVD1V6XzXK25F96Ns" class="red"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果不对目录中的文件进行过滤, 该函数指针指定为<span class="jill"></span>NULL<span class="jill"></span>即可</span></li><li id="weMVmMiZwTLtumVsiHta7d" class="red"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果自己指定过滤函数, 满足条件要返回<span class="jill"></span>1, 否则返回 0</span></li></ul></li><li id="tEiuE4w9u1TRd1YcEvWoFQ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>compar</code></span><span class="inline-wrap">: 函数指针, 对过滤得到的文件进行排序, 可以使用提供的两种排序方式:</span><ul class="wolai-block"><li id="ip2ytUpmXUw1btjWYqguSL"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>alphasort</code></span><span class="inline-wrap">: 根据文件名进行排序</span></li><li id="cPacf59LcdK8KLGCB4YsBz"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>versionsort</code></span><span class="inline-wrap">: 根据版本进行排序</span></li></ul></li></ul><div id="p9b5grW32Bukw3YXw7jh8F" class="wolai-block wolai-text"><div><span class="inline-wrap">返回值: 函数执行成功返回找到的匹配成功的文件的个数，如果失败返回-1。</span></div></div><h2 id="peXCCS39kAeyBkd27zi838" class="wolai-block"><span class="inline-wrap">3.1 文件过滤</span></h2><div id="wnw8iJbyZBQ8MA7AsF9Fsm" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>scandir()</code></span><span class="inline-wrap"> 可以让使用者自定义文件的过滤方式, 然后将过滤函数的地址传递给 </span><span class="inline-wrap"><code>scandir()</code></span><span class="inline-wrap"> 的第三个参数，我们可以得知过滤函数的原型是这样的：</span></div></div><code-block id="6dfZ98RzYVoWUPq59U6Z1k" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// 函数的参数就是遍历的目录中的子文件对应的结构体</span>
+<span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>filter<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="9nctdSF4BoyLhKe8hBhRG" class="wolai-block wolai-text"><div><span class="inline-wrap">基于这个函数指针定义的函数就可以称之为回调函数, 这个函数不是由程序猿调用, 而是通过 </span><span class="inline-wrap"><code>scandir()</code></span><span class="inline-wrap"> 调用，因此这个函数的实参也是由</span><span class="inline-wrap"><code> scandir() </code></span><span class="inline-wrap">函数提供的，作为回调函数的编写人员，只需要搞明白这个参数的含义是什么，然后在函数体中直接使用即可。</span></div></div><div id="276p3aoRLieY7aHyaAzWjt" class="wolai-block wolai-text"><div><span class="inline-wrap">假设还是判断目录中某一个文件是否为<span class="jill"></span>Mp3<span class="jill"></span>格式, 函数实现如下:</span></div></div><code-block id="xqTwnWYhq9ucHqiX46idBM" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token keyword">int</span> <span class="token function">isMp3</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span>ptr<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_type <span class="token operator">==</span> DT_REG<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">char</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token function">strstr</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_name<span class="token punctuation">,</span> <span class="token string">".mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>p <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token char">'\0'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></pre></div></code-block><h2 id="cX2pFdNWTcWZQywzFwYhzj" class="wolai-block"><span class="inline-wrap">3.2 遍历目录</span></h2><div id="oWewuwcoYEKVHxjmzBvDmw" class="wolai-block wolai-text"><div><span class="inline-wrap">了解了 </span><span class="inline-wrap"><code>scandir()</code></span><span class="inline-wrap"> 函数的使用之后, 下边写一个程序, 来搜索指定目录下的 </span><span class="inline-wrap"><code>mp3</code></span><span class="inline-wrap">格式文件个数和文件名, 代码如下:</span></div></div><code-block id="3soMq9uDoUrHGnpKTg9qQi" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;dirent.h></span></span>
+
+<span class="token comment">// 文件过滤函数</span>
+<span class="token keyword">int</span> <span class="token function">isMp3</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span>ptr<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_type <span class="token operator">==</span> DT_REG<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">char</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token function">strstr</span><span class="token punctuation">(</span>ptr<span class="token operator">-></span>d_name<span class="token punctuation">,</span> <span class="token string">".mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>p <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token char">'\0'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>argc <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"./a.out path\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span>namelist <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">scandir</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>namelist<span class="token punctuation">,</span> isMp3<span class="token punctuation">,</span> alphasort<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"file %d: %s\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> namelist<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-></span>d_name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">free</span><span class="token punctuation">(</span>namelist<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>namelist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><div id="k1zc8sj84LGFhLydvvVrEw" class="wolai-block wolai-text"><div><span class="inline-wrap">最后再解析一下 </span><span class="inline-wrap"><code>scandir() </code></span><span class="inline-wrap">的第二个参数，传递的是一个二级指针的地址:</span></div></div><code-block id="hhDdmqAFffQLGEJz7KG5E4" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token keyword">struct</span> <span class="token class-name">dirent</span> <span class="token operator">*</span><span class="token operator">*</span>namelist <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">scandir</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>namelist<span class="token punctuation">,</span> isMp3<span class="token punctuation">,</span> alphasort<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="ranRuosXF256sD9i6BZKyq" class="wolai-block wolai-text"><div><span class="inline-wrap">那么在这个 namelist 中存储的什么类型的数据呢？也就是 </span><span class="inline-wrap"><code>struct dirent **namelist</code></span><span class="inline-wrap"> 指向的什么类型的数据?</span></div></div><div id="2tfi8oGrR88MNwZzXj7EKE" class="wolai-block wolai-text"><div><span class="inline-wrap">答案: 指向的是一个指针数组 </span><span class="inline-wrap"><code>struct dirent *namelist[]</code></span></div></div><ul class="wolai-block"><li id="8QL3YLxdruWkkY4VECn6K9"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数组元素的个数就是遍历的目录中的文件个数</span></li><li id="nxxpum4tk2sD9Nyp22LDJE"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数组的每个元素都是指针类型: </span><span class="inline-wrap"><code>struct dirent *</code></span><span class="inline-wrap">, 指针指向的地址是有 scandir() 函数分配的, 因此在使用完毕之后需要释放内存</span></li></ul></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dongnian</div><div class="author-info__description">A salty fish swimming in the sea of deep learning!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#9HPXyvBTszbkdvsJtytEa"><span class="toc-text">1.目录三剑客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8i7LjEZR86MG4GMJYSDDsJ"><span class="toc-text">1.1 opendir</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hbsMR7quPs3FGyKmipYpbN"><span class="toc-text">1.2 readdir</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tTHitZjJMnTU2Ubp3pUNWU"><span class="toc-text">1.3 closedir</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8a8fCT1vfyF1xkAoFa8A5C"><span class="toc-text">2.遍历目录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#x67poCReVBDiZvDa3V3wmY"><span class="toc-text">2.1 遍历单层目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8YgDZ3v8JCBNT65H4NusQ1"><span class="toc-text">2.2 遍历多层目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hYfLgeJEEdAbipou7beon4"><span class="toc-text">3.scandir函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#peXCCS39kAeyBkd27zi838"><span class="toc-text">3.1 文件过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cX2pFdNWTcWZQywzFwYhzj"><span class="toc-text">3.2 遍历目录</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/"><span class="card-category-list-name">PL</span><span class="card-category-list-count">7</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">6</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.42em; color: rgb(93, 175, 43)">DSA</a><a href="/tags/RL/" style="font-size: 1.28em; color: rgb(136, 188, 66)">RL</a><a href="/tags/Transformer/" style="font-size: 1.45em; color: rgb(125, 123, 189)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.32em; color: rgb(128, 119, 85)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.38em; color: rgb(200, 50, 193)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.25em; color: rgb(66, 152, 69)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.15em; color: rgb(163, 52, 65)">CV</a><a href="/tags/GPT/" style="font-size: 1.18em; color: rgb(7, 39, 41)">GPT</a><a href="/tags/PL/" style="font-size: 1.22em; color: rgb(26, 75, 74)">PL</a><a href="/tags/leetcode/" style="font-size: 1.35em; color: rgb(174, 13, 132)">leetcode</a><a href="/tags/algo/" style="font-size: 1.15em; color: rgb(172, 81, 180)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">87</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">411.2k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-01-20T06:40:31.333Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Dongnian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Dongnian"><meta name="copyright" content="Dongnian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.套接字socket - wolai 笔记1.概念1.1 局域网和广域网局域网：局域网将一定区域内的各种计算机、外部设备和数据库连接起来形成计算机通信的私有网络。广域网：又称广域网、外网、公网。是连接不同地区局域网或城域网计算机通信的远程公共网络。1.2 IP（Internet Protocol）本质是一个整形数，用于表示计算机在网络中的地址。IP协议版本有两个：IPv4和IPv6（1）IPv">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/linux/socket/1.%E5%A5%97%E6%8E%A5%E5%AD%97socket/1.%E5%A5%97%E6%8E%A5%E5%AD%97socket.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="1.套接字socket - wolai 笔记1.概念1.1 局域网和广域网局域网：局域网将一定区域内的各种计算机、外部设备和数据库连接起来形成计算机通信的私有网络。广域网：又称广域网、外网、公网。是连接不同地区局域网或城域网计算机通信的远程公共网络。1.2 IP（Internet Protocol）本质是一个整形数，用于表示计算机在网络中的地址。IP协议版本有两个：IPv4和IPv6（1）IPv">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2024-01-20T06:39:44.792Z">
+<meta property="article:modified_time" content="2024-01-20T06:39:44.792Z">
+<meta property="article:author" content="Dongnian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/linux/socket/1.%E5%A5%97%E6%8E%A5%E5%AD%97socket/1.%E5%A5%97%E6%8E%A5%E5%AD%97socket.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Dongnian","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-20 14:39:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../css/wolai.css"/><title>1.套接字socket - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="1.套接字socket" class="main-title"></div></div></header><article><h1 id="7A52pM2Rx7Fz4P9N1MSKB1" class="wolai-block"><span class="inline-wrap">1.概念</span></h1><h2 id="saNJjt1E6d9B5wZfhdGpvu" class="wolai-block"><span class="inline-wrap">1.1 局域网和广域网</span></h2><ul class="wolai-block"><li id="3ANdCaUYjyVLVGuoM9mLtj"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><b>局域网</b></span><span class="inline-wrap">：局域网将一定区域内的各种计算机、外部设备和数据库连接起来形成计算机通信的私有网络。</span></li><li id="41L4dKjUWwNFyawzQDd1jJ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><b>广域网</b></span><span class="inline-wrap">：又称广域网、外网、公网。是连接不同地区局域网或城域网计算机通信的远程公共网络。</span></li></ul><h2 id="kzje2yVQvGLtxy7pJvN5QL" class="wolai-block"><span class="inline-wrap">1.2 IP（Internet Protocol）</span></h2><div id="uz6KKWUKUq2smkVTSGpBFU" class="wolai-block wolai-text"><div><span class="inline-wrap">本质是一个整形数，</span><span class="red inline-wrap"><b>用于表示计算机在网络中的地址</b></span><span class="inline-wrap">。IP<span class="jill"></span>协议版本有两个：IPv4<span class="jill"></span>和<span class="jill"></span>IPv6</span></div></div><h3 id="4TomAgYGHxMFJQGSfcwUn9" class="wolai-block"><span class="inline-wrap">（1）IPv4（Internet Protocol version4）</span></h3><div id="jPBpMZFy44rsuiYZYoNB27" class="wolai-block wolai-text"><div><span class="inline-wrap">使用一个<span class="jill"></span>32<span class="jill"></span>位的整形数描述一个<span class="jill"></span>IP<span class="jill"></span>地址，4<span class="jill"></span>个字节，int<span class="jill"></span>型，也可以使用一个点分十进制字符串描述这个<span class="jill"></span>IP<span class="jill"></span>地址： </span><span class="inline-wrap"><code>192.168.247.135</code></span><span class="inline-wrap">。分成了<span class="jill"></span>4<span class="jill"></span>份，每份<span class="jill"></span>1<span class="jill"></span>字节，8bit（char），最大值为 255</span></div></div><ul class="wolai-block"><li id="ewSGXnY8Fq6Aksn8XaweuS"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>0.0.0.0</code></span><span class="inline-wrap"> 是最小的<span class="jill"></span>IP<span class="jill"></span>地址</span></li><li id="9rghynpoQD2oeXXiBbiT1i"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>255.255.255.255</code></span><span class="inline-wrap">是最大的<span class="jill"></span>IP<span class="jill"></span>地址</span></li></ul><div id="bV1UuBnbxbPKrCnNdBnDf9" class="wolai-block wolai-text"><div><span class="inline-wrap">按照<span class="jill"></span>IPv4<span class="jill"></span>协议计算，可以使用的<span class="jill"></span>IP<span class="jill"></span>地址共有 232 个</span></div></div><h3 id="iS95KHsZkHZWAcL4jLu4o1" class="wolai-block"><span class="inline-wrap">（2）IPv6（Internet Protocol version6）</span></h3><div id="n6ct6wHK5B2Ngf9cwcWzkG" class="wolai-block wolai-text"><div><span class="inline-wrap">使用一个<span class="jill"></span>128<span class="jill"></span>位的整形数描述一个<span class="jill"></span>IP<span class="jill"></span>地址，16<span class="jill"></span>个字节。也可以使用一个字符串描述这个<span class="jill"></span>IP<span class="jill"></span>地址：</span><span class="inline-wrap"><code>2001:0db8:3c4d:0015:0000:0000:1a2f:1a2b</code></span><span class="inline-wrap">。分成了<span class="jill"></span>8<span class="jill"></span>份，每份<span class="jill"></span>2<span class="jill"></span>字节，每一部分以<span class="jill"></span>16<span class="jill"></span>进制的方式表示</span></div></div><div id="grTm7WF2n1qwQDHkSqtXUB" class="wolai-block wolai-text"><div><span class="inline-wrap">按照<span class="jill"></span>IPv6<span class="jill"></span>协议计算，可以使用的<span class="jill"></span>IP<span class="jill"></span>地址共有 2128 个</span></div></div><h2 id="nXS6BdzPY1SaXpHqwJ86YM" class="wolai-block"><span class="inline-wrap">1.3 查看<span class="jill"></span>IP<span class="jill"></span>地址</span></h2><code-block id="rB7R5xaADedwfdb4KqhXjd" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment"># linux</span>
+$ <span class="token function">ifconfig</span>
+
+<span class="token comment"># windows</span>
+$ ipconfig
+
+<span class="token comment"># 测试网络是否畅通</span>
+<span class="token comment"># 主机a: 192.168.1.11</span>
+<span class="token comment"># 当前主机: 192.168.1.12</span>
+$ <span class="token function">ping</span> <span class="token number">192.168</span>.1.11     <span class="token comment"># 测试是否可用连接局域网</span>
+$ <span class="token function">ping</span> www.baidu.com    <span class="token comment"># 测试是否可用连接外网</span>
+
+<span class="token comment"># 特殊的IP地址: 127.0.0.1  ==> 和本地的IP地址是等价的</span>
+<span class="token comment"># 假设当前电脑没有联网, 就没有IP地址, 又要做网络测试, 可用使用 127.0.0.1 进行本地测试</span>
+</pre></div></code-block><h2 id="o8SHtKtCmiBo5fKRsx5oTD" class="wolai-block"><span class="inline-wrap">1.4 端口</span></h2><div id="tk8SZ7CFPumQ95LwKuWksG" class="wolai-block wolai-text"><div><span class="inline-wrap">端口的作用是</span><span class="red inline-wrap"><b>定位到主机上的某一个进程</b></span><span class="inline-wrap">，通过这个端口进程就可以接受到对应的网络数据了。</span></div></div><div id="pvG7JSH5poTFDZCdsPcvPH" class="wolai-block wolai-text"><div><span class="inline-wrap">端口也是一个整形数 unsigned short ，一个<span class="jill"></span>16<span class="jill"></span>位整形数，有效端口的取值范围是：0 ~ 65535(</span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>∼</mo><msup><mn>2</mn><mn>16</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0 \sim 2^&#123;16&#125;-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span><span class="inline-wrap">)</span></div></div><div id="m7MARxCNPdbqXuwixSd8i5" class="wolai-block wolai-text"><div><span class="inline-wrap">提问：计算机中所有的进程都需要关联一个端口吗，一个端口可以被重复使用吗?</span></div></div><ul class="wolai-block"><li id="gPD7FkmUdT2A2fa4nd96ar"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">不需要，如果这个进程不需要网络通信，那么这个进程就不需要绑定端口的</span></li><li id="pFoSiaz3ZnyjFhYRCNBrXr"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">一个端口只能给某一个进程使用，多个进程不能同时使用同一个端口</span></li></ul><h2 id="ajHFauKaHYGLpurycoUBEq" class="wolai-block"><span class="inline-wrap">1.5 OSI/ISO 网络分层模型</span></h2><div id="6iqtcN4VG8zHMHretkgBhg" class="wolai-block wolai-text"><div><span class="inline-wrap">OSI（Open System Interconnect），即开放式系统互联。 一般都叫<span class="jill"></span>OSI<span class="jill"></span>参考模型，是<span class="jill"></span>ISO（国际标准化组织组织）在<span class="jill"></span>1985<span class="jill"></span>年研究的网络互联模型。</span></div></div><div id="9vWH1R4j9ig1xd76XnEGTC" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image.png" style="width: 500px"/></figure></div><ul class="wolai-block"><li id="tLqXJNkSf3dzvtCKWQrvtd"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>物理层</b></span><span class="inline-wrap">：负责最后将信息编码成电流脉冲或其它信号用于网上传输
+</span></li><li id="mPdwNC5mfkLHgQmjSko4gQ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>数据链路层</b></span><span class="inline-wrap">：数据链路层通过物理网络链路供数据传输。规定了<span class="jill"></span>0<span class="jill"></span>和<span class="jill"></span>1<span class="jill"></span>的分包形式，确定了网络数据包的形式；
+</span></li><li id="pyTRjm99YCGyLRT8mNuDnB"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>网络层</b></span><span class="inline-wrap">：网络层负责在源和终点之间建立连接;此处需要确定计算机的位置，通过<span class="jill"></span>IPv4，IPv6<span class="jill"></span>格式的<span class="jill"></span>IP<span class="jill"></span>地址来找到对应的主机</span></li><li id="eEutFZYppzHDyaBFyMkQ4D"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>传输层</b></span><span class="inline-wrap">：传输层向高层提供可靠的端到端的网络数据流服务。每一个应用程序都会在网卡注册一个端口号，该层就是端口与端口的通信
+</span></li><li id="jEhWHu58BGgTYcimXzYsLg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>会话层</b></span><span class="inline-wrap">：会话层建立、管理和终止表示层与实体之间的通信会话；建立一个连接（自动的手机信息、自动的网络寻址）;</span></li><li id="eaDfwVhR3jpbtUxkZzLVwA"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>表示层</b></span><span class="inline-wrap">：对应用层数据编码和转化, 确保以一个系统应用层发送的信息 可以被另一个系统应用层识别;</span></li></ul><h1 id="aff1P2t686pj93hbtUfJ1m" class="wolai-block"><span class="inline-wrap">2.网络协议</span></h1><div id="j7tRXegWtfhXp6de1pEEAh" class="wolai-block wolai-text"><div><span class="inline-wrap">网络协议指的是计算机网络中互相通信的对等实体之间交换信息时所必须遵守的规则的集合。一般系统网络协议包括五个部分：</span><span class="red inline-wrap"><b>通信环境，传输服务，词汇表，信息的编码格式，时序、规则和过程</b></span><span class="inline-wrap">。先来通过下面几幅图了解一下常用的网络协议的格式：</span></div></div><h2 id="9ZgepSiNE2S3H1LH8NqA7D" class="wolai-block"><span class="inline-wrap">2.1 TCP<span class="jill"></span>协议：传输层协议</span></h2><div id="aHaUMAbmFH2cBMa3Ej7BjR" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_1.png" style="width: 100%"/></figure></div><h2 id="grcXLr5cy9bHmCZSLvFYzW" class="wolai-block"><span class="inline-wrap">2.2 UDP<span class="jill"></span>协议：传输层协议</span></h2><div id="mAhoseKwUf51SRiMxNWgC6" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_2.png" style="width: 600px"/></figure></div><h2 id="trUjWmvidR8oQsJ2YaNjf9" class="wolai-block"><span class="inline-wrap">2.3 IP<span class="jill"></span>协议：网络层协议</span></h2><div id="rLAmGDrAQSTA8ABo3psDkq" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_3.png" style="width: 100%"/></figure></div><h2 id="9KTDU9EtUEEegLUcqjEDM1" class="wolai-block"><span class="inline-wrap">2.4 以太网帧协议：网络接口层协议</span></h2><div id="kQXcuKRWTGFy61JtJEZ1Es" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_4.png" style="width: 100%"/></figure></div><h2 id="61nbtoaEsZWq878wqJDP6C" class="wolai-block"><span class="inline-wrap">2.5 数据的封装</span></h2><div id="jd4McMWPmp3hohjDHrgLxo" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_5.png" style="width: 100%"/></figure></div><div id="3XKvNwE3NT36382MiPKekX" class="wolai-block wolai-text"><div><span class="inline-wrap">在网络通信的时候, 程序猿需要负责的应用层数据的处理(最上层)</span></div></div><div id="5cr6Fdw8DrQwPGQ1GNqqtb" class="wolai-block wolai-text"><div><span class="inline-wrap">应用层的数据可以使用某些协议进行封装, 也可以不封装</span></div></div><div id="phEBcXghTNcZDRRgQFGBZa" class="wolai-block wolai-text"><div><span class="inline-wrap">程序猿需要调用发送数据的接口函数，将数据发送出去</span></div></div><div id="E67VZYBosjN9qudNotuMD" class="wolai-block wolai-text"><div><span class="inline-wrap">程序猿调用的<span class="jill"></span>API<span class="jill"></span>做底层数据处理</span></div></div><ul class="wolai-block"><li id="aEkDWyA4xSn82Kvs38Sn7v"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">传输层使用传输层协议打包数据
+</span></li><li id="7oTUxXWS1Erc7rit3jXD1P"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">网络层使用网络层协议打包数据
+</span></li><li id="nn9u8hkbUcRzJaffTxYQ6V"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">网络接口层使用网络接口层协议打包数据
+</span></li><li id="8Ryj53KnDnNyj5A66ajmpU"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数据被发送到<span class="jill"></span>internet</span></li></ul><div id="mJhp9gwoWGW7i9sNT56a8A" class="wolai-block wolai-text"><div><span class="inline-wrap">接收端接收到发送端的数据</span></div></div><ul class="wolai-block"><li id="oTJjHtKyu4uSKuB2Hr2hBe"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">程序猿调用接收数据的函数接收数据</span></li><li id="wej7tcwB4VUQSRgCy3oVE4"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">调用的<span class="jill"></span>API<span class="jill"></span>做相关的底层处理:
+</span><ul class="wolai-block"><li id="2ceuiYCWuh9u9pwjeop12H"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">网络接口层拆包 ==&gt; 网络层的包
+</span></li><li id="7BjJd947BExUpcTrC6R3rU"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">网络层拆包 ==&gt; 网络层的包
+</span></li><li id="wG14SKoMtojeyyeJXCuJG7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">传输层拆包 ==&gt; 传输层数据
+</span></li></ul></li><li id="3yTFA3VSCrtPLvcDAn64qb"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果应用层也使用了协议对数据进行了封装，数据的包的解析需要程序猿做</span></li></ul><h1 id="vhT634P9C8mVTHTpzarj3A" class="wolai-block"><span class="inline-wrap">3.socket<span class="jill"></span>编程</span></h1><div id="bqvovWgT6cd442rdcXxJLo" class="wolai-block wolai-text"><div><span class="inline-wrap">Socket<span class="jill"></span>套接字由远景研究规划局（Advanced Research Projects Agency, ARPA）资助加里福尼亚大学伯克利分校的一个研究组研发。其目的是将<span class="jill"></span>TCP/IP<span class="jill"></span>协议相关软件移植到<span class="jill"></span>UNIX<span class="jill"></span>类系统中。设计者开发了一个接口，以便应用程序能简单地调用该接口通信。这个接口不断完善，最终形成了<span class="jill"></span>Socket<span class="jill"></span>套接字。Linux<span class="jill"></span>系统采用了<span class="jill"></span>Socket<span class="jill"></span>套接字，因此，Socket<span class="jill"></span>接口就被广泛使用，到现在已经成为事实上的标准。与套接字相关的函数被包含在头文件<span class="jill"></span>sys/socket.h<span class="jill"></span>中。</span></div></div><div id="ugN1s8TonBwQE6tFsNTqmX" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_6.png" style="width: 500px"/></figure></div><div id="tbD2kAxc5BZWibfKPhfFPZ" class="wolai-block wolai-text"><div><span class="inline-wrap">通过上面的描述可以得知，套接字对应程序猿来说就是一套网络通信的接口，使用这套接口就可以完成网络通信。网络通信的主体主要分为两部分：</span><span class="red inline-wrap"><b>客户端</b></span><span class="inline-wrap">和</span><span class="red inline-wrap"><b>服务器端</b></span><span class="inline-wrap">。在客户端和服务器通信的时候需要频繁提到三个概念：</span><span class="red inline-wrap"><b>IP</b></span><span class="inline-wrap">、</span><span class="red inline-wrap"><b>端口</b></span><span class="inline-wrap">、</span><span class="red inline-wrap"><b>通信数据</b></span><span class="inline-wrap">，下面介绍一下需要注意的一些细节问题。</span></div></div><h2 id="s9f8YPU6Leoxt2WUiGj3Jb" class="wolai-block"><span class="inline-wrap">3.1 字节序</span></h2><div id="rf1ifcK2rLNw1UuYmVSDiJ" class="wolai-block wolai-text"><div><span class="inline-wrap">在各种计算机体系结构中，对于字节、字等的存储机制有所不同，因而引发了计算机通信领域中一个很重要的问题，即通信双方交流的信息单元（比特、字节、字、双字等等）应该以什么样的顺序进行传送。如果不达成一致的规则，通信双方将无法进行正确的编/译码从而导致通信失败。</span></div></div><div id="pToGce9Zpw4U7Yw1ixTEqQ" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>字节序</b></span><span class="inline-wrap">，顾名思义</span><span class="yellow inline-wrap"><b>字节的顺序</b></span><span class="inline-wrap">，</span><span class="yellow inline-wrap"><b>就是大于一个字节类型的数据在内存中的存放顺序，也就是说对于单字符来说是没有字节序问题的</b></span><span class="inline-wrap">，字符串是单字符的集合，因此字符串也没有字节序问题。</span></div></div><div id="u7Szj78SVgp91PS8FuRqvq" class="wolai-block wolai-text"><div><span class="inline-wrap">目前在各种体系的计算机中通常采用的字节存储机制主要有两种：Big-Endian 和 Little-Endian，下面先从字节序说起。</span></div></div><div id="kd4KqPQVeq7DYrAdrd3nnm" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_7.png" style="width: 500px"/></figure></div><blockquote id="oWiYZauG4oMyQq7jZYVWTA" class="wolai-block"><span class="inline-wrap">大小端的这个名词最早出现在《格列佛游记》中，里边记载了两个征战的强国，你不会想到的是，他们打仗竟然和剥鸡蛋的顺序有关。很多人认为，剥鸡蛋时应该打破鸡蛋较大的一端，这群人被称作“大端（Big endian）派”。可是那时皇帝儿子小时候吃鸡蛋的时候碰巧将一个手指弄破了。所以，当时的皇帝就下令剥鸡蛋必须打破鸡蛋较小的一端，违令者重罚，由此产生了“小端（Little endian）派”。
+老百姓们对这项命令极其反感，由此引发了<span class="jill"></span>6<span class="jill"></span>次叛乱，其中一个皇帝送了命，另一个丢了王位。据估计，先后几次有<span class="jill"></span>11000<span class="jill"></span>人情愿受死也不肯去打破鸡蛋较小的一端！</span></blockquote><div id="fRzsB7BmZEYKbwnCvgvdS3" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>Little-Endian -&gt; 主机字节序 (小端)</b></span></div></div><ul class="wolai-block"><li id="25CxZu5p1zpuoc3x7amkFK"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数据的</span><span class="inline-wrap"><code>低位字</code></span><span class="inline-wrap">节存储到内存的</span><span class="inline-wrap"><code>低地址位</code></span><span class="inline-wrap">, 数据的</span><span class="inline-wrap"><code>高位字节</code></span><span class="inline-wrap">存储到内存的</span><span class="inline-wrap"><code>高地址位</code></span></li><li id="o3mm34n4rwZ1PsVG7UDj7V"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">我们使用的<span class="jill"></span>PC<span class="jill"></span>机，数据的存储默认使用的是小端</span></li></ul><div id="g4wJYHVPJt16pX61gZKBKc" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>Big-Endian -&gt; 网络字节序 (大端)</b></span></div></div><ul class="wolai-block"><li id="5FhqwhMENNpfh95EP5DUUS"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数据的</span><span class="inline-wrap"><code>低位字节</code></span><span class="inline-wrap">存储到内存的</span><span class="inline-wrap"><code>高地址位</code></span><span class="inline-wrap">, 数据的</span><span class="inline-wrap"><code>高位字节</code></span><span class="inline-wrap">存储到内存的</span><span class="inline-wrap"><code>低地址位</code></span></li><li id="9FEeX5zXLXUYkFDXcKqV2Q"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>套接字通信过程中操作的数据都是大端存储的，包括：接收/发送的数据、IP<span class="jill"></span>地址、端口。</b></span></li></ul><div id="rEt8if2shNSyonT7HWrxeV" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>字节序举例</b></span></div></div><code-block id="2RxmNMYjjaLhcXyaXsiej9" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 有一个16进制的数, 有32位 (int): 0xab5c01ff</span>
+<span class="token comment">// 字节序, 最小的单位: char 字节, int 有4个字节, 需要将其拆分为4份</span>
+<span class="token comment">// 一个字节 unsigned char, 最大值是 255(十进制) ==> ff(16进制) </span>
+                 内存低地址位                内存的高地址位
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-></span>
+小端<span class="token operator">:</span>         <span class="token number">0xff</span>        <span class="token number">0x01</span>        <span class="token number">0x5c</span>        <span class="token number">0xab</span>
+大端<span class="token operator">:</span>         <span class="token number">0xab</span>        <span class="token number">0x5c</span>        <span class="token number">0x01</span>        <span class="token number">0xff</span>
+</pre></div></code-block><div id="6hTHbT5XsUMRuKXjzjs9c1" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_8.png" style="width: 100%"/></figure></div><div id="sYpYESUMYuu3icnjdcsFKf" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>函数</b></span></div></div><blockquote id="r93XH4mbcAPRTLJ34CC9Dp" class="wolai-block"><span class="inline-wrap">BSD Socket<span class="jill"></span>提供了封装好的转换接口，方便程序员使用。包括从主机字节序到网络字节序的转换函数：htons、htonl；从网络字节序到主机字节序的转换函数：ntohs、ntohl。</span></blockquote><code-block id="eSB9na4trcKgQ7isD5YJEA" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
+<span class="token comment">// u:unsigned</span>
+<span class="token comment">// 16: 16位, 32:32位</span>
+<span class="token comment">// h: host, 主机字节序</span>
+<span class="token comment">// n: net, 网络字节序</span>
+<span class="token comment">// s: short</span>
+<span class="token comment">// l: int</span>
+
+<span class="token comment">// 这套api主要用于 网络通信过程中 IP 和 端口 的 转换</span>
+<span class="token comment">// 将一个短整形从主机字节序 -> 网络字节序</span>
+<span class="token class-name">uint16_t</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> hostshort<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token comment">// 将一个整形从主机字节序 -> 网络字节序</span>
+<span class="token class-name">uint32_t</span> <span class="token function">htonl</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> hostlong<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+<span class="token comment">// 将一个短整形从网络字节序 -> 主机字节序</span>
+<span class="token class-name">uint16_t</span> <span class="token function">ntohs</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> netshort<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 将一个整形从网络字节序 -> 主机字节序</span>
+<span class="token class-name">uint32_t</span> <span class="token function">ntohl</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> netlong<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block><h2 id="6p4KipLCeK8MmSaVwYD2rW" class="wolai-block"><span class="inline-wrap">3.2 IP<span class="jill"></span>地址转换</span></h2><div id="hgDzWXJ3TEaCChsGZDgiLe" class="wolai-block wolai-text"><div><span class="inline-wrap">虽然<span class="jill"></span>IP<span class="jill"></span>地址本质是一个整形数，但是在使用的过程中都是通过一个字符串来描述，下面的函数描述了如何将一个字符串类型的<span class="jill"></span>IP<span class="jill"></span>地址进行大小端转换：</span></div></div><code-block id="9W3B2zprTr56uAqoC764hs" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 主机字节序的IP地址转换为网络字节序</span>
+<span class="token comment">// 主机字节序的IP地址是字符串, 网络字节序IP地址是整形</span>
+<span class="token keyword">int</span> <span class="token function">inet_pton</span><span class="token punctuation">(</span><span class="token keyword">int</span> af<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>dst<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//   af: 地址族(IP地址的家族包括ipv4和ipv6)协议</span>
+<span class="token comment">//     AF_INET: ipv4格式的ip地址</span>
+<span class="token comment">//     AF_INET6: ipv6格式的ip地址</span>
+<span class="token comment">//   src: 传入参数, 对应要转换的点分十进制的ip地址: 192.168.1.100</span>
+<span class="token comment">//   dst: 传出参数, 函数调用完成, 转换得到的大端整形IP被写入到这块内存中</span>
+<span class="token comment">// 返回值：成功返回1，失败返回0或者-1</span>
+</pre></div></code-block><code-block id="gR6KWVSzY7sdhrQ59vYF5d" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
+<span class="token comment">// 将大端的整形数, 转换为小端的点分十进制的IP地址        </span>
+<span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">inet_ntop</span><span class="token punctuation">(</span><span class="token keyword">int</span> af<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>dst<span class="token punctuation">,</span> <span class="token class-name">socklen_t</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//   af: 地址族协议</span>
+<span class="token comment">//      AF_INET: ipv4格式的ip地址</span>
+<span class="token comment">//      AF_INET6: ipv6格式的ip地址</span>
+<span class="token comment">//   src: 传入参数, 这个指针指向的内存中存储了大端的整形IP地址</span>
+<span class="token comment">//   dst: 传出参数, 存储转换得到的小端的点分十进制的IP地址</span>
+<span class="token comment">//   size: 修饰dst参数的, 标记dst指向的内存中最多可以存储多少个字节</span>
+<span class="token comment">// 返回值:</span>
+<span class="token comment">//   成功: 指针指向第三个参数对应的内存地址, 通过返回值也可以直接取出转换得到的IP字符串</span>
+<span class="token comment">//   失败: NULL</span>
+</pre></div></code-block><div id="oEqYxyaxkb4QYDf1abcBiB" class="wolai-block wolai-text"><div><span class="inline-wrap">还有一组函数也能进程<span class="jill"></span>IP<span class="jill"></span>地址大小端的转换，但是只能处理<span class="jill"></span>ipv4<span class="jill"></span>的<span class="jill"></span>ip<span class="jill"></span>地址：</span></div></div><code-block id="jEKNB7rfHGgWirSteqNXMm" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 点分十进制IP -> 大端整形</span>
+<span class="token class-name">in_addr_t</span> <span class="token function">inet_addr</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 大端整形 -> 点分十进制IP</span>
+<span class="token keyword">char</span><span class="token operator">*</span> <span class="token function">inet_ntoa</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">in_addr</span> in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block><h2 id="oKkL2619sAGUCpNxQ673wn" class="wolai-block"><span class="inline-wrap">3.3 sockaddr<span class="jill"></span>数据结构</span></h2><div id="vi5uHzk54TtPvadqyPGvcW" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_9.png" style="width: 415px"/></figure></div><code-block id="vz5VuL5frkAdKLCGi6JCSp" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 在写数据的时候不好用</span>
+<span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token punctuation">&#123;</span>
+  <span class="token class-name">sa_family_t</span> sa_family<span class="token punctuation">;</span>       <span class="token comment">// 地址族协议, ipv4</span>
+  <span class="token keyword">char</span>        sa_data<span class="token punctuation">[</span><span class="token number">14</span><span class="token punctuation">]</span><span class="token punctuation">;</span>     <span class="token comment">// 端口(2字节) + IP地址(4字节) + 填充(8字节)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">short</span>  <span class="token class-name">uint16_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span>    <span class="token class-name">uint32_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token class-name">uint16_t</span> <span class="token class-name">in_port_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token class-name">uint32_t</span> <span class="token class-name">in_addr_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">short</span> <span class="token keyword">int</span> <span class="token class-name">sa_family_t</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">__SOCKADDR_COMMON_SIZE</span> <span class="token expression"><span class="token punctuation">(</span><span class="token keyword">sizeof</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">short</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token keyword">struct</span> <span class="token class-name">in_addr</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name">in_addr_t</span> s_addr<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>  
+
+<span class="token comment">// sizeof(struct sockaddr) == sizeof(struct sockaddr_in)</span>
+<span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token class-name">sa_family_t</span> sin_family<span class="token punctuation">;</span>    <span class="token comment">/* 地址族协议: AF_INET */</span>
+    <span class="token class-name">in_port_t</span> sin_port<span class="token punctuation">;</span>         <span class="token comment">/* 端口, 2字节-> 大端  */</span>
+    <span class="token keyword">struct</span> <span class="token class-name">in_addr</span> sin_addr<span class="token punctuation">;</span>    <span class="token comment">/* IP地址, 4字节 -> 大端  */</span>
+    <span class="token comment">/* 填充 8字节 */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">char</span> sin_zero<span class="token punctuation">[</span><span class="token keyword">sizeof</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>sin_family<span class="token punctuation">)</span> <span class="token operator">-</span>
+               <span class="token keyword">sizeof</span> <span class="token punctuation">(</span><span class="token class-name">in_port_t</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">sizeof</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">in_addr</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>  
+</pre></div></code-block><h2 id="7bhUQ6V6Q3resXdxszZAXM" class="wolai-block"><span class="inline-wrap">3.4 套接字函数</span></h2><div id="aL7U8YmamVsMhMLWWeq3Km" class="wolai-block wolai-text"><div><span class="inline-wrap">使用套接字通信函数需要包含头文件</span><span class="inline-wrap"><code>&lt;arpa/inet.h&gt;</code></span><span class="inline-wrap">，包含了这个头文件</span><span class="inline-wrap"><code>&lt;sys/socket.h&gt;</code></span><span class="inline-wrap">就不用再包含了。</span></div></div><h4 id="vUA6RkfFEiJyrndByXLYxo" class="wolai-block"><span class="inline-wrap">创建一个套接字</span></h4><code-block id="vpExMNSn8SHv8UVus71hys" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 创建一个套接字</span>
+<span class="token keyword">int</span> <span class="token function">socket</span><span class="token punctuation">(</span><span class="token keyword">int</span> domain<span class="token punctuation">,</span> <span class="token keyword">int</span> type<span class="token punctuation">,</span> <span class="token keyword">int</span> protocol<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 参数:</span>
+<span class="token comment">//   domain: 使用的地址族协议</span>
+<span class="token comment">//      AF_INET: 使用IPv4格式的ip地址</span>
+<span class="token comment">//      AF_INET6: 使用IPv4格式的ip地址</span>
+<span class="token comment">//   type:</span>
+<span class="token comment">//      SOCK_STREAM: 使用流式的传输协议</span>
+<span class="token comment">//      SOCK_DGRAM: 使用报式(报文)的传输协议</span>
+<span class="token comment">//   protocol: 一般写0即可, 使用默认的协议</span>
+<span class="token comment">//      SOCK_STREAM: 流式传输默认使用的是tcp</span>
+<span class="token comment">//      SOCK_DGRAM: 报式传输默认使用的udp</span>
+<span class="token comment">// 返回值:</span>
+<span class="token comment">//   成功: 可用于套接字通信的文件描述符</span>
+<span class="token comment">//   失败: -1</span>
+</pre></div></code-block><div id="4ZScru4MiNgK7XGic66RyQ" class="wolai-block wolai-text"><div><span class="inline-wrap">函数的返回值是一个文件描述符，通过这个文件描述符可以操作内核中的某一块内存，网络通信是基于这个文件描述符来完成的。</span></div></div><h4 id="cfoKghexbBqfJDHM4saMwh" class="wolai-block"><span class="inline-wrap">将文件描述符和本地<span class="jill"></span>IP<span class="jill"></span>与端口进行绑定</span></h4><code-block id="6q281deBQktLbBGxFcdR9q" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 将文件描述符和本地的IP与端口进行绑定   </span>
+<span class="token keyword">int</span> <span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>addr<span class="token punctuation">,</span> <span class="token class-name">socklen_t</span> addrlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//   sockfd: 监听的文件描述符, 通过socket()调用得到的返回值</span>
+<span class="token comment">//   addr: 传入参数, 要绑定的IP和端口信息需要初始化到这个结构体中，IP和端口要转换为网络字节序</span>
+<span class="token comment">//   addrlen: 参数addr指向的内存大小, sizeof(struct sockaddr)</span>
+<span class="token comment">// 返回值：成功返回0，失败返回-1</span>
+</pre></div></code-block><h4 id="5FkgFu7XDviivUGwCtSYaQ" class="wolai-block"><span class="inline-wrap">给监听的套接字设置监听</span></h4><code-block id="cpkNBCSTkzqENTg9X9gqQE" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 给监听的套接字设置监听</span>
+<span class="token keyword">int</span> <span class="token function">listen</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">int</span> backlog<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//    sockfd: 文件描述符, 可以通过调用socket()得到，在监听之前必须要绑定 bind()</span>
+<span class="token comment">//    backlog: 同时能处理的最大连接要求，最大值为128</span>
+<span class="token comment">// 返回值：函数调用成功返回0，调用失败返回 -1</span>
+</pre></div></code-block><h4 id="3952KjAdDddBqxBmyoNYEv" class="wolai-block"><span class="inline-wrap">等待并接受客户端的连接请求，建立新的连接，会得到一个新的文件描述符（通信的）</span></h4><code-block id="gAZbLaqUSaEjzPb4i1zs66" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 等待并接受客户端的连接请求, 建立新的连接, 会得到一个新的文件描述符(通信的)    </span>
+<span class="token keyword">int</span> <span class="token function">accept</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>addr<span class="token punctuation">,</span> <span class="token class-name">socklen_t</span> <span class="token operator">*</span>addrlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//    sockfd: 监听的文件描述符</span>
+<span class="token comment">//    addr: 传出参数, 里边存储了建立连接的客户端的地址信息</span>
+<span class="token comment">//    addrlen: 传入传出参数，用于存储addr指向的内存大小</span>
+<span class="token comment">// 返回值：函数调用成功，得到一个文件描述符, 用于和建立连接的这个客户端通信，调用失败返回 -1</span>
+
+</pre></div></code-block><div id="pxU21QzhMAN6Uytjn6RuqB" class="wolai-block wolai-text"><div><span class="yellow inline-wrap"><b>这个函数是一个阻塞函数</b></span><span class="inline-wrap">，当没有新的客户端连接请求的时候，该函数阻塞；当检测到有新的客户端连接请求时，阻塞解除，新连接就建立了，得到的返回值也是一个文件描述符，基于这个文件描述符就可以和客户端通信了。</span></div></div><h4 id="pPjE2GBKSQ85ViFqM89oMU" class="wolai-block"><span class="inline-wrap">接收数据</span></h4><code-block id="eMZnLxXDhnjmUXMfatdZP" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 接收数据</span>
+<span class="token class-name">ssize_t</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token class-name">size_t</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">ssize_t</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token class-name">size_t</span> size<span class="token punctuation">,</span> <span class="token keyword">int</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//    sockfd: 用于通信的文件描述符, accept() 函数的返回值</span>
+<span class="token comment">//    buf: 指向一块有效内存, 用于存储接收是数据</span>
+<span class="token comment">//    size: 参数buf指向的内存的容量</span>
+<span class="token comment">//    flags: 特殊的属性, 一般不使用, 指定为 0</span>
+<span class="token comment">// 返回值:</span>
+<span class="token comment">//    大于0：实际接收的字节数</span>
+<span class="token comment">//    等于0：对方断开了连接</span>
+<span class="token comment">//    -1：接收数据失败了</span>
+</pre></div></code-block><div id="3AovJsifSk2xtpCnQx343" class="wolai-block wolai-text"><div><span class="inline-wrap">如果连接没有断开，接收端接收不到数据，接收数据的函数会阻塞等待数据到达，数据到达后函数解除阻塞，开始接收数据，当发送端断开连接，接收端无法接收到任何数据，但是这时候就不会阻塞了，函数直接返回<span class="jill"></span>0。</span></div></div><h4 id="9Uxqu3mz65BFPHnM2QZqDJ" class="wolai-block"><span class="inline-wrap">发送数据</span></h4><code-block id="mHRQMbRa5758cCtXtyiX7T" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 发送数据的函数</span>
+<span class="token class-name">ssize_t</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token class-name">size_t</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">ssize_t</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token class-name">size_t</span> len<span class="token punctuation">,</span> <span class="token keyword">int</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//    fd: 通信的文件描述符, accept() 函数的返回值</span>
+<span class="token comment">//    buf: 传入参数, 要发送的字符串</span>
+<span class="token comment">//    len: 要发送的字符串的长度</span>
+<span class="token comment">//    flags: 特殊的属性, 一般不使用, 指定为 0</span>
+<span class="token comment">// 返回值：</span>
+<span class="token comment">//    大于0：实际发送的字节数，和参数len是相等的</span>
+<span class="token comment">//    -1：发送数据失败了</span>
+</pre></div></code-block><h4 id="5Z44GU3AaRyNmnuPggGa49" class="wolai-block"><span class="inline-wrap">connect</span></h4><code-block id="3Tk9vat24KT5QTkSBsg9Gh" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 成功连接服务器之后, 客户端会自动随机绑定一个端口</span>
+<span class="token comment">// 服务器端调用accept()的函数, 第二个参数存储的就是客户端的IP和端口信息</span>
+<span class="token keyword">int</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token keyword">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>addr<span class="token punctuation">,</span> <span class="token class-name">socklen_t</span> addrlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//    sockfd: 通信的文件描述符, 通过调用socket()函数就得到了</span>
+<span class="token comment">//    addr: 存储了要连接的服务器端的地址信息: iP 和 端口，这个IP和端口也需要转换为大端然后再赋值</span>
+<span class="token comment">//    addrlen: addr指针指向的内存的大小 sizeof(struct sockaddr)</span>
+<span class="token comment">// 返回值：连接成功返回0，连接失败返回-1</span>
+</pre></div></code-block><h1 id="qfmvW7m8uXUYp1iWw6DsxB" class="wolai-block"><span class="inline-wrap">4.TCP<span class="jill"></span>通信流程</span></h1><div id="9PwK4osXZp5ze78SUWNMGC" class="wolai-block wolai-text"><div><span class="inline-wrap">TCP<span class="jill"></span>是一个面向连接的，安全的，流式传输协议，这个协议是一个传输层协议。</span></div></div><ul class="wolai-block"><li id="mYSFVTLxcPCLk38K5baPDE"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap"><b>面向连接</b></span><span class="inline-wrap">：是一个双向连接，通过三次握手完成，断开连接需要通过四次挥手完成。</span></li><li id="kWmA9BubmVioX12rKpfm9o"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap"><b>安全</b></span><span class="inline-wrap">：tcp<span class="jill"></span>通信过程中，会对发送的每一数据包都会进行校验, 如果发现数据丢失, 会自动重传</span></li><li id="huRuWTwZoWkHDmDYT88Vm"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap"><b>流式传输</b></span><span class="inline-wrap">：发送端和接收端处理数据的速度，数据的量都可以不一致</span></li></ul><div id="nw3CdawPRVKoeLJCLckEyZ" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_10.png" style="width: 408px"/></figure></div><h2 id="iE2PnBQxmLhwhUep75AxxD" class="wolai-block"><span class="inline-wrap">4.1 服务器端通信流程</span></h2><h3 id="kxxyuxeQuqDFGh5wp2iyyz" class="wolai-block"><span class="inline-wrap">（1）流程</span></h3><div id="e5Z6GK5NrkfZwcJw3Ze7iU" class="wolai-block wolai-text"><div><span class="inline-wrap">1、创建用于监听的套接字, 这个套接字是一个文件描述符</span></div></div><code-block id="2FY5Ybu3Xh5g7mbPWFntBs" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">int</span> lfd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="m8EJNsbB14AKrCkPmZwbHK" class="wolai-block wolai-text"><div><span class="inline-wrap">2、将得到的监听的文件描述符和本地的<span class="jill"></span>IP 端口进行绑定</span></div></div><code-block id="f7vK2JkWdLMk5ZrbsBBdLN" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token function">bind</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="2qvFQXBt1iBnxBnf2Yiv8H" class="wolai-block wolai-text"><div><span class="inline-wrap">3、设置监听(成功之后开始监听, 监听的是客户端的连接)</span></div></div><code-block id="uUzESXTTxdjAyPtvYuoHxx" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="rCsiDvipgVsaNSLiq87QVW" class="wolai-block wolai-text"><div><span class="inline-wrap">4、等待并接受客户端的连接请求, 建立新的连接, 会得到一个新的文件描述符(通信的)，</span><span class="inline-wrap"><code>没有新连接请求就阻塞</code></span></div></div><code-block id="w51fAATsQmonpiHr77YTZz" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">int</span> cfd <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="3Qy3FD3SZebRr7z5tr4Bde" class="wolai-block wolai-text"><div><span class="inline-wrap">5、通信，读写操作默认都是阻塞的</span></div></div><code-block id="w5L7A7iDHNUfiRnmnytLsg" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 接收数据</span>
+<span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 发送数据</span>
+<span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="hxARH3EK5rnELNZW5YqN7r" class="wolai-block wolai-text"><div><span class="inline-wrap">6、断开连接, 关闭套接字</span></div></div><code-block id="irfrByBbmkwxNCEo2HdYLx" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block><h3 id="pYcu2GCaJhHb6Xh9SZqWkM" class="wolai-block"><span class="inline-wrap">（2）文件描述符</span></h3><div id="uMPZFuehBgy1hVozExJgZ6" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>在<span class="jill"></span>tcp<span class="jill"></span>的服务器端, 有两类文件描述符</b></span></div></div><ul class="wolai-block"><li id="2eFH2b6EXvr38SHafY18Ly"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>监听的文件描述符</b></span><span class="inline-wrap">：只需要有一个；不负责和客户端通信, 负责检测客户端的连接请求, 检测到之后调用<span class="jill"></span>accept<span class="jill"></span>就可以建立新的连接。</span></li><li id="j4BeQDAdKGZZMiVJL9cnWi"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>通信的文件描述符</b></span><span class="inline-wrap">：负责和建立连接的客户端通信；如果有<span class="jill"></span>N<span class="jill"></span>个客户端和服务器建立了新的连接, 通信的文件描述符就有<span class="jill"></span>N<span class="jill"></span>个，每个客户端和服务器都对应一个通信的文件描述符</span></li></ul><div id="3d6fH1Bq9J74nNe8iSkoRu" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_11.png" style="width: 635px"/></figure></div><div id="pt3i2VkfcLe5FXk2idVvsc" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>文件描述符对应的内存结构：</b></span></div></div><ul class="wolai-block"><li id="fxx5caDVNWvfru84Vb4Qvo"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap">一个文件文件描述符对应两块内存, 一块内存是读缓冲区, 一块内存是写缓冲区</span><span class="inline-wrap">
+</span></li><li id="tSvHdEfdA21EYB94RMDthF"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap"><b>读数据</b></span><span class="inline-wrap">: 通过文件描述符将内存中的数据读出, 这块内存称之为读缓冲区</span></li><li id="7nrThvwwA2ocKoDiJhVvzt"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap"><b>写数据</b></span><span class="inline-wrap">: 通过文件描述符将数据写入到某块内存中, 这块内存称之为写缓冲区</span></li></ul><div id="qy8wTWRXYJTNmnnXTLZF33" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>监听的文件描述符:</b></span></div></div><ul class="wolai-block"><li id="bATdZqeTDwQ1DHrYwTU43g"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">客户端的连接请求会发送到服务器端监听的文件描述符的读缓冲区中
+</span></li><li id="gxF93eZVcFAxES4eY9jXEG"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">读缓冲区中有数据, 说明有新的客户端连接
+</span></li><li id="dx3ptb3odbeC7m1DVfVFuD"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">调用</span><span class="inline-wrap"><code>accept()</code></span><span class="inline-wrap">函数, 这个函数会检测监听文件描述符的读缓冲区</span><ul class="wolai-block"><li id="eLiUcnTDUEwp8JRZLf2FyL"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">检测不到数据, 该函数阻塞
+</span></li><li id="gd7WxmQM1jX8zd3vNiiH2T"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果检测到数据, 解除阻塞, 新的连接建立</span></li></ul></li></ul><div id="3W9isPFeT5nWdwK7hQn855" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>通信的文件描述符:</b></span></div></div><ul class="wolai-block"><li id="wXbxWPgXMcCHkRr3EQau5K"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">客户端和服务器端都有通信的文件描述符
+</span></li><li id="6q18eBSdbhANmnDixRhxne"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">发送数据：调用函数 </span><span class="inline-wrap"><code>write() / send()</code></span><span class="inline-wrap">，数据进入到内核中
+</span><ul class="wolai-block"><li id="a9fCGYEuKcxSUHoT64h1J7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数据并没有被发送出去, 而是将数据写入到了通信的文件描述符对应的写缓冲区中
+</span></li><li id="feYAtvZsBGq5hUj12a24EA"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">内核检测到通信的文件描述符写缓冲区中有数据, 内核会将数据发送到网络中</span></li></ul></li><li id="bQDYJnce69oAXeTjJcVPdH"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">接收数据: 调用的函数 </span><span class="inline-wrap"><code>read() / recv()</code></span><span class="inline-wrap">, 从内核读数据
+</span><ul class="wolai-block"><li id="fSBYjudR7g2hMm31TgTbja"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数据如何进入到内核程序猿不需要处理, 数据进入到通信的文件描述符的读缓冲区中
+</span></li><li id="f7FFmdUpD8yw8A5LTozJoB"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数据进入到内核, 必须使用通信的文件描述符, 将数据从读缓冲区中读出即可</span></li></ul></li></ul><h3 id="hbfDgE6A2Zts7n8cL8Xpjw" class="wolai-block"><span class="inline-wrap">（3）基于<span class="jill"></span>tcp<span class="jill"></span>的服务器端通信代码</span></h3><code-block id="pMNf6JBiUieCSme1MfeP4g" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// server.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建监听的套接字</span>
+    <span class="token keyword">int</span> lfd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>lfd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"socket"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 2. 将socket()返回值和本地的IP端口绑定到一起</span>
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> addr<span class="token punctuation">;</span>
+    addr<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 大端端口</span>
+    <span class="token comment">// INADDR_ANY代表本机的所有IP, 假设有三个网卡就有三个IP地址</span>
+    <span class="token comment">// 这个宏可以代表任意一个IP地址</span>
+    <span class="token comment">// 这个宏一般用于本地的绑定操作</span>
+    addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> INADDR_ANY<span class="token punctuation">;</span>  <span class="token comment">// 这个宏的值为0 == 0.0.0.0</span>
+<span class="token comment">//    inet_pton(AF_INET, "192.168.237.131", &amp;addr.sin_addr.s_addr);</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"bind"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 3. 设置监听</span>
+    ret <span class="token operator">=</span> <span class="token function">listen</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"listen"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 4. 阻塞等待并接受客户端连接</span>
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> cliaddr<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> clilen <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>cliaddr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> cfd <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>lfd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>cliaddr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>clilen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>cfd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"accept"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 打印客户端的地址信息</span>
+    <span class="token keyword">char</span> ip<span class="token punctuation">[</span><span class="token number">24</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"客户端的IP地址: %s, 端口: %d\n"</span><span class="token punctuation">,</span>
+           <span class="token function">inet_ntop</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> <span class="token operator">&amp;</span>cliaddr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr<span class="token punctuation">,</span> ip<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+           <span class="token function">ntohs</span><span class="token punctuation">(</span>cliaddr<span class="token punctuation">.</span>sin_port<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 5. 和客户端通信</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 接收数据</span>
+        <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>cfd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"客户端say: %s\n"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">write</span><span class="token punctuation">(</span>cfd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>len  <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"客户端断开了连接...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"read"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">close</span><span class="token punctuation">(</span>cfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>lfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h2 id="feCzN1UpZuFbJAbFvusTDX" class="wolai-block"><span class="inline-wrap">4.2 客户端的通信流程</span></h2><h3 id="9vJSZUsmkR2a433AawmcdQ" class="wolai-block"><span class="inline-wrap">（1）流程</span></h3><div id="KHp1PWoxKcueRRQ7D2hzU" class="wolai-block wolai-text"><div><span class="inline-wrap">在单线程的情况下客户端通信的文件描述符有一个, 没有监听的文件描述符</span></div></div><div id="kEP9pvj8zHdN7DpESZNrCD" class="wolai-block wolai-text"><div><span class="inline-wrap">1、创建一个套接字</span></div></div><code-block id="7tNJNrEbuX3qXXGNyEurD7" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">int</span> cfd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="tRbSXAmnafkzxH4fjEnAY1" class="wolai-block wolai-text"><div><span class="inline-wrap">2、连接服务器，需要知道服务器绑定的<span class="jill"></span>IP<span class="jill"></span>和端口号</span></div></div><code-block id="u1Cta4iEXGxPworSkHg4H9" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">int</span> cfd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="iH8vnKiZRbckVXGyrVdGR3" class="wolai-block wolai-text"><div><span class="inline-wrap">3、通信</span></div></div><code-block id="5wSqctEnteeea7uZCLsssF" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 接收数据</span>
+<span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">recv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 发送数据</span>
+<span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="gjvup9zjRtXxUXaXDSW5ND" class="wolai-block wolai-text"><div><span class="inline-wrap">4、断开连接，关闭文件描述符（套接字）</span></div></div><code-block id="sMLnZ44k9AVnYzRLUT3Q3g" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><h3 id="9H8c9a5JJ82bzjRrGZfSpe" class="wolai-block"><span class="inline-wrap">（2）基于<span class="jill"></span>TCP<span class="jill"></span>通信的客户端通信代码</span></h3><code-block id="k8nFZRb5as2GLGyiJFKaCQ" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// client.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建通信的套接字</span>
+    <span class="token keyword">int</span> fd <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"socket"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 2. 连接服务器</span>
+    <span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> addr<span class="token punctuation">;</span>
+    addr<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 大端端口</span>
+    <span class="token function">inet_pton</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> <span class="token string">"192.168.237.131"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"connect"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 3. 和服务器端通信</span>
+    <span class="token keyword">int</span> number <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 发送数据</span>
+        <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">sprintf</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token string">"你好, 服务器...%d\n"</span><span class="token punctuation">,</span> number<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">write</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 接收数据</span>
+        <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"服务器say: %s\n"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>len  <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"服务器断开了连接...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"read"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 每隔1s发送一条数据</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h1 id="nPJ8Z3QVuVDiQGDAGgXjrt" class="wolai-block"><span class="inline-wrap">5.扩展阅读</span></h1><div id="ryrQCGtV5Wn2Ry28Zu714X" class="wolai-block wolai-text"><div><span class="inline-wrap">在<span class="jill"></span>Window<span class="jill"></span>中也提供了套接字通信的<span class="jill"></span>API，这些<span class="jill"></span>API<span class="jill"></span>函数与<span class="jill"></span>Linux<span class="jill"></span>平台的<span class="jill"></span>API<span class="jill"></span>函数几乎相同，以至于很多人认为套接字通信的<span class="jill"></span>API<span class="jill"></span>函数库只有一套，下面来看一下这些<span class="jill"></span>Windows<span class="jill"></span>平台的套接字函数：</span></div></div><h2 id="n2ev9djEJTGArDGEo3kQH5" class="wolai-block"><span class="inline-wrap">5.1 初始化套接字环境</span></h2><div id="7thmebax7XSqdBigUiJSLS" class="wolai-block wolai-text"><div><span class="inline-wrap">使用<span class="jill"></span>Windows<span class="jill"></span>中的套接字函数需要额外包含对应的头文件以及加载响应的动态库：</span></div></div><code-block id="cSeKvpe2K8JJ1PDDYWQ6Tv" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 使用包含的头文件</span>
+include <span class="token operator">&lt;</span>winsock2<span class="token punctuation">.</span>h<span class="token operator">></span>
+<span class="token comment">// 使用的套接字库 </span>
+ws2_32<span class="token punctuation">.</span>dll</pre></div></code-block><div id="r33Y315pXuEJkNeMo9YYTT" class="wolai-block wolai-text"><div><span class="inline-wrap">在<span class="jill"></span>Windows<span class="jill"></span>中使用套接字需要先加载套接字库（套接字环境），最后需要释放套接字资源。</span></div></div><code-block id="rvPLFhvt4oi8UNjbrpYRYH" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 初始化Winsock库</span>
+<span class="token comment">// 返回值: 成功返回0，失败返回SOCKET_ERROR。</span>
+<span class="token function">WSAStartup</span><span class="token punctuation">(</span>WORD wVersionRequested<span class="token punctuation">,</span> LPWSADATA lpWSAData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">// 参数:</span>
+<span class="token comment">//   wVersionRequested: 使用的Windows Socket的版本, 一般使用的版本是 2.2；初始化这个 MAKEWORD(2, 2);参数</span>
+<span class="token comment">//   lpWSAData：一个WSADATA结构指针, 这是一个传入参数；创建一个 WSADATA 类型的变量, 将地址传递给该函数的第二个参数</span>
+</pre></div></code-block><div id="8x9pyfHSh5YmuK8F3j338" class="wolai-block wolai-text"><div><span class="inline-wrap">注销<span class="jill"></span>Winsock<span class="jill"></span>相关库，函数调用成功返回<span class="jill"></span>0，失败返回 </span><span class="inline-wrap"><code>SOCKET_ERROR</code></span><span class="inline-wrap">。</span></div></div><code-block id="org5LBhhogwQ2vwbXpSd9F" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">int</span> <span class="token function">WSACleanup</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="bBbydSV3D6spS38jrJ1S74" class="wolai-block wolai-text"><div><span class="inline-wrap">使用举例：</span></div></div><code-block id="aRDgJvB5Beq6KBAM1p9axq" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">WSAData wsa<span class="token punctuation">;</span>
+<span class="token comment">// 初始化套接字库</span>
+<span class="token function">WSAStartup</span><span class="token punctuation">(</span><span class="token function">MAKEWORD</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>wsa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// .......</span>
+
+<span class="token comment">// 注销Winsock相关库</span>
+<span class="token function">WSACleanup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block><h2 id="sZebRBwKViP12JQqLEvjNj" class="wolai-block"><span class="inline-wrap">5.2 套接字通信函数</span></h2><div id="qAxe4XipzW2FuinPicc7W9" class="wolai-block wolai-text"><div><span class="inline-wrap">基于<span class="jill"></span>Linux<span class="jill"></span>的套接字通信流程是最全面的一套通信流程，如果是在某个框架中进行套接字通信，通信流程只会更简单，直接使用<span class="jill"></span>window<span class="jill"></span>的套接字<span class="jill"></span>api<span class="jill"></span>进行套接字通信，和<span class="jill"></span>Linux<span class="jill"></span>平台上的通信流程完全相同。</span></div></div><h3 id="9ScUnQuTNrN21YeWaM16Re" class="wolai-block"><span class="inline-wrap">（1）结构体</span></h3><code-block id="h38kqQvDgbwSUGpzZS68di" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">///////////////////////////////////////////////////////////////////////</span>
+<span class="token comment">/////////////////////////////// Windows ///////////////////////////////</span>
+<span class="token comment">///////////////////////////////////////////////////////////////////////</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">in_addr</span> <span class="token punctuation">{</span>
+　　<span class="token keyword">union</span> <span class="token punctuation">{</span>
+　　  <span class="token keyword">struct</span><span class="token punctuation">{</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span> s_b1<span class="token punctuation">,</span>s_b2<span class="token punctuation">,</span> s_b3<span class="token punctuation">,</span>s_b4<span class="token punctuation">;</span><span class="token punctuation">}</span> S_un_b<span class="token punctuation">;</span>
+　　  <span class="token keyword">struct</span><span class="token punctuation">{</span> <span class="token keyword">unsigned</span> <span class="token keyword">short</span> s_w1<span class="token punctuation">,</span> s_w2<span class="token punctuation">;</span><span class="token punctuation">}</span> S_un_w<span class="token punctuation">;</span>
+　　  <span class="token keyword">unsigned</span> <span class="token keyword">long</span> S_addr<span class="token punctuation">;</span>  <span class="token comment">// 存储IP地址</span>
+　　<span class="token punctuation">}</span> S_un<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>IN_ADDR<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span> <span class="token punctuation">{</span>
+　　<span class="token keyword">short</span> <span class="token keyword">int</span> sin_family<span class="token punctuation">;</span> <span class="token comment">/* Address family */</span>
+　　<span class="token keyword">unsigned</span> <span class="token keyword">short</span> <span class="token keyword">int</span> sin_port<span class="token punctuation">;</span> <span class="token comment">/* Port number */</span>
+　　<span class="token keyword">struct</span> <span class="token class-name">in_addr</span> sin_addr<span class="token punctuation">;</span> <span class="token comment">/* Internet address */</span>
+　　<span class="token keyword">unsigned</span> <span class="token keyword">char</span> sin_zero<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">/* Same size as struct sockaddr */</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">///////////////////////////////////////////////////////////////////////</span>
+<span class="token comment">//////////////////////////////// Linux ////////////////////////////////</span>
+<span class="token comment">///////////////////////////////////////////////////////////////////////</span>
+<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">short</span>  <span class="token class-name">uint16_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span>    <span class="token class-name">uint32_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token class-name">uint16_t</span> <span class="token class-name">in_port_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token class-name">uint32_t</span> <span class="token class-name">in_addr_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">unsigned</span> <span class="token keyword">short</span> <span class="token keyword">int</span> <span class="token class-name">sa_family_t</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">in_addr</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">in_addr_t</span> s_addr<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>  
+
+<span class="token comment">// sizeof(struct sockaddr) == sizeof(struct sockaddr_in)</span>
+<span class="token keyword">struct</span> <span class="token class-name">sockaddr_in</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">sa_family_t</span> sin_family<span class="token punctuation">;</span>     <span class="token comment">/* 地址族协议: AF_INET */</span>
+    <span class="token class-name">in_port_t</span> sin_port<span class="token punctuation">;</span>         <span class="token comment">/* 端口, 2字节-> 大端  */</span>
+    <span class="token keyword">struct</span> <span class="token class-name">in_addr</span> sin_addr<span class="token punctuation">;</span>    <span class="token comment">/* IP地址, 4字节 -> 大端  */</span>
+    <span class="token comment">/* 填充 8字节 */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">char</span> sin_zero<span class="token punctuation">[</span><span class="token keyword">sizeof</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>sin_family<span class="token punctuation">)</span> <span class="token operator">-</span>
+                      <span class="token keyword">sizeof</span> <span class="token punctuation">(</span><span class="token class-name">in_port_t</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">sizeof</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">in_addr</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>  
+</pre></div></code-block><h3 id="74DNyG9cdpeoVFfenMAgBD" class="wolai-block"><span class="inline-wrap">（2）大小端转换函数</span></h3><code-block id="c9G4ag7cDYs5rYv35i2VXB" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 主机字节序 -> 网络字节序</span>
+u_short <span class="token function">htons</span> <span class="token punctuation">(</span>u_short hostshort <span class="token punctuation">)</span><span class="token punctuation">;</span>
+u_long <span class="token function">htonl</span> <span class="token punctuation">(</span>u_long hostlong<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 网络字节序 -> 主机字节序</span>
+u_short <span class="token function">ntohs</span> <span class="token punctuation">(</span>u_short netshort <span class="token punctuation">)</span><span class="token punctuation">;</span>
+u_long <span class="token function">ntohl</span> <span class="token punctuation">(</span> u_long netlong<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// linux函数, window上没有这两个函数</span>
+<span class="token function">inet_ntop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token function">inet_pton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// windows 和 linux 都使用, 只能处理ipv4的ip地址</span>
+<span class="token comment">// 点分十进制IP -> 大端整形</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token function">inet_addr</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> FAR <span class="token operator">*</span> cp<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// windows</span>
+<span class="token class-name">in_addr_t</span>     <span class="token function">inet_addr</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cp<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// linux</span>
+
+<span class="token comment">// 大端整形 -> 点分十进制IP</span>
+<span class="token comment">// window, linux相同</span>
+<span class="token keyword">char</span><span class="token operator">*</span> <span class="token function">inet_ntoa</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">in_addr</span> in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block><h3 id="jGGdtfXP1VDUPUnTwi8kf5" class="wolai-block"><span class="inline-wrap">（3）套接字函数</span></h3><div id="vzY8y2qff68FTBQS2yf79g" class="wolai-block wolai-text"><div><span class="red inline-wrap">window<span class="jill"></span>的<span class="jill"></span>api<span class="jill"></span>中套接字对应的类型是 SOCKET 类型, linux<span class="jill"></span>中是 int 类型, 本质是一样的</span></div></div><code-block id="v7WiJiQJZvb8NX6chkVaga" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 创建一个套接字</span>
+<span class="token comment">// 返回值: 成功返回套接字, 失败返回INVALID_SOCKET</span>
+SOCKET <span class="token function">socket</span><span class="token punctuation">(</span><span class="token keyword">int</span> af<span class="token punctuation">,</span><span class="token keyword">int</span> type<span class="token punctuation">,</span><span class="token keyword">int</span> protocal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+参数<span class="token operator">:</span>
+    <span class="token operator">-</span> af<span class="token operator">:</span> 地址族协议
+        <span class="token operator">-</span> ipv4<span class="token operator">:</span> <span class="token function">AF_INET</span> <span class="token punctuation">(</span>windows<span class="token operator">/</span>linux<span class="token punctuation">)</span>
+        <span class="token operator">-</span> <span class="token function">PF_INET</span> <span class="token punctuation">(</span>windows<span class="token punctuation">)</span>
+        <span class="token operator">-</span> AF_INET <span class="token operator">==</span> PF_INET
+   <span class="token operator">-</span> type<span class="token operator">:</span> 和linux一样
+         <span class="token operator">-</span> SOCK_STREAM
+        <span class="token operator">-</span> SOCK_DGRAM
+   <span class="token operator">-</span> protocal<span class="token operator">:</span> 一般写<span class="token number">0</span> 即可
+       <span class="token operator">-</span> 在windows上的另一种写法
+           <span class="token operator">-</span> IPPROTO_TCP<span class="token punctuation">,</span> 使用指定的流式协议中的tcp协议
+           <span class="token operator">-</span> IPPROTO_UDP<span class="token punctuation">,</span> 使用指定的报式协议中的udp协议
+
+ <span class="token comment">// 关键字: FAR NEAR, 这两个关键字在32/64位机上是没有意义的, 指定的内存的寻址方式</span>
+<span class="token comment">// 套接字绑定本地IP和端口</span>
+<span class="token comment">// 返回值: 成功返回0，失败返回SOCKET_ERROR</span>
+<span class="token keyword">int</span> <span class="token function">bind</span><span class="token punctuation">(</span>SOCKET s<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> FAR<span class="token operator">*</span> name<span class="token punctuation">,</span> <span class="token keyword">int</span> namelen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 设置监听</span>
+<span class="token comment">// 返回值: 成功返回0，失败返回SOCKET_ERROR</span>
+<span class="token keyword">int</span> <span class="token function">listen</span><span class="token punctuation">(</span>SOCKET s<span class="token punctuation">,</span><span class="token keyword">int</span> backlog<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 等待并接受客户端连接</span>
+<span class="token comment">// 返回值: 成功返回用于的套接字，失败返回INVALID_SOCKET。</span>
+SOCKET <span class="token function">accept</span> <span class="token punctuation">(</span> SOCKET s<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> FAR<span class="token operator">*</span> addr<span class="token punctuation">,</span> <span class="token keyword">int</span> FAR<span class="token operator">*</span> addrlen <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 连接服务器</span>
+<span class="token comment">// 返回值: 成功返回0，失败返回SOCKET_ERROR</span>
+<span class="token keyword">int</span> <span class="token function">connect</span> <span class="token punctuation">(</span>SOCKET s<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> FAR<span class="token operator">*</span> name<span class="token punctuation">,</span><span class="token keyword">int</span> namelen <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 在Qt中connect用户信号槽的连接, 如果要使用windows api 中的 connect 需要在函数名前加::</span>
+<span class="token operator">::</span><span class="token function">connect</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sockaddr</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 接收数据</span>
+<span class="token comment">// 返回值: 成功时返回接收的字节数，收到EOF时为0，失败时返回SOCKET_ERROR。</span>
+<span class="token comment">//    ==0 代表对方已经断开了连接</span>
+<span class="token keyword">int</span> <span class="token function">recv</span> <span class="token punctuation">(</span>SOCKET s<span class="token punctuation">,</span><span class="token keyword">char</span> FAR<span class="token operator">*</span> buf<span class="token punctuation">,</span><span class="token keyword">int</span> len<span class="token punctuation">,</span><span class="token keyword">int</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 发送数据</span>
+<span class="token comment">// 返回值: 成功返回传输字节数，失败返回SOCKET_ERROR。</span>
+<span class="token keyword">int</span> <span class="token function">send</span> <span class="token punctuation">(</span>SOCKET s<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span> FAR <span class="token operator">*</span> buf<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">,</span><span class="token keyword">int</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 关闭套接字</span>
+<span class="token comment">// 返回值: 成功返回0，失败返回SOCKET_ERROR</span>
+<span class="token keyword">int</span> <span class="token function">closesocket</span> <span class="token punctuation">(</span>SOCKET s<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 在linux中使用的函数是: int close(int fd);</span>
+
+<span class="token comment">//----------------------- udp 通信函数 -------------------------</span>
+<span class="token comment">// 接收数据</span>
+<span class="token keyword">int</span> <span class="token function">recvfrom</span><span class="token punctuation">(</span>SOCKET s<span class="token punctuation">,</span><span class="token keyword">char</span> FAR <span class="token operator">*</span>buf<span class="token punctuation">,</span><span class="token keyword">int</span> len<span class="token punctuation">,</span><span class="token keyword">int</span> flags<span class="token punctuation">,</span>
+         <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> FAR <span class="token operator">*</span>from<span class="token punctuation">,</span><span class="token keyword">int</span> FAR <span class="token operator">*</span>fromlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 发送数据</span>
+<span class="token keyword">int</span> <span class="token function">sendto</span><span class="token punctuation">(</span>SOCKET s<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span> FAR <span class="token operator">*</span>buf<span class="token punctuation">,</span><span class="token keyword">int</span> len<span class="token punctuation">,</span><span class="token keyword">int</span> flags<span class="token punctuation">,</span>
+       <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> FAR <span class="token operator">*</span>to<span class="token punctuation">,</span><span class="token keyword">int</span> tolen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block><div id="g5gZceBy8CxaZfThmpMH96" class="wolai-block wolai-text"><div><span class="inline-wrap"></span><br/></div></div><div id="gn6cYGivwsVZpvfpBAh66E" class="wolai-block wolai-text"><div><span class="inline-wrap"></span><br/></div></div><div id="2LxdmMLnkPuEsmgRCEj6M1" class="wolai-block wolai-text"><div><span class="inline-wrap"></span><br/></div></div><div id="4ahoPNKiQ4SFAd11oEog5e" class="wolai-block wolai-text"><div><span class="inline-wrap"></span><br/></div></div><div id="knQ76xT1XRFhQx7ThvA9b9" class="wolai-block wolai-text"><div><span class="inline-wrap"></span><br/></div></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dongnian</div><div class="author-info__description">A salty fish swimming in the sea of deep learning!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#7A52pM2Rx7Fz4P9N1MSKB1"><span class="toc-text">1.概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#saNJjt1E6d9B5wZfhdGpvu"><span class="toc-text">1.1 局域网和广域网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kzje2yVQvGLtxy7pJvN5QL"><span class="toc-text">1.2 IP（Internet Protocol）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4TomAgYGHxMFJQGSfcwUn9"><span class="toc-text">（1）IPv4（Internet Protocol version4）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iS95KHsZkHZWAcL4jLu4o1"><span class="toc-text">（2）IPv6（Internet Protocol version6）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nXS6BdzPY1SaXpHqwJ86YM"><span class="toc-text">1.3 查看IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#o8SHtKtCmiBo5fKRsx5oTD"><span class="toc-text">1.4 端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ajHFauKaHYGLpurycoUBEq"><span class="toc-text">1.5 OSI&#x2F;ISO 网络分层模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#aff1P2t686pj93hbtUfJ1m"><span class="toc-text">2.网络协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9ZgepSiNE2S3H1LH8NqA7D"><span class="toc-text">2.1 TCP协议：传输层协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grcXLr5cy9bHmCZSLvFYzW"><span class="toc-text">2.2 UDP协议：传输层协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trUjWmvidR8oQsJ2YaNjf9"><span class="toc-text">2.3 IP协议：网络层协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9KTDU9EtUEEegLUcqjEDM1"><span class="toc-text">2.4 以太网帧协议：网络接口层协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#61nbtoaEsZWq878wqJDP6C"><span class="toc-text">2.5 数据的封装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vhT634P9C8mVTHTpzarj3A"><span class="toc-text">3.socket编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#s9f8YPU6Leoxt2WUiGj3Jb"><span class="toc-text">3.1 字节序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6p4KipLCeK8MmSaVwYD2rW"><span class="toc-text">3.2 IP地址转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#oKkL2619sAGUCpNxQ673wn"><span class="toc-text">3.3 sockaddr数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7bhUQ6V6Q3resXdxszZAXM"><span class="toc-text">3.4 套接字函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vUA6RkfFEiJyrndByXLYxo"><span class="toc-text">创建一个套接字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cfoKghexbBqfJDHM4saMwh"><span class="toc-text">将文件描述符和本地IP与端口进行绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5FkgFu7XDviivUGwCtSYaQ"><span class="toc-text">给监听的套接字设置监听</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3952KjAdDddBqxBmyoNYEv"><span class="toc-text">等待并接受客户端的连接请求，建立新的连接，会得到一个新的文件描述符（通信的）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pPjE2GBKSQ85ViFqM89oMU"><span class="toc-text">接收数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9Uxqu3mz65BFPHnM2QZqDJ"><span class="toc-text">发送数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5Z44GU3AaRyNmnuPggGa49"><span class="toc-text">connect</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qfmvW7m8uXUYp1iWw6DsxB"><span class="toc-text">4.TCP通信流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iE2PnBQxmLhwhUep75AxxD"><span class="toc-text">4.1 服务器端通信流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#kxxyuxeQuqDFGh5wp2iyyz"><span class="toc-text">（1）流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pYcu2GCaJhHb6Xh9SZqWkM"><span class="toc-text">（2）文件描述符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hbfDgE6A2Zts7n8cL8Xpjw"><span class="toc-text">（3）基于tcp的服务器端通信代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#feCzN1UpZuFbJAbFvusTDX"><span class="toc-text">4.2 客户端的通信流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9vJSZUsmkR2a433AawmcdQ"><span class="toc-text">（1）流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9H8c9a5JJ82bzjRrGZfSpe"><span class="toc-text">（2）基于TCP通信的客户端通信代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nPJ8Z3QVuVDiQGDAGgXjrt"><span class="toc-text">5.扩展阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#n2ev9djEJTGArDGEo3kQH5"><span class="toc-text">5.1 初始化套接字环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sZebRBwKViP12JQqLEvjNj"><span class="toc-text">5.2 套接字通信函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9ScUnQuTNrN21YeWaM16Re"><span class="toc-text">（1）结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#74DNyG9cdpeoVFfenMAgBD"><span class="toc-text">（2）大小端转换函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jGGdtfXP1VDUPUnTwi8kf5"><span class="toc-text">（3）套接字函数</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/"><span class="card-category-list-name">PL</span><span class="card-category-list-count">7</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">6</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.42em; color: rgb(93, 175, 43)">DSA</a><a href="/tags/RL/" style="font-size: 1.28em; color: rgb(136, 188, 66)">RL</a><a href="/tags/Transformer/" style="font-size: 1.45em; color: rgb(125, 123, 189)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.32em; color: rgb(128, 119, 85)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.38em; color: rgb(200, 50, 193)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.25em; color: rgb(66, 152, 69)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.15em; color: rgb(163, 52, 65)">CV</a><a href="/tags/GPT/" style="font-size: 1.18em; color: rgb(7, 39, 41)">GPT</a><a href="/tags/PL/" style="font-size: 1.22em; color: rgb(26, 75, 74)">PL</a><a href="/tags/leetcode/" style="font-size: 1.35em; color: rgb(174, 13, 132)">leetcode</a><a href="/tags/algo/" style="font-size: 1.15em; color: rgb(172, 81, 180)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">87</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">411.2k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-01-20T06:40:31.333Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By Dongnian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
