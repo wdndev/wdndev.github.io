@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Dongnian"><meta name="copyright" content="Dongnian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="软件工程课后题 - wolai 笔记第一章 软件工程概述 1.1 软件开发有哪些特点？ 难以描述性、缺乏可见性、复杂性、变化性、风险性、强合作性。1.2 什么是软件危机？有哪些表现？怎么解决？ 软件危机是指在计算机软件开发和维护的过程中所遇到的一系列严重问题。包括两点：如何开发软件，以满足对软件日益增长的需求；如何维护数量不断膨胀的已有软件。软件开发和维护过程中存在的许多严重问题，一方面与软件本">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/cs/se/%E6%80%BB%E7%BB%93/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E8%AF%BE%E5%90%8E%E9%A2%98/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E8%AF%BE%E5%90%8E%E9%A2%98.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="软件工程课后题 - wolai 笔记第一章 软件工程概述 1.1 软件开发有哪些特点？ 难以描述性、缺乏可见性、复杂性、变化性、风险性、强合作性。1.2 什么是软件危机？有哪些表现？怎么解决？ 软件危机是指在计算机软件开发和维护的过程中所遇到的一系列严重问题。包括两点：如何开发软件，以满足对软件日益增长的需求；如何维护数量不断膨胀的已有软件。软件开发和维护过程中存在的许多严重问题，一方面与软件本">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-07-06T01:05:31.405Z">
+<meta property="article:modified_time" content="2025-07-06T01:05:31.405Z">
+<meta property="article:author" content="Dongnian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/cs/se/%E6%80%BB%E7%BB%93/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E8%AF%BE%E5%90%8E%E9%A2%98/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E8%AF%BE%E5%90%8E%E9%A2%98.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Dongnian","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-06 09:05:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>软件工程课后题 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div data-symbol="🐬" class="icon"></div></div><div data-title="软件工程课后题" class="main-title"></div></div></header><article><h3 id="euwip2xomLBzZPQH5mpdP1" class="wolai-block"><span class="inline-wrap">第一章 软件工程概述
+</span></h3><h4 id="sjzHBBJsuQqGd1j2uL1e8x" class="wolai-block"><span class="inline-wrap">1.1 软件开发有哪些特点？
+</span></h4><div id="vRpR2KdZJZFT7fP74Bs84C" class="wolai-block wolai-text"><div><span class="inline-wrap">难以描述性、缺乏可见性、复杂性、变化性、风险性、强合作性。</span></div></div><h4 id="uGENkGVAVHyvwa9gFAGskd" class="wolai-block"><span class="inline-wrap">1.2 什么是软件危机？有哪些表现？怎么解决？
+</span></h4><div id="7P6HTT7X65mK2VTUgt2KHj" class="wolai-block wolai-text"><div><span class="inline-wrap">软件危机是指在</span><span class="red inline-wrap">计算机软件开发和维护的过程中所遇到的一系列严重问题</span><span class="inline-wrap">。包括两点：</span></div></div><ol class="wolai-block"><li id="t4KDUS4tBpXbZcmwXD4NbQ"><div class="marker"></div><span class="inline-wrap">如何开发软件，以满足对软件日益增长的需求；</span></li><li id="o4gL5uzEUY2PZJAQFcxkU5"><div class="marker"></div><span class="inline-wrap">如何维护数量不断膨胀的已有软件。</span></li></ol><div id="uq9DNCZpjBWmGXDnavTuaq" class="wolai-block wolai-text"><div><span class="inline-wrap">软件开发和维护过程中存在的许多严重问题，一方面与软件本身的特点有关，另一方面和软件开发与维护方法不正确有关。具体表现在：</span></div></div><ol class="wolai-block"><li id="azU1c34HT1Swd5W6JGxynX"><div class="marker"></div><span class="inline-wrap">软件是逻辑部件而不是物理部件；</span></li><li id="p4iTyAgPvWmcgFAu5NmHpo"><div class="marker"></div><span class="inline-wrap">软件的规模越来越大，复杂性越来越大；</span></li><li id="sBu7bSa2PFBpnaHCxopmdJ"><div class="marker"></div><span class="inline-wrap">轻视需求分析的重要性，轻视软件维护的错误观点和方法。</span></li></ol><div id="59kPhDBi1BLWzHQL5HsqDB" class="wolai-block wolai-text"><div><span class="inline-wrap">解决手段：采用工程的方法。软件开发人员必须运用科学、系统、有组织的工程方法，才能制作出高质量、低成本的软件产品。</span></div></div><h4 id="diRuZS5RPqWdaSpQgBX1ez" class="wolai-block"><span class="inline-wrap">1.3 什么是软件工程？
+</span></h4><div id="gtRHMjSyAthATVTGcbXK1V" class="wolai-block wolai-text"><div><span class="inline-wrap">软件工程是以</span><span class="red inline-wrap">质量</span><span class="inline-wrap">为核心，为了经济地</span><span class="red inline-wrap">开发满足客户需求的软件而研究、建立和应用的系统化的有规则的、可度量的和可控制的工程原则、方法</span><span class="inline-wrap">，涉及软件过程、项目管理、开发方法、开发工具，甚至企业文化等各个方面。</span></div></div><h4 id="x5RRJLzwYdAepyez2tdEMQ" class="wolai-block"><span class="inline-wrap">1.4 在软件工程的发展史上，有哪些重要的开发方法？
+</span></h4><div id="fwd5wMAqZsRGTJerR2e6p9" class="wolai-block wolai-text"><div><span class="inline-wrap">以</span><span class="green inline-wrap">结构化方法</span><span class="inline-wrap">为代表的</span><span class="red inline-wrap">传统软件工程方法</span><span class="inline-wrap">和以</span><span class="green inline-wrap">面向对象技术为核心</span><span class="inline-wrap">的</span><span class="red inline-wrap">面向对象的软件工程方法</span><span class="inline-wrap">。</span></div></div><h4 id="g5sJko9QQktRggRBuv9gT9" class="wolai-block"><span class="inline-wrap">1.5 项目管理涉及哪些方面？
+</span></h4><div id="9DZq4kKLc3mTMpvXr29W2M" class="wolai-block wolai-text"><div><span class="inline-wrap">涉及人力资源管理、项目计划、风险管理、项目跟踪、质量保证、配置管理等等方面。</span></div></div><h4 id="mwWkeBfrzdC8oDm7j4S5UF" class="wolai-block"><span class="inline-wrap">1.6 软件工程工具有哪些作用？
+</span></h4><div id="pGb4GmuskrVT9XugqycqXU" class="wolai-block wolai-text"><div><span class="inline-wrap">需求分析、优化软件设计手段、加快代码实现速度、提高软件测试水平等等</span></div></div><h3 id="dMS696smF6194M3vW6teX3" class="wolai-block"><span class="inline-wrap">第二章 软件开发过程和活动
+</span></h3><div id="ptNPtRN3tpzGm3r32QrjCs" class="wolai-block wolai-text"><div><span class="yellow inline-wrap"><b>问题定义—可行性研究—需求分析—设计活动（总体设计）—实施活动（详细设计）—测试活动—部署活动</b></span></div></div><h4 id="7RCdNRC1bpC6U9Bz65MBqY" class="wolai-block"><span class="inline-wrap">2.1 什么是软件开发过程？在开发过程中，有哪些主要活动？哪些是基本活动，哪些是辅助性活动？
+</span></h4><div id="wvXzovSpNJ1yJr9RxHiUfz" class="wolai-block wolai-text"><div><span class="inline-wrap">软件开发过程由开发和维护软件以及相关产品的一系列活动构成，这些活动从不同方面定义了软件开发过程中的步骤、交付物、涉众以及职责等流程要素。
+</span></div></div><div id="rjGna6NJ4wNeRcBQcGq89w" class="wolai-block wolai-text"><div><span class="inline-wrap">在开发过程中，存在一系列活动，可分为</span><span class="red inline-wrap">Basic Activities</span><span class="inline-wrap">（基本活动，如问题定义活动、可行性研究活动、需求分析活动、设计活动、编码活动、测试活动、部署活动和交付活动等）和</span><span class="red inline-wrap">Umbrella Activities</span><span class="inline-wrap">（保护性活动，如风险管理活动、计划活动、项目跟踪活动、质量保证活动和软件配置管理活动等）</span></div></div><h4 id="MzKDayq3jmVWTBzhC3o6o" class="wolai-block"><span class="inline-wrap">2.2<span class="jill"></span>为什么需要一个“问题定义”的活动？什么时间开展这项活动？
+</span></h4><div id="6EZ8Bum8gTGuK29TUYeEcB" class="wolai-block wolai-text"><div><span class="inline-wrap">问题定义是</span><span class="green inline-wrap">软件开发过程中一个对所有要解决的问题进行定义并确定系统范围的活动</span><span class="inline-wrap">。</span></div></div><div id="nKMFnoDzY3To6A5bkisnWG" class="wolai-block wolai-text"><div><span class="inline-wrap">客户与开发商达成共识，确定系统的大致范围和投资额等等，避免损失。“问题定义”像一个项目的“探路者”。</span></div></div><div id="x29nZXoJtCyKE7LV23J7i7" class="wolai-block wolai-text"><div><span class="inline-wrap">问题定义活动处于项目日程表的最前端。</span></div></div><h4 id="6J5fMXAfbkHcahZgk8Xowo" class="wolai-block"><span class="inline-wrap">2.3<span class="jill"></span>什么是可行性研究？为什么需要一个“可行性研究”的活动？什么时间开展这项活动？哪些涉众会参与这项活动？
+</span></h4><div id="vH8XoPysYQ9h1aT6ga1FTL" class="wolai-block wolai-text"><div><span class="inline-wrap">可行性研究是</span><span class="green inline-wrap">以相对短的时间和相对低的成本来确定给定的问题在其约束内是否有解、有几种解以及哪个是最佳解</span><span class="inline-wrap">。</span></div></div><div id="oRyGCmsb3koXWNee64HQF4" class="wolai-block wolai-text"><div><span class="inline-wrap">由于任何项目都有约束条件，必须首先确立满足约束条件的方案是否存在、可行、最优，然后在最优方案的基础上进行开发；如果省略这个步骤，就会在一个本质上不可能实现的项目上造成人力物力浪费，或造成项目大量返工、功能不足、性能失真。
+</span></div></div><div id="xjSxn6eXicwkj1Ke186oUd" class="wolai-block wolai-text"><div><span class="inline-wrap">可行性研究活动处于项目的早期阶段。
+</span></div></div><div id="rqutiC6qCXNvApEEXoQSfi" class="wolai-block wolai-text"><div><span class="inline-wrap">系统分析师、出资方领导、出资方技术人员、用户代表、开发方领导、项目经理、系统架构师、领域专家等等。</span></div></div><h4 id="7bHheWFexiNVCJHvXSMZ45" class="wolai-block"><span class="inline-wrap">2.4 什么是需求？
+</span></h4><div id="4KTdbHddHuzSXfrdCqgK76" class="wolai-block wolai-text"><div><span class="inline-wrap">需求：主要是在产品构建之前确定的系统必须符合的条件或者具备的功能，它们关于系统将要完成什么工作的一段描述语句，它们必须经过所有相关人员的认可，其目的是彻底地解决客户的问题。</span></div></div><h4 id="iBgpBbSZkx7QX7ePN9vyjv" class="wolai-block"><span class="inline-wrap">2.5 什么是需求文档？有哪些类型的需求文档？
+</span></h4><div id="mGHNuLkPDjjB1mEnHxkaPj" class="wolai-block wolai-text"><div><span class="inline-wrap">一组需求的集合被称为需求文档。可分为用户需求文档、系统需求文档和软件规约文档。</span></div></div><h4 id="t59jvX3u2ENUfpxZm9P1FE" class="wolai-block"><span class="inline-wrap">2.6 描述需求的标准是什么？
+</span></h4><div id="9nqY51UQopNoi5NqurPLA6" class="wolai-block wolai-text"><div><span class="inline-wrap">一个优秀的需求描述应该是完整的、正确的、必要的、无歧义的、可行的、可验证的以及被设置了优先级别的。</span></div></div><h4 id="RSTnEyZi4pwn5EPpgPWuY" class="wolai-block"><span class="inline-wrap">2.7 怎样理解“贯穿于整个软件开发过程的需求活动”这句话？
+</span></h4><div id="xjbktTSpULdnDedqqj18Ss" class="wolai-block wolai-text"><div><span class="red inline-wrap">在项目的设计、编码、测试和使用中，新的需求可能会浮现，旧的需求可能被变更。因此，实际上，需求活动贯穿于整个软件开发过程中，但大部分需求应在早期被确认</span><span class="inline-wrap">。</span></div></div><h4 id="bspC4yWA8oSBKQ9QP1ya1k" class="wolai-block"><span class="inline-wrap">2.8 什么是设计？为什么设计活动非常重要？
+</span></h4><div id="puhcFuwL3kbrbBKoQd5i3i" class="wolai-block wolai-text"><div><span class="inline-wrap">设计是</span><span class="green inline-wrap">在系统的约束条件下，为了实现系统的功能性需求与非功能性需求，而找到并描述的一种遵循高质量的通用原则的方法，其交付文档能够指导开发人员实现系统</span><span class="inline-wrap">。
+软件设计活动主要任务是解决“如何做”的问题，是软件开发过程的关键活动之一。</span></div></div><h4 id="wUcLu7WYRz4RhVZDMgt1uf" class="wolai-block"><span class="inline-wrap">2.9 请解释设计中的各个粒度的部件，如系统、子系统、框架、构件、组件、模块、类和方法等。</span></h4><div id="bnjTZNkQpkrvHQJUMVYahM" class="wolai-block wolai-text"><div><span class="red inline-wrap">系统</span><span class="inline-wrap">：由软件、硬件或者两者共同构成的一个逻辑实体，它可以被许多构件共同实现。
+</span></div></div><div id="aVpNN69qnC9pE972FCT5tf" class="wolai-block wolai-text"><div><span class="red inline-wrap">子系统</span><span class="inline-wrap">：是大型系统的一部分，有着明确的借口。
+</span></div></div><div id="ftTrWe7bDoMuEG8kHjMMvT" class="wolai-block wolai-text"><div><span class="red inline-wrap">框架</span><span class="inline-wrap">：可以被复用的子系统，实现了一般问题的通用解决方案，通过“服务”向外部提供可应用于不同应用程序的公共功能。
+</span></div></div><div id="34FgFXmuTvCbSxxpCMhNjS" class="wolai-block wolai-text"><div><span class="red inline-wrap">构件</span><span class="inline-wrap">：开发流程的物理资产。包括各种类型文件。
+</span></div></div><div id="8kZuzebU6EXXmeQfpz7LU4" class="wolai-block wolai-text"><div><span class="red inline-wrap">组件</span><span class="inline-wrap">：一种特殊的构件，是指有定义完备接口的、明确规定了上下文依赖关系的合成单元。
+</span></div></div><div id="vxor5XFsAktNvAeYhZeW3i" class="wolai-block wolai-text"><div><span class="red inline-wrap">模块</span><span class="inline-wrap">：具体的部件，定义在程序设计语言级别上的构件。
+</span></div></div><div id="8p3Zug3tnXf9EEbvdv5THo" class="wolai-block wolai-text"><div><span class="red inline-wrap">类</span><span class="inline-wrap">：面向对象程序中数据抽象的单元，一个软件模块，描述并定义了一组相似的对象。
+</span></div></div><div id="gYYKVyf1qiFW6JvnsPyE4U" class="wolai-block wolai-text"><div><span class="red inline-wrap">方法</span><span class="inline-wrap">：一个更小粒度的软件模块，是实现类的行为和过程抽象。</span></div></div><h4 id="mtEbLSZeJZ1YTJ2e9CNBwG" class="wolai-block"><span class="inline-wrap">2.10 什么是总体设计？什么是详细设计？
+</span></h4><div id="5pRAokWWpqjqHxrqHPAa36" class="wolai-block wolai-text"><div><span class="red inline-wrap">总体设计</span><span class="inline-wrap">：任务是</span><span class="green inline-wrap">根据软件需求规约文档，确定一个合理的软件体系结构</span><span class="inline-wrap">，包括合理地划分组成系统的模块、模块间的调用关系以及模块间的接口关系。</span></div></div><div id="x1ELSngRTzLcyUNiXJg4mF" class="wolai-block wolai-text"><div><span class="red inline-wrap">详细设计</span><span class="inline-wrap">：任务是在</span><span class="green inline-wrap">总体设计的基础上，进一步确定如何实现目标系统</span><span class="inline-wrap">，包括系统的数据对象的设计、人机接口的设计以及模块逻辑的详细设计。</span></div></div><h4 id="7BeBtiY3qibQNdyqDeALLP" class="wolai-block"><span class="inline-wrap">2.11 怎样理解“贯穿于整个软件开发过程的设计活动”这句话？
+</span></h4><div id="29YPrw9zSu5rp6UY25pxTY" class="wolai-block wolai-text"><div><span class="red inline-wrap">在开发迭代中，随着需求描述趋于完善，软件构架从一个粗略的轮廓开始，逐步完善构架，先处理高优先级的、已经被确定的重要需求，在解决次要的、趋于完善的其他需求</span><span class="inline-wrap">——直到得到一个稳定的框架为止。代码工人在开发迭代中，根据设计的已有成果，逐步实现系统。</span></div></div><h4 id="mhGZmKGC6CS3CxLTbkyEcX" class="wolai-block"><span class="inline-wrap">2.12 请解释实施活动中的编码、单元测试和集成。
+</span></h4><div id="kmxcg5x64PxNC59anpLuxs" class="wolai-block wolai-text"><div><span class="red inline-wrap">编码</span><span class="inline-wrap">：将软件设计结果转成用某种程序设计语言书写的程序。
+</span></div></div><div id="btFjghmkgghHLF3NnbJnAn" class="wolai-block wolai-text"><div><span class="red inline-wrap">单元测试</span><span class="inline-wrap">：一个模块作为独立的程序单元进行测试，以保证它能够正确执行规定的功能。
+</span></div></div><div id="wuC93nYgrzP4FPHKnA1xus" class="wolai-block wolai-text"><div><span class="red inline-wrap">集成</span><span class="inline-wrap">：将单独的软件构件合并成一个整体的软件系统。</span></div></div><h4 id="t1znP1EBWDxRSat1X7pw61" class="wolai-block"><span class="inline-wrap">2.13 什么是工作版本？
+</span></h4><div id="4V4whgJGDe67jyja6VsjAU" class="wolai-block wolai-text"><div><span class="inline-wrap">工作版本是迭代生命周期不可缺少的组成部分。</span><span class="green inline-wrap">代表正在进行的尝试活动，目的是展示最新开发的功能</span><span class="inline-wrap">。</span></div></div><h4 id="5n3GVzqzra9fifhGhUD5v3" class="wolai-block"><span class="inline-wrap">2.14 以实施为中心的软件开发会导致什么问题？而轻视实施活动又会存在哪些问题？
+</span></h4><div id="iooVXKz82uE9FzDpzUkqrN" class="wolai-block wolai-text"><div><span class="inline-wrap">以实施为中心的软件开发会导致：</span><span class="red inline-wrap">弱化的需求与设计、对实施人员的过度依赖</span><span class="inline-wrap">。</span></div></div><div id="jJ8HVYbYA4dwvWVYs3y8Pg" class="wolai-block wolai-text"><div><span class="inline-wrap">轻视的问题：①增加和替换人手时，实施人员接受需要熟悉一段时间。②所需的实施人员需要具有一定的技术含量，需要长期的培训来掌握技能。③实施人员的施工水平存在差异。④不易度量实施人员的实施质量。</span></div></div><h3 id="2K7njqCEcNesVxwe4Ubag1" class="bg-default wolai-block"><span class="inline-wrap">2.15 为什么在展开实施活动时，建议实施地点选择在软件企业内部进行？如果在企业内部，那么应该注意哪些问题？
+</span></h3><div id="jWL1s3V4TTioqztoRL2h3o" class="wolai-block wolai-text"><div><span class="inline-wrap">优点：节省成本，便于资源调配，便于交流，便于并行开发。
+</span></div></div><div id="cTsLNBpybT6Ru1d6ZSiWmo" class="wolai-block wolai-text"><div><span class="inline-wrap">要注意和用户保持足够的接触。每个迭代的工作版本都应该和用户交流，以便在下一轮迭代中，对错误或者不足之处作出改进。</span></div></div><h4 id="bW6J5WRbA6JTzcKq2RegJm" class="wolai-block"><span class="inline-wrap">2.16 什么是测试？请分别解释缺陷、错误和失败的概念。
+</span></h4><div id="vxgAh8H2am2hBuNCiQb3Ed" class="wolai-block wolai-text"><div><span class="inline-wrap">测试是选择适当的测试用例执行被测程序的过程，目的在于</span><span class="red inline-wrap">发现程序错误</span><span class="inline-wrap">。</span></div></div><div id="uR1kuFbep5Bd8L1dEZXURV" class="wolai-block wolai-text"><div><span class="red inline-wrap">缺陷</span><span class="inline-wrap">：是系统任一方面（包括需求、设计或者代码）的缺点。
+</span></div></div><div id="iH4KzAwRkhjUqrKCLjYpPZ" class="wolai-block wolai-text"><div><span class="red inline-wrap">错误</span><span class="inline-wrap">：指程序中的缺陷所产生的不正确结果。
+</span></div></div><div id="cM8XRskxYbEqMDP6S6mb6h" class="wolai-block wolai-text"><div><span class="red inline-wrap">失败</span><span class="inline-wrap">：当一个程序不能运行或者其表现不可以被接受时，称为失败。失败源于代码缺陷。</span></div></div><h4 id="p3TJDgUsDVKDCubhM78NPx" class="wolai-block"><span class="inline-wrap">2.17 请分别解释单元测试、集成测试、系统测试、α<span class="jill"></span>测试、β<span class="jill"></span>测试和验收测试。
+</span></h4><div id="k4P36eU6t91Vw877yfjNSh" class="wolai-block wolai-text"><div><span class="red inline-wrap">单元测试</span><span class="inline-wrap">：当且仅当被测试的是一个程序单位，称为单元测试。</span></div></div><div id="5jp6Mc2Mp5eZbfGLb9Z75E" class="wolai-block wolai-text"><div><span class="red inline-wrap">集成测试</span><span class="inline-wrap">：是为了测试和验证几个构件集成在一起时，是否能按照预期目标正常工作。</span></div></div><div id="dPQAht9ByVGZMQrCDeEUhq" class="wolai-block wolai-text"><div><span class="red inline-wrap">系统测试</span><span class="inline-wrap">：关注于系统作为整体运行时的实际效果。</span></div></div><div id="6EvW9o95coW9puKoXXcaZS" class="wolai-block wolai-text"><div><span class="red inline-wrap">α<span class="jill"></span>测试</span><span class="inline-wrap">：由客户和用户在软件开发团队的管理下执行的测试。</span></div></div><div id="tYEiya41SUJYn3GXb5a9et" class="wolai-block wolai-text"><div><span class="red inline-wrap">β<span class="jill"></span>测试</span><span class="inline-wrap">：由客户和用户在他们的工作现场进行的测试。</span></div></div><div id="egR7xC488vtK9wHTVvUEFd" class="wolai-block wolai-text"><div><span class="red inline-wrap">验收测试</span><span class="inline-wrap">：部署软件之前的最后一个测试操作。</span></div></div><h4 id="85tXrsLnebFxC1s6oaNteY" class="wolai-block"><span class="inline-wrap">2.18 什么是测试用例？它包括哪些内容？
+</span></h4><div id="5DzMg4o4qJdifv1VUEmNs1" class="wolai-block wolai-text"><div><span class="red inline-wrap">测试用例</span><span class="inline-wrap">：</span><span class="green inline-wrap">为特定目标开发的测试输入、执行条件和预期结果的集合</span><span class="inline-wrap">。</span></div></div><div id="sugAKaCYU526pSCN6Ra6k" class="wolai-block wolai-text"><div><span class="inline-wrap">包括标识、目标、相关文档、重要级别、优先级别、指令、期望结果、清理。</span></div></div><h4 id="aBuCLgLVGRtNpHtXoxH2BB" class="wolai-block"><span class="inline-wrap">2.19 测试活动贯穿于整个软件开发过程，这会有什么益处？
+</span></h4><div id="orChutSfnPewzbJePx73wm" class="wolai-block wolai-text"><div><span class="inline-wrap">缩短测试时间、易于定位缺陷、避免错上加错。</span></div></div><h4 id="ht64pjGwXUVhxbrhqUCcqj" class="wolai-block"><span class="inline-wrap">2.20 怎样在测试活动中选择合适的执行地点？
+</span></h4><div id="eyGKgBELYs23cL5T6LZHU5" class="wolai-block wolai-text"><div><span class="inline-wrap">建议单元测试、集成测试和系统测试在程序员所在的开发现场以其附近进行，便于实施人员与测试人员交流，对系统缺陷作出快速响应；β<span class="jill"></span>测试和验收测试则完全在用户现场测试，这样能够从用户真实的现场环境来验证系统，并能够从用户的角度发现错误。</span></div></div><h4 id="tMzZtn3JUPs284dbbLRrHN" class="wolai-block"><span class="inline-wrap">2.21 什么是部署？有哪几种部署模式？
+</span></h4><div id="7gZ47V69DcjfZbFfZENbXC" class="wolai-block wolai-text"><div><span class="inline-wrap">部署是为了确保最终用户可以正常使用软件产品而进行的活动。
+部署分为三种模式：</span><span class="green inline-wrap">自定义安装模式、现场支持模式、Internet<span class="jill"></span>模式</span><span class="inline-wrap">。</span></div></div><h4 id="rB3hcMdp1MNH7PMe5qNBB3" class="wolai-block"><span class="inline-wrap">2.22 什么是部署计划？在制定部署计划时，要考虑哪些问题？
+</span></h4><div id="py3wHVWokn1Yn5BgmcRU8U" class="wolai-block wolai-text"><div><span class="inline-wrap">说明如何将产品从开发商转移到用户群。要考虑：兼容、转换和迁移策略，部署时间表，部署顺序，用户培训。</span></div></div><h3 id="f1u7qp8ecqzBsKfEkySiXx" class="wolai-block"><span class="inline-wrap">第三章 软件过程模型
+</span></h3><h4 id="2QRbzDFvshkshwt8RGuEzy" class="wolai-block"><span class="inline-wrap">3.1 传统“软件生命周期”理论是什么？它有什么缺点？
+</span></h4><div id="8tXTMmTWLaypGiPjJotbHW" class="wolai-block wolai-text"><div><span class="inline-wrap">传统的软件工程理论常把这些过程中的活动视为“阶段”，它们被划分到软件开发的三个时期里，即</span><span class="yellow inline-wrap">软件定义时期</span><span class="inline-wrap">（问题定义、可行性研究、需求分析）、</span><span class="yellow inline-wrap">软件开发时期</span><span class="inline-wrap">（总体设计、详细设计、编码、单元测试、集成测试）和</span><span class="yellow inline-wrap">运行维护时期</span><span class="inline-wrap">（每次维护的本质上都是一次简化的定义和开发过程）。</span></div></div><div id="tQXnXASTYLyNTbgBuSmKoA" class="wolai-block wolai-text"><div><span class="inline-wrap">缺点是并未明确地包括保护性活动以及不能并发进行过程中的各项活动。
+</span></div></div><h4 id="xpEDcXVa9GXqbtXVasm1HZ" class="wolai-block"><span class="inline-wrap">3.2 什么是软件过程模型？为什么要对过程进行抽象表示？
+</span></h4><div id="UuULenjMhripswJmpZFH" class="wolai-block wolai-text"><div><span class="red inline-wrap">软件过程模型</span><span class="inline-wrap">：是组织项目活动的一般方法，是对实际开发过程的抽象表示。
+</span></div></div><div id="wg4ezh863J9XLF3j4tqne8" class="wolai-block wolai-text"><div><span class="inline-wrap">抽象表示进程可以有效地提高开发质量、加快开发进度、减少开发成本。</span></div></div><h4 id="axVgax7Se26tsFtm91kBqU" class="wolai-block"><span class="inline-wrap">3.3 线性系列模型有哪些？演进系列模型有哪些？
+</span></h4><div id="aYKSYb1a3G4EGp2hBF258M" class="wolai-block wolai-text"><div><span class="inline-wrap">线性系列模型有线</span><span class="yellow inline-wrap">性顺序模型、瀑布模型、RAD<span class="jill"></span>模型</span><span class="inline-wrap">。</span></div></div><div id="eiC6sCcdSgDUMwfjRT3vFS" class="wolai-block wolai-text"><div><span class="inline-wrap">演进系列模型</span><span class="yellow inline-wrap">有边建边改模型、增量模型、螺旋模型、RUP<span class="jill"></span>模型</span><span class="inline-wrap">。</span></div></div><h4 id="4DmycdqNf37XvjF7bRMxDA" class="wolai-block"><span class="inline-wrap">3.4 线性顺序模型的缺点是什么？
+</span></h4><div id="tGRwqW4zcvtEsbVQTfxguM" class="wolai-block wolai-text"><div><span class="inline-wrap">线性顺序模型也称传统生命周期模型。缺点有：对项目作出“线性”过程的假设太过理想化，复杂过程简单化；各项活动不是并行的，所以项目中常常出现“阻塞状态”，造成巨大的人力浪费，拉长项目时间；开发方不能很好地与用户交互；需求在分析阶段无法完全获取。
+</span></div></div><h4 id="dPCfagoVVur8RucsZLoznz" class="wolai-block"><span class="inline-wrap">3.5 瀑布模型的优点和缺点是什么？
+</span></h4><div id="tFrmQCcQJFqmT78WPWfXyq" class="wolai-block wolai-text"><div><span class="inline-wrap">优点：具有一定的反馈性质；严格地规定了每个阶段必须提交的交付物；每个阶段结束前，都必须有正式的审查。
+</span></div></div><div id="wXNEV17mmAnwoinppz7xdz" class="wolai-block wolai-text"><div><span class="inline-wrap">缺点：开发方不能很好地与用户交互；反馈效果有限。</span></div></div><div id="rhMCzSUmQciGrE5hsB7EyJ" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image.png" style="width: 304px"/></figure></div><h4 id="qEjWvoRQFioyxtywy1FuMm" class="wolai-block"><span class="inline-wrap">3.6 RAD<span class="jill"></span>模型中的“RAD”是什么意思？为什么说<span class="jill"></span>RAD<span class="jill"></span>模型是从线性顺序模型“泛化”出来的一个“高速”变种？RAD<span class="jill"></span>模型的优点和缺点是什么？它适合哪种项目？
+</span></h4><div id="WFsXjea8sTj3kGcojp5SY" class="wolai-block wolai-text"><div><span class="red inline-wrap">RAD<span class="jill"></span>模型</span><span class="inline-wrap">：快速应用开发（Rapid Application Development），之所以称为“高速”，是因为该模型强调在很短的开发周期内，快速地完成软件开发。
+</span></div></div><div id="6Z5T69Rtk98SHTAZXA2aLP" class="wolai-block wolai-text"><div><span class="inline-wrap">优点：开发速度快；鼓励复用。
+</span></div></div><div id="pEWnn7cFEimJQcAu1LaSfT" class="wolai-block wolai-text"><div><span class="inline-wrap">缺点：如果</span><span class="green inline-wrap">一个系统难以被适当地模块化</span><span class="inline-wrap">，那么很难组织多个开发团队并行开发；如果项目</span><span class="green inline-wrap">早期不能完整地/正确地获取需求</span><span class="inline-wrap">，那么很难按时完成开发任务；如果</span><span class="green inline-wrap">缺乏以往的类似项目经验</span><span class="inline-wrap">，那么难以快速地设计系统；RAD<span class="jill"></span>不适合高技术风险的项目。</span></div></div><div id="oBscfr1muoZswdGbw3uTxi" class="wolai-block wolai-text"><div><span class="inline-wrap">RAD<span class="jill"></span>模型</span><span class="yellow inline-wrap">适合应用在需求完整且明确、设计正确且清楚、模块化程度高、技术风险低、有过类似系统经验、有足够人力资源和需要在很短的开发周期内</span><span class="inline-wrap">（如<span class="jill"></span>60-90<span class="jill"></span>天）完成的软件项目。</span></div></div><div id="nGhZEw2bieKNkn5ZCd1bpb" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_1.png" style="width: 410px"/></figure></div><h4 id="6EnVAGDRmeiH9VSvgqCwc6" class="wolai-block"><span class="inline-wrap">3.7 为什么说边建边改模型的缺点十分明显？
+</span></h4><div id="iz8h8DCZpbKaiVHSZfda1Y" class="wolai-block wolai-text"><div><span class="inline-wrap">它否认了在项目实施之前需求分析和设计活动的重要性；无法控制项目时间和成本导致开发费用变得很高；永不结束的修改往往造成重建系统。</span></div></div><div id="suAcvexaLks7rJ3E3fP3Bz" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_2.png" style="width: 409px"/></figure></div><h4 id="iX6NU1hQ88M5qdfJq3fAcu" class="wolai-block"><span class="inline-wrap">3.8 什么是增量模型？增量模型的优点是什么？难点是什么？
+</span></h4><div id="oRZuu1Birg1RfvnWn2vy6e" class="wolai-block wolai-text"><div><span class="inline-wrap">增量模型是一种演进模型。它规定软件开发过程是一次开发一个部分。增量模型采用随着开发日程时间的进展而交错的线性序列，每一个线性序列都和线性顺序模型的序列完全一样，不同之处在于每个线性序列都可以产生一个可发布的工作版本，这些工作版本都是在上一个工作版本的基础上，做了一些增量。
+</span></div></div><div id="bPgYxvGgF2DWU9BNojMSNB" class="wolai-block wolai-text"><div><span class="inline-wrap">优点：可以在开发过程中与用户很好地交互；减少开发风险；有利于试验性产品的开发；应对“最后期限”的一种办法。
+</span></div></div><div id="epzEv9zJyqteoSWp53yB2J" class="wolai-block wolai-text"><div><span class="inline-wrap">难点是必须做出一个统一的软件构架，要根据这个构架，安排合适的迭代开发计划，并且可以在较小的代价下，容易地扩展出新的功能。另外要求项目经理、设计人员和集成人员等涉众有较高的水平。</span></div></div><div id="a7ZP1MdhVAK6umET1DG9pw" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_3.png" style="width: 416px"/></figure></div><h4 id="qXdehBe8pBrHA3417n7BXV" class="wolai-block"><span class="inline-wrap">3.9 螺旋模型是谁提出的？螺旋模型的优点和难点各是什么？
+</span></h4><div id="7AniqYYAQa1rsEWkdQMXBE" class="wolai-block wolai-text"><div><span class="inline-wrap">美国著名的软件工程专家<span class="jill"></span>B.W.Boehm。
+</span></div></div><div id="7HpHTw3Rz9nDmxQrsyB16R" class="wolai-block wolai-text"><div><span class="inline-wrap">优点：不断调整的开发计划符合软件开发的实际情况；降低软件开发的风险；有利于试验性产品的开发；应对“最后期限”的一种办法。
+</span></div></div><div id="oD6X8KDVcdaHLVXCSCJ2e7" class="wolai-block wolai-text"><div><span class="inline-wrap">难点：需要较高的风险评估技术；由于模型较新，它不像瀑布模型或增量模型那样广泛使用。</span></div></div><div id="bv3HuHbTV4aGgBB6dh4ebd" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_4.png" style="width: 352px"/></figure></div><h4 id="hXfUicXac9YbKgdds2Mz5z" class="wolai-block"><span class="inline-wrap">3.10 怎样理解<span class="jill"></span>RUP<span class="jill"></span>模型中的“迭代化生命周期”？
+</span></h4><div id="vcEYdBpvoGUZTLmiJystjs" class="wolai-block wolai-text"><div><span class="inline-wrap">为了保证项目质量，一种较灵活的方法是多次执行各个开发工作流程，从而更好地理解需求，设计出强壮的构架，组建好开发组织，并最终交付一系列渐趋完善的实施成果，这被称为迭代式生命周期。</span></div></div><div id="msAfamZkoNF6A3bsPB5ufh" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_5.png" style="width: 414px"/></figure></div><h4 id="8GZdyZqJ7Z8mwk6zD6bgi7" class="wolai-block"><span class="inline-wrap">3.11 RUP<span class="jill"></span>将软件开发过程分为哪些大的阶段？
+</span></h4><div id="rhcYx2AinmP8LqZJCVV8PQ" class="wolai-block wolai-text"><div><span class="red inline-wrap">先启</span><span class="inline-wrap">、</span><span class="red inline-wrap">精化</span><span class="inline-wrap">、</span><span class="red inline-wrap">构建</span><span class="inline-wrap">和</span><span class="red inline-wrap">产品化</span><span class="inline-wrap">。</span></div></div><h4 id="bcuWvPNqpFdKacXMzBMGHZ" class="wolai-block"><span class="inline-wrap">3.12 RUP<span class="jill"></span>中的开发周期和演进周期有什么不同？
+</span></h4><div id="6wpv5kVqCYWwyH4QPNeorn" class="wolai-block wolai-text"><div><span class="inline-wrap">开发周期中，每个迭代所产生的交付物最终目标都是为了产生这个产品。产品被交付给用户后，可能要开发它的下一代产品，可以通过重复同样的先启、精化、构建和产品化阶段的顺序，将产品演进为下一代的新产品，这些随后的周期被称为演进周期。
+</span></div></div><h4 id="cvtpiJd8LGsbkJezhWTXVM" class="wolai-block"><span class="inline-wrap">3.13 RUP<span class="jill"></span>模型中的横轴、纵轴和图形中的各种曲线代表什么意思？
+</span></h4><div id="vgKPby1MHvhZW1accpvNvT" class="wolai-block wolai-text"><div><span class="inline-wrap">横轴表示一个开发周期的时间。
+</span></div></div><div id="bQtf6YcNnTy4evx1ybpB8w" class="wolai-block wolai-text"><div><span class="inline-wrap">纵轴表示业务建模、需求、分析设计、实施、测试和部署<span class="jill"></span>6<span class="jill"></span>个基本活动以及配置与变更管理、项目管理和环境<span class="jill"></span>3<span class="jill"></span>个保护性或者支持性活动。
+</span></div></div><div id="ALUzbN9Ek9imPzPaJcvVe" class="wolai-block wolai-text"><div><span class="inline-wrap">各种曲线表达了各个活动在开发周期的各个迭代中的工作量。</span></div></div><div id="h5ZnxWD3LMopNjtcPXgSCd" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_6.png" style="width: 466px"/></figure></div><h4 id="5arBpBvhDHHNfmRzPcebwd" class="wolai-block"><span class="inline-wrap">3.14 RUP<span class="jill"></span>的优点是什么？
+</span></h4><div id="iApCb9qpKzhAsCGdyJqE22" class="wolai-block wolai-text"><div><span class="inline-wrap">体系完整；理论成熟；实践性强；可裁剪；可扩充。</span></div></div><h4 id="csFX8GGMGVEayemfBVb4Ww" class="wolai-block"><span class="inline-wrap">第四章 问题定义和可行性研究方法
+</span></h4><h4 id="pfBa4Ei47sX19boiNhEKp1" class="wolai-block"><span class="inline-wrap">4.1 问题定义的目的是什么？
+</span></h4><div id="eEt6Rtxj5vKQFnrGgkLQgQ" class="wolai-block wolai-text"><div><span class="green inline-wrap">弄清楚用户需要软件系统解决的根本问题，以及项目所需的资源和经费</span><span class="inline-wrap">。</span></div></div><h4 id="2sn1bpBk7n8Xsqf53ettuk" class="wolai-block"><span class="inline-wrap">4.2 问题定义报告有哪些内容？
+</span></h4><div id="8gcLzVu1vaT8J9MQM39St8" class="wolai-block wolai-text"><div><span class="inline-wrap">项目目前问题、项目目标、项目范围、初步设想、预计投资金额和开发周期等内容。
+</span></div></div><h4 id="5yTF2iVNLkCN2dABqoHgiL" class="wolai-block"><span class="inline-wrap">4.3 列举<span class="jill"></span>5<span class="jill"></span>方面的可行性考虑
+</span></h4><div id="mU72v48JTivbNVfQFkLiTj" class="wolai-block wolai-text"><div><span class="inline-wrap">技术可行性(技术是否成熟)、操作可行性（用户能够接受操作方式么）、经济可行性（是否盈利）、调度可行性（规定期限是否能够完成）、其他可行性（社会可行性、市场可行性、竞争可行性等等）。
+</span></div></div><h4 id="4VBkGqbEAQCTHH9rSaF5pu" class="wolai-block"><span class="inline-wrap">4.4 项目方案是否经济可行的依据是什么？
+</span></h4><div id="omryA2xjSYevmGepU4a3r2" class="wolai-block wolai-text"><div><span class="inline-wrap">获得的效益必须等于或者大于建议系统的启动与运营成本。
+</span></div></div><h4 id="sjc3eCpZecCVCQC7YWfGut" class="wolai-block"><span class="inline-wrap">4.6 什么是项目的启动成本和运营成本？什么是项目的运营效益？
+</span></h4><div id="dRm7xwEUNMabrPLxNxPvqN" class="wolai-block wolai-text"><div><span class="inline-wrap">项目的</span><span class="red inline-wrap">启动成本</span><span class="inline-wrap">：是指为了建立新系统所支付的一次性开支。
+项目的</span><span class="red inline-wrap">运营成本</span><span class="inline-wrap">：是指为了维持这个系统运行所发生的费用。
+项目的</span><span class="red inline-wrap">运营效益</span><span class="inline-wrap">：是指正式运行系统后能够产生的收益。</span></div></div><h4 id="kpm9c2nKytbJp6LDPsGp3F" class="wolai-block"><span class="inline-wrap">4.7 什么是投资回收分析？该方法的缺点是什么？
+</span></h4><div id="bvc9UMZ25Xf5x7QzdKJYQf" class="wolai-block wolai-text"><div><span class="inline-wrap">投资回收分析是一个决定新系统所生成的经济效益超过它的开发费用所用时间长度的技术。
+</span></div></div><div id="ePCrJvcnrrZSaDKyhDkiUM" class="wolai-block wolai-text"><div><span class="inline-wrap">缺点是完全忽略了资金的时间因素。
+</span></div></div><h4 id="8igKBDTpRGVHF3S3fdiQMH" class="wolai-block"><span class="inline-wrap">4.8 什么是净资金现值法？该方法的优点是什么？
+</span></h4><div id="9DsrYVwFbVN9dQyy9WP9qg" class="wolai-block wolai-text"><div><span class="inline-wrap">一个投资方案的净资金现值定义为所得经济效益的现值之和减去该项目的投资的现值。
+优点：资金现值的使用承认了货币的时间价值，可以将不同成本和经济效益的投资进行比较。
+</span></div></div><h4 id="rQPpFUeiTnqbbUK85ohyw9" class="wolai-block"><span class="inline-wrap">4.9 示例</span></h4><div id="oenk82kxiZbVKcu5hy5uUd" class="wolai-block wolai-text"><div><span class="inline-wrap">假定在开发在线宠物商店系统时，提出两种方案，即方案<span class="jill"></span>A<span class="jill"></span>和方案<span class="jill"></span>B，这两种方案都可行。方案<span class="jill"></span>A<span class="jill"></span>的开发成本为<span class="jill"></span>20<span class="jill"></span>万元，在<span class="jill"></span>5<span class="jill"></span>年期限内每年可得收益为<span class="jill"></span>6<span class="jill"></span>万元；方案<span class="jill"></span>B<span class="jill"></span>的开发成本为<span class="jill"></span>80<span class="jill"></span>万元，在<span class="jill"></span>5<span class="jill"></span>年期限内每年可得收益为<span class="jill"></span>20<span class="jill"></span>万元。假定最小可接受的折扣率为<span class="jill"></span>10％，哪种方案是可以接受的呢？</span></div></div><code-block id="sHAuq1QjWzpe1pi7wJTByx" class="wolai-block"><div class="wolai-pre"><div data-lang="纯文本" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token number">100</span><span class="token operator">/</span><span class="token number">110</span><span class="token operator">=</span><span class="token number">0.909</span>
+先看方案<span class="token constant">A</span>
+<span class="token constant">NPV</span><span class="token operator">=</span><span class="token number">6</span><span class="token operator">*</span><span class="token number">0.909</span><span class="token operator">+</span><span class="token number">6</span><span class="token operator">*</span><span class="token number">0.9090</span><span class="token operator">*</span><span class="token number">909</span><span class="token operator">+</span>…（一共加五年的）<span class="token operator">-</span><span class="token number">20</span><span class="token operator">=</span><span class="token number">5.454</span><span class="token operator">+</span><span class="token number">4.958</span><span class="token operator">+</span><span class="token number">4.507</span><span class="token operator">+</span><span class="token number">4.096</span><span class="token operator">+</span><span class="token number">3.724</span><span class="token operator">-</span><span class="token number">20</span><span class="token operator">=</span><span class="token number">2.739</span>
+净资金现值系数<span class="token operator">=</span><span class="token number">2.739</span><span class="token operator">/</span><span class="token number">20</span><span class="token operator">=</span><span class="token number">0.137</span>
+再看方案<span class="token constant">B</span>
+<span class="token constant">NPV</span><span class="token operator">=</span><span class="token number">20</span><span class="token operator">*</span><span class="token number">0.909</span><span class="token operator">+</span>…<span class="token operator">-</span> <span class="token number">80</span><span class="token operator">=</span><span class="token number">18.18</span><span class="token operator">+</span><span class="token number">16.526</span><span class="token operator">+</span><span class="token number">15.022</span><span class="token operator">+</span><span class="token number">13.655</span><span class="token operator">+</span><span class="token number">12.412</span><span class="token operator">-</span><span class="token number">80</span><span class="token operator">=</span><span class="token operator">-</span><span class="token number">4.205</span>
+净资金现值系数<span class="token operator">=</span><span class="token operator">-</span><span class="token number">4.205</span><span class="token operator">/</span><span class="token number">80</span><span class="token operator">=</span><span class="token operator">-</span><span class="token number">0.052</span>
+所以方案<span class="token constant">A</span>是可以接受的。</pre></div></code-block><h4 id="jyajcxCxAMVT2L16jRxv3U" class="wolai-block"><span class="inline-wrap">4.10 可行性研究报告包括哪些内容？
+</span></h4><div id="o5KvGJAS3i1bBEGw1p4EGA" class="wolai-block wolai-text"><div><span class="inline-wrap">说明各种版本的修改日期、版本编号、修改说明和修改作者；在报告前部对本文档进行说明；描述本产品的定位；分别描述各类用户的情况；产品概述；方案说明；多套方案的可行性比较；推荐方案的风险评估；整理出客户方和开发方对本报告的意见；产品的市场营销计划和软件开发计划。
+</span></div></div><h4 id="4NLmFaNAWctPozqr5XDgfh" class="wolai-block"><span class="inline-wrap">4.11 在可行性研究报告中，系统方案应包括哪些方面的内容？
+</span></h4><div id="gA6bXQEpacU4L8SgQiv1ef" class="wolai-block wolai-text"><div><span class="inline-wrap">方案的硬件环境；方案的技术策略；方案的软件模型及其模型描述；采用该方案后，客户的投资成本、运营成本和运营效益；开发方的资源配置计划；方案存在的风险和不足。
+</span></div></div><h4 id="pd5uhBjbJFEApSweZygFe8" class="wolai-block"><span class="inline-wrap">4.12 提交一张在线宠物商店的词汇表，其中至少包括<span class="jill"></span>5<span class="jill"></span>个词汇。
+</span></h4><div id="k2STQQQJS53XGF22bXZV2X" class="wolai-block wolai-text"><div><span class="inline-wrap">登录验证、购物车、收藏夹、宠物种类、商品价格</span></div></div><h3 id="pPoV14y4VoZ2pon6dwHxM7" class="wolai-block"><span class="inline-wrap">第五章 需求分析方法
+</span></h3><h4 id="f5awYM2rfbKLdDftxjZq51" class="wolai-block"><span class="inline-wrap">5.1 需求收集和需求分析在项目开发的不同时期的工作量有何变化？
+</span></h4><div id="c82JBMXvdZyMgxQhCdXAfd" class="wolai-block wolai-text"><div><span class="inline-wrap">在早期，需求收集的工作量较大、需求分析的工作量较小。随着项目的开发，需求收集的工作量逐渐减少，需求分析的工作量逐渐增多。
+</span></div></div><h4 id="joRRH7rk1xy85wVWZ42Pm9" class="wolai-block"><span class="inline-wrap">5.2 在需求分析活动中，为什么要采用自顶向下、逐层分解的原则？
+</span></h4><div id="mVuLAEVnAghTYEX6d1hvZa" class="wolai-block wolai-text"><div><span class="inline-wrap">通常，</span><span class="green inline-wrap">一个庞大的、复杂的系统很难一下子被完全理解。如果过早陷入细节，就会得到一个不完整的需求，甚至忽略系统更重要的部分</span><span class="inline-wrap">。</span></div></div><h4 id="hSijgMZYhRsohuFnFsVBWN" class="wolai-block"><span class="inline-wrap">5.3 为什么需要通过模型来表达需求？
+</span></h4><div id="nkFX4wUovfcpqkV51GgHGr" class="wolai-block wolai-text"><div><span class="inline-wrap">易于理解、便与组织。</span></div></div><h4 id="5MdRcx7KJnYMdQ3eDmDwVo" class="wolai-block"><span class="inline-wrap">5.4 为什么在需求分析活动中，不宜过多考虑系统的实现方式？
+</span></h4><div id="7fsU9j1CCFdt9q1GuY6UDn" class="wolai-block wolai-text"><div><span class="inline-wrap">避免记录一些因为当前的技术才存在的需求，或者使用一些可能不适合新产品的技术；避免对实现的方式作出束缚。
+</span></div></div><h4 id="nXNjG4Wh2NCFsX4sMuhix9" class="wolai-block"><span class="inline-wrap">5.5 为什么需求必须是可验证的？
+</span></h4><div id="cqhea2WSFrZ4DPwd6NpQ8h" class="wolai-block wolai-text"><div><span class="inline-wrap">需求通过了“验证”，才能表明所开发的系统符合客户和用户的要求；
+</span></div></div><div id="8yPEHxEMA3viJffrmqgnLd" class="wolai-block wolai-text"><div><span class="inline-wrap">不可验证的需求，仅仅是对需求的一种主观愿望，对于设计和测试等活动而言，都是缺乏意义的；
+</span></div></div><div id="jXd4dZa57L3A5Y8sMDHAFM" class="wolai-block wolai-text"><div><span class="inline-wrap">通过需求的验证标准，可以度量出系统实现的质量。
+</span></div></div><h4 id="pcAnZhotgcLTCSyybN2Piz" class="wolai-block"><span class="inline-wrap">5.6<span class="jill"></span>某高等学校学籍管理系统的易用性需求是“系统应该用户友好”。请为该需求设计一个验收标准。
+</span></h4><div id="nUDskbWQMyoyherGUmo3vg" class="wolai-block wolai-text"><div><span class="inline-wrap">验收标准①：用户第一次使用该产品时，他们能在一个小时内掌握下载数据，上传数据等权限内的操作。
+</span></div></div><div id="kZM7sgL7iex6pACtH6iySU" class="wolai-block wolai-text"><div><span class="inline-wrap">验收标准②：经过开发方提供培训服务，管理员能够在三个培训工作日内掌握系统的所有功能，并能独立工作。</span></div></div><h4 id="6c3X4MtSjZwRfMHMrMG8CN" class="wolai-block"><span class="inline-wrap">5.7 为什么需求应该是可追溯的？
+</span></h4><div id="bvdCruCwKxBSeh5JFYJiyb" class="wolai-block wolai-text"><div><span class="inline-wrap">在转换过程中，可能会出现很多问题，或由于各种原因而变更需求。当需求在课追踪性链接的任意一端发生问题时，所有与该需求关联的链接都将被标记为可疑。有助于分析潜在变更的影响，或者核实通过实施系统所有的需求都已经被实现。
+</span></div></div><h4 id="q1wQh6su7QDMxT5dn8xzn8" class="wolai-block"><span class="inline-wrap">5.8 状态变迁图（STD）的两种主要符号是什么？</span></h4><div id="57hQx2mctkETECWrh7BGsn" class="wolai-block wolai-text"><div><span class="green inline-wrap">状态</span><span class="inline-wrap">和</span><span class="green inline-wrap">变迁</span><span class="inline-wrap">。状态是可以被观察到的系统的行为模式。变迁表示一种状态向另一种状态的迁移。</span></div></div><h4 id="wVtGg58Z5eqW1fWVar97us" class="wolai-block"><span class="inline-wrap">5.9 在需求分析活动中，使用数据字典有何意义？在数据字典中定义了哪四种元素？请分别解释。
+</span></h4><div id="gJBCWBQrsZtZKZiUFFHXq1" class="wolai-block wolai-text"><div><span class="inline-wrap">数据字典可以统一项目中数据的定义与格式，便于开发人员之间的交流，保证组织内部的数据共享，避免因数据不统一而造成的理解差异，以及由此导致的人力浪费和工期延误。
+</span></div></div><div id="bRDtVHsgsAjJxMp1kZxkNW" class="wolai-block wolai-text"><div><span class="red inline-wrap">数据元素</span><span class="inline-wrap">：是软件系统中的最小数据单元，是构成数据库以及系统模块间交换数据的最小单元。</span></div></div><div id="8r8S9vooBc6LPwyU331VuN" class="wolai-block wolai-text"><div><span class="red inline-wrap">数据流</span><span class="inline-wrap">：是外部实体和系统之间以及系统内部的处理之间进行数据交换的基本数据单元，是由有关的数据元素组成的数据结构。</span></div></div><div id="tBJZCX9ac4Kg2HCfKn68ou" class="wolai-block wolai-text"><div><span class="red inline-wrap">数据存储</span><span class="inline-wrap">：也是定义数据结构，是数据流程图中数据结构的载体。相对于数据流而言，它是一个静态的数据结构。</span></div></div><div id="rbxK3GknVRKULkzqUPN5cq" class="wolai-block wolai-text"><div><span class="red inline-wrap">处理</span><span class="inline-wrap">：处理的过程定义应该包括处理的名称、说明、所有需要的输入输出、要存取的数据库以及该处理对应的结构图内的模块号。</span></div></div><h4 id="qxzHN1z7vjhjGEwKvcmuw" class="wolai-block"><span class="inline-wrap">5.10<span class="jill"></span>判定表和判定树是为了解决什么问题？
+</span></h4><div id="opU4fdy3CYyW1UjMCD92Lo" class="wolai-block wolai-text"><div><span class="inline-wrap">对于复杂的条件组合问题（在处理过程定义中，有时存在多重嵌套的情况），直观、清楚地表述处理的过程。
+</span></div></div><h4 id="6F1mDGhY7DTxNwnPpGKdCA" class="wolai-block"><span class="inline-wrap">5.11 UML<span class="jill"></span>从建模的角度将类分为哪几种？
+</span></h4><div id="hpXTMBkQFQaYEUVxVJCRnZ" class="wolai-block wolai-text"><div><span class="inline-wrap">用例模型、对象—行为模型、对象—关系模型。
+</span></div></div><h4 id="4dKS48VGLFJnRvqZCdKp11" class="wolai-block"><span class="inline-wrap">5.12 请分别解释泛化、关联、聚集、合成和依赖的概念。
+</span></h4><div id="shr8gb2wrkqiEyraCaghYG" class="wolai-block wolai-text"><div><span class="red inline-wrap">泛化</span><span class="inline-wrap">：从一般到特殊的关系。</span></div></div><div id="aAFY4XdCPwEohHrWH69wAT" class="wolai-block wolai-text"><div><span class="red inline-wrap">包含</span><span class="inline-wrap">：指一个用例的行为包含了另一个用例。</span></div></div><div id="rEwtcbCrTdeD5yi67cQUXn" class="wolai-block wolai-text"><div><span class="red inline-wrap">扩展</span><span class="inline-wrap">：对一个已经存在的用例增加新的功能。</span></div></div><div id="mDLNyTeNwh4ezwRvjSxrNj" class="wolai-block wolai-text"><div><span class="red inline-wrap">关联</span><span class="inline-wrap">：模型元素间的一种语义联系。</span></div></div><div id="cXXh4hBfrKds4Lh9wUrUiz" class="wolai-block wolai-text"><div><span class="red inline-wrap">聚集</span><span class="inline-wrap">：聚集是一种特殊的关联，用来表示类与类之间整体与部分的关系。</span></div></div><div id="8LJ3pY5irgNr4V5PhMDU8x" class="wolai-block wolai-text"><div><span class="red inline-wrap">合成</span><span class="inline-wrap">：一种更特殊的聚集，也表示类与类之间的整体和部分关系。但特殊之处在于他是一种强</span><span class="green inline-wrap">聚集</span><span class="inline-wrap">，</span><span class="yellow inline-wrap">组合关系中的类具有相同的生存期，即主体对象不存在时，其包含的对象也不存在</span><span class="inline-wrap">。</span></div></div><div id="6kxtoakZpDY2cfk4bftA8n" class="wolai-block wolai-text"><div><span class="red inline-wrap">依赖</span><span class="inline-wrap">：类与类之间较弱的关系，若修改类<span class="jill"></span>A<span class="jill"></span>的定义可能导致对类<span class="jill"></span>B<span class="jill"></span>的定义的修改，则称类<span class="jill"></span>B<span class="jill"></span>依赖于类<span class="jill"></span>A。</span></div></div><h4 id="uXjvSMMDVSRuv8knfvZ9wd" class="wolai-block"><span class="inline-wrap">5.13 识别泛化关系时，应考虑哪些问题？
+</span></h4><div id="ushNkrTfAV1UaTEMe5J93P" class="wolai-block wolai-text"><div><span class="inline-wrap">根据领域知识识别泛化；自上而下识别泛化；自下而上识别泛化；考虑领域内的复用；判断泛化是否在系统的责任范围内；判断是否在结构上真正构成泛化关系；判断子类之间的差别是否由超类的属性值改变来实现；判断子类是否有自己特有的属性和操作；判断父类下面是否只有一个子类。
+</span></div></div><h4 id="muHtX89vCKigyifbJcsbhj" class="wolai-block"><span class="inline-wrap">5.14 单向关联和双向关联有何不同？
+</span></h4><div id="3VF25ZN7zRnHvA6fnXrMhU" class="wolai-block wolai-text"><div><span class="inline-wrap">单向关联有箭头、双向关联用一条无箭头的直线表示。
+</span></div></div><div id="3ngh6gRokzieDUgJjj4QwC" class="wolai-block wolai-text"><div><span class="inline-wrap">单向关联<span class="jill"></span>A→B<span class="jill"></span>表示<span class="jill"></span>A<span class="jill"></span>可以用<span class="jill"></span>B<span class="jill"></span>的属性和方法，而<span class="jill"></span>B<span class="jill"></span>不可以用<span class="jill"></span>A<span class="jill"></span>的。
+</span></div></div><h4 id="jRQhWXzh8HVxgrcR2HmStv" class="wolai-block"><span class="inline-wrap">5.15 聚集与合成关系有何不同？
+</span></h4><div id="kHfmWV4vBshvbZKymUYiKy" class="wolai-block wolai-text"><div><span class="inline-wrap">合成是一种更特殊的聚集，也表示类与类之间的整体和部分关系。但特殊之处在于他是一种强聚集，组合关系中的类具有相同的生存期，即主体对象不存在时，其包含的对象也不存在。
+</span></div></div><h4 id="tncLtzRiuhkZcdwxBB2L2a" class="wolai-block"><span class="inline-wrap">5.16 依赖关系常常出现在哪些情况下？
+</span></h4><div id="5ipX52heEsqsvFQUZ4vfcv" class="wolai-block wolai-text"><div><span class="inline-wrap">一个类向另一个类发送消息；一个类是另一个类的某个或者某些操作的数据成员类型；一个类是另一个类的操作的参数模型。</span></div></div><h4 id="re3z8vkcE4D51898qvF4ts" class="wolai-block"><span class="inline-wrap">5.17 什么是交互图？
+</span></h4><div id="kdjv1gLMveFAe4gEZX5dF9" class="wolai-block wolai-text"><div><span class="inline-wrap">交互图用来对软件系统的动态行为建模，显示了<span class="jill"></span>Actor<span class="jill"></span>和对象之间是如何进行通信来完成用例的各个步骤或者其他功能的。</span></div></div><h3 id="unASDK58qEQvhfTwkx6uSv" class="wolai-block"><span class="inline-wrap">第六章 软件设计方法
+</span></h3><h4 id="e7stuGovRwxiTbidZKrgU6" class="wolai-block"><span class="inline-wrap">6.1 设计活动的总体原则包括哪些？
+</span></h4><div id="pj5cZBckLHbhrAWmYHdAtB" class="wolai-block wolai-text"><div><span class="inline-wrap">设计过程不应陷入片面性；设计应能够追踪分析模型；设计应该选择合适的技术；设计应该选择合适的技术；设计应该选择合适的技术；设计应该是可集成的；设计应该尽可能地提高抽象层次；设计应该是可复用的；设计应该是可维护和可拓展的；设计的系统应该有韧性；设计应该具有一致性；设计的交互界面应该是友好的；设计评审。
+</span></div></div><h4 id="cHTDE98XuQr5KzJGHq6Day" class="wolai-block"><span class="inline-wrap">6.2 什么是软件构架？
+</span></h4><div id="hZthQcMrpgX97ZvBYX9w9H" class="wolai-block wolai-text"><div><span class="inline-wrap">在<span class="jill"></span>UML<span class="jill"></span>中，构架是指系统的组织结构，它</span><span class="green inline-wrap">可以递归解析为通过接口交互的部件、连接部件的关系以及组装部件的一些限制条件，通过接口交互的部件有类、构件和子系统</span><span class="inline-wrap">。总之，</span><span class="yellow inline-wrap">软件构架反映了系统整体的组织结构和基本特征</span></div></div><h4 id="aNmRP59M3JiA6cPD9A67U6" class="wolai-block"><span class="inline-wrap">6.3 详细设计的任务是什么？
+</span></h4><div id="svSMDgXcx2iT5Epda4czkC" class="wolai-block wolai-text"><div><span class="inline-wrap">详细设计的任务是在</span><span class="green inline-wrap">软件构架的基础上，进一步确定如何实现目标系统</span><span class="inline-wrap">，具体包括系统的模块逻辑的详细设计、系统数据结构的设计、系统数据结构的设计、系统人机接口的设计等。</span></div></div><h4 id="gGohbf4fsLXbvW4gdqzBQr" class="wolai-block"><span class="inline-wrap">6.4 分治的优点是什么？分治要考虑哪些问题？
+</span></h4><div id="dCw7gcph6m2oPcucQEs3tE" class="wolai-block wolai-text"><div><span class="inline-wrap">缩小问题空间，减少问题复杂度和开发工作量；便于并发执行，缩短开发时间；适合团队协作，降低实施难度；预防开发中的多米诺骨牌效应；容易产生可复用部件。
+</span></div></div><div id="eiuvb4Nj3cUDUt3WYysrnq" class="wolai-block wolai-text"><div><span class="inline-wrap">分治要考虑的问题：分治程度不应太大或是太小；从技术角度，如何分治？
+</span></div></div><h4 id="9h7wyEu8M8P5ysxxn9nbTn" class="wolai-block"><span class="inline-wrap">6.5 抽象的优点是什么？
+</span></h4><div id="ew7inqmLMMSv7bTYbeG2hE" class="wolai-block wolai-text"><div><span class="inline-wrap">抽象有利于认识事物的普遍特征和基本原理；抽象可以帮助设计人员制定出模块的框架；抽象有利于软件的复用；抽象可以提高系统的可扩展性。
+</span></div></div><h4 id="pd6M8NNa29FHkhTgpFkmzG" class="wolai-block"><span class="inline-wrap">6.6 请分别解释里氏替换选择、开-闭原则、依赖倒转原则和接口隔离原则。
+</span></h4><div id="7HzPmxiq4WsY9AnT1todrZ" class="wolai-block wolai-text"><div><span class="red inline-wrap">里氏替换选择</span><span class="inline-wrap">：子类可以替换父类，可以出现在父类能出现的任何地方。</span></div></div><div id="tDuEhktEZQbQt85aYEqMB1" class="wolai-block wolai-text"><div><span class="red inline-wrap">开-闭原则</span><span class="inline-wrap">：一个软件实体应当对扩展开放，对修改关闭。</span></div></div><div id="bDcrPa88xqGBVVu3VADcbc" class="wolai-block wolai-text"><div><span class="red inline-wrap">依赖倒转原则</span><span class="inline-wrap">：要依赖于抽象，不要依赖与具体类。</span></div></div><div id="iJUe9YVV2JQMXFBJDtoqA6" class="wolai-block wolai-text"><div><span class="red inline-wrap">接口隔离原则</span><span class="inline-wrap">：客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。</span></div></div><h4 id="r73Z3VQkGgNkG6Hr8rMFHd" class="wolai-block"><span class="inline-wrap">6.7 什么是抽象类？什么是接口？他们有什么不同？
+</span></h4><div id="8JHuSUtC2oidZUuSuGcTA9" class="wolai-block wolai-text"><div><span class="red inline-wrap">抽象类</span><span class="inline-wrap">：不可被实例化的类。</span></div></div><div id="8RrNejzgYKdiw7QLLcrpqD" class="wolai-block wolai-text"><div><span class="red inline-wrap">接口</span><span class="inline-wrap">：是一些不包含具体实现的方法特征的集合。</span></div></div><div id="qxMkg9RLU9oTZHp5iLwb5G" class="wolai-block wolai-text"><div><span class="inline-wrap">接口没有具体的实现方法，抽象可以有。抽象类只支持单继承，即继承它的子类只能有它这一个超类；对于接口而言，一个具体类可以有多个实现的接口。</span></div></div><h4 id="kdiQ2pG1rXth84DeFXWUTN" class="wolai-block"><span class="inline-wrap">6.8 什么是内聚？请列举内聚的种类，并说明哪些内聚类型较理想？
+</span></h4><div id="gZrnao1f8JyPHyc3nGPfjc" class="wolai-block wolai-text"><div><span class="green inline-wrap">内聚是一个模块内部各部件之间联系紧密程度的度量</span><span class="inline-wrap">。</span></div></div><div id="7NH5Rb33iu4ZvH63uKmCfQ" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">功能内聚</span><span class="inline-wrap">：所有部件处理同一组数据，共同完成单一的功能，用符号<span class="jill"></span>F<span class="jill"></span>表示。</span></div></div><div id="jHNAb7Lwk8NhPLRp62ARi2" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">顺序内聚</span><span class="inline-wrap">：各部件之间既有数据联系，又有控制联系，用符号<span class="jill"></span>S<span class="jill"></span>表示。</span></div></div><div id="cXfVCVeNmbDE63KvV1AQXj" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">通信内聚</span><span class="inline-wrap">：所有部件都访问同一组数据，各部件只有数据关系、没有控制关系。用符号<span class="jill"></span>C<span class="jill"></span>表示。</span></div></div><div id="mwL66ABvCmbzmpk7Z4ihyf" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">过程内聚</span><span class="inline-wrap">：只有控制联系，没有数据联系。符号<span class="jill"></span>P<span class="jill"></span>表示。</span></div></div><div id="jYGM65RHpPPj7i4WB1w1tA" class="wolai-block wolai-text"><div><span class="inline-wrap">下面内聚较弱：
+</span></div></div><div id="ftijVguPB8eT9XZ8JRB6mD" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">时间内聚</span><span class="inline-wrap">：无数据、控制联系，部件之间具有时间联系。符号<span class="jill"></span>T<span class="jill"></span>表示。</span></div></div><div id="fd3DLScDJtB3YD4QLrhAUx" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">实用程序内聚</span><span class="inline-wrap">：不能归入上述内聚类型的部件放到一起。符号<span class="jill"></span>U<span class="jill"></span>表示。</span></div></div><div id="9WGyuV4aihDnWiAWjk3VCr" class="wolai-block wolai-text"><div><span class="inline-wrap">偶然内聚（X）和层内聚（L）。
+</span></div></div><h4 id="poKBqp2AF57wcvA1izhvUZ" class="wolai-block"><span class="inline-wrap">6.9 什么是耦合？请列举耦合的种类，并解释耦合谱系。
+</span></h4><div id="qLVBfuJv2sU6sUhvSsEjgd" class="wolai-block wolai-text"><div><span class="green inline-wrap">耦合是模块间相互联系强弱的度量</span><span class="inline-wrap">。</span></div></div><div id="jAax4JRXXnbSxn8HUnwGXj" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">内容耦合</span><span class="inline-wrap">：一个模块直接进入另一个模块中存取其数据或者使用其服务时。</span></div></div><div id="v5Lvg6RdRvFQsx7LhpCgb7" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">公共耦合</span><span class="inline-wrap">：两个模块间通过一个公共环境进行数据交换。</span></div></div><div id="tnvb4jQa9WRVJcCKg2gc2h" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">外部耦合</span><span class="inline-wrap">：模块对外部系统有依赖关系。</span></div></div><div id="jPXTszP772W4z82o2Q8jPp" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">控制耦合</span><span class="inline-wrap">：两个模块之间通过接口的参数表交换开关数据，旨在控制另一个模块的执行逻辑。</span></div></div><div id="2P1UCKPJjD59oFiiJXUMS" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">印记耦合</span><span class="inline-wrap">：不同专家有不同定义。</span></div></div><div id="9hj5Z93UAMfhSmZHvDJLbj" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">数据耦合</span><span class="inline-wrap">：两个模块之间通过接口的参数表交换信息数据，并且这些信息数据的类型是基本数据类型。</span></div></div><div id="nSw1F41ysm4g68owt7Qa4h" class="wolai-block wolai-text"><div><span class="inline-wrap">谱系从左到右，耦合程度越来越高。当然，我们的目标是高内聚、低耦合。
+</span></div></div><h4 id="94JkghmYxpjCT5dTRvAxWx" class="wolai-block"><span class="inline-wrap">6.10 什么是软件复用？什么是<span class="jill"></span>CBSD？什么是产品线工程？
+</span></h4><div id="jVx7WU83uQUVyBAyDxBwqp" class="wolai-block wolai-text"><div><span class="green inline-wrap">软件复用是指重复使用为了复用目的而设计的软件的过程</span><span class="inline-wrap">。</span></div></div><h4 id="3WTV7mVJhMGTgqHWsE2kdo" class="wolai-block"><span class="inline-wrap">6.11 传统的设计建模方法有哪些？
+</span></h4><div id="ut4JYjYGLd8yxPsBSrfqa1" class="wolai-block wolai-text"><div><span class="inline-wrap">层次图：用于描述程序的组成，即组成系统的程序模块及其调用关系。</span></div></div><div id="aLHFcg4emHc5Fd55QUkumo" class="wolai-block wolai-text"><div><span class="inline-wrap">结构图：克服了层次图的缺点；</span></div></div><div id="odt9iHFvTBSKMxecKBDFs" class="wolai-block wolai-text"><div><span class="inline-wrap">程序流程图：</span></div></div><div id="8qbgqSz5g7RnSbZFupWzVk" class="wolai-block wolai-text"><div><span class="inline-wrap">盒图(N-S<span class="jill"></span>图) ：出于要有一种不允许违背结构程序设计精神的图形工具的考虑</span></div></div><div id="gGf7yWTwHrYRJFkTjFALHd" class="wolai-block wolai-text"><div><span class="inline-wrap">HIPO<span class="jill"></span>图：</span></div></div><h4 id="sUJBXVeqZ6ivcgUZEUUkQJ" class="wolai-block"><span class="inline-wrap">6.12 面向对象的设计建模方法有哪些？请分别介绍。
+</span></h4><div id="cEh2n8hBZTgcWSm6WGrj2C" class="wolai-block wolai-text"><div><span class="inline-wrap">包、类图、构件图和部署图。</span></div></div><h4 id="tvzSddHY6x1rFzm4KSe5eQ" class="wolai-block"><span class="inline-wrap">6.13 请举出一些不良界面的例子
+</span></h4><div id="naCT7QejMQ5NbCMJm1tsEp" class="wolai-block wolai-text"><div><span class="inline-wrap">对用户的主观臆测；不友好；晦涩难懂；行为不当；界面复杂等。
+</span></div></div><h4 id="d2RXXCnbRmuqvn1PqZn9xn" class="wolai-block"><span class="inline-wrap">6.14 为了达到以用户为中心的设计目标，有哪些主要做法？
+</span></h4><div id="cmm78MbfmFsXJ4BSbVe3ph" class="wolai-block wolai-text"><div><span class="inline-wrap">使用<span class="jill"></span>UCD：理解用户的特征、任务；确保用户参与；遵循良好的界面设计原则。
+</span></div></div><h4 id="6Qsq672K19z49ur1WxoMhL" class="wolai-block"><span class="inline-wrap">6.15 人机界面设计应遵循哪些指导准则？
+</span></h4><div id="aUUTBodyuJwGJNu1ZT3qqM" class="wolai-block wolai-text"><div><span class="inline-wrap">系统的全部界面格式和风格应该保持一致；适当组织菜单层次和菜单项；为不同的用户或者功能提供不同的界面服务；力求用户需要的输入量最少；对于一些破坏性指令应确认；提供有效的系统保障能力；布局合理；简单易懂、整洁有序、条理清晰；界面具有帮助功能；有一定的智能。</span></div></div><h3 id="uhJekTqmwwEdcLjsFm8KXb" class="wolai-block"><span class="inline-wrap">第七章 软件实施与测试方法
+</span></h3><h3 id="uc12aov9WaFykBr6ViJ3RV" class="wolai-block"><span class="inline-wrap">7.1 有哪些广泛使用的程序设计语言？
+</span></h3><div id="3bYFLABSwFCNeR32h3G9HQ" class="wolai-block wolai-text"><div><span class="inline-wrap">汇编语言、BASIC<span class="jill"></span>语言、Fortran<span class="jill"></span>语言、COBOL<span class="jill"></span>语言、C<span class="jill"></span>语言、Ada<span class="jill"></span>语言、Java<span class="jill"></span>语言、.NET<span class="jill"></span>系列语言。
+</span></div></div><h4 id="wpunifLty3V4bFD5iy8CNy" class="wolai-block"><span class="inline-wrap">7.2 开发在线宠物商店系统时，你打算用什么语言开发？为什么？
+</span></h4><div id="s3uBso1w7qemzgawa4R26X" class="wolai-block wolai-text"><div><span class="inline-wrap">C<span class="jill"></span>语言或者<span class="jill"></span>JAVA<span class="jill"></span>语言</span></div></div><h4 id="pMnZZkciAUzJ6y5a4T31DN" class="wolai-block"><span class="inline-wrap">7.3 编写一个好风格的程序，要从几个方面着手？对于程序语句的处理，你还有哪些好的建议？
+</span></h4><div id="iv8VQhXeMLu98VqKGU1gGd" class="wolai-block wolai-text"><div><span class="inline-wrap">注释、清晰的逻辑结构以及代码格式。
+</span></div></div><div id="rjc1y8uYZ62Uakz4u8Xgp6" class="wolai-block wolai-text"><div><span class="inline-wrap">先将逻辑结构化为最简洁最易于理解的。
+</span></div></div><h4 id="myDDuuEnTAzyL7itXN4NKd" class="wolai-block"><span class="inline-wrap">7.4 什么是白盒测试？有哪些主要方法？
+</span></h4><div id="oe2PUJbKj9cnKbjEKkHHLA" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>白盒测试</b></span><span class="inline-wrap">又称玻璃盒测试。使用白盒方法导出测试用例是依据模块的编码，即模块的内部逻辑，对测试者是可见的，故称白盒测试。又称“</span><span class="yellow inline-wrap">结构测试</span><span class="inline-wrap">”</span></div></div><div id="45QWsaFqx5kBg9mvNCNKYE" class="wolai-block wolai-text"><div><span class="green inline-wrap">基本途径测试</span><span class="inline-wrap">（每条完整的路径都要测试一次）、</span><span class="green inline-wrap">条件测试</span><span class="inline-wrap">（检查程序所包含的逻辑条件）、</span><span class="green inline-wrap">循环测试</span><span class="inline-wrap">（确定循环结构是否有效）</span></div></div><h4 id="sppsd5PTPdRUPFZB6N7zv" class="wolai-block"><span class="inline-wrap">7.5 什么是黑盒测试？有哪些主要方法？
+</span></h4><div id="kw3Km8jXBdGbgTyEJ4WgN1" class="wolai-block wolai-text"><div><span class="inline-wrap">黑盒测试</span><span class="green inline-wrap">在程序或者模块的接口级进行，而不考虑程度内部逻辑</span><span class="inline-wrap">。又称为“</span><span class="yellow inline-wrap">功能测试</span><span class="inline-wrap">”</span></div></div><div id="3DzTPrurfa4fcDFYfnXcSU" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>等价类划分法 </b></span></div></div><ul class="wolai-block"><li id="vrGKNQshtpZBZLFbVKafZ4"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">把程序的输入域划分成若干数据类，从每一数据类选取少数有代表性数据做为测试用例。每一个等价类相对于输入条件表示为一组有效或无效的输入。</span></li><li id="mbNpkuKk8wt5C6YyxN5wsU"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">为每一等价类设计一个测试用例。</span></li></ul><div id="nNR2XYYHkGucrSvWHKZvPo" class="red wolai-block wolai-text"><div><span class="inline-wrap"><b>边界值分析法</b></span></div></div><div id="6GcqsrpyYZhwYw2SfuN7hU" class="wolai-block wolai-text"><div><span class="inline-wrap">是等价类分析技术的补充，并且基于等价类划分技术。边界值分析技术不是随意选择等价类中的原则，而是专门选择等价类“</span><span class="inline-wrap"><b>边</b></span><span class="inline-wrap">”上的元素。</span></div></div><div id="j4651AVrAjVrpiG6HTqTn9" class="wolai-block wolai-text"><div><span class="inline-wrap">示例：现规定网上智能家具城的每个订单中物品的种类限制为<span class="jill"></span>1~100<span class="jill"></span>种，</span></div></div><div id="wBZJpZtQcV8YcuPA9BMyng" class="wolai-block wolai-text"><div><span class="inline-wrap">划分等价类：</span></div></div><ul class="wolai-block"><li id="iQV2wcgywfN2GnaYp66cVw"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">等价类一：少于<span class="jill"></span>1<span class="jill"></span>种；</span></li><li id="CJSe3KhN2a8bNHfc27Xuc"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">等价类二：1~100<span class="jill"></span>种</span></li><li id="xiERVBymjcxvWWnCnUzMfd"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">等价类三：多于<span class="jill"></span>100<span class="jill"></span>种</span></li></ul><div id="7KTitXAFv8FALw5e3Awv5X" class="wolai-block wolai-text"><div><span class="inline-wrap">测试用例：0、1、2、50、99、100、101<span class="jill"></span>种</span></div></div><h4 id="iCbZDi93XSXVRHk1MF7sx" class="wolai-block"><span class="inline-wrap">7.6 什么是单元测试？
+</span></h4><div id="c63YpbnL59ZR9w1oPTqXr6" class="wolai-block wolai-text"><div><span class="inline-wrap">单元测试是</span><span class="green inline-wrap">把一个模块作为独立的程序单元进行测试，以保证它能够正确执行规定的功能</span><span class="inline-wrap">。</span></div></div><h4 id="v35Bw2td7K7whZyeycMrWk" class="wolai-block"><span class="inline-wrap">7.7 什么是驱动模块和存根模块？如何实现它们？</span></h4><div id="7Ud75fePiiLqH4JAVpPr4t" class="wolai-block wolai-text"><div><span class="red inline-wrap">驱动模块</span><span class="inline-wrap">：提供对待测模块的语句调用，并按照测试用例提供输入参数，并显示输出结果。在大多数场合称为“主程序”。</span></div></div><div id="gQzwZ4rUHDxJKySStqG6ZU" class="wolai-block wolai-text"><div><span class="red inline-wrap">存根模块</span><span class="inline-wrap">：将根据待测模块的实际需要，提供不同程度上的功能支持。比如对函数<span class="jill"></span>A<span class="jill"></span>做单元测试时，被测的函数单元下还包括了一个函数<span class="jill"></span>B，为了更好的测试错误，定位错误，就要为函数<span class="jill"></span>B<span class="jill"></span>写桩，来模拟函数<span class="jill"></span>B<span class="jill"></span>的功能，保证其正确。</span></div></div><h4 id="4ZrWsnLavfVo4tWe2GWM1F" class="wolai-block"><span class="inline-wrap">7.8 什么是集成测试？有哪几种？各有什么优缺点？
+</span></h4><div id="9kTMppREnaJTwJVhTJigwD" class="wolai-block wolai-text"><div><span class="inline-wrap">集成测试</span><span class="green inline-wrap">将已经通过彻底测试的模块组装起来，已形成一个系统或者软件产品</span><span class="inline-wrap">。</span></div></div><div id="bUf32rrB9SZj6Q3wXNna4T" class="wolai-block wolai-text"><div><span class="red inline-wrap">自顶向下集成测试</span><span class="inline-wrap">：优点是能够早期发现主要的设计错误。缺点是潜在的，可再使用模块可能没有得到充分的测试。</span></div></div><div id="2ysYtM1YnmiEoRkpaEFz4P" class="wolai-block wolai-text"><div><span class="red inline-wrap">自底向上集成测试</span><span class="inline-wrap">：优点是在合理的调度下，可以减少甚至避免开发存根模块的开销。</span></div></div><div id="g2218AvT7nNrEGD2qh7HVx" class="wolai-block wolai-text"><div><span class="inline-wrap">缺点是逻辑控制模块测试较晚，将导致大量的程序修改。
+</span></div></div><div id="7BwYU9P97XJiSsaVuERkGm" class="wolai-block wolai-text"><div><span class="red inline-wrap">自顶向下和自底向上相结合的集成测试</span><span class="inline-wrap">：将二者优点结合并且弱化缺点。</span></div></div><h4 id="35CcpvxVYzkvcLEkDgvyBn" class="wolai-block"><span class="inline-wrap">7.9 什么是回归测试？为什么要进行回归测试？回归测试的用例应该包括哪些类型的测试用例？
+</span></h4><div id="aNFux2jFgvbzAgeLBb9zcb" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>回归测试</b></span><span class="inline-wrap">：</span><span class="green inline-wrap">当有新模块加入时，要对原测试通过的测试模块重新进行测试</span><span class="inline-wrap">。</span></div></div><div id="uLj5GFoiVaUGcj2F6qZ6s7" class="wolai-block wolai-text"><div><span class="inline-wrap">当新模块引入时，原来成功的测试用例失效，错误通常在新加入的模块或者接口上。
+</span></div></div><div id="ans7oSqTo1cFcy2ovhZEax" class="wolai-block wolai-text"><div><span class="inline-wrap">回归测试用例应包括下面三种类型的测试用例：
+</span></div></div><ol class="wolai-block"><li id="bjnbz2XJ5mn2V3KPkQ9ZWo"><div class="marker"></div><span class="inline-wrap">执行测试所有软件功能的代表性测试用例；
+</span></li><li id="vecZ1WdYmLvv34wssdCEVh"><div class="marker"></div><span class="inline-wrap">测试可能受改变影响的那些功能的测试用例；
+</span></li><li id="goE8DytYTNv8UtdHNz3PRs"><div class="marker"></div><span class="inline-wrap">测试已经改变的软件部件的测试用例。</span></li></ol><h3 id="xvFQW6BsJB8JrQZQD27Yc5" class="wolai-block"><span class="inline-wrap">第八章 软件项目管理方法
+</span></h3><h4 id="o59zdEyD2LmgVuRX7eiSNs" class="wolai-block"><span class="inline-wrap">8.1 什么是项目管理？
+</span></h4><div id="mBN1YqNTCDY5cmso4NkD5i" class="wolai-block wolai-text"><div><span class="inline-wrap">项目管理是一种对人力和资源进行管理、分配和调度的过程。
+</span></div></div><h4 id="5mz11DnQkcNLPJ663mPcYq" class="wolai-block"><span class="inline-wrap">8.2 什么是软件特征量？有哪些主要的基础特征量？
+</span></h4><div id="2PMhpQ6KcUFRbQPFmRkPRw" class="wolai-block wolai-text"><div><span class="inline-wrap">一个系统、部件或者过程的一个给定属性的程度的定量度量。
+</span></div></div><div id="teozVJgHcEaW7ZiVu1FakD" class="wolai-block wolai-text"><div><span class="inline-wrap">基础特征量：软件规模、开发成本、开发期限、开发工作量、软件质量。
+</span></div></div><h4 id="6xoSfjqTEg3UiyxCtmEt3G" class="wolai-block"><span class="inline-wrap">8.3 面向功能点的软件特征量和面向尺寸的软件特征量相比，有哪些优点？
+</span></h4><div id="7CtEC2MC4tpphbECCtAWD2" class="wolai-block wolai-text"><div><span class="inline-wrap">面向功能的软件特征量是使用应用程序交付的功能度的度量作为规范值。功能点是根据软件信息域内直接度量的量和对软件复杂程度的估计值估算出来。
+</span></div></div><h4 id="8ySif4bKvYgpKUKkK1X9rU" class="wolai-block"><span class="inline-wrap">8.4 软件企业中的人力资源具有哪些特点？
+</span></h4><div id="6WpiVz253Vzz18UTFD8vGk" class="wolai-block wolai-text"><div><span class="inline-wrap">高技术更新性、高主观经验性、效率波动性、不可存储性、角色灵活性、绩效模糊性。
+</span></div></div><h4 id="gMtfXr1XKoV8XTbinZD12G" class="wolai-block"><span class="inline-wrap">8.5 软件企业人力资源管理的主要任务是什么？
+</span></h4><div id="kqamNY8yLew7faQP87qY4b" class="wolai-block wolai-text"><div><span class="inline-wrap">启动、计划、实施、收尾阶段
+</span></div></div><h4 id="ifaRNy1CQupkEmGvSt8e9j" class="wolai-block"><span class="inline-wrap">8.6 什么是<span class="jill"></span>SQA？SQA<span class="jill"></span>的主要任务是什么？执行<span class="jill"></span>SQA<span class="jill"></span>的难点是什么？
+</span></h4><div id="6KDtthmjpF4KWGQhiiYaXN" class="wolai-block wolai-text"><div><span class="inline-wrap">SQA：软件质量保证是</span><span class="green inline-wrap">为了保证软件的质量所要需要的一系列有计划的和有系统的活动</span><span class="inline-wrap">。</span></div></div><div id="umnv184Bph7sTTFC3s5sFU" class="wolai-block wolai-text"><div><span class="inline-wrap">主要任务：
+</span></div></div><ol class="wolai-block"><li id="e1PKL9dj1gWs4sFyyqBcK5"><div class="marker"></div><span class="inline-wrap">为项目准备<span class="jill"></span>SQA<span class="jill"></span>计划；
+</span></li><li id="8PyYQdLCj6nLHaLzJGSkcY"><div class="marker"></div><span class="inline-wrap">执行技术审查；
+</span></li><li id="j8s7R3XroCPU3PPWJ9YsAV"><div class="marker"></div><span class="inline-wrap">执行项目的软件开发过程的评审；
+</span></li><li id="szhc7DisBs4tPQCkpJmoQ3"><div class="marker"></div><span class="inline-wrap">收集和分析软件度量信息；
+</span></li><li id="eePK7QjU1a3SNvFnUv5obZ"><div class="marker"></div><span class="inline-wrap">持续跟踪项目的错误或者问题；
+</span></li><li id="gproa96MFEPkra1uGN5ziw"><div class="marker"></div><span class="inline-wrap">向上级管理者提供质量分析报告；
+</span></li><li id="bE5CrRCtXrzEna2LkN9DQp"><div class="marker"></div><span class="inline-wrap">向软件项目团队提供反馈；
+</span></li><li id="o6hWLHUJVtMFLh7K8LPiMv"><div class="marker"></div><span class="inline-wrap">协调变更控制和变更管理。
+</span></li></ol><div id="2oPDPJKmHavFGy36Gg4b82" class="wolai-block wolai-text"><div><span class="inline-wrap">难点：缺乏专业的<span class="jill"></span>SQA<span class="jill"></span>工程师；容易出现沟通问题；不受管理层重视；缺乏对项目的整体观；可验证性差。</span></div></div><h4 id="3UNoHNUCBYbTJQV9yfyyXH" class="wolai-block"><span class="inline-wrap">8.7<span class="jill"></span>基于统计的软件质量包括哪些步骤？
+</span></h4><ol class="wolai-block"><li id="gpmFgue2tzUtse9aJNNS6v"><div class="marker"></div><span class="inline-wrap">收集和分类软件缺陷信息
+</span></li><li id="d1oN7STqHWwLsqgJ5AWRWB"><div class="marker"></div><span class="inline-wrap">尝试追踪的基本原因
+</span></li><li id="kVi9NqRRc3PVBrjU5gkRSz"><div class="marker"></div><span class="inline-wrap">使用<span class="jill"></span>Pareto<span class="jill"></span>原理
+</span></li><li id="fdgdUdQUe1E4Ti6K5PrYgD"><div class="marker"></div><span class="inline-wrap">校正引起这些缺陷的关键少数原因。</span></li></ol><h4 id="dojnDAFJum7DChjf13x8m5" class="wolai-block"><span class="inline-wrap">8.8 软件风险的特性是什么？
+</span></h4><div id="4YqyYiJF3b8H5TYC411MNi" class="wolai-block wolai-text"><div><span class="inline-wrap">不确定性和可能损失。
+</span></div></div><h4 id="6vddWoYDwxMsh5h5yp86mk" class="wolai-block"><span class="inline-wrap">8.9 什么是软件配置？什么是软件配置管理？什么是基线？SCM<span class="jill"></span>的任务包括哪些？
+</span></h4><div id="2DFiC8TFnEvhrNi7vn4roz" class="wolai-block wolai-text"><div><span class="red inline-wrap">软件配置</span><span class="inline-wrap">是指软件开发过程中的三个主要类别的信息，包括计算机程序、描述计算机程序的文档，以及程序内部和外部的数据。</span></div></div><div id="hzsrQhQAi5Nby1HSnBbpWe" class="wolai-block wolai-text"><div><span class="red inline-wrap">软件配置管理</span><span class="inline-wrap">是</span><span class="green inline-wrap">贯穿于整个软件工程过程的一种保护性活动</span><span class="inline-wrap">，该活动标识、组织和控制对正在开发软件进行的修改，能够有效地保证软件质量，并提高软件生产率。</span></div></div><div id="q6vE41NHWq3YbukVvY4Xmy" class="wolai-block wolai-text"><div><span class="red inline-wrap">基线</span><span class="inline-wrap">：</span><span class="yellow inline-wrap">已经通过正式评审和批准的规格说明或者产品。</span></div></div><div id="bYtDLBiEZmVQ2bKDMPk1EK" class="wolai-block wolai-text"><div><span class="red inline-wrap">SCM<span class="jill"></span>的任务</span><span class="inline-wrap">：统一标志配置项；版本控制；变更控制；配置审核；状态报告。</span></div></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dongnian</div><div class="author-info__description">A salty fish swimming in the sea of deep learning!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#euwip2xomLBzZPQH5mpdP1"><span class="toc-text">第一章 软件工程概述
+</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sjzHBBJsuQqGd1j2uL1e8x"><span class="toc-text">1.1 软件开发有哪些特点？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uGENkGVAVHyvwa9gFAGskd"><span class="toc-text">1.2 什么是软件危机？有哪些表现？怎么解决？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#diRuZS5RPqWdaSpQgBX1ez"><span class="toc-text">1.3 什么是软件工程？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x5RRJLzwYdAepyez2tdEMQ"><span class="toc-text">1.4 在软件工程的发展史上，有哪些重要的开发方法？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#g5sJko9QQktRggRBuv9gT9"><span class="toc-text">1.5 项目管理涉及哪些方面？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mwWkeBfrzdC8oDm7j4S5UF"><span class="toc-text">1.6 软件工程工具有哪些作用？
+</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dMS696smF6194M3vW6teX3"><span class="toc-text">第二章 软件开发过程和活动
+</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7RCdNRC1bpC6U9Bz65MBqY"><span class="toc-text">2.1 什么是软件开发过程？在开发过程中，有哪些主要活动？哪些是基本活动，哪些是辅助性活动？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MzKDayq3jmVWTBzhC3o6o"><span class="toc-text">2.2为什么需要一个“问题定义”的活动？什么时间开展这项活动？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6J5fMXAfbkHcahZgk8Xowo"><span class="toc-text">2.3什么是可行性研究？为什么需要一个“可行性研究”的活动？什么时间开展这项活动？哪些涉众会参与这项活动？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7bHheWFexiNVCJHvXSMZ45"><span class="toc-text">2.4 什么是需求？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iBgpBbSZkx7QX7ePN9vyjv"><span class="toc-text">2.5 什么是需求文档？有哪些类型的需求文档？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#t59jvX3u2ENUfpxZm9P1FE"><span class="toc-text">2.6 描述需求的标准是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RSTnEyZi4pwn5EPpgPWuY"><span class="toc-text">2.7 怎样理解“贯穿于整个软件开发过程的需求活动”这句话？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bspC4yWA8oSBKQ9QP1ya1k"><span class="toc-text">2.8 什么是设计？为什么设计活动非常重要？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wUcLu7WYRz4RhVZDMgt1uf"><span class="toc-text">2.9 请解释设计中的各个粒度的部件，如系统、子系统、框架、构件、组件、模块、类和方法等。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mtEbLSZeJZ1YTJ2e9CNBwG"><span class="toc-text">2.10 什么是总体设计？什么是详细设计？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7BeBtiY3qibQNdyqDeALLP"><span class="toc-text">2.11 怎样理解“贯穿于整个软件开发过程的设计活动”这句话？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mhGZmKGC6CS3CxLTbkyEcX"><span class="toc-text">2.12 请解释实施活动中的编码、单元测试和集成。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#t1znP1EBWDxRSat1X7pw61"><span class="toc-text">2.13 什么是工作版本？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5n3GVzqzra9fifhGhUD5v3"><span class="toc-text">2.14 以实施为中心的软件开发会导致什么问题？而轻视实施活动又会存在哪些问题？
+</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2K7njqCEcNesVxwe4Ubag1"><span class="toc-text">2.15 为什么在展开实施活动时，建议实施地点选择在软件企业内部进行？如果在企业内部，那么应该注意哪些问题？
+</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#bW6J5WRbA6JTzcKq2RegJm"><span class="toc-text">2.16 什么是测试？请分别解释缺陷、错误和失败的概念。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#p3TJDgUsDVKDCubhM78NPx"><span class="toc-text">2.17 请分别解释单元测试、集成测试、系统测试、α测试、β测试和验收测试。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#85tXrsLnebFxC1s6oaNteY"><span class="toc-text">2.18 什么是测试用例？它包括哪些内容？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#aBuCLgLVGRtNpHtXoxH2BB"><span class="toc-text">2.19 测试活动贯穿于整个软件开发过程，这会有什么益处？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ht64pjGwXUVhxbrhqUCcqj"><span class="toc-text">2.20 怎样在测试活动中选择合适的执行地点？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tMzZtn3JUPs284dbbLRrHN"><span class="toc-text">2.21 什么是部署？有哪几种部署模式？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rB3hcMdp1MNH7PMe5qNBB3"><span class="toc-text">2.22 什么是部署计划？在制定部署计划时，要考虑哪些问题？
+</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#f1u7qp8ecqzBsKfEkySiXx"><span class="toc-text">第三章 软件过程模型
+</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2QRbzDFvshkshwt8RGuEzy"><span class="toc-text">3.1 传统“软件生命周期”理论是什么？它有什么缺点？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xpEDcXVa9GXqbtXVasm1HZ"><span class="toc-text">3.2 什么是软件过程模型？为什么要对过程进行抽象表示？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#axVgax7Se26tsFtm91kBqU"><span class="toc-text">3.3 线性系列模型有哪些？演进系列模型有哪些？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4DmycdqNf37XvjF7bRMxDA"><span class="toc-text">3.4 线性顺序模型的缺点是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dPCfagoVVur8RucsZLoznz"><span class="toc-text">3.5 瀑布模型的优点和缺点是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#qEjWvoRQFioyxtywy1FuMm"><span class="toc-text">3.6 RAD模型中的“RAD”是什么意思？为什么说RAD模型是从线性顺序模型“泛化”出来的一个“高速”变种？RAD模型的优点和缺点是什么？它适合哪种项目？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6EnVAGDRmeiH9VSvgqCwc6"><span class="toc-text">3.7 为什么说边建边改模型的缺点十分明显？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iX6NU1hQ88M5qdfJq3fAcu"><span class="toc-text">3.8 什么是增量模型？增量模型的优点是什么？难点是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#qXdehBe8pBrHA3417n7BXV"><span class="toc-text">3.9 螺旋模型是谁提出的？螺旋模型的优点和难点各是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hXfUicXac9YbKgdds2Mz5z"><span class="toc-text">3.10 怎样理解RUP模型中的“迭代化生命周期”？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8GZdyZqJ7Z8mwk6zD6bgi7"><span class="toc-text">3.11 RUP将软件开发过程分为哪些大的阶段？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bcuWvPNqpFdKacXMzBMGHZ"><span class="toc-text">3.12 RUP中的开发周期和演进周期有什么不同？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cvtpiJd8LGsbkJezhWTXVM"><span class="toc-text">3.13 RUP模型中的横轴、纵轴和图形中的各种曲线代表什么意思？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5arBpBvhDHHNfmRzPcebwd"><span class="toc-text">3.14 RUP的优点是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#csFX8GGMGVEayemfBVb4Ww"><span class="toc-text">第四章 问题定义和可行性研究方法
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pfBa4Ei47sX19boiNhEKp1"><span class="toc-text">4.1 问题定义的目的是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2sn1bpBk7n8Xsqf53ettuk"><span class="toc-text">4.2 问题定义报告有哪些内容？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5yTF2iVNLkCN2dABqoHgiL"><span class="toc-text">4.3 列举5方面的可行性考虑
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4VBkGqbEAQCTHH9rSaF5pu"><span class="toc-text">4.4 项目方案是否经济可行的依据是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sjc3eCpZecCVCQC7YWfGut"><span class="toc-text">4.6 什么是项目的启动成本和运营成本？什么是项目的运营效益？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kpm9c2nKytbJp6LDPsGp3F"><span class="toc-text">4.7 什么是投资回收分析？该方法的缺点是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8igKBDTpRGVHF3S3fdiQMH"><span class="toc-text">4.8 什么是净资金现值法？该方法的优点是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rQPpFUeiTnqbbUK85ohyw9"><span class="toc-text">4.9 示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jyajcxCxAMVT2L16jRxv3U"><span class="toc-text">4.10 可行性研究报告包括哪些内容？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4NLmFaNAWctPozqr5XDgfh"><span class="toc-text">4.11 在可行性研究报告中，系统方案应包括哪些方面的内容？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pd5uhBjbJFEApSweZygFe8"><span class="toc-text">4.12 提交一张在线宠物商店的词汇表，其中至少包括5个词汇。
+</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pPoV14y4VoZ2pon6dwHxM7"><span class="toc-text">第五章 需求分析方法
+</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#f5awYM2rfbKLdDftxjZq51"><span class="toc-text">5.1 需求收集和需求分析在项目开发的不同时期的工作量有何变化？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#joRRH7rk1xy85wVWZ42Pm9"><span class="toc-text">5.2 在需求分析活动中，为什么要采用自顶向下、逐层分解的原则？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hSijgMZYhRsohuFnFsVBWN"><span class="toc-text">5.3 为什么需要通过模型来表达需求？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5MdRcx7KJnYMdQ3eDmDwVo"><span class="toc-text">5.4 为什么在需求分析活动中，不宜过多考虑系统的实现方式？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nXNjG4Wh2NCFsX4sMuhix9"><span class="toc-text">5.5 为什么需求必须是可验证的？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pcAnZhotgcLTCSyybN2Piz"><span class="toc-text">5.6某高等学校学籍管理系统的易用性需求是“系统应该用户友好”。请为该需求设计一个验收标准。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6c3X4MtSjZwRfMHMrMG8CN"><span class="toc-text">5.7 为什么需求应该是可追溯的？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#q1wQh6su7QDMxT5dn8xzn8"><span class="toc-text">5.8 状态变迁图（STD）的两种主要符号是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wVtGg58Z5eqW1fWVar97us"><span class="toc-text">5.9 在需求分析活动中，使用数据字典有何意义？在数据字典中定义了哪四种元素？请分别解释。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#qxzHN1z7vjhjGEwKvcmuw"><span class="toc-text">5.10判定表和判定树是为了解决什么问题？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6F1mDGhY7DTxNwnPpGKdCA"><span class="toc-text">5.11 UML从建模的角度将类分为哪几种？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4dKS48VGLFJnRvqZCdKp11"><span class="toc-text">5.12 请分别解释泛化、关联、聚集、合成和依赖的概念。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uXjvSMMDVSRuv8knfvZ9wd"><span class="toc-text">5.13 识别泛化关系时，应考虑哪些问题？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#muHtX89vCKigyifbJcsbhj"><span class="toc-text">5.14 单向关联和双向关联有何不同？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jRQhWXzh8HVxgrcR2HmStv"><span class="toc-text">5.15 聚集与合成关系有何不同？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tncLtzRiuhkZcdwxBB2L2a"><span class="toc-text">5.16 依赖关系常常出现在哪些情况下？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#re3z8vkcE4D51898qvF4ts"><span class="toc-text">5.17 什么是交互图？
+</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unASDK58qEQvhfTwkx6uSv"><span class="toc-text">第六章 软件设计方法
+</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#e7stuGovRwxiTbidZKrgU6"><span class="toc-text">6.1 设计活动的总体原则包括哪些？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cHTDE98XuQr5KzJGHq6Day"><span class="toc-text">6.2 什么是软件构架？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#aNmRP59M3JiA6cPD9A67U6"><span class="toc-text">6.3 详细设计的任务是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gGohbf4fsLXbvW4gdqzBQr"><span class="toc-text">6.4 分治的优点是什么？分治要考虑哪些问题？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9h7wyEu8M8P5ysxxn9nbTn"><span class="toc-text">6.5 抽象的优点是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pd6M8NNa29FHkhTgpFkmzG"><span class="toc-text">6.6 请分别解释里氏替换选择、开-闭原则、依赖倒转原则和接口隔离原则。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#r73Z3VQkGgNkG6Hr8rMFHd"><span class="toc-text">6.7 什么是抽象类？什么是接口？他们有什么不同？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kdiQ2pG1rXth84DeFXWUTN"><span class="toc-text">6.8 什么是内聚？请列举内聚的种类，并说明哪些内聚类型较理想？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#poKBqp2AF57wcvA1izhvUZ"><span class="toc-text">6.9 什么是耦合？请列举耦合的种类，并解释耦合谱系。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#94JkghmYxpjCT5dTRvAxWx"><span class="toc-text">6.10 什么是软件复用？什么是CBSD？什么是产品线工程？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3WTV7mVJhMGTgqHWsE2kdo"><span class="toc-text">6.11 传统的设计建模方法有哪些？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sUJBXVeqZ6ivcgUZEUUkQJ"><span class="toc-text">6.12 面向对象的设计建模方法有哪些？请分别介绍。
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tvzSddHY6x1rFzm4KSe5eQ"><span class="toc-text">6.13 请举出一些不良界面的例子
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#d2RXXCnbRmuqvn1PqZn9xn"><span class="toc-text">6.14 为了达到以用户为中心的设计目标，有哪些主要做法？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6Qsq672K19z49ur1WxoMhL"><span class="toc-text">6.15 人机界面设计应遵循哪些指导准则？
+</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uhJekTqmwwEdcLjsFm8KXb"><span class="toc-text">第七章 软件实施与测试方法
+</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uc12aov9WaFykBr6ViJ3RV"><span class="toc-text">7.1 有哪些广泛使用的程序设计语言？
+</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#wpunifLty3V4bFD5iy8CNy"><span class="toc-text">7.2 开发在线宠物商店系统时，你打算用什么语言开发？为什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pMnZZkciAUzJ6y5a4T31DN"><span class="toc-text">7.3 编写一个好风格的程序，要从几个方面着手？对于程序语句的处理，你还有哪些好的建议？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#myDDuuEnTAzyL7itXN4NKd"><span class="toc-text">7.4 什么是白盒测试？有哪些主要方法？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sppsd5PTPdRUPFZB6N7zv"><span class="toc-text">7.5 什么是黑盒测试？有哪些主要方法？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iCbZDi93XSXVRHk1MF7sx"><span class="toc-text">7.6 什么是单元测试？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v35Bw2td7K7whZyeycMrWk"><span class="toc-text">7.7 什么是驱动模块和存根模块？如何实现它们？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4ZrWsnLavfVo4tWe2GWM1F"><span class="toc-text">7.8 什么是集成测试？有哪几种？各有什么优缺点？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#35CcpvxVYzkvcLEkDgvyBn"><span class="toc-text">7.9 什么是回归测试？为什么要进行回归测试？回归测试的用例应该包括哪些类型的测试用例？
+</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xvFQW6BsJB8JrQZQD27Yc5"><span class="toc-text">第八章 软件项目管理方法
+</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#o59zdEyD2LmgVuRX7eiSNs"><span class="toc-text">8.1 什么是项目管理？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5mz11DnQkcNLPJ663mPcYq"><span class="toc-text">8.2 什么是软件特征量？有哪些主要的基础特征量？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6xoSfjqTEg3UiyxCtmEt3G"><span class="toc-text">8.3 面向功能点的软件特征量和面向尺寸的软件特征量相比，有哪些优点？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8ySif4bKvYgpKUKkK1X9rU"><span class="toc-text">8.4 软件企业中的人力资源具有哪些特点？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gMtfXr1XKoV8XTbinZD12G"><span class="toc-text">8.5 软件企业人力资源管理的主要任务是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ifaRNy1CQupkEmGvSt8e9j"><span class="toc-text">8.6 什么是SQA？SQA的主要任务是什么？执行SQA的难点是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3UNoHNUCBYbTJQV9yfyyXH"><span class="toc-text">8.7基于统计的软件质量包括哪些步骤？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dojnDAFJum7DChjf13x8m5"><span class="toc-text">8.8 软件风险的特性是什么？
+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6vddWoYDwxMsh5h5yp86mk"><span class="toc-text">8.9 什么是软件配置？什么是软件配置管理？什么是基线？SCM的任务包括哪些？
+</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/"><span class="card-category-list-name">PL</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.42em; color: rgb(19, 77, 55)">DSA</a><a href="/tags/RL/" style="font-size: 1.31em; color: rgb(16, 145, 89)">RL</a><a href="/tags/Transformer/" style="font-size: 1.45em; color: rgb(70, 97, 32)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.34em; color: rgb(112, 82, 186)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.4em; color: rgb(183, 139, 116)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.26em; color: rgb(18, 17, 80)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.15em; color: rgb(5, 99, 27)">CV</a><a href="/tags/GPT/" style="font-size: 1.18em; color: rgb(116, 30, 106)">GPT</a><a href="/tags/PL/" style="font-size: 1.23em; color: rgb(162, 196, 49)">PL</a><a href="/tags/GitHub/" style="font-size: 1.29em; color: rgb(189, 162, 66)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.29em; color: rgb(80, 176, 2)">Trending</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.2em; color: rgb(145, 188, 169)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.2em; color: rgb(89, 193, 197)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.37em; color: rgb(137, 24, 143)">leetcode</a><a href="/tags/algo/" style="font-size: 1.15em; color: rgb(122, 149, 198)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">102</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">419.7k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-06T01:06:19.228Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Dongnian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
