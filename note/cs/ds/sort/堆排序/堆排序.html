@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Dongnian"><meta name="copyright" content="Dongnian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="堆排序 - wolai 笔记1.堆堆是一种特殊的树，，只要满足这两点，它就是一个堆堆是一个完全二叉树；堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。对于每个节点的值都大于等于子树中每个节点值的堆，叫作“大顶堆”。对于每个节点的值都小于等于子树中每个节点值的堆，叫作“小顶堆”。其中第1个和第2个是大顶堆，第3个是小顶堆，第4个不是堆。除此之外，从图中还可以看出来，对于同一组">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/cs/ds/sort/%E5%A0%86%E6%8E%92%E5%BA%8F/%E5%A0%86%E6%8E%92%E5%BA%8F.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="堆排序 - wolai 笔记1.堆堆是一种特殊的树，，只要满足这两点，它就是一个堆堆是一个完全二叉树；堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。对于每个节点的值都大于等于子树中每个节点值的堆，叫作“大顶堆”。对于每个节点的值都小于等于子树中每个节点值的堆，叫作“小顶堆”。其中第1个和第2个是大顶堆，第3个是小顶堆，第4个不是堆。除此之外，从图中还可以看出来，对于同一组">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-07-12T01:02:48.410Z">
+<meta property="article:modified_time" content="2025-07-12T01:02:48.410Z">
+<meta property="article:author" content="Dongnian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/cs/ds/sort/%E5%A0%86%E6%8E%92%E5%BA%8F/%E5%A0%86%E6%8E%92%E5%BA%8F.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Dongnian","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-12 09:02:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>堆排序 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div data-symbol="📸" class="icon"></div></div><div data-title="堆排序" class="main-title"></div></div></header><article><h1 id="tzfJqX23V9uXrkXu6cUkfi" class="wolai-block"><span class="inline-wrap">1.堆</span></h1><div id="cVm2xLhMGLrwS6xUFQkKn6" class="wolai-block wolai-text"><div><span class="inline-wrap">堆是一种特殊的树，，只要满足这两点，它就是一个堆</span></div></div><ul class="wolai-block"><li id="xtGmKhQfiHvEe6vuBeQfxv"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">堆是一个</span><span class="red inline-wrap"><b>完全二叉树</b></span><span class="inline-wrap">；</span></li><li id="8Pj26BBKnwAKrqsjVoXjia"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。</span></li></ul><div id="wyJbBUYfwJxjRVSkdC9F4k" class="wolai-block wolai-text"><div><span class="inline-wrap">对于每个节点的值都</span><span class="inline-wrap"><b>大于等于</b></span><span class="inline-wrap">子树中每个节点值的堆，叫作“</span><span class="red inline-wrap"><b>大顶堆</b></span><span class="inline-wrap">”。对于每个节点的值都</span><span class="inline-wrap"><b>小于等于</b></span><span class="inline-wrap">子树中每个节点值的堆，叫作“</span><span class="red inline-wrap"><b>小顶堆</b></span><span class="inline-wrap">”。</span></div></div><div id="pa6ApPperxUeiEHHradV5r" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image.png" style="width: 677px"/></figure></div><div id="gMHUu8Cwu34GxAzAEFLr4Z" class="wolai-block wolai-text"><div><span class="inline-wrap">其中第<span class="jill"></span>1<span class="jill"></span>个和第<span class="jill"></span>2<span class="jill"></span>个是大顶堆，第<span class="jill"></span>3<span class="jill"></span>个是小顶堆，第<span class="jill"></span>4<span class="jill"></span>个不是堆。除此之外，从图中还可以看出来，对于同一组数据，可以构建多种不同形态的堆。</span></div></div><h1 id="v1dzJACMntuG2A1juELdiw" class="wolai-block"><span class="inline-wrap">2.实现一个堆</span></h1><div id="cSVJALqCcS6ZY2AUryJvdQ" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>完全二叉树比较适合用数组来存储</b></span><span class="inline-wrap">。用数组来存储完全二叉树是非常节省存储空间的。因为不需要存储左右子节点的指针，单纯地通过数组的下标，就可以找到一个节点的左右子节点和父节点。</span></div></div><div id="sJW5VL27tBqmuTa9bmXhu2" class="wolai-block wolai-text"><div><span class="inline-wrap">数组中下标为<span class="jill"></span>i<span class="jill"></span>的节点的左子节点，就是下标为<span class="jill"></span>i*2<span class="jill"></span>的节点，右子节点就是下标为<span class="jill"></span>i*2+1<span class="jill"></span>的节点，父节点就是下标为<span class="jill"></span>i/2<span class="jill"></span>的节点。</span></div></div><h2 id="9CwU1y7JDh4KtejsZszUam" class="wolai-block"><span class="inline-wrap">2.1 结构体定义及初始化</span></h2><code-block id="qZgjeYyGkge2J6ddWauLhq" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">#define <span class="token maybe-class-name">MaxSize</span> <span class="token number">200</span>
+typedef int <span class="token maybe-class-name">ElemType</span><span class="token punctuation">;</span>
+<span class="token comment">// 采用动态数组定义</span>
+<span class="token comment">// 注意：0号不存储元素</span>
+typedef struct
+<span class="token punctuation">{</span>
+    <span class="token maybe-class-name">ElemType</span><span class="token operator">*</span> data<span class="token punctuation">;</span>
+    int length<span class="token punctuation">;</span>
+    int maxSize<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token maybe-class-name">HeapList</span><span class="token punctuation">;</span></pre></div></code-block><code-block id="jrrzpi2A9RZ4fagewpCiUX" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 注意：0号不存储元素</span>
+<span class="token keyword">void</span> <span class="token function">initHeap</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">HeapList</span><span class="token operator">&amp;</span> <span class="token constant">L</span><span class="token punctuation">,</span> int initSize</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token maybe-class-name">ElemType</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token function">sizeof</span><span class="token punctuation">(</span><span class="token maybe-class-name">ElemType</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>initSize<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">=</span> initSize<span class="token punctuation">;</span>
+    <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">maxSize</span> <span class="token operator">=</span> <span class="token maybe-class-name">MaxSize</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre></div></code-block><h2 id="9yRN6ex9JJjwZzRpW7AQdz" class="wolai-block"><span class="inline-wrap">2.2 插入元素</span></h2><h3 id="3KrLhhHAFVwNB2A6WNipxr" class="wolai-block"><span class="inline-wrap">（1）堆化（ heapify）</span></h3><div id="wvsn23m4Np7jg6eopwgcNV" class="wolai-block wolai-text"><div><span class="inline-wrap">不满足堆要求，就需要进行调整，让其重新满足堆的特性，这个过程就叫做堆化。</span></div></div><div id="gaSJE3HCNKM6yt1w3cJZSC" class="wolai-block wolai-text"><div><span class="inline-wrap">堆化两种，从下往上和从上往下。</span></div></div><div id="5xKwyojBCDb5CF4HQiiE3X" class="wolai-block wolai-text"><div><span class="inline-wrap">堆化方法：</span><span class="green inline-wrap"><b>顺着节点所在的路径，向上或者向下，对比，然后交换</b></span><span class="inline-wrap">。</span></div></div><div id="5J2qCXLSsUif9A4Z6mMnpv" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>从下往上堆化：</b></span><span class="inline-wrap">以让新插入的节点与父节点对比大小。如果不满足子节点小于等于父节点的大小关系，就互换两个节点。</span></div></div><div id="6KGjdFZbXLTbiq3rMjZkHJ" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_1.png" style="width: 677px"/></figure></div><h3 id="tVZecuJjYt6p6yaFMNhgvw" class="wolai-block"><span class="inline-wrap">（2） 堆化（插入）代码</span></h3><code-block id="8ygwvUXdECk5fmko35yEsB" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 从下往上堆化</span>
+<span class="token keyword">void</span> <span class="token function">insertElemHeap</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">HeapList</span><span class="token operator">&amp;</span> <span class="token constant">L</span><span class="token punctuation">,</span> <span class="token maybe-class-name">ElemType</span> data</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">>=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">maxSize</span><span class="token punctuation">)</span>
+        <span class="token keyword control-flow">return</span><span class="token punctuation">;</span>
+    <span class="token comment">// 将新插入数据放到最后</span>
+    <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span><span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">;</span>
+    <span class="token comment">// 自下往上堆化</span>
+    <span class="token comment">// 让新插入的结点与父节点比对大小，</span>
+    <span class="token comment">// 如果不满足子结点小于等于父结点的大小关系，就互换两个结点</span>
+    int i <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>i <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>i <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 交换两个元素</span>
+        <span class="token maybe-class-name">ElemType</span> tmpElem <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>i <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>i <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> tmpElem<span class="token punctuation">;</span>
+        <span class="token comment">// 更新i下标</span>
+        i <span class="token operator">=</span> i <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h2 id="dntrdFdJeQRKm7ZxtG6UXA" class="wolai-block"><span class="inline-wrap">2.3 删除堆顶元素</span></h2><div id="jA3FGkSHvhCozCQssrfEQp" class="wolai-block wolai-text"><div><span class="inline-wrap">任何节点的值都大于等于（或小于等于）子树节点的值，可以发现，</span><span class="inline-wrap"><b>堆顶元素存储的就是堆中数据的最大值或者最小值。</b></span></div></div><h3 id="oRr1SaLkPkF1XtC8sSQqRW" class="wolai-block"><span class="inline-wrap">（1）数组空洞</span></h3><div id="kqbpmAeAKAxcJZThsURwab" class="wolai-block wolai-text"><div><span class="inline-wrap">当删除堆顶元素之后，就需要把第二大的元素放到堆顶，那第二大元素肯定会出现在左右子节点中。然后再迭代地删除第二大节点，以此类推，直到叶子节点被删除。</span></div></div><div id="ju1SxUGY23HCtgPkPXHV8m" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_2.png" style="width: 677px"/></figure></div><h3 id="h1aFWdwMGby68iL4uGAq7n" class="wolai-block"><span class="inline-wrap">（2）从上往下堆化</span></h3><ul class="wolai-block"><li id="dBUSGqkggJgvtVhHBNWs6L"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">把最后一个节点放到堆顶，然后利用同样的父子节点对比方法。</span></li><li id="qAPdy6yCnc3hLzd3QUHSNA"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">对于不满足父子节点大小关系的，互换两个节点，</span></li><li id="3jL4CVckki7Nd1ePCX67P2"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">并且重复进行这个过程，直到父子节点之间满足大小关系为止。</span></li></ul><div id="beocWkoYFNV2iQzEnxN9FH" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_3.png" style="width: 677px"/></figure></div><h3 id="du9ipNkHxmhBRZ9oMX1AJ2" class="wolai-block"><span class="inline-wrap">（3）代码</span></h3><code-block id="5Hz37pgGzrj1aFVJ134ncd" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 从上往下堆化,从标号为k的元素开始堆化</span>
+<span class="token keyword">void</span> <span class="token function">heapify</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">HeapList</span><span class="token operator">&amp;</span> <span class="token constant">L</span><span class="token punctuation">,</span> int k<span class="token punctuation">,</span> int len</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 寻找父结点的两个子结点中最大的一个</span>
+        int maxPos <span class="token operator">=</span> k<span class="token punctuation">;</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>k <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">&lt;=</span> len <span class="token operator">&amp;&amp;</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span><span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            maxPos <span class="token operator">=</span> k <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>k <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> len <span class="token operator">&amp;&amp;</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>maxPos<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span><span class="token number">2</span> <span class="token operator">*</span> k <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            maxPos <span class="token operator">=</span> k <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">// 若子结点比自己都小，父结点就是最大的</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>maxPos <span class="token operator">==</span> k<span class="token punctuation">)</span>
+            <span class="token keyword control-flow">break</span><span class="token punctuation">;</span>
+        <span class="token comment">// 交换元素</span>
+        <span class="token maybe-class-name">ElemType</span> tmpElem <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>maxPos<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>maxPos<span class="token punctuation">]</span> <span class="token operator">=</span> tmpElem<span class="token punctuation">;</span>
+        <span class="token comment">// 更新</span>
+        k <span class="token operator">=</span> maxPos<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><code-block id="jTKksdK4XVfaQAtcJeJyGy" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">removeHeapTopElem</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">HeapList</span><span class="token operator">&amp;</span> <span class="token constant">L</span><span class="token punctuation">,</span> <span class="token maybe-class-name">ElemType</span><span class="token operator">&amp;</span> elem</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword control-flow">return</span><span class="token punctuation">;</span>
+    elem <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span><span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token function">heapify</span><span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="eN9UhYEVMH6PnXgZzbetDk" class="wolai-block"><span class="inline-wrap">3.堆排序</span></h1><div id="sZPGy3zwiyFJdDPADMzpfW" class="wolai-block wolai-text"><div><span class="inline-wrap">可以把堆排序的过程大致分解成两个大的步骤，</span><span class="red inline-wrap"><b> 建堆和排序</b></span><span class="inline-wrap">。</span></div></div><h2 id="jJmUCKFUWr1NdWN9m2w5Df" class="wolai-block"><span class="inline-wrap">3.1 建堆</span></h2><div id="6PD8BguDQtqN3A43nT1MtF" class="wolai-block wolai-text"><div><span class="inline-wrap">首先将数组原地建成一个堆。所谓“原地”就是，不借助另一个数组，就在原数组上操作。</span></div></div><ul class="wolai-block"><li id="vdpw6AQsRn3SDw7HKo7vyJ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">是从后往前处理数组，并且每个数据都是从上往下堆化。</span></li></ul><div id="xqAA3sA2ep72QURCAvsaKD" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_4.png" style="width: 677px"/></figure></div><h3 id="e3Hud3TBUcoSqDmpBx1rVp" class="wolai-block"><span class="inline-wrap">（）代码</span></h3><code-block id="kqpwdcCj4gD7BuVCo9HiLH" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 从数组，原地建堆</span>
+<span class="token keyword">void</span> <span class="token function">buildHeap</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">HeapList</span><span class="token operator">&amp;</span> <span class="token constant">L</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">for</span> <span class="token punctuation">(</span>int i <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">heapify</span><span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h2 id="msqw8KQkFcF8pbF3TaX84s" class="wolai-block"><span class="inline-wrap">3.2 排序</span></h2><h3 id="n44LUFQnW6bx9rTtn5piNY" class="wolai-block"><span class="inline-wrap">（1）步骤</span></h3><ul class="wolai-block"><li id="7J2tfhMtNAkzxCbSVcBgSP"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">建堆结束之后，</span><span class="inline-wrap"><b>数组中的数据已经是按照大顶堆的特性来组织的</b></span><span class="inline-wrap">。</span></li><li id="9gLFAfmLdbG3zzNaZhns5X"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数组中的第一个元素就是堆顶，也就是最大的元素。</span></li><li id="2fuE97nzGNeCMjEUQzUW3q"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">把它跟最后一个元素交换，那最大元素就放到了下标为<span class="jill"></span>n<span class="jill"></span>的位置。</span></li></ul><div id="tpuJGZTESJuuuWX9KYNxW" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_5.png" style="width: 677px"/></figure></div><h3 id="fyYkmCDENKowmg9gdDY3LB" class="wolai-block"><span class="inline-wrap">（2）代码</span></h3><code-block id="cp7Ks3TQwcB2WeSj3HB3Uz" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">heapSort</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">HeapList</span><span class="token operator">&amp;</span> <span class="token constant">L</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 建立大顶堆</span>
+    <span class="token function">buildHeap</span><span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printSqList</span><span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 排序</span>
+    int tmpElem <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow">for</span> <span class="token punctuation">(</span>int i <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token punctuation">;</span> i <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        tmpElem <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token constant">L</span><span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> tmpElem<span class="token punctuation">;</span>
+
+        <span class="token function">heapify</span><span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h3 id="my136oALYggqh92goQttC9" class="wolai-block"><span class="inline-wrap">（3）复杂度</span></h3><ul class="wolai-block"><li id="o3bHrp7NP6c2gMRNb3bpXd"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">整个堆排序的过程，都只需要极个别临时存储空间，所以</span><span class="red inline-wrap"><b>堆排序是原地排序算法</b></span><span class="inline-wrap">。</span></li><li id="dRdqvZpHzGj8FPzRBpd9uA"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">堆排序包括建堆和排序两个操作，</span><span class="red inline-wrap"><b>建堆过程的时间复杂度是<span class="jill"></span>O(n)</b></span><span class="inline-wrap">，</span><span class="red inline-wrap"><b>排序过程的时间复杂度是<span class="jill"></span>O(nlog n)，</b></span><span class="inline-wrap">所以，</span><span class="red inline-wrap"><b>堆排序整体的时间复杂度是<span class="jill"></span>O(nlog n)。</b></span></li><li id="kfR2qqstsw4cFSjs5ReCk9"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap"><b>堆排序不是稳定的排序算法</b></span><span class="inline-wrap">，因为在排序的过程，存在将堆的最后一个节点跟堆顶节点互换的操作，所以就有可能改变值相同数据的原始相对顺序。</span></li></ul><div id="mAFLGDVTcn5Kw18dXtby6u" class="wolai-block wolai-text"><div><span class="inline-wrap"></span><br/></div></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dongnian</div><div class="author-info__description">A salty fish swimming in the sea of deep learning!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#tzfJqX23V9uXrkXu6cUkfi"><span class="toc-text">1.堆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#v1dzJACMntuG2A1juELdiw"><span class="toc-text">2.实现一个堆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9CwU1y7JDh4KtejsZszUam"><span class="toc-text">2.1 结构体定义及初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9yRN6ex9JJjwZzRpW7AQdz"><span class="toc-text">2.2 插入元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3KrLhhHAFVwNB2A6WNipxr"><span class="toc-text">（1）堆化（ heapify）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tVZecuJjYt6p6yaFMNhgvw"><span class="toc-text">（2） 堆化（插入）代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dntrdFdJeQRKm7ZxtG6UXA"><span class="toc-text">2.3 删除堆顶元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#oRr1SaLkPkF1XtC8sSQqRW"><span class="toc-text">（1）数组空洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#h1aFWdwMGby68iL4uGAq7n"><span class="toc-text">（2）从上往下堆化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#du9ipNkHxmhBRZ9oMX1AJ2"><span class="toc-text">（3）代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eN9UhYEVMH6PnXgZzbetDk"><span class="toc-text">3.堆排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jJmUCKFUWr1NdWN9m2w5Df"><span class="toc-text">3.1 建堆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#e3Hud3TBUcoSqDmpBx1rVp"><span class="toc-text">（）代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msqw8KQkFcF8pbF3TaX84s"><span class="toc-text">3.2 排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#n44LUFQnW6bx9rTtn5piNY"><span class="toc-text">（1）步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fyYkmCDENKowmg9gdDY3LB"><span class="toc-text">（2）代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#my136oALYggqh92goQttC9"><span class="toc-text">（3）复杂度</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/"><span class="card-category-list-name">PL</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.42em; color: rgb(175, 29, 143)">DSA</a><a href="/tags/RL/" style="font-size: 1.27em; color: rgb(30, 136, 31)">RL</a><a href="/tags/Transformer/" style="font-size: 1.45em; color: rgb(102, 5, 35)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.33em; color: rgb(178, 178, 189)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.39em; color: rgb(113, 13, 93)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.24em; color: rgb(117, 14, 69)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.15em; color: rgb(9, 75, 157)">CV</a><a href="/tags/GPT/" style="font-size: 1.18em; color: rgb(16, 40, 145)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(15, 57, 48)">PL</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.27em; color: rgb(119, 81, 68)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.27em; color: rgb(144, 194, 169)">热搜</a><a href="/tags/GitHub/" style="font-size: 1.3em; color: rgb(108, 156, 55)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.3em; color: rgb(105, 57, 107)">Trending</a><a href="/tags/leetcode/" style="font-size: 1.36em; color: rgb(34, 144, 52)">leetcode</a><a href="/tags/algo/" style="font-size: 1.15em; color: rgb(71, 134, 64)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">114</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">427.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-12T01:03:37.698Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Dongnian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

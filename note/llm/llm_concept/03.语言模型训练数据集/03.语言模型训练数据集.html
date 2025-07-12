@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Dongnian"><meta name="copyright" content="Dongnian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="03.语言模型训练数据集 - wolai 笔记[toc]1.SFT（有监督微调）的数据集格式？对于大语言模型的训练中，SFT（Supervised Fine-Tuning）的数据集格式可以采用以下方式：输入数据：输入数据是一个文本序列，通常是一个句子或者一个段落。每个样本可以是一个字符串或者是一个tokenized的文本序列。标签数据：标签数据是与输入数据对应的标签或类别。标签可以是单个类别，也">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/llm/llm_concept/03.%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86/03.%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="03.语言模型训练数据集 - wolai 笔记[toc]1.SFT（有监督微调）的数据集格式？对于大语言模型的训练中，SFT（Supervised Fine-Tuning）的数据集格式可以采用以下方式：输入数据：输入数据是一个文本序列，通常是一个句子或者一个段落。每个样本可以是一个字符串或者是一个tokenized的文本序列。标签数据：标签数据是与输入数据对应的标签或类别。标签可以是单个类别，也">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-07-12T01:02:48.901Z">
+<meta property="article:modified_time" content="2025-07-12T01:02:48.901Z">
+<meta property="article:author" content="Dongnian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/llm/llm_concept/03.%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86/03.%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Dongnian","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-12 09:02:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../css/wolai.css"/><title>03.语言模型训练数据集 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="03.语言模型训练数据集" class="main-title"></div></div></header><article><div id="t8GtpspUuV1w43hBzXxAHw" class="wolai-block wolai-text"><div><span class="inline-wrap">[toc]</span></div></div><h3 id="9Ue4qq79LMjA4aEvstw9AJ" class="wolai-block"><span class="inline-wrap">1.SFT（有监督微调）的数据集格式？</span></h3><div id="4HkTiSK6YsCx3L8KUG6cMX" class="wolai-block wolai-text"><div><span class="inline-wrap">对于大语言模型的训练中，SFT（Supervised Fine-Tuning）的数据集格式可以采用以下方式：</span></div></div><ol class="wolai-block"><li id="cXRidMaD7A5RUKAGmAL6xx"><div class="marker"></div><span class="inline-wrap">输入数据：输入数据是一个文本序列，通常是一个句子或者一个段落。每个样本可以是一个字符串或者是一个<span class="jill"></span>tokenized<span class="jill"></span>的文本序列。</span></li><li id="j9Ma6g93wUgncTvHp1js9Z"><div class="marker"></div><span class="inline-wrap">标签数据：标签数据是与输入数据对应的标签或类别。标签可以是单个类别，也可以是多个类别的集合。对于多分类任务，通常使用<span class="jill"></span>one-hot<span class="jill"></span>编码或整数编码来表示标签。</span></li><li id="e1BojW1L23noGXssAPqV19"><div class="marker"></div><span class="inline-wrap">数据集划分：数据集通常需要划分为训练集、验证集和测试集。训练集用于模型的训练，验证集用于调整模型的超参数和监控模型的性能，测试集用于评估模型的最终性能。</span></li><li id="gsVLNgTxNb2QVM3fh8nLzi"><div class="marker"></div><span class="inline-wrap">数据集格式：数据集可以以文本文件（如<span class="jill"></span>CSV、JSON<span class="jill"></span>等）或数据库的形式存储。每个样本包含输入数据和对应的标签。可以使用表格形式存储数据，每一列代表一个特征或标签。</span></li></ol><div id="hdSRaxbTSnq1FW71qMW4tV" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是一个示例数据集的格式：</span></div></div><code-block id="hhYSit8djpSL7ohAuJLyzP" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>Input,Label
+<span class="token string">"This is a sentence."</span>,1
+<span class="token string">"Another sentence."</span>,0
+<span class="token punctuation">..</span>.</pre></div></code-block><div id="3pTt6PKbEdVbLNMf7y6GoV" class="wolai-block wolai-text"><div><span class="inline-wrap">在这个示例中，</span><span class="red inline-wrap"><b>输入数据是一个句子，标签是一个二分类的标签</b></span><span class="inline-wrap">（1<span class="jill"></span>代表正例，0<span class="jill"></span>代表负例）。每一行代表一个样本，第一列是输入数据，第二列是对应的标签。</span></div></div><div id="6kox85iowWGFTuy3gAaUdZ" class="wolai-block wolai-text"><div><span class="inline-wrap">需要注意的是，具体的数据集格式可能会因任务类型、数据来源和使用的深度学习框架而有所不同。因此，在进行<span class="jill"></span>SFT<span class="jill"></span>训练时，建议根据具体任务和框架的要求来定义和处理数据集格式。</span></div></div><h3 id="2nT1ksLL4yfYUqRFNaCY9T" class="wolai-block"><span class="inline-wrap">2.RM（奖励模型）的数据格式？</span></h3><div id="fmx5QJs3wcWM1C2s6JRN6k" class="wolai-block wolai-text"><div><span class="inline-wrap">在大语言模型训练中，RM（Reward Model，奖励模型）的数据格式可以采用以下方式：</span></div></div><ol class="wolai-block"><li id="p6EQKPATgUj4u5mqwqE9En"><div class="marker"></div><span class="inline-wrap">输入数据：输入数据是一个文本序列，通常是一个句子或者一个段落。每个样本可以是一个字符串或者是一个<span class="jill"></span>tokenized<span class="jill"></span>的文本序列。</span></li><li id="oYdvAAtMQC7mx4M26aT2V3"><div class="marker"></div><span class="inline-wrap">奖励数据：奖励数据是与输入数据对应的奖励或评分。奖励可以是一个实数值，表示对输入数据的评价。也可以是一个离散的标签，表示对输入数据的分类。奖励数据可以是人工标注的，也可以是通过其他方式（如人工评估、强化学习等）得到的。</span></li><li id="aBKp1Zqeyuu9gJLgbJc6dh"><div class="marker"></div><span class="inline-wrap">数据集格式：数据集可以以文本文件（如<span class="jill"></span>CSV、JSON<span class="jill"></span>等）或数据库的形式存储。每个样本包含输入数据和对应的奖励数据。可以使用表格形式存储数据，每一列代表一个特征或标签。</span></li></ol><div id="pc3EsYkP3vDPvMAe9J6Nhr" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是一个示例数据集的格式：</span></div></div><code-block id="dC3ixMGSGKGDh47a9MoDMN" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>Input,Reward
+<span class="token string">"This is a sentence."</span>,0.8
+<span class="token string">"Another sentence."</span>,0.2
+<span class="token punctuation">..</span>.</pre></div></code-block><div id="hWFxXGeC1gFfR1hzyWFGmq" class="wolai-block wolai-text"><div><span class="inline-wrap">在这个示例中，输入数据是一个句子，</span><span class="red inline-wrap"><b>奖励数据是一个实数值，表示对输入数据的评价</b></span><span class="inline-wrap">。每一行代表一个样本，第一列是输入数据，第二列是对应的奖励数据。</span></div></div><div id="3mmXRck3GM2pMaiotyfLaj" class="wolai-block wolai-text"><div><span class="inline-wrap">需要注意的是，具体的数据集格式可能会因任务类型、数据来源和使用的深度学习框架而有所不同。因此，在使用<span class="jill"></span>RM<span class="jill"></span>进行大语言模型训练时，建议根据具体任务和框架的要求来定义和处理数据集格式。</span></div></div><h3 id="xyvUPLkhhrxt9sPprzv6hs" class="wolai-block"><span class="inline-wrap">3.PPO（强化学习）的数据格式？</span></h3><div id="djZ57zQSYJp34ZXmHCt1vy" class="wolai-block wolai-text"><div><span class="inline-wrap">在大语言模型训练中，PPO（Proximal Policy Optimization，近端策略优化）是一种常用的强化学习算法。PPO<span class="jill"></span>的数据格式可以采用以下方式：</span></div></div><ol class="wolai-block"><li id="55zcwcboAPY69swrVrsKs7"><div class="marker"></div><span class="inline-wrap">输入数据：输入数据是一个文本序列，通常是一个句子或者一个段落。每个样本可以是一个字符串或者是一个<span class="jill"></span>tokenized<span class="jill"></span>的文本序列。</span></li><li id="wvCuqSW5VPaqV2EyRkgdTr"><div class="marker"></div><span class="inline-wrap">奖励数据：奖励数据是与输入数据对应的奖励或评分。奖励可以是一个实数值，表示对输入数据的评价。也可以是一个离散的标签，表示对输入数据的分类。奖励数据可以是人工标注的，也可以是通过其他方式（如人工评估、模型评估等）得到的。</span></li><li id="gQVNHfWHtAMYRYcLDKFbtK"><div class="marker"></div><span class="inline-wrap">动作数据：动作数据是模型在给定输入数据下的输出动作。对于语言模型，动作通常是生成的文本序列。动作数据可以是一个字符串或者是一个<span class="jill"></span>tokenized<span class="jill"></span>的文本序列。</span></li><li id="7cBKzBB5RLRSiEg2jhGGo7"><div class="marker"></div><span class="inline-wrap">状态数据：状态数据是模型在给定输入数据和动作数据下的状态信息。对于语言模型，状态数据可以是模型的隐藏状态或其他中间表示。状态数据的具体形式可以根据具体任务和模型结构进行定义。</span></li><li id="7EacSsoqm7kjuCQNzQgVVE"><div class="marker"></div><span class="inline-wrap">数据集格式：数据集可以以文本文件（如<span class="jill"></span>CSV、JSON<span class="jill"></span>等）或数据库的形式存储。每个样本包含输入数据、奖励数据、动作数据和状态数据。可以使用表格形式存储数据，每一列代表一个特征或标签。</span></li></ol><div id="4SxPCfvKKT6vttEXoizfCP" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是一个示例数据集的格式：</span></div></div><code-block id="3dypLYGF3VysjSDpfFYKR6" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>Input,Reward,Action,State
+ <span class="token string">"This is a sentence."</span>,0.8,<span class="token string">"This is a generated sentence."</span>,<span class="token punctuation">[</span><span class="token number">0.1</span>, <span class="token number">0.2</span>, <span class="token number">0.3</span>, <span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+<span class="token string">"Another sentence."</span>,0.2,<span class="token string">"Another generated sentence."</span>,<span class="token punctuation">[</span><span class="token number">0.4</span>, <span class="token number">0.5</span>, <span class="token number">0.6</span>, <span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+<span class="token punctuation">..</span>.</pre></div></code-block><div id="f2DHL7PKtWnCzjhzekyuFP" class="wolai-block wolai-text"><div><span class="inline-wrap">在这个示例中，输入数据是一个句子，奖励数据是一个实数值，动作数据是生成的句子，状态数据是模型的隐藏状态。每一行代表一个样本，第一列是输入数据，第二列是对应的奖励数据，第三列是生成的动作数据，第四列是状态数据。</span></div></div><div id="8UKSCN7QeRH9RcLkxtegNi" class="wolai-block wolai-text"><div><span class="inline-wrap">需要注意的是，具体的数据集格式可能会因任务类型、数据来源和使用的深度学习框架而有所不同。因此，在使用<span class="jill"></span>PPO<span class="jill"></span>进行大语言模型训练时，建议根据具体任务和框架的要求来定义和处理数据集格式。</span></div></div><h3 id="hkKKLMvywmRMXCCuHqLmUJ" class="wolai-block"><span class="inline-wrap">4.找数据集哪里找？</span></h3><div id="uUprdXGrhWXsjyo3FRyxCe" class="wolai-block wolai-text"><div><span class="inline-wrap">在训练自己的大语言模型时，可以从以下几个途径找到合适的数据集：</span></div></div><ol class="wolai-block"><li id="ak61sTzzjUQH3ujQaCSzad"><div class="marker"></div><span class="yellow inline-wrap"><b>公开数据集</b></span><span class="inline-wrap">：有许多公开可用的数据集可供使用，涵盖了各种领域和任务。例如，Common Crawl、Wikipedia、OpenWebText、BookCorpus<span class="jill"></span>等都是常用的大规模文本数据集，可以用于语言模型的训练。</span></li><li id="6dG4LugBSg5qR3KpyfEwmv"><div class="marker"></div><span class="yellow inline-wrap"><b>开放数据平台</b></span><span class="inline-wrap">：许多组织和机构提供了开放的数据平台，可以获取各种类型的数据。例如，Kaggle、UCI Machine Learning Repository、Google Dataset Search<span class="jill"></span>等平台都提供了丰富的数据集资源。</span></li><li id="95bJs1Ar1sEytdzTDovp8"><div class="marker"></div><span class="yellow inline-wrap"><b>学术界研究</b></span><span class="inline-wrap">：许多学术研究项目会公开其使用的数据集，可以通过相关论文或项目页面找到这些数据集。例如，NLP<span class="jill"></span>领域的一些会议和竞赛（如<span class="jill"></span>ACL、EMNLP、CoNLL、GLUE<span class="jill"></span>等）提供了公开的数据集供研究使用。</span></li><li id="7Bbj6st2Tk3vGMjMGCENVZ"><div class="marker"></div><span class="yellow inline-wrap"><b>数据收集和爬取</b></span><span class="inline-wrap">：如果没有合适的公开数据集，您可以自己进行数据收集和爬取。这可以通过爬虫技术从互联网上收集相关的文本数据。需要注意的是，在进行数据收集和爬取时，需要遵守法律法规和网站的使用条款，并确保获得数据的合法使用权。</span></li><li id="odgYVf8BJwWu4cuGa1a4Un"><div class="marker"></div><span class="yellow inline-wrap"><b>数据增强</b></span><span class="inline-wrap">：如果您已经有了一些初始的数据集，但觉得数量不够，可以考虑使用数据增强技术来扩充数据。数据增强可以通过对原始数据进行一些变换、替换、合成等操作来生成新的样本。</span></li></ol><div id="bxbjBLVJXU3ryyG4aKSDcb" class="wolai-block wolai-text"><div><span class="inline-wrap">无论从哪个途径获取数据集，都需要注意数据的质量、版权和隐私等问题。确保您有合法的使用权，并遵守相关的法律和伦理规范。</span></div></div><h3 id="iWVNCU7EPmbnYWWwqMrzhv" class="wolai-block"><span class="inline-wrap">5.微调需要多少条数据？</span></h3><div id="tgWnaGt4Et8GXsdzKmPDGL" class="wolai-block wolai-text"><div><span class="inline-wrap">根据 Scaling Laws，随着模型大小、数据集大小和用于训练的计算浮点数的增加，模型的性能会提高。并且为了获得最佳性能，所有三个因素</span><span class="inline-wrap"><b>必须同时放大</b></span><span class="inline-wrap">。一般来说对于给定模型的理想训练数据集 token 数量大约是模型中参数数量的<span class="jill"></span>20<span class="jill"></span>倍。</span></div></div><h3 id="7AawCwZtuFDZdNNzYhJt8A" class="wolai-block"><span class="inline-wrap">6.有哪些大模型的训练集？</span></h3><div id="kpb2MX55UomukC34xYGSwH" class="wolai-block wolai-text"><div><span class="inline-wrap">以下是一些常用的大语言模型训练集的示例：</span></div></div><ol class="wolai-block"><li id="wAkrYafbJhvrXnbU9wXQcU"><div class="marker"></div><span class="inline-wrap">Common Crawl：这是一个由互联网上抓取的大规模文本数据集，包含了来自各种网站的文本内容。它是一个常用的数据集，可用于语言模型的训练。</span></li><li id="3hbA9JJsnVhxkPkvAhtqsc"><div class="marker"></div><span class="inline-wrap">Wikipedia：维基百科是一个包含大量结构化文本的在线百科全书。维基百科的内容丰富多样，涵盖了各种领域的知识，可以作为语言模型训练的数据集。</span></li><li id="4QybqYmgziZgwefnUemgJM"><div class="marker"></div><span class="inline-wrap">OpenWebText：这是一个从互联网上抓取的开放文本数据集，类似于<span class="jill"></span>Common Crawl。它包含了大量的网页文本，可以作为语言模型的训练数据。</span></li><li id="c3MMLHarRNUEXktzgM5DnD"><div class="marker"></div><span class="inline-wrap">BookCorpus：这是一个包含了大量图书文本的数据集，用于语言模型的训练。它包括了各种类型的图书，涵盖了广泛的主题和领域。</span></li><li id="jzZM8NxLvdiK8GR9HXF2zv"><div class="marker"></div><span class="inline-wrap">News articles：新闻文章是另一个常用的语言模型训练集。可以通过从新闻网站、新闻<span class="jill"></span>API<span class="jill"></span>或新闻数据库中收集新闻文章来构建训练集。</span></li><li id="frCtpjipMmMnKA9vKhG1v3"><div class="marker"></div><span class="inline-wrap">其他领域特定数据集：根据具体任务和应用，可以使用特定领域的数据集来训练语言模型。例如，在医学领域，可以使用医学文献或医疗记录作为训练数据；在法律领域，可以使用法律文书或法律条款作为训练数据。</span></li></ol><div id="mmVeVRgjkouNNvR36gLfcs" class="wolai-block wolai-text"><div><span class="inline-wrap">需要注意的是，使用这些数据集时，应该遵守数据的版权和使用规定，确保合法的使用权。此外，还可以通过数据增强技术，如数据合成、数据变换等，来扩充训练集的规模和多样性。</span></div></div><h3 id="kddyRhfXNABdrvsCpLzpdq" class="wolai-block"><span class="inline-wrap">7.进行领域大模型预训练应用哪些数据集比较好？</span></h3><div id="hgrtbsbWwZkKmX4Ao2YXCG" class="wolai-block wolai-text"><div><span class="inline-wrap">进行领域大模型预训练时，可以使用以下几种数据集来获得更好的效果：</span></div></div><ol class="wolai-block"><li id="4XHt9qBkjwx2K2vGi4qvR3"><div class="marker"></div><span class="inline-wrap">领域特定文本数据集：收集与目标领域相关的文本数据集，例如专业领域的论文、报告、文档、书籍等。这些数据集可以提供领域内的专业术语、上下文和特定领域的知识。</span></li><li id="61jBGNkEBaVmfEMNZbbeKP"><div class="marker"></div><span class="inline-wrap">领域内的网页内容：从目标领域相关的网页抓取文本内容。可以通过爬虫技术从相关网站上获取与目标领域相关的网页文本数据。</span></li><li id="oRbPZQnz93G8ooBJiPZTEM"><div class="marker"></div><span class="inline-wrap">领域内的新闻文章：收集与目标领域相关的新闻文章。新闻文章通常包含了领域内的最新信息和事件，可以帮助模型了解领域内的动态和趋势。</span></li><li id="mdZMPX8TXL5c3H5C8dWtAc"><div class="marker"></div><span class="inline-wrap">行业报告和白皮书：获取与目标领域相关的行业报告、白皮书和研究文献。这些文献通常包含了领域内的专业分析、统计数据和趋势预测，可以帮助模型了解行业背景和发展趋势。</span></li><li id="uv9xj8pUEmyKwcBr8QRudN"><div class="marker"></div><span class="inline-wrap">社交媒体数据：收集与目标领域相关的社交媒体数据，如推特、微博、论坛等。社交媒体上的内容通常反映了人们在目标领域中的讨论、观点和问题，可以帮助模型了解领域内的热点和用户需求。</span></li><li id="36kYDjPDhUrSnJ8FR2SS61"><div class="marker"></div><span class="inline-wrap">领域内的对话数据：获取与目标领域相关的对话数据，如客服对话、问答平台数据等。这些对话数据可以帮助模型学习领域内的常见问题、解决方案和用户需求。</span></li></ol><div id="eehZaxfejvXb84AhkwEEx8" class="wolai-block wolai-text"><div><span class="inline-wrap">在选择数据集时，应该确保数据的质量和合法性，并遵守相关的法律和伦理规范。同时，还可以考虑使用数据增强技术，如数据合成、数据变换等，来扩充训练集的规模和多样性。</span></div></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dongnian</div><div class="author-info__description">A salty fish swimming in the sea of deep learning!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#9Ue4qq79LMjA4aEvstw9AJ"><span class="toc-text">1.SFT（有监督微调）的数据集格式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2nT1ksLL4yfYUqRFNaCY9T"><span class="toc-text">2.RM（奖励模型）的数据格式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xyvUPLkhhrxt9sPprzv6hs"><span class="toc-text">3.PPO（强化学习）的数据格式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hkKKLMvywmRMXCCuHqLmUJ"><span class="toc-text">4.找数据集哪里找？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iWVNCU7EPmbnYWWwqMrzhv"><span class="toc-text">5.微调需要多少条数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7AawCwZtuFDZdNNzYhJt8A"><span class="toc-text">6.有哪些大模型的训练集？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kddyRhfXNABdrvsCpLzpdq"><span class="toc-text">7.进行领域大模型预训练应用哪些数据集比较好？</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/"><span class="card-category-list-name">PL</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.42em; color: rgb(175, 29, 143)">DSA</a><a href="/tags/RL/" style="font-size: 1.27em; color: rgb(30, 136, 31)">RL</a><a href="/tags/Transformer/" style="font-size: 1.45em; color: rgb(102, 5, 35)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.33em; color: rgb(178, 178, 189)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.39em; color: rgb(113, 13, 93)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.24em; color: rgb(117, 14, 69)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.15em; color: rgb(9, 75, 157)">CV</a><a href="/tags/GPT/" style="font-size: 1.18em; color: rgb(16, 40, 145)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(15, 57, 48)">PL</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.27em; color: rgb(119, 81, 68)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.27em; color: rgb(144, 194, 169)">热搜</a><a href="/tags/GitHub/" style="font-size: 1.3em; color: rgb(108, 156, 55)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.3em; color: rgb(105, 57, 107)">Trending</a><a href="/tags/leetcode/" style="font-size: 1.36em; color: rgb(34, 144, 52)">leetcode</a><a href="/tags/algo/" style="font-size: 1.15em; color: rgb(71, 134, 64)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">114</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">427.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-12T01:03:37.698Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Dongnian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

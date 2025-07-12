@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Dongnian"><meta name="copyright" content="Dongnian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="pv经典例题 - wolai 笔记1.阅览室登记问题有一阅览室，共有100个座位。读者进入时必须先在一种登记表上登记，该表为每一座位列一个表目，包括座号和读者姓名。读者离开时要注销掉登记内容。试用P、V原语描述读者进程的同步问题。关系分析同步关系：座位的使用互斥关系：登记、注销互斥操作代码semaphore empty &#x3D; 100; &#x2F;&#x2F; 记录空座位数量 semaphore mutex &#x3D; 1;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/cs/os/%E4%B8%80%E4%BA%9B%E9%A2%98%E7%9B%AE/pv%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98/PV%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="pv经典例题 - wolai 笔记1.阅览室登记问题有一阅览室，共有100个座位。读者进入时必须先在一种登记表上登记，该表为每一座位列一个表目，包括座号和读者姓名。读者离开时要注销掉登记内容。试用P、V原语描述读者进程的同步问题。关系分析同步关系：座位的使用互斥关系：登记、注销互斥操作代码semaphore empty &#x3D; 100; &#x2F;&#x2F; 记录空座位数量 semaphore mutex &#x3D; 1;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-07-12T01:02:48.529Z">
+<meta property="article:modified_time" content="2025-07-12T01:02:48.529Z">
+<meta property="article:author" content="Dongnian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/cs/os/%E4%B8%80%E4%BA%9B%E9%A2%98%E7%9B%AE/pv%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98/PV%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Dongnian","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-12 09:02:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>pv经典例题 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div data-symbol="🧼" class="icon"></div></div><div data-title="pv经典例题" class="main-title"></div></div></header><article><h1 id="qJCKUk2dLt4zfLnd5wrweP" class="wolai-block"><span class="inline-wrap">1.阅览室登记</span></h1><h2 id="v8n5ggN1xbJhPXVGsBPFMq" class="wolai-block"><span class="inline-wrap">问题</span></h2><div id="ssfDf3UfpDV4NHmsKbNSWX" class="wolai-block wolai-text"><div><span class="inline-wrap">有一阅览室，共有<span class="jill"></span>100<span class="jill"></span>个座位。读者进入时必须先在一种登记表上登记，该表为每一座位列一个表目，包括座号和读者姓名。读者离开时要注销掉登记内容。试用<span class="jill"></span>P、V<span class="jill"></span>原语描述读者进程的同步问题。</span></div></div><h2 id="p4gesa4xAQgnsz4CAtH1bR" class="wolai-block"><span class="inline-wrap">关系分析</span></h2><ul class="wolai-block"><li id="6JepdKD6Uevq7kTdET3X2X"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">同步关系：座位的使用</span></li><li id="kq2jzb42mm61nNAHX5mHg8"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">互斥关系：登记、注销互斥操作</span></li></ul><h2 id="BPBWfamfr15CDXkJ18ned" class="wolai-block"><span class="inline-wrap">代码</span></h2><code-block id="cMEHRXrUhHGZf9Zmpkcp2m" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">semaphore empty <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token comment">// 记录空座位数量</span>
+semaphore mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>    <span class="token comment">// 互斥信号量，互斥访问登记和注销操作</span>
+<span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 登记</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// read</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 注销</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="vsFbuXVGvdc22M25keUmku" class="wolai-block"><span class="inline-wrap">2.动物存放</span></h1><h2 id="6UnjYExwp5WhrR2TRdPA8k" class="wolai-block"><span class="inline-wrap">问题</span></h2><div id="378jAGCwNTymuQjztoNy5n" class="wolai-block wolai-text"><div><span class="inline-wrap">有一只铁笼子，每次只能放入一只动物，猎手向笼子里放入老虎，农民向笼子里放入猪；动物园等待取笼子里的老虎，饭店等待取笼子里的猪。现请用<span class="jill"></span>P、V<span class="jill"></span>操作写出能同步执行的程序。</span></div></div><h2 id="7L7pDkjmMewhtU176nd38J" class="wolai-block"><span class="inline-wrap">关系分析</span></h2><ul class="wolai-block"><li id="8YXx3GxU3HWkSrewS2Qii"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">同步关系</span><ul class="wolai-block"><li id="wjZwa8xsWCF6fzZVfA4saV"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">放 --&gt; 取</span></li></ul></li></ul><h2 id="5UihCGyeoFcR9Uq4s93gGm" class="wolai-block"><span class="inline-wrap">代码</span></h2><div id="bxb14B9x6jEaQvDhf7hjfG" class="wolai-block wolai-text"><div><span class="inline-wrap">信号量</span></div></div><code-block id="sBMnWGBYsz43TfbAdNdqYr" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">semaphore box <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>      <span class="token comment">// 记录笼子是否为空</span>
+semaphore tiger <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">// 老虎的同步信号量</span>
+semaphore pig <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>      <span class="token comment">// 猪的同步信号量</span></pre></div></code-block><div id="9ksGXJuHLNnXQFXB3YN4u9" class="wolai-block wolai-text"><div><span class="inline-wrap">猎人</span></div></div><code-block id="egMjT4GW3sSZ2YFdKJPbQh" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">hunter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>box<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 放入老虎</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>tiger<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><div id="rddrwsnPEk3zF48xBzibXx" class="wolai-block wolai-text"><div><span class="inline-wrap">农民</span></div></div><code-block id="wo4U5qQbaAHjNqHypzu842" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">famer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>box<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 放入猪</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>pig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><div id="dR8JzUA7sjZK7stXWay2Xg" class="wolai-block wolai-text"><div><span class="inline-wrap">动物园</span></div></div><code-block id="gs6evowwLXoNakJdevCykN" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">zoo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>tiger<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 取走老虎</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>box<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><div id="br4ZzwZmENvQvw4oG5EBtX" class="wolai-block wolai-text"><div><span class="inline-wrap">饭店</span></div></div><code-block id="3napXt9W7EdzGeHDvRtXf1" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">restaurant</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>pig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 取走猪</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>box<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="7W5kXh5DGW7RRZydgk6pBv" class="wolai-block"><span class="inline-wrap">3.售票</span></h1><h2 id="rVPFEbtoi7CBzVvtW26Pc" class="wolai-block"><span class="inline-wrap">问题</span></h2><div id="5JSxicoUeWjS8WRyw9ghxv" class="wolai-block wolai-text"><div><span class="inline-wrap">某车站售票厅，任何时刻最多可容纳<span class="jill"></span>20<span class="jill"></span>名购票者进入，当售票厅中少于<span class="jill"></span>20<span class="jill"></span>名购票者时则厅外的购票者可立即进入，否则需在外面等待。若把一个购票者看作一个进程，请回答下列问题
+(1) 用<span class="jill"></span>PV<span class="jill"></span>操作管理这些并发进程时，应怎样定义信号量？写出信号量的初值以及信号量各种取值的含义。
+(2) 若欲购票者最多为<span class="jill"></span>n<span class="jill"></span>个人，写出信号量可能的变化范围(最大值和最小值)。</span></div></div><h2 id="3bqzqoitgSsQYTsFcJS3Bv" class="wolai-block"><span class="inline-wrap">答案</span></h2><div id="8YntPveQ6ygANb5npPJA7S" class="wolai-block wolai-text"><div><span class="inline-wrap">(1)定义一信号量<span class="jill"></span>S，初始值为<span class="jill"></span>20。</span></div></div><ul class="wolai-block"><li id="g5rcACJkgxhvzDNPKjTVeN"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">S＞0，S<span class="jill"></span>的值表示可继续进入售票厅的人数;</span></li><li id="5HQa7DLABRLNQK5gHe2Mf8"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">S=0，表示售票厅中已有<span class="jill"></span>20<span class="jill"></span>名顾客(购票者);</span></li><li id="wnnzbqt21rWQdPQdtAhGuT"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">S＜0，|S|<span class="jill"></span>的值为等待进入售票厅的人数。</span><div id="xxyXx72wFbab1ajsdM25Uk" class="wolai-block wolai-text"><div><span class="inline-wrap">(2)由于<span class="jill"></span>s<span class="jill"></span>的值表示的是在售票厅有多少个座位，因此最大值为<span class="jill"></span>s（表示没有人）最小值为<span class="jill"></span>s-n（根据<span class="jill"></span>n<span class="jill"></span>来决定）</span></div></div></li></ul><h1 id="nr7GuhopYDJQQgGMdUKJSG" class="wolai-block"><span class="inline-wrap">4.司机售票员</span></h1><h2 id="cCWuF9NVsYZeHyj3yBspDP" class="wolai-block"><span class="inline-wrap">问题</span></h2><div id="ecrkVfnkaPT6TdLFqDQGTQ" class="wolai-block wolai-text"><div><span class="inline-wrap">在公共汽车上，司机负责开车、停车和驾驶，售票员负责门的开门、关门和售票。基本操作规则是只有停车后，售票员才能开门；只有售票员关门后，司机才能开车。汽车初始状态处于行驶之中。当只有<span class="jill"></span>1<span class="jill"></span>个司机、2<span class="jill"></span>个售票员、2<span class="jill"></span>个门、每个售票员负责一个门时的协调操作。请使用<span class="jill"></span>P、V<span class="jill"></span>原语实现售票员与司机之间的协调操作说明每个信号量的含义、初值和值的范围。</span></div></div><h2 id="3P54JXSYCmMDNZUZtSaSBz" class="wolai-block"><span class="inline-wrap">关系分析</span></h2><div id="exLhAZ54w3r3Yj9eapDQEy" class="wolai-block wolai-text"><div><span class="inline-wrap">同步信号</span></div></div><ul class="wolai-block"><li id="9knNNDbjHyFT5iYn2aae96"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">售票员关门 ---&gt; 司机开车</span></li><li id="gtsCbXb4DQBXkin5RGCwj7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">司机停车 ---&gt; 售票员开门</span></li></ul><h2 id="onhwyB7Ucq8H6NMwhL81uW" class="wolai-block"><span class="inline-wrap">代码</span></h2><div id="7XxUiSin2XD1kiwXADeNyy" class="wolai-block wolai-text"><div><span class="inline-wrap">信号量</span></div></div><code-block id="xpZY7CeKdd1mkmENRhEXm5" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">semaphore close1 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> close2 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 关门同步信号量</span>
+semaphore open1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> open2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">// 开门信号量</span></pre></div></code-block><div id="qyBWCFSnSoW8Ma93hykTuW" class="wolai-block wolai-text"><div><span class="inline-wrap">司机</span></div></div><code-block id="4DtxDZyFyHsyZ4TG92WrYs" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">driver</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>close1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>close2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 启动车辆</span>
+        <span class="token comment">// 正常行使</span>
+        <span class="token comment">// 到站停车</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>open1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>open2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><div id="j4fwxsHwGSFqokdK5n12Ac" class="wolai-block wolai-text"><div><span class="inline-wrap">售票员<span class="jill"></span>1</span></div></div><code-block id="2qBL4hUtXgeHVZNPVes5Dd" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">seller1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>open1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 开门</span>
+        <span class="token comment">// 关门</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>close1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 售票</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><div id="o9ngo4Ydaqw9np6QgqVZgH" class="wolai-block wolai-text"><div><span class="inline-wrap">售票员<span class="jill"></span>2</span></div></div><code-block id="pD3RVG3smCRSmkDmG3ciQe" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">seller2</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>open2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 开门</span>
+        <span class="token comment">// 关门</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>close2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 售票</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="nXXrxLFB5XSwJJ8X8JYuwg" class="wolai-block"><span class="inline-wrap">5.取号叫号</span></h1><h2 id="kQR7ykhZX3pihkdjFScVK5" class="wolai-block"><span class="inline-wrap">问题</span></h2><div id="qdPKj8FCyFAZLboDWxo8nP" class="wolai-block wolai-text"><div><span class="inline-wrap">某银行有人民币储蓄业务，有<span class="jill"></span>n<span class="jill"></span>个柜员负责，有<span class="jill"></span>1<span class="jill"></span>台取号机。每个顾客进入银行后先取一个号，若有人取号则需等他人取完后才能取。取到号后等待叫号，当一个柜员人员空闲下来就叫下一个号。试用<span class="jill"></span>P、V<span class="jill"></span>操作正确编写柜台人员和顾客进程的程序。</span></div></div><h2 id="peq7YRveCrLzJDPoQ83MBK" class="wolai-block"><span class="inline-wrap">关系分析</span></h2><div id="tTtDdNZYoqp2veutTCJMGK" class="wolai-block wolai-text"><div><span class="inline-wrap">互斥信号量</span></div></div><ul class="wolai-block"><li id="7wZngFhCSv7jXJhDnWXowm"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">顾客取号</span></li><li id="kaxqT9tLmbGvaJ38MpFiGp"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">服务人员叫号</span></li></ul><div id="2aFscQYGpgMpBvtPiSUEfC" class="wolai-block wolai-text"><div><span class="inline-wrap">同步信号量</span></div></div><ul class="wolai-block"><li id="37SNyejD7zdNYTFxBHKTtw"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">取号 --- &gt; 等待被叫号</span></li><li id="j67j5BjczpqquGTjJisgwF"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">服务完 ---&gt; 叫号</span></li></ul><h2 id="cXNxo1M3U8Y5gA6mqekpF1" class="wolai-block"><span class="inline-wrap">代码</span></h2><div id="jjjYQRdxdYrMkQ8ogfpgpD" class="wolai-block wolai-text"><div><span class="inline-wrap">信号量</span></div></div><code-block id="p4tk5VLj8n1h3NtJUYihzf" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">semaphore mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>    <span class="token comment">// 同步信号量</span>
+semaphore serviceEmpty <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment">// 柜员服务空闲信号量</span>
+semaphore serviceFull <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">// 柜员服务满的信号量，若大于3，则表示等待人数为 n-3</span></pre></div></code-block><div id="es55mQFptbb9aoeP2ouejZ" class="wolai-block wolai-text"><div><span class="inline-wrap">顾客</span></div></div><code-block id="5e6xye4Sgg27HwVM8eFh5c" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">customer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 取号</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 等待叫号</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>serviceFull<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>serviceEmpty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><div id="8VyiqeMfFKBe18bzTaNc1P" class="wolai-block wolai-text"><div><span class="inline-wrap">柜员</span></div></div><code-block id="8UsPk74BV4MdqQL4QGxBAw" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">servicer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>serviceFull<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 叫号</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 服务</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>serviceEmpty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></div></code-block><h1 id="bsEpCdaCsAdND74pwEj7uD" class="wolai-block"><span class="inline-wrap">6.听音乐问题</span></h1><h2 id="4SuFv7jzGsggywcERdUi1" class="wolai-block"><span class="inline-wrap">问题</span></h2><div id="9RUQoTH1Kx8e6mUj6EyJTz" class="wolai-block wolai-text"><div><span class="inline-wrap">在一间酒吧里有三个音乐爱好者队列，第一个音乐爱好者只有随身听，第二个只有音乐磁带，第三个只有电池，而要听音乐就必须有随身听，音乐磁带和电池这三种物品。酒吧老板一次出售这三种物品中的任意两种，当一名音乐爱好者得到这三种物品并听完乐曲后，酒吧老板才能再一次出售这三种物品中任意两种，于是第二名音乐爱好者得到这三种物品。并开始听乐曲，全部买卖就这样进行下去。使用<span class="jill"></span>P、V<span class="jill"></span>操作正确解决这一买卖。</span></div></div><h2 id="nCM5wBndDAK8hGKu7K3DZm" class="wolai-block"><span class="inline-wrap">关系分析</span></h2><div id="pfG2cUHSuKJcKRWa1R8jv8" class="wolai-block wolai-text"><div><span class="inline-wrap">与抽烟者问题类似
+同步关系：</span></div></div><ul class="wolai-block"><li id="294GVB6Ce7ojizLtA6Ccn4"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">老板出售物品 --&gt; 三个爱好者</span></li><li id="sRqWt6mbL1b5oNevJJjqzt"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">爱好者使用完成 --&gt; 老板出售下一个</span></li></ul><h2 id="cU1hCk5EHMXNp2MEP2N1zC" class="wolai-block"><span class="inline-wrap">代码</span></h2><div id="r58Ug5W1d7U6i9J7RN56tt" class="wolai-block wolai-text"><div><span class="inline-wrap">信号量</span></div></div><code-block id="eFaFxUuDMDtYCHvoVomto" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">semaphore comeIn <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>   <span class="token comment">// 同步顾客是否来，每次只能服务一个顾客</span>
+semaphore stereo <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">// 随身听同步信号量，初始未生产，为0</span>
+semaphore tape <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>     <span class="token comment">// 磁带听同步信号量，初始未生产，为0</span>
+semaphore battle <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">// 电池听同步信号量，初始未生产，为0</span>
+
+<span class="token comment">// 标识老板是否有资源</span>
+bool stereoFlag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+bool tapeFlag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+bool battleFlage <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</pre></div></code-block><div id="8Sf1Yvx3w8YSayWyZcsYR2" class="wolai-block wolai-text"><div><span class="inline-wrap">老板</span></div></div><code-block id="gREvbvXskMGuuuvcKTFHxN" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">boss</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>comeIn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow">if</span><span class="token punctuation">(</span>stereoFlag <span class="token operator">&amp;&amp;</span> tapeFlag<span class="token punctuation">)</span>
+            <span class="token constant">V</span><span class="token punctuation">(</span>battle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow">else</span> <span class="token keyword control-flow">if</span><span class="token punctuation">(</span>stereoFlag <span class="token operator">&amp;&amp;</span> battleFlag<span class="token punctuation">)</span>
+            <span class="token constant">V</span><span class="token punctuation">(</span>tape<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow">else</span>
+            <span class="token constant">V</span><span class="token punctuation">(</span>stereo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></div></code-block><div id="2St4fvoS3MgBndnG6EWWNJ" class="wolai-block wolai-text"><div><span class="inline-wrap">第一个音乐爱好者：需要电池和磁带，自己有随身听</span></div></div><code-block id="6RadP3YsmhAn2Xuusenhoi" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">hobby1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>stereo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 购买物品，听音乐</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>comeIn<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 我买完了，老板可以接待下一个了</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></div></code-block><div id="xbqxSqmYNfMGiXjWfpTi3A" class="wolai-block wolai-text"><div><span class="inline-wrap">第二个音乐爱好者：需要电池和随身听，自己有磁带</span></div></div><code-block id="6N5KgnfpMTJjfagUGDWEXK" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">hobby1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>tape<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 购买物品，听音乐</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>comeIn<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 我买完了，老板可以接待下一个了</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></div></code-block><div id="giEys2A2aF1EL6Uq3AhYt2" class="wolai-block wolai-text"><div><span class="inline-wrap">第三个音乐爱好者：需要随身听和磁带，自己有电池</span></div></div><code-block id="jpHRj8VqxS2Ygzk1P5j6eA" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">hobby1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword control-flow">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token constant">P</span><span class="token punctuation">(</span>battle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 购买物品，听音乐</span>
+        <span class="token constant">V</span><span class="token punctuation">(</span>comeIn<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 我买完了，老板可以接待下一个了</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dongnian</div><div class="author-info__description">A salty fish swimming in the sea of deep learning!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#qJCKUk2dLt4zfLnd5wrweP"><span class="toc-text">1.阅览室登记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#v8n5ggN1xbJhPXVGsBPFMq"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p4gesa4xAQgnsz4CAtH1bR"><span class="toc-text">关系分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BPBWfamfr15CDXkJ18ned"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vsFbuXVGvdc22M25keUmku"><span class="toc-text">2.动物存放</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6UnjYExwp5WhrR2TRdPA8k"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7L7pDkjmMewhtU176nd38J"><span class="toc-text">关系分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5UihCGyeoFcR9Uq4s93gGm"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7W5kXh5DGW7RRZydgk6pBv"><span class="toc-text">3.售票</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rVPFEbtoi7CBzVvtW26Pc"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3bqzqoitgSsQYTsFcJS3Bv"><span class="toc-text">答案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nr7GuhopYDJQQgGMdUKJSG"><span class="toc-text">4.司机售票员</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cCWuF9NVsYZeHyj3yBspDP"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3P54JXSYCmMDNZUZtSaSBz"><span class="toc-text">关系分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#onhwyB7Ucq8H6NMwhL81uW"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nXXrxLFB5XSwJJ8X8JYuwg"><span class="toc-text">5.取号叫号</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#kQR7ykhZX3pihkdjFScVK5"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#peq7YRveCrLzJDPoQ83MBK"><span class="toc-text">关系分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cXNxo1M3U8Y5gA6mqekpF1"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bsEpCdaCsAdND74pwEj7uD"><span class="toc-text">6.听音乐问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4SuFv7jzGsggywcERdUi1"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nCM5wBndDAK8hGKu7K3DZm"><span class="toc-text">关系分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cU1hCk5EHMXNp2MEP2N1zC"><span class="toc-text">代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/"><span class="card-category-list-name">PL</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.42em; color: rgb(175, 29, 143)">DSA</a><a href="/tags/RL/" style="font-size: 1.27em; color: rgb(30, 136, 31)">RL</a><a href="/tags/Transformer/" style="font-size: 1.45em; color: rgb(102, 5, 35)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.33em; color: rgb(178, 178, 189)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.39em; color: rgb(113, 13, 93)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.24em; color: rgb(117, 14, 69)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.15em; color: rgb(9, 75, 157)">CV</a><a href="/tags/GPT/" style="font-size: 1.18em; color: rgb(16, 40, 145)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(15, 57, 48)">PL</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.27em; color: rgb(119, 81, 68)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.27em; color: rgb(144, 194, 169)">热搜</a><a href="/tags/GitHub/" style="font-size: 1.3em; color: rgb(108, 156, 55)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.3em; color: rgb(105, 57, 107)">Trending</a><a href="/tags/leetcode/" style="font-size: 1.36em; color: rgb(34, 144, 52)">leetcode</a><a href="/tags/algo/" style="font-size: 1.15em; color: rgb(71, 134, 64)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">114</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">427.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-12T01:03:37.698Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Dongnian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

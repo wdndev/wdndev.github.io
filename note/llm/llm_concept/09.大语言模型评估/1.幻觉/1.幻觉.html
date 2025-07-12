@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Dongnian"><meta name="copyright" content="Dongnian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.幻觉 - wolai 笔记1.什么是大模型幻觉？在语言模型的背景下，幻觉指的是一本正经的胡说八道：看似流畅自然的表述，实则不符合事实或者是错误的。幻觉现象的存在严重影响LLM应用的可靠性，本文将探讨大型语言模型(LLMs)的幻觉问题，以及解决幻觉现象的一些常见方法。2.为什么需要解决LLM的幻觉问题？LLMs的幻觉可能会产生如传播错误信息或侵犯隐私等严重后果。 比如在医疗应用中，对患者生成的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/llm/llm_concept/09.%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/1.%E5%B9%BB%E8%A7%89/1.%E5%B9%BB%E8%A7%89.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="1.幻觉 - wolai 笔记1.什么是大模型幻觉？在语言模型的背景下，幻觉指的是一本正经的胡说八道：看似流畅自然的表述，实则不符合事实或者是错误的。幻觉现象的存在严重影响LLM应用的可靠性，本文将探讨大型语言模型(LLMs)的幻觉问题，以及解决幻觉现象的一些常见方法。2.为什么需要解决LLM的幻觉问题？LLMs的幻觉可能会产生如传播错误信息或侵犯隐私等严重后果。 比如在医疗应用中，对患者生成的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-07-12T01:02:49.192Z">
+<meta property="article:modified_time" content="2025-07-12T01:02:49.192Z">
+<meta property="article:author" content="Dongnian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/llm/llm_concept/09.%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/1.%E5%B9%BB%E8%A7%89/1.%E5%B9%BB%E8%A7%89.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Dongnian","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-12 09:02:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/trending/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Trending</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>1.幻觉 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="1.幻觉" class="main-title"></div></div></header><article><h3 id="rn3WhoZrzE2BSrendTVgYb" class="wolai-block"><span class="inline-wrap">1.什么是大模型幻觉？</span></h3><div id="9x7vwWvBeXEoEEnKF9uWAW" class="wolai-block wolai-text"><div><span class="inline-wrap">在语言模型的背景下，幻觉指的是</span><span class="red inline-wrap"><b>一本正经的胡说八道</b></span><span class="inline-wrap">：看似流畅自然的表述，实则不符合事实或者是错误的。</span></div></div><div id="5Xew2WXsFgjwuy5uY6ghQq" class="wolai-block wolai-text"><div><span class="inline-wrap">幻觉现象的存在严重影响<span class="jill"></span>LLM<span class="jill"></span>应用的可靠性，本文将探讨大型语言模型(LLMs)的幻觉问题，以及解决幻觉现象的一些常见方法。</span></div></div><h3 id="4DZZtGQzAWqjbkWuYijYHn" class="wolai-block"><span class="inline-wrap">2.为什么需要解决<span class="jill"></span>LLM<span class="jill"></span>的幻觉问题？</span></h3><div id="ZeMD6ZFYbYv5wMsSTLpTD" class="wolai-block wolai-text"><div><span class="inline-wrap">LLMs<span class="jill"></span>的幻觉</span><span class="red inline-wrap"><b>可能会产生如传播错误信息或侵犯隐私等严重后果</b></span><span class="inline-wrap">。 比如在医疗应用中，对患者生成的报告如果存在幻觉可能导致错误诊断甚至影响生命安全。 </span></div></div><div id="haftAJungRNWjyaxMLyx64" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>幻觉影响了模型的可靠性和可信度</b></span><span class="inline-wrap">，因此需要解决<span class="jill"></span>LLM<span class="jill"></span>的幻觉问题。</span></div></div><h3 id="eL3792bQ75bfZyvibWwoe9" class="wolai-block"><span class="inline-wrap">3.幻觉一定是有害的吗？</span></h3><div id="mvUBrvEbV1Tqjgw9y58a8s" class="wolai-block wolai-text"><div><span class="inline-wrap">幻觉</span><span class="red inline-wrap"><b>不一定是有害的</b></span><span class="inline-wrap">，特别是在</span><span class="yellow inline-wrap"><b>一些需要创造力或灵感的场合</b></span><span class="inline-wrap">，比如写电影剧情，</span><span class="yellow inline-wrap">幻觉的存在可能带来一些奇思妙想，使得生成的文本充满想象力</span><span class="inline-wrap">。</span></div></div><div id="pXhv4fkU2WY4nSL95Wq1no" class="wolai-block wolai-text"><div><span class="inline-wrap">因此，对幻觉的容忍度取决于具体的应用场景。</span></div></div><h3 id="xjrq8SSvztGtbDEx7CAU93" class="wolai-block"><span class="inline-wrap">4.幻觉有哪些不同类型？</span></h3><div id="cj7JLmjzy9GNKoYtMw8dN8" class="wolai-block wolai-text"><div><span class="inline-wrap">幻觉主要可以分为两类：即内在幻觉和外在幻觉。</span></div></div><ul class="wolai-block"><li id="3DXj6z5xAEJjxrGnTEvYtq"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>内在幻觉</b></span><span class="inline-wrap">：生成的内容与源内容相矛盾。  </span></li><li id="cYke2gF5Xs2bBKUt9AVFcX"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>外部幻觉</b></span><span class="inline-wrap">：生成的内容不能从源内容中得到验证，既不受源内容支持也不受其反驳。</span></li></ul><h3 id="geCkLVQGXFUHNY7HLTLDKo" class="wolai-block"><span class="inline-wrap">5.为什么<span class="jill"></span>LLM<span class="jill"></span>会产生幻觉？</span></h3><div id="pSdxvpoH3RJwhxAK4dxSeX" class="wolai-block wolai-text"><div><span class="inline-wrap">有一些研究也在致力于分析幻觉出现的不同原因，已知的一些原因包括：</span></div></div><ol class="wolai-block"><li id="pAMdkLR3Y7fRUqxHVkcrdb"><div class="marker"></div><span class="yellow inline-wrap"><b>源与目标的差异</b></span><span class="inline-wrap">：当我们在存在</span><span class="red inline-wrap">源与目标差异的数据上训练模型时</span><span class="inline-wrap">，模型产生的文本可能与原始源内容产生偏差。这种差异，有时可能是在数据收集过程中不经意间产生的，有时则是故意为之。  </span></li><li id="pQWeFNzZ9CXWVTR45Ff8z1"><div class="marker"></div><span class="yellow inline-wrap"><b>无意识的源-目标差异</b></span><span class="inline-wrap">：这种差异的产生有多种原因。例如，数据可能是基于某种经验法则编制的，使得目标信息并不总是完全依赖源信息。举例来说，如果从两家不同的新闻网站获得相同事件的报道作为源与目标，目标报道中可能包含源报道没有的信息，从而导致二者不同。  </span></li><li id="qKNYjjHZeqz6JfQoMAGwFx"><div class="marker"></div><span class="yellow inline-wrap"><b>有意识的源-目标差异</b></span><span class="inline-wrap">：某些任务在本质上并不追求源与目标的严格一致，尤其是在需要多样性输出的情境下。  </span></li><li id="wgAnXK4juqDbY4JUm9rJxh"><div class="marker"></div><span class="yellow inline-wrap"><b>训练数据的重复性</b></span><span class="inline-wrap">：训练过程中使用的数据，如果存在</span><span class="red inline-wrap">大量重复</span><span class="inline-wrap">，可能导致模型在生成时过于偏好某些高频短语，这也可能引发“幻觉”。  </span></li><li id="bctghHeBpuX9oQVfUjp4UU"><div class="marker"></div><span class="yellow inline-wrap"><b>数据噪声的影响</b></span><span class="inline-wrap">：使用充斥噪声的数据进行训练，往往是导致“幻觉”出现的关键因素之一。 </span></li><li id="hxwxjmG3kZrL4CJ8wHND6b"><div class="marker"></div><span class="yellow inline-wrap"><b>解码过程中的随机性</b></span><span class="inline-wrap">：某些旨在增加输出多样性的解码策略，如<span class="jill"></span>top-k<span class="jill"></span>采样、top-p<span class="jill"></span>方法以及温度调节，有时会增加“幻觉”的产生。这往往是因为模型在选择输出词汇时引入了随机性，而没有始终选择最可能的词汇。  </span></li><li id="bSrNdNfA3MNmNw5kVktTFT"><div class="marker"></div><span class="yellow inline-wrap"><b>模型的参数知识偏向</b></span><span class="inline-wrap">：有研究表明，模型在处理信息时，可能更依赖其在预训练阶段所积累的知识，而忽略了实时提供的上下文信息，从而偏离了正确的输出路径。  </span></li><li id="uFvcMKv71Bes9qTBzxNCGa"><div class="marker"></div><span class="yellow inline-wrap"><b>训练与实际应用中的解码差异</b></span><span class="inline-wrap">：在常见的训练方法中，我们鼓励模型基于真实数据预测下一个词汇。但在实际应用中，模型则是根据自己先前生成的内容进行预测。这种方法上的差异，尤其在处理长文本时，可能会导致模型的输出出现“幻觉”。  </span></li></ol><div id="fUqHwFgEMv5buETxRX2oYg" class="wolai-block wolai-text"><div><span class="inline-wrap">最后，如<span class="jill"></span>GPT<span class="jill"></span>之类的生成模型，</span><span class="inline-wrap"><b>其实只是学会了文本中词汇间的统计规律，所以它们生成内容的准确性仍然是有限的</b></span><span class="inline-wrap">。</span></div></div><h3 id="2fbRFiYJxtCuCoMKnbw5GY" class="wolai-block"><span class="inline-wrap">6.如何度量幻觉？</span></h3><div id="hwpirHkKJQj7vBVaWSupSj" class="wolai-block wolai-text"><div><span class="inline-wrap">最有效可靠的方式当然是靠</span><span class="red inline-wrap">人来评估</span><span class="inline-wrap">，但是人工评估的成本太高了。因此有了一些</span><span class="red inline-wrap">自动化评估</span><span class="inline-wrap">的指标：</span></div></div><ul class="wolai-block"><li id="u5J1vuCoTUJYoKJo3fX5oT"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>命名实体误差</b></span><span class="inline-wrap">：命名实体（NEs）是“事实”描述的关键组成部分，我们可以利用<span class="jill"></span>NE<span class="jill"></span>匹配来计算生成文本与参考资料之间的一致性。直观上，如果一个模型生成了不在原始知识源中的<span class="jill"></span>NE，那么它可以被视为产生了幻觉（或者说，有事实上的错误）。  </span></li><li id="wyVLYwPALLbbLbw9w1jip7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>蕴含率</b></span><span class="inline-wrap">：该指标定义为被参考文本所蕴含的句子数量与生成输出中的总句子数量的比例。为了实现这一点，可以采用成熟的蕴含/NLI<span class="jill"></span>模型。  </span></li><li id="6H6Q2KUNFmnnxrfxQ25F"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>基于模型的评估</b></span><span class="inline-wrap">：应对复杂的句法和语义变化。  </span></li><li id="9ZujAzGGKnYKUoHQVZ5pnh"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>利用问答系统</b></span><span class="inline-wrap">：此方法的思路是，如果生成的文本在事实上与参考材料一致，那么对同一个问题，其答案应该与参考材料相似。具体而言，对于给定的生成文本，问题生成模型会创建一组问题-答案对。接下来，问答模型将使用原始的参考文本来回答这些问题，并计算所得答案的相似性。  </span></li><li id="rreXoqTrDTe7pjAsB72d1u"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>利用信息提取系统</b></span><span class="inline-wrap">：此方法使用信息提取模型将知识简化为关系元组，例如&lt;主体，关系，对象&gt;。这些模型从生成的文本中提取此类元组，并与从原始材料中提取的元组进行比较。</span></li></ul><h3 id="iaGGk5Jv3WoMe4kCXeujHi" class="wolai-block"><span class="inline-wrap">7.如何缓解<span class="jill"></span>LLM<span class="jill"></span>幻觉？</span></h3><div id="yGjHLV5Hjra52GZRFKBao" class="wolai-block wolai-text"><div><span class="inline-wrap">与幻觉有关的数据问题可以（至少理论上）通过</span><span class="red inline-wrap">创建高质量无噪声的数据集来解决</span><span class="inline-wrap">。但是，验证和清理数百<span class="jill"></span>GB<span class="jill"></span>的文本语料库难度太大了。</span></div></div><div id="oUQbqTJLA6USM4Th1vJ17v" class="wolai-block wolai-text"><div><span class="inline-wrap">因此也有了一些其他的方法：</span></div></div><ul class="wolai-block"><li id="nu99xejq1bXrPu65STnMnK"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">利用外部知识验证正确性  </span></li><li id="vW2ZacJ9tHQuunhWZqjNv7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">修改解码策略  </span></li><li id="n6MqwGRX6pxF6UPQMynqCa"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">采样多个输出并检查其一致性</span></li></ul><h4 id="fMRvzeJsziLK2anANTTAiN" class="wolai-block"><span class="inline-wrap">7.1 通过使用外部知识验证主动检测和减轻幻觉</span></h4><div id="iEp7vWr4CHUnBUnHTjPdm4" class="wolai-block wolai-text"><div><span class="inline-wrap">《A Stitch in Time Saves Nine: Detecting and Mitigating Hallucinations of LLMs by Validating Low-Confidence Generation》</span></div></div><div id="kYgU3FEMZQegAF5SLmRDnV" class="wolai-block wolai-text"><div><span class="inline-wrap">作者发现</span></div></div><ul class="wolai-block"><li id="hTpQ4VZVQ1qJSDGpY89mVZ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>幻觉的生成是会传播的</b></span><span class="inline-wrap">，比如一句话出现幻觉，后续生成的文本可能也会出现幻觉甚至更严重。这意味着，如果我们能够“主动”检测并减轻幻觉，那么我们也可以阻止其在后续生成的句子中的传播。  </span></li><li id="3fkusJosCNiMB65Sfm83ad"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>logit<span class="jill"></span>输出值（输出词汇表上的概率分布）可以用来获取幻觉的信号</b></span><span class="inline-wrap">。具体地说，我们计算了一个概率得分，并展示了当这个得分很低时，模型更容易产生幻觉。因此，它可以作为幻觉的一个信号，当得分很低时，可以对生成的内容进行信息验证。  </span></li></ul><div id="3iSRXLC1kbBXJK1c3fSM8M" class="wolai-block wolai-text"><div><span class="inline-wrap">基于这两个发现，作者提出了</span><span class="red inline-wrap"><b>主动检测和减轻的方法</b></span><span class="inline-wrap">。</span></div></div><div id="gVdmaNZoPu6TXmqvAZx6ac" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image.png" style="width: 100%"/></figure></div><div id="ieid9ePJqCT8Vfy6eGmpH4" class="wolai-block wolai-text"><div><span class="inline-wrap">在</span><span class="red inline-wrap"><b>检测</b></span><span class="inline-wrap">阶段，首先</span><span class="yellow inline-wrap">确定潜在幻觉的候选者</span><span class="inline-wrap">，即生成句子的重要概念。然后，利用其<span class="jill"></span>logit<span class="jill"></span>输出值计算模型对它们的不确定性并检索相关知识。</span></div></div><div id="uKcp2wKuBa2ctopWcF7deS" class="wolai-block wolai-text"><div><span class="inline-wrap">在</span><span class="red inline-wrap"><b>减轻</b></span><span class="inline-wrap">阶段，</span><span class="yellow inline-wrap">使用检索到的知识作为证据修复幻觉句子。将修复的句子附加到输入（和之前生成的句子）上，并继续生成下一个句子</span><span class="inline-wrap">。这个过程不仅减轻了检测到的幻觉，而且还阻止了其在后续生成的句子中的传播。</span></div></div><h4 id="9CDUe8LfJxVD8dRU9tXuep" class="wolai-block"><span class="inline-wrap">7.2 事实核心采样</span></h4><div id="hSjDjNzvMot7ccU9KjEkhN" class="wolai-block wolai-text"><div><span class="inline-wrap">《Factuality Enhanced Language Models for Open-Ended Text Generation》</span></div></div><div id="2WMWvh1e7RaZsEyW8FwiZu" class="wolai-block wolai-text"><div><span class="inline-wrap">在这种方法中，作者认为，</span><span class="red inline-wrap"><b>采样的“随机性”在用于生成句子的后半部分时，对事实性的损害比在句子的开头更大</b></span><span class="inline-wrap">。因为在句子的开始没有前文，所以只要它在语法和上下文上是正确的，LM<span class="jill"></span>就可以生成任何内容。然而，随着生成的进行，前提变得更为确定，只有更少的单词选择可以使句子成为事实。因此，他们引入了事实核心采样算法，该算法在生成每个句子时动态调整“核心”p。在事实核心采样中，生成每个句子的第<span class="jill"></span>t<span class="jill"></span>个标记的核心概率<span class="jill"></span>pt<span class="jill"></span>为,</span></div></div><div id="wbFTeM9GfSrGiVPobk9HZY" class="wolai-block wolai-text"><div><span class="inline-wrap">其中，λ<span class="jill"></span>是<span class="jill"></span>top-p<span class="jill"></span>概率的衰减因子，ω<span class="jill"></span>是概率的下限衰减。</span></div></div><h4 id="4YhnT89whR3dazfT3vksbu" class="wolai-block"><span class="inline-wrap">7.3 SelfCheckGPT</span></h4><div id="czqzd4fKxEfAFSCgVoeGsr" class="wolai-block wolai-text"><div><span class="inline-wrap">SelfCheckGPT<span class="jill"></span>的主要思想是：</span><span class="red inline-wrap">如果模型真的掌握某个事实，那么多次生成的结果应该是相似的且事实一致的</span><span class="inline-wrap">；</span><span class="red inline-wrap">相反，如果模型在胡扯，那么随机采样多次的结果会发散甚至矛盾</span><span class="inline-wrap">。</span></div></div><div id="6Eef2iWhFcBkJ4JiL9Mrcu" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image_1.png" style="width: 100%"/></figure></div><div id="kfvBnymENzqGzJepK6cTpq" class="wolai-block wolai-text"><div><span class="inline-wrap">因此，他们</span><span class="yellow inline-wrap">从模型中采样多个<span class="jill"></span>response（比如通过变化温度参数）并测量不同<span class="jill"></span>response<span class="jill"></span>之间的信息一致性，以确定哪些声明是事实</span><span class="inline-wrap">，哪些是幻觉。这种信息一致性可以使用各种方法计算，比如可以使用神经方法计算语义等价（如<span class="jill"></span>BERTScore）或使用<span class="jill"></span>IE/QA-based<span class="jill"></span>方法。</span></div></div><h3 id="dZmaoEWVga5eB9uLrSkodt" class="wolai-block"><span class="inline-wrap">8.LLMs<span class="jill"></span>什么时候最容易产生幻觉？</span></h3><ul class="wolai-block"><li id="8ayNYDJciZdUQYNroZQhWv"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>数值混淆</b></span><span class="inline-wrap">：当<span class="jill"></span>LLM<span class="jill"></span>处理与数字有关的文本，如日期或数值时，容易产生幻觉。  </span></li><li id="4QVDAjfyBzP7nqRc3ynoye"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>处理长文本</b></span><span class="inline-wrap">：在需要解读长期依赖关系的任务中，例如文档摘要或长对话历史，模型可能会生成自相矛盾的内容。  </span></li><li id="7qQJokyRsKsKkwf1LU7dsY"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>逻辑推断障碍</b></span><span class="inline-wrap">：若模型误解了源文本中的信息，它有可能产生不准确的结论。因此，模型的逻辑推理能力至关重要。  </span></li><li id="63rVt4rmkBLBMxQKLN672Q"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>上下文与内置知识的冲突</b></span><span class="inline-wrap">：模型在处理信息时，可能会过度依赖于预训练阶段获取的知识，而忽略实际上下文，导致输出不准确。  </span></li><li id="roPKNPyWKjByFMKHvT9c8M"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>错误的上下文信息</b></span><span class="inline-wrap">：当给定的上下文包含错误信息或基于错误的假设时（如：“为什么高尔夫球比篮球大？”或“氦的原子序数为什么是<span class="jill"></span>1？”），模型可能无法识别这些错误，并在其回答中产生幻觉。</span></li></ul><div id="fx3Cf3kUf2EDWoHaXFPFiP" class="wolai-block wolai-text"><div><span class="inline-wrap">参考资料：</span></div></div><ul class="wolai-block"><li id="9WGs6G5hGyNacSiMnqqGKi"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><a target="_blank" rel="noopener" href="https://medium.com/mlearning-ai/the-hallucination-problem-of-large-language-models-5d7ab1b0f37f"><span>The Hallucination Problem of Large Language Models</span></a></span></li><li id="3pozixsh1XFVzhMNB8Wc1J"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/651507945"><span>七问大模型幻觉</span></a></span></li><li id="ffzQyA5BBojmAVbiXx5fwE"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/651456773"><span>大模型幻觉的原因及解决方案</span></a></span></li></ul><div id="4cBWm6tjFvRAsy6QLkR8dD" class="wolai-block wolai-text"><div><span class="inline-wrap"></span><br/></div></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dongnian</div><div class="author-info__description">A salty fish swimming in the sea of deep learning!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#rn3WhoZrzE2BSrendTVgYb"><span class="toc-text">1.什么是大模型幻觉？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4DZZtGQzAWqjbkWuYijYHn"><span class="toc-text">2.为什么需要解决LLM的幻觉问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eL3792bQ75bfZyvibWwoe9"><span class="toc-text">3.幻觉一定是有害的吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xjrq8SSvztGtbDEx7CAU93"><span class="toc-text">4.幻觉有哪些不同类型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#geCkLVQGXFUHNY7HLTLDKo"><span class="toc-text">5.为什么LLM会产生幻觉？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2fbRFiYJxtCuCoMKnbw5GY"><span class="toc-text">6.如何度量幻觉？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iaGGk5Jv3WoMe4kCXeujHi"><span class="toc-text">7.如何缓解LLM幻觉？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fMRvzeJsziLK2anANTTAiN"><span class="toc-text">7.1 通过使用外部知识验证主动检测和减轻幻觉</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9CDUe8LfJxVD8dRU9tXuep"><span class="toc-text">7.2 事实核心采样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4YhnT89whR3dazfT3vksbu"><span class="toc-text">7.3 SelfCheckGPT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dZmaoEWVga5eB9uLrSkodt"><span class="toc-text">8.LLMs什么时候最容易产生幻觉？</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PL/"><span class="card-category-list-name">PL</span><span class="card-category-list-count">7</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.42em; color: rgb(175, 29, 143)">DSA</a><a href="/tags/RL/" style="font-size: 1.27em; color: rgb(30, 136, 31)">RL</a><a href="/tags/Transformer/" style="font-size: 1.45em; color: rgb(102, 5, 35)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.33em; color: rgb(178, 178, 189)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.39em; color: rgb(113, 13, 93)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.24em; color: rgb(117, 14, 69)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.15em; color: rgb(9, 75, 157)">CV</a><a href="/tags/GPT/" style="font-size: 1.18em; color: rgb(16, 40, 145)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(15, 57, 48)">PL</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.27em; color: rgb(119, 81, 68)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.27em; color: rgb(144, 194, 169)">热搜</a><a href="/tags/GitHub/" style="font-size: 1.3em; color: rgb(108, 156, 55)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.3em; color: rgb(105, 57, 107)">Trending</a><a href="/tags/leetcode/" style="font-size: 1.36em; color: rgb(34, 144, 52)">leetcode</a><a href="/tags/algo/" style="font-size: 1.15em; color: rgb(71, 134, 64)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">114</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">427.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-12T01:03:37.698Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Dongnian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
