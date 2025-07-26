@@ -1,0 +1,643 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="7.线程 - wolai 笔记1.线程概述线程是轻量级的进程（LWP：light weight process），在Linux环境下线程的本质仍是进程。在计算机上运行的程序是一组指令及指令参数的组合，指令按照既定的逻辑控制计算机运行。操作系统会以进程为单位，分配系统资源，可以这样理解，进程是资源分配的最小单位，线程是操作系统调度执行的最小单位。先从概念上了解一下线程和进程之间的区别：进程有自己独">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/linux/thread/7.%E7%BA%BF%E7%A8%8B/7.%E7%BA%BF%E7%A8%8B.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="7.线程 - wolai 笔记1.线程概述线程是轻量级的进程（LWP：light weight process），在Linux环境下线程的本质仍是进程。在计算机上运行的程序是一组指令及指令参数的组合，指令按照既定的逻辑控制计算机运行。操作系统会以进程为单位，分配系统资源，可以这样理解，进程是资源分配的最小单位，线程是操作系统调度执行的最小单位。先从概念上了解一下线程和进程之间的区别：进程有自己独">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-07-26T01:41:01.939Z">
+<meta property="article:modified_time" content="2025-07-26T01:41:01.939Z">
+<meta property="article:author" content="Firefly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/linux/thread/7.%E7%BA%BF%E7%A8%8B/7.%E7%BA%BF%E7%A8%8B.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-26 09:41:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">170</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../css/wolai.css"/><title>7.线程 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="7.线程" class="main-title"></div></div></header><article><h1 id="h7ttxnJFSkKjELyE8eCk9b" class="wolai-block"><span class="inline-wrap">1.线程概述</span></h1><div id="ut5cTfTjtYrUPTv7bRhKLP" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>线程是轻量级的进程（LWP：light weight process），在<span class="jill"></span>Linux<span class="jill"></span>环境下线程的本质仍是进程</b></span><span class="inline-wrap">。在计算机上运行的程序是一组指令及指令参数的组合，指令按照既定的逻辑控制计算机运行。操作系统会以进程为单位，分配系统资源，可以这样理解，</span><span class="red inline-wrap"><b>进程是资源分配的最小单位，线程是操作系统调度执行的最小单位。</b></span></div></div><div id="9KZq17xENcD86eJ8uawv2h" class="wolai-block wolai-text"><div><span class="inline-wrap">先从概念上了解一下线程和进程之间的区别：</span></div></div><ul class="wolai-block"><li id="LsP1zvzGzWRDHgcCM14Lg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>进程有自己独立的地址空间, 多个线程共用同一个地址空间</b></span><ul class="wolai-block"><li id="e1gXKk1asfENiSjkystrY1"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">线程更加节省系统资源, 效率不仅可以保持的, 而且能够更高</span></li><li id="foNz8r9cao8h49sx1SFawG"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">在一个地址空间中多个线程独享: 每个线程都有属于自己的栈区, 寄存器(内核中管理的)</span></li><li id="i3bwX1S6j6vRvLMQCHnRrN"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">在一个地址空间中多个线程共享: 代码段, 堆区, 全局数据区, 打开的文件(文件描述符表)都是线程共享的</span></li></ul></li><li id="qnRxAf7esc7gQBVjWnPEdD"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>线程是程序的最小执行单位, 进程是操作系统中最小的资源分配单位</b></span><ul class="wolai-block"><li id="5SRCT9FPJYAvS8X4mQWa4s"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">每个进程对应一个虚拟地址空间，一个进程只能抢一个<span class="jill"></span>CPU<span class="jill"></span>时间片</span></li><li id="pZmFRVCMVgti5pB1VcSTYh"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">一个地址空间中可以划分出多个线程, 在有效的资源基础上, 能够抢更多的<span class="jill"></span>CPU<span class="jill"></span>时间片</span></li></ul><div id="m7tuk5hETm9Ui3hnbBsmq4" class="wolai-block"><figure class="wolai-left" style="width: 100%"><img src="https://subingwen.cn/linux/thread/1048430-20170710134655212-558296442.png" style="width: 558.6666666666666px"/></figure></div></li><li id="4CP7iqE4jpBXZj1RZ3UuqA"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap"><b>CPU<span class="jill"></span>的调度和切换: 线程的上下文切换比进程要快的多</b></span><div id="jX1iEJeX5K4Cuh71uJMEFv" class="wolai-block wolai-text"><div><span class="inline-wrap">上下文切换：进程/线程分时复用<span class="jill"></span>CPU<span class="jill"></span>时间片，在切换之前会将上一个任务的状态进行保存, 下次切换回这个任务的时候, 加载这个状态继续运行，</span><span class="red inline-wrap">任务从保存到再次加载这个过程就是一次上下文切换</span><span class="inline-wrap">。</span></div></div></li><li id="k9EzpVeak7Q3fmkwaUV1YH"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">线程更加廉价, 启动速度更快, 退出也快, 对系统资源的冲击小。</span></li></ul><div id="qLeGzuoKwPykhbfPBFUkK" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>在处理多任务程序的时候使用多线程比使用多进程要更有优势</b></span><span class="inline-wrap">，但是线程并不是越多越好，如何控制线程的个数呢？</span></div></div><ol class="wolai-block"><li id="hX4o6k5X1e2KCcXxPGRqNo"><div class="marker"></div><span class="inline-wrap">文件<span class="jill"></span>IO<span class="jill"></span>操作：文件<span class="jill"></span>IO<span class="jill"></span>对<span class="jill"></span>CPU<span class="jill"></span>是使用率不高, 因此可以分时复用<span class="jill"></span>CPU<span class="jill"></span>时间片, 线</span><span class="red inline-wrap"><code>程的个数 = 2 * CPU<span class="jill"></span>核心数 (效率最高)</code></span></li><li id="rP8EXMTnh2RkS1SwGa65CZ"><div class="marker"></div><span class="inline-wrap">处理复杂的算法(主要是<span class="jill"></span>CPU<span class="jill"></span>进行运算, 压力大)，</span><span class="red inline-wrap"><code>线程的个数 = CPU<span class="jill"></span>的核心数 (效率最高)</code></span></li></ol><h1 id="oi4wTkLxdpgqaEEUkrPHCd" class="wolai-block"><span class="inline-wrap">2.创建线程</span></h1><h2 id="nS1GN4EB3FBDxPv177WvjP" class="wolai-block"><span class="inline-wrap">2.1 线程函数</span></h2><div id="pAggR7wcYPcsXbzq8HXwsE" class="wolai-block wolai-text"><div><span class="inline-wrap">每一个线程都有一个唯一的线程<span class="jill"></span>ID，ID<span class="jill"></span>类型为</span><span class="inline-wrap"><code>pthread_t</code></span><span class="inline-wrap">，这个<span class="jill"></span>ID<span class="jill"></span>是一个无符号长整形数，如果想要得到当前线程的线程<span class="jill"></span>ID，可以调用如下函数：</span></div></div><code-block id="aGA7DH6KrDRMwQERtvGsBa" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token class-name">pthread_t</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 返回当前线程的线程ID</span></pre></div></code-block><div id="fDFu1eSt8N972x6NPFHNzZ" class="wolai-block wolai-text"><div><span class="inline-wrap">在一个进程中调用线程创建函数，就可得到一个子线程，和进程不同，需要给每一个创建出的线程指定一个处理函数，否则这个线程无法工作。</span></div></div><code-block id="nooWs4d4zuVKHjZViM7Jx7" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+<span class="token keyword">int</span> <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token class-name">pthread_t</span> <span class="token operator">*</span>thread<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token class-name">pthread_attr_t</span> <span class="token operator">*</span>attr<span class="token punctuation">,</span>
+                   <span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">*</span>start_routine<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Compile and link with -pthread, 线程库的名字叫pthread, 全名: libpthread.so libptread.a</span>
+</pre></div></code-block><ul class="wolai-block"><li id="scDUs9cssiqZFPhRUxb7qm"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数:</span><ul class="wolai-block"><li id="c2486bjZLXQFWjk5GtagHY"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>thread</code></span><span class="inline-wrap">: 传出参数，是无符号长整形数，线程创建成功, 会将线程<span class="jill"></span>ID<span class="jill"></span>写入到这个指针指向的内存中</span></li><li id="rFUnsCrwBF9S1ftQb2nXgo"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>attr</code></span><span class="inline-wrap">: 线程的属性, 一般情况下使用默认属性即可, 写<span class="jill"></span>NULL</span></li><li id="mSPHoVyG2JudoYide6qDQQ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>start_routine</code></span><span class="inline-wrap">: 函数指针，创建出的子线程的处理动作，也就是该函数在子线程中执行。</span></li><li id="oDSHF7hPJQxV5uW8bDYvZZ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>arg</code></span><span class="inline-wrap">: 作为实参传递到 start_routine 指针指向的函数内部</span></li></ul></li><li id="9RjfzGA49Wr7Tyuh2KcA8C"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值：线程创建成功返回<span class="jill"></span>0，创建失败返回对应的错误号</span></li></ul><h2 id="jLHmpxJkdMTiKh3v2T6arE" class="wolai-block"><span class="inline-wrap">2.2 创建线程</span></h2><div id="4bSPsJF66MU6sevDudirWL" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是创建线程的示例代码，在创建过程中一定要保证编写的线程函数与规定的函数指针类型一致：</span><span class="inline-wrap"><code>void *(*start_routine) (void *)</code></span><span class="inline-wrap">:</span></div></div><code-block id="wrzqxADa6nkECmVUays42w" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// pthread_create.c </span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+
+<span class="token comment">// 子线程的处理代码</span>
+<span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">working</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> arg<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是子线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"child == i: = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建一个子线程</span>
+    <span class="token class-name">pthread_t</span> tid<span class="token punctuation">;</span>
+    <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>tid<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> working<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程创建成功, 线程ID: %ld\n"</span><span class="token punctuation">,</span> tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2. 子线程不会执行下边的代码, 主线程执行</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是主线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token comment">// 休息, 休息一会儿...</span>
+    <span class="token comment">// sleep(1);</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><div id="v9ffrCutmHRSghPqdCNEFb" class="wolai-block wolai-text"><div><span class="inline-wrap">编译测试程序，会看到如下错误信息：</span></div></div><code-block id="sdQdpqV5SFEKTgjc3mN8dE" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ gcc pthread_create.c 
+/tmp/cctkubA6.o: In <span class="token keyword">function</span> <span class="token variable"><span class="token variable">`</span>main':
+pthread_create.c:<span class="token punctuation">(</span>.text+0x7f<span class="token punctuation">)</span>: undefined reference to <span class="token variable">`</span></span>pthread_create'
+collect2: error: ld returned <span class="token number">1</span> <span class="token builtin class-name">exit</span> status</pre></div></code-block><div id="nCK4aZkvqDJsNQYKujz4JS" class="wolai-block wolai-text"><div><span class="red inline-wrap">错误原因是因为编译器链接不到线程库文件（动态库），需要在编译的时候通过参数指定出来</span><span class="inline-wrap">，动态库名为 </span><span class="inline-wrap"><code>libpthread.so</code></span><span class="inline-wrap">需要使用的参数为 </span><span class="inline-wrap"><code>-l</code></span><span class="inline-wrap">，根据规则掐头去尾最终形态应该写成：</span><span class="inline-wrap"><code>-lpthread（参数和参数值中间可以有空格）</code></span><span class="inline-wrap">。正确的编译命令为：</span></div></div><code-block id="6Qyy1MHCsNSCS38PFweHuG" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token comment"># pthread_create 函数的定义在某一个库中, 编译的时候需要加库名 pthread</span>
+$ gcc pthread_create.c <span class="token parameter variable">-lpthread</span>
+$ ./a.out 
+子线程创建成功, 线程ID: <span class="token number">139712560109312</span>
+我是主线程, 线程ID: <span class="token number">139712568477440</span>
+i <span class="token operator">=</span> <span class="token number">0</span>
+i <span class="token operator">=</span> <span class="token number">1</span>
+i <span class="token operator">=</span> <span class="token number">2</span></pre></div></code-block><div id="frZnxnToyALfBTGCLo1mym" class="wolai-block wolai-text"><div><span class="inline-wrap">在打印的日志输出中为什么子线程处理函数没有执行完毕呢（只看到了子线程的部分日志输出）？主线程一直在运行, 执行期间创建出了子线程，说明主线程有<span class="jill"></span>CPU<span class="jill"></span>时间片, 在这个时间片内将代码执行完毕了, 主线程就退出了。</span><span class="red inline-wrap"><b>子线程被创建出来之后需要抢<span class="jill"></span>cpu<span class="jill"></span>时间片, 抢不到就不能运行，如果主线程退出了, 虚拟地址空间就被释放了, 子线程就一并被销毁了。但是如果某一个子线程退出了, 主线程仍在运行, 虚拟地址空间依旧存在。</b></span></div></div><div id="q1ug5krSQbry9ZQjYWtj4y" class="wolai-block wolai-text"><div><span class="inline-wrap">得到的结论：</span><span class="red inline-wrap"><b>在没有人为干预的情况下，虚拟地址空间的生命周期和主线程是一样的，与子线程无关。</b></span></div></div><div id="ijHkyLxqFtV1WvtcCWv25Y" class="wolai-block wolai-text"><div><span class="inline-wrap">目前的解决方案: 让子线程执行完毕, 主线程再退出, 可以在主线程中添加挂起函数 </span><span class="inline-wrap"><code>sleep();</code></span></div></div><h1 id="3BptRY7LwJ5D51qXFxMi8o" class="wolai-block"><span class="inline-wrap">3.线程退出</span></h1><div id="sy5dPmYP7sh3zpWDiaJLhK" class="wolai-block wolai-text"><div><span class="inline-wrap">在编写多线程程序的时候，如果想要让线程退出，但是不会导致虚拟地址空间的释放（针对于主线程），我们就可以调用线程库中的线程退出函数，</span><span class="red inline-wrap"><b>只要调用该函数当前线程就马上退出了，并且不会影响到其他线程的正常运行，不管是在子线程或者主线程中都可以使用。</b></span></div></div><code-block id="wp7SyAjrXxUY18HQZ4CfCD" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+<span class="token keyword">void</span> <span class="token function">pthread_exit</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>retval<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><ul class="wolai-block"><li id="bY3JJXWAm1FfZ5THnnTYDn"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数: 线程退出的时候携带的数据，当前子线程的主线程会得到该数据。如果不需要使用，指定为<span class="jill"></span>NULL</span></li></ul><div id="qANPN94k8x2YahKV5Fzvow" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是线程退出的示例代码，可以在任意线程的需要的位置调用该函数：</span></div></div><code-block id="8fJYHjqHBPULWPCyKvZKGj" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+
+<span class="token comment">// 子线程的处理代码</span>
+<span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">working</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> arg<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是子线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">==</span><span class="token number">6</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">pthread_exit</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 直接退出子线程</span>
+        <span class="token punctuation">&#125;</span> 
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"child == i: = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建一个子线程</span>
+    <span class="token class-name">pthread_t</span> tid<span class="token punctuation">;</span>
+    <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>tid<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> working<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程创建成功, 线程ID: %ld\n"</span><span class="token punctuation">,</span> tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2. 子线程不会执行下边的代码, 主线程执行</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是主线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 主线程调用退出函数退出, 地址空间不会被释放</span>
+    <span class="token function">pthread_exit</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h1 id="ePjDffN5oUszhPZvVYQ9La" class="wolai-block"><span class="inline-wrap">4.线程回收</span></h1><h2 id="wkAdAEiruwFgqBKRbYYW19" class="wolai-block"><span class="inline-wrap">4.1 线程函数</span></h2><div id="rnoWshLkFqSWTKgL8rk5gL" class="wolai-block wolai-text"><div><span class="inline-wrap">线程和进程一样，子线程退出的时候其内核资源主要由主线程回收，线程库中提供的线程回收函叫做</span><span class="inline-wrap"><code>pthread_join()</code></span><span class="inline-wrap">，这个函数是一个阻塞函数，</span><span class="red inline-wrap">如果还有子线程在运行，调用该函数就会阻塞，子线程退出函数解除阻塞进行资源的回收，函数被调用一次，只能回收一个子线程，如果有多个子线程则需要循环进行回收。</span></div></div><div id="khCobrYpbubCGmpyraiDxa" class="wolai-block wolai-text"><div><span class="inline-wrap">另外通过线程回收函数还可以获取到子线程退出时传递出来的数据，函数原型如下：</span></div></div><code-block id="mjHvid8oZXYWejyNoq32SH" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+<span class="token comment">// 这是一个阻塞函数, 子线程在运行这个函数就阻塞</span>
+<span class="token comment">// 子线程退出, 函数解除阻塞, 回收对应的子线程资源, 类似于回收进程使用的函数 wait()</span>
+<span class="token keyword">int</span> <span class="token function">pthread_join</span><span class="token punctuation">(</span><span class="token class-name">pthread_t</span> thread<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span><span class="token operator">*</span>retval<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block><ul class="wolai-block"><li id="iLUdio5LW6Jn9TawvS9fXd"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数:</span><ul class="wolai-block"><li id="hsQMS9Ncw8P1rZ767Jvwvh"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>thread</code></span><span class="inline-wrap">: 要被回收的子线程的线程<span class="jill"></span>ID</span></li><li id="oeskiBLtd4CTMpEy9g5KXg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>retval</code></span><span class="inline-wrap">: 二级指针, 指向一级指针的地址, 是一个传出参数, 这个地址中存储了</span><span class="inline-wrap"><code>pthread_exit() </code></span><span class="inline-wrap">传递出的数据，如果不需要这个参数，可以指定为<span class="jill"></span>NULL</span></li></ul></li><li id="pjme3AqoVVDdzJerGVXdjC"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值：线程回收成功返回<span class="jill"></span>0，回收失败返回错误号。</span></li></ul><h2 id="66FqLvtBYwGtkJ5y1vMGHD" class="wolai-block"><span class="inline-wrap">4.2 回收子线程数据</span></h2><div id="2k45ZZDFTxRDMRNpq2NFJj" class="wolai-block wolai-text"><div><span class="inline-wrap">在子线程退出的时候可以使用</span><span class="inline-wrap"><code>pthread_exit()</code></span><span class="inline-wrap">的参数将数据传出，在回收这个子线程的时候可以通过</span><span class="inline-wrap"><code>phread_join()</code></span><span class="inline-wrap">的第二个参数来接收子线程传递出的数据。接收数据有很多种处理方式，下面来列举几种：</span></div></div><h3 id="bShVPin8w2CyZXyzmfUMAL" class="wolai-block"><span class="inline-wrap">（1）使用子线程栈</span></h3><div id="hXUH8VNRWRYtmexsAiZi9k" class="wolai-block wolai-text"><div><span class="inline-wrap">通过函数</span><span class="inline-wrap"><code>pthread_exit(void *retval);</code></span><span class="inline-wrap">可以得知，子线程退出的时候，需要将数据记录到一块内存中，通过参数传出的是存储数据的内存的地址，而不是具体数据，由因为参数是</span><span class="inline-wrap"><code>void*</code></span><span class="inline-wrap">类型，所有这个万能指针可以指向任意类型的内存地址。先来看第一种方式，将子线程退出数据保存在子线程自己的栈区：</span></div></div><code-block id="gatmAsN5goZxr5PvanSTPX" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// pthread_join.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+
+<span class="token comment">// 定义结构</span>
+<span class="token keyword">struct</span> <span class="token class-name">Persion</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">36</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 子线程的处理代码</span>
+<span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">working</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> arg<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是子线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"child == i: = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token number">6</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">struct</span> <span class="token class-name">Persion</span> p<span class="token punctuation">;</span>
+            p<span class="token punctuation">.</span>age  <span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">;</span>
+            <span class="token function">strcpy</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token string">"tom"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            p<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+            <span class="token comment">// 该函数的参数将这个地址传递给了主线程的pthread_join()</span>
+            <span class="token function">pthread_exit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>  <span class="token comment">// 代码执行不到这个位置就退出了</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建一个子线程</span>
+    <span class="token class-name">pthread_t</span> tid<span class="token punctuation">;</span>
+    <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>tid<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> working<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程创建成功, 线程ID: %ld\n"</span><span class="token punctuation">,</span> tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2. 子线程不会执行下边的代码, 主线程执行</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是主线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 阻塞等待子线程退出</span>
+    <span class="token keyword">void</span><span class="token operator">*</span> ptr <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token comment">// ptr是一个传出参数, 在函数内部让这个指针指向一块有效内存</span>
+    <span class="token comment">// 这个内存地址就是pthread_exit() 参数指向的内存</span>
+    <span class="token function">pthread_join</span><span class="token punctuation">(</span>tid<span class="token punctuation">,</span> <span class="token operator">&amp;</span>ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 打印信息</span>
+    <span class="token keyword">struct</span> <span class="token class-name">Persion</span><span class="token operator">*</span> pp <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">Persion</span><span class="token operator">*</span><span class="token punctuation">)</span>ptr<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程返回数据: name: %s, age: %d, id: %d\n"</span><span class="token punctuation">,</span> pp<span class="token operator">-></span>name<span class="token punctuation">,</span> pp<span class="token operator">-></span>age<span class="token punctuation">,</span> pp<span class="token operator">-></span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程资源被成功回收...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><div id="8gLVw17SeseLCJj6bKMuhV" class="wolai-block wolai-text"><div><span class="inline-wrap">编译并执行测试程序:</span></div></div><code-block id="aK7z3mR8Y4GdUtrMRHgEzm" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token comment"># 编译代码</span>
+$ gcc pthread_join.c <span class="token parameter variable">-lpthread</span>
+<span class="token comment"># 执行程序</span>
+$ ./a.out 
+子线程创建成功, 线程ID: <span class="token number">140652794640128</span>
+我是主线程, 线程ID: <span class="token number">140652803008256</span>
+i <span class="token operator">=</span> <span class="token number">0</span>
+i <span class="token operator">=</span> <span class="token number">1</span>
+i <span class="token operator">=</span> <span class="token number">2</span>
+我是子线程, 线程ID: <span class="token number">140652794640128</span>
+child <span class="token operator">==</span> i: <span class="token operator">=</span> <span class="token number">0</span>
+child <span class="token operator">==</span> i: <span class="token operator">=</span> <span class="token number">1</span>
+child <span class="token operator">==</span> i: <span class="token operator">=</span> <span class="token number">2</span>
+child <span class="token operator">==</span> i: <span class="token operator">=</span> <span class="token number">3</span>
+child <span class="token operator">==</span> i: <span class="token operator">=</span> <span class="token number">4</span>
+child <span class="token operator">==</span> i: <span class="token operator">=</span> <span class="token number">5</span>
+child <span class="token operator">==</span> i: <span class="token operator">=</span> <span class="token number">6</span>
+子线程返回数据: name: , age: <span class="token number">0</span>, id: <span class="token number">0</span>
+子线程资源被成功回收<span class="token punctuation">..</span>.</pre></div></code-block><div id="mHQpUEPv8NQfToKbQ8GLaL" class="wolai-block wolai-text"><div><span class="inline-wrap">通过打印的日志可以发现，在主线程中没有没有得到子线程返回的数据信息，具体原因是这样的：</span></div></div><div id="uTxCpK9NgG21MwCssHPBJw" class="wolai-block wolai-text"><div><span class="red inline-wrap">如果多个线程共用同一个虚拟地址空间，每个线程在栈区都有一块属于自己的内存，相当于栈区被这几个线程平分了，当线程退出，线程在栈区的内存也就被回收了，因此随着子线程的退出，写入到栈区的数据也就被释放了。</span></div></div><h3 id="zz3ZottKRzrEc8Gohq4rD" class="wolai-block"><span class="inline-wrap">（2）使用全局变量</span></h3><div id="aU491wpmQjXeeuieGys8se" class="wolai-block wolai-text"><div><span class="inline-wrap">位于同一虚拟地址空间中的线程，虽然</span><span class="red inline-wrap">不能共享栈区数据，但是可以共享全局数据区和堆区数据</span><span class="inline-wrap">，因此在子线程退出的时候可以将传出数据存储到全局变量、静态变量或者堆内存中。在下面的例子中将数据存储到了全局变量中：</span></div></div><code-block id="88U2r6hk1q5vABCAa4GFJX" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+
+<span class="token comment">// 定义结构</span>
+<span class="token keyword">struct</span> <span class="token class-name">Persion</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">36</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">Persion</span> p<span class="token punctuation">;</span>  <span class="token comment">// 定义全局变量</span>
+
+<span class="token comment">// 子线程的处理代码</span>
+<span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">working</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> arg<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是子线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"child == i: = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token number">6</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 使用全局变量</span>
+            p<span class="token punctuation">.</span>age  <span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">;</span>
+            <span class="token function">strcpy</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token string">"tom"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            p<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+            <span class="token comment">// 该函数的参数将这个地址传递给了主线程的pthread_join()</span>
+            <span class="token function">pthread_exit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建一个子线程</span>
+    <span class="token class-name">pthread_t</span> tid<span class="token punctuation">;</span>
+    <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>tid<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> working<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程创建成功, 线程ID: %ld\n"</span><span class="token punctuation">,</span> tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2. 子线程不会执行下边的代码, 主线程执行</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是主线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 阻塞等待子线程退出</span>
+    <span class="token keyword">void</span><span class="token operator">*</span> ptr <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token comment">// ptr是一个传出参数, 在函数内部让这个指针指向一块有效内存</span>
+    <span class="token comment">// 这个内存地址就是pthread_exit() 参数指向的内存</span>
+    <span class="token function">pthread_join</span><span class="token punctuation">(</span>tid<span class="token punctuation">,</span> <span class="token operator">&amp;</span>ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 打印信息</span>
+    <span class="token keyword">struct</span> <span class="token class-name">Persion</span><span class="token operator">*</span> pp <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">Persion</span><span class="token operator">*</span><span class="token punctuation">)</span>ptr<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"name: %s, age: %d, id: %d\n"</span><span class="token punctuation">,</span> pp<span class="token operator">-></span>name<span class="token punctuation">,</span> pp<span class="token operator">-></span>age<span class="token punctuation">,</span> pp<span class="token operator">-></span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程资源被成功回收...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h3 id="vgpUByYNXrPpiHUXhNNkHQ" class="wolai-block"><span class="inline-wrap">（3）使用主线程栈</span></h3><div id="iFonmEW3gpHV789PLUor4f" class="wolai-block wolai-text"><div><span class="inline-wrap">虽然每个线程都有属于自己的栈区空间，但是</span><span class="red inline-wrap">位于同一个地址空间的多个线程是可以相互访问对方的栈空间上的数据的</span><span class="inline-wrap">。由于很多情况下还需要在主线程中回收子线程资源，所以主线程一般都是最后退出，基于这个原因在下面的程序中将子线程返回的数据保存到了主线程的栈区内存中：</span></div></div><code-block id="dPDyE8UhXjqvNaAomfJJF7" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+
+<span class="token comment">// 定义结构</span>
+<span class="token keyword">struct</span> <span class="token class-name">Persion</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">36</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">// 子线程的处理代码</span>
+<span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">working</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> arg<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">Persion</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">Persion</span><span class="token operator">*</span><span class="token punctuation">)</span>arg<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是子线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"child == i: = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token number">6</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 使用主线程的栈内存</span>
+            p<span class="token operator">-></span>age  <span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">;</span>
+            <span class="token function">strcpy</span><span class="token punctuation">(</span>p<span class="token operator">-></span>name<span class="token punctuation">,</span> <span class="token string">"tom"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            p<span class="token operator">-></span>id <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+            <span class="token comment">// 该函数的参数将这个地址传递给了主线程的pthread_join()</span>
+            <span class="token function">pthread_exit</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建一个子线程</span>
+    <span class="token class-name">pthread_t</span> tid<span class="token punctuation">;</span>
+
+    <span class="token keyword">struct</span> <span class="token class-name">Persion</span> p<span class="token punctuation">;</span>
+    <span class="token comment">// 主线程的栈内存传递给子线程</span>
+    <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>tid<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> working<span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程创建成功, 线程ID: %ld\n"</span><span class="token punctuation">,</span> tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2. 子线程不会执行下边的代码, 主线程执行</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是主线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 阻塞等待子线程退出</span>
+    <span class="token keyword">void</span><span class="token operator">*</span> ptr <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token comment">// ptr是一个传出参数, 在函数内部让这个指针指向一块有效内存</span>
+    <span class="token comment">// 这个内存地址就是pthread_exit() 参数指向的内存</span>
+    <span class="token function">pthread_join</span><span class="token punctuation">(</span>tid<span class="token punctuation">,</span> <span class="token operator">&amp;</span>ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 打印信息</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"name: %s, age: %d, id: %d\n"</span><span class="token punctuation">,</span> p<span class="token punctuation">.</span>name<span class="token punctuation">,</span> p<span class="token punctuation">.</span>age<span class="token punctuation">,</span> p<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程资源被成功回收...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><div id="b7qeVke2oZ2W3JML2PCt2C" class="wolai-block wolai-text"><div><span class="inline-wrap">在上面的程序中，调用</span><span class="inline-wrap"><code>pthread_create()</code></span><span class="inline-wrap">创建子线程，并将主线程中栈空间变量</span><span class="inline-wrap"><code>p</code></span><span class="inline-wrap">的地址传递到了子线程中，在子线程中将要传递出的数据写入到了这块内存中。也就是说在程序的</span><span class="inline-wrap"><code>main()</code></span><span class="inline-wrap">函数中，通过指针变量</span><span class="inline-wrap"><code>ptr</code></span><span class="inline-wrap">或者通过结构体变量</span><span class="inline-wrap"><code>p</code></span><span class="inline-wrap">都可以读出子线程传出的数据。</span></div></div><h1 id="bN7S9U7mr2eqGcErCjAcKZ" class="wolai-block"><span class="inline-wrap">5.线程分离</span></h1><div id="sJN7uiWNnLZhTUg3U6JDMN" class="wolai-block wolai-text"><div><span class="inline-wrap">在某些情况下，程序中的主线程有属于自己的业务处理流程，如果让主线程负责子线程的资源回收，调用</span><span class="inline-wrap"><code>pthread_join()</code></span><span class="inline-wrap">只要子线程不退出主线程就会一直被阻塞，主要线程的任务也就不能被执行了。</span></div></div><div id="uAhud4BZVEPA1PiRnSUDXj" class="wolai-block wolai-text"><div><span class="inline-wrap">在线程库函数中为我们提供了线程分离函数</span><span class="inline-wrap"><code>pthread_detach()</code></span><span class="inline-wrap">，调用这个函数之后指定的</span><span class="red inline-wrap">子线程就可以和主线程分离，当子线程退出的时候，其占用的内核资源就被系统的其他进程接管并回收了</span><span class="inline-wrap">。线程分离之后在主线程中使用</span><span class="inline-wrap"><code>pthread_join()</code></span><span class="inline-wrap">就回收不到子线程资源了。</span></div></div><code-block id="e8VqgjUiydoFLfhK2fc9d6" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+<span class="token comment">// 参数就子线程的线程ID, 主线程就可以和这个子线程分离了</span>
+<span class="token keyword">int</span> <span class="token function">pthread_detach</span><span class="token punctuation">(</span><span class="token class-name">pthread_t</span> thread<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><div id="jDVtj5LYsiKBK63CjSrLnM" class="wolai-block wolai-text"><div><span class="inline-wrap">下面的代码中，在主线程中创建子线程，并调用线程分离函数，实现了主线程和子线程的分离：</span></div></div><code-block id="gJUyqzmeveC9dLZL7khbZ4" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+
+<span class="token comment">// 子线程的处理代码</span>
+<span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">working</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> arg<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是子线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"child == i: = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建一个子线程</span>
+    <span class="token class-name">pthread_t</span> tid<span class="token punctuation">;</span>
+    <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>tid<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> working<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程创建成功, 线程ID: %ld\n"</span><span class="token punctuation">,</span> tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2. 子线程不会执行下边的代码, 主线程执行</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是主线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 设置子线程和主线程分离</span>
+    <span class="token function">pthread_detach</span><span class="token punctuation">(</span>tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 让主线程自己退出即可</span>
+    <span class="token function">pthread_exit</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h1 id="szhrQb7b9ed58exkKdGeS9" class="wolai-block"><span class="inline-wrap">6.其他线程函数</span></h1><h2 id="mVMEjHht1eTqfPZXBj5PX9" class="wolai-block"><span class="inline-wrap">6.1 线程取消</span></h2><div id="cPfq6Qu8m2xQn5tt9KVYre" class="wolai-block wolai-text"><div><span class="inline-wrap">线程取消的意思就是在某些特定情况下在一个线程中杀死另一个线程。使用这个函数杀死一个线程需要分两步：</span></div></div><ol class="wolai-block"><li id="h6rSf4YN6tdM96Rcv8VHLx"><div class="marker"></div><span class="inline-wrap">在线程<span class="jill"></span>A<span class="jill"></span>中调用线程取消函数</span><span class="inline-wrap"><code>pthread_cancel</code></span><span class="inline-wrap">，指定杀死线程<span class="jill"></span>B，这时候线程<span class="jill"></span>B<span class="jill"></span>是死不了的</span></li><li id="vEW8i8d44xVVgZCEkHvjtJ"><div class="marker"></div><span class="inline-wrap">在线程<span class="jill"></span>B<span class="jill"></span>中进程一次系统调用（从用户区切换到内核区），否则线程<span class="jill"></span>B<span class="jill"></span>可以一直运行。</span></li></ol><div id="vEzTFGyhL4tzKiCELGJKsS" class="wolai-block wolai-text"><div><span class="inline-wrap">这其实和</span><span class="inline-wrap"><code>七步断肠散</code></span><span class="inline-wrap">、</span><span class="inline-wrap"><code>含笑半步癫</code></span><span class="inline-wrap">的功效是一样的，吃了毒药不动或者不笑也没啥事儿。</span></div></div><code-block id="aWgyNoL98PDnCaEjLmk4cj" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+<span class="token comment">// 参数是子线程的线程ID</span>
+<span class="token keyword">int</span> <span class="token function">pthread_cancel</span><span class="token punctuation">(</span><span class="token class-name">pthread_t</span> thread<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><ul class="wolai-block"><li id="8n4ddvyk36dqHiirmEQTt2"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数：要杀死的线程的线程<span class="jill"></span>ID</span></li><li id="nX12KyMWGSRdvDDHaq73ep"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值：函数调用成功返回<span class="jill"></span>0，调用失败返回非<span class="jill"></span>0<span class="jill"></span>错误号。</span></li></ul><div id="mAb9LW2exwUoYZz6tpWndc" class="wolai-block wolai-text"><div><span class="inline-wrap">在下面的示例代码中，主线程调用线程取消函数，只要在子线程中进行了系统调用，当子线程执行到这个位置就挂掉了。</span></div></div><code-block id="aFX132Vo2QRTn9DFRSBz8m" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+
+<span class="token comment">// 子线程的处理代码</span>
+<span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">working</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> arg<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        j<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 这个函数会调用系统函数, 因此这是个间接的系统调用</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是子线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">" child i: %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建一个子线程</span>
+    <span class="token class-name">pthread_t</span> tid<span class="token punctuation">;</span>
+    <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>tid<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> working<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"子线程创建成功, 线程ID: %ld\n"</span><span class="token punctuation">,</span> tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 2. 子线程不会执行下边的代码, 主线程执行</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"我是主线程, 线程ID: %ld\n"</span><span class="token punctuation">,</span> <span class="token function">pthread_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 杀死子线程, 如果子线程中做系统调用, 子线程就结束了</span>
+    <span class="token function">pthread_cancel</span><span class="token punctuation">(</span>tid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 让主线程自己退出即可</span>
+    <span class="token function">pthread_exit</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><div id="3xgy9jXpBmS6jiWdmte1q7" class="wolai-block wolai-text"><div><span class="inline-wrap">关于系统调用有两种方式：</span></div></div><ol class="wolai-block"><li id="cThnrrWM8XtXjXDhh7GdwE"><div class="marker"></div><span class="inline-wrap">直接调用<span class="jill"></span>Linux<span class="jill"></span>系统函数</span></li><li id="sbnr7QLqZAjENmhgDac2to"><div class="marker"></div><span class="inline-wrap">调用标准<span class="jill"></span>C<span class="jill"></span>库函数，为了实现某些功能，在<span class="jill"></span>Linux<span class="jill"></span>平台下标准<span class="jill"></span>C<span class="jill"></span>库函数会调用相关的系统函数</span></li></ol><h2 id="74oSjYsFf7QiYD1wo9A4ZP" class="wolai-block"><span class="inline-wrap">6.2 线程<span class="jill"></span>ID<span class="jill"></span>比较</span></h2><div id="2pVvVqzGhm8G1M7FC2iN35" class="wolai-block wolai-text"><div><span class="inline-wrap">在<span class="jill"></span>Linux<span class="jill"></span>中线程<span class="jill"></span>ID<span class="jill"></span>本质就是一个无符号长整形，因此可以直接使用比较操作符比较两个线程的<span class="jill"></span>ID，但是线程库是可以跨平台使用的，在某些平台上 </span><span class="inline-wrap"><code>pthread_t</code></span><span class="inline-wrap">可能不是一个单纯的整形，这中情况下比较两个线程的<span class="jill"></span>ID<span class="jill"></span>必须要使用比较函数，函数原型如下：</span></div></div><code-block id="ixpqE5M8ZTLhy68cAEAiK1" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;pthread.h></span></span>
+<span class="token keyword">int</span> <span class="token function">pthread_equal</span><span class="token punctuation">(</span><span class="token class-name">pthread_t</span> t1<span class="token punctuation">,</span> <span class="token class-name">pthread_t</span> t2<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><ul class="wolai-block"><li id="7Ph3gbMzeai3TzSHhrb7Mr"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数：t1 和 t2 是要比较的线程的线程<span class="jill"></span>ID</span></li><li id="iATyUfY3HVJvov4nwTupUg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值：如果两个线程<span class="jill"></span>ID<span class="jill"></span>相等返回非<span class="jill"></span>0<span class="jill"></span>值，如果不相等返回<span class="jill"></span>0</span></li></ul><div id="3eDjVuewgCZgoiF3eZPMUo" class="wolai-block wolai-text"><div><span class="inline-wrap">以上线程函数也可以用于<span class="jill"></span>C++<span class="jill"></span>编程，但是<span class="jill"></span>C++11<span class="jill"></span>中提供了线程类，感兴趣的可以看一下。</span></div></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Firefly</div><div class="author-info__description">A firefly flying freely in the AI domain.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">170</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#h7ttxnJFSkKjELyE8eCk9b"><span class="toc-text">1.线程概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#oi4wTkLxdpgqaEEUkrPHCd"><span class="toc-text">2.创建线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nS1GN4EB3FBDxPv177WvjP"><span class="toc-text">2.1 线程函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jLHmpxJkdMTiKh3v2T6arE"><span class="toc-text">2.2 创建线程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3BptRY7LwJ5D51qXFxMi8o"><span class="toc-text">3.线程退出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ePjDffN5oUszhPZvVYQ9La"><span class="toc-text">4.线程回收</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#wkAdAEiruwFgqBKRbYYW19"><span class="toc-text">4.1 线程函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#66FqLvtBYwGtkJ5y1vMGHD"><span class="toc-text">4.2 回收子线程数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bShVPin8w2CyZXyzmfUMAL"><span class="toc-text">（1）使用子线程栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zz3ZottKRzrEc8Gohq4rD"><span class="toc-text">（2）使用全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vgpUByYNXrPpiHUXhNNkHQ"><span class="toc-text">（3）使用主线程栈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bN7S9U7mr2eqGcErCjAcKZ"><span class="toc-text">5.线程分离</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#szhrQb7b9ed58exkKdGeS9"><span class="toc-text">6.其他线程函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mVMEjHht1eTqfPZXBj5PX9"><span class="toc-text">6.1 线程取消</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#74oSjYsFf7QiYD1wo9A4ZP"><span class="toc-text">6.2 线程ID比较</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">28</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.36em; color: rgb(57, 149, 78)">DSA</a><a href="/tags/RL/" style="font-size: 1.26em; color: rgb(37, 137, 200)">RL</a><a href="/tags/Transformer/" style="font-size: 1.45em; color: rgb(131, 154, 106)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.3em; color: rgb(118, 171, 61)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.34em; color: rgb(156, 130, 176)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.24em; color: rgb(16, 44, 157)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.17em; color: rgb(149, 172, 111)">CV</a><a href="/tags/GPT/" style="font-size: 1.19em; color: rgb(93, 54, 61)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(197, 61, 72)">PL</a><a href="/tags/domain/" style="font-size: 1.15em; color: rgb(21, 112, 163)">domain</a><a href="/tags/github/" style="font-size: 1.15em; color: rgb(171, 23, 0)">github</a><a href="/tags/hf/" style="font-size: 1.15em; color: rgb(46, 170, 170)">hf</a><a href="/tags/weibo/" style="font-size: 1.15em; color: rgb(134, 140, 154)">weibo</a><a href="/tags/ArXiv/" style="font-size: 1.28em; color: rgb(157, 83, 124)">ArXiv</a><a href="/tags/Domain/" style="font-size: 1.28em; color: rgb(38, 143, 139)">Domain</a><a href="/tags/AI/" style="font-size: 1.41em; color: rgb(188, 23, 31)">AI</a><a href="/tags/GitHub/" style="font-size: 1.43em; color: rgb(133, 115, 179)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.43em; color: rgb(126, 69, 69)">Trending</a><a href="/tags/HuggingFace/" style="font-size: 1.28em; color: rgb(113, 100, 78)">HuggingFace</a><a href="/tags/Papers/" style="font-size: 1.28em; color: rgb(0, 186, 7)">Papers</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.39em; color: rgb(153, 197, 39)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.39em; color: rgb(130, 90, 99)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.32em; color: rgb(172, 195, 29)">leetcode</a><a href="/tags/algo/" style="font-size: 1.17em; color: rgb(199, 183, 62)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">170</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">2647.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-26T01:49:49.676Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
