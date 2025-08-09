@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.概念和功能 - wolai 笔记1.概念计算机网络是将一个分散的、具有独立功能的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享个信息传递的系统计算机网络是互连的、自治的计算机集合。互连：通过通信链路互联互通自治：无主从关系2.计算机网络的组成2.1 从组成部分来看一个完整的计算机网络主要由硬件、软件和协议三大部分组成，缺一不可。 硬件：主要由主机(也称端系统)，通信链路">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/cs/cn/ch1%20%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/1.%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8A%9F%E8%83%BD/1.%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8A%9F%E8%83%BD.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="1.概念和功能 - wolai 笔记1.概念计算机网络是将一个分散的、具有独立功能的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享个信息传递的系统计算机网络是互连的、自治的计算机集合。互连：通过通信链路互联互通自治：无主从关系2.计算机网络的组成2.1 从组成部分来看一个完整的计算机网络主要由硬件、软件和协议三大部分组成，缺一不可。 硬件：主要由主机(也称端系统)，通信链路">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-08-09T01:37:51.786Z">
+<meta property="article:modified_time" content="2025-08-09T01:37:51.786Z">
+<meta property="article:author" content="Firefly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/cs/cn/ch1%20%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/1.%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8A%9F%E8%83%BD/1.%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8A%9F%E8%83%BD.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-09 09:37:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">226</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>1.概念和功能 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div data-symbol="🗯️" class="icon"></div></div><div data-title="1.概念和功能" class="main-title"></div></div></header><article><h1 id="sZw5pNDGBR34v1KxgXmYm4" class="wolai-block"><span class="inline-wrap">1.概念</span></h1><div id="s6TybqdZuc1c4z16Fw9mAw" class="wolai-block wolai-text"><div><span class="inline-wrap">计算机网络是将一个分散的、具有独立功能的</span><span class="red inline-wrap"><b>计算机系统</b></span><span class="inline-wrap">，通过</span><span class="red inline-wrap"><b>通信设备</b></span><span class="inline-wrap">与</span><span class="red inline-wrap"><b>线路</b></span><span class="inline-wrap">连接起来，由功能完善的软件实现资源共享个信息传递的系统</span></div></div><div id="nejvjPkhm2n3Eo1wRP2njv" class="wolai-block wolai-text"><div><span class="inline-wrap">计算机网络是</span><span class="red inline-wrap">互连的、自治的计算机集合</span><span class="inline-wrap">。</span></div></div><ul class="wolai-block"><li id="7b65vGpUj89BMctVc8FPNg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">互连：通过通信链路互联互通</span></li><li id="8ysKH5Vt2LaTK9PSqcGMVt"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">自治：无主从关系</span></li></ul><h1 id="n2u7jzPq5YKKGZ1Qz1YqHV" class="wolai-block"><span class="inline-wrap">2.计算机网络的组成</span></h1><h2 id="beeVCKL2dVvSVfVhnmwFjQ" class="wolai-block"><span class="inline-wrap">2.1 从组成部分来看</span></h2><div id="mLaDEWoKF4Xm2Y5GfxrvrP" class="wolai-block wolai-text"><div><span class="inline-wrap">一个完整的计算机网络主要由</span><span class="red inline-wrap">硬件、软件和协议</span><span class="inline-wrap">三大部分组成，缺一不可。
+</span></div></div><ul class="wolai-block"><li id="s7xvS1TJJCZHeXQm18bvKK"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap">硬件</span><span class="inline-wrap">：主要由主机(也称端系统)，通信链路(如双绞线、光纤)、交换设备(如路由、交换机等)和通信处理机(如网卡)等组成</span></li><li id="w5osapx7U7raV8UntZw2E2"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap">软件</span><span class="inline-wrap">：主要包括各种实现资源共享的软件和方便用户使用的各种工具软件(如网络操作系统、邮件收发程序、FTP<span class="jill"></span>程序、聊天程序等)。</span></li><li id="q6UGPFAf7ZnFXeLGuZfEFJ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"> ：是计算机网络的核心，协议规定了网络传输数据时所遵循的规范。就如同我们现实生活中的法律一样，网络世界也必须遵循一定的规则。</span></li></ul><h2 id="oh58XbP76jHkd2bm6Ue5Ho" class="wolai-block"><span class="inline-wrap">2.2 从工作方式来看</span></h2><ul class="wolai-block"><li id="u2DgjzjqFjBdJgDpyoPHFB"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">计算机网络(主要指<span class="jill"></span>Internet)可分为</span><span class="red inline-wrap">边缘部分和核心部分</span><span class="inline-wrap">。</span></li><li id="mZB4RvWZKmBDutuAZdBm8C"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">边缘部分：由所有连接到因特网上、供用户直接使用的主机组成，用来进行通信(如传输数据、音频或视频)和资源共享</span></li><li id="hVJSimpNUUJKDniv4b7YdB"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">核心部分：由大量的网络和连接这些网络的路由器组成，它为边缘部分提供连通性和交换服务。</span></li></ul><div id="2aeeU9BBgKrZrafJcAVnNL" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/image.png" style="width: 100%"/></figure></div><h2 id="rJZmc72Vmm8kQwjphrLYJe" class="wolai-block"><span class="inline-wrap">2.3 从功能组成来看</span></h2><ul class="wolai-block"><li id="iX5rS6zKGJ2FBAppyu51Z5"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">计算机网络由</span><span class="red inline-wrap">通信子网和资源子网</span><span class="inline-wrap">组成</span></li><li id="gqbYgktsviNUrfzWPgwUqJ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">通信子网：由各种传输介质、通信设备和相应的网络协议组成，它使网络具有数据传输、交换、控制和存储的能力，实现计算机之间的</span><span class="inline-wrap"><code>数据通信</code></span></li><li id="h9YRSeDMr9YMo8CBavS1WK"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">资源子网：是实现</span><span class="inline-wrap"><code>资源共享</code></span><span class="inline-wrap">功能的设备及其软件的集合，向网络用户提供共享其他计算机上的硬件资源、软件资源和数据资源的服务</span></li></ul><h1 id="wpe2rjWYuZGCigzhqLy6NB" class="wolai-block"><span class="inline-wrap">3.功能</span></h1><h2 id="j2Ci5zCifgy8Xa3ahCetuZ" class="wolai-block"><span class="inline-wrap">3.1 数据通信</span></h2><div id="7HYwctKq6srZoHbSmTE46s" class="wolai-block wolai-text"><div><span class="red inline-wrap">是计算机网络最基本和最重要的功能</span><span class="inline-wrap">，实现联网计算机之间的各种信息传输，并将分散在不同地理位置的计算机联系起来，进行统一的调配、控制和管理</span></div></div><h2 id="wcnBXcV1H8i5M2jxdiXHmp" class="wolai-block"><span class="inline-wrap">3.2 资源共享</span></h2><div id="kzN2JagL43JyQtBY5hdtww" class="wolai-block wolai-text"><div><span class="inline-wrap">同一个计算机网络上的其他计算机可使用某台计算机的计算机资源的行为，可共享</span><span class="red inline-wrap">硬件、软件、数据</span></div></div><h2 id="mAhbpMLmKrxDXZrjT35qUf" class="wolai-block"><span class="inline-wrap">3.3 分布式处理</span></h2><div id="qTZEEBjfeYZM73UGTwHWEc" class="wolai-block wolai-text"><div><span class="inline-wrap">多态计算机各自承担同一工作任务的不同部分</span></div></div><h2 id="vpomppZnNRbr2gBmcTSikj" class="wolai-block"><span class="inline-wrap">3.4 提高</span><span class="red inline-wrap">可靠性</span></h2><div id="ugfQM9CwNj5eUUdo9gKynH" class="wolai-block wolai-text"><div><span class="inline-wrap">计算机网络中的各台计算机可以通过网络互为替代机，当一台计算机崩了，可以让另一台计算机来完成它的工作</span></div></div><h2 id="2H8BxWeVPrdBZCH3F7H2Gg" class="wolai-block"><span class="inline-wrap">3.5 </span><span class="red inline-wrap">负载均衡</span></h2><div id="n7ekDdJmVTaG8voExD51du" class="wolai-block wolai-text"><div><span class="inline-wrap">个计算之间更亲密，将工作任务均衡的分配给计算机网络中的割台计算机</span></div></div><h1 id="34QLT2utQXZayrbxU4wsgo" class="wolai-block"><span class="inline-wrap">3.因特网的发展</span></h1><h2 id="2G5DW1ta3Pkg21vSVrDTMs" class="wolai-block"><span class="inline-wrap">3.1 第一阶段</span></h2><div id="uSFNGhwWhGJdZRyi5UCEbf" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/-gah8l066y.png" style="width: 607px"/></figure></div><div id="kjcPmmPjBFQ3xQKKXcaWEE" class="wolai-block wolai-text"><div><span class="inline-wrap">网络把许多计算机连接在一起，而互联网则把许多网络连接在一起，因特网是世界上最大的互联网。</span></div></div><h2 id="2hmTfQuv7p3g7A26nfkZ12" class="wolai-block"><span class="inline-wrap">3.2 第二阶段：三级结构</span></h2><div id="iTM2SAtGvCET4p7r1nLhkJ" class="wolai-block wolai-text"><div><span class="inline-wrap">1985<span class="jill"></span>年起，美国国家科学基金会<span class="jill"></span>NSF<span class="jill"></span>围绕<span class="jill"></span>6<span class="jill"></span>个大型计算机中心建设计算机网络，及国家科学基金网<span class="jill"></span>NSFNST。</span></div></div><div id="jCKNke4iEok8Q6ZrC5DqhY" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/cnp7t5d59p.png" style="width: 503px"/></figure></div><h2 id="sPh7BfGLtAtnWG4wEAMwnQ" class="wolai-block"><span class="inline-wrap">3.3 多层次<span class="jill"></span>ISP<span class="jill"></span>结构</span></h2><div id="orLJHCjJEFtwMa9vbgi3wk" class="wolai-block wolai-text"><div><span class="red inline-wrap">ISP</span><span class="inline-wrap">：因特网服务提供者/因特网服务提供商，是一个向广大用户综合提供互联网接入业务、信息业务和增值业务的公司，如中国电信、中国移动、中国联通等。</span></div></div><div id="desMGr9jX42MM3t1GFoXVP" class="wolai-block wolai-text"><div><span class="inline-wrap">分为主干<span class="jill"></span>ISP、地址<span class="jill"></span>ISP<span class="jill"></span>和本地<span class="jill"></span>ISP。</span></div></div><div id="i7wvGtsH5QNypSurF2Mfzy" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/lnf8q212i4.png" style="width: 607px"/></figure></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Firefly</div><div class="author-info__description">A firefly flying freely in the AI domain.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">226</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sZw5pNDGBR34v1KxgXmYm4"><span class="toc-text">1.概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#n2u7jzPq5YKKGZ1Qz1YqHV"><span class="toc-text">2.计算机网络的组成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#beeVCKL2dVvSVfVhnmwFjQ"><span class="toc-text">2.1 从组成部分来看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#oh58XbP76jHkd2bm6Ue5Ho"><span class="toc-text">2.2 从工作方式来看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rJZmc72Vmm8kQwjphrLYJe"><span class="toc-text">2.3 从功能组成来看</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wpe2rjWYuZGCigzhqLy6NB"><span class="toc-text">3.功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#j2Ci5zCifgy8Xa3ahCetuZ"><span class="toc-text">3.1 数据通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wcnBXcV1H8i5M2jxdiXHmp"><span class="toc-text">3.2 资源共享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mAhbpMLmKrxDXZrjT35qUf"><span class="toc-text">3.3 分布式处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vpomppZnNRbr2gBmcTSikj"><span class="toc-text">3.4 提高可靠性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2H8BxWeVPrdBZCH3F7H2Gg"><span class="toc-text">3.5 负载均衡</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#34QLT2utQXZayrbxU4wsgo"><span class="toc-text">3.因特网的发展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2G5DW1ta3Pkg21vSVrDTMs"><span class="toc-text">3.1 第一阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2hmTfQuv7p3g7A26nfkZ12"><span class="toc-text">3.2 第二阶段：三级结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sPh7BfGLtAtnWG4wEAMwnQ"><span class="toc-text">3.3 多层次ISP结构</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">54</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">42</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.34em; color: rgb(185, 23, 105)">DSA</a><a href="/tags/RL/" style="font-size: 1.26em; color: rgb(4, 101, 25)">RL</a><a href="/tags/Transformer/" style="font-size: 1.39em; color: rgb(193, 27, 88)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.28em; color: rgb(187, 62, 93)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.32em; color: rgb(71, 75, 175)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.24em; color: rgb(6, 148, 39)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.17em; color: rgb(54, 65, 56)">CV</a><a href="/tags/GPT/" style="font-size: 1.19em; color: rgb(32, 41, 179)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(128, 98, 39)">PL</a><a href="/tags/domain/" style="font-size: 1.15em; color: rgb(84, 59, 119)">domain</a><a href="/tags/github/" style="font-size: 1.15em; color: rgb(171, 183, 190)">github</a><a href="/tags/hf/" style="font-size: 1.15em; color: rgb(51, 163, 36)">hf</a><a href="/tags/weibo/" style="font-size: 1.15em; color: rgb(195, 167, 63)">weibo</a><a href="/tags/ArXiv/" style="font-size: 1.36em; color: rgb(137, 6, 13)">ArXiv</a><a href="/tags/Domain/" style="font-size: 1.36em; color: rgb(112, 63, 8)">Domain</a><a href="/tags/AI/" style="font-size: 1.45em; color: rgb(44, 132, 66)">AI</a><a href="/tags/GitHub/" style="font-size: 1.43em; color: rgb(28, 88, 41)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.43em; color: rgb(36, 23, 9)">Trending</a><a href="/tags/HuggingFace/" style="font-size: 1.36em; color: rgb(147, 94, 193)">HuggingFace</a><a href="/tags/Papers/" style="font-size: 1.36em; color: rgb(136, 65, 130)">Papers</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.41em; color: rgb(71, 166, 173)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.41em; color: rgb(25, 16, 133)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.3em; color: rgb(40, 22, 175)">leetcode</a><a href="/tags/algo/" style="font-size: 1.17em; color: rgb(62, 0, 127)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">226</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">5760.7k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-09T01:44:05.502Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

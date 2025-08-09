@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="2.循环 - wolai 笔记1.while 循环while循环有一个判断条件，只要符合条件，就不断循环执行指定的语句。while condition; do   commands done上面代码中，只要满足条件condition，就会执行命令commands。然后，再次判断是否满足条件condition，只要满足，就会一直执行下去。只有不满足条件，才会退出循环。循环条件condition可以">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/linux/bash/4.%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/2.%E5%BE%AA%E7%8E%AF/2.%E5%BE%AA%E7%8E%AF.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="2.循环 - wolai 笔记1.while 循环while循环有一个判断条件，只要符合条件，就不断循环执行指定的语句。while condition; do   commands done上面代码中，只要满足条件condition，就会执行命令commands。然后，再次判断是否满足条件condition，只要满足，就会一直执行下去。只有不满足条件，才会退出循环。循环条件condition可以">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-08-09T01:37:52.425Z">
+<meta property="article:modified_time" content="2025-08-09T01:37:52.425Z">
+<meta property="article:author" content="Firefly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/linux/bash/4.%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/2.%E5%BE%AA%E7%8E%AF/2.%E5%BE%AA%E7%8E%AF.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-09 09:37:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">226</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>2.循环 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="2.循环" class="main-title"></div></div></header><article><h1 id="9sy3wXyJkrW3bvJPnJLRZU" class="wolai-block"><span class="inline-wrap">1.while 循环</span></h1><div id="fyuiW2jyV6vYaLc6jE2Zjg" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">循环有一个判断条件，只要符合条件，就不断循环执行指定的语句。</span></div></div><code-block id="jzuxMuSgXY82rbR9Hv55BE" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">while</span> condition<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  commands
+<span class="token keyword">done</span></pre></div></code-block><div id="icKR2q4nggEZpbSqpHqmxE" class="wolai-block wolai-text"><div><span class="inline-wrap">上面代码中，只要满足条件</span><span class="inline-wrap"><code>condition</code></span><span class="inline-wrap">，就会执行命令</span><span class="inline-wrap"><code>commands</code></span><span class="inline-wrap">。然后，再次判断是否满足条件</span><span class="inline-wrap"><code>condition</code></span><span class="inline-wrap">，只要满足，就会一直执行下去。只有不满足条件，才会退出循环。</span></div></div><div id="8wPSWx8m1oiJDb3eeg16sK" class="wolai-block wolai-text"><div><span class="inline-wrap">循环条件</span><span class="inline-wrap"><code>condition</code></span><span class="inline-wrap">可以使用</span><span class="inline-wrap"><code>test</code></span><span class="inline-wrap">命令，跟</span><span class="inline-wrap"><code>if</code></span><span class="inline-wrap">结构的判断条件写法一致。</span></div></div><code-block id="qihJZWpxgzZLweMqrAumF5" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">number</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$number</span>"</span> <span class="token parameter variable">-lt</span> <span class="token number">10</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"Number = <span class="token variable">$number</span>"</span>
+  <span class="token assign-left variable">number</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>number <span class="token operator">+</span> <span class="token number">1</span><span class="token variable">))</span></span>
+<span class="token keyword">done</span></pre></div></code-block><div id="b2Nr89w5dNB1VmWMAXNCsN" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，只要变量</span><span class="inline-wrap"><code>$number</code></span><span class="inline-wrap">小于<span class="jill"></span>10，就会不断加<span class="jill"></span>1，直到</span><span class="inline-wrap"><code>$number</code></span><span class="inline-wrap">等于<span class="jill"></span>10，然后退出循环。</span></div></div><div id="v6d8MjE7B3Dz6TwAnvDxWU" class="wolai-block wolai-text"><div><span class="inline-wrap">关键字</span><span class="inline-wrap"><code>do</code></span><span class="inline-wrap">可以跟</span><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">不在同一行，这时两者之间不需要使用分号分隔。</span></div></div><code-block id="i6qFNTE62uFoP8T85NdSrV" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">while</span> <span class="token boolean">true</span>
+<span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">'Hi, while looping ...'</span><span class="token punctuation">;</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="6ukoxcVDhfrGoFQQyJfMMq" class="wolai-block wolai-text"><div><span class="inline-wrap">上面的例子会无限循环，可以按下 </span><span class="inline-wrap"><code>Ctrl + c</code></span><span class="inline-wrap"> 停止。</span></div></div><div id="aWZWjAAsnwDhAy9qJcpPXq" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">循环写成一行，也是可以的。</span></div></div><code-block id="rmFcG7tRpX57v5LxmKw9ZN" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token builtin class-name">echo</span> <span class="token string">'Hi, while looping ...'</span><span class="token punctuation">;</span> <span class="token keyword">done</span></pre></div></code-block><div id="vhgoAUCCR8oLdSKRsr7sJP" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">的条件部分也可以是执行一个命令。</span></div></div><code-block id="uacJQzgjSFoyBTc9opMd1d" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token keyword">while</span> <span class="token builtin class-name">echo</span> <span class="token string">'ECHO'</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token builtin class-name">echo</span> <span class="token string">'Hi, while looping ...'</span><span class="token punctuation">;</span> <span class="token keyword">done</span></pre></div></code-block><div id="9Nu7g6jma3UQsGG9H3yf3A" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，判断条件是</span><span class="inline-wrap"><code>echo &#39;ECHO&#39;</code></span><span class="inline-wrap">。由于这个命令总是执行成功，所以上面命令会产生无限循环。</span></div></div><div id="iEUKq3ZWiduVnHnHfHCxHs" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">的条件部分可以执行任意数量的命令，但是执行结果的真伪只看最后一个命令的执行结果。</span></div></div><code-block id="fkF8XjhNxU2AKYE56oW3aL" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token builtin class-name">echo</span> <span class="token string">'Hi, looping ...'</span><span class="token punctuation">;</span> <span class="token keyword">done</span></pre></div></code-block><div id="4vbqiRTTxZ5eBchRed98tC" class="wolai-block wolai-text"><div><span class="inline-wrap">上面代码运行后，不会有任何输出，因为</span><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">的最后一个命令是</span><span class="inline-wrap"><code>false</code></span><span class="inline-wrap">。</span></div></div><h1 id="7ZtHANNmM2NM1CH3vZdXiW" class="wolai-block"><span class="inline-wrap">2.until 循环</span></h1><div id="dxWrc9VtwWYaR3wVp7BVbU" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>until</code></span><span class="inline-wrap">循环与</span><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">循环恰好相反，只要不符合判断条件（判断条件失败），就不断循环执行指定的语句。一旦符合判断条件，就退出循环。</span></div></div><code-block id="arH7BWFpt9K9DLVeCfMtDc" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">until</span> condition<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  commands
+<span class="token keyword">done</span></pre></div></code-block><div id="vWrMUd5fWCPZBqDfAfjbkd" class="wolai-block wolai-text"><div><span class="inline-wrap">关键字</span><span class="inline-wrap"><code>do</code></span><span class="inline-wrap">可以与</span><span class="inline-wrap"><code>until</code></span><span class="inline-wrap">不写在同一行，这时两者之间不需要分号分隔。</span></div></div><code-block id="5CySzXZi4jM5daHdJrR8WF" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">until</span> condition
+<span class="token keyword">do</span>
+  commands
+<span class="token keyword">done</span></pre></div></code-block><div id="2oKsbUF2yL9xsb6NBhLqqK" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是一个例子。</span></div></div><code-block id="bH7CCSn3iZLFnqTW7aE3wm" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token keyword">until</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token builtin class-name">echo</span> <span class="token string">'Hi, until looping ...'</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
+Hi, <span class="token keyword">until</span> looping <span class="token punctuation">..</span>.
+Hi, <span class="token keyword">until</span> looping <span class="token punctuation">..</span>.
+Hi, <span class="token keyword">until</span> looping <span class="token punctuation">..</span>.
+^C</pre></div></code-block><div id="mYifHNSkjQBmaZdnVJ4mkH" class="wolai-block wolai-text"><div><span class="inline-wrap">上面代码中，</span><span class="inline-wrap"><code>until</code></span><span class="inline-wrap">的部分一直为</span><span class="inline-wrap"><code>false</code></span><span class="inline-wrap">，导致命令无限运行，必须按下 Ctrl + c 终止。</span></div></div><code-block id="uuGoYGap85TZXVwZDYGETp" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">number</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">until</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$number</span>"</span> <span class="token parameter variable">-ge</span> <span class="token number">10</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"Number = <span class="token variable">$number</span>"</span>
+  <span class="token assign-left variable">number</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>number <span class="token operator">+</span> <span class="token number">1</span><span class="token variable">))</span></span>
+<span class="token keyword">done</span></pre></div></code-block><div id="45vJkZsov1RJUcdTbpMDeh" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，只要变量</span><span class="inline-wrap"><code>number</code></span><span class="inline-wrap">小于<span class="jill"></span>10，就会不断加<span class="jill"></span>1，直到</span><span class="inline-wrap"><code>number</code></span><span class="inline-wrap">大于等于<span class="jill"></span>10，就退出循环。</span></div></div><div id="oeLcaj2xNKuu2o1tHkX1A3" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>until</code></span><span class="inline-wrap">的条件部分也可以是一个命令，表示在这个命令执行成功之前，不断重复尝试。</span></div></div><code-block id="63B6UnNyHV9yWBoGyXBwXP" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">until</span> <span class="token function">cp</span> <span class="token variable">$1</span> <span class="token variable">$2</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">'Attempt to copy failed. waiting...'</span>
+  <span class="token function">sleep</span> <span class="token number">5</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="7d5EuQEKz337hi8xR6A5RU" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子表示，只要</span><span class="inline-wrap"><code>cp $1 $2</code></span><span class="inline-wrap">这个命令执行不成功，就<span class="jill"></span>5<span class="jill"></span>秒钟后再尝试一次，直到成功为止。</span></div></div><div id="iUwZaUfqdgmUH19MxF5JCj" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>until</code></span><span class="inline-wrap">循环都可以转为</span><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">循环，只要把条件设为否定即可。上面这个例子可以改写如下。</span></div></div><code-block id="b7UKm15HtQU2gSTPx9cbXM" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">while</span> <span class="token operator">!</span> <span class="token function">cp</span> <span class="token variable">$1</span> <span class="token variable">$2</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">'Attempt to copy failed. waiting...'</span>
+  <span class="token function">sleep</span> <span class="token number">5</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="kyHUKiGAs1uYd3wE1VmoQ5" class="wolai-block wolai-text"><div><span class="inline-wrap">一般来说，</span><span class="inline-wrap"><code>until</code></span><span class="inline-wrap">用得比较少，完全可以统一都使用</span><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">。</span></div></div><h1 id="bJW43or394WjsLUNVKq3MD" class="wolai-block"><span class="inline-wrap">3.for...in 循环</span></h1><div id="opWat3ZfEbzA1Ygyxiszm6" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>for...in</code></span><span class="inline-wrap">循环用于遍历列表的每一项。</span></div></div><code-block id="g6fGaKdvSYr3q5V6Br8guD" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">for</span> <span class="token for-or-select variable">variable</span> <span class="token keyword">in</span> list
+<span class="token keyword">do</span>
+  commands
+<span class="token keyword">done</span></pre></div></code-block><div id="wCSqZhXTToeRHyaZYwe3Ew" class="wolai-block wolai-text"><div><span class="inline-wrap">上面语法中，</span><span class="inline-wrap"><code>for</code></span><span class="inline-wrap">循环会依次从</span><span class="inline-wrap"><code>list</code></span><span class="inline-wrap">列表中取出一项，作为变量</span><span class="inline-wrap"><code>variable</code></span><span class="inline-wrap">，然后在循环体中进行处理。</span></div></div><div id="4o6Ga8n1G1x31b6JFKtM49" class="wolai-block wolai-text"><div><span class="inline-wrap">关键词</span><span class="inline-wrap"><code>do</code></span><span class="inline-wrap">可以跟</span><span class="inline-wrap"><code>for</code></span><span class="inline-wrap">写在同一行，两者使用分号分隔。</span></div></div><code-block id="xfBCk5CAYqN726YjP2EEia" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">for</span> <span class="token for-or-select variable">variable</span> <span class="token keyword">in</span> list<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  commands
+<span class="token keyword">done</span></pre></div></code-block><div id="6FBQGSPu5XzLmxdMDEYbdP" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是一个例子。</span></div></div><code-block id="3Kh5DUhpbD7R1HnMKAHJcE" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> word1 word2 word3<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token variable">$i</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="3KjkACqgb1n6ECLKe7Tcsu" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>word1 word2 word3</code></span><span class="inline-wrap">是一个包含三个单词的列表，变量</span><span class="inline-wrap"><code>i</code></span><span class="inline-wrap">依次等于</span><span class="inline-wrap"><code>word1</code></span><span class="inline-wrap">、</span><span class="inline-wrap"><code>word2</code></span><span class="inline-wrap">、</span><span class="inline-wrap"><code>word3</code></span><span class="inline-wrap">，命令</span><span class="inline-wrap"><code>echo $i</code></span><span class="inline-wrap">则会相应地执行三次。</span></div></div><div id="sMg9bTqJrsLbMn4ykDgogF" class="wolai-block wolai-text"><div><span class="inline-wrap">列表可以由通配符产生。</span></div></div><code-block id="wPSWUKYhCsZuARRbUKi1uj" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> *.png<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token function">ls</span> <span class="token parameter variable">-l</span> <span class="token variable">$i</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="t1ZqCwXoAC86SkKezzXdxR" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>*.png</code></span><span class="inline-wrap">会替换成当前目录中所有 PNG 图片文件，变量</span><span class="inline-wrap"><code>i</code></span><span class="inline-wrap">会依次等于每一个文件。</span></div></div><div id="o5BJMkWzFAYUMnWoogemzL" class="wolai-block wolai-text"><div><span class="inline-wrap">列表也可以通过子命令产生。</span></div></div><code-block id="fwPLVxUMbH53C1zCsY1f7h" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">cat</span> ~/.bash_profile<span class="token variable">)</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token variable">))</span></span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"Word <span class="token variable">$count</span> (<span class="token variable">$i</span>) contains <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> <span class="token parameter variable">-n</span> $i <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-c</span><span class="token variable">)</span></span> characters"</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="i3HJvW1rqzcbneFtQ9kwS2" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>cat ~/.bash_profile</code></span><span class="inline-wrap">命令会输出</span><span class="inline-wrap"><code>~/.bash_profile</code></span><span class="inline-wrap">文件的内容，然后通过遍历每一个词，计算该文件一共包含多少个词，以及每个词有多少个字符。</span></div></div><div id="rxjoStanHWsAWTa4zDL5we" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>in list</code></span><span class="inline-wrap">的部分可以省略，这时</span><span class="inline-wrap"><code>list</code></span><span class="inline-wrap">默认等于脚本的所有参数</span><span class="inline-wrap"><code>[email protected]</code></span><span class="inline-wrap">。但是，为了可读性，最好还是不要省略，参考下面的例子。</span></div></div><code-block id="dUCseUYpbzErQpZvEN4u9D" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">for</span> filename<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span>"</span>
+<span class="token keyword">done</span>
+
+<span class="token comment"># 等同于</span>
+
+<span class="token keyword">for</span> <span class="token for-or-select variable">filename</span> <span class="token keyword">in</span> <span class="token string">"[email protected]"</span> <span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$filename</span>"</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="4m6MMV4e5WkwEpECBjn82A" class="wolai-block wolai-text"><div><span class="inline-wrap">在函数体中也是一样的，</span><span class="inline-wrap"><code>for...in</code></span><span class="inline-wrap">循环省略</span><span class="inline-wrap"><code>in list</code></span><span class="inline-wrap">的部分，则</span><span class="inline-wrap"><code>list</code></span><span class="inline-wrap">默认等于函数的所有参数。</span></div></div><h1 id="t9jV5jFhNcJufesSHa4ik6" class="wolai-block"><span class="inline-wrap">4.for 循环</span></h1><div id="bTX1qdqzXiiAjcc58ccGd7" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>for</code></span><span class="inline-wrap">循环还支持 C 语言的循环语法。</span></div></div><code-block id="8sPb39bSWwL1dz1P4d6wZa" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span> expression1<span class="token punctuation">;</span> expression2<span class="token punctuation">;</span> expression3 <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  commands
+<span class="token keyword">done</span></pre></div></code-block><div id="ejugya9sUKD9Bhu54gLWCZ" class="wolai-block wolai-text"><div><span class="inline-wrap">上面代码中，</span><span class="inline-wrap"><code>expression1</code></span><span class="inline-wrap">用来初始化循环条件，</span><span class="inline-wrap"><code>expression2</code></span><span class="inline-wrap">用来决定循环结束的条件，</span><span class="inline-wrap"><code>expression3</code></span><span class="inline-wrap">在每次循环迭代的末尾执行，用于更新值。</span></div></div><div id="aK2s3cD15sQDXd1uZngX4x" class="wolai-block wolai-text"><div><span class="inline-wrap">注意，循环条件放在双重圆括号之中。另外，圆括号之中使用变量，不必加上美元符号</span><span class="inline-wrap"><code>$</code></span><span class="inline-wrap">。</span></div></div><div id="tDbrzw1spEJ2V4sHFLEa4b" class="wolai-block wolai-text"><div><span class="inline-wrap">它等同于下面的</span><span class="inline-wrap"><code>while</code></span><span class="inline-wrap">循环。</span></div></div><code-block id="rajpwKw326Pp62eKKJFgPG" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token variable"><span class="token punctuation">((</span> expression1 <span class="token punctuation">))</span></span>
+<span class="token keyword">while</span> <span class="token variable"><span class="token punctuation">((</span> expression2 <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  commands
+  <span class="token variable"><span class="token punctuation">((</span> expression3 <span class="token punctuation">))</span></span>
+<span class="token keyword">done</span></pre></div></code-block><div id="2AUJQzGYefZbQ5VWKPoRaL" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是一个例子。</span></div></div><code-block id="2FbsGcE4kkN2Y15FgtZmd9" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token variable">$i</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="u6htRSWVsnwmwbUx4XtkTE" class="wolai-block wolai-text"><div><span class="inline-wrap">上面代码中，初始化变量</span><span class="inline-wrap"><code>i</code></span><span class="inline-wrap">的值为<span class="jill"></span>0，循环执行的条件是</span><span class="inline-wrap"><code>i</code></span><span class="inline-wrap">小于<span class="jill"></span>5。每次循环迭代结束时，</span><span class="inline-wrap"><code>i</code></span><span class="inline-wrap">的值加<span class="jill"></span>1。</span></div></div><div id="ndSYoFRcNeLM6bK5NNTXSi" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>for</code></span><span class="inline-wrap">条件部分的三个语句，都可以省略。</span></div></div><code-block id="bwNo2dQGbAr5XDC3krgdqy" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">;</span><span class="token punctuation">;</span><span class="token punctuation">))</span></span>
+<span class="token keyword">do</span>
+  <span class="token builtin class-name">read</span> var
+  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$var</span>"</span> <span class="token operator">=</span> <span class="token string">"."</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">break</span>
+  <span class="token keyword">fi</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="2rGvqS463FX8xUrmi336BX" class="wolai-block wolai-text"><div><span class="inline-wrap">上面脚本会反复读取命令行输入，直到用户输入了一个点（</span><span class="inline-wrap"><code>.</code></span><span class="inline-wrap">）为止，才会跳出循环。</span></div></div><h1 id="q2iYJSz7rXpBNquJUS5TrL" class="wolai-block"><span class="inline-wrap">5.break，continue</span></h1><div id="shqbfenYvxMPZHxeMn6AMe" class="wolai-block wolai-text"><div><span class="inline-wrap">Bash 提供了两个内部命令</span><span class="inline-wrap"><code>break</code></span><span class="inline-wrap">和</span><span class="inline-wrap"><code>continue</code></span><span class="inline-wrap">，用来在循环内部跳出循环。</span></div></div><div id="35pgH2hnjyJUJ2QbkPG1J6" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>break</code></span><span class="inline-wrap">命令立即终止循环，程序继续执行循环块之后的语句，即不再执行剩下的循环。</span></div></div><code-block id="42o2kAk2RHTswZoyax1Rop" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token keyword">for</span> <span class="token for-or-select variable">number</span> <span class="token keyword">in</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span>
+<span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"number is <span class="token variable">$number</span>"</span>
+  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$number</span>"</span> <span class="token operator">=</span> <span class="token string">"3"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">break</span>
+  <span class="token keyword">fi</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="snxy5CnYrdZAY6qoGaeYVT" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子只会打印<span class="jill"></span>3<span class="jill"></span>行结果。一旦变量</span><span class="inline-wrap"><code>$number</code></span><span class="inline-wrap">等于<span class="jill"></span>3，就会跳出循环，不再继续执行。</span></div></div><div id="81xekuQcGuJVmUV5sTWT6U" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>continue</code></span><span class="inline-wrap">命令立即终止本轮循环，开始执行下一轮循环。</span></div></div><code-block id="duUZi6RmZEu4xwL7Jq6uUX" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token keyword">while</span> <span class="token builtin class-name">read</span> <span class="token parameter variable">-p</span> <span class="token string">"What file do you want to test?"</span> filename
+<span class="token keyword">do</span>
+  <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-e</span> <span class="token string">"<span class="token variable">$filename</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"The file does not exist."</span>
+    <span class="token builtin class-name">continue</span>
+  <span class="token keyword">fi</span>
+
+  <span class="token builtin class-name">echo</span> <span class="token string">"You entered a valid file.."</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="65x2MS31Wcr24BqzomeLmo" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，只要用户输入的文件不存在，</span><span class="inline-wrap"><code>continue</code></span><span class="inline-wrap">命令就会生效，直接进入下一轮循环（让用户重新输入文件名），不再执行后面的打印语句。</span></div></div><h1 id="q7bhE5GRE9joJebDRAHZBG" class="wolai-block"><span class="inline-wrap">6.select 结构</span></h1><div id="aMLNnjAaDPtYovJhCERLH3" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>select</code></span><span class="inline-wrap">结构主要用来生成简单的菜单。它的语法与</span><span class="inline-wrap"><code>for...in</code></span><span class="inline-wrap">循环基本一致。</span></div></div><code-block id="fWbSvgbZcjLkSjMPLB7Yg8" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token keyword">select</span> name
+<span class="token punctuation">[</span>in list<span class="token punctuation">]</span>
+<span class="token keyword">do</span>
+  commands
+<span class="token keyword">done</span></pre></div></code-block><div id="8wWK6QjUNQpFiDpy1BbeaE" class="wolai-block wolai-text"><div><span class="inline-wrap">Bash 会对</span><span class="inline-wrap"><code>select</code></span><span class="inline-wrap">依次进行下面的处理。</span></div></div><ol class="wolai-block"><li id="m7fUNDXWzrFdEjr8QCH2NC"><div class="marker"></div><span class="inline-wrap"><code>select</code></span><span class="inline-wrap">生成一个菜单，内容是列表</span><span class="inline-wrap"><code>list</code></span><span class="inline-wrap">的每一项，并且每一项前面还有一个数字编号。</span></li><li id="mU9CyNUEHeukpPrpgxKPFx"><div class="marker"></div><span class="inline-wrap">Bash 提示用户选择一项，输入它的编号。</span></li><li id="5cJWSGxZZfhmV78vGSdKG4"><div class="marker"></div><span class="inline-wrap">用户输入以后，Bash 会将该项的内容存在变量</span><span class="inline-wrap"><code>name</code></span><span class="inline-wrap">，该项的编号存入环境变量</span><span class="inline-wrap"><code>REPLY</code></span><span class="inline-wrap">。如果用户没有输入，就按回车键，Bash 会重新输出菜单，让用户选择。</span></li><li id="fBkbNBiYfbN2DiFWfKNoci"><div class="marker"></div><span class="inline-wrap">执行命令体</span><span class="inline-wrap"><code>commands</code></span><span class="inline-wrap">。</span></li><li id="9QVKoUnESrjjccLZpWMHrd"><div class="marker"></div><span class="inline-wrap">执行结束后，回到第一步，重复这个过程。</span></li></ol><div id="6QTg859691NwpaAKERLiCH" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是一个例子。</span></div></div><code-block id="tHoLdgHYpcs3Tyw3px96a7" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment"># select.sh</span>
+
+<span class="token keyword">select</span> <span class="token for-or-select variable">brand</span> <span class="token keyword">in</span> Samsung Sony iphone symphony Walton
+<span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"You have chosen <span class="token variable">$brand</span>"</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="6xtsWBVNRXPAwcrVNzxcwD" class="wolai-block wolai-text"><div><span class="inline-wrap">执行上面的脚本，Bash 会输出一个品牌的列表，让用户选择。</span></div></div><code-block id="k4Q6vRFyFCYwbaXEraKhvx" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ ./select.sh
+<span class="token number">1</span><span class="token punctuation">)</span> Samsung
+<span class="token number">2</span><span class="token punctuation">)</span> Sony
+<span class="token number">3</span><span class="token punctuation">)</span> iphone
+<span class="token number">4</span><span class="token punctuation">)</span> symphony
+<span class="token number">5</span><span class="token punctuation">)</span> Walton
+<span class="token comment">#?</span></pre></div></code-block><div id="6HR7eJ3gQTAJjsXvJ7oDbJ" class="wolai-block wolai-text"><div><span class="inline-wrap">如果用户没有输入编号，直接按回车键。Bash 就会重新输出一遍这个菜单，直到用户按下</span><span class="inline-wrap"><code>Ctrl + c</code></span><span class="inline-wrap">，退出执行。</span></div></div><div id="dfpD8dN8UtRQ7wThWvuDHJ" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>select</code></span><span class="inline-wrap">可以与</span><span class="inline-wrap"><code>case</code></span><span class="inline-wrap">结合，针对不同项，执行不同的命令。</span></div></div><code-block id="2ixELHK2E8QqasqFAhiYH8" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"Which Operating System do you like?"</span>
+
+<span class="token keyword">select</span> <span class="token for-or-select variable">os</span> <span class="token keyword">in</span> Ubuntu LinuxMint Windows8 Windows10 WindowsXP
+<span class="token keyword">do</span>
+  <span class="token keyword">case</span> <span class="token variable">$os</span> <span class="token keyword">in</span>
+    <span class="token string">"Ubuntu"</span><span class="token operator">|</span><span class="token string">"LinuxMint"</span><span class="token punctuation">)</span>
+      <span class="token builtin class-name">echo</span> <span class="token string">"I also use <span class="token variable">$os</span>."</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token string">"Windows8"</span> <span class="token operator">|</span> <span class="token string">"Windows10"</span> <span class="token operator">|</span> <span class="token string">"WindowsXP"</span><span class="token punctuation">)</span>
+      <span class="token builtin class-name">echo</span> <span class="token string">"Why don't you try Linux?"</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    *<span class="token punctuation">)</span>
+      <span class="token builtin class-name">echo</span> <span class="token string">"Invalid entry."</span>
+      <span class="token builtin class-name">break</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  <span class="token keyword">esac</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="pCMvLZcmbtAvtxbbnjnR1m" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>case</code></span><span class="inline-wrap">针对用户选择的不同项，执行不同的命令。</span></div></div><h1 id="dCxTeskxWt9tVE7QKWSMad" class="wolai-block"><span class="inline-wrap">7.参考链接</span></h1><ul class="wolai-block"><li id="vB78jiwbLiqkeVA4n6JHSN"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><a target="_blank" rel="noopener" href="https://linuxhint.com/bash_select_command/"><span>Bash Select Command</span></a></span><span class="inline-wrap">, Fahmida Yesmin</span></li></ul></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Firefly</div><div class="author-info__description">A firefly flying freely in the AI domain.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">226</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#9sy3wXyJkrW3bvJPnJLRZU"><span class="toc-text">1.while 循环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7ZtHANNmM2NM1CH3vZdXiW"><span class="toc-text">2.until 循环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bJW43or394WjsLUNVKq3MD"><span class="toc-text">3.for...in 循环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#t9jV5jFhNcJufesSHa4ik6"><span class="toc-text">4.for 循环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#q2iYJSz7rXpBNquJUS5TrL"><span class="toc-text">5.break，continue</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#q7bhE5GRE9joJebDRAHZBG"><span class="toc-text">6.select 结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dCxTeskxWt9tVE7QKWSMad"><span class="toc-text">7.参考链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">54</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">42</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.34em; color: rgb(185, 23, 105)">DSA</a><a href="/tags/RL/" style="font-size: 1.26em; color: rgb(4, 101, 25)">RL</a><a href="/tags/Transformer/" style="font-size: 1.39em; color: rgb(193, 27, 88)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.28em; color: rgb(187, 62, 93)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.32em; color: rgb(71, 75, 175)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.24em; color: rgb(6, 148, 39)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.17em; color: rgb(54, 65, 56)">CV</a><a href="/tags/GPT/" style="font-size: 1.19em; color: rgb(32, 41, 179)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(128, 98, 39)">PL</a><a href="/tags/domain/" style="font-size: 1.15em; color: rgb(84, 59, 119)">domain</a><a href="/tags/github/" style="font-size: 1.15em; color: rgb(171, 183, 190)">github</a><a href="/tags/hf/" style="font-size: 1.15em; color: rgb(51, 163, 36)">hf</a><a href="/tags/weibo/" style="font-size: 1.15em; color: rgb(195, 167, 63)">weibo</a><a href="/tags/ArXiv/" style="font-size: 1.36em; color: rgb(137, 6, 13)">ArXiv</a><a href="/tags/Domain/" style="font-size: 1.36em; color: rgb(112, 63, 8)">Domain</a><a href="/tags/AI/" style="font-size: 1.45em; color: rgb(44, 132, 66)">AI</a><a href="/tags/GitHub/" style="font-size: 1.43em; color: rgb(28, 88, 41)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.43em; color: rgb(36, 23, 9)">Trending</a><a href="/tags/HuggingFace/" style="font-size: 1.36em; color: rgb(147, 94, 193)">HuggingFace</a><a href="/tags/Papers/" style="font-size: 1.36em; color: rgb(136, 65, 130)">Papers</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.41em; color: rgb(71, 166, 173)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.41em; color: rgb(25, 16, 133)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.3em; color: rgb(40, 22, 175)">leetcode</a><a href="/tags/algo/" style="font-size: 1.17em; color: rgb(62, 0, 127)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">226</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">5760.7k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-09T01:44:05.502Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
