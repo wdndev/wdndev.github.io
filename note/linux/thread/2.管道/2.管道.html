@@ -1,0 +1,439 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="2.管道 - wolai 笔记1.管道管道的是进程间通信（IPC - InterProcess Communication）的一种方式，管道的本质其实就是内核中的一块内存(或者叫内核缓冲区)，这块缓冲区中的数据存储在一个环形队列中，因为管道在内核里边，因此我们不能直接对其进行任何操作。因为管道数据是通过队列来维护的，我们先来分析一个管道中数据的特点：管道对应的内核缓冲区大小是固定的，默认为4k（">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/linux/thread/2.%E7%AE%A1%E9%81%93/2.%E7%AE%A1%E9%81%93.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="2.管道 - wolai 笔记1.管道管道的是进程间通信（IPC - InterProcess Communication）的一种方式，管道的本质其实就是内核中的一块内存(或者叫内核缓冲区)，这块缓冲区中的数据存储在一个环形队列中，因为管道在内核里边，因此我们不能直接对其进行任何操作。因为管道数据是通过队列来维护的，我们先来分析一个管道中数据的特点：管道对应的内核缓冲区大小是固定的，默认为4k（">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-08-29T23:46:27.926Z">
+<meta property="article:modified_time" content="2025-08-29T23:46:27.926Z">
+<meta property="article:author" content="Firefly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/linux/thread/2.%E7%AE%A1%E9%81%93/2.%E7%AE%A1%E9%81%93.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-30 07:46:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">309</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../css/wolai.css"/><title>2.管道 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="2.管道" class="main-title"></div></div></header><article><h1 id="2HMJs2p6xKuDAPh4f3Ebwe" class="wolai-block"><span class="inline-wrap">1.管道</span></h1><div id="b6djxmYTFU7H4u7G9C2qv7" class="wolai-block wolai-text"><div><span class="inline-wrap">管道的是进程间通信（IPC - InterProcess Communication）的一种方式，</span><span class="red inline-wrap">管道的本质其实就是内核中的一块内存(或者叫内核缓冲区)</span><span class="inline-wrap">，这块缓冲区中的数据存储在一个环形队列中，因为管道在内核里边，因此我们不能直接对其进行任何操作。</span></div></div><div id="7oxScFqanMNjjeVfzQJFSz" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="https://subingwen.cn/linux/pipe/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97.png" style="width: 506.6666666666667px"/></figure></div><div id="ezFzdtxbghwjXaqQhsSvvu" class="wolai-block wolai-text"><div><span class="inline-wrap">因为管道数据是通过队列来维护的，我们先来分析一个管道中数据的特点：</span></div></div><ul class="wolai-block"><li id="dej1B1dR6dvFChr7nwZvye"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">管道对应的内核缓冲区大小是固定的，默认为<span class="jill"></span>4k（也就是队列最大能存储<span class="jill"></span>4k<span class="jill"></span>数据）</span></li><li id="93fQRYbgBPFsXh4DiRk69p"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">管道分为两部分：读端和写端（队列的两端），数据从写端进入管道，从读端流出管道。</span></li><li id="amv6kKcYzJeVUggx8G6461"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">管道中的数据只能读一次，做一次读操作之后数据也就没有了（读数据相当于出队列）。</span></li><li id="x7TzN28ueK1zaQ3aQ8mGZt"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">管道是单工的：数据只能单向流动, 数据从写端流向读端。</span></li><li id="dvWziTuS66Zw6J8hTX6Kd6"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">对管道的操作（读、写）默认是阻塞的</span><ul class="wolai-block"><li id="eLNS58P9Gvnxx24F27dvjn"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">读管道：管道中没有数据，读操作被阻塞，当管道中有数据之后阻塞才能解除</span></li><li id="iS4N1GWV8rezL6uKHkB7uR"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">写管道：管道被写满了，写数据的操作被阻塞，当管道变为不满的状态，写阻塞解除</span></li></ul></li></ul><div id="9fh7rDDJejuddAkMGGsnsJ" class="wolai-block wolai-text"><div><span class="inline-wrap">管道在内核中, 不能直接对其进行操作，我们通过什么方式去读写管道呢？其实</span><span class="red inline-wrap">管道操作就是文件<span class="jill"></span>IO<span class="jill"></span>操作</span><span class="inline-wrap">，内核中管道的两端分别对应两个文件描述符，通过写端的文件描述符把数据写入到管道中，通过读端的文件描述符将数据从管道中读出来。读写管道的函数就是<span class="jill"></span>Linux<span class="jill"></span>中的文件<span class="jill"></span>IO<span class="jill"></span>函数。</span></div></div><code-block id="8Y1NxRR82Tj9o7i6yyJdx4" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// 读管道</span>
+<span class="token class-name">ssize_t</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token class-name">size_t</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 写管道的函数</span>
+<span class="token class-name">ssize_t</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token class-name">size_t</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block><div id="u5VVMkQieQqYqGCAo8ZUH5" class="wolai-block wolai-text"><div><span class="inline-wrap">最后分析一下为什么可以使用管道进行进程间通信，先看一下下面的图片：</span></div></div><div id="hpmuE5DVpmFkMMQxTmtAdZ" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="https://subingwen.cn/linux/pipe/image-20210204211818071.png" style="width: 1069.3333333333333px"/></figure></div><div id="gRmUYTX2CiXyFhh8MbCSVG" class="wolai-block wolai-text"><div><span class="inline-wrap">在上图中假设父进通过一系列操作可以通过文件描述符表中的文件描述符<span class="jill"></span>fd3<span class="jill"></span>写管道，通过<span class="jill"></span>fd4<span class="jill"></span>读管道，然后再</span><span class="red inline-wrap">通过 fork() 创建出子进程，那么在父进程中被分配的文件描述符 fd3， fd4<span class="jill"></span>也就被拷贝到子进程中，子进程通过 fd3<span class="jill"></span>可以将数据写入到内核的管道中，通过<span class="jill"></span>fd4<span class="jill"></span>将数据从管道中读出来。</span></div></div><div id="wcaitgb3ryC3XcH4rvZNJF" class="wolai-block wolai-text"><div><span class="inline-wrap">也就是说管道是独立于任何进程的，并且充当了两个进程用于数据通信的载体，只要两个进程能够得到同一个管道的入口和出口（读端和写端的文件描述符），那么他们之间就可以通过管道进行数据的交互。</span></div></div><h1 id="oNxz4LFna1gqrGbtAGAnM" class="wolai-block"><span class="inline-wrap">2.匿名管道</span></h1><h2 id="cVxoEVULXGMdbPjk2m8a6X" class="wolai-block"><span class="inline-wrap">2.1 创建匿名管道</span></h2><div id="wt4sugjzsd1hdcmJ8y7WJi" class="wolai-block wolai-text"><div><span class="inline-wrap">匿名管道是管道的一种，既然是匿名也就是说这个管道没有名字，但其本质是不变的，就是位于内核中的一块内存，匿名管道拥有上面介绍的管道的所有特性，额外的我们需要知道，</span><span class="red inline-wrap"><b>匿名管道只能实现有血缘关系的进程间通信</b></span><span class="inline-wrap">，什么叫有血缘的进程关系呢，比如：父子进程，兄弟进程，爷孙进程，叔侄进程。最后说一下创建匿名管道的函数，函数原型如下：</span></div></div><code-block id="9WEnYFZk2RxVU6q59zoaAu" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token comment">// 创建一个匿名的管道, 得到两个可用的文件描述符</span>
+<span class="token keyword">int</span> <span class="token function">pipe</span><span class="token punctuation">(</span><span class="token keyword">int</span> pipefd<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><ul class="wolai-block"><li id="mczjoAovpnrE2yN5qTwrxJ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数：传出参数，需要传递一个整形数组的地址，数组大小为 2，也就是说最终会传出两个元素</span><ul class="wolai-block"><li id="g8JF5erX2Ksr3MELabwN36"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>pipefd[0]: </code></span><span class="red inline-wrap">对应管道读端的文件描述符，通过它可以将数据从管道中</span><span class="red inline-wrap"><b>读出</b></span></li><li id="2pRYKowhEqZQpAUYdgZMVt"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>pipefd[1]: </code></span><span class="red inline-wrap">对应管道写端的文件描述符，通过它可以将数据</span><span class="red inline-wrap"><b>写入</b></span><span class="red inline-wrap">到管道中</span></li></ul></li><li id="bvqYc5WiKbkpRkbia8Vu4E"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值：成功返回 0，失败返回 -1</span></li></ul><h2 id="vFrn7A2eQL2X5Q57FqZhBT" class="wolai-block"><span class="inline-wrap">2.2 进程间通信</span></h2><div id="cpeTa5bwZbV3q7dQhpG4pk" class="wolai-block wolai-text"><div><span class="inline-wrap">使用匿名管道只能够实现有血缘关系的进程间通信，要求写一段程序完成下边的功能：</span></div></div><code-block id="iA3wk5cD6knvK7eeG3qvjn" class="wolai-block"><div class="wolai-pre"><div data-lang="Plaintext" class="marker"></div><pre>需求描述:
+   在父进程中创建一个子进程, 父子进程分别执行不同的操作:
+     - 子进程: 执行一个shell命令 "ps aux", 将命令的结果传递给父进程
+     - 父进程: 将子进程命令的结果输出到终端</pre></div></code-block><div id="qrfDpWuhHkXrtj3QTceh63" class="wolai-block wolai-text"><div><span class="inline-wrap">需求分析:</span></div></div><ul class="wolai-block"><li id="8pgbZ2tJkF9p3G6tjaaMxq"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">子进程中执行<span class="jill"></span>shell<span class="jill"></span>命令相当于启动一个磁盘程序，因此需要使用 </span><span class="inline-wrap"><code>execl()/execlp()</code></span><span class="inline-wrap">函数</span><ul class="wolai-block"><li id="rTDzWL9eWM7p9hW2rUv5dz"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>execlp(“ps”, “ps”, “aux”, NULL)</code></span></li></ul></li><li id="3xuc4Uvi8AdgsQC5JdC2bL"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">子进程中执行完<span class="jill"></span>shell<span class="jill"></span>命令直接就可以在终端输出结果，如果将这些信息传递给父进程呢？</span><ul class="wolai-block"><li id="qS7oHejzwpFmGHHtAjmwfT"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap">数据传递需要使用管道，子进程需要将数据写入到管道中</span></li><li id="tnGpaLkJ1kkC5LmQ6hWDbX"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">将默认输出到终端的数据写入到管道就需要进行输出的重定向，需要使用 </span><span class="inline-wrap"><code>dup2()</code></span><span class="inline-wrap">做这件事情</span><ul class="wolai-block"><li id="83YLYfDiEpDZBSGLRWL4Z7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>dup2(fd[1], STDOUT_FILENO);</code></span></li></ul></li></ul></li><li id="jpHcgFLqWWNGuo5gSttAi5"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap">父进程需要读管道，将从管道中读出的数据打印到终端</span></li><li id="gPfWsPAehwjBcZP7K6M7is"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="yellow inline-wrap">父进程最后需要释放子进程资源，防止出现僵尸进程</span></li></ul><div id="incgEntea3f1EiUzPuJsfc" class="wolai-block wolai-text"><div><span class="inline-wrap">在使用管道进行进程间通信的注意事项：</span><span class="red inline-wrap"><b>必须要保证数据在管道中的单向流动</b></span><span class="inline-wrap">。这句话怎么理解呢，通过下面的图来分析一下：</span></div></div><blockquote id="r3eW3UUrz5P4bSfxnECeHU" class="wolai-block"><span class="inline-wrap">第一步: 在父进程中创建了匿名管道，得到了两个分配的文件描述符，fd3<span class="jill"></span>操作管道的读端，fd4<span class="jill"></span>操作管道的写端。</span></blockquote><div id="6wsdwk1ZAAAciX6hAxStm7" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="https://subingwen.cn/linux/pipe/image-20210204223438269.png" style="width: 801.3333333333334px"/></figure></div><blockquote id="kQ71DXvy7CArRiHPVpiAde" class="wolai-block"><span class="inline-wrap">第二步：父进程创建子进程，父进程的文件描述符被拷贝，在子进程的文件描述符表中也得到了两个被分配的可以使用的文件描述符，通过<span class="jill"></span>fd3<span class="jill"></span>读管道，通过<span class="jill"></span>fd4<span class="jill"></span>写管道。通过下图可以看到管道中数据的流动不是单向的，有以下这么几种情况：
+
+1.  父进程通过<span class="jill"></span>fd4<span class="jill"></span>将数据写入管道，然后父进程再通过<span class="jill"></span>fd3<span class="jill"></span>将数据从管道中读出
+2.  父进程通过<span class="jill"></span>fd4<span class="jill"></span>将数据写入管道，然后子进程再通过<span class="jill"></span>fd3<span class="jill"></span>将数据从管道中读出
+3.  子进程通过<span class="jill"></span>fd4<span class="jill"></span>将数据写入管道，然后子进程再通过<span class="jill"></span>fd3<span class="jill"></span>将数据从管道中读出
+4.  子进程通过<span class="jill"></span>fd4<span class="jill"></span>将数据写入管道，然后父进程再通过<span class="jill"></span>fd3<span class="jill"></span>将数据从管道中读出
+</span></blockquote><blockquote id="gFV2sQRMtFsfeBnrQFbNED" class="wolai-block"><span class="inline-wrap">前边说到过，管道行为默认是阻塞的，</span><span class="red inline-wrap"><b>假设子进程通过写端将数据写入管道，父进程的读端将数据读出，这样子进程的读端就读不到数据，导致子进程阻塞在读管道的操作上</b></span><span class="inline-wrap">，这样就会给程序的执行造成一些不必要的影响。如果我们本来也没有打算让进程读或者写管道，那么就可以将进程操作的读端或者写端关闭。</span></blockquote><div id="hpgSi61zExaaKrVebDr2e1" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="https://subingwen.cn/linux/pipe/image-20210204224031041.png" style="width: 1069.3333333333333px"/></figure></div><blockquote id="itQeMtACAcfbjcn4KvSW3u" class="wolai-block"><span class="inline-wrap">第三步：为了避免两个进程都读管道，但是可能其中某个进程由于读不到数据而阻塞的情况，我们</span><span class="red inline-wrap"><b>可以关闭进程中用不到的那一端的文件描述符，这样数据就只能单向的从一端流向另外一端了</b></span><span class="inline-wrap">，如下图，我们关闭了父进程的写端，关闭了子进程的读端：</span></blockquote><div id="fMLeKX5gAi7w81q3gcZSMM" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="https://subingwen.cn/linux/pipe/image-20210204225930296.png" style="width: 1069.3333333333333px"/></figure></div><div id="nxDxaynrhXmiMLU7qZHhhn" class="wolai-block wolai-text"><div><span class="inline-wrap">根据上面的分析，最终可以写出下面的代码：</span></div></div><code-block id="2YmLz3s5rgBonXHbpwb9Xi" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// 管道的数据是单向流动的:</span>
+<span class="token comment">// 操作管道的是两个进程, 进程A读管道, 需要关闭管道的写端, 进程B写管道, 需要关闭管道的读端</span>
+<span class="token comment">// 如果不做上述的操作, 会对程序的结果造成一些影响, 对管道的操作无法结束</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/wait.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建匿名管道, 得到两个文件描述符</span>
+    <span class="token keyword">int</span> fd<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">pipe</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"pipe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 2. 创建子进程 -> 能够操作管道的文件描述符被复制到子进程中</span>
+    <span class="token class-name">pid_t</span> pid <span class="token operator">=</span> <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>pid <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 关闭读端</span>
+        <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 3. 在子进程中执行 execlp("ps", "ps", "aux", NULL);</span>
+        <span class="token comment">// 在子进程中完成输出的重定向, 原来输出到终端现在要写管道</span>
+        <span class="token comment">// 进程打印数据默认输出到终端, 终端对应的文件描述符: stdout_fileno</span>
+        <span class="token comment">// 标准输出 重定向到 管道的写端</span>
+        <span class="token function">dup2</span><span class="token punctuation">(</span>fd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> STDOUT_FILENO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">execlp</span><span class="token punctuation">(</span><span class="token string">"ps"</span><span class="token punctuation">,</span> <span class="token string">"ps"</span><span class="token punctuation">,</span> <span class="token string">"aux"</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"execlp"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">// 4. 父进程读管道</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>pid <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 关闭管道的写端</span>
+        <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 5. 父进程打印读到的数据信息</span>
+        <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">4096</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment">// 读管道</span>
+        <span class="token comment">// 如果管道中没有数据, read会阻塞</span>
+        <span class="token comment">// 有数据之后, read解除阻塞, 直接读数据</span>
+        <span class="token comment">// 需要循环读数据, 管道是有容量的, 写满之后就不写了</span>
+        <span class="token comment">// 数据被读走之后, 继续写管道, 那么就需要再继续读数据</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>fd<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 管道的写端关闭了, 如果管道中没有数据, 管道读端不会阻塞</span>
+                <span class="token comment">// 没数据直接返回0, 如果有数据, 将数据读出, 数据读完之后返回0</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s, len = %d\n"</span><span class="token punctuation">,</span> buf<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 回收子进程资源</span>
+        <span class="token function">wait</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h1 id="46VPmoms2p4kY2AAhQ6Cfj" class="wolai-block"><span class="inline-wrap">3.有名管道</span></h1><h2 id="fRChN6xJQf3D3pqiLYZtMh" class="wolai-block"><span class="inline-wrap">3.1 创建有名管道</span></h2><div id="sHrHChQdTNRcDf9NXoSxU5" class="wolai-block wolai-text"><div><span class="inline-wrap">有名管道拥有管道的所有特性，之所以称之为</span><span class="inline-wrap"><b>有名是因为管道在磁盘上有实体文件</b></span><span class="inline-wrap">, 文件类型为</span><span class="inline-wrap"><code>p</code></span><span class="inline-wrap"> ，</span><span class="red inline-wrap">有名管道文件大小永远为<span class="jill"></span>0，因为有名管道也是将数据存储到内存的缓冲区中，打开这个磁盘上的管道文件就可以得到操作有名管道的文件描述符，通过文件描述符读写管道存储在内核中的数据。</span></div></div><div id="8iCEfcJ5szk6NTc4EWveng" class="wolai-block wolai-text"><div><span class="inline-wrap">有名管道也可以称为</span><span class="red inline-wrap"><b><code> fifo (first in first out)</code></b></span><span class="inline-wrap">，</span><span class="yellow inline-wrap">使用有名管道既可以进行有血缘关系的进程间通信，也可以进行没有血缘关系的进程间通信</span><span class="inline-wrap">。创建有名管道的方式有两种，一种是通过命令，一种是通过函数。</span></div></div><div id="vKWnEQZRkoYprFZVw8H74A" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>通过命令</b></span></div></div><code-block id="rs9c9FKusctU2Hd9rGWV8H" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token function">mkfifo</span> 有名管道的名字</pre></div></code-block><div id="35EeDi9D1mBY52pRLraFRs" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>通过函数</b></span></div></div><code-block id="nMSC6vx31D4Td5xWvyjZBs" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
+<span class="token comment">// int open(const char *pathname, int flags, mode_t mode);</span>
+<span class="token keyword">int</span> <span class="token function">mkfifo</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pathname<span class="token punctuation">,</span> <span class="token class-name">mode_t</span> mode<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></code-block><ul class="wolai-block"><li id="hjfnxshqY6wsrXVu1HqCbW"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">参数:</span><ul class="wolai-block"><li id="tFjXz5YLasCKsuPuGEMTdv"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>pathname</code></span><span class="inline-wrap">: 要创建的有名管道的名字</span></li><li id="gA3yGFnuQ44uuWazuGmvhi"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>mode</code></span><span class="inline-wrap">: 文件的操作权限, 和</span><span class="inline-wrap"><code>open()</code></span><span class="inline-wrap">的第三个参数一个作用，最终权限: (mode &amp; ~umask)</span></li></ul></li><li id="cQZCzpaugwn86V61af1mzw"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">返回值：创建成功返回 0，失败返回 -1</span></li></ul><h2 id="7pVvPNMXsegBH6AS85Hc8S" class="wolai-block"><span class="inline-wrap">3.2<span class="jill"></span>进程间通信</span></h2><div id="wGC5zsbm5QXhrwfzzfSiPm" class="wolai-block wolai-text"><div><span class="inline-wrap">不管是有血缘关系还是没有血缘关系，使用有名管道实现进程间通信的方式是相同的，就是在两个进程中分别以读、写的方式打开磁盘上的管道文件，得到用于读管道、写管道的文件描述符，就可以调用对应的</span><span class="inline-wrap"><code>read()</code></span><span class="inline-wrap">、</span><span class="inline-wrap"><code>write()</code></span><span class="inline-wrap">函数进行读写操作了。</span></div></div><div id="m4qcqwsRRhms5i1EJtgjFx" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>小贴士</b></span><span class="inline-wrap">：</span><span class="red inline-wrap"><b>有名管道操作需要通过 </b></span><span class="red inline-wrap"><b><code>open() </code></b></span><span class="red inline-wrap"><b>操作得到读写管道的文件描述符，如果只是读端打开了或者只是写端打开了，进程会阻塞在这里不会向下执行，直到在另一个进程中将管道的对端打开，当前进程的阻塞也就解除了。所以当发现进程阻塞在了</b></span><span class="red inline-wrap"><b><code>open()</code></b></span><span class="red inline-wrap"><b>函数上不要感到惊讶。</b></span></div></div><h3 id="2cZChkqg4JxmNuCcqKtwvB" class="wolai-block"><span class="inline-wrap">（1）写管道的进程</span></h3><code-block id="9K3BbkyuBiNekoeirAaJue" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">/*
+  1. 创建有名管道文件 
+    mkfifo()
+  2. 打开有名管道文件, 打开方式是 o_wronly
+    int wfd = open("xx", O_WRONLY);
+  3. 调用write函数写文件 ==> 数据被写入管道中
+    write(wfd, data, strlen(data));
+  4. 写完之后关闭文件描述符
+    close(wfd);
+*/</span>
+</pre></div></code-block><code-block id="cuPPmyDq6X2tV8ab8vcUFA" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 创建有名管道文件</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">mkfifo</span><span class="token punctuation">(</span><span class="token string">"./testfifo"</span><span class="token punctuation">,</span> <span class="token number">0664</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"mkfifo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"管道文件创建成功...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 2. 打开管道文件</span>
+    <span class="token comment">// 因为要写管道, 所有打开方式, 应该指定为 O_WRONLY</span>
+    <span class="token comment">// 如果先打开写端, 读端还没有打开, open函数会阻塞, 当读端也打开之后, open解除阻塞</span>
+    <span class="token keyword">int</span> wfd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"./testfifo"</span><span class="token punctuation">,</span> O_WRONLY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>wfd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"open"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"以只写的方式打开文件成功...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 3. 循环写管道</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>i<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">sprintf</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token string">"hello, fifo, 我在写管道...%d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">write</span><span class="token punctuation">(</span>wfd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        i<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>wfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h3 id="fW5Gbt3QyEsDYimkQy5AYx" class="wolai-block"><span class="inline-wrap">（2）读管道的进程</span></h3><code-block id="gjHM12kY1ZbDMqj319BXpc" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">/*
+  1. 这两个进程需要操作相同的管道文件
+  2. 打开有名管道文件, 打开方式是 o_rdonly
+    int rfd = open("xx", O_RDONLY);
+  3. 调用read函数读文件 ==> 读管道中的数据
+    char buf[4096];
+    read(rfd, buf, sizeof(buf));
+  4. 读完之后关闭文件描述符
+    close(rfd);
+*/</span>
+</pre></div></code-block><code-block id="oJfZq9AEiDuMWdgWtKLoSr" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 打开管道文件</span>
+    <span class="token comment">// 因为要read管道, so打开方式, 应该指定为 O_RDONLY</span>
+    <span class="token comment">// 如果只打开了读端, 写端还没有打开, open阻塞, 当写端被打开, 阻塞就解除了</span>
+    <span class="token keyword">int</span> rfd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"./testfifo"</span><span class="token punctuation">,</span> O_RDONLY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>rfd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"open"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"以只读的方式打开文件成功...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 2. 循环读管道</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 读是阻塞的, 如果管道中没有数据, read自动阻塞</span>
+        <span class="token comment">// 有数据解除阻塞, 继续读数据</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>rfd<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"读出的数据: %s\n"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 写端关闭了, read解除阻塞返回0</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"管道的写端已经关闭, 拜拜...\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>rfd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</pre></div></code-block><h1 id="x9mDRw7V88g3voniHoDzuv" class="wolai-block"><span class="inline-wrap">4.管道的读写行为</span></h1><div id="wRCuuXTh8wRgVbf33BNpUc" class="wolai-block wolai-text"><div><span class="inline-wrap">关于管道不管是有名的还是匿名的，在进行读写的时候，它们表现出的行为是一致的，下面是对其读写行为的总结:</span></div></div><div id="rsu7JpvRNA7pHJy5LCmYHx" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>读管道</b></span><span class="inline-wrap">，需要根据写端的状态进行分析：</span></div></div><ul class="wolai-block"><li id="jwbbWtHecyp3iSCbSi5iyw"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">写端没有关闭 (操作管道写端的文件描述符没有被关闭)</span><ul class="wolai-block"><li id="muMJ1zHRm4c4YyeZRTTvRW"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果管道中没有数据 ==&gt; </span><span class="inline-wrap"><code>读阻塞</code></span><span class="inline-wrap">, 如果管道中被写入了数据, 阻塞解除</span></li><li id="gaEUhHE5DWscVpxft9fZbd"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果管道中有数据 ==&gt; 不阻塞，管道中的数据被读完了, 再继续读管道还会阻塞</span></li></ul></li><li id="tYRCV8Q2Wbisn1MTP1KWUW"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">写端已经关闭了 (没有可用的文件描述符可以写管道了)</span><ul class="wolai-block"><li id="8FwVfaGHjFa2rTvGitVXrs"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">管道中没有数据 ==&gt; 读端解除阻塞, read<span class="jill"></span>函数返回<span class="jill"></span>0</span></li><li id="tMP5Bbg2m7gt5voXBipzh1"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">管道中有数据 ==&gt; read<span class="jill"></span>先将数据读出, 数据读完之后返回<span class="jill"></span>0, 不会阻塞了</span></li></ul></li></ul><div id="ap3fULJ65b3UYaYCCWnxY5" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>写管道</b></span><span class="inline-wrap">，需要根据读端的状态进行分析：</span></div></div><ul class="wolai-block"><li id="hD1EN4MU6Tw7JGtbWxn6Ct"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">读端没有关闭</span><ul class="wolai-block"><li id="hzMYKb9a1d7pJTNUSJPjxa"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果管道有存储的空间, 一直写数据</span></li><li id="bAJ5NjJWVB4TaRLFbA2QhA"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果管道写满了, 写操作就阻塞, 当读端将管道数据读走了, 解除阻塞继续写</span></li></ul></li><li id="iyL7cGLUiemZwzAjugyHHi"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">读端关闭了，管道破裂(异常), 进程直接退出</span></li></ul><blockquote id="vh8aDB4FwfA9aCRQZ95GiQ" class="wolai-block"><span class="inline-wrap">管道的两端默认是阻塞的，如何将管道设置为非阻塞呢？管道的读写两端的非阻塞操作是相同的，下面的代码中将匿名的读端设置为了非阻塞：</span></blockquote><code-block id="aSJ2yPtuBdd83UUzgquhvD" class="wolai-block"><div class="wolai-pre"><div data-lang="C" class="marker"></div><pre><span class="token comment">// 通过fcntl 修改就可以, 一般情况下不建议修改</span>
+<span class="token comment">// 管道操作对应两个文件描述符, 分别是管道的读端 和 写端</span>
+
+<span class="token comment">// 1. 获取读端的文件描述符的flag属性</span>
+<span class="token keyword">int</span> flag <span class="token operator">=</span> <span class="token function">fcntl</span><span class="token punctuation">(</span>fd<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> F_GETFL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 2. 添加非阻塞属性到 flag中</span>
+flag <span class="token operator">|=</span> O_NONBLOCK<span class="token punctuation">;</span>
+<span class="token comment">// 3. 将新的flag属性设置给读端的文件描述符</span>
+<span class="token function">fcntl</span><span class="token punctuation">(</span>fd<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> F_SETFL<span class="token punctuation">,</span> flag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 4. 非阻塞读管道</span>
+<span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">4096</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">read</span><span class="token punctuation">(</span>fd<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></code-block></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Firefly</div><div class="author-info__description">A firefly flying freely in the AI domain.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">309</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2HMJs2p6xKuDAPh4f3Ebwe"><span class="toc-text">1.管道</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#oNxz4LFna1gqrGbtAGAnM"><span class="toc-text">2.匿名管道</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cVxoEVULXGMdbPjk2m8a6X"><span class="toc-text">2.1 创建匿名管道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vFrn7A2eQL2X5Q57FqZhBT"><span class="toc-text">2.2 进程间通信</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#46VPmoms2p4kY2AAhQ6Cfj"><span class="toc-text">3.有名管道</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#fRChN6xJQf3D3pqiLYZtMh"><span class="toc-text">3.1 创建有名管道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7pVvPNMXsegBH6AS85Hc8S"><span class="toc-text">3.2进程间通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2cZChkqg4JxmNuCcqKtwvB"><span class="toc-text">（1）写管道的进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fW5Gbt3QyEsDYimkQy5AYx"><span class="toc-text">（2）读管道的进程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#x9mDRw7V88g3voniHoDzuv"><span class="toc-text">4.管道的读写行为</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">95</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">63</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.33em; color: rgb(81, 107, 94)">DSA</a><a href="/tags/RL/" style="font-size: 1.25em; color: rgb(92, 57, 19)">RL</a><a href="/tags/Transformer/" style="font-size: 1.35em; color: rgb(150, 194, 117)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.27em; color: rgb(40, 47, 49)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.31em; color: rgb(174, 125, 158)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.23em; color: rgb(137, 51, 185)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.17em; color: rgb(193, 2, 179)">CV</a><a href="/tags/GPT/" style="font-size: 1.19em; color: rgb(0, 191, 52)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(121, 23, 112)">PL</a><a href="/tags/domain/" style="font-size: 1.15em; color: rgb(168, 119, 145)">domain</a><a href="/tags/github/" style="font-size: 1.15em; color: rgb(19, 195, 9)">github</a><a href="/tags/hf/" style="font-size: 1.15em; color: rgb(57, 84, 66)">hf</a><a href="/tags/weibo/" style="font-size: 1.15em; color: rgb(108, 151, 171)">weibo</a><a href="/tags/ArXiv/" style="font-size: 1.39em; color: rgb(42, 154, 106)">ArXiv</a><a href="/tags/Domain/" style="font-size: 1.39em; color: rgb(140, 150, 59)">Domain</a><a href="/tags/AI/" style="font-size: 1.45em; color: rgb(194, 160, 120)">AI</a><a href="/tags/GitHub/" style="font-size: 1.43em; color: rgb(60, 59, 171)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.43em; color: rgb(155, 190, 73)">Trending</a><a href="/tags/HuggingFace/" style="font-size: 1.37em; color: rgb(128, 83, 116)">HuggingFace</a><a href="/tags/Papers/" style="font-size: 1.37em; color: rgb(135, 161, 45)">Papers</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.41em; color: rgb(53, 102, 65)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.41em; color: rgb(87, 126, 9)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.29em; color: rgb(140, 51, 158)">leetcode</a><a href="/tags/algo/" style="font-size: 1.17em; color: rgb(113, 76, 15)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">309</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">11275.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-29T23:53:58.785Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

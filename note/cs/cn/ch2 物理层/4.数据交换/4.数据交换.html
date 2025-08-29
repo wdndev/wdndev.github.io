@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="4.数据交换 - wolai 笔记1.为什么要数据交换2.数据交换方式2.1 电路交换（Circuit Exchanging）电路交换原理在数据传输期间，源结点与目的结点之间有一条由中间结点构成的专用物理链接线路，在数据传输结束之前，这条线路一直保持。电路交换阶段建立连接：释放连接：特点独占资源，用户时钟占用端到端的固定传输带宽。适用于远程批处理信息传输或系统实时性要求高的大量数据传输情况。优缺">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/cs/cn/ch2%20%E7%89%A9%E7%90%86%E5%B1%82/4.%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2/4.%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="4.数据交换 - wolai 笔记1.为什么要数据交换2.数据交换方式2.1 电路交换（Circuit Exchanging）电路交换原理在数据传输期间，源结点与目的结点之间有一条由中间结点构成的专用物理链接线路，在数据传输结束之前，这条线路一直保持。电路交换阶段建立连接：释放连接：特点独占资源，用户时钟占用端到端的固定传输带宽。适用于远程批处理信息传输或系统实时性要求高的大量数据传输情况。优缺">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-08-29T23:46:27.278Z">
+<meta property="article:modified_time" content="2025-08-29T23:46:27.278Z">
+<meta property="article:author" content="Firefly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/cs/cn/ch2%20%E7%89%A9%E7%90%86%E5%B1%82/4.%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2/4.%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-30 07:46:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">309</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>4.数据交换 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div data-symbol="😃" class="icon"></div></div><div data-title="4.数据交换" class="main-title"></div></div></header><article><h1 id="di8uLfPhsQWCA4WpkwTHZV" class="wolai-block"><span class="inline-wrap">1.为什么要数据交换</span></h1><div id="cgTXP5PneZfC1uSHAh31BS" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/syonw7_4p-.png" style="width: 1043px"/></figure></div><h1 id="cVCdRGaxVNuVM5ZuDNm86E" class="wolai-block"><span class="inline-wrap">2.数据交换方式</span></h1><h2 id="1ySit89v7LnXx6GFXQw5g7" class="wolai-block"><span class="inline-wrap">2.1 </span><span class="red inline-wrap">电路交换（Circuit Exchanging）</span></h2><h3 id="e6EJdS5ArjW1SGqfhJBoMF" class="wolai-block"><span class="inline-wrap">电路交换原理</span></h3><div id="pD5CrVTKusuTv7LHYu21rJ" class="wolai-block wolai-text"><div><span class="inline-wrap">在数据传输期间，源结点与目的结点之间有一条由中间结点构成的专用物理链接线路，在数据传输结束之前，这条线路一直保持。</span></div></div><h3 id="8WFjQYAsAEKFKFp861sqRm" class="wolai-block"><span class="inline-wrap">电路交换阶段</span></h3><div id="fDVwhpmhq3WqjgXPvZsgy8" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/1v5fka-zmz.png" style="width: 545px"/></figure></div><div id="2U7yihwh3C5VbasJG88V1K" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>建立连接：</b></span></div></div><div id="32VteovaFJf5amC14x5BGf" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/gvk5aee_8e.png" style="width: 848px"/></figure></div><div id="kHH81q9QT7a27wzjg6K3x6" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>释放连接</b></span><span class="inline-wrap">：</span></div></div><div id="qjbNDndzVu8RrCEiJH8raS" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/tvuq_nfzji.png" style="width: 837px"/></figure></div><h3 id="gAwHY6ZguZQD6YevvYNmjj" class="wolai-block"><span class="inline-wrap">特点</span></h3><div id="rudU7khKoL2zKgtoN4CAZX" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>独占资源</b></span><span class="inline-wrap">，用户时钟占用端到端的固定传输带宽。适用于远程批处理信息传输或系统实时性要求高的大量数据传输情况。</span></div></div><h3 id="rm6r1GUDwNRvbFG7q2GhvS" class="wolai-block"><span class="inline-wrap">优缺点</span></h3><div id="m8XTurM1mVK7skTES1YPgo" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/g1elrih-v1.png" style="width: 1783px"/></figure></div><h2 id="1rjF4kosZvKM6W4zs57Cfj" class="wolai-block"><span class="inline-wrap">2.2 </span><span class="red inline-wrap">报文交换（Message Exchanging）</span></h2><h3 id="bSJnResnKVNgo7yjxTVGqn" class="wolai-block"><span class="inline-wrap">报文</span></h3><div id="hUWwJeqLtYipUJ7R1mwFkC" class="wolai-block wolai-text"><div><span class="inline-wrap">是网络中交换与传输的数据单元，即</span><span class="red inline-wrap"><b>站点一次性要发送的数据块</b></span><span class="inline-wrap">。报文包含了简要发送的完整数据信息，其长短很不一致，长度不限且可变。</span></div></div><h3 id="cRe54VqovhhLpwGoikbTJH" class="wolai-block"><span class="inline-wrap">报文交换原理</span></h3><div id="6Un17d55MMdn78J7NZUp4e" class="wolai-block wolai-text"><div><span class="inline-wrap">无需在两个站点之间建立一条专用通路，其数据传输的单位是报文，传输过程采用</span><span class="inline-wrap"><b>存储转发</b></span><span class="inline-wrap">。</span></div></div><div id="25LFAtixnzuBSF2Wae3ofm" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/rrsutbrgdx.png" style="width: 1640px"/></figure></div><h3 id="uDraHWfUVjZBuURPocT6vR" class="wolai-block"><span class="inline-wrap">优缺点</span></h3><div id="sjSfAZHqCpTkK1TFFKgiRq" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/qrzwzh424t.png" style="width: 1775px"/></figure></div><h2 id="oFQnnTtopbLLUfT4Np8pZk" class="wolai-block"><span class="inline-wrap">2.3 </span><span class="red inline-wrap">分组交换（Packet Exchanging）</span></h2><h3 id="oX8ocyk94t3ZJHz61t3ifa" class="wolai-block"><span class="inline-wrap">（1）分组</span></h3><div id="mst1Sf4bNWPH3C7focvPfC" class="wolai-block wolai-text"><div><span class="inline-wrap">大多数计算机网络度不能连续地传输任意长度的数据，所以</span><span class="red inline-wrap">实际上网络系统把数据分割成小块，然后逐块地发送</span><span class="inline-wrap">，这种小块就称为分组（packet）</span></div></div><h3 id="outSwhdLeTQHq853uazW12" class="wolai-block"><span class="inline-wrap">（2）分组交换原理</span></h3><div id="3LXPRWtmH8Aqhc9fWuLe2C" class="wolai-block wolai-text"><div><span class="inline-wrap">分组交换与报文交换的工作方式基本相同，都采用存储转发方式，形式上的主要差别在于，分组交换网中</span><span class="inline-wrap"><b>要</b></span><span class="red inline-wrap"><b>限制所传输的数据单位的长度</b></span><span class="inline-wrap">，一般选<span class="jill"></span>128B。发送节点首先对从终端设备送来的数据报文进行接收、存储，而后将报文划分成一定长度的分组，并以分组为单位进行传输和交换。接收结点将收到的分组组装成信息或报文。</span></div></div><div id="oWwZxHLLFdB54zHoMUcGbo" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/q4s9bj5vlg.png" style="width: 1562px"/></figure></div><h3 id="2VqZALSRT5cZ5SD3icQcXP" class="wolai-block"><span class="inline-wrap">（3）优缺点</span></h3><div id="3kC1KhBMgpsUt4mh79nmSt" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/5zsqejwjbe.png" style="width: 1783px"/></figure></div><h3 id="4dMYtSfSCB3tsUCPrps6NF" class="wolai-block"><span class="inline-wrap">（4）分类</span></h3><h4 id="18bn6n478DfnxKfv41tbXf" class="wolai-block"><span class="red inline-wrap">数据报方式</span></h4><div id="qd9Mfc2YtdKQUnkJUVxv7Z" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/z31lx2jbra.png" style="width: 1026px"/></figure></div><ol class="wolai-block"><li id="1MB3MxCGAGq8Ys7aXHW4su"><div class="marker"></div><span class="yellow inline-wrap">源主机(A)</span><span class="yellow inline-wrap"><b>将报文分成多个分组</b></span><span class="yellow inline-wrap">，依次发送到直接相连的结点(A)。</span></li><li id="qrRPn7P3fAZjqYUFBA32GQ"><div class="marker"></div><span class="inline-wrap">结点<span class="jill"></span>A<span class="jill"></span>收到分组后，对每个分组</span><span class="yellow inline-wrap"><b>差错检测</b></span><span class="yellow inline-wrap">和</span><span class="yellow inline-wrap"><b>路由选择</b></span><span class="inline-wrap">，不同分组的下一跳结点可能不同。</span></li><li id="ggA4xBDNoicE41TY9iStsF"><div class="marker"></div><span class="inline-wrap">结点<span class="jill"></span>C<span class="jill"></span>收到分组<span class="jill"></span>P1<span class="jill"></span>后，对分组<span class="jill"></span>P1<span class="jill"></span>进行</span><span class="inline-wrap"><b>差错检测</b></span><span class="inline-wrap">，若正确则向<span class="jill"></span>A<span class="jill"></span>发送确认信息，A<span class="jill"></span>收到<span class="jill"></span>C<span class="jill"></span>确认后则丢弃分组<span class="jill"></span>P1<span class="jill"></span>副本。</span></li><li id="t8MhPUztwLRx7yjh5KnFgd"><div class="marker"></div><span class="inline-wrap">所有分组到家辽（主机<span class="jill"></span>B）！</span></li></ol><div id="84anEn7ixg3e1RfFnNNA2p" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>特点</b></span></div></div><ul class="wolai-block"><li id="4Cgw1mpgMejLi8sS8kJz9Y"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数据报方式为网络层提供无连接服务。发送方可随时发送分组，网络中的结点可随时接受分组</span></li><li id="xxUXv2KqB6QNehsdVnPhMT"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">同一报文的不同分组达到目的结点时可能发生乱序、重复与丢失</span></li><li id="5Gq5R6LT38LzujxcHN95Sa"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">每个分组在传输过程中都必须携带源地址和目的地址，以及分组号。</span></li><li id="c3VxhJy4nyBFAJs3umixfY"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">分组在交换结点存储转发时，需要排队等候处理，这会带来一定的时延。当通过交换结点的通信量较大或网络发生拥塞时，这种时延会大大增加，交换结点还可根据情况丢弃部分分组。</span></li><li id="wb2MXEoJaR9TNq9JHM3mxX"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">网络具有冗余路径，当某一交换结点或一段链路出现故障时，可相应地更新转发表，寻找另一条路径转发分组，对故障的适应能力强，适用于突发性通信，不适于长报文、会话式通信。</span></li></ul><h4 id="9pBkgsL7PZNLCcWF9Rt2nK" class="red wolai-block"><span class="inline-wrap">虚电报方式</span></h4><div id="ex4Ls41GZYUCsnuKukvugu" class="wolai-block wolai-text"><div><span class="yellow inline-wrap">虚电路将数据报方式和电路交换方式结合，</span><span class="inline-wrap">以发挥两者优点</span></div></div><div id="veNiMaGB45ew4B8fLDwV4X" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/m5chu9miq3.png" style="width: 1072px"/></figure></div><div id="8s2h8vwV2bs5AZtr61vpch" class="wolai-block wolai-text"><div><span class="red inline-wrap"><b>虚电路</b></span><span class="inline-wrap">：一条源主机到目的主机类似于电路的路径（</span><span class="red inline-wrap"><b>逻辑连接</b></span><span class="inline-wrap">），路径上所有结点都要维持这条虚电路的建立，都维持一张虚电路表，每一项记录了一个打开的虚电路信息。</span></div></div><div id="44Yqa2SMQ1UcZNbViFicHb" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>通信过程：</b></span></div></div><ul class="wolai-block"><li id="gFbRimnAt7DZNWGWUAtNTz"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">建立连接（虚电路建立）：源主机发送“呼叫请求”分组并收到“呼叫应答”分组后才算建立连接</span></li><li id="vddo8U58SPsPV2JBYhRBCG"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">数据传输：每个分组携带</span><span class="inline-wrap"><b>虚电路号</b></span><span class="inline-wrap">、分组号、检验和等控制信息。</span></li><li id="7NFM6BNTmsT8pZibEXRw7J"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">释放连接（虚电路释放）：源主机发送“释放请求”分组以拆除虚电路。</span></li></ul><div id="s9GMq1MmiuBkuRapw7aWPf" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>特点：</b></span></div></div><ul class="wolai-block"><li id="6EJk3uieN3ZCyZG2cr8pJS"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">虚电路方式为网络层提供连接服务。源结点与目的结点建立一条逻辑连接，而非实际物理连接。</span></li><li id="r2Dbgh55kYBS8HTKSGqiWs"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">一次通信的所有分组都通过虚电路顺序传送，分组不需携带源地址、目的地址等信息，包含</span><span class="inline-wrap"><b>虚电路号</b></span><span class="inline-wrap">，相对数据报方式开销小，同一报文的不同分组到达目的结点时不会乱序、重复或去失。</span></li><li id="b8Etrqa5MePVyR2fwPyak4"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">分组通过虚电路上的每个节点时，节点只进行差错检测，不需进行路由选择。</span></li><li id="gwAQzsg1hCN9FyvyqtP4Aq"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">每个节点可能与多个节点之间建立多条虚电路，每条虚电路支持特定的两个端系统之间的数据传输，可以对两个数据端点的流量进行控制，两个端系统之间也可以有多条虚电路为不同的进程服务。</span></li><li id="h1vBsPcVu9Jj6GMH5V3B8J"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">致命弱点：当网络中的某个结点或某条链路出故障而彻底失效时，则所有经过该结点或该链路的虚电路将遭到破坏</span></li></ul><h3 id="sCkn4Uc6r9vsWkGCfR8ixr" class="wolai-block"><span class="inline-wrap">（5）数据报&amp;虚电路</span></h3><div id="sMNDw8JaHFoRxWrSGKqMTH" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/nynq1-wyfq.png" style="width: 1677px"/></figure></div><h1 id="4Lv64QQVQT54yP6QgXNKxS" class="wolai-block"><span class="inline-wrap">3.数据交换方式的选择</span></h1><div id="hzG1wYk33ASwaAKcvGbMv5" class="wolai-block"><figure class="wolai-center" style="width: 100%"><img src="media/qq17nv14g4.png" style="width: 1085px"/></figure></div><ol class="wolai-block"><li id="qucBNooDxmYnmNfccxTAn7"><div class="marker"></div><span class="red inline-wrap">传送数据量大，且传送时间远大于呼叫时</span><span class="inline-wrap">，选择</span><span class="red inline-wrap"><b>电路交换</b></span><span class="inline-wrap">。电路交换传输时延最小。</span></li><li id="3EazXgiyXkxTzZiyGTHgqC"><div class="marker"></div><span class="inline-wrap">当端到端的通路有很多段的链路组成时，采用</span><span class="red inline-wrap"><b>分组交换</b></span><span class="inline-wrap">传送数据较为合适。</span></li><li id="fAUUVAvq1T8hBHYLfAkU59"><div class="marker"></div><span class="inline-wrap">从信道利用率上看，报文交换和分组交换优于电路交换，其中分组交换比报文交换的时延小，尤其适合于计算机之间的突发式的数据通信。</span></li></ol></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Firefly</div><div class="author-info__description">A firefly flying freely in the AI domain.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">309</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#di8uLfPhsQWCA4WpkwTHZV"><span class="toc-text">1.为什么要数据交换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cVCdRGaxVNuVM5ZuDNm86E"><span class="toc-text">2.数据交换方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1ySit89v7LnXx6GFXQw5g7"><span class="toc-text">2.1 电路交换（Circuit Exchanging）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#e6EJdS5ArjW1SGqfhJBoMF"><span class="toc-text">电路交换原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8WFjQYAsAEKFKFp861sqRm"><span class="toc-text">电路交换阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gAwHY6ZguZQD6YevvYNmjj"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm6r1GUDwNRvbFG7q2GhvS"><span class="toc-text">优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1rjF4kosZvKM6W4zs57Cfj"><span class="toc-text">2.2 报文交换（Message Exchanging）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bSJnResnKVNgo7yjxTVGqn"><span class="toc-text">报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cRe54VqovhhLpwGoikbTJH"><span class="toc-text">报文交换原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uDraHWfUVjZBuURPocT6vR"><span class="toc-text">优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#oFQnnTtopbLLUfT4Np8pZk"><span class="toc-text">2.3 分组交换（Packet Exchanging）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#oX8ocyk94t3ZJHz61t3ifa"><span class="toc-text">（1）分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outSwhdLeTQHq853uazW12"><span class="toc-text">（2）分组交换原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2VqZALSRT5cZ5SD3icQcXP"><span class="toc-text">（3）优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4dMYtSfSCB3tsUCPrps6NF"><span class="toc-text">（4）分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#18bn6n478DfnxKfv41tbXf"><span class="toc-text">数据报方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9pBkgsL7PZNLCcWF9Rt2nK"><span class="toc-text">虚电报方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sCkn4Uc6r9vsWkGCfR8ixr"><span class="toc-text">（5）数据报&amp;虚电路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4Lv64QQVQT54yP6QgXNKxS"><span class="toc-text">3.数据交换方式的选择</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">95</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">63</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.33em; color: rgb(81, 107, 94)">DSA</a><a href="/tags/RL/" style="font-size: 1.25em; color: rgb(92, 57, 19)">RL</a><a href="/tags/Transformer/" style="font-size: 1.35em; color: rgb(150, 194, 117)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.27em; color: rgb(40, 47, 49)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.31em; color: rgb(174, 125, 158)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.23em; color: rgb(137, 51, 185)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.17em; color: rgb(193, 2, 179)">CV</a><a href="/tags/GPT/" style="font-size: 1.19em; color: rgb(0, 191, 52)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(121, 23, 112)">PL</a><a href="/tags/domain/" style="font-size: 1.15em; color: rgb(168, 119, 145)">domain</a><a href="/tags/github/" style="font-size: 1.15em; color: rgb(19, 195, 9)">github</a><a href="/tags/hf/" style="font-size: 1.15em; color: rgb(57, 84, 66)">hf</a><a href="/tags/weibo/" style="font-size: 1.15em; color: rgb(108, 151, 171)">weibo</a><a href="/tags/ArXiv/" style="font-size: 1.39em; color: rgb(42, 154, 106)">ArXiv</a><a href="/tags/Domain/" style="font-size: 1.39em; color: rgb(140, 150, 59)">Domain</a><a href="/tags/AI/" style="font-size: 1.45em; color: rgb(194, 160, 120)">AI</a><a href="/tags/GitHub/" style="font-size: 1.43em; color: rgb(60, 59, 171)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.43em; color: rgb(155, 190, 73)">Trending</a><a href="/tags/HuggingFace/" style="font-size: 1.37em; color: rgb(128, 83, 116)">HuggingFace</a><a href="/tags/Papers/" style="font-size: 1.37em; color: rgb(135, 161, 45)">Papers</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.41em; color: rgb(53, 102, 65)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.41em; color: rgb(87, 126, 9)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.29em; color: rgb(140, 51, 158)">leetcode</a><a href="/tags/algo/" style="font-size: 1.17em; color: rgb(113, 76, 15)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">309</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">11275.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-29T23:53:58.785Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
