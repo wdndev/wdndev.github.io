@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.变量分类 - wolai 笔记1.环境变量这种变量中主要保存的是和系统操作环境相关的数据。环境变量的变量名可以自由定义，但是一般对系统起作用的环境变量的变量名是系统预先设定好的。环境变量是 Bash 环境自带的变量，进入 Shell 时已经定义好了，可以直接使用。它们通常是系统定义好的，也可以由用户从父 Shell 传入子 Shell。1.1 环境变量设置# 使用export声明的变量即是环">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/linux/bash/2.%E5%8F%98%E9%87%8F/1.%E5%8F%98%E9%87%8F%E5%88%86%E7%B1%BB/1.%E5%8F%98%E9%87%8F%E5%88%86%E7%B1%BB.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="1.变量分类 - wolai 笔记1.环境变量这种变量中主要保存的是和系统操作环境相关的数据。环境变量的变量名可以自由定义，但是一般对系统起作用的环境变量的变量名是系统预先设定好的。环境变量是 Bash 环境自带的变量，进入 Shell 时已经定义好了，可以直接使用。它们通常是系统定义好的，也可以由用户从父 Shell 传入子 Shell。1.1 环境变量设置# 使用export声明的变量即是环">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-09-12T23:46:24.125Z">
+<meta property="article:modified_time" content="2025-09-12T23:46:24.125Z">
+<meta property="article:author" content="Firefly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/linux/bash/2.%E5%8F%98%E9%87%8F/1.%E5%8F%98%E9%87%8F%E5%88%86%E7%B1%BB/1.%E5%8F%98%E9%87%8F%E5%88%86%E7%B1%BB.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-13 07:46:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">365</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>1.变量分类 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="1.变量分类" class="main-title"></div></div></header><article><h1 id="w6vgbVxdiZ8qz4LQ6ve43b" class="wolai-block"><span class="inline-wrap">1.环境变量</span></h1><div id="neyziazdbD5i1t49mfiYCZ" class="wolai-block wolai-text"><div><span class="inline-wrap">这种变量中主要保存的是和系统操作环境相关的数据。环境变量的变量名可以自由定义，但是一般对系统起作用的环境变量的变量名是系统预先设定好的。</span></div></div><div id="owK2yvyXSQ1doi8BUFW9WU" class="wolai-block wolai-text"><div><span class="inline-wrap">环境变量是 Bash 环境自带的变量，进入 Shell 时已经定义好了，可以直接使用。它们通常是系统定义好的，也可以由用户从父 Shell 传入子 Shell。</span></div></div><h2 id="mtHj13dupUUin4XmgAhcEy" class="wolai-block"><span class="inline-wrap">1.1 环境变量设置</span></h2><code-block id="dHbv1MNcrGgR4rA46h4V4x" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token comment"># 使用export声明的变量即是环境变量</span>
+$ <span class="token builtin class-name">export</span> <span class="token assign-left variable">age</span><span class="token operator">=</span><span class="token string">"18"</span></pre></div></code-block><h2 id="qtjbLppJ17yEJhWYD6nDEE" class="wolai-block"><span class="inline-wrap">1.2 环境变量查询和删除</span></h2><div id="iz59Rfamiyo3YGaqjPwg31" class="wolai-block wolai-text"><div><span class="inline-wrap">很多环境变量很少发生变化，而且是只读的，可以视为常量。</span></div></div><div id="cYXytZS8aDY8mrtRazxLbL" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>env</code></span><span class="inline-wrap">命令或</span><span class="inline-wrap"><code>printenv</code></span><span class="inline-wrap">命令，可以显示所有环境变量。</span></div></div><code-block id="a5HhjxjYxQHXBHi674A2FR" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token function">env</span>
+<span class="token comment"># 或者</span>
+$ <span class="token function">printenv</span></pre></div></code-block><div id="9Xe1wA9diYzovQ3ZGt6uAK" class="wolai-block wolai-text"><div><span class="inline-wrap">查看单个环境变量的值，可以使用</span><span class="inline-wrap"><code>printenv</code></span><span class="inline-wrap">命令或</span><span class="inline-wrap"><code>echo</code></span><span class="inline-wrap">命令。</span></div></div><code-block id="rzpNHbQNZDrzCCQga5PFb4" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token function">printenv</span> <span class="token environment constant">PATH</span>
+<span class="token comment"># 或者</span>
+$ <span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span></pre></div></code-block><div id="mdweS3apP2iH8AVj3MiH2F" class="wolai-block wolai-text"><div><span class="inline-wrap">注意，</span><span class="inline-wrap"><code>printenv</code></span><span class="inline-wrap">命令后面的变量名，不用加前缀</span><span class="inline-wrap"><code>$</code></span><span class="inline-wrap">。</span></div></div><div id="7iAbjqQkL9HznzaJfs3gJY" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>env</code></span><span class="inline-wrap">命令和</span><span class="inline-wrap"><code>set</code></span><span class="inline-wrap">命令的区别：</span></div></div><div id="hNeqszcSpEw8UNTZQ1q6Hd" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>set</code></span><span class="inline-wrap">命令可以查看所有变量，而</span><span class="inline-wrap"><code>env</code></span><span class="inline-wrap">命令只能查看环境变量。</span></div></div><code-block id="a2KN2ekHtoiMqjJKBwshC7" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token builtin class-name">unset</span> gender   <span class="token comment">#删除环境变量gender</span>
+$ <span class="token function">env</span> <span class="token operator">|</span> <span class="token function">grep</span> gender</pre></div></code-block><h2 id="v7QyeU985fJu1QLi3buYy9" class="wolai-block"><span class="inline-wrap">1.3 系统默认环境变量</span></h2><ul class="wolai-block"><li id="epyw695F3shG61bHfq71xr"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>BASHPID</code></span><span class="inline-wrap">：Bash 进程的进程 ID。</span></li><li id="c8DkDca4kuYUgMvVqKJNZT"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>BASHOPTS</code></span><span class="inline-wrap">：当前 Shell 的参数，可以用</span><span class="inline-wrap"><code>shopt</code></span><span class="inline-wrap">命令修改。</span></li><li id="v672wXHgyyTBobGAr4SzsF"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>DISPLAY</code></span><span class="inline-wrap">：图形环境的显示器名字，通常是</span><span class="inline-wrap"><code>:0</code></span><span class="inline-wrap">，表示 X Server 的第一个显示器。</span></li><li id="uM8NJ5s78sckXFoDwM8aH7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>EDITOR</code></span><span class="inline-wrap">：默认的文本编辑器。</span></li><li id="sdZGHtTbhKpV1uK3LPdhSs"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>HOME</code></span><span class="inline-wrap">：用户的主目录。</span></li><li id="fmJDF4FHXu2xi3RUwVL2oi"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>HOST</code></span><span class="inline-wrap">：当前主机的名称。</span></li><li id="cyqQNoYzKXo1crQmM1b8ru"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>IFS</code></span><span class="inline-wrap">：词与词之间的分隔符，默认为空格。</span></li><li id="1LnYo8pPdnjvNyNfQgB2d3"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>LANG</code></span><span class="inline-wrap">：字符集以及语言编码，比如</span><span class="inline-wrap"><code>zh_CN.UTF-8</code></span><span class="inline-wrap">。</span></li><li id="rz4ggkQq92XcmnSFjpQRji"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>PATH</code></span><span class="inline-wrap">：由冒号分开的目录列表，当输入可执行程序名后，会搜索这个目录列表。</span></li><li id="tdnhuxHAV7NbncfkzaDfN6"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>PS1</code></span><span class="inline-wrap">：Shell 提示符。</span></li><li id="o2FBDJsCWoV52B7J7XaiWC"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>PS2</code></span><span class="inline-wrap">： 输入多行命令时，次要的 Shell 提示符。</span></li><li id="fpopbPN3oGyK6295Ki8KMB"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>PWD</code></span><span class="inline-wrap">：当前工作目录。</span></li><li id="6SYAcivnkpSR7PQtRDMkva"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>RANDOM</code></span><span class="inline-wrap">：返回一个<span class="jill"></span>0<span class="jill"></span>到<span class="jill"></span>32767<span class="jill"></span>之间的随机数。</span></li><li id="hphQPK94nWvd7SPfWDNPKq"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>SHELL</code></span><span class="inline-wrap">：Shell 的名字。</span></li><li id="eY8n42pdY5VUTcBq3VCaoF"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>SHELLOPTS</code></span><span class="inline-wrap">：启动当前 Shell 的</span><span class="inline-wrap"><code>set</code></span><span class="inline-wrap">命令的参数，参见《set 命令》一章。</span></li><li id="1VTmkWciVMHdGYrz5NZQiw"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>TERM</code></span><span class="inline-wrap">：终端类型名，即终端仿真器所用的协议。</span></li><li id="27FW3v5HgoQ394nnWCakEf"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>UID</code></span><span class="inline-wrap">：当前用户的 ID 编号。</span></li><li id="bVJQQPHHXQY6S77ZAjieMj"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap"><code>USER</code></span><span class="inline-wrap">：当前用户的用户名。</span></li></ul><h1 id="4FYaTvt3VdQDWN3JQCZe5p" class="wolai-block"><span class="inline-wrap">2.自定义变量</span></h1><div id="2zRdqgGpb6cd3F6cEm7jMC" class="wolai-block wolai-text"><div><span class="inline-wrap">自定义变量是用户在当前 Shell 里面自己定义的变量，仅在当前 Shell 可用。一旦退出当前 Shell，该变量就不存在了。</span></div></div><h2 id="vTrMJDmAsdaE1pxka88HAk" class="wolai-block"><span class="inline-wrap">2.1 变量定义</span></h2><code-block id="goZSn9WUWfvKtap7N2Nnif" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token assign-left variable">2name</span><span class="token operator">=</span><span class="token string">"abc"</span>
+-bash: <span class="token assign-left variable">2name</span><span class="token operator">=</span>abc: <span class="token builtin class-name">command</span> not found
+<span class="token comment"># 变量名不能用数字开头</span>
+$ name <span class="token operator">=</span> <span class="token string">"abc"</span>
+-bash: name: <span class="token builtin class-name">command</span> not found
+<span class="token comment"># 等号左右两侧不能有空格</span>
+$ <span class="token assign-left variable">name</span><span class="token operator">=</span>ab c
+-bash: c: <span class="token builtin class-name">command</span> not found
+<span class="token comment"># 变量的值如果有空格，必须用引号包含</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span><span class="token string">"ab c"</span></pre></div></code-block><h2 id="gDLN2me93VbQFiUrreprTG" class="wolai-block"><span class="inline-wrap">2.2 变量调用</span></h2><code-block id="vqJcKG1F6DDQEipNMykjM9" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token comment"># 定义变量name</span>
+$ <span class="token assign-left variable">name</span><span class="token operator">=</span><span class="token string">"ab c"</span>
+<span class="token comment"># 调用变量使用  $变量名</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$name</span> 
+<span class="token comment">#输出变量name的值</span>
+ab c</pre></div></code-block><h2 id="79ZBGVEDgdPSUKTfu6Zw94" class="wolai-block"><span class="inline-wrap">2.3 变量查看</span></h2><div id="j2YUnaEW62TH8Q6iXgj4C6" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>set</code></span><span class="inline-wrap">命令可以显示所有变量（包括环境变量和自定义变量），以及所有的 Bash 函数。</span></div></div><code-block id="6X2XTQ2oDW25Fn4i1XADDb" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token builtin class-name">set</span> <span class="token punctuation">[</span>选项<span class="token punctuation">]</span>
+选项:
+-u:如果设定此选项，调用未声明变量时会报错（默认无任何提示）
+-x:如果设定此选项，在命令执行之前，会把命令先输出一次
++<span class="token operator">&lt;</span>参数<span class="token operator">></span> :取消某个set曾启动的参数。</pre></div></code-block><code-block id="xbom99FeAbfY9AZYi6LEcW" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token builtin class-name">set</span>
+<span class="token assign-left variable"><span class="token environment constant">BASH</span></span><span class="token operator">=</span>/bin/bash
+…省略部分输出…
+<span class="token assign-left variable">name</span><span class="token operator">=</span><span class="token string">'ab c'</span>
+<span class="token comment"># 直接使用set 命令，会查询系统中所有的变量，包含用户自定义变量和环境变量</span>
+
+<span class="token comment"># 当设置了-u选项后，如果调用没有设定的变量会有报错。默认是没有任何输出的。</span>
+$ <span class="token builtin class-name">set</span> <span class="token parameter variable">-u</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$file</span>
+-bash: file: unbound variable
+
+<span class="token comment"># 如果设定了-x选项，会在每个命令执行之前，先把命令输出一次</span>
+$ <span class="token builtin class-name">set</span> <span class="token parameter variable">-x</span>
+$ <span class="token variable">$ls</span>
++ <span class="token function">ls</span> <span class="token parameter variable">--color</span><span class="token operator">=</span>auto
+Desktop  Documents  Downloads  Music  Pictures  projects  Public  snap  Templates  Videos  
+
+<span class="token comment"># 取消启动的x参数</span>
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span>$ <span class="token builtin class-name">set</span> +x</pre></div></code-block><h2 id="qkeZ8378V7nVUkwvP1cA95" class="wolai-block"><span class="inline-wrap">2.4 变量删除</span></h2><code-block id="dLRw1StHXrjLmQJXy1vsDP" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token builtin class-name">unset</span> 变量名</pre></div></code-block><h1 id="dRVvh3fWJ2ZqKBtut3jQ6Q" class="wolai-block"><span class="inline-wrap">3.位置参数变量</span></h1><div id="sKaocfQcBTACJuNyUzwuzb" class="wolai-block wolai-text"><div><span class="inline-wrap">主要是用来向脚本当中传递参数或数据的，变量名不能自定义，变量作用是固定的。</span></div></div><div id="ffrWyCKpyFc6kLAunxvbuF" class="wolai-block wolai-simple-table"><table><thead><tr><th style="width: 370px"><span class="inline-wrap">位置参数变量</span></th><th style="width: 370px"><span class="inline-wrap">作用</span></th></tr></thead><tbody><tr><td><span class="inline-wrap">$n</span></td><td><span class="inline-wrap">n<span class="jill"></span>为数字，</span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mtext>表示当前</mtext><mi>S</mi><mi>h</mi><mi>e</mi><mi>l</mi><mi>l</mi><mtext>脚本程序的名称，</mtext></mrow><annotation encoding="application/x-tex">0表示当前 Shell 脚本程序的名称，</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">0</span><span class="mord cjk_fallback">表示当前</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">h</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.01968em;">ll</span><span class="mord cjk_fallback">脚本程序的名称，</span></span></span></span></span><span class="inline-wrap">1-9 代 表 第 一 到 第 九 个 参 数 , 十 以 上 的 参 数 需 要 用 大 括 号 包 含 ， 如 9<span class="jill"></span>代表第一到第九个参数,十以上的参数需要用大括号包含，如<span class="jill"></span>9<span class="jill"></span>代表第一到第九个参数,十以上的参数需要用大括号包含，如<span class="jill"></span>&#123;10&#125;</span></td></tr><tr><td><span class="inline-wrap">$*</span></td><td><span class="inline-wrap">这个变量代表命令行中所有的参数，$<span class="jill"></span>把所有的参数看成一个整体</span></td></tr><tr><td><span class="inline-wrap">$@</span></td><td><span class="inline-wrap">这个变量也代表命令行中所有的参数，不过<span class="jill"></span>$@<span class="jill"></span>把每个参数区分对待</span></td></tr><tr><td><span class="inline-wrap">$#</span></td><td><span class="inline-wrap">这个变量代表命令行中所有参数的个数</span></td></tr></tbody></table></div><div id="rRPLWHaBbgmtePFM5cc3NP" class="wolai-block wolai-text"><div><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mtext>是</mtext><mi>s</mi><mi>h</mi><mi>e</mi><mi>l</mi><mi>l</mi><mtext>脚本传的第一个参数，</mtext></mrow><annotation encoding="application/x-tex">1 是shell脚本传的第一个参数，</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">1</span><span class="mord cjk_fallback">是</span><span class="mord mathnormal">s</span><span class="mord mathnormal">h</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.01968em;">ll</span><span class="mord cjk_fallback">脚本传的第一个参数，</span></span></span></span></span><span class="inline-wrap"><b>2 是<span class="jill"></span>shell<span class="jill"></span>脚本传的第二个参数…</b></span></div></div><code-block id="sgu74Zy8vpvV4XzJomWJbF" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token function">vim</span> test.sh
+<span class="token comment">#!/bin/sh</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"shell脚本本身的名字: <span class="token variable">$0</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"传给shell的第一个参数: <span class="token variable">$1</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"传给shell的第二个参数: <span class="token variable">$2</span>"</span></pre></div></code-block><div id="uSpx1P3ZUFVAkCo6dqskFS" class="wolai-block wolai-text"><div><span class="inline-wrap">保存退出后，在</span><span class="inline-wrap"><code>test.sh</code></span><span class="inline-wrap">所在的目录下输入 </span><span class="inline-wrap"><code>bash test.sh 1 2</code></span></div></div><div id="7hVivQ7zr9qceuFkhhP3Tx" class="wolai-block wolai-text"><div><span class="inline-wrap">结果输出：</span></div></div><code-block id="mgYGmrGgs21VZgNpoLUBex" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>shell脚本本身的名字: test.sh
+传给shell的第一个参数: <span class="token number">1</span>
+传给shell的第二个参数: <span class="token number">2</span></pre></div></code-block><div id="c61ZCGSwn18Cf3DqZK2xrZ" class="wolai-block wolai-text"><div><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathcolor="#cc0000"><mtext>\*</mtext></mstyle><mtext>会把接收的所有参数当成一个整体对待，而</mtext></mrow><annotation encoding="application/x-tex">\*会把接收的所有参数当成一个整体对待，而</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text" style="color:#cc0000;"><span class="mord" style="color:#cc0000;">\*</span></span><span class="mord cjk_fallback">会把接收的所有参数当成一个整体对待，而</span></span></span></span></span><span class="inline-wrap"><b>@<span class="jill"></span>则会区分对待接收到的所有参数。举个例子:</b></span></div></div><code-block id="h2271NygMnJAUKo7hftW8c" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token function">vi</span> parameter2.sh
+<span class="token comment">#!/bin/bash</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$*</span>"</span>
+<span class="token comment"># 定义for循环，in后面有几个值，for会循环多少次，注意“$*”要用双引号括起来</span>
+<span class="token comment"># 每次循环会把in后面的值赋予变量i</span>
+<span class="token comment"># Shell把$*中的所有参数看成是一个整体，所以这个for循环只会循环一次</span>
+	<span class="token keyword">do</span>
+		<span class="token builtin class-name">echo</span> <span class="token string">"The parameters is: <span class="token variable">$i</span>"</span>
+		<span class="token comment">#打印变量$i的值</span>
+	<span class="token keyword">done</span></pre></div></code-block><code-block id="2kqgrh58jM11iq9aKRnrtU" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre><span class="token assign-left variable">x</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment"># 定义变量x的值为1</span>
+<span class="token keyword">for</span> y <span class="token keyword">in</span><span class="token string">"<span class="token variable">$@</span>"</span>
+<span class="token comment"># 同样in后面的有几个值，for循环几次，每次都把值赋予变量y</span>
+<span class="token comment"># 可是Shel1中把“$@”中的每个参数都看成是独立的，所以“$@”中有几个参数，就会循环几次</span>
+	<span class="token keyword">do</span>
+		<span class="token builtin class-name">echo</span> <span class="token string">"The parameter<span class="token variable">$x</span> is: <span class="token variable">$y</span>"</span>
+		<span class="token comment">#输出变量y的值</span>
+		<span class="token assign-left variable">x</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span> $x <span class="token operator">+</span><span class="token number">1</span> <span class="token variable">))</span></span>
+		<span class="token comment">#然变量x每次循环都加1，为了输出时看的更清楚</span>
+	<span class="token keyword">done</span></pre></div></code-block><h1 id="pQ5uSqYa7JJfPp73UgVkXC" class="wolai-block"><span class="inline-wrap">4.预定义变量</span></h1><div id="bsvWNnoCQG5cC3FH6Zc731" class="wolai-block wolai-text"><div><span class="inline-wrap">是<span class="jill"></span>Bash<span class="jill"></span>中已经定义好的变量，变量名不能自定义，变量作用也是固定的。</span></div></div><div id="w2bewfVnz5XJc1wVCcWxzo" class="wolai-block wolai-simple-table"><table><thead><tr><th style="width: 370px"><span class="inline-wrap">预定义变量</span></th><th style="width: 370px"><span class="inline-wrap">作用</span></th></tr></thead><tbody><tr><td><span class="inline-wrap">$?</span></td><td><span class="inline-wrap">最后一次执行的命令的返回状态。如果这个变量的值为<span class="jill"></span>0，证明上一个命令正确执行;如果这个变量的值为非<span class="jill"></span>0(具体是哪个数，由命令自己来决定），则证明上一个命令执行不正确了。</span></td></tr><tr><td><span class="inline-wrap">$$</span></td><td><span class="inline-wrap">当前进程的进程号（PID)</span></td></tr><tr><td><span class="inline-wrap">$!</span></td><td><span class="inline-wrap">后台运行的最后一个进程的进程号(PID)</span></td></tr></tbody></table></div><div id="7DSegmYCEUT8uAAecMYToY" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>先来看看</b></span><span class="inline-wrap"><b><code>$?</code></b></span><span class="inline-wrap"><b>这个变量，举个例子说明</b></span></div></div><code-block id="b8FdpoeDfcXzF7Tghezv7o" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token function">ls</span>
+count.sh hello.sh parameter2.sh parameter.sh
+<span class="token comment">#ls命令正确执行</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$?</span>
+<span class="token number">0</span>
+<span class="token comment">#预定义变量“$?”的值是0，证明上一个命令执行正确</span>
+
+$ <span class="token function">ls</span> install.log
+ls:无法访问install.log:没有那个文件或目录
+<span class="token comment">#当前目录中没有install.log文件，所以ls命令报错了</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$?</span>
+<span class="token number">2</span>
+<span class="token comment">#变量“$?”返回一个非О的值，证明上一个命令没有正确执行</span>
+<span class="token comment">#至于错误的返回值到底是多少，是在编写ls命令时定义好的，如果碰到文件不存在就返回数值2</span></pre></div></code-block><div id="orvW2HT7jBUQ4naoUMdtxh" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>再来说明下”$$”和”$!”这两个预定义变量</b></span></div></div><code-block id="k69nmr8YHV7QR33bvdfzzE" class="wolai-block"><div class="wolai-pre"><div data-lang="Shell" class="marker"></div><pre>$ <span class="token function">vi</span> variable.sh
+<span class="token comment">#!/bin/bash</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"The current process is <span class="token variable">$$</span>"</span>
+<span class="token comment">#输出当前进程的PID.</span>
+<span class="token comment">#这个PID就是variable.sh这个脚本执行时，生成的进程的PID</span>
+<span class="token function">find</span> /root <span class="token parameter variable">-name</span> hello.sh <span class="token operator">&amp;</span>
+<span class="token comment">#使用find命令在root目录下查找hello.sh文件</span>
+<span class="token comment">#符号&amp;的意思是把命令放入后台执行，工作管理我们在系统管理章节会详细介绍</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"The last one Daemon process is <span class="token variable">$!</span>"</span>
+<span class="token comment">#输出这个后台执行命令的进程的PID，也就是输出find命令的PID号</span></pre></div></code-block><h1 id="9PsD8Xm4JULSDKoasvHxmZ" class="wolai-block"><span class="inline-wrap">5.总结</span></h1><div id="9CofpJi9gqU8GnQ4jkDUgs" class="wolai-block wolai-simple-table"><table><thead><tr><th style="width: 185px"><span class="inline-wrap">变量分类</span></th><th style="width: 185px"><span class="inline-wrap">名称</span></th><th style="width: 185px"><span class="inline-wrap">作用</span></th><th style="width: 185px"><span class="inline-wrap">内容</span></th></tr></thead><tbody><tr><td><span class="inline-wrap">用户自定义变量</span></td><td><span class="inline-wrap">自定义</span></td><td><span class="inline-wrap">自定义</span></td><td><span class="inline-wrap">自定义</span></td></tr><tr><td><span class="inline-wrap">用户自定义环境变量</span></td><td><span class="inline-wrap">自定义</span></td><td><span class="inline-wrap">自定义</span></td><td><span class="inline-wrap">自定义</span></td></tr><tr><td><span class="inline-wrap">系统自带环境变量(/etc/profile)</span></td><td><span class="inline-wrap">确定</span></td><td><span class="inline-wrap">确定</span></td><td><span class="inline-wrap">自定义</span></td></tr><tr><td><span class="inline-wrap">位置参数变量</span></td><td><span class="inline-wrap">确定</span></td><td><span class="inline-wrap">自定义</span></td><td><span class="inline-wrap">自定义</span></td></tr><tr><td><span class="inline-wrap">预定义变量</span></td><td><span class="inline-wrap">确定</span></td><td><span class="inline-wrap">自定义</span></td><td><span class="inline-wrap">自定义</span></td></tr></tbody></table></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Firefly</div><div class="author-info__description">A firefly flying freely in the AI domain.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">365</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#w6vgbVxdiZ8qz4LQ6ve43b"><span class="toc-text">1.环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mtHj13dupUUin4XmgAhcEy"><span class="toc-text">1.1 环境变量设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qtjbLppJ17yEJhWYD6nDEE"><span class="toc-text">1.2 环境变量查询和删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v7QyeU985fJu1QLi3buYy9"><span class="toc-text">1.3 系统默认环境变量</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4FYaTvt3VdQDWN3JQCZe5p"><span class="toc-text">2.自定义变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vTrMJDmAsdaE1pxka88HAk"><span class="toc-text">2.1 变量定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gDLN2me93VbQFiUrreprTG"><span class="toc-text">2.2 变量调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#79ZBGVEDgdPSUKTfu6Zw94"><span class="toc-text">2.3 变量查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qkeZ8378V7nVUkwvP1cA95"><span class="toc-text">2.4 变量删除</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dRVvh3fWJ2ZqKBtut3jQ6Q"><span class="toc-text">3.位置参数变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pQ5uSqYa7JJfPp73UgVkXC"><span class="toc-text">4.预定义变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9PsD8Xm4JULSDKoasvHxmZ"><span class="toc-text">5.总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">123</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">77</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.33em; color: rgb(52, 177, 198)">DSA</a><a href="/tags/RL/" style="font-size: 1.25em; color: rgb(28, 136, 116)">RL</a><a href="/tags/Transformer/" style="font-size: 1.35em; color: rgb(174, 101, 126)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.27em; color: rgb(101, 101, 165)">LLMs</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(116, 25, 166)">PL</a><a href="/tags/PaperReading/" style="font-size: 1.31em; color: rgb(24, 57, 97)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.23em; color: rgb(134, 147, 41)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.17em; color: rgb(184, 49, 115)">CV</a><a href="/tags/GPT/" style="font-size: 1.19em; color: rgb(182, 62, 64)">GPT</a><a href="/tags/domain/" style="font-size: 1.15em; color: rgb(175, 153, 133)">domain</a><a href="/tags/github/" style="font-size: 1.15em; color: rgb(142, 100, 114)">github</a><a href="/tags/hf/" style="font-size: 1.15em; color: rgb(86, 199, 46)">hf</a><a href="/tags/weibo/" style="font-size: 1.15em; color: rgb(87, 129, 27)">weibo</a><a href="/tags/ArXiv/" style="font-size: 1.39em; color: rgb(42, 6, 116)">ArXiv</a><a href="/tags/Domain/" style="font-size: 1.39em; color: rgb(131, 151, 174)">Domain</a><a href="/tags/AI/" style="font-size: 1.45em; color: rgb(180, 84, 44)">AI</a><a href="/tags/GitHub/" style="font-size: 1.43em; color: rgb(61, 53, 16)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.43em; color: rgb(150, 192, 67)">Trending</a><a href="/tags/HuggingFace/" style="font-size: 1.37em; color: rgb(110, 151, 85)">HuggingFace</a><a href="/tags/Papers/" style="font-size: 1.37em; color: rgb(135, 31, 57)">Papers</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.41em; color: rgb(186, 189, 18)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.41em; color: rgb(130, 24, 17)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.29em; color: rgb(139, 50, 109)">leetcode</a><a href="/tags/algo/" style="font-size: 1.17em; color: rgb(64, 81, 164)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">365</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">14112.4k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-09-12T23:49:13.755Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="单链表应用 - wolai 笔记1.第j+len个结点问题已知指针La和Lb分别指向两个无头结点的单链表。编写函数完成从La中删除第j个元素开始共len个，并将这len个元素插入表Lb中第j个元素之前。算法思想无头结点链表操作比较麻烦，可以对两个链表分别增加两个头结点，待完成操作后，再将头结点释放。删除结点，需要找到该节点的前驱，可以将找第j个结点的前驱封装为一个函数。在La中获得第ja个结点的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/cs/ds/linear_list/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%BA%94%E7%94%A8/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%BA%94%E7%94%A8.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="单链表应用 - wolai 笔记1.第j+len个结点问题已知指针La和Lb分别指向两个无头结点的单链表。编写函数完成从La中删除第j个元素开始共len个，并将这len个元素插入表Lb中第j个元素之前。算法思想无头结点链表操作比较麻烦，可以对两个链表分别增加两个头结点，待完成操作后，再将头结点释放。删除结点，需要找到该节点的前驱，可以将找第j个结点的前驱封装为一个函数。在La中获得第ja个结点的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-09-12T23:46:23.718Z">
+<meta property="article:modified_time" content="2025-09-12T23:46:23.718Z">
+<meta property="article:author" content="Firefly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/cs/ds/linear_list/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%BA%94%E7%94%A8/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%BA%94%E7%94%A8.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-13 07:46:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">365</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>单链表应用 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div data-symbol="📪" class="icon"></div></div><div data-title="单链表应用" class="main-title"></div></div></header><article><h1 id="wfGkC5Tx9LtZ6uHrDVkRrM" class="wolai-block"><span class="inline-wrap">1.第<span class="jill"></span>j+len<span class="jill"></span>个结点</span></h1><h3 id="c2Lx3nCDtSJagtgX8sj67t" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="jUFFA1MB5drXFyYVFrxjDh" class="wolai-block wolai-text"><div><span class="inline-wrap">已知指针<span class="jill"></span>La<span class="jill"></span>和<span class="jill"></span>Lb<span class="jill"></span>分别指向两个</span><span class="inline-wrap"><b>无头结点</b></span><span class="inline-wrap">的单链表。编写函数完成从<span class="jill"></span>La<span class="jill"></span>中删除第<span class="jill"></span>j<span class="jill"></span>个元素开始共<span class="jill"></span>len<span class="jill"></span>个，并将这<span class="jill"></span>len<span class="jill"></span>个元素插入表<span class="jill"></span>Lb<span class="jill"></span>中第<span class="jill"></span>j<span class="jill"></span>个元素之前。</span></div></div><h3 id="wWQJYHAtY9eM6H6tKTTsEL" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="8c5b13mA2NevdvpqQEDamx"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">无头结点链表操作比较麻烦，可以对两个链表分别增加两个头结点，待完成操作后，再将头结点释放。</span></li><li id="5gAjhL1DpktdgyR4TZWUP5"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">删除结点，需要找到该节点的前驱，可以将</span><span class="red inline-wrap">找第<span class="jill"></span>j<span class="jill"></span>个结点的前驱</span><span class="inline-wrap">封装为一个函数。</span></li><li id="rFMGKkhigz7xQoBxE7tUwe"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">在<span class="jill"></span>La<span class="jill"></span>中获得第<span class="jill"></span>ja<span class="jill"></span>个结点的前驱<span class="jill"></span>pre<span class="jill"></span>以及第<span class="jill"></span>len+ja-1<span class="jill"></span>个结点的后继<span class="jill"></span>pSucc，</span></li><li id="sPra7NsDV3sheaqHQ9cthU"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">接着将<span class="jill"></span>pSucc<span class="jill"></span>结点更新为<span class="jill"></span>pre<span class="jill"></span>结点之后，及从<span class="jill"></span>La<span class="jill"></span>链中移出包含第<span class="jill"></span>ja<span class="jill"></span>到<span class="jill"></span>ja+len-1<span class="jill"></span>个结点的数据链，最后将整条链插入<span class="jill"></span>Lb<span class="jill"></span>的<span class="jill"></span>jb<span class="jill"></span>前。</span></li></ul><h3 id="mwSXk2iqqMybfCLtAkgQFf" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="tTsb1Fit9PZEzAV1Fbak21" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 在链表L中找到第ith个结点和前驱的地址</span>
+<span class="token keyword">void</span> <span class="token function">getIthNode</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span><span class="token punctuation">,</span> int ith<span class="token punctuation">,</span> <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preJthNode<span class="token punctuation">,</span> <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pJthNode</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pMove <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preMove <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token comment">// 从第0个结点开始访问</span>
+    int count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pMove <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> count <span class="token operator">&lt;</span> ith<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        preMove <span class="token operator">=</span> pMove<span class="token punctuation">;</span>
+        pMove <span class="token operator">=</span> pMove<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        count<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    preJthNode <span class="token operator">=</span> preMove<span class="token punctuation">;</span>
+    pJthNode <span class="token operator">=</span> pMove<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">operateLinkList</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span><span class="token operator">&amp;</span> <span class="token maybe-class-name">La</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LinkList</span><span class="token operator">&amp;</span> <span class="token maybe-class-name">Lb</span><span class="token punctuation">,</span> int j<span class="token punctuation">,</span> int len</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 没有头结点不好操作，给链表添加头结点</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> headLa <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token function">sizeof</span><span class="token punctuation">(</span><span class="token maybe-class-name">LinkNode</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> headLb <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token function">sizeof</span><span class="token punctuation">(</span><span class="token maybe-class-name">LinkNode</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headLa<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token punctuation">;</span>
+    headLb<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token maybe-class-name">Lb</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 用于保存La中第j个结点前驱的地址</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preJthNodeLa <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token comment">// 用于保存La的第j各结点的地址</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pJthNodeLa <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token comment">// 带头结点La中查找第j个结点及后继</span>
+    <span class="token function">getIthNode</span><span class="token punctuation">(</span>headLa<span class="token punctuation">,</span> j<span class="token punctuation">,</span> preJthNodeLa<span class="token punctuation">,</span> pJthNodeLa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 用于保存La中j+len个结点的地址和前驱的地址</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preLenthNodeLa <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pLenthNodeLa <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token comment">// 从带头结点查找到j+len个结点的地址及前驱地址</span>
+    <span class="token function">getIthNode</span><span class="token punctuation">(</span>preJthNodeLa<span class="token punctuation">,</span> j<span class="token operator">+</span>len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> preLenthNodeLa<span class="token punctuation">,</span> pLenthNodeLa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 用于保存Lb中j个结点的地址和前驱的地址</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preJthNodeLb <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pJthNodeLb <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token function">getIthNode</span><span class="token punctuation">(</span>headLb<span class="token punctuation">,</span> j<span class="token punctuation">,</span> preJthNodeLb<span class="token punctuation">,</span> pJthNodeLb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 1、从La中删除从第j个到j+len个的结点</span>
+    preJthNodeLa<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pLenthNodeLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 2、La链中的第j+len个结点的指针指向Lb中第j个结点</span>
+    pLenthNodeLa<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pJthNodeLb<span class="token punctuation">;</span>
+    <span class="token comment">// 3、La链中的第j个结点的前驱指向La中的第j个结点</span>
+    preJthNodeLb<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pJthNodeLa<span class="token punctuation">;</span>
+
+    <span class="token comment">// 操作完成，是否两条链的头结点</span>
+    <span class="token maybe-class-name">La</span> <span class="token operator">=</span> headLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>headLa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">La</span> <span class="token operator">=</span> headLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>headLb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="2odGPmdzK3fuRiCf4gukky" class="wolai-block"><span class="inline-wrap">2.前<span class="jill"></span>n<span class="jill"></span>个字符对称</span></h1><h3 id="efw6CFc93HfWob5iXmH2qb" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="pnjQAX9xYCw2xJFgSEPz97" class="wolai-block wolai-text"><div><span class="inline-wrap">设单链表表头指针为<span class="jill"></span>L，结点数据域为字符，设计时间复杂度最低的算法判断前<span class="jill"></span>n<span class="jill"></span>个字符是否中心对称，例如：xyx，xyyx<span class="jill"></span>均对称。</span></div></div><h3 id="x8jcHeW6PjPgkKkEj7eRwA" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="qyq7vdtokC5XbxyA675u7B"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">使用两个指针，</span><span class="red inline-wrap">快指针和慢指针，快指针每次走两步，慢指针每次走一步</span><span class="inline-wrap">；</span></li><li id="gUiV3PTYP187HN5xFtXmiE"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">当快指针指向链表末尾时，慢指针为链表中间；</span></li><li id="rhCFv91WPK8fHnAYHHBVtT"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap">慢指针继续走后半部分链表，并将后半部分链表反转，存在<span class="jill"></span>pMidlle<span class="jill"></span>结点中</span><span class="inline-wrap">；</span></li><li id="5Yx3wCAAxuGsrcpsPR9epf"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">使用<span class="jill"></span>pHead<span class="jill"></span>指针，指向链表的头结点（存数据的）；</span></li><li id="rkR53VdemRz2X2mXirEVeX"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">对比<span class="jill"></span>pMiddle<span class="jill"></span>和<span class="jill"></span>pHead<span class="jill"></span>指针中的数据是否相同，若不同，返回不对称；遍历完成则返回对称。</span></li></ul><h3 id="m7L18t4ytoyxHak3NjiF66" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="eeTUEuJZqJcFMhvrb7Eizv" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">int <span class="token function">isSymmetric</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pSlow <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pFast <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token comment">// 快指针走两步，慢指针走一步</span>
+    <span class="token comment">// 当快指针到链尾部，则慢指针到链表的中间</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pFast<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pFast<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        pSlow <span class="token operator">=</span> pSlow<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        pFast <span class="token operator">=</span> pFast<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">/////////// 注意，将链表分为两个部分</span>
+    <span class="token comment">/////////// L为头结点的前半部分，和pSlow开始的后半部分</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preSlow <span class="token operator">=</span> pSlow<span class="token punctuation">;</span>
+    pSlow <span class="token operator">=</span> pSlow<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    preSlow<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 后继，防止断链</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pMiddle <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkList</span> tmpNode<span class="token punctuation">;</span>
+    <span class="token comment">// 慢指针继续走，将后半部分链反转</span>
+    <span class="token comment">// 链头存在 pMiddle 结点中</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pSlow <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        tmpNode <span class="token operator">=</span> pSlow<span class="token punctuation">;</span>
+        pSlow <span class="token operator">=</span> pSlow<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token comment">// 不带头结点的头插法</span>
+        tmpNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pMiddle<span class="token punctuation">;</span>
+        pMiddle <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 链头指针赋给pHead</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pHead <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 比较链头、链中指针的元素，直至结束</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pMiddle <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pHead <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pMiddle<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">!=</span> pHead<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword control-flow">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        pMiddle <span class="token operator">=</span> pMiddle<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        pHead <span class="token operator">=</span> pHead<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword control-flow">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="dYiKdfbVJ4xrs5WX2k2rRQ" class="wolai-block"><span class="inline-wrap">3. 删除相同结点</span></h1><h3 id="jfASTqgaPJmVYRYDsFiQ3z" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="faRaoP5diEyBjSb76f8rAH" class="wolai-block wolai-text"><div><span class="inline-wrap">从非递减有序单链表中，删除值相同的多余元素。</span></div></div><h3 id="W9jR5SmPSHYyqRJFYWjcZ" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="WSyrehZTbacqBFTJXVxF9"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">依次访问链表中的每一个结点；</span></li><li id="rcwvMVPbSfhuAepstJPnzo"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap">比较当前结点的数据和下一个结点的数据大小；</span></li><li id="2Jf2C3YzqcghBppRmiN68Y"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果相同，则删除下一个结点；</span></li><li id="gA8Tm4MQDAUW5ooBAVHph2"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果不同，则指向下一个结点。</span></li></ul><div id="fS8gn78Lc6RCFE5LmVFNgC" class="wolai-block wolai-text"><div><span class="inline-wrap"><b>注意</b></span><span class="inline-wrap">：边界条件，循环条件</span></div></div><h3 id="kqHcp3JW64P7pAxf1b49WF" class="wolai-block"><span class="inline-wrap">代码</span></h3><div id="9TWPUXYAruuacm4AnSV12A" class="wolai-block wolai-text"><div><span class="inline-wrap">一个链表涉及相同结点的操作，一定要使用前驱和后继的这种访问规则。</span></div></div><code-block id="sXtGZQmNzYsvK1j6HAGaMi" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 从非递减有序单链表中，删除值相同的多余元素。</span>
+<span class="token keyword">void</span> <span class="token function">deleteSimilarElem</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 指向第一个数据结点</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 访问每一个数据结点</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>preNode <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> preNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 相同，则进行删除</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>preNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">==</span> preNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> tmpNode <span class="token operator">=</span> preNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            preNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> preNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token function">free</span><span class="token punctuation">(</span>tmpNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 不同，则指向下一个结点</span>
+        <span class="token keyword control-flow">else</span>
+            preNode <span class="token operator">=</span> preNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="mNEF6tjqMPoBobaE9WLxqU" class="wolai-block"><span class="inline-wrap">4. 比<span class="jill"></span>x<span class="jill"></span>小的结点数量</span></h1><h3 id="uSWoBkVhVhfbWdiEYJHHkC" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="c4FDEWHAG6zzLdEDMRrS79" class="wolai-block wolai-text"><div><span class="inline-wrap">设有一个非递减的正整数单链表（有重复数），设计算法确定比<span class="jill"></span>x<span class="jill"></span>小的结点数量。</span></div></div><h3 id="bMYehiY2dwG7KQMEwDHi4s" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="26MYosw2jMSUhEuEWLyycg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">依次遍历结点，大于<span class="jill"></span>x<span class="jill"></span>的结点没必要遍历；</span></li><li id="s2ZPQVZxcrWtwgMbYRj4sr"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">注意重复元素的排除</span></li></ul><h3 id="paTCTTHZiPKZRdbcdMb9xE" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="q8qf1JRgodEiNcwMvV96zy" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">int <span class="token function">lessValueNumber</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span><span class="token punctuation">,</span> <span class="token maybe-class-name">ElemType</span> x</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    int count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment">// 当前结点：指向数据</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 前驱结点</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token comment">// 访问每一对前驱后继，p不为空，且结点数据小于x</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNode <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">&lt;</span> x<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 数值与前驱结点不相同时，计数加1</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>preNode <span class="token operator">==</span> <span class="token constant">L</span> <span class="token operator">||</span> preNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">!=</span> pNode<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+            count<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token comment">// 更新结点</span>
+        preNode <span class="token operator">=</span> pNode<span class="token punctuation">;</span>
+        pNode <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword control-flow">return</span> count<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="dPZPsVAH8fQgyHZjPRyj3y" class="wolai-block"><span class="inline-wrap">5. 两表删除相同元素</span></h1><h3 id="tvyW299hXgvVivRBiCKRSD" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="ko1wYSZBQdce6BvrbVkRfB" class="wolai-block wolai-text"><div><span class="inline-wrap">删除</span><span class="red inline-wrap">非递减</span><span class="inline-wrap">单链表<span class="jill"></span>La<span class="jill"></span>中<span class="jill"></span>La<span class="jill"></span>与<span class="jill"></span>Lb<span class="jill"></span>相同的元素。</span></div></div><h3 id="fi6ofc7wfyN2Drx77tT2H6" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="3mouhL4eBQpiMX7WkR87Di"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">指针<span class="jill"></span>pNodeLa<span class="jill"></span>和<span class="jill"></span>pNodeLb<span class="jill"></span>分别指向两个链表的第一个元素；</span></li><li id="bRjFeU8mVW9uADfwrWGFFg"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap">较大值的指针原地等待，移动结点值较小的指针</span><span class="inline-wrap">；</span></li><li id="xa7eyqVDrRhzegTnnh7bz2"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">直到<span class="jill"></span>pNodeLa<span class="jill"></span>和<span class="jill"></span>pNodeLb<span class="jill"></span>指针指向结点的值相等；</span></li><li id="7FqEPsAaRBhnrK38KJ2NHW"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">在<span class="jill"></span>La<span class="jill"></span>中删除相同的结点，继续比较值的大小。 </span></li></ul><h3 id="idiJB6TBBzeB3qaCja1RcV" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="fTUNw2FGgdYtEwTHScLxoN" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">deleteSimilar2List</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">La</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">Lb</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNodeLa <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preNodeLa <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNodeLb <span class="token operator">=</span> <span class="token maybe-class-name">Lb</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNodeLa <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pNodeLb <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// pNodeLa 小于 pNodeLb</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNodeLa<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">&lt;</span> pNodeLb<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 访问La的下一个结点</span>
+            preNodeLa <span class="token operator">=</span> pNodeLa<span class="token punctuation">;</span>
+            pNodeLa <span class="token operator">=</span> pNodeLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// pNodeLa 大于 pNodeLb</span>
+        <span class="token keyword control-flow">else</span> <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNodeLa<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">></span> pNodeLb<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 访问Lb的下一个结点</span>
+            pNodeLb <span class="token operator">=</span> pNodeLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword control-flow">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 删除La中相同的结点</span>
+            preNodeLa<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pNodeLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token comment">// 释放空间</span>
+            <span class="token function">free</span><span class="token punctuation">(</span>pNodeLa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 指向下一个节点</span>
+            pNodeLa <span class="token operator">=</span> preNodeLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="mxhjGqXmFqMDrwd2xx2L4p" class="wolai-block"><span class="inline-wrap">6. 三表删除相同元素</span></h1><h3 id="gtk8ncokusTX2bNEowrvcE" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="qiqKfjiwoeqLsj8PCnnect" class="wolai-block wolai-text"><div><span class="inline-wrap">已知<span class="jill"></span>La，Lb，Lc<span class="jill"></span>是三个链表，其元素按</span><span class="inline-wrap"><b>递增</b></span><span class="inline-wrap">顺序排序，每个表中均无重复数据，设计算法在表<span class="jill"></span>La<span class="jill"></span>中删除同时出现在<span class="jill"></span>Lb<span class="jill"></span>和<span class="jill"></span>Lc<span class="jill"></span>中的元素。。</span></div></div><h3 id="3ZSRzpJG42m87rmPLxFq2K" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="j5gTaVPksyWgjVZdi2T4j6"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap">先查找<span class="jill"></span>Lb<span class="jill"></span>和<span class="jill"></span>Lc<span class="jill"></span>中相同的元素</span><span class="inline-wrap">；</span></li><li id="rAJPz3V1xjzEpoZBnGxnqu"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap">若查找到相同元素，将<span class="jill"></span>La<span class="jill"></span>工作指针移动到小于这个元素的位置；</span></li><li id="k2dvtpovsysZPQToFHfdrF"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">判断<span class="jill"></span>La<span class="jill"></span>当前工作指针的元素是否等于这个元素；</span></li><li id="cytcmNakNp3VDTe5FudWYS"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">若相等，在<span class="jill"></span>La<span class="jill"></span>中删除这个元素；若不相等，跳过；</span></li><li id="pmP7nnbeVoSU7jqVZbtQxF"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">向后移动<span class="jill"></span>Lb<span class="jill"></span>和<span class="jill"></span>Lc<span class="jill"></span>的工作指针</span></li><li id="v5cZtWVEnfVmP4SVWv8nBX"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">直到其中的一条链遍历完成。</span></li></ul><h3 id="7R47WUZY1fA5c7jVmU7PZf" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="7tMQLFTqFxA4gsVt17EcDZ" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">deleteSimilar3List</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">La</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">Lb</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">Lc</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pCurLa <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preCurLa <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pCurLb <span class="token operator">=</span> <span class="token maybe-class-name">Lb</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pCurLc <span class="token operator">=</span> <span class="token maybe-class-name">Lc</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pCurLa <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pCurLb <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pCurLc <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// pNodeLb 小于 pNodeLc，向后移动pNodeLb指针</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pCurLb<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">&lt;</span> pCurLc<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+            pCurLb <span class="token operator">=</span> pCurLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token comment">// pNodeLb 大于 pNodeLc，向后移动pNodeLc指针</span>
+        <span class="token keyword control-flow">else</span> <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pCurLb<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">></span> pCurLc<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+            pCurLc <span class="token operator">=</span> pCurLc<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token comment">// 两链中找到相同结点</span>
+        <span class="token keyword control-flow">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 搜索大于等于e的结点</span>
+            <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pCurLa <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pCurLa<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">&lt;</span> pCurLc<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token comment">// 更新当前结点及前驱</span>
+                preCurLa <span class="token operator">=</span> pCurLa<span class="token punctuation">;</span>
+                pCurLa <span class="token operator">=</span> pCurLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// 相同，进行删除</span>
+            <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pCurLa<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">==</span> pCurLc<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                preCurLa<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pCurLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+                <span class="token function">free</span><span class="token punctuation">(</span>pCurLa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                pCurLa <span class="token operator">=</span> preCurLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// 删除完成后，同时移动pNodeLb和pNodeLc</span>
+            pCurLc <span class="token operator">=</span> pCurLc<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            pCurLb <span class="token operator">=</span> pCurLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="ihHod28oMkvBJ499PHtuhM" class="wolai-block"><span class="inline-wrap">7. 归并两表删除重复元素</span></h1><h3 id="i2XJt9tupLEGGuq1Ykra7s" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="wCMQ9G8e8kF47amn4uhfoV" class="wolai-block wolai-text"><div><span class="inline-wrap">La<span class="jill"></span>和<span class="jill"></span>Lb<span class="jill"></span>按值非递减，归并<span class="jill"></span>La<span class="jill"></span>和<span class="jill"></span>Lb，得到新的单链表<span class="jill"></span>Lc， 使得<span class="jill"></span>Lc<span class="jill"></span>也按值非递减且不含重复元素，</span></div></div><h3 id="iMVtDskb6cstaK2dn3LMDo" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="m6RnEq4tXdB3eH6rod7p4Y"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">释放<span class="jill"></span>Lb<span class="jill"></span>头结点，Lc<span class="jill"></span>抢占<span class="jill"></span>La<span class="jill"></span>的头结点；</span></li><li id="pcVDWKRfHMA3sJ5WVNT3G3"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">从<span class="jill"></span>La<span class="jill"></span>和<span class="jill"></span>Lb<span class="jill"></span>中，选取最小的元素</span><span class="red inline-wrap"><b>尾插法</b></span><span class="inline-wrap">插入<span class="jill"></span>Lc<span class="jill"></span>中；</span></li><li id="xfpj7jpoDr87hGFPxDJsCK"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="green inline-wrap">插入的时候注意<span class="jill"></span>Lc<span class="jill"></span>表尾元素与待插入结点值是否相同，若相同，则释放待插入结点；</span></li><li id="gGdrWUAEAxW1qHfhdmr23R"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">将剩余的<span class="jill"></span>La<span class="jill"></span>和<span class="jill"></span>Lb<span class="jill"></span>并入<span class="jill"></span>Lc<span class="jill"></span>中</span></li></ul><h3 id="uVxNTfWGMtNVrmPRWGR6GD" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="mQAQExJUzUuxRMrBiptYsa" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 尾插法插入元素</span>
+<span class="token keyword">void</span> <span class="token function">insertElem</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span><span class="token operator">&amp;</span> tailLc<span class="token punctuation">,</span> <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNode</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 若值相同，释放空间</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">==</span> tailLc<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+        <span class="token function">free</span><span class="token punctuation">(</span>pNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 插入Lc表尾</span>
+        pNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tailLc<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tailLc<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pNode<span class="token punctuation">;</span>
+        tailLc <span class="token operator">=</span> tailLc<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">combineSorted2List</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span><span class="token operator">&amp;</span> <span class="token maybe-class-name">La</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LinkList</span><span class="token operator">&amp;</span> <span class="token maybe-class-name">Lb</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LinkList</span><span class="token operator">&amp;</span> <span class="token maybe-class-name">Lc</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pCurLa <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pCurLb <span class="token operator">=</span> <span class="token maybe-class-name">Lb</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// Lb的头结点释放</span>
+    <span class="token function">free</span><span class="token punctuation">(</span><span class="token maybe-class-name">Lb</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Lc抢占La的头结点</span>
+    <span class="token maybe-class-name">Lc</span> <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">Lc</span><span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token comment">// Lc的链尾指针，方便后续插入</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> tailLc <span class="token operator">=</span> <span class="token maybe-class-name">Lc</span><span class="token punctuation">;</span>
+    <span class="token comment">// 临时结点</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> tmpNode <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pCurLa <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pCurLb <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 每次选取两个链中的最小结点插入到新链中</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pCurLa<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">&lt;</span> pCurLb<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 保存待插入结点</span>
+            tmpNode <span class="token operator">=</span> pCurLa<span class="token punctuation">;</span>
+            <span class="token comment">// 从La中删除待插入结点</span>
+            pCurLa <span class="token operator">=</span> pCurLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token comment">// 插入</span>
+            <span class="token function">insertElem</span><span class="token punctuation">(</span>tailLc<span class="token punctuation">,</span> tmpNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword control-flow">else</span>
+        <span class="token punctuation">{</span>
+            tmpNode <span class="token operator">=</span> pCurLb<span class="token punctuation">;</span>
+            pCurLb <span class="token operator">=</span> pCurLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token function">insertElem</span><span class="token punctuation">(</span>tailLc<span class="token punctuation">,</span> tmpNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 合并La的剩余结点</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pCurLa <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        tmpNode <span class="token operator">=</span> pCurLa<span class="token punctuation">;</span>
+        pCurLa <span class="token operator">=</span> pCurLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token function">insertElem</span><span class="token punctuation">(</span>tailLc<span class="token punctuation">,</span> tmpNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 合并Lb的剩余结点</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pCurLb <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        tmpNode <span class="token operator">=</span> pCurLb<span class="token punctuation">;</span>
+        pCurLb <span class="token operator">=</span> pCurLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token function">insertElem</span><span class="token punctuation">(</span>tailLc<span class="token punctuation">,</span> tmpNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="uJrdGPXQ46EqrRvsJzQwJb" class="wolai-block"><span class="inline-wrap">8. 删除[min, max]直接的元素</span></h1><h3 id="2yCDgT1iksExeajnPYBRQb" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="Xm3831z3PNXGSqAMgAb4m" class="wolai-block wolai-text"><div><span class="inline-wrap">带头单链表中所有数据值按递增顺序排列，删除链表中大于<span class="jill"></span>min<span class="jill"></span>且小于<span class="jill"></span>max<span class="jill"></span>的元素。</span></div></div><h3 id="nci6y7sMsdSgZu2yY46pYs" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="xibsKXkMDZA46i7sezbHiM"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">先让工作指针指向第一个大于<span class="jill"></span>min<span class="jill"></span>的结点；</span></li><li id="jNiM3pnLnZPPwd6vEi8ij7"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">之后，删除每个大于<span class="jill"></span>min<span class="jill"></span>小于<span class="jill"></span>max<span class="jill"></span>的结点</span></li></ul><h3 id="8PZE6sK8AcnBhXtT7ZE7sr" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="xq3duKKsD3FJk8eXBjLgot" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">deleteMinMaxNodes</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span><span class="token punctuation">,</span> int min<span class="token punctuation">,</span> int max</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 指向第一个结点</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 指向前驱</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token comment">// 找到第一个大于min的结点</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNode <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 如果找到，结束查找</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">></span> min <span class="token operator">&amp;&amp;</span> pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">&lt;</span> max<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 删除结点，释放内存</span>
+            preNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token function">free</span><span class="token punctuation">(</span>pNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 更新pNode指针，指向下一个</span>
+            pNode <span class="token operator">=</span> preNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword control-flow">else</span> <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">></span> max<span class="token punctuation">)</span>
+            <span class="token keyword control-flow">break</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow">else</span> <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">&lt;</span> min<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            preNode <span class="token operator">=</span> pNode<span class="token punctuation">;</span>
+            pNode <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="ju4jfJiajinKecmJdJj55i" class="wolai-block"><span class="inline-wrap">9. 链表冒泡排序</span></h1><h3 id="h2WhiHLAtRuBtngwQBcqbp" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="wRM9Kx6Xkzv7qqDoBzWP8S" class="wolai-block wolai-text"><div><span class="inline-wrap">对链表使用冒泡排序法</span></div></div><h3 id="mB9GPP9YePMcDQeMBoptBr" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="gpQcwXwNmRvDk8XNY2Zrfu"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">不断从第一个结点往表尾扫描；</span></li><li id="2xbXvL4yPtuoH6YRRXWnk4"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果</span><span class="red inline-wrap">相邻前驱与后继结点存在逆序</span><span class="inline-wrap">，</span><span class="red inline-wrap"><b>就将前驱和后继结点数据交换</b></span><span class="inline-wrap">，直到一趟链表中不存在逆序。</span></li></ul><h3 id="6r36XJ7hgQPTR54ejqgebu" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="rmNWzUHByAnicyKeqpkY5b" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">listBubleSort</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 一直扫描第一至倒数第二个结点，判断每个结点与后继</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token maybe-class-name">ElemType</span> tmpElem<span class="token punctuation">;</span>
+        <span class="token comment">// 数据交换标志位，提升算法性能</span>
+        int isExchgeFlag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment">// 访问每一对前驱和后继</span>
+        <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNode <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 判断是否逆序，如果逆序，则交换元素</span>
+            <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">></span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                tmpElem <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">;</span>
+                pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">;</span>
+                pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">=</span> tmpElem<span class="token punctuation">;</span>
+                isExchgeFlag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// 指针移动到下一个</span>
+            pNode <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>isExchgeFlag <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword control-flow">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="gjUoCTeJD6B1DC5WHSuoqE" class="wolai-block"><span class="inline-wrap">10.链表插入排序</span></h1><h3 id="m94ibNG8kDmoex2jbNUAFs" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="q7dtr8WUya3Nk4hFw7caet" class="wolai-block wolai-text"><div><span class="inline-wrap">设<span class="jill"></span>L<span class="jill"></span>为单链表头结点地址，其数据结点都是正整数，可能存在相同数值的结点，设计一个空间复杂度最低的算法，利用直接插入排序把该链表整理成有序链表，并将重复元素删除。</span></div></div><h3 id="7WufkvXioRBhKbezsGfGYB" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="2VZCaUdbpsCcjcb1AbEeR"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">构建一个含有头结点的空表<span class="jill"></span>L；</span></li><li id="8H5Xio3d5xD8HVMsw6iDZN"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">然后取链表的每个数据结点；</span></li><li id="uBLh8zrk8gAC6UADkcCpuy"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">在<span class="jill"></span>L<span class="jill"></span>上查找待插入位置；</span></li><li id="5LNzrsNCfgqVzb86xeY78V"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果当前插入结点已经存在链表中了，则释放空间；</span></li><li id="wYVXnT7SqZFn4aV3mL5u84"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">反之将其插入到对应的位置；</span></li><li id="7cG4yHumiy8w5fAKFfQ63m"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">重复上述步骤，直到数据链中不存在待插入结点。</span></li></ul><h3 id="9jP4fjxoLMt24Nip8eofpg" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="5vwkypvYAdHjfx1SU98qUB" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">listInsertSort</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 构建一个新链，将每个结点插入到新链的合适位置</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNodeData <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNodeData <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 准备插入结点前一定将pNodeData向后移动一个位置，否则会断链</span>
+        <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> tmpNode <span class="token operator">=</span> pNodeData<span class="token punctuation">;</span>
+        pNodeData <span class="token operator">=</span> pNodeData<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        
+        <span class="token comment">// 固定的解题模板，寻找插入位置，</span>
+        <span class="token comment">// 一个移动指针，一个前驱保存插入位置</span>
+        <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+        <span class="token comment">// 在L中寻找插入位置</span>
+        <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNode <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> tmpNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">></span> pNode<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            preNode <span class="token operator">=</span> pNode<span class="token punctuation">;</span>
+            pNode <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// preNode在while循环跳出后即为插入位置，结点插入在preNode之后</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNode <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> tmpNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">==</span> pNode<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+            <span class="token function">free</span><span class="token punctuation">(</span>tmpNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 插入结点</span>
+        <span class="token keyword control-flow">else</span>
+        <span class="token punctuation">{</span>
+            tmpNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> preNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            preNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="nKyXU5BJpocmmdGJ59pmKU" class="wolai-block"><span class="inline-wrap">11. 链表结点二分类</span></h1><h3 id="784VDny9La738cnNEdyUwJ" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="nqiAXJgdDdoaEYV6BZLewq" class="wolai-block wolai-text"><div><span class="inline-wrap">将所有小于<span class="jill"></span>x<span class="jill"></span>的元素排在前面，所有大于<span class="jill"></span>x<span class="jill"></span>的元素排在后面</span></div></div><h3 id="2sh6nyeSJHFjjXQRSZTpW1" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><div id="aTzrghMvQJ9iBBvzzgZyRv" class="wolai-block wolai-text"><div><span class="inline-wrap">访问每一个数据结点，</span><span class="red inline-wrap">如果当前访问结点数据小于<span class="jill"></span>x，则将其插入到头结点</span><span class="inline-wrap">；不断重复上述步骤，直到访问完所有数据结点。</span></div></div><h3 id="jSJepp95JUHiFdzMDGnypE" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="71mDJR7Vare55ffRHyBsLn" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">listMoveElem</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span><span class="token punctuation">,</span> int x</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 指向第一个数据结点的后继结点</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 指向前驱</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token comment">// 遍历L中所有数据结点</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNode <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 当前访问元素小于x，插入头结点之后</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pNode<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">&lt;</span> x<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            preNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token comment">// 插入到头结点之后</span>
+            <span class="token comment">// 更新指针域</span>
+            pNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pNode<span class="token punctuation">;</span>
+            pNode <span class="token operator">=</span> preNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 当前访问结点大于x</span>
+        <span class="token keyword control-flow">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 更新preNode，指向新的前驱</span>
+            preNode <span class="token operator">=</span> pNode<span class="token punctuation">;</span>
+            <span class="token comment">// 更新pNode后继，指向新的后继</span>
+            pNode <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="upT1vnr9KhtApUnX5KLLeR" class="wolai-block"><span class="inline-wrap">12. 查找子链</span></h1><h3 id="4f3KnGScbfEna92dwWnfFx" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="p5VPoP75uFddAtoxGqGaRP" class="wolai-block wolai-text"><div><span class="inline-wrap">设计一个算法，判断<span class="jill"></span>La<span class="jill"></span>是否是<span class="jill"></span>Lb<span class="jill"></span>的子链，子链的定义为：La<span class="jill"></span>中的从前到后的所有结点的数据域都按照原有顺序出现在<span class="jill"></span>Lb<span class="jill"></span>中。</span></div></div><h3 id="u3QSzNVeSeyPqSneNe7tE6" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="6qCWiXzc7MTShjH82tyeg2"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap">从前往后访问<span class="jill"></span>La<span class="jill"></span>中的每一个结点，当前访问结点视为一轮子链查找的开始位置。</span></li><li id="ffQKAvhCxZv5S8rNJzSDBS"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果从当前访问结点开始与<span class="jill"></span>Lb<span class="jill"></span>中对应位置的结点全部匹配成功，停止查找；</span></li><li id="7smfFJr5LtVRV53rSAdP4y"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">如果在匹配的过程中比较的结点数据不符，则从<span class="jill"></span>La<span class="jill"></span>中下一个结点作为下一轮匹配开始的位置重新开始匹配；</span></li><li id="kEqMzdZpuKrcwaMREN64j8"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">直到<span class="jill"></span>La<span class="jill"></span>中所有结点全部访问完停止；</span></li></ul><h3 id="gSTVzMrfZ2snbCGRnKSmzA" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="tdNCvszdXkeQBx35ZaF6t3" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all">bool <span class="token function">isSubLinkList</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">La</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">Lb</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 没一轮比较开始的位置，第一轮从La的第一个结点开始</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pStartPosition <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 从比较位置开始，访问La的每一个结点</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pMoveLa <span class="token operator">=</span> pStartPosition<span class="token punctuation">;</span>
+    <span class="token comment">// 在Lb中从前往后访问结点与La进行匹配</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pMoveLb <span class="token operator">=</span> <span class="token maybe-class-name">Lb</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 在第一轮匹配中，从前往后访问数据结点进行匹配</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pMoveLa <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pMoveLb <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 当前位置匹配成功，取后继结点进行下一次比较</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pMoveLa<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">==</span> pMoveLb<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            pMoveLa <span class="token operator">=</span> pMoveLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            pMoveLb <span class="token operator">=</span> pMoveLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 当前位置匹配不成功，开始下一轮匹配</span>
+        <span class="token keyword control-flow">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// La开始位置后移</span>
+            pStartPosition <span class="token operator">=</span> pStartPosition<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token comment">// 后移待匹配位置</span>
+            pMoveLa <span class="token operator">=</span> pStartPosition<span class="token punctuation">;</span>
+            <span class="token comment">// 将Lb的工作指针后移</span>
+            pMoveLb <span class="token operator">=</span> <span class="token maybe-class-name">Lb</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 如果Lb为NULL，则匹配成功</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>pMoveLb <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+        <span class="token keyword control-flow">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="tN4tDNTE9PLzvRHd2XgKDE" class="wolai-block"><span class="inline-wrap">13. 查找公共后缀</span></h1><h3 id="vmKBjkdMS1JPU3JXmLt6hz" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="neZURcCDDTjHpMPnQUcPcP" class="wolai-block wolai-text"><div><span class="inline-wrap">两个单词都有相同的后缀时可共享相同后缀的存储空间，例如，“act”和“dict”，设<span class="jill"></span>La<span class="jill"></span>和<span class="jill"></span>Lb<span class="jill"></span>分别为两个单词所在单链表的头结点，设计算法查找公共后缀的起始位置。</span></div></div><h3 id="ptR5Fk2B5qx2vuPZkbhMbD" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="h1UsW5eSU1SWtEnty3gXhx"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">将<span class="jill"></span>La<span class="jill"></span>的长度记为<span class="jill"></span>a， Lb<span class="jill"></span>的长度记为<span class="jill"></span>b；</span></li><li id="4J1g1THWgzTarDwJ9uh4z1"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="red inline-wrap">移动较长链的工作指针</span><span class="red inline-wrap"><b>abs(a-b)个结点</b></span><span class="red inline-wrap">，</span><span class="yellow inline-wrap">两个链工作指针后的结点数量一样</span><span class="red inline-wrap">；</span></li><li id="jRytndBDYWas7rTjsE4tcb"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">比较两个结点的地址（数据），即找到公共点；</span></li><li id="okNoCadvyYcZEeeg2itBsQ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">否则，重复上述步骤，直到遇到公共结点停止。</span></li></ul><h3 id="c9VxjuSuxTkQRhY3oeLxh8" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="82aLF2jPHEt3kfebCLjhyU" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token comment">// 获取链表长度</span>
+int <span class="token function">getLength</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    int len <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        len<span class="token operator">++</span><span class="token punctuation">;</span>
+        pNode <span class="token operator">=</span> pNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword control-flow">return</span> len<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> <span class="token function">getCommonNode</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">La</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LinkList</span> <span class="token maybe-class-name">Lb</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    int lengthLa <span class="token operator">=</span> <span class="token function">getLength</span><span class="token punctuation">(</span><span class="token maybe-class-name">La</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    int lengthLb <span class="token operator">=</span> <span class="token function">getLength</span><span class="token punctuation">(</span><span class="token maybe-class-name">Lb</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNodeLa <span class="token operator">=</span> <span class="token maybe-class-name">La</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pNodeLb <span class="token operator">=</span> <span class="token maybe-class-name">Lb</span><span class="token punctuation">;</span>
+    <span class="token comment">// 将较长的链表工作指针向后移动，移动到和较短链表长度一样</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>lengthLa <span class="token operator">-</span> lengthLb <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 若La较长，移动La的工作指针</span>
+        int count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>count <span class="token operator">&lt;=</span> lengthLa <span class="token operator">-</span> lengthLb<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            pNodeLa <span class="token operator">=</span> pNodeLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            count<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        pNodeLb <span class="token operator">=</span> pNodeLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword control-flow">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 若Lb较长，移动Lb的工作指针</span>
+        int count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>count <span class="token operator">&lt;=</span> lengthLb <span class="token operator">-</span> lengthLa<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            pNodeLb <span class="token operator">=</span> pNodeLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            count<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        pNodeLa <span class="token operator">=</span> pNodeLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 比较两个指针的结点是否相同</span>
+    <span class="token comment">// 注意：比较地址运行出错</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pNodeLa<span class="token operator">-</span><span class="token operator">></span>data <span class="token operator">!=</span> pNodeLb<span class="token operator">-</span><span class="token operator">></span>data<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        pNodeLa <span class="token operator">=</span> pNodeLa<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        pNodeLb <span class="token operator">=</span> pNodeLb<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 返回公共位置</span>
+    <span class="token keyword control-flow">return</span> pNodeLa<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre></div></code-block><h1 id="fSriEDmm3x6BsNntSw3Zpq" class="wolai-block"><span class="inline-wrap">14. 构造复杂链表</span></h1><h3 id="nHqnx1DgcW9SW2YzTf5Y2S" class="wolai-block"><span class="inline-wrap">问题</span></h3><div id="2Q2x3ZcWdnmG2nSgDSmUmJ" class="wolai-block wolai-text"><div><span class="inline-wrap">长度为<span class="jill"></span>n<span class="jill"></span>的单链表<span class="jill"></span>L=(L1, L2, L3, ...., Ln)。设计时间复杂度和空间复杂度最少的算法将单链表转换为<span class="jill"></span>Lt=(L1, Ln, L2, Ln-1, ....)。</span></div></div><h3 id="oQCDTch3ccFAUrqCPQsVHt" class="wolai-block"><span class="inline-wrap">算法思想</span></h3><ul class="wolai-block"><li id="6JwqAazdRbzgWi1x1Jtesy"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">使用快慢指针将链表分为两个部分；</span></li><li id="evsmXvG5oTDiQ7wxZjHXRA"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">快指针走两步，慢指针走一步，快指针到链接结尾则慢指针到链表中间；</span></li><li id="rpazt284Cngd9WCEdyNCaZ"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">慢指针继续走后半部分链表，并将后半部分链表反转，存在<span class="jill"></span>pMidlle<span class="jill"></span>结点中；</span></li><li id="p21DGbLVqgYQmmB1t9RoHB"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">此时，pHead<span class="jill"></span>指针指向链表头结点，pMIddle<span class="jill"></span>指针指向反序的链表后半节点；</span></li><li id="rVWd8C6cn7KKQ8SXsAWFJ4"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">使用尾插法，依次将<span class="jill"></span>pHead<span class="jill"></span>指针的第一个元素和<span class="jill"></span>pMiddle<span class="jill"></span>指针的第一个元素插入<span class="jill"></span>L<span class="jill"></span>中；</span></li><li id="ezPq5WcrpZ7n4m3gPgVZaE"><div class="marker"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path></svg></div><span class="inline-wrap">直至<span class="jill"></span>pHead<span class="jill"></span>或<span class="jill"></span>pMiddle<span class="jill"></span>无元素即可</span></li></ul><h3 id="qUrb4powbaTzzmEZLnqfED" class="wolai-block"><span class="inline-wrap">代码</span></h3><code-block id="bfbA6V87UdWZNPvfXV5kxi" class="wolai-block"><div class="wolai-pre"><div data-lang="C++" class="marker"></div><pre style="white-space: pre-wrap; word-break: break-all"><span class="token keyword">void</span> <span class="token function">convertLinkList</span><span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">LinkList</span> <span class="token constant">L</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pSlow <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pFast <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token comment">// 快指针走两步，慢指针走一步</span>
+    <span class="token comment">// 当快指针到链尾部，则慢指针到链表的中间</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pFast<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pFast<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        pSlow <span class="token operator">=</span> pSlow<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        pFast <span class="token operator">=</span> pFast<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">/////////// 注意，将链表分为两个部分</span>
+    <span class="token comment">/////////// L为头结点的前半部分，和pSlow开始的后半部分</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> preSlow <span class="token operator">=</span> pSlow<span class="token punctuation">;</span>
+    pSlow <span class="token operator">=</span> pSlow<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    preSlow<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 后继，防止断链</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pMiddle <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> tmpNode<span class="token punctuation">;</span>
+    <span class="token comment">// 慢指针继续走，将后半部分链反转</span>
+    <span class="token comment">// 链头存在 pMiddle 结点中</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pSlow <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        tmpNode <span class="token operator">=</span> pSlow<span class="token punctuation">;</span>
+        pSlow <span class="token operator">=</span> pSlow<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token comment">// 不带头结点的头插法</span>
+        tmpNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pMiddle<span class="token punctuation">;</span>
+        pMiddle <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 链头指针赋给pHead</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> pHead <span class="token operator">=</span> <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token constant">L</span><span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token maybe-class-name">LinkNode</span><span class="token operator">*</span> tailNode <span class="token operator">=</span> <span class="token constant">L</span><span class="token punctuation">;</span>
+    <span class="token comment">// 依次使用尾插法，将pHead和pMiddle插入L中</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pHead <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> pMiddle <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printLisst</span><span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 尾插法插入pHead的第一个结点</span>
+        tmpNode <span class="token operator">=</span> pHead<span class="token punctuation">;</span>
+        pHead <span class="token operator">=</span> pHead<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tmpNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tailNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tailNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+        tailNode <span class="token operator">=</span> tailNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+
+        <span class="token comment">// 尾插法插入pMiddle的第一个结点</span>
+        tmpNode <span class="token operator">=</span> pMiddle<span class="token punctuation">;</span>
+        pMiddle <span class="token operator">=</span> pMiddle<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tmpNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tailNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tailNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+        tailNode <span class="token operator">=</span> tailNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 插入剩余结点</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pHead <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        tmpNode <span class="token operator">=</span> pHead<span class="token punctuation">;</span>
+        pHead <span class="token operator">=</span> pHead<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tmpNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tailNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tailNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+        tailNode <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword control-flow">while</span> <span class="token punctuation">(</span>pMiddle <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        tmpNode <span class="token operator">=</span> pMiddle<span class="token punctuation">;</span>
+        pMiddle <span class="token operator">=</span> pMiddle<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tmpNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tailNode<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        tailNode<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+        tailNode <span class="token operator">=</span> tmpNode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre></div></code-block><div id="hXGi3XEtDDLKqhQeVACCLh" class="wolai-block wolai-text"><div></div></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Firefly</div><div class="author-info__description">A firefly flying freely in the AI domain.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">365</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#wfGkC5Tx9LtZ6uHrDVkRrM"><span class="toc-text">1.第j+len个结点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#c2Lx3nCDtSJagtgX8sj67t"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wWQJYHAtY9eM6H6tKTTsEL"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mwSXk2iqqMybfCLtAkgQFf"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2odGPmdzK3fuRiCf4gukky"><span class="toc-text">2.前n个字符对称</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#efw6CFc93HfWob5iXmH2qb"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x8jcHeW6PjPgkKkEj7eRwA"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#m7L18t4ytoyxHak3NjiF66"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dYiKdfbVJ4xrs5WX2k2rRQ"><span class="toc-text">3. 删除相同结点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jfASTqgaPJmVYRYDsFiQ3z"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#W9jR5SmPSHYyqRJFYWjcZ"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kqHcp3JW64P7pAxf1b49WF"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mNEF6tjqMPoBobaE9WLxqU"><span class="toc-text">4. 比x小的结点数量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#uSWoBkVhVhfbWdiEYJHHkC"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bMYehiY2dwG7KQMEwDHi4s"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#paTCTTHZiPKZRdbcdMb9xE"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dPZPsVAH8fQgyHZjPRyj3y"><span class="toc-text">5. 两表删除相同元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tvyW299hXgvVivRBiCKRSD"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fi6ofc7wfyN2Drx77tT2H6"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#idiJB6TBBzeB3qaCja1RcV"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mxhjGqXmFqMDrwd2xx2L4p"><span class="toc-text">6. 三表删除相同元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gtk8ncokusTX2bNEowrvcE"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3ZSRzpJG42m87rmPLxFq2K"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7R47WUZY1fA5c7jVmU7PZf"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ihHod28oMkvBJ499PHtuhM"><span class="toc-text">7. 归并两表删除重复元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i2XJt9tupLEGGuq1Ykra7s"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iMVtDskb6cstaK2dn3LMDo"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uVxNTfWGMtNVrmPRWGR6GD"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#uJrdGPXQ46EqrRvsJzQwJb"><span class="toc-text">8. 删除[min, max]直接的元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2yCDgT1iksExeajnPYBRQb"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nci6y7sMsdSgZu2yY46pYs"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8PZE6sK8AcnBhXtT7ZE7sr"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ju4jfJiajinKecmJdJj55i"><span class="toc-text">9. 链表冒泡排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#h2WhiHLAtRuBtngwQBcqbp"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mB9GPP9YePMcDQeMBoptBr"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6r36XJ7hgQPTR54ejqgebu"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gjUoCTeJD6B1DC5WHSuoqE"><span class="toc-text">10.链表插入排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#m94ibNG8kDmoex2jbNUAFs"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7WufkvXioRBhKbezsGfGYB"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9jP4fjxoLMt24Nip8eofpg"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nKyXU5BJpocmmdGJ59pmKU"><span class="toc-text">11. 链表结点二分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#784VDny9La738cnNEdyUwJ"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2sh6nyeSJHFjjXQRSZTpW1"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jSJepp95JUHiFdzMDGnypE"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#upT1vnr9KhtApUnX5KLLeR"><span class="toc-text">12. 查找子链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4f3KnGScbfEna92dwWnfFx"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u3QSzNVeSeyPqSneNe7tE6"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gSTVzMrfZ2snbCGRnKSmzA"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tN4tDNTE9PLzvRHd2XgKDE"><span class="toc-text">13. 查找公共后缀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vmKBjkdMS1JPU3JXmLt6hz"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ptR5Fk2B5qx2vuPZkbhMbD"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c9VxjuSuxTkQRhY3oeLxh8"><span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fSriEDmm3x6BsNntSw3Zpq"><span class="toc-text">14. 构造复杂链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nHqnx1DgcW9SW2YzTf5Y2S"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oQCDTch3ccFAUrqCPQsVHt"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qUrb4powbaTzzmEZLnqfED"><span class="toc-text">代码</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">123</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">77</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.33em; color: rgb(52, 177, 198)">DSA</a><a href="/tags/RL/" style="font-size: 1.25em; color: rgb(28, 136, 116)">RL</a><a href="/tags/Transformer/" style="font-size: 1.35em; color: rgb(174, 101, 126)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.27em; color: rgb(101, 101, 165)">LLMs</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(116, 25, 166)">PL</a><a href="/tags/PaperReading/" style="font-size: 1.31em; color: rgb(24, 57, 97)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.23em; color: rgb(134, 147, 41)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.17em; color: rgb(184, 49, 115)">CV</a><a href="/tags/GPT/" style="font-size: 1.19em; color: rgb(182, 62, 64)">GPT</a><a href="/tags/domain/" style="font-size: 1.15em; color: rgb(175, 153, 133)">domain</a><a href="/tags/github/" style="font-size: 1.15em; color: rgb(142, 100, 114)">github</a><a href="/tags/hf/" style="font-size: 1.15em; color: rgb(86, 199, 46)">hf</a><a href="/tags/weibo/" style="font-size: 1.15em; color: rgb(87, 129, 27)">weibo</a><a href="/tags/ArXiv/" style="font-size: 1.39em; color: rgb(42, 6, 116)">ArXiv</a><a href="/tags/Domain/" style="font-size: 1.39em; color: rgb(131, 151, 174)">Domain</a><a href="/tags/AI/" style="font-size: 1.45em; color: rgb(180, 84, 44)">AI</a><a href="/tags/GitHub/" style="font-size: 1.43em; color: rgb(61, 53, 16)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.43em; color: rgb(150, 192, 67)">Trending</a><a href="/tags/HuggingFace/" style="font-size: 1.37em; color: rgb(110, 151, 85)">HuggingFace</a><a href="/tags/Papers/" style="font-size: 1.37em; color: rgb(135, 31, 57)">Papers</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.41em; color: rgb(186, 189, 18)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.41em; color: rgb(130, 24, 17)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.29em; color: rgb(139, 50, 109)">leetcode</a><a href="/tags/algo/" style="font-size: 1.17em; color: rgb(64, 81, 164)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">365</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">14112.4k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-09-12T23:49:13.755Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
