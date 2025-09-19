@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>37.2° Blog | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="3.数组 - wolai 笔记1.创建数组数组可以采用逐个赋值的方法创建。ARRAY[INDEX]&#x3D;value上面语法中，ARRAY是数组的名字，可以是任意合法的变量名。INDEX是一个大于或等于零的整数，也可以是算术表达式。注意数组第一个元素的下标是0， 而不是1。下面创建一个三个成员的数组。$ array[0]&#x3D;val $ array[1]&#x3D;val $ array[2]&#x3D;val数组也可以采用">
+<meta property="og:type" content="website">
+<meta property="og:title" content="37.2° Blog">
+<meta property="og:url" content="https://wdndev.github.io/note/linux/bash/7.bash%E8%84%9A%E6%9C%AC/3.%E6%95%B0%E7%BB%84/3.%E6%95%B0%E7%BB%84.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="3.数组 - wolai 笔记1.创建数组数组可以采用逐个赋值的方法创建。ARRAY[INDEX]&#x3D;value上面语法中，ARRAY是数组的名字，可以是任意合法的变量名。INDEX是一个大于或等于零的整数，也可以是算术表达式。注意数组第一个元素的下标是0， 而不是1。下面创建一个三个成员的数组。$ array[0]&#x3D;val $ array[1]&#x3D;val $ array[2]&#x3D;val数组也可以采用">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2025-09-19T23:46:45.122Z">
+<meta property="article:modified_time" content="2025-09-19T23:46:45.122Z">
+<meta property="article:author" content="Firefly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/note/linux/bash/7.bash%E8%84%9A%E6%9C%AC/3.%E6%95%B0%E7%BB%84/3.%E6%95%B0%E7%BB%84.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '37.2° Blog',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-20 07:46:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">393</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-solid fa-magnifying-glass"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/note"><i class="fa-fw fa-regular fa-bookmark"></i><span> Note</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container"><!DOCTYPE html>
+<html lang="zh-Hans-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="stylesheet" type="text/css" href="../../css/modern-norm.min.css"/><link rel="stylesheet" type="text/css" href="../../css/prism.min.css"/><link rel="stylesheet" type="text/css" href="../../css/katex.min.css"/><link rel="stylesheet" type="text/css" href="../../css/wolai.css"/><title>3.数组 - wolai 笔记</title><link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 800 800&apos;%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23fff;%7D%3C/style%3E%3C/defs%3E%3Cg%3E%3Cpath class=&apos;cls-1&apos; d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Z&apos;/%3E%3Cpath d=&apos;M610.08,0c66,0,90,6.88,114.13,19.79a134.62,134.62,0,0,1,56,56l2.28,4.4C793.93,103,800,127.88,800,189.92V610.08l-.08,11.56c-.78,57.38-7.58,79.89-19.71,102.57a134.62,134.62,0,0,1-56,56l-4.4,2.28C697,793.93,672.12,800,610.08,800H189.92l-11.56-.08c-57.38-.78-79.89-7.58-102.57-19.71a134.62,134.62,0,0,1-56-56l-2.28-4.4C6.44,697.75.4,673.72,0,616L0,189.92c0-66,6.88-90,19.79-114.13a134.62,134.62,0,0,1,56-56l4.4-2.28C102.25,6.44,126.28.4,184,0Zm4.72,88.9H185.2L172.42,89c-32.78.62-43.68,3.24-54.71,9.14a45.84,45.84,0,0,0-19.54,19.54c-6.61,12.36-9.11,24.55-9.27,67.49V614.8L89,627.58c.62,32.78,3.24,43.68,9.14,54.71a45.84,45.84,0,0,0,19.54,19.54c12.36,6.61,24.55,9.11,67.49,9.27H610.08c46.79,0,59.41-2.44,72.21-9.28a45.84,45.84,0,0,0,19.54-19.54c6.61-12.36,9.11-24.55,9.27-67.49V189.92c0-46.79-2.44-59.41-9.28-72.21a45.84,45.84,0,0,0-19.54-19.54C669.93,91.56,657.74,89.06,614.8,88.9ZM233.33,493.33A73.34,73.34,0,1,1,160,566.67,73.35,73.35,0,0,1,233.33,493.33Z&apos;/%3E%3C/g%3E%3C/svg%3E"></link></head><body><header><div class="image"></div><div class="title"><div class="banner"><div class="icon"></div></div><div data-title="3.数组" class="main-title"></div></div></header><article><h1 id="nxYNirui1CC1avNWUaZBv4" class="wolai-block"><span class="inline-wrap">1.创建数组</span></h1><div id="hmYMfSmtRuU2PWkFuHDYtj" class="wolai-block wolai-text"><div><span class="inline-wrap">数组可以采用逐个赋值的方法创建。</span></div></div><code-block id="7VXptWbWfycVvrQCQH3VTY" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>ARRAY<span class="token punctuation">[</span>INDEX<span class="token punctuation">]</span><span class="token operator">=</span>value</pre></div></code-block><div id="whkhF5CEc3nCbXFDm9LHTv" class="wolai-block wolai-text"><div><span class="inline-wrap">上面语法中，</span><span class="inline-wrap"><code>ARRAY</code></span><span class="inline-wrap">是数组的名字，可以是任意合法的变量名。</span><span class="inline-wrap"><code>INDEX</code></span><span class="inline-wrap">是一个大于或等于零的整数，也可以是算术表达式。</span><span class="inline-wrap"><b>注意数组第一个元素的下标是<span class="jill"></span>0， 而不是<span class="jill"></span>1</b></span><span class="inline-wrap">。</span></div></div><div id="7Uif7FcuY2DckjVid7K2tW" class="wolai-block wolai-text"><div><span class="inline-wrap">下面创建一个三个成员的数组。</span></div></div><code-block id="dzggijVLhopzFCSbC5LSZV" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>val
+$ array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>val
+$ array<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">=</span>val</pre></div></code-block><div id="wGo5iCRgYzoZGPz9LtUMEV" class="wolai-block wolai-text"><div><span class="inline-wrap">数组也可以采用一次性赋值的方式创建。</span></div></div><code-block id="nEdrWNbbjK782B1Y3cWbXG" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token assign-left variable">ARRAY</span><span class="token operator">=</span><span class="token punctuation">(</span>value1 value2 <span class="token punctuation">..</span>. valueN<span class="token punctuation">)</span>
+
+<span class="token comment"># 等同于</span>
+
+<span class="token assign-left variable">ARRAY</span><span class="token operator">=</span><span class="token punctuation">(</span>
+  value1
+  value2
+  value3
+<span class="token punctuation">)</span></pre></div></code-block><div id="8gyoSoUwMgXeKa2kvkgadm" class="wolai-block wolai-text"><div><span class="inline-wrap">采用上面方式创建数组时，可以按照默认顺序赋值，也可以在每个值前面指定位置。</span></div></div><code-block id="rAndvc8kdcsDMPmST72nTP" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">array</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c<span class="token punctuation">)</span>
+$ <span class="token assign-left variable">array</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">=</span>c <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>a <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>b<span class="token punctuation">)</span>
+
+$ <span class="token assign-left variable">days</span><span class="token operator">=</span><span class="token punctuation">(</span>Sun Mon Tue Wed Thu Fri Sat<span class="token punctuation">)</span>
+$ <span class="token assign-left variable">days</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>Sun <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>Mon <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">=</span>Tue <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">=</span>Wed <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">=</span>Thu <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span>Fri <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token operator">=</span>Sat<span class="token punctuation">)</span></pre></div></code-block><div id="mgjMerh22VsrMnvVkzfDXc" class="wolai-block wolai-text"><div><span class="inline-wrap">只为某些值指定位置，也是可以的。</span></div></div><code-block id="d12E1bdvFHGkNABxYtrNMi" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token assign-left variable">names</span><span class="token operator">=</span><span class="token punctuation">(</span>hatter <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span>duchess alice<span class="token punctuation">)</span></pre></div></code-block><div id="u1PuBrfLUmA9EGhMsBrkkb" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>hatter</code></span><span class="inline-wrap">是数组的<span class="jill"></span>0<span class="jill"></span>号位置，</span><span class="inline-wrap"><code>duchess</code></span><span class="inline-wrap">是<span class="jill"></span>5<span class="jill"></span>号位置，</span><span class="inline-wrap"><code>alice</code></span><span class="inline-wrap">是<span class="jill"></span>6<span class="jill"></span>号位置。</span></div></div><div id="x5sKGCfMj5rUCkQCgZfgdh" class="wolai-block wolai-text"><div><span class="inline-wrap">没有赋值的数组元素的默认值是空字符串。</span></div></div><div id="vmkCjxnLECqx523spJMixk" class="wolai-block wolai-text"><div><span class="inline-wrap">定义数组的时候，可以使用通配符。</span></div></div><code-block id="b3yPz8RQnDiEe5msnj5uCD" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">mp3s</span><span class="token operator">=</span><span class="token punctuation">(</span> *.mp3 <span class="token punctuation">)</span></pre></div></code-block><div id="bweLQxWi6Z3Ltg2KkM7HaG" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，将当前目录的所有 MP3 文件，放进一个数组。</span></div></div><div id="row92AWRosJBp4AaFNARrY" class="wolai-block wolai-text"><div><span class="inline-wrap">先用</span><span class="inline-wrap"><code>declare -a</code></span><span class="inline-wrap">命令声明一个数组，也是可以的。</span></div></div><code-block id="uG8TES1eDvwuoyAnYuDgLY" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token builtin class-name">declare</span> <span class="token parameter variable">-a</span> ARRAYNAME</pre></div></code-block><div id="ti5BQm6tsJLJMHf2fLa2vg" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>read -a</code></span><span class="inline-wrap">命令则是将用户的命令行输入，存入一个数组。</span></div></div><code-block id="rHRHjsn1Zowhh5FV7aEqQM" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token builtin class-name">read</span> <span class="token parameter variable">-a</span> dice</pre></div></code-block><div id="re8yQyXqGd34rKSmz835qm" class="wolai-block wolai-text"><div><span class="inline-wrap">上面命令将用户的命令行输入，存入数组</span><span class="inline-wrap"><code>dice</code></span><span class="inline-wrap">。</span></div></div><h1 id="sbcoVVonAgYAY15idmJHHF" class="wolai-block"><span class="inline-wrap">2.读取数组</span></h1><h2 id="ijxk1JdqX1ARxJhESnEY4s" class="wolai-block"><span class="inline-wrap">2.1 读取单个元素</span></h2><div id="9qhLn8n84NdiRh9q4oXumK" class="wolai-block wolai-text"><div><span class="inline-wrap">读取数组指定位置的成员，要使用下面的语法。</span></div></div><code-block id="c9iVcxykAbH85hwmNHKCru" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;array<span class="token punctuation">[</span>i<span class="token punctuation">]</span>&#125;</span>     <span class="token comment"># i 是索引</span></pre></div></code-block><div id="fVyDsHwzyBiwqsSd7H47nB" class="wolai-block wolai-text"><div><span class="inline-wrap">上面语法里面的</span><span class="inline-wrap"><b>大括号是必不可少的</b></span><span class="inline-wrap">，否则 Bash 会把索引部分</span><span class="inline-wrap"><code>[i]</code></span><span class="inline-wrap">按照原样输出。</span></div></div><code-block id="txXax8oWDNARLXHBh5t8xT" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>a
+
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;array<span class="token punctuation">[</span>0<span class="token punctuation">]</span>&#125;</span>
+a
+
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$array</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span></pre></div></code-block><div id="ihCrgqhMHTFtXLrE5dMWCz" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，数组的第一个元素是</span><span class="inline-wrap"><code>a</code></span><span class="inline-wrap">。如果不加大括号，Bash 会直接读取</span><span class="inline-wrap"><code>$array</code></span><span class="inline-wrap">首成员的值，然后将</span><span class="inline-wrap"><code>[0]</code></span><span class="inline-wrap">按照原样输出。</span></div></div><h2 id="nxnNUMhzfHShYyyd5xqg7U" class="wolai-block"><span class="inline-wrap">2.2 读取所有成员</span></h2><div id="mm6ovWzYiQgiu7hSW3EQGM" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>@</code></span><span class="inline-wrap">和</span><span class="inline-wrap"><code>*</code></span><span class="inline-wrap">是数组的特殊索引，表示返回数组的所有成员。</span></div></div><code-block id="oLYbyuCVNZQj5YwP1antcz" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">foo</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c d e f<span class="token punctuation">)</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+a b c d e f</pre></div></code-block><div id="fq4RQz1NhxTeyPwjfyQUb9" class="wolai-block wolai-text"><div><span class="inline-wrap">这两个特殊索引配合</span><span class="inline-wrap"><code>for</code></span><span class="inline-wrap">循环，就可以用来遍历数组。</span></div></div><code-block id="91Gf88y7zq4sQfSTimjCMf" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$&#123;names<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>"</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token variable">$i</span>
+<span class="token keyword">done</span></pre></div></code-block><div id="8xVb1CRZkZzqHqsYt4KEwr" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>@</code></span><span class="inline-wrap">和</span><span class="inline-wrap"><code>*</code></span><span class="inline-wrap">放不放在双引号之中，是有差别的。</span></div></div><code-block id="19FapaSNq2TaqvA17KDsk2" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">activities</span><span class="token operator">=</span><span class="token punctuation">(</span> swimming <span class="token string">"water skiing"</span> canoeing <span class="token string">"white-water rafting"</span> surfing <span class="token punctuation">)</span>
+$ <span class="token keyword">for</span> <span class="token for-or-select variable">act</span> <span class="token keyword">in</span> <span class="token variable">$&#123;activities<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">do</span> <span class="token punctuation">\</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Activity: <span class="token variable">$act</span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">done</span>
+
+Activity: swimming
+Activity: water
+Activity: skiing
+Activity: canoeing
+Activity: white-water
+Activity: rafting
+Activity: surfing</pre></div></code-block><div id="sX2Vmjxd6BrpgSxwYLAur5" class="wolai-block wolai-text"><div><span class="inline-wrap">上面的例子中，数组</span><span class="inline-wrap"><code>activities</code></span><span class="inline-wrap">实际包含<span class="jill"></span>5<span class="jill"></span>个成员，但是</span><span class="inline-wrap"><code>for...in</code></span><span class="inline-wrap">循环直接遍历</span><span class="inline-wrap"><code>$&#123;activities[@]&#125;</code></span><span class="inline-wrap">，导致返回<span class="jill"></span>7<span class="jill"></span>个结果。为了避免这种情况，一般把</span><span class="inline-wrap"><code>$&#123;activities[@]&#125;</code></span><span class="inline-wrap">放在双引号之中。</span></div></div><code-block id="debX4WgHGYUYLdAnRgd425" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token keyword">for</span> <span class="token for-or-select variable">act</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$&#123;activities<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">do</span> <span class="token punctuation">\</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Activity: <span class="token variable">$act</span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">done</span>
+
+Activity: swimming
+Activity: water skiing
+Activity: canoeing
+Activity: white-water rafting
+Activity: surfing</pre></div></code-block><div id="vJHX21q1tf4UNRTQn5kWa6" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>$&#123;activities[@]&#125;</code></span><span class="inline-wrap">放在双引号之中，遍历就会返回正确的结果。</span></div></div><div id="aeHg2c99uNaPqog2kqP8dN" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>$&#123;activities[*]&#125;</code></span><span class="inline-wrap">不放在双引号之中，跟</span><span class="inline-wrap"><code>$&#123;activities[@]&#125;</code></span><span class="inline-wrap">不放在双引号之中是一样的。</span></div></div><code-block id="fq2Hy4EJpJvDMiqzBShvGX" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token keyword">for</span> <span class="token for-or-select variable">act</span> <span class="token keyword">in</span> <span class="token variable">$&#123;activities<span class="token punctuation">[</span>*<span class="token punctuation">]</span>&#125;</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">do</span> <span class="token punctuation">\</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Activity: <span class="token variable">$act</span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">done</span>
+
+Activity: swimming
+Activity: water
+Activity: skiing
+Activity: canoeing
+Activity: white-water
+Activity: rafting
+Activity: surfing</pre></div></code-block><div id="jmVpXyP1QP1JMHJ7MrmjeH" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>$&#123;activities[*]&#125;</code></span><span class="inline-wrap">放在双引号之中，所有成员就会变成单个字符串返回。</span></div></div><code-block id="coE83mzFJgzhHjuWxMVjtF" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token keyword">for</span> <span class="token for-or-select variable">act</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$&#123;activities<span class="token punctuation">[</span>*<span class="token punctuation">]</span>&#125;</span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">do</span> <span class="token punctuation">\</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Activity: <span class="token variable">$act</span>"</span><span class="token punctuation">;</span> <span class="token punctuation">\</span>
+<span class="token keyword">done</span>
+
+Activity: swimming water skiing canoeing white-water rafting surfing</pre></div></code-block><div id="jLWUWzU6eFqx6tc5onaCaH" class="wolai-block wolai-text"><div><span class="inline-wrap">所以，拷贝一个数组的最方便方法，就是写成下面这样。</span></div></div><code-block id="f9BiKdAmFNfaUkLBXJYD7n" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">hobbies</span><span class="token operator">=</span><span class="token punctuation">(</span> <span class="token string">"<span class="token variable">$&#123;activities<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>"</span> <span class="token punctuation">)</span></pre></div></code-block><div id="rAa6nTDgMZGAiHdpVsFgtf" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，数组</span><span class="inline-wrap"><code>activities</code></span><span class="inline-wrap">被拷贝给了另一个数组</span><span class="inline-wrap"><code>hobbies</code></span><span class="inline-wrap">。</span></div></div><div id="6ijDy1ZfP4oaNyHJBga2k2" class="wolai-block wolai-text"><div><span class="inline-wrap">这种写法也可以用来为新数组添加成员。</span></div></div><code-block id="hb4VMBQmPJWTfpBkhwmfez" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">hobbies</span><span class="token operator">=</span><span class="token punctuation">(</span> <span class="token string">"<span class="token variable">$&#123;activities<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>"</span> diving <span class="token punctuation">)</span></pre></div></code-block><div id="tvxsrLdGAaYw5HjAWnSfdp" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，新数组</span><span class="inline-wrap"><code>hobbies</code></span><span class="inline-wrap">在数组</span><span class="inline-wrap"><code>activities</code></span><span class="inline-wrap">的所有成员之后，又添加了一个成员。</span></div></div><h2 id="fiQonMoWGrcH9vJxTx7pDE" class="wolai-block"><span class="inline-wrap">2.3 默认位置</span></h2><div id="oVXiXS9AFWpL8W9qfA4DUJ" class="wolai-block wolai-text"><div><span class="inline-wrap">如果读取数组成员时，没有读取指定哪一个位置的成员，默认使用</span><span class="inline-wrap"><code>0</code></span><span class="inline-wrap">号位置。</span></div></div><code-block id="1o13DEhtFai5CfDRXDFcLu" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token builtin class-name">declare</span> <span class="token parameter variable">-a</span> foo
+$ <span class="token assign-left variable">foo</span><span class="token operator">=</span>A
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo<span class="token punctuation">[</span>0<span class="token punctuation">]</span>&#125;</span>
+A</pre></div></code-block><div id="mb4WMMocib3AoaAU3UxLCV" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>foo</code></span><span class="inline-wrap">是一个数组，赋值的时候不指定位置，实际上是给</span><span class="inline-wrap"><code>foo[0]</code></span><span class="inline-wrap">赋值。</span></div></div><div id="dVZ7daTpx5NEtv7VVdZUtQ" class="wolai-block wolai-text"><div><span class="inline-wrap">引用一个不带下标的数组变量，则引用的是</span><span class="inline-wrap"><code>0</code></span><span class="inline-wrap">号位置的数组元素。</span></div></div><code-block id="6x1QKySi3QVT1VPfe2zo6S" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">foo</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c d e f<span class="token punctuation">)</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo&#125;</span>
+a
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$foo</span>
+a</pre></div></code-block><div id="ajXeWWh12Wuo7VYFggaQSF" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，引用数组元素的时候，没有指定位置，结果返回的是</span><span class="inline-wrap"><code>0</code></span><span class="inline-wrap">号位置。</span></div></div><h1 id="9HLuitcfpiKt5C1RemqNsQ" class="wolai-block"><span class="inline-wrap">3.数组的长度</span></h1><div id="wiGAkxVsBRVSRB4Zu7S6gN" class="wolai-block wolai-text"><div><span class="inline-wrap">要想知道数组的长度（即一共包含多少成员），可以使用下面两种语法。</span></div></div><code-block id="7sHESuDZ2ibvHqxwbdNwL6" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token variable">$&#123;<span class="token operator">#</span>array<span class="token punctuation">[</span>*<span class="token punctuation">]</span>&#125;</span>
+<span class="token variable">$&#123;<span class="token operator">#</span>array<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span></pre></div></code-block><div id="8vxfRzZCugbmfaLSe9qtyj" class="wolai-block wolai-text"><div><span class="inline-wrap">下面是一个例子。</span></div></div><code-block id="mjQQMYtbemSLvrRNcVLrNA" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ a<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token operator">=</span>foo
+
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;<span class="token operator">#</span>a<span class="token punctuation">[</span>*<span class="token punctuation">]</span>&#125;</span>
+<span class="token number">1</span>
+
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;<span class="token operator">#</span>a<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+<span class="token number">1</span></pre></div></code-block><div id="99drnuuufksK8zmfK1XUBf" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，把字符串赋值给</span><span class="inline-wrap"><code>100</code></span><span class="inline-wrap">位置的数组元素，这时的数组只有一个元素。</span></div></div><div id="cB1L2mpD4WNJFxF3U3u9hP" class="wolai-block wolai-text"><div><span class="inline-wrap">注意，如果用这种语法去读取具体的数组成员，就会返回该成员的字符串长度。这一点必须小心。</span></div></div><code-block id="v4hiFpDqh6doJnfTgxry7h" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ a<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token operator">=</span>foo
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;<span class="token operator">#</span>a<span class="token punctuation">[</span>100<span class="token punctuation">]</span>&#125;</span>
+<span class="token number">3</span></pre></div></code-block><div id="bftZ151tV7P5V3EeKoatN3" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>$&#123;#a[100]&#125;</code></span><span class="inline-wrap">实际上是返回数组第<span class="jill"></span>100<span class="jill"></span>号成员</span><span class="inline-wrap"><code>a[100]</code></span><span class="inline-wrap">的值（</span><span class="inline-wrap"><code>foo</code></span><span class="inline-wrap">）的字符串长度。</span></div></div><h1 id="vvQcHjZLmbkL93YcaAhwmi" class="wolai-block"><span class="inline-wrap">4.提取数组序号</span></h1><div id="qpeLvT54zSsde3DYmrAMj7" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>$&#123;!array[@]&#125;</code></span><span class="inline-wrap">或</span><span class="inline-wrap"><code>$&#123;!array[*]&#125;</code></span><span class="inline-wrap">，可以返回数组的成员序号，即哪些位置是有值的。</span></div></div><code-block id="hfCEuGUozAmHE3sQ8UdDXV" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">arr</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span>a <span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token operator">=</span>b <span class="token punctuation">[</span><span class="token number">23</span><span class="token punctuation">]</span><span class="token operator">=</span>c<span class="token punctuation">)</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;<span class="token operator">!</span>arr<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+<span class="token number">5</span> <span class="token number">9</span> <span class="token number">23</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;<span class="token operator">!</span>arr<span class="token punctuation">[</span>*<span class="token punctuation">]</span>&#125;</span>
+<span class="token number">5</span> <span class="token number">9</span> <span class="token number">23</span></pre></div></code-block><div id="w7f97mXJZY3wEpMmaTDSK2" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，数组的<span class="jill"></span>5、9、23<span class="jill"></span>号位置有值。</span></div></div><div id="aAcZkwFSFVWCLWxNKErwFU" class="wolai-block wolai-text"><div><span class="inline-wrap">利用这个语法，也可以通过</span><span class="inline-wrap"><code>for</code></span><span class="inline-wrap">循环遍历数组。</span></div></div><code-block id="7JSeS5k4DT47sYom6UGsCY" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token assign-left variable">arr</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c d<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token variable">$&#123;<span class="token operator">!</span>arr<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span><span class="token punctuation">;</span><span class="token keyword">do</span>
+  <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>&#125;</span>
+<span class="token keyword">done</span></pre></div></code-block><h1 id="sSaKv7CanaR8wizWhZTsQU" class="wolai-block"><span class="inline-wrap">5.提取数组成员</span></h1><div id="cNcn5zUY7p3eUHkbFd7Dto" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>$&#123;array[@]:position:length&#125;</code></span><span class="inline-wrap">的语法可以提取数组成员。</span></div></div><code-block id="rsAPAzivedNbKoJyUFFN3u" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">food</span><span class="token operator">=</span><span class="token punctuation">(</span> apples bananas cucumbers dates eggs fajitas grapes <span class="token punctuation">)</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;food<span class="token punctuation">[</span>@<span class="token punctuation">]</span><span class="token operator">:</span>1<span class="token operator">:</span>1&#125;</span>
+bananas
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;food<span class="token punctuation">[</span>@<span class="token punctuation">]</span><span class="token operator">:</span>1<span class="token operator">:</span>3&#125;</span>
+bananas cucumbers dates</pre></div></code-block><div id="ozrX64yaVMECTMRTLqnA8N" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，</span><span class="inline-wrap"><code>$&#123;food[@]:1:1&#125;</code></span><span class="inline-wrap">返回从数组<span class="jill"></span>1<span class="jill"></span>号位置开始的<span class="jill"></span>1<span class="jill"></span>个成员，</span><span class="inline-wrap"><code>$&#123;food[@]:1:3&#125;</code></span><span class="inline-wrap">返回从<span class="jill"></span>1<span class="jill"></span>号位置开始的<span class="jill"></span>3<span class="jill"></span>个成员。</span></div></div><div id="nYP67Thn4A8XFZG7JUVEVF" class="wolai-block wolai-text"><div><span class="inline-wrap">如果省略长度参数</span><span class="inline-wrap"><code>length</code></span><span class="inline-wrap">，则返回从指定位置开始的所有成员。</span></div></div><code-block id="6zEVD64Vei4B9LY37E4H6K" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;food<span class="token punctuation">[</span>@<span class="token punctuation">]</span><span class="token operator">:</span>4&#125;</span>
+eggs fajitas grapes</pre></div></code-block><div id="9WfQRLQ3jkG1n35duqp3rM" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子返回从<span class="jill"></span>4<span class="jill"></span>号位置开始到结束的所有成员。</span></div></div><h1 id="i2KJpHb1fPPupCc7deWH8w" class="wolai-block"><span class="inline-wrap">6.追加数组成员</span></h1><div id="eNXYtAGMbFFaBNQMSWYADN" class="wolai-block wolai-text"><div><span class="inline-wrap">数组末尾追加成员，可以使用</span><span class="inline-wrap"><code>+=</code></span><span class="inline-wrap">赋值运算符。它能够自动地把值追加到数组末尾。否则，就需要知道数组的最大序号，比较麻烦。</span></div></div><code-block id="ebxB9kp1oazPAwxakh4wcM" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">foo</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c<span class="token punctuation">)</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+a b c
+
+$ <span class="token assign-left variable">foo</span><span class="token operator">+=</span><span class="token punctuation">(</span>d e f<span class="token punctuation">)</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+a b c d e f</pre></div></code-block><h1 id="rrfgtPw8i9J6BVysrqSUiC" class="wolai-block"><span class="inline-wrap">7.删除数组</span></h1><div id="xwzk3iUcbGBrgNbY47za4f" class="wolai-block wolai-text"><div><span class="inline-wrap">删除一个数组成员，使用</span><span class="inline-wrap"><code>unset</code></span><span class="inline-wrap">命令。</span></div></div><code-block id="friP8ofuNFWpnpbqU7XKKo" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">foo</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c d e f<span class="token punctuation">)</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+a b c d e f
+
+$ <span class="token builtin class-name">unset</span> foo<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+a b d e f</pre></div></code-block><div id="6RU4mY2RuUC9wz67rqZs2x" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，删除了数组中的第三个元素，下标为<span class="jill"></span>2。</span></div></div><div id="o6nGMuxqzEwDc9VcenWSRa" class="wolai-block wolai-text"><div><span class="inline-wrap">将某个成员设为空值，可以从返回值中“隐藏”这个成员。</span></div></div><code-block id="1uNBwEmQ88JPvWgE5LmLmi" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">foo</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c d e f<span class="token punctuation">)</span>
+$ foo<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">''</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+a c d e f</pre></div></code-block><div id="bZ5LbEc9rqQCEtp4MvdyWw" class="wolai-block wolai-text"><div><span class="inline-wrap">上面例子中，将数组的第二个成员设为空字符串，数组的返回值中，这个成员就“隐藏”了。</span></div></div><div id="qAAG45TMowqC5WYTiEraPj" class="wolai-block wolai-text"><div><span class="inline-wrap">注意，这里是“隐藏”，而不是删除，因为这个成员仍然存在，只是值变成了空值。</span></div></div><code-block id="kvK43y73qxpgfAy9CQXAEX" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">foo</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c d e f<span class="token punctuation">)</span>
+$ foo<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">''</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;<span class="token operator">#</span>foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+<span class="token number">6</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;<span class="token operator">!</span>foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+<span class="token number">0</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span></pre></div></code-block><div id="1m6E17qoceJJm4AdE5eFgU" class="wolai-block wolai-text"><div><span class="inline-wrap">上面代码中，第二个成员设为空值后，数组仍然包含<span class="jill"></span>6<span class="jill"></span>个成员。</span></div></div><div id="deU25aNTRhzZG4bcgnwapw" class="wolai-block wolai-text"><div><span class="inline-wrap">由于空值就是空字符串，所以下面这样写也有隐藏效果，但是不建议这种写法。</span></div></div><code-block id="sJekrtgLkJGgBTRTk6Cbhe" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ foo<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span></pre></div></code-block><div id="5WhD7V1T1xnH2ApTqecSzq" class="wolai-block wolai-text"><div><span class="inline-wrap">上面的写法也相当于“隐藏”了数组的第二个成员。</span></div></div><div id="1Bv8ZEb7QLLKP6M54MhEvM" class="wolai-block wolai-text"><div><span class="inline-wrap">直接将数组变量赋值为空字符串，相当于“隐藏”数组的第一个成员。</span></div></div><code-block id="uM8gEF8XB2BfogbWxuqdmZ" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token assign-left variable">foo</span><span class="token operator">=</span><span class="token punctuation">(</span>a b c d e f<span class="token punctuation">)</span>
+$ <span class="token assign-left variable">foo</span><span class="token operator">=</span><span class="token string">''</span>
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;foo<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>
+b c d e f</pre></div></code-block><div id="iekaiUdPLNh8fPBrTeG8N3" class="wolai-block wolai-text"><div><span class="inline-wrap">上面的写法相当于“隐藏”了数组的第一个成员。</span></div></div><div id="gkuav3reriZ6ZSTujg6hwT" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>unset ArrayName</code></span><span class="inline-wrap">可以清空整个数组。</span></div></div><code-block id="jjjR6W6Mx1qD436NzVkb9Q" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre>$ <span class="token builtin class-name">unset</span> ARRAY
+
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;ARRAY<span class="token punctuation">[</span>*<span class="token punctuation">]</span>&#125;</span>
+<span class="token operator">&lt;</span>--no output--<span class="token operator">></span></pre></div></code-block><h1 id="k5bKvKHqcfCxz6AvrUkwaH" class="wolai-block"><span class="inline-wrap">8.关联数组</span></h1><div id="kX72MgG6wmq3t95BfA7uBf" class="wolai-block wolai-text"><div><span class="inline-wrap">Bash 的新版本支持关联数组。关联数组使用字符串而不是整数作为数组索引。</span></div></div><div id="3F6PSsAC2J99XEgE8YPdTN" class="wolai-block wolai-text"><div><span class="inline-wrap"><code>declare -A</code></span><span class="inline-wrap">可以声明关联数组。</span></div></div><code-block id="e1DoB3KbTGjJGjwFDDFfLX" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token builtin class-name">declare</span> <span class="token parameter variable">-A</span> colors
+colors<span class="token punctuation">[</span><span class="token string">"red"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"#ff0000"</span>
+colors<span class="token punctuation">[</span><span class="token string">"green"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"#00ff00"</span>
+colors<span class="token punctuation">[</span><span class="token string">"blue"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"#0000ff"</span></pre></div></code-block><div id="2DizpAxtp7PrpcS9M6sTRf" class="wolai-block wolai-text"><div><span class="inline-wrap">关联数组必须用带有</span><span class="inline-wrap"><code>-A</code></span><span class="inline-wrap">选项的</span><span class="inline-wrap"><code>declare</code></span><span class="inline-wrap">命令声明创建。相比之下，整数索引的数组，可以直接使用变量名创建数组，关联数组就不行。</span></div></div><div id="r9uwpNUhHaTEkd2B66T3zm" class="wolai-block wolai-text"><div><span class="inline-wrap">访问关联数组成员的方式，几乎与整数索引数组相同。</span></div></div><code-block id="wLU5Tuu8CEBmNRNk74ZhM4" class="wolai-block"><div class="wolai-pre"><div data-lang="Bash" class="marker"></div><pre><span class="token builtin class-name">echo</span> <span class="token variable">${colors<span class="token punctuation">[</span>"blue"<span class="token punctuation">]</span>}</span></pre></div></code-block><div id="ho22BkTgnigtJszM84dQBK" class="wolai-block wolai-text"><div><span class="inline-wrap"></span><br/></div></div><div id="mxWu9TaMFW4746STRgFRy4" class="wolai-block wolai-text"><div></div></div></article><footer></footer></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/wdn_icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Firefly</div><div class="author-info__description">A firefly flying freely in the AI domain.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">393</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wdndev"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wdndev" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:dongnian.wang@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://blog.csdn.net/wdnshadow" target="_blank" title="CSDN"><i class="fas fa-rss" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to My Personal Blog! <br /> If Not, Please Visit <a target="_blank" rel="noopener" href="https://wdndev.gitee.io/"> <font color=#00BFFF>Gitee Mirror</font></a>.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#nxYNirui1CC1avNWUaZBv4"><span class="toc-text">1.创建数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sbcoVVonAgYAY15idmJHHF"><span class="toc-text">2.读取数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ijxk1JdqX1ARxJhESnEY4s"><span class="toc-text">2.1 读取单个元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nxnNUMhzfHShYyyd5xqg7U"><span class="toc-text">2.2 读取所有成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiQonMoWGrcH9vJxTx7pDE"><span class="toc-text">2.3 默认位置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9HLuitcfpiKt5C1RemqNsQ"><span class="toc-text">3.数组的长度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vvQcHjZLmbkL93YcaAhwmi"><span class="toc-text">4.提取数组序号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sSaKv7CanaR8wizWhZTsQU"><span class="toc-text">5.提取数组成员</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#i2KJpHb1fPPupCc7deWH8w"><span class="toc-text">6.追加数组成员</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rrfgtPw8i9J6BVysrqSUiC"><span class="toc-text">7.删除数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#k5bKvKHqcfCxz6AvrUkwaH"><span class="toc-text">8.关联数组</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_article/9.%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BALLM/" title="检索增强LLM">检索增强LLM</a><time datetime="2024-01-12T16:00:00.000Z" title="Created 2024-01-13 00:00:00">2024-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/" title="LLMs公开课 - 6.文本理解和生成大模型">LLMs公开课 - 6.文本理解和生成大模型</a><time datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/llms/llms_course/5.%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83_%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" title="LLMs公开课 - 5.高效训练&amp;模型压缩">LLMs公开课 - 5.高效训练&amp;模型压缩</a><time datetime="2024-01-06T16:00:00.000Z" title="Created 2024-01-07 00:00:00">2024-01-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">137</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cython/"><span class="card-category-list-name">Cython</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DSA/"><span class="card-category-list-name">DSA</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GitHub/"><span class="card-category-list-name">GitHub</span><span class="card-category-list-count">84</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/LLMs/"><span class="card-category-list-name">LLMs</span><span class="card-category-list-count">16</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/DSA/" style="font-size: 1.33em; color: rgb(38, 109, 34)">DSA</a><a href="/tags/RL/" style="font-size: 1.25em; color: rgb(167, 66, 78)">RL</a><a href="/tags/Transformer/" style="font-size: 1.35em; color: rgb(191, 106, 16)">Transformer</a><a href="/tags/LLMs/" style="font-size: 1.27em; color: rgb(12, 95, 33)">LLMs</a><a href="/tags/PaperReading/" style="font-size: 1.31em; color: rgb(173, 163, 27)">PaperReading</a><a href="/tags/DeepLearning/" style="font-size: 1.23em; color: rgb(35, 160, 110)">DeepLearning</a><a href="/tags/CV/" style="font-size: 1.17em; color: rgb(73, 92, 72)">CV</a><a href="/tags/GPT/" style="font-size: 1.19em; color: rgb(141, 134, 140)">GPT</a><a href="/tags/PL/" style="font-size: 1.21em; color: rgb(162, 197, 30)">PL</a><a href="/tags/domain/" style="font-size: 1.15em; color: rgb(61, 72, 81)">domain</a><a href="/tags/github/" style="font-size: 1.15em; color: rgb(35, 181, 79)">github</a><a href="/tags/hf/" style="font-size: 1.15em; color: rgb(174, 3, 118)">hf</a><a href="/tags/weibo/" style="font-size: 1.15em; color: rgb(137, 172, 63)">weibo</a><a href="/tags/ArXiv/" style="font-size: 1.39em; color: rgb(78, 135, 141)">ArXiv</a><a href="/tags/Domain/" style="font-size: 1.39em; color: rgb(44, 183, 175)">Domain</a><a href="/tags/AI/" style="font-size: 1.45em; color: rgb(146, 120, 185)">AI</a><a href="/tags/GitHub/" style="font-size: 1.43em; color: rgb(150, 55, 105)">GitHub</a><a href="/tags/Trending/" style="font-size: 1.43em; color: rgb(161, 66, 108)">Trending</a><a href="/tags/HuggingFace/" style="font-size: 1.37em; color: rgb(115, 161, 28)">HuggingFace</a><a href="/tags/Papers/" style="font-size: 1.37em; color: rgb(162, 135, 151)">Papers</a><a href="/tags/%E5%BE%AE%E5%8D%9A/" style="font-size: 1.41em; color: rgb(2, 140, 44)">微博</a><a href="/tags/%E7%83%AD%E6%90%9C/" style="font-size: 1.41em; color: rgb(62, 50, 168)">热搜</a><a href="/tags/leetcode/" style="font-size: 1.29em; color: rgb(91, 38, 192)">leetcode</a><a href="/tags/algo/" style="font-size: 1.17em; color: rgb(133, 160, 105)">algo</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">393</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-05-31T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">15480k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-09-19T23:53:13.415Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
