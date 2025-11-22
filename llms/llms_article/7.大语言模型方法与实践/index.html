@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>大语言模型方法与实践 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="崔一鸣(https:&#x2F;&#x2F;ymcui.com)老师分享了一期《大规模预训练语言模型方法与实践》，本文为课程笔记。  1.自然语言表示发展简介       2.生成式预训练语言模型：GPT系列 2.1 GPT    2.2 GPT-2 2.3 GPT-3  2.4 InstructGPT    2.5 ChatGPT（GPT-3.5）2022年11月30日，OpenAI推出了划时代的“ChatGPT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大语言模型方法与实践">
+<meta property="og:url" content="https://wdndev.github.io/llms/llms_article/7.%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="崔一鸣(https:&#x2F;&#x2F;ymcui.com)老师分享了一期《大规模预训练语言模型方法与实践》，本文为课程笔记。  1.自然语言表示发展简介       2.生成式预训练语言模型：GPT系列 2.1 GPT    2.2 GPT-2 2.3 GPT-3  2.4 InstructGPT    2.5 ChatGPT（GPT-3.5）2022年11月30日，OpenAI推出了划时代的“ChatGPT">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-12-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-22T23:46:34.077Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="LLMs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/llms/llms_article/7.%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大语言模型方法与实践',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-23 07:46:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">645</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/weibo/index"><i class="fa-fw fas fa-brands fa-weibo"></i><span> Weibo</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">大语言模型方法与实践</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-12-10T16:00:00.000Z" title="Created 2023-12-11 00:00:00">2023-12-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-11-22T23:46:34.077Z" title="Updated 2025-11-23 07:46:34">2025-11-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LLMs/">LLMs</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="大语言模型方法与实践"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>崔一鸣(<a href="https://link.zhihu.com/?target=https://ymcui.com" title="https://ymcui.com">https://ymcui.com</a>)老师分享了一期《大规模预训练语言模型方法与实践》，本文为课程笔记。</p>
+</blockquote>
+<h2 id="1-自然语言表示发展简介"><a href="#1-自然语言表示发展简介" class="headerlink" title="1.自然语言表示发展简介"></a>1.自然语言表示发展简介</h2><p><img src="image/image_ArwyMG1C0z.png" alt=""></p>
+<p><img src="image/image_4dWjX5XtbL.png" alt=""></p>
+<p><img src="image/image_EdEWxMdLwa.png" alt=""></p>
+<p><img src="image/image_d99xPXY2Qn.png" alt=""></p>
+<p><img src="image/image_r4pPu012mb.png" alt=""></p>
+<p><img src="image/image_54WRlO-dSm.png" alt=""></p>
+<p><img src="image/image_L9_culNbN0.png" alt=""></p>
+<h2 id="2-生成式预训练语言模型：GPT系列"><a href="#2-生成式预训练语言模型：GPT系列" class="headerlink" title="2.生成式预训练语言模型：GPT系列"></a>2.生成式预训练语言模型：GPT系列</h2><p><img src="image/image_BjKuzl6vPe.png" alt=""></p>
+<h3 id="2-1-GPT"><a href="#2-1-GPT" class="headerlink" title="2.1 GPT"></a>2.1 GPT</h3><p><img src="image/image_pDGG-D6mop.png" alt=""></p>
+<p><img src="image/image_yHOiW_Vmdm.png" alt=""></p>
+<p><img src="image/image_YtQ3Gu8GNP.png" alt=""></p>
+<p><img src="image/image_eZjRA_YbmZ.png" alt=""></p>
+<h3 id="2-2-GPT-2"><a href="#2-2-GPT-2" class="headerlink" title="2.2 GPT-2"></a>2.2 GPT-2</h3><p><img src="image/image_9NHS67xWsy.png" alt=""></p>
+<h3 id="2-3-GPT-3"><a href="#2-3-GPT-3" class="headerlink" title="2.3 GPT-3"></a>2.3 GPT-3</h3><p><img src="image/image_ET-Y1u4tA5.png" alt=""></p>
+<p><img src="image/image__QXzI0uBxT.png" alt=""></p>
+<h3 id="2-4-InstructGPT"><a href="#2-4-InstructGPT" class="headerlink" title="2.4 InstructGPT"></a>2.4 InstructGPT</h3><p><img src="image/image_8bqrF1_5p-.png" alt=""></p>
+<p><img src="image/image_eqMFe5I0P2.png" alt=""></p>
+<p><img src="image/image_rIXUgtRGVI.png" alt=""></p>
+<p><img src="image/image_jzSBHkXRB-.png" alt=""></p>
+<h3 id="2-5-ChatGPT（GPT-3-5）"><a href="#2-5-ChatGPT（GPT-3-5）" class="headerlink" title="2.5 ChatGPT（GPT-3.5）"></a>2.5 ChatGPT（GPT-3.5）</h3><p>2022年11月30日，OpenAI推出了划时代的“ChatGPT”</p>
+<ul>
+<li>ChatGPT是InstructGPT的衍生模型，可以理解和执行指令并给出详细的回复</li>
+<li>被广泛认为是近期“大模型”兴起的开端</li>
+<li>ChatGPT打破了预训练模型的刻板印象，展现出了极强的创造力和可能性</li>
+</ul>
+<p><img src="image/image_AAIE_6DRjk.png" alt=""></p>
+<p><img src="image/image_fUz6smI4zA.png" alt=""></p>
+<h3 id="2-6-GPT-4"><a href="#2-6-GPT-4" class="headerlink" title="2.6 GPT-4"></a>2.6 GPT-4</h3><p>2023年3月，OpenAI发布了最新一代大型多模态模型 GPT-4，是迄今为止GPT家族中能力最强的模型</p>
+<p>主要提升：生成的文本更具创造性、支持图像输入、支持更⻓的 上下文、显著提升推理能力</p>
+<p>其他特点&#x20;</p>
+<ul>
+<li>花费了6个月的时间让GPT-4更安全更符合人类偏好</li>
+<li>相比GPT3.5能够在拒答问题上提升82%，事实性提 升40%</li>
+</ul>
+<p>目前Web Demo界面仅向Plus用户提供，API价格比gpt3.5-turbo高出10倍以上</p>
+<h3 id="2-7-总结"><a href="#2-7-总结" class="headerlink" title="2.7 总结"></a>2.7 总结</h3><p>从GPT到GPT-4，模型规模逐渐变大，能力越来越强</p>
+<p><img src="image/image__5pGFaPQWn.png" alt=""></p>
+<h2 id="3-开源大规模预训练语言模型"><a href="#3-开源大规模预训练语言模型" class="headerlink" title="3.开源大规模预训练语言模型"></a>3.开源大规模预训练语言模型</h2><h3 id="3-1-LLaMA"><a href="#3-1-LLaMA" class="headerlink" title="3.1 LLaMA"></a>3.1 LLaMA</h3><p>Open and Efficient Foundation Language Models (Open但没完全Open的LLaMA)&#x20;</p>
+<p>2023年2月，Meta（原Facebook）推出了LLaMA大模型，使用了1.4T token进行训练</p>
+<p>虽然最大模型只有65B，但在相关评测任务上的效果可以媲美甚至超过千亿级大模型</p>
+<p>被认为是近期开源大模型百花⻬放的开端之一，“羊驼”系列模型及其生态快速发展</p>
+<p>主干模型仍然是传统的<strong>transformer decoder</strong>结构</p>
+<p>主要技术：<strong>Pre-normalization</strong>, <strong>SwiGLU activation, Rotary Embedding (RoPE)</strong></p>
+<p><img src="image/image_JCwB8lkvnu.png" alt=""></p>
+<p><img src="image/image_RolZET905I.png" alt=""></p>
+<p><img src="image/image_D2FzF1XfB1.png" alt=""></p>
+<p><img src="image/image_KiQkB5PfgI.png" alt=""></p>
+<p><img src="image/image_hzFxuo-OFZ.png" alt=""></p>
+<h3 id="3-2-Alpaca"><a href="#3-2-Alpaca" class="headerlink" title="3.2 Alpaca"></a>3.2 Alpaca</h3><p>Stanford Alpaca: An Instruction-following LLaMA Model&#x20;</p>
+<p>Alpaca是在LLaMA基础上使用52K指令数据精调的预训练模型</p>
+<p>作者只用了不到600美元的成本训练出了该模型（数据$500 + 机器$100）</p>
+<p>初步实验结果表明Alpaca可以达到与OpenAI text-davinci-003相匹敌的效果</p>
+<p><img src="image/image_n43p6BIr65.png" alt=""></p>
+<p><img src="image/image_-tFyDLWofC.png" alt=""></p>
+<p><img src="image/image_4cPglEwkah.png" alt=""></p>
+<h3 id="3-3-Llama-2"><a href="#3-3-Llama-2" class="headerlink" title="3.3 Llama-2"></a>3.3 Llama-2</h3><p>Llama 2: Open Foundation and Fine-Tuned Chat Models</p>
+<p>2023年7月，Meta推出了Llama-2开源大模型，并且推出了Llama-2-Chat对话模型</p>
+<p>虽然仍然需要填写申请表获取模型权重，但在二次分发和商用许可方面更加宽松</p>
+<p>与一代LLaMA主要区别体现在更多的训练数据、更⻓的上下文窗口、GQA技术等</p>
+<p><img src="image/image_vfEJtY0qOJ.png" alt=""></p>
+<p><img src="image/image_-c3_6Hx5tE.png" alt=""></p>
+<p><img src="image/image_mDrWJzEOd2.png" alt=""></p>
+<p><img src="image/image_hGpRDvG4uj.png" alt=""></p>
+<h3 id="3-4-Code-Llama"><a href="#3-4-Code-Llama" class="headerlink" title="3.4 Code Llama"></a>3.4 Code Llama</h3><p>Code Llama: Open Foundation Models for Code</p>
+<p>2023年8月24日，Meta推出了面向代码的可商用大模型Code Llama，包含三个大小版本（7B/13B/34B）</p>
+<p>支持多种编程语言，包括Python、C++、Java、PHP、Typescript (Javascript)、C#和Bash</p>
+<p>亮点：</p>
+<ul>
+<li>免费供学术研究和商用</li>
+<li>支持100K上下文</li>
+<li>“神秘”34B版接近GPT-4效果</li>
+</ul>
+<p><img src="image/image_io0DmhNLpZ.png" alt=""></p>
+<p><img src="image/image_-OtsUClaNZ.png" alt=""></p>
+<p><img src="image/image_eMFKRbXHPR.png" alt=""></p>
+<p><img src="image/image_4pYQvRleAo.png" alt=""></p>
+<h2 id="4-中文开源大模型LLaMA-amp-Alpace"><a href="#4-中文开源大模型LLaMA-amp-Alpace" class="headerlink" title="4.中文开源大模型LLaMA &amp; Alpace"></a>4.中文开源大模型LLaMA &amp; Alpace</h2><h3 id="4-1-中文LLaMA-amp-Alpaca大模型"><a href="#4-1-中文LLaMA-amp-Alpaca大模型" class="headerlink" title="4.1 中文LLaMA &amp; Alpaca大模型"></a>4.1 中文LLaMA &amp; Alpaca大模型</h3><p>针对LLaMA进行了中文适配，扩展其词表，并进一步推出了指令精调的中文Alpaca模型（类ChatGPT模型）</p>
+<p>支持llama.cpp, 🤗transformers, text-generation-webui, LangChain, privateGPT等生态</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-LLaMA-Alpaca" title="中文LLaMA\&amp;Alpaca大语言模型">中文LLaMA\&amp;Alpaca大语言模型</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-LLaMA-Alpaca-2" title="中文LLaMA-2 &amp; Alpaca-2大模型二期项目">中文LLaMA-2 &amp; Alpaca-2大模型二期项目</a></li>
+</ul>
+<p><img src="image/image_R6AubE3SXL.png" alt=""></p>
+<p><img src="image/image_E_TZ8CjUBr.png" alt=""></p>
+<h3 id="4-2-模型方法"><a href="#4-2-模型方法" class="headerlink" title="4.2 模型方法"></a>4.2 模型方法</h3><h4 id="（1）中文词表扩充"><a href="#（1）中文词表扩充" class="headerlink" title="（1）中文词表扩充"></a>（1）中文词表扩充</h4><p>动机：LLaMA没有显式使用中文语料进行训练</p>
+<p>原版LLaMA没有显式使用中文语料进行训练，词表（32K tokens）中仅包含非常少量的中文字符</p>
+<p>经粗略统计，LLaMA词表中仅包含约700个中文字符（范围：\u4E00-\u9FFF）</p>
+<p><img src="image/image_e5sAW_vlbZ.png" alt=""></p>
+<p><img src="image/image_jr40CAcI73.png" alt=""></p>
+<h4 id="（2）LoRA高效训练"><a href="#（2）LoRA高效训练" class="headerlink" title="（2）LoRA高效训练"></a>（2）LoRA高效训练</h4><p><img src="image/image_q6ueYF6aOb.png" alt=""></p>
+<p><img src="image/image_G5LAM6SI_g.png" alt=""></p>
+<p><img src="image/image_jKw6AV_h37.png" alt=""></p>
+<h3 id="4-3-预训练过程：LLaMA-LLaMA-2"><a href="#4-3-预训练过程：LLaMA-LLaMA-2" class="headerlink" title="4.3 预训练过程：LLaMA/LLaMA-2"></a>4.3 预训练过程：LLaMA/LLaMA-2</h3><p>在原版LLaMA基础上，使用大规模无标注中文文本进行训练，补充基础中文语义和知识</p>
+<p>训练目标为传统的Causal LM，即给定上文预测下一个token是什么</p>
+<p><img src="image/image_HunLriHLF8.png" alt=""></p>
+<h3 id="4-4-指令精调过程"><a href="#4-4-指令精调过程" class="headerlink" title="4.4 指令精调过程"></a>4.4 指令精调过程</h3><h4 id="（1）Alpaca"><a href="#（1）Alpaca" class="headerlink" title="（1）Alpaca"></a>（1）Alpaca</h4><p><img src="image/image_VM97AR03nm.png" alt=""></p>
+<h4 id="（2）Alpaca-2"><a href="#（2）Alpaca-2" class="headerlink" title="（2）Alpaca-2"></a>（2）Alpaca-2</h4><p><img src="image/image_WCLQipJHdR.png" alt=""></p>
+<h4 id="（3）模型对比"><a href="#（3）模型对比" class="headerlink" title="（3）模型对比"></a>（3）模型对比</h4><p><img src="image/image_S6l33C5sOv.png" alt=""></p>
+<h3 id="4-5-解码参数对效果的影响"><a href="#4-5-解码参数对效果的影响" class="headerlink" title="4.5 解码参数对效果的影响"></a>4.5 解码参数对效果的影响</h3><p><img src="image/image_rKqiNBvjJH.png" alt=""></p>
+<p><img src="image/image_FeQh5CrHWR.png" alt=""></p>
+<h3 id="4-6-扩展上下文"><a href="#4-6-扩展上下文" class="headerlink" title="4.6 扩展上下文"></a>4.6 扩展上下文</h3><p><img src="image/image_HUpY-gfEzF.png" alt=""></p>
+<p><img src="image/image_tTtvhXiyrj.png" alt=""></p>
+<p><img src="image/image_whLq8pgSpf.png" alt=""></p>
+<h3 id="4-7-多模态VisualCLA"><a href="#4-7-多模态VisualCLA" class="headerlink" title="4.7 多模态VisualCLA"></a>4.7 多模态VisualCLA</h3><p>VisualCLA是一个支持图像和文本输入的中文多模态大模型，基于中文Alpaca和OpenAI CLIP模型开发</p>
+<p><img src="image/image_salcmUHPOG.png" alt=""></p>
+<p><img src="image/image_xScATMHyQj.png" alt=""></p>
+<h2 id="5-LLaMA生态与下游应用"><a href="#5-LLaMA生态与下游应用" class="headerlink" title="5.LLaMA生态与下游应用"></a>5.LLaMA生态与下游应用</h2><p><img src="image/image_Q0bs2hWZxq.png" alt=""></p>
+<h3 id="5-1-llama-cpp"><a href="#5-1-llama-cpp" class="headerlink" title="5.1 llama.cpp"></a>5.1 <strong>llama.cpp</strong></h3><p>llama.cpp是一个基于C/C++的本地量化和部署大模型的工具</p>
+<ul>
+<li>支持CPU/GPU下快速量化和加载体验大模型，还可以搭建server与API服务</li>
+<li>支持2~8bit量化方法，支持ARM NEON、BLAS、cuBLAS、CBLAST等加速</li>
+<li>支持macOS/Linux/Windows等平台，支持LLaMA/Alpaca/Vicuna/GPT4All等常⻅LLM及其变体</li>
+</ul>
+<p><img src="image/image_ct69bhbhj4.png" alt=""></p>
+<h3 id="5-2-LangChain"><a href="#5-2-LangChain" class="headerlink" title="5.2 LangChain"></a>5.2 <strong>LangChain</strong></h3><p>LangChain是一个用于开发语言模型驱动的应用的框架</p>
+<ul>
+<li>开发人员可以方便地设计与搭建问答、摘要、聊天机器人、代码理解、信息抽取等基于LLM能力的应用程序</li>
+<li>数据感知：将语言模型连接到其他数据源</li>
+<li>具有代理性质：允许语言模型与其环境进行交互</li>
+</ul>
+<h3 id="5-3-privateGPT"><a href="#5-3-privateGPT" class="headerlink" title="5.3 privateGPT"></a>5.3 <strong>privateGPT</strong></h3><p>privateGPT是一种面向离线数据的大模型交互应用</p>
+<ul>
+<li>基于LangChain开发的本地化文档分析与问答交互的接口，确保数据本地化和私有化</li>
+<li>支持GGML格式（llama.cpp量化格式）模型以及GPT4All-J格式模型</li>
+</ul>
+<p><img src="image/image_yXbSKzPSqr.png" alt=""></p>
+<h3 id="5-4-仿OpenAI-API调用"><a href="#5-4-仿OpenAI-API调用" class="headerlink" title="5.4 仿OpenAI API调用"></a>5.4 <strong>仿OpenAI API调用</strong></h3><p>仿OpenAI的API调用方法</p>
+<ul>
+<li>使用fastapi实现的简易的仿OpenAI API⻛格的服务器Demo</li>
+<li>可以使用这个API快速搭建基于中文大模型的个人网站以及其他有趣的Web Demo</li>
+</ul>
+<p><img src="image/image_ftMPpazoK4.png" alt=""></p>
+<h3 id="5-5-基于Gradio的WebUI"><a href="#5-5-基于Gradio的WebUI" class="headerlink" title="5.5 基于Gradio的WebUI"></a>5.5 <strong>基于Gradio的WebUI</strong></h3><p>以界面友好的形式与大模型进行交互，支持量化模型加载、多轮对话、流式输出返回等</p>
+<p><img src="image/image_QxpNaXJZNV.png" alt=""></p>
+<h2 id="6-相关资源"><a href="#6-相关资源" class="headerlink" title="6.相关资源"></a>6.相关资源</h2><ul>
+<li>GitHub: <a target="_blank" rel="noopener" href="http://anthology.hfl-rc.com" title="http://anthology.hfl-rc.com">http://anthology.hfl-rc.com</a>&#x20;</li>
+<li>Model Hub: <a target="_blank" rel="noopener" href="https://huggingface.co/HFL" title="https://huggingface.co/HFL">https://huggingface.co/HFL</a></li>
+</ul>
+<p><img src="image/image_qFUzFnWwgi.png" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/llms/llms_article/7.%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/">https://wdndev.github.io/llms/llms_article/7.大语言模型方法与实践/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a><a class="post-meta__tags" href="/tags/LLMs/">LLMs</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/llms/llms_course/1.NLP_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/" title="LLMs公开课 - 1.NLP&amp;大模型基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-27</div><div class="title">LLMs公开课 - 1.NLP&amp;大模型基础</div></div></a></div><div><a href="/llms/llms_course/2.%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" title="LLMs公开课 - 2.神经网络基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-30</div><div class="title">LLMs公开课 - 2.神经网络基础</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E8%A1%A8%E7%A4%BA%E5%8F%91%E5%B1%95%E7%AE%80%E4%BB%8B"><span class="toc-text">1.自然语言表示发展简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%94%9F%E6%88%90%E5%BC%8F%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%9AGPT%E7%B3%BB%E5%88%97"><span class="toc-text">2.生成式预训练语言模型：GPT系列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-GPT"><span class="toc-text">2.1 GPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-GPT-2"><span class="toc-text">2.2 GPT-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-GPT-3"><span class="toc-text">2.3 GPT-3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-InstructGPT"><span class="toc-text">2.4 InstructGPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-ChatGPT%EF%BC%88GPT-3-5%EF%BC%89"><span class="toc-text">2.5 ChatGPT（GPT-3.5）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-GPT-4"><span class="toc-text">2.6 GPT-4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-%E6%80%BB%E7%BB%93"><span class="toc-text">2.7 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%BC%80%E6%BA%90%E5%A4%A7%E8%A7%84%E6%A8%A1%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.开源大规模预训练语言模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-LLaMA"><span class="toc-text">3.1 LLaMA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Alpaca"><span class="toc-text">3.2 Alpaca</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Llama-2"><span class="toc-text">3.3 Llama-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-Code-Llama"><span class="toc-text">3.4 Code Llama</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%B8%AD%E6%96%87%E5%BC%80%E6%BA%90%E5%A4%A7%E6%A8%A1%E5%9E%8BLLaMA-amp-Alpace"><span class="toc-text">4.中文开源大模型LLaMA &amp; Alpace</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%B8%AD%E6%96%87LLaMA-amp-Alpaca%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="toc-text">4.1 中文LLaMA &amp; Alpaca大模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-text">4.2 模型方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E4%B8%AD%E6%96%87%E8%AF%8D%E8%A1%A8%E6%89%A9%E5%85%85"><span class="toc-text">（1）中文词表扩充</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89LoRA%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83"><span class="toc-text">（2）LoRA高效训练</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%A2%84%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%EF%BC%9ALLaMA-LLaMA-2"><span class="toc-text">4.3 预训练过程：LLaMA&#x2F;LLaMA-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%8C%87%E4%BB%A4%E7%B2%BE%E8%B0%83%E8%BF%87%E7%A8%8B"><span class="toc-text">4.4 指令精调过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Alpaca"><span class="toc-text">（1）Alpaca</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Alpaca-2"><span class="toc-text">（2）Alpaca-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94"><span class="toc-text">（3）模型对比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E8%A7%A3%E7%A0%81%E5%8F%82%E6%95%B0%E5%AF%B9%E6%95%88%E6%9E%9C%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">4.5 解码参数对效果的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E6%89%A9%E5%B1%95%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">4.6 扩展上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%A4%9A%E6%A8%A1%E6%80%81VisualCLA"><span class="toc-text">4.7 多模态VisualCLA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-LLaMA%E7%94%9F%E6%80%81%E4%B8%8E%E4%B8%8B%E6%B8%B8%E5%BA%94%E7%94%A8"><span class="toc-text">5.LLaMA生态与下游应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-llama-cpp"><span class="toc-text">5.1 llama.cpp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-LangChain"><span class="toc-text">5.2 LangChain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-privateGPT"><span class="toc-text">5.3 privateGPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E4%BB%BFOpenAI-API%E8%B0%83%E7%94%A8"><span class="toc-text">5.4 仿OpenAI API调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E5%9F%BA%E4%BA%8EGradio%E7%9A%84WebUI"><span class="toc-text">5.5 基于Gradio的WebUI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90"><span class="toc-text">6.相关资源</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
