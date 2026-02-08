@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文精读 一种简单的蒙特卡洛树搜索并行化方法 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="监控未观察样本: 一种简单的蒙特卡洛树搜索并行化方法Watch the Unobserved: a Sample Approach to Parallelizing Monte Carlo TreeSearch论文地址：https:&#x2F;&#x2F;openreview.net&#x2F;forum?id&#x3D;BJlQtJSKDB Github ：https:&#x2F;&#x2F;github.com&#x2F;liuanji&#x2F;WU-UCT 摘要蒙特卡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文精读 一种简单的蒙特卡洛树搜索并行化方法">
+<meta property="og:url" content="https://wdndev.github.io/paper_reading/3.1.WU_UCT/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="监控未观察样本: 一种简单的蒙特卡洛树搜索并行化方法Watch the Unobserved: a Sample Approach to Parallelizing Monte Carlo TreeSearch论文地址：https:&#x2F;&#x2F;openreview.net&#x2F;forum?id&#x3D;BJlQtJSKDB Github ：https:&#x2F;&#x2F;github.com&#x2F;liuanji&#x2F;WU-UCT 摘要蒙特卡">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2022-10-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.842Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="RL">
+<meta property="article:tag" content="PaperReading">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/paper_reading/3.1.WU_UCT/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文精读 一种简单的蒙特卡洛树搜索并行化方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">论文精读 一种简单的蒙特卡洛树搜索并行化方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-10-28T16:00:00.000Z" title="Created 2022-10-29 00:00:00">2022-10-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.842Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PaperReading/">PaperReading</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">7.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>25min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="论文精读 一种简单的蒙特卡洛树搜索并行化方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="监控未观察样本-一种简单的蒙特卡洛树搜索并行化方法"><a href="#监控未观察样本-一种简单的蒙特卡洛树搜索并行化方法" class="headerlink" title="监控未观察样本: 一种简单的蒙特卡洛树搜索并行化方法"></a>监控未观察样本: 一种简单的蒙特卡洛树搜索并行化方法</h1><h1 id="Watch-the-Unobserved-a-Sample-Approach-to-Parallelizing-Monte-Carlo-TreeSearch"><a href="#Watch-the-Unobserved-a-Sample-Approach-to-Parallelizing-Monte-Carlo-TreeSearch" class="headerlink" title="Watch the Unobserved: a Sample Approach to Parallelizing Monte Carlo TreeSearch"></a>Watch the Unobserved: a Sample Approach to Parallelizing Monte Carlo TreeSearch</h1><p>论文地址：<a target="_blank" rel="noopener" href="https://openreview.net/forum?id=BJlQtJSKDB">https://openreview.net/forum?id=BJlQtJSKDB</a></p>
+<p>Github ：<a target="_blank" rel="noopener" href="https://github.com/liuanji/WU-UCT">https://github.com/liuanji/WU-UCT</a></p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>蒙特卡洛树搜索 (MCTS) 算法在许多具有挑战性的基准测试上(例如,围棋等)取得了巨大成功.然而,它们通常需要大量部署,这使得它们的应用成本很高. 此外,由于 MCTS固有的顺序性质,并行化 MCTS 也极具挑战性:每次模拟都严重依赖从先前模拟的数据 (例如,节点访问计数),用于实现有效的探索和利用的权衡. 尽管存在这些困难,我们还是开发了一种算法WU-UCT, 来有效地并行化 MCTS, 它实现了线性加速,并且随着线程数量的增加表现出有限的性能损失. WU-UCT的关键思想是我们引入一组统计数据来跟踪正在进行未结束的模拟样本(称为未观察样本) 的数量. 当我们将最耗时的扩展和模拟步骤并行化时,这些数据被用来修正UCT算法中的选择步骤, 以保证正确的探索和利用的权衡. 在“JOY CITY” 游戏基准和 Atari Game 基准上的实验证明了 WU-UCT与传统的UCT算法相比, 在线性加速和性能方面有明显的提升.</p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract:"></a>Abstract:</h2><p>Monte Carlo Tree Search (MCTS) algorithms have achieved great success on many challenging benchmarks (e.g., Computer Go). However, they generally require a large number of rollouts, making their applications costly. Furthermore, it is also extremely challenging to parallelize MCTS due to its inherent sequential nature: each rollout heavily relies on the statistics (e.g., node visitation counts) estimated from previous simulations to achieve an effective exploration-exploitation tradeoff. In spite of these difficulties, we develop an algorithm, WU-UCT1, to effectively parallelize MCTS, which achieves linear speedup and exhibits only limited performance loss with an increasing number of workers. The key idea in WU-UCT is a set of statistics that we introduce to track the number of on-going yet incomplete simulation queries (named as unobserved samples). These statistics are used to modify the UCT tree policy in the selection steps in a principled manner to retain effective exploration-exploitation tradeoff when we parallelize the most time-consuming expansion and simulation steps. Experiments on a proprietary benchmark and the Atari Game benchmark demonstrate the linear speedup and the superior performance of WU-UCT comparing to existing techniques.</p>
+<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h2><p>最近, 蒙特卡罗树搜索 (MCTS) 算法, 如UCT (Kocsis, 2006) , 在解决许多具有挑战性的人工智能 (AI) 问题方面取得了巨大成功, 包括视频游戏 (Guo, 2016) 和围棋 (Silver, 2016年) . 然而, 它们依赖于大量的与环境交互 (例如数百万), 来构建用于决策的搜索树, 这导致了很高的时间复杂性 (Browne, 2012). 由于这个原因, 并行化MCTS的需求越来越大. 然而, 在不降低性能的情况下并行化 MCTS 是困难的 (Segal, 2010; Mirsoleimani, 2018a; Chaslot, 2008), 主要是因为每次 MCTS 迭代都需要来自先前迭代的信息以提供有效的探索和利用. 具体来说, 并行化 MCTS 将不可避免地覆盖这些迭代信息, 我们将在第 2.2 节中展示这种信息丢失可能会导致性能显着下降. 因此, 关键问题是如何获取和利用更多可用信息来消除并行化造成的信息损失, 并帮助算法实现更好的探索和利用的权衡.</p>
+<p>为此, 我们提出了 WU-UCT (Watch the Unobserved in UCT), 这是一种新颖的并行 MCTS 算法, 可以在有限的性能损失下实现线性加速. 这是通过概念创新 (第 3.1 节) 以及有效的真实系统运行 (第 3.2 节) 来实现的. 具体来说, WU-UCT 克服上述挑战的关键思想是用于跟踪正在进行但未完成的模拟样本数量, 称为未观察样本. 我们将这些新的样本与原始观察样本相结合, 用来修正UCT算法中的选择步骤, 正如我们将在第 4 节中展示的那样, 这在并行化过程中有效地保持了探索和利用的权衡. 我们提出的方法已成功部署在真实的系统中, 用于有效且准确地评估手机游戏“Joy City”中用户通过关卡的比率 (称为用户通过率), 目的是减少他们的设计周期. 在这个基准上, 我们展示了 WU-UCT 在预测用户通过率 (第 5.1 节) 方面实现了接近最优的线性加速和卓越的性能. 我们在 Atari Game 基准上进一步评估 WU-UCT, 并将其与最先进的并行 MCTS 算法 (第 5.2 节) 进行比较, 这也证明了我们卓越的加速和性能.</p>
+<h2 id="2-并行化MCTS的困难"><a href="#2-并行化MCTS的困难" class="headerlink" title="2.并行化MCTS的困难"></a>2.并行化MCTS的困难</h2><p>我们首先介绍 MCTS 和 UCT 算法, 以及它们在并行化方面的困难.</p>
+<h3 id="2-1-蒙特卡洛树搜索和上限置信度-UCT"><a href="#2-1-蒙特卡洛树搜索和上限置信度-UCT" class="headerlink" title="2.1 蒙特卡洛树搜索和上限置信度 (UCT)"></a>2.1 蒙特卡洛树搜索和上限置信度 (UCT)</h3><p>马尔可夫决策过程(MDP) $&lt; S,\ A,\ R,\ P,\ \gamma &gt;$,智能体与环境交互以最大化长期累积奖励. 具体来说, 智能体在状态$s<em>{t} \in S\ $下根据策略 $\pi$ 选择动作 $a</em>{t} \in A$,故通过MDP转换到下一个状态$s<em>{t + 1}\sim P\left( \left. \ S</em>{t + 1} \right|S<em>{t},\ a</em>{t} \right)$,并且获得奖励$R\left( s<em>{t},\ a</em>{t} \right)$.智能体的目标时学习一个最优策略$\ \pi^{*}$, 使得长期累积奖励最大化:</p>
+<script type="math/tex; mode=display">
+\max_{\pi}{\ E}_{a_{t} \sim \pi,\ s_{t + 1}}P\lbrack\sum_{t = 0}^{\infty}{\gamma^{t}R\left( s_{t},\ a_{t} \right)|s_{0} = s}\rbrack</script><p>其中 $s\  \in \ S$ 表示初始状态, $\gamma\  \in \ (0,\ 1\rbrack$是折扣因子. 为了解决上述问题, 已经开发了许多强化学习 (RL) 算法(Sutton&amp;Barto, 2018) , 包括无模型算法 (Mnih, 2013；2016；Williams,1992；Konda&amp;Tsitsiklis, 2000；Schulman, 2015；2017) 和基于模型的算法(Nagabandi, 2018；Weber, 2017；Bertsekas,2005；Deisenroth&amp;Rasmussen, 2011) . 蒙特卡罗树搜索 (MCTS)是一种基于模型的RL算法, 它选取每个动作的最优动作 (Browne et al., 2012).具体来说, 它使用MDP模型 (或采样) 通过构建搜索树 (图1(a))来确定每个步骤的最优动作, 其中每个节点 $s$ 表示一个动作 $a$ 访问状态,<br>从$s$开始的每个边表示一个可以在该状态下采取的操作,以及节点$s’$表示采取动作$a$后的状态. 如图1(a) 所示,MCTS重复执行四个顺序步骤: 选择、扩展、模拟和反向传播.选择步骤是遍历现有搜索树, 直到满足叶节点 (或其他终止条件) ,方法是根据树策略选择每个节点的动作 (边) .一种广泛使用的节点选择策略是树的置信上限 (UCT) (Kocsis, 2006年) :</p>
+<script type="math/tex; mode=display">
+a_{s} = \arg{\operatorname{}{\{ V_{s^{'}} + \beta\ \sqrt{\frac{2\log N_{s}}{N_{s'}}}\}}}</script><p>其中 $C(s)$ 表示 $s$ 的所有子节点集; 第一项 $V<em>{s’}$ 表示从节点 $s’$状态开始可以收到的长期累积奖励的估计值, 第二项表示估计的不确定性(置信区间的大小). 根据置信上限计算置信区间(UCT), 使用 $N</em>{s}$ 和$N<em>{s’}$, 表示节点 $s$ 和 $s’$ 的被访问次数. 因此,UCT策略的关键思想是根据预期回报的估计 (即, 置信上限) 选择最佳动作,从而在利用 (第一项) 和探索 (第二项) 之间取得平衡, $\beta$ 控制平衡.一旦选择过程到达搜索树的叶子节点 (或满足其他终止条件),我们将根据先前的策略通过添加新的叶子节点来扩展节点. 然后, 在模拟步骤中,我们通过在环境中使用默认 (模拟) 策略运行模拟来估计其值函数 (累积奖励)${\hat{V}}</em>{s}$ 最后, 再反向传播,将$V<em>{s}$和$N</em>{s}$从叶子节点$s<em>{T}$递归的更新到所选路径的根节点$s</em>{0}$($t \sim \lbrack 0,\ T - 1\rbrack$)</p>
+<script type="math/tex; mode=display">
+N_{s_{T}} \leftarrow N_{s_{t}} + 1, 
+{\hat{V}}_{s_{t}} \leftarrow R\left( s_{t},\ a_{t} \right) + \gamma\ {\hat{V}}_{s_{t + 1}},
+V_{s_{t}} \leftarrow (\left( N_{s_{t}} - 1 \right)V_{s_{t}} + \ {\hat{V}}_{s_{t}}\ )/N_{s_{t}}</script><p>其中, ${\hat{V}}<em>{s</em>{T}}$是$s<em>{T}$的模拟返回； $a</em>{t}$表示在状态$s_{t}$下, 在 (2) 之后选择的动作.</p>
+<p><img src="images/1685880394192.png" alt="1685880394192"></p>
+<ul>
+<li>a.每个 (非并行) MCTS操作由四个连续步骤组成: 选择、扩展、模拟和反向传播, 其中扩展和模拟步骤通常最耗时.</li>
+</ul>
+<p><img src="images/1685880420448.png" alt="1685880420448"></p>
+<p>图1: MCTS及其并行化. (a) MCTS概述. (b) 理想的并行化:假设最新的统计数据${ V<em>{s},N</em>{s}}$ (彩色)在模拟开始时就可供所有线程使用 (实际上不现实). (c)并行化MCTS的关键挑战是: 线程只能访问过时的${ V<em>{s},N</em>{s}}$ (灰色),导致诸如探索失败之类的问题. (d) WU-UCT跟踪不完整模拟查询的数量(表示为$O_{s}$ ), 并以原则方式修改UCT策略, 以保持有效的探索和利用的权衡.它实现了与理想的并行化相当的加速和性能.</p>
+<h3 id="2-2-MCTS并行化的本质困难"><a href="#2-2-MCTS并行化的本质困难" class="headerlink" title="2.2  MCTS并行化的本质困难"></a>2.2  MCTS并行化的本质困难</h3><p>上述讨论表明, MCTS算法本质上是顺序的:新扩展中的每个选择步骤都需要完成之前的扩展,以便为UCT树策略提供更新的数据 $V<em>{s}$ 和 $N</em>{s}$.尽管最新数据的要求不是强制性的,但实际上需要它来实现有效的探索和利用的权衡 (Auer, 2002年). 具体来说,最新数据有助于UCT树策略识别和删除非奖励的分支,广泛访问奖励路径以获得更多深度. 同样,为了实现最佳性能, 当使用多个线程时,还必须确保每个线程在自己的选择步骤中使用最新的数据 (图1 (b) 中的彩色$V<em>{s}$ 和 $N</em>{s}$). 然而, 根据以下观察结果, 将MCTS并行化是不可能的.首先, 与其他两个步骤相比,扩展步骤和模拟步骤通常更耗时, 因为它们涉及与环境 (或模拟器)的大量交互. 因此, 如图1(c) 所示, 当线程C启动选择一个新步骤时,其他线程A和B很可能仍处于模拟或扩展步骤中. 这会阻止他们更新其他线程 (如C)的 (全局) 数据信息. 在不同的线程中使用过时的数据信息 (灰色的 $\text{Vs}$ 和  $\text{Ns}$), 如果设定固定的加速目标的情况下, 可能由于探索和利用失败,导致性能大幅度下降, 我们将在第4节中进行详细讨论. 举个例子, 图1 (c)说明了探索的失败, 由于线程C在其选择步骤中与线程A穿过相同的路径.具体来说, 如果线程A和C在开始自己的选择步骤之间的数据信息没有变化,他们将选择相同的节点, 这将大大减少探索的多样性. 因此,我们在并行化MCTS时要解决的关键问题是如何跟踪正确的数据信息,并以正确性的方式修正UCT策略, 以在不同线程之间保持有效的探索和利用的权衡.</p>
+<h2 id="3-WU-UCT"><a href="#3-WU-UCT" class="headerlink" title="3.WU-UCT"></a>3.WU-UCT</h2><p>在本节中, 我们首先提出了WU-UCT算法的概念 (第3.1节) , 然后我们介绍了一个使用Master-Worker（主-辅）架构的真实系统的实现 (第3.2节) .</p>
+<h3 id="3-1-UCT树中未观察样本"><a href="#3-1-UCT树中未观察样本" class="headerlink" title="3.1 UCT树中未观察样本"></a>3.1 UCT树中未观察样本</h3><p>正如我们前面指出的, 在并行化MCTS时,我们要解决的关键问题是如何向每个线程提供最新的数据${ Vs,\ Ns}$,以便他们能够在其选择步骤中实现有效的探索和利用权衡. 在图1(b)中的理想并行化中, 假设情况就是这样. 算法上, 它与顺序MCTS等效,由不同的线程并行执行. 不幸的是, 在实践中,每个线程可用的数据${ Vs,\ Ns}$通常已经过时,因为其他线程的模拟和扩展步骤缓慢且不完整. 具体来说,由于在模拟完成之前无法观察到估计值$\ {\hat{V}}_{s}$,并且线程不应等待更新的数据继续进行, 因此数据${ Vs,\ Ns}$的 (部分)丢失是不可避免的. 现在的问题是:有没有其他办法来解决这个问题？答案是肯定的, 解释如下.</p>
+<p>为了弥补一般并行化和理想情况之间的差距,我们仔细检查了它们在统计数据可用性方面的差异. 如统计数据的颜色所示,它们在 ${ Vs,\ Ns}$ 中的唯一差异是由正在进行的模拟过程引起的.尽管只有在模拟步骤完成后才能更新 $\text{Vs}$,但实际上只要线程启动新的扩展, 就可以使用最新的 $\text{Ns}$ 信息.这是我们用来在WU-UCT算法中实现有效并行化的关键. 基于此,我们引入了另一个变量 $\text{Os}$, 以计算已启动但尚未完成的访问的数量,我们称之为未观察样本. 也就是说, 我们的新统计数据 $\text{Os}$监控未观察到的样本数, 然后用于将UCT树策略更正为以下形式:</p>
+<script type="math/tex; mode=display">
+a_{s} = \max_{s^{'} \sim C(s)}\{ V_{s^{'}} + \beta\sqrt{\frac{2lo\operatorname{g}\left( N_{s} + O_{s} \right)}{N_{s'} + O_{s'}}}\}</script><p>上述修改后的节点选择策略是, 当有 $Os$ 个线程模拟 (查询) 节点时, 节点 $s$的置信区间最终会在完成模拟后缩小. 因此, 添加 $\text{Os}$ 和 $Os’$对于探索来说, 要事先考虑这样一个事实, 并让其他线程意识到这一点.尽管形式简单, 但它提供了一种正确的方法,以在并行环境下保持有效的探索和利用的权衡；它纠正了探索和利用的权衡的置信度.由于置信度会立即更新 (即在模拟开始时),因此可以保证最新启动的线程可以获得到额外的统计数据,这会阻止他们广泛查询同一个节点以及找到更好的节点供他们查询. 例如,当需要多个分支进行探索时, 允许他们被均匀地探索. 相反,当一个节点被充分访问时 (即最大的 $\text{Ns}$ 和 $Ns’$ ),从未观察到的样本中添加 $\text{Os}$ 和 $Os’$ 几乎没有影响, 因为置信区间在$Vs’$ 周围充分缩小, 允许广泛利用最有价值的分支.</p>
+<h3 id="3-2-使用-Master-Worker-架构的系统实现"><a href="#3-2-使用-Master-Worker-架构的系统实现" class="headerlink" title="3.2 使用 Master-Worker 架构的系统实现"></a>3.2 使用 Master-Worker 架构的系统实现</h3><p>继续解释 WU-UCT 的系统实现, 其整体架构如图 2(a) 所示. 具体来说, 我们使用master-worker 架构来实现 WU-UCT 算法, 考虑以下几点. 首先,由于与选择和反向传播步骤相比, 扩展和模拟步骤更耗时,因此它们应该密集并行化. 事实上, 它们相对容易并行化 (例如,可以独立执行不同的模拟). 其次, 正如我们之前所讨论的,不同的线程需要访问最新的统计数据 ${ Vs,\ Ns,\ Os}$以实现正确的探索和利用的权衡. 为此,选择和反向传播步骤的集中式架构更可取,因为它允许对统计信息的检索和更新添加严格的限制, 使其保持最新. 具体来说,我们使用一个集中的主线程来维护一组全局统计数据 (除了游戏状态等其他数据),并让它负责反向传播步骤 (即更新全局统计数据) 和选择步骤(即利用全局统计数据). 如图2(a) 所示, 主线程重复执行扩展,直到达到预定义的模拟次数. 在每次扩展期间, 它会选择节点进行查询,将扩展和模拟任务分配给不同的线程, 并收集返回的结果以更新全局统计信息.特别是, 我们使用以下不完全更新和完全更新 (如图 2(a) 所示)沿遍历的路径跟踪 $\text{Ns}$ 和 $\text{Os}$ (见图 1(d)).</p>
+<script type="math/tex; mode=display">
+\left\lbrack 不完全更新\right\rbrack\text{\ \ }O_{s} \leftarrow O_{s} + 1 \\
+\left\lbrack 完全更新 \right\rbrack O_{s} \leftarrow O_{s} - 1;N_{s} \leftarrow N_{s} + 1</script><p>在模拟任务开始之前执行不完全更新,使更新后的统计数据可以在全局范围内即时可用；在模拟返回可用后完成完整更新,类似于顺序算法中的反向传播步骤. 此外, $\text{Vs}$也在完整更新步骤中更新. 当我们并行化耗时较长的扩展和模拟步骤时,主线程和子线程之间明确的分工提供了顺序选择和反向传播步骤.它通过集中式主线程确保所有线程的最新统计数据,并在没有太多性能下降的情况下实现线性加速 (实验结果见第 5 节).</p>
+<p><img src="images/1685880443650.png" alt="1685880443650"></p>
+<p>图 2: WU-UCT 的系统架构及其时间消耗示意图. (a) 绿色块和任务缓冲区在 master 处操作, 而蓝色块由<br>worker 执行.(b-c) 两个游戏基准的时间消耗 (第 5 节) </p>
+<p>为了证明上述基本原理,对提出的 WU-UCT s算法进行了一组时间分析, 并在 图2(b)-(c) 中显示结果. 我们展示了主线程和子线程不同部分的时间消耗. 首先, 我们关注子线程, 模拟线程的占用率接近 100%, 模拟步骤完全并行化. 尽管扩展线程没有得到充分利用, 但扩展步骤最大程度地并行化, 因为所需的模拟和扩展任务的数量是相同的. 这表明在扩展线程的数量和模拟线程的数量之间存在一个最佳 (任务相关) 比率, 以最少的资源 (例如内存) 完全并行化这两个步骤. 回到主线程, 在这两个基准测试中, 我们看到在模拟和扩展步骤上花费的时间明显占主导地位, 即使它们都由 16 个线程并行化. 我们最后关注并行化带来的通信开销. 尽管与模拟和反向传播相比更耗时, 但与扩展和模拟步骤所用的时间相比, 通信开销可以忽略不计. 尽管与模拟和反向传播相比更耗时, 但与扩展和模拟步骤所用的时间相比, 通信开销可以忽略不计. </p>
+<h2 id="4-监控为观察到的样本的好处"><a href="#4-监控为观察到的样本的好处" class="headerlink" title="4.监控为观察到的样本的好处"></a>4.监控为观察到的样本的好处</h2><p>在本节中, 我们将讨论在 WU-UCT 中监控未观察样本的好处, 并将其与几种流行的并行 MCTS 算法 (图3) 进行比较, 包括叶子结点并行化(LeafP)、具有虚拟损失的树并行化(TreeP)和根结点并行化(RootP) . LeafP 并行化了叶子结点模拟, 从而产生了一个有效的十六进制游戏求解器 (Wang, 2018). 具有虚拟损失的 TreeP 最近在挑战现实任务 (如围棋) 方面取得了巨大成功 (Silver, 2016) . RootP 在不同的线程处并行化根节点的子树, 并在所有线程完成模拟后汇总子树的统计信息 (Soejima, 2010) .</p>
+<p><img src="images/1685880466228.png" alt="1685880466228"></p>
+<ul>
+<li>叶子结点并行化(LeafP): 模拟过程中，多个线程(如A、B、C)同时查询同一个节点。 依次执行选择、展开和反向传播 (类似).</li>
+<li>树并行化(TreeP): 虚拟损失 $r<em>{\text{VL}}$从已被某个线程遍历的节点的$V</em>{s}$中减去.$r_{\text{VL}}$将在反向传播期间添加回节点.</li>
+<li>c. 根结点并行化(RootP):不同的线程在本地内存中执行树搜索，每个线程从不同的子节点开始。</li>
+</ul>
+<p>图3: 三种流行的并行 MCTS 算法. LeafP 并行化模拟步骤, TreeP 使用虚拟损失来鼓励探索, RootP 并行化根节点的子树.</p>
+<p>我们认为, 通过引入额外的统计数据 $\text{Os}$, WU-UCT比上述方法实现了更好的探索和利用的权衡. 首先, LeafP 和 TreeP代表了这种权衡中的两个极端. LeafP 在探索方面缺乏多样性,因为它的所有线程都被分配到模拟同一个节点, 这会导致探索崩溃从而性能下降,其方式与一般的并行化非常相似 (见图1(c)). 相比之下, 尽管 TreeP中使用的虚拟损失可以鼓励探索多样性,但这种硬加性的惩罚可能会导致利用失败: 即使线程确定同一节点是最佳的,他们也不太可能共同模拟同一节点 (Mirsoleimani, 2017). RootP试图通过让线程执行独立的树搜索来避免这些问题. 但是,这会减少每个线程的扩展次数, 从而降低 UCT 策略的准确性.与上述三种方法不同, WU-UCT 通过以下方式实现了更好的探索和利用的权衡.它通过使用 $\text{Os}$ 来“惩罚”具有许多正在进行的模拟的节点来鼓励探索.同时, 它允许多个线程利用最优回报的节点, 因为当 $\text{Ns}$ 变大时,这种“惩罚”就会消失.</p>
+<h2 id="5-实验"><a href="#5-实验" class="headerlink" title="5.实验"></a>5.实验</h2><p>本节在真实系统上评估所提出的 WU-UCT 算法, 以预测手机游戏“Joy City”的用户通过率 (第5.1节) 以及专有 Atari 游戏基准测试 (第5.2节), 旨在展示卓越的性能和接近线性加速.</p>
+<h3 id="5-1-“Joy-City”游戏的实验"><a href="#5-1-“Joy-City”游戏的实验" class="headerlink" title="5.1  “Joy City”游戏的实验"></a>5.1  “Joy City”游戏的实验</h3><p>“Joy City”是一款关卡类游戏, 玩法多样且富有挑战性. 玩家点击以消除游戏板上的连接项目. 要通过一个级别, 玩家必须在给定的步骤数内完成某些目标. 用于通过关卡的步数 (称为游戏步数) 是主要的性能指标, 它将大师与初学者区分开来. 由于其大量的游戏状态 (超过 $12^{9 \times 9}$) 和过渡中的高随机性, 这是一项具有挑战性的强化学习任务. 制作系统的目标是准确预测不同游戏关卡的用户通过率, 为游戏设计提供有用且快速的反馈. 在 WU-UCT 的支持下, 系统运行速度提高了 16 倍, 同时准确地预测了用户通过率 (8.6% MAE). 在本小节中, 我们集中分析使用两个典型游戏关卡 (Level-35 和 Level-58) 6 的 WU-UCT 的加速和性能.</p>
+<p>我们使用不同数量的扩展和模拟线程 (从 1 到 16) 评估 WU-UCT, 并在图4 (a) - (b) 中报告加速效果. 对于所有实验, 我们将模拟总数固定为 500. 首先, 当我们拥有相同数量的扩展线程和模拟线程时, WU-UCT 实现了线性加速. 此外, 图4 还表明扩展线程和模拟线程都至关重要, 因为降低任一组的线程数量都会降低加速. 除了接近线性的加速特性外, WU-UCT 随着线程数量的增加而减少的性能损失可以忽略不计, 如图4(c)-(d) 所示. Level-35 和 Level-58 的性能标准差 (以平均游戏步数衡量) 在不同数量的扩展和模拟线程中分别仅为 0.67 和 1.22, 远小于它们的平均游戏步数 (12 和30). </p>
+<p><img src="images/1685880478094.png" alt="1685880478094"></p>
+<p>图 4: WU-UCT 加速和性能. 结果平均超过 10 次运行. WU-UCT实现了线性加速, 性能损失可忽略不计 (以游戏步数衡量) . </p>
+<h3 id="5-2-ATARI-游戏基准测试"><a href="#5-2-ATARI-游戏基准测试" class="headerlink" title="5.2 ATARI 游戏基准测试"></a>5.2 ATARI 游戏基准测试</h3><p>我们进一步评估了 Atari Games (Bellemare., 2013) 上的 WU-UCT, 这是强化学习 (RL) 和规划算法的经典基准 (Guo, 2014). Atari Games 是 MCTS 算法的理想测试平台, 因为它的规划范围很长 (数千) 、稀疏奖励和复杂的游戏策略. 我们将 WU-UCT 与第 4 节中讨论的三种并行 MCTS 算法进行比较: TreeP、LeafP 和 RootP. 我们还测试了经典 UCT (比 WU-UCT 大约慢 16 倍) 和 PPO (Schulman, 2017) 的结果作为参考. 通常, 经典 UCT 的性能为并行 UCT 算法设置了一个上限. 之所以包含 PPO, 是因为我们使用精炼的 PPO 策略网络 (Hinton, 2015；Rusu, 2015) 作为所有其他算法的推出策略. 它被认为是并行和经典 UCT 算法的性能下限. 所有实验共进行了 128 个模拟步骤, 所有并行算法使用 16 个线程. </p>
+<p>我们首先比较了 WU-UCT 与 15 个 Atari 游戏的基线之间的性能 (通过平均获得奖励衡量) , 该游戏由 16 个模拟线程和 1 个扩展线程完成 (为了公平比较, 因为基线不平行于扩展步骤). 每个任务重复 10 次, 平均值和标准差见表1. 由于选择期间更好的探索和利用的权衡, WU-UCT 在 15 个任务中的 12 个中优于所有其他并行算法. 成对的 t 检验进一步表明, WU-UCT 在 g根节点为7、9 的 7 个任务中的表现明显优于 TreeP、LeafP 和 RootP (通过 Bonferroni 方法调整, p 值 &lt; 0.0011). 接下来, 我们测试模拟线程对加速性能的影响. 在图5中, 我们比较了4、8和16个模拟线程的平均返回时间消耗(每一步). 条形图表明, WU-UCT随着线程数量的增加几乎没有性能损失, 而基线在严重并行化时表现出显著的性能下降. WU-UCT还实现了与基线相比最快的速度, 这得益于高效的master-worker体系结构(章节3.2). 总之, 我们提出的WU-UCT不仅在相同数量的线程下显著优于基线方法, 而且随着并行化水平的提高, 性能损失可以忽略不计. </p>
+<p><img src="images/1685880489893.png" alt="1685880489893"></p>
+<p>图5: WU-UCT的速度和性能测试, 以及四款Atari游戏的三条基线. 所有实验均重复三次, 并报告其平均值和标准差(仅针对插曲奖励). 对于WU-UCT, 扩展线程数量固定为1. </p>
+<p>表1: 15 款 Atari 游戏的表现. 报告了 10 次试验的平均情节回报 (±标准偏差). 并行算法中最好的平均分数以粗体突出显示. </p>
+<p><img src="images/1685880502000.png" alt="1685880502000"></p>
+<h2 id="6-相关工作"><a href="#6-相关工作" class="headerlink" title="6.相关工作"></a>6.相关工作</h2><p><strong>MCTS</strong> 蒙特卡洛树搜索是一种规划方法, 用于在确定性(Silver, 2016)或随机(Schafer, 2008)环境下进行最优决策. 它对人工智能应用产生了深远的影响(Browne, 2012), 甚至被应用于预测和模仿人类行为(van Opheusden, 2016). 最近, 有大量的工作将MCTS和其他学习方法相结合, 使两种方法相互改进. 例如, Guo等人(2014)利用MCTS的力量来提高无模型RL方法的性能; Shen等人(2018)弥补了MCTS和基于图的搜索之间的差距, 优于RL和知识库完成基线. </p>
+<p><strong>并行MCTS</strong> 许多并行化MCTS方法的方法已经被开发出来, 其目标是双重的: 在保持算法性能的同时, 使用大量线程的情况下实现接近线性的加速. 流行的MCTS并行化方法包括叶子并行化、根并行化和树并行化(Chaslo, 2008). 叶子并行化的目的是通过分配多个线程查询同一个节点来收集更好的统计信息(Cazenave &amp; Jouandeau, 2007). 然而, 这是以浪费树搜索的多样性为代价的. 因此, 尽管在客户机-服务器网络体系结构的帮助下, 它的性能显著下降, 但却有接近理想的加速(Kato &amp; Takeuchi, 2010). 在根并行化中, 构建多个搜索树并分配给不同的线程. 主线程用于同步来自不同树的统计数据, 这将导致在现实任务中更好的表现(Bourki, 2010). 然而, 一个关于围棋的案例研究揭示了它的劣势, 即使是少量的线程(Soejima, 2010). 另一方面, 树并行化使用多个线程遍历、执行查询和更新共享搜索树. 它显著受益于两种技术. 首先, 添加一个虚拟损失以避免由不同的线程查询同一节点(Chaslot, 2008). 这已被应用于MCTS的各种成功应用中, 如围棋(Silver, 2016)和斗地注(Whitehouse, 2011). 此外, 体系结构方面的改进, 如使用管道(Mirsoleimani, 2018b)或无锁结构(Mirsoleimani, 2018a), 大大提高了算法的速度. 然而, 尽管虚拟损失能够增加多样性, 但即使在四个线程的情况下, 虚拟损失也会降低性能 (Mirsoleimani., 2017;Bourki, 2010). 最后, Zhong等人也提出了了统计未观察样本来调整<em>机械臂选择</em>的置信区间的想法. 然而, 它主要关注并行化<em>多臂阈值老虎机</em>问题 (Chen, 2014) , 而不是像我们所做的树搜索问题. </p>
+<h2 id="7-结论"><a href="#7-结论" class="headerlink" title="7.结论"></a>7.结论</h2><p>本文提出了 WU-UCT, 一种新颖的并行 MCTS 算法, 通过监控未观察样本的数量来解决并行化过程中统计数据过时的问题. 基于新设计的统计数据, 它有正确地修正了UCT节点选择策略, 实现了有效的探索和利用的权衡. 连同我们以效率为导向的系统实现, WU-UCT 实现了近乎最佳的线性加速, 并且在广泛的任务中只有有限的性能损失, 包括部署的真实系统和 Atari 游戏.</p>
+<h2 id="8-感谢"><a href="#8-感谢" class="headerlink" title="8.感谢"></a>8.感谢</h2><p>这项工作得到了腾讯人工智能实验室和西雅图人工智能实验室、快手公司的支持. 感谢Xiangru Lian对系统实现的帮助. </p>
+<h2 id="参考文献-References"><a href="#参考文献-References" class="headerlink" title="参考文献(References):"></a>参考文献(References):</h2><p>。。。。。。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/paper_reading/3.1.WU_UCT/">https://wdndev.github.io/paper_reading/3.1.WU_UCT/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/RL/">RL</a><a class="post-meta__tags" href="/tags/PaperReading/">PaperReading</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/paper_reading/3.2.Rainbow/" title="论文精读 Rainbow"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-25</div><div class="title">论文精读 Rainbow</div></div></a></div><div><a href="/easy_rl_exercise/1.%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="1.强化学习基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-24</div><div class="title">1.强化学习基础</div></div></a></div><div><a href="/easy_rl_exercise/10.%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0/" title="10.模仿学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-24</div><div class="title">10.模仿学习</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E6%9C%AA%E8%A7%82%E5%AF%9F%E6%A0%B7%E6%9C%AC-%E4%B8%80%E7%A7%8D%E7%AE%80%E5%8D%95%E7%9A%84%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A0%91%E6%90%9C%E7%B4%A2%E5%B9%B6%E8%A1%8C%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">监控未观察样本: 一种简单的蒙特卡洛树搜索并行化方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Watch-the-Unobserved-a-Sample-Approach-to-Parallelizing-Monte-Carlo-TreeSearch"><span class="toc-text">Watch the Unobserved: a Sample Approach to Parallelizing Monte Carlo TreeSearch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B9%B6%E8%A1%8C%E5%8C%96MCTS%E7%9A%84%E5%9B%B0%E9%9A%BE"><span class="toc-text">2.并行化MCTS的困难</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A0%91%E6%90%9C%E7%B4%A2%E5%92%8C%E4%B8%8A%E9%99%90%E7%BD%AE%E4%BF%A1%E5%BA%A6-UCT"><span class="toc-text">2.1 蒙特卡洛树搜索和上限置信度 (UCT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-MCTS%E5%B9%B6%E8%A1%8C%E5%8C%96%E7%9A%84%E6%9C%AC%E8%B4%A8%E5%9B%B0%E9%9A%BE"><span class="toc-text">2.2  MCTS并行化的本质困难</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-WU-UCT"><span class="toc-text">3.WU-UCT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-UCT%E6%A0%91%E4%B8%AD%E6%9C%AA%E8%A7%82%E5%AF%9F%E6%A0%B7%E6%9C%AC"><span class="toc-text">3.1 UCT树中未观察样本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BD%BF%E7%94%A8-Master-Worker-%E6%9E%B6%E6%9E%84%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.2 使用 Master-Worker 架构的系统实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%9B%91%E6%8E%A7%E4%B8%BA%E8%A7%82%E5%AF%9F%E5%88%B0%E7%9A%84%E6%A0%B7%E6%9C%AC%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-text">4.监控为观察到的样本的好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%9E%E9%AA%8C"><span class="toc-text">5.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E2%80%9CJoy-City%E2%80%9D%E6%B8%B8%E6%88%8F%E7%9A%84%E5%AE%9E%E9%AA%8C"><span class="toc-text">5.1  “Joy City”游戏的实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-ATARI-%E6%B8%B8%E6%88%8F%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95"><span class="toc-text">5.2 ATARI 游戏基准测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">6.相关工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%BB%93%E8%AE%BA"><span class="toc-text">7.结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%84%9F%E8%B0%A2"><span class="toc-text">8.感谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE-References"><span class="toc-text">参考文献(References):</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

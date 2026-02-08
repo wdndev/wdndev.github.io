@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>3.表格型方法 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="关键词 概率函数和奖励函数：概率函数定量地表达状态转移的概率，其可以表现环境的随机性。但是实际上，我们经常处于一个未知的环境中，即概率函数和奖励函数是未知的。 Q表格：其表示形式是表格，其中表格的横轴为动作（智能体的动作），纵轴为环境的状态，每一个坐标点对应某时刻智能体和环境的状态，并通过对应的奖励反馈选择被执行的动作。一般情况下，Q表格是一个已经训练好的表格，不过我们也可以每执行一步，就对Q表格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.表格型方法">
+<meta property="og:url" content="https://wdndev.github.io/easy_rl_exercise/3.%E8%A1%A8%E6%A0%BC%E5%9E%8B%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="关键词 概率函数和奖励函数：概率函数定量地表达状态转移的概率，其可以表现环境的随机性。但是实际上，我们经常处于一个未知的环境中，即概率函数和奖励函数是未知的。 Q表格：其表示形式是表格，其中表格的横轴为动作（智能体的动作），纵轴为环境的状态，每一个坐标点对应某时刻智能体和环境的状态，并通过对应的奖励反馈选择被执行的动作。一般情况下，Q表格是一个已经训练好的表格，不过我们也可以每执行一步，就对Q表格">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2022-10-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.222Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="RL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/easy_rl_exercise/3.%E8%A1%A8%E6%A0%BC%E5%9E%8B%E6%96%B9%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '3.表格型方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">3.表格型方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-10-23T16:00:00.000Z" title="Created 2022-10-24 00:00:00">2022-10-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.222Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Cython/">Cython</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>11min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="3.表格型方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h1><ul>
+<li><strong>概率函数和奖励函数</strong>：概率函数定量地表达状态转移的概率，其可以表现环境的随机性。但是实际上，我们经常处于一个未知的环境中，即概率函数和奖励函数是未知的。</li>
+<li><strong>Q表格</strong>：其表示形式是表格，其中表格的横轴为动作（智能体的动作），纵轴为环境的状态，每一个坐标点对应某时刻智能体和环境的状态，并通过对应的奖励反馈选择被执行的动作。一般情况下，Q表格是一个已经训练好的表格，不过我们也可以每执行一步，就对Q表格进行更新，然后用下一个状态的Q值来更新当前状态的Q值（即时序差分方法）。</li>
+<li><strong>时序差分（temporal difference，TD）方法</strong>：一种Q函数（Q值）的更新方式，流程是使用下一步的Q值 $Q(s<em>{t+1},a</em>{t+1})$ 来更新当前步的Q值 $Q(s<em>t,a_t)$。完整的计算公式如下：$Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha [r</em>{t+1}+\gamma Q(s<em>{t+1},a</em>{t+1})-Q(s_t,a_t)]$ 。</li>
+<li><strong>Sarsa算法</strong>：一种更新前一时刻状态的单步更新的强化学习算法，也是一种同策略学习算法。该算法由于每次更新Q函数时需要知道前一步的状态、动作、奖励以及当前时刻的状态、将要执行的动作，即 $s<em>{t}$、$a</em>{t}$、$r<em>{t+1}$、$s</em>{t+1}$、$a<em>{t+1}$ 这几个值，因此被称为 Sarsa 算法。智能体每进行一次循环，都会用 $s</em>{t}$、$a<em>{t}$、$r</em>{t+1}$、$s<em>{t+1}$、$a</em>{t+1}$ 对前一步的Q值（函数）进行一次更新。</li>
+</ul>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><h4 id="3-1-构成强化学习的马尔可夫决策过程的四元组有哪些变量？"><a href="#3-1-构成强化学习的马尔可夫决策过程的四元组有哪些变量？" class="headerlink" title="3-1 构成强化学习的马尔可夫决策过程的四元组有哪些变量？"></a><strong>3-1</strong> 构成强化学习的马尔可夫决策过程的四元组有哪些变量？</h4><p>状态、动作、状态转移概率和奖励，分别对应$(S,A,P,R)$，后面有可能会加上折扣因子构成五元组。</p>
+<h4 id="3-2-请通俗地描述强化学习的“学习”流程。"><a href="#3-2-请通俗地描述强化学习的“学习”流程。" class="headerlink" title="3-2 请通俗地描述强化学习的“学习”流程。"></a><strong>3-2</strong> 请通俗地描述强化学习的“学习”流程。</h4><p>可以将强化学习的“学习”流程类比于人类的学习流程。人类学习就是尝试每一条路，并记录尝试每一条路后的最终结果。在人类尝试的过程中，其实就可以慢慢地了解到哪一条路（对应于强化学习中的状态概念）会更好。我们用价值函数 $V(s)$ 来定量表达该状态的优劣，然后用Q函数来判断在什么状态下做什么动作能够得到最大奖励，在强化学习中我们用Q函数来表示状态-动作值。</p>
+<h4 id="3-3-请描述基于Sarsa算法的智能体的学习过程。"><a href="#3-3-请描述基于Sarsa算法的智能体的学习过程。" class="headerlink" title="3-3 请描述基于Sarsa算法的智能体的学习过程。"></a><strong>3-3</strong> 请描述基于Sarsa算法的智能体的学习过程。</h4><p>对于环境和智能体。两者每交互一次以后，智能体都会向环境输出动作，接着环境会反馈给智能体当前时刻的状态和奖励。那么智能体此时会进行两步操作：</p>
+<ol>
+<li>使用已经训练好的Q表格，对应环境反馈的状态和奖励选取对应的动作进行输出。</li>
+<li>我们已经拥有了$(s<em>{t}, a</em>{t}, r<em>{t+1}, s</em>{t+1}, a<em>{t+1})$  这几个值，并直接使用 $a</em>{t+1}$ 更新我们的Q表格。</li>
+</ol>
+<h4 id="3-4-Q学习算法和Sarsa算法的区别是什么？"><a href="#3-4-Q学习算法和Sarsa算法的区别是什么？" class="headerlink" title="3-4 Q学习算法和Sarsa算法的区别是什么？"></a><strong>3-4</strong> Q学习算法和Sarsa算法的区别是什么？</h4><p>Sarsa算法是Q学习算法的改进（这句话可参考论文 “On-Line Q-Learning Using Connectionist Systems”的摘要部分），详细描述如下。</p>
+<ol>
+<li>首先，Q学习是异策略的时序差分学习方法，而 Sarsa 算法是同策略的时序差分学习方法。</li>
+<li>其次，Sarsa算法在更新Q表格的时候所用到的 $a’$ 是获取下一个Q值时一定会执行的动作。这个动作有可能是用 $\varepsilon$-贪心方法采样出来的，也有可能是 $\mathrm{max}_Q$ 对应的动作，甚至是随机动作。</li>
+<li>但是Q学习在更新Q表格的时候所用到的Q值 $Q(S’,a’)$ 对应的动作不一定是下一步会执行的动作，因为下一步实际会执行的动作可能是因为进一步的探索而得到的。Q学习默认的动作不是通过行为策略来选取的，它默认 $a’$ 为最佳策略对应的动作，所以Q学习算法在更新的时候，不需要传入 $a’$ ，即 $a_{t+1}$ 。</li>
+<li>更新公式的对比（区别只在目标计算部分）。</li>
+</ol>
+<p>Sarsa算法的公式：$r<em>{t+1}+\gamma Q(s</em>{t+1}, a_{t+1})$ 。</p>
+<p>Q学习算法的公式：$r<em>{t+1}+\gamma \underset{a}{\max} Q\left(s</em>{t+1}, a\right)$ 。</p>
+<p>总结起来，Sarsa算法实际上是用固有的策略产生 {$S,A,R,S’,A’$} 这一条轨迹，然后使用 $Q(s<em>{t+1},a</em>{t+1})$ 更新原本的Q值 $Q(s_t,a_t)$ 。但是Q学习算法并不需要知道实际上选择的动作，它默认下一个动作就是Q值最大的那个动作。所以Sarsa算法的动作通常会更加“保守胆小”，而对应的Q学习算法的动作会更加“莽撞激进”。</p>
+<h4 id="3-5-同策略和异策略的区别是什么？"><a href="#3-5-同策略和异策略的区别是什么？" class="headerlink" title="3-5 同策略和异策略的区别是什么？"></a><strong>3-5</strong> 同策略和异策略的区别是什么？</h4><p>Sarsa算法就是一个典型的同策略算法，它只用一个 $\pi$ ，为了兼顾探索和开发，它在训练的时候会显得有点儿“胆小怕事”。它在解决悬崖寻路问题的时候，会尽可能地远离悬崖边，确保哪怕自己不小心向未知区域探索了一些，也还是处在安全区域内，不至于掉入悬崖中。</p>
+<p>Q学习算法是一个比较典型的异策略算法，它有目标策略（target policy），用 $\pi$ 来表示。此外还有行为策略（behavior policy），用 $\mu$ 来表示。它分离了目标策略与行为策略，使得其可以大胆地用行为策略探索得到的经验轨迹来优化目标策略。这样智能体就更有可能探索到最优的策略。</p>
+<p>比较Q学习算法和Sarsa算法的更新公式可以发现，Sarsa算法并没有选取最大值的操作。因此，Q学习算法是非常激进的，其希望每一步都获得最大的奖励；Sarsa算法则相对来说偏保守，会选择一条相对安全的迭代路线。</p>
+<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h4 id="3-1-友善的面试官：同学，你能否简述同策略和异策略的区别呢？"><a href="#3-1-友善的面试官：同学，你能否简述同策略和异策略的区别呢？" class="headerlink" title="3-1 友善的面试官：同学，你能否简述同策略和异策略的区别呢？"></a><strong>3-1</strong> 友善的面试官：同学，你能否简述同策略和异策略的区别呢？</h4><p>同策略和异策略的根本区别在于生成样本的策略和参数更新时的策略是否相同。对于同策略，行为策略和要优化的策略是同一策略，更新了策略后，就用该策略的最新版本对数据进行采样；对于异策略，其使用任意行为策略来对数据进行采样，并利用其更新目标策略。例如，Q学习在计算下一状态的预期奖励时使用了最大化操作，直接选择最优动作，而当前策略并不一定能选择到最优的动作，因此这里生成样本的策略和学习时的策略不同，所以Q学习算法是异策略算法；相对应的Sarsa算法则是基于当前的策略直接执行一次动作选择，然后用动作和对应的状态更新当前的策略，因此生成样本的策略和学习时的策略相同，所以Sarsa算法为同策略算法。</p>
+<h4 id="3-2-友善的面试官：能否细致地讲一下Q学习算法，最好可以写出其-Q-s-a-的更新公式。另外，它是同策略还是异策略，原因是什么呢？"><a href="#3-2-友善的面试官：能否细致地讲一下Q学习算法，最好可以写出其-Q-s-a-的更新公式。另外，它是同策略还是异策略，原因是什么呢？" class="headerlink" title="3-2 友善的面试官：能否细致地讲一下Q学习算法，最好可以写出其 $Q(s,a)$ 的更新公式。另外，它是同策略还是异策略，原因是什么呢？"></a><strong>3-2</strong> 友善的面试官：能否细致地讲一下Q学习算法，最好可以写出其 $Q(s,a)$ 的更新公式。另外，它是同策略还是异策略，原因是什么呢？</h4><p>Q学习是通过计算最优动作价值函数来求策略的一种时序差分的学习方法，其更新公式为</p>
+<script type="math/tex; mode=display">
+Q(s, a) \leftarrow Q(s, a) + \alpha [r(s,a) + \gamma \max_{a'} Q(s', a') - Q(s, a)]</script><p>其是异策略的，由于Q更新使用了下一个时刻的最大值，因此其只关心哪个动作使得 $Q(s_{t+1}, a)$ 取得最大值，而实际上到底采取了哪个动作（行为策略），Q学习并不关心。这表明优化策略并没有用到行为策略的数据，所以说它是异策略的。</p>
+<h4 id="3-3-友善的面试官：好的，看来你对于Q学习算法很了解，那么能否讲一下与Q学习算法类似的Sarsa算法呢，最好也可以写出其对应的-Q-s-a-更新公式。另外，它是同策略还是异策略，为什么？"><a href="#3-3-友善的面试官：好的，看来你对于Q学习算法很了解，那么能否讲一下与Q学习算法类似的Sarsa算法呢，最好也可以写出其对应的-Q-s-a-更新公式。另外，它是同策略还是异策略，为什么？" class="headerlink" title="3-3 友善的面试官：好的，看来你对于Q学习算法很了解，那么能否讲一下与Q学习算法类似的Sarsa算法呢，最好也可以写出其对应的 $Q(s,a)$ 更新公式。另外，它是同策略还是异策略，为什么？"></a><strong>3-3</strong> 友善的面试官：好的，看来你对于Q学习算法很了解，那么能否讲一下与Q学习算法类似的Sarsa算法呢，最好也可以写出其对应的 $Q(s,a)$ 更新公式。另外，它是同策略还是异策略，为什么？</h4><p>Sarsa算法可以算是Q学习算法的改进，其更新公式为</p>
+<script type="math/tex; mode=display">
+Q(s, a) \leftarrow Q(s, a) + \alpha [r(s,a) + \gamma  Q(s', a') - Q(s, a)]</script><p>其为同策略的，Sarsa算法必须执行两次动作得到 $(s,a,r,s’,a’)$ 才可以更新一次；而且 $a’$ 是在特定策略 $\pi$ 的指导下执行的动作，因此估计出来的 $Q(s,a)$ 是在该策略 $\pi$ 下的Q值，样本生成用的 $\pi$ 和估计的 $\pi$ 是同一个，因此是同策略。</p>
+<h4 id="3-4-友善的面试官：请问基于价值的方法和基于策略的方法的区别是什么？"><a href="#3-4-友善的面试官：请问基于价值的方法和基于策略的方法的区别是什么？" class="headerlink" title="3-4 友善的面试官：请问基于价值的方法和基于策略的方法的区别是什么？"></a><strong>3-4</strong> 友善的面试官：请问基于价值的方法和基于策略的方法的区别是什么？</h4><ol>
+<li>生成策略上的差异，前者确定，后者随机。基于价值的方法中动作-价值对的估计值最终会收敛（通常是不同的数，可以转化为0～1的概率），因此通常会获得一个确定的策略；基于策略的方法不会收敛到一个确定的值，另外他们会趋向于生成最佳随机策略。如果最佳策略是确定的，那么最优动作对应的值函数的值将远大于次优动作对应的值函数的值，值函数的大小代表概率的大小。</li>
+<li>动作空间是否连续，前者离散，后者连续。基于价值的方法，对于连续动作空间问题，虽然可以将动作空间离散化处理，但离散间距的选取不易确定。过大的离散间距会导致算法取不到最优动作，会在最优动作附近徘徊；过小的离散间距会使得动作的维度增大，会和高维度动作空间一样导致维度灾难，影响算法的速度。而基于策略的方法适用于连续的动作空间，在连续的动作空间中，可以不用计算每个动作的概率，而是通过正态分布选择动作。</li>
+<li>基于价值的方法，例如Q学习算法，是通过求解最优价值函数而间接地求解最优策略；基于策略的方法，例如REINFORCE等算法直接将策略参数化，通过策略搜索、策略梯度或者进化方法来更新参数以最大化回报。基于价值的方法不易扩展到连续动作空间，并且当同时采用非线性近似、自举等策略时会有收敛问题。策略梯度具有良好的收敛性。</li>
+<li>另外，对于价值迭代和策略迭代，策略迭代有两个循环，一个是在策略估计的时候，为了求当前策略的价值函数需要迭代很多次；另一个是外面的大循环，即策略评估、策略提升。价值迭代算法则是一步到位，直接估计最优价值函数，因此没有策略提升环节。</li>
+</ol>
+<h4 id="3-5-友善的面试官：请简述一下时序差分方法。"><a href="#3-5-友善的面试官：请简述一下时序差分方法。" class="headerlink" title="3-5 友善的面试官：请简述一下时序差分方法。"></a><strong>3-5</strong> 友善的面试官：请简述一下时序差分方法。</h4><p>时序差分算法是使用广义策略迭代来更新Q函数的方法，核心是使用自举，即价值函数的更新使用下一个状态的价值函数来估计当前状态的价值。也就是使用下一步的Q值 $Q(s<em>{t+1},a</em>{t+1})$ 来更新当前步的Q值 $Q(s_t,a_t) $。完整的计算公式如下：</p>
+<script type="math/tex; mode=display">
+Q(s_t,a_t) \leftarrow     Q(s_t,a_t) + \alpha [r_{t+1}+\gamma Q(s_{t+1},a_{t+1})]</script><h4 id="3-6-友善的面试官：请问蒙特卡洛方法和时序差分方法是无偏估计吗？另外谁的方差更大呢？为什么？"><a href="#3-6-友善的面试官：请问蒙特卡洛方法和时序差分方法是无偏估计吗？另外谁的方差更大呢？为什么？" class="headerlink" title="3-6 友善的面试官：请问蒙特卡洛方法和时序差分方法是无偏估计吗？另外谁的方差更大呢？为什么？"></a><strong>3-6</strong> 友善的面试官：请问蒙特卡洛方法和时序差分方法是无偏估计吗？另外谁的方差更大呢？为什么？</h4><p>蒙特卡洛方法是无偏估计，时序差分方法是有偏估计；蒙特卡洛方法的方差较大，时序差分方法的方差较小，原因在于时序差分方法中使用了自举，实现了基于平滑的效果，导致估计的价值函数的方差更小。</p>
+<h4 id="3-7-友善的面试官：能否简单说一下动态规划方法、蒙特卡洛方法和时序差分方法的异同点？"><a href="#3-7-友善的面试官：能否简单说一下动态规划方法、蒙特卡洛方法和时序差分方法的异同点？" class="headerlink" title="3-7 友善的面试官：能否简单说一下动态规划方法、蒙特卡洛方法和时序差分方法的异同点？"></a><strong>3-7</strong> 友善的面试官：能否简单说一下动态规划方法、蒙特卡洛方法和时序差分方法的异同点？</h4><p>相同点：都用于进行价值函数的描述与更新，并且所有方法都基于对未来事件的展望计算一个回溯值。</p>
+<p>不同点：蒙特卡洛方法和时序差分方法属于免模型方法，而动态规划属于有模型方法；时序差分方法和蒙特卡洛方法，因为都是免模型的方法，所以对于后续状态的获知也都是基于试验的方法；时序差分方法和动态规划方法的策略评估，都能基于当前状态的下一步预测情况来得到对于当前状态的价值函数的更新。</p>
+<p>另外，时序差分方法不需要等到试验结束后才能进行当前状态的价值函数的计算与更新，而蒙特卡洛方法需要与环境交互，产生一整条马尔可夫链并直到最终状态才能进行更新。时序差分方法和动态规划方法的策略评估不同之处为免模型和有模型，动态规划方法可以凭借已知转移概率推断出后续的状态情况，而时序差分方法借助试验才能知道。</p>
+<p>蒙特卡洛方法和时序差分方法的不同在于，蒙特卡洛方法进行了完整的采样来获取长期的回报值，因而在价值估计上会有更小的偏差，但是也正因为收集了完整的信息，所以价值的方差会更大，原因在于其基于试验的采样得到，和真实的分布有差距，不充足的交互导致较大方差。而时序差分方法则相反，因为它只考虑了前一步的回报值，其他都是基于之前的估计值，因而其价值估计相对来说具有偏差大方差小的特点。</p>
+<p>三者的联系：对于TD($\lambda$)方法，如果 $\lambda = 0$ ，那么此时等价于时序差分方法，即只考虑下一个状态；如果 $\lambda = 1$ ，等价于蒙特卡洛方法，即考虑 $T-1$ 个后续状态直到整个试验结束。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/easy_rl_exercise/3.%E8%A1%A8%E6%A0%BC%E5%9E%8B%E6%96%B9%E6%B3%95/">https://wdndev.github.io/easy_rl_exercise/3.表格型方法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/RL/">RL</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/easy_rl_exercise/1.%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="1.强化学习基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-24</div><div class="title">1.强化学习基础</div></div></a></div><div><a href="/easy_rl_exercise/10.%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0/" title="10.模仿学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-24</div><div class="title">10.模仿学习</div></div></a></div><div><a href="/easy_rl_exercise/2.%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/" title="2.马尔可夫决策过程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-24</div><div class="title">2.马尔可夫决策过程</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-text">关键词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98"><span class="toc-text">习题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%9E%84%E6%88%90%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%9B%E5%85%83%E7%BB%84%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8F%98%E9%87%8F%EF%BC%9F"><span class="toc-text">3-1 构成强化学习的马尔可夫决策过程的四元组有哪些变量？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E8%AF%B7%E9%80%9A%E4%BF%97%E5%9C%B0%E6%8F%8F%E8%BF%B0%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E2%80%9C%E5%AD%A6%E4%B9%A0%E2%80%9D%E6%B5%81%E7%A8%8B%E3%80%82"><span class="toc-text">3-2 请通俗地描述强化学习的“学习”流程。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E8%AF%B7%E6%8F%8F%E8%BF%B0%E5%9F%BA%E4%BA%8ESarsa%E7%AE%97%E6%B3%95%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E3%80%82"><span class="toc-text">3-3 请描述基于Sarsa算法的智能体的学习过程。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-Q%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%92%8CSarsa%E7%AE%97%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3-4 Q学习算法和Sarsa算法的区别是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-%E5%90%8C%E7%AD%96%E7%95%A5%E5%92%8C%E5%BC%82%E7%AD%96%E7%95%A5%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3-5 同策略和异策略的区别是什么？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-text">面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E5%90%8C%E5%AD%A6%EF%BC%8C%E4%BD%A0%E8%83%BD%E5%90%A6%E7%AE%80%E8%BF%B0%E5%90%8C%E7%AD%96%E7%95%A5%E5%92%8C%E5%BC%82%E7%AD%96%E7%95%A5%E7%9A%84%E5%8C%BA%E5%88%AB%E5%91%A2%EF%BC%9F"><span class="toc-text">3-1 友善的面试官：同学，你能否简述同策略和异策略的区别呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%83%BD%E5%90%A6%E7%BB%86%E8%87%B4%E5%9C%B0%E8%AE%B2%E4%B8%80%E4%B8%8BQ%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%EF%BC%8C%E6%9C%80%E5%A5%BD%E5%8F%AF%E4%BB%A5%E5%86%99%E5%87%BA%E5%85%B6-Q-s-a-%E7%9A%84%E6%9B%B4%E6%96%B0%E5%85%AC%E5%BC%8F%E3%80%82%E5%8F%A6%E5%A4%96%EF%BC%8C%E5%AE%83%E6%98%AF%E5%90%8C%E7%AD%96%E7%95%A5%E8%BF%98%E6%98%AF%E5%BC%82%E7%AD%96%E7%95%A5%EF%BC%8C%E5%8E%9F%E5%9B%A0%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-text">3-2 友善的面试官：能否细致地讲一下Q学习算法，最好可以写出其 $Q(s,a)$ 的更新公式。另外，它是同策略还是异策略，原因是什么呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E5%A5%BD%E7%9A%84%EF%BC%8C%E7%9C%8B%E6%9D%A5%E4%BD%A0%E5%AF%B9%E4%BA%8EQ%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%BE%88%E4%BA%86%E8%A7%A3%EF%BC%8C%E9%82%A3%E4%B9%88%E8%83%BD%E5%90%A6%E8%AE%B2%E4%B8%80%E4%B8%8B%E4%B8%8EQ%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%B1%BB%E4%BC%BC%E7%9A%84Sarsa%E7%AE%97%E6%B3%95%E5%91%A2%EF%BC%8C%E6%9C%80%E5%A5%BD%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%86%99%E5%87%BA%E5%85%B6%E5%AF%B9%E5%BA%94%E7%9A%84-Q-s-a-%E6%9B%B4%E6%96%B0%E5%85%AC%E5%BC%8F%E3%80%82%E5%8F%A6%E5%A4%96%EF%BC%8C%E5%AE%83%E6%98%AF%E5%90%8C%E7%AD%96%E7%95%A5%E8%BF%98%E6%98%AF%E5%BC%82%E7%AD%96%E7%95%A5%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3-3 友善的面试官：好的，看来你对于Q学习算法很了解，那么能否讲一下与Q学习算法类似的Sarsa算法呢，最好也可以写出其对应的 $Q(s,a)$ 更新公式。另外，它是同策略还是异策略，为什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%AF%B7%E9%97%AE%E5%9F%BA%E4%BA%8E%E4%BB%B7%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95%E5%92%8C%E5%9F%BA%E4%BA%8E%E7%AD%96%E7%95%A5%E7%9A%84%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3-4 友善的面试官：请问基于价值的方法和基于策略的方法的区别是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%AF%B7%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E6%96%B9%E6%B3%95%E3%80%82"><span class="toc-text">3-5 友善的面试官：请简述一下时序差分方法。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%AF%B7%E9%97%AE%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95%E5%92%8C%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E6%96%B9%E6%B3%95%E6%98%AF%E6%97%A0%E5%81%8F%E4%BC%B0%E8%AE%A1%E5%90%97%EF%BC%9F%E5%8F%A6%E5%A4%96%E8%B0%81%E7%9A%84%E6%96%B9%E5%B7%AE%E6%9B%B4%E5%A4%A7%E5%91%A2%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3-6 友善的面试官：请问蒙特卡洛方法和时序差分方法是无偏估计吗？另外谁的方差更大呢？为什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%83%BD%E5%90%A6%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%96%B9%E6%B3%95%E3%80%81%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95%E5%92%8C%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E6%96%B9%E6%B3%95%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9%EF%BC%9F"><span class="toc-text">3-7 友善的面试官：能否简单说一下动态规划方法、蒙特卡洛方法和时序差分方法的异同点？</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

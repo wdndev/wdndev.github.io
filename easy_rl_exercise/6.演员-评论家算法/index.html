@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>6.演员-评论家算法 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="关键词 优势演员-评论员（advantage actor-critic，A2C）算法：一种改进的演员-评论员（actor-critic）算法。 异步优势演员-评论员（asynchronous advantage actor-critic，A3C）算法：一种改进的演员-评论员算法，通过异步的操作，实现强化学习模型训练的加速。 路径衍生策略梯度（pathwise derivative policy g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.演员-评论家算法">
+<meta property="og:url" content="https://wdndev.github.io/easy_rl_exercise/6.%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%AE%B6%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="关键词 优势演员-评论员（advantage actor-critic，A2C）算法：一种改进的演员-评论员（actor-critic）算法。 异步优势演员-评论员（asynchronous advantage actor-critic，A3C）算法：一种改进的演员-评论员算法，通过异步的操作，实现强化学习模型训练的加速。 路径衍生策略梯度（pathwise derivative policy g">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2022-10-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.223Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="RL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/easy_rl_exercise/6.%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%AE%B6%E7%AE%97%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '6.演员-评论家算法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">6.演员-评论家算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-10-23T16:00:00.000Z" title="Created 2022-10-24 00:00:00">2022-10-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.223Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/RL/">RL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>8min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="6.演员-评论家算法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h1><ul>
+<li><strong>优势演员-评论员（advantage actor-critic，A2C）算法</strong>：一种改进的演员-评论员（actor-critic）算法。</li>
+<li><strong>异步优势演员-评论员（asynchronous advantage actor-critic，A3C）算法</strong>：一种改进的演员-评论员算法，通过异步的操作，实现强化学习模型训练的加速。</li>
+<li><strong>路径衍生策略梯度（pathwise derivative policy gradient）</strong>：一种使用Q学习来求解连续动作的算法，也是一种演员-评论员算法。其会对演员提供价值最大的动作，而不仅仅是提供某一个动作的好坏程度。</li>
+</ul>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><h4 id="6-1-完整的优势演员-评论员算法的工作流程是怎样的？"><a href="#6-1-完整的优势演员-评论员算法的工作流程是怎样的？" class="headerlink" title="6-1 完整的优势演员-评论员算法的工作流程是怎样的？"></a><strong>6-1</strong> 完整的优势演员-评论员算法的工作流程是怎样的？</h4><p>在传统的方法中，我们有一个策略 $\pi$ 以及一个初始的演员与环境交互、收集数据以及反馈。通过每一步得到的反馈，我们进一步更新我们的策略 $\pi$ ，通常我们使用的更新方式是策略梯度。但是对于演员-评论员算法，我们不是直接使用每一步得到的数据和反馈进行策略 $\pi$ 的更新，而是使用这些数据和反馈进行价值函数的估计，这里我们通常使用的算法包括时序差分和蒙特卡洛等算法以及基于它们的优化算法。接下来我们再基于价值函数来更新策略，公式如下：</p>
+<script type="math/tex; mode=display">
+\nabla \bar{R}_{\theta} \approx \frac{1}{N} \sum_{n=1}^{N} \sum_{t=1}^{T_{n}}\left(r_{t}^{n}+V_{\pi}\left(s_{t+1}^{n}\right)-V_{\pi}\left(s_{t}^{n}\right)\right) \nabla \log p_{\theta}\left(a_{t}^{n} \mid s_{t}^{n}\right)</script><p>其中 $r<em>{t}^{n}+V</em>{\pi}\left(s<em>{t+1}^{n}\right)-V</em>{\pi}\left(s_{t}^{n}\right)$ 为优势函数。我们通过以上方法得到新的策略后，再与环境交互，然后重复预估价值函数的操作，用价值函数来更新我们的策略。以上的整个方法我们称为优势演员-评论员算法。</p>
+<h4 id="6-2-在实现演员-评论员算法的时候有哪些技巧？"><a href="#6-2-在实现演员-评论员算法的时候有哪些技巧？" class="headerlink" title="6-2 在实现演员-评论员算法的时候有哪些技巧？"></a><strong>6-2</strong> 在实现演员-评论员算法的时候有哪些技巧？</h4><p>（1）<strong>预估两个网络</strong>：一个是价值网络；另外一个是策略网络。价值网络的输入是一个状态，输出是一个标签；策略网络的输入是一个状态，输出是一个动作的分布。这两个网络中，演员和评论员的输入都是状态，所以它们前面几层是可以共享的。例如，玩雅达利游戏时，输入都是图片。输入的图片都非常复杂，且比较大，通常前期我们都会用一些卷积神经网络来处理这些图片，把图片抽象成深层次的特征，这些网络对演员与评论员网络来说是可以共用的。我们可以让演员与评论员的前面几层共用同一组参数，这一组参数可能是卷积神经网络中的参数。先把输入的像素变成比较高维度的特征信息，然后输入演员网络决定要采取什么样的动作，评论员网络使用价值函数计算期望奖励。</p>
+<p>（2）<strong>探索机制</strong>：其目的是对策略 $\pi$ 的输出分布进行限制，从而使得分布的熵不要太小，即希望不同的动作被采用的概率平均一些。这样在测试的时候，智能体才会多尝试各种不同的动作，才会对环境进行充分探索，从而得到比较好的结果。</p>
+<h4 id="6-3-异步优势演员-评论员算法在训练时有很多的进程进行异步的工作，最后再将他们所获得的“结果”集合到一起。那么其具体是如何运作的呢？"><a href="#6-3-异步优势演员-评论员算法在训练时有很多的进程进行异步的工作，最后再将他们所获得的“结果”集合到一起。那么其具体是如何运作的呢？" class="headerlink" title="6-3 异步优势演员-评论员算法在训练时有很多的进程进行异步的工作，最后再将他们所获得的“结果”集合到一起。那么其具体是如何运作的呢？"></a><strong>6-3</strong> 异步优势演员-评论员算法在训练时有很多的进程进行异步的工作，最后再将他们所获得的“结果”集合到一起。那么其具体是如何运作的呢？</h4><p>异步优势演员-评论员算法，即算法一开始会有一个全局网络，其包含策略部分和价值部分。假设它的参数是 $\theta_1$，假设对于每一个演员都用一个CPU训练，每一个演员工作前都会将全局网络的参数复制进来。然后演员与环境进行交互，每一个演员与环境交互后，都会计算出梯度并且更新全局网络的参数。这里要注意的是，所有的演员都是并行运行的。所以每个演员都是在全局网络复制了参数以后，执行完再把参数传回去。所以当第一个演员执行完想要把参数传回去的时候，本来它要的参数是 $\theta_1$，等它把梯度传回去的时候，可能原来的参数已经被覆盖，变成 $\theta_2$ 了。</p>
+<h4 id="6-4-对比经典的Q学习算法，路径衍生策略梯度有哪些改进之处？"><a href="#6-4-对比经典的Q学习算法，路径衍生策略梯度有哪些改进之处？" class="headerlink" title="6-4 对比经典的Q学习算法，路径衍生策略梯度有哪些改进之处？"></a><strong>6-4</strong> 对比经典的Q学习算法，路径衍生策略梯度有哪些改进之处？</h4><p>（1）把 $Q(s,a)$ 换成了 $\pi$。经典的Q学习算法是用 $Q(s,a)$ 来决定在状态 $s<em>t$ 产生哪一个动作 $a</em>{t}$ ，路径衍生策略梯度是直接用 $\pi$ 来决定。面对前者，我们需要解决最大值的问题，现在的路径衍生策略梯度直接训练了一个演员网络。其输入状态 $s<em>t$ 就会告诉我们应该采取哪一个动作 $a</em>{t}$。综上，经典的Q学习算法输入状态 $s_t$，采取哪一个动作 $a_t$ 是 $Q(s,a)$ 决定的，在路径衍生策略梯度里面，我们会直接用 $\pi$ 来决定。</p>
+<p>（2）经典的Q学习算法计算在 $s<em>{i+1}$ 下对应的策略采取的动作 $a$ 得到的Q值，我们会采取让 $\hat{Q}$ 最大的动作 $a$。现在的路径衍生策略梯度因为我们不需要再求解决最大化的问题，所以我们直接把状态 $s</em>{i+1}$ 代入策略 $\pi$ 中，就会得到在状态 $s_{i+1}$ 下，哪一个动作会带给我们最大的Q值，就执行这个动作。在Q函数中，有两个Q网络，一个是真正的Q网络，另外一个是目标Q网络。实际上在执行时，也会有两个演员网络，一个真正要学习的演员网络 $\pi$ 和一个目标演员网络 $\hat{\pi}$ 。</p>
+<p>（3）经典的Q学习算法只需要学习Q函数，路径衍生策略梯度需要多学习一个策略 $\pi$，其目的在于最大化Q函数，希望得到的演员可以让Q函数的输出尽可能的大，这与生成对抗网络里面的生成器的概念类似。</p>
+<p>（4）与原来的Q函数一样，我们要把目标Q网络取代掉，路径衍生策略梯度中也要把目标策略取代掉。</p>
+<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h4 id="6-1-友善的面试官：请简述一下异步优势演员-评论员算法（A3C），另外A3C是同策略还是异策略的模型呀？"><a href="#6-1-友善的面试官：请简述一下异步优势演员-评论员算法（A3C），另外A3C是同策略还是异策略的模型呀？" class="headerlink" title="6-1 友善的面试官：请简述一下异步优势演员-评论员算法（A3C），另外A3C是同策略还是异策略的模型呀？"></a><strong>6-1</strong> 友善的面试官：请简述一下异步优势演员-评论员算法（A3C），另外A3C是同策略还是异策略的模型呀？</h4><p>A3C是异步优势演员-评论员算法，其中，评论员学习价值函数，同时有多个演员并行训练并且不时与全局参数同步。A3C旨在并行训练，是同策略算法。 </p>
+<h4 id="6-2-友善的面试官：请问演员-评论员算法有何优点呢？"><a href="#6-2-友善的面试官：请问演员-评论员算法有何优点呢？" class="headerlink" title="6-2 友善的面试官：请问演员-评论员算法有何优点呢？"></a><strong>6-2</strong> 友善的面试官：请问演员-评论员算法有何优点呢？</h4><p>（1）相比以价值函数为中心的算法，演员-评论员算法应用了策略梯度的技巧，这能让它在连续动作或者高维动作空间中选取合适的动作，而Q学习做这件事会很困难。</p>
+<p>（2）相比单纯策略梯度，演员-评论员算法应用了Q学习或其他策略评估的做法，使得演员-评论员算法能进行单步更新而不是回合更新，比单纯的策略梯度的效率要高。</p>
+<h4 id="6-3-友善的面试官：请问异步优势演员-评论员算法具体是如何异步更新的？"><a href="#6-3-友善的面试官：请问异步优势演员-评论员算法具体是如何异步更新的？" class="headerlink" title="6-3 友善的面试官：请问异步优势演员-评论员算法具体是如何异步更新的？"></a><strong>6-3</strong> 友善的面试官：请问异步优势演员-评论员算法具体是如何异步更新的？</h4><p>下面是异步优势演员-评论员算法的大纲，由于其为异步多线程算法，我们只对其中某一单线程进行分析。</p>
+<p>（1）定义全局参数 $\theta$ 和 $w$ 以及特定线程参数 $\theta’$ 和 $w’$。</p>
+<p>（2）初始化时间步 $t=1$。</p>
+<p>（3）当 $T \leqslant T_{\mathrm{max}}$:</p>
+<ul>
+<li>重置梯度：$\mathrm{d} \theta = 0$ 并且 $\mathrm{d}w = 0$。</li>
+<li>将特定于线程的参数与全局参数同步：$\theta’ = \theta$ 以及 $w’=w$。</li>
+<li>令 $t_{\mathrm{start}} =t$ 并且随机采样一个初始状态 $s_t$。</li>
+<li>当 （$s<em>t!=$ 终止状态）并且$t−t</em>{\mathrm{start}} \leqslant t_{\mathrm{max}}$。<ul>
+<li>根据当前线程的策略选择当前执行的动作 $a<em>t\sim\pi</em>{\theta’}(a<em>t|s_t)$，执行动作后接收奖励 $r_t$ 然后转移到下一个状态 $s</em>{t+1}$。</li>
+<li>更新 $t$ 以及 $T$：$t=t+1$ 并且 $T=T+1$。</li>
+</ul>
+</li>
+<li>初始化保存累积奖励估计值的变量。</li>
+<li>对于 $i=t<em>1, \dots ,t</em>{\mathrm{start}}$:<ul>
+<li>$r \gets \gamma r+r_i$；这里的 $r$ 是 $G_i$ 的蒙特卡洛估计。</li>
+<li>累积关于参数 $\theta’$ 的梯度：$\mathrm{d} \theta \gets \mathrm{d}\theta + \nabla<em>{\theta’} \mathrm{log} \pi</em>{\theta’}(a<em>i|s_i)(r−V</em>{w’}(s_i))$。</li>
+<li>累积关于参数 $w’$ 的梯度：$\mathrm{d}w \gets \mathrm{d}w+ \mathrm{\partial} (r-V_{w’}(s_i))^2 / \mathrm{\partial} w’$。</li>
+</ul>
+</li>
+<li>分别使用 $\mathrm{d}\theta$ 以及 $\mathrm{d}w$ 异步更新 $\theta$ 以及 $w$。</li>
+</ul>
+<h4 id="6-4-友善的面试官：演员-评论员算法中，演员和评论员两者的区别是什么？"><a href="#6-4-友善的面试官：演员-评论员算法中，演员和评论员两者的区别是什么？" class="headerlink" title="6-4 友善的面试官：演员-评论员算法中，演员和评论员两者的区别是什么？"></a><strong>6-4</strong> 友善的面试官：演员-评论员算法中，演员和评论员两者的区别是什么？</h4><p>演员是策略模块，输出动作；</p>
+<p>评论员是判别器，用来计算价值函数。</p>
+<h4 id="6-5-友善的面试官：演员-评论员算法框架中的评论员起了什么作用？"><a href="#6-5-友善的面试官：演员-评论员算法框架中的评论员起了什么作用？" class="headerlink" title="6-5 友善的面试官：演员-评论员算法框架中的评论员起了什么作用？"></a><strong>6-5</strong> 友善的面试官：演员-评论员算法框架中的评论员起了什么作用？</h4><p>评论员衡量当前决策的好坏。结合策略模块，当评论员判别某个动作的选择是有益的时候，策略就更新参数以增大该动作出现的概率，反之减小该动作出现的概率。</p>
+<h4 id="6-6-友善的面试官：简述异步优势演员-评论员算法的优势函数。"><a href="#6-6-友善的面试官：简述异步优势演员-评论员算法的优势函数。" class="headerlink" title="6-6 友善的面试官：简述异步优势演员-评论员算法的优势函数。"></a><strong>6-6</strong> 友善的面试官：简述异步优势演员-评论员算法的优势函数。</h4><p>优势函数的计算公式为 $A(s,a)=Q(s,a)-V(s)=r+\gamma V(s’)-V(s)$ ，其可以定量地表示选择动作 $a$ 的优势。即当动作 $a$ 低于价值函数的平均值的时候，优势函数为负值；反之为正值。其是一个标量，具体来说：</p>
+<p>（1）如果 $A(s,a)&gt;0$ ，梯度被推向正方向；</p>
+<p>（2）如果 $A(s,a)&lt;0$ ，即我们的动作比该状态下的平均值还差，则梯度被推向反方向。</p>
+<p>这样就需要两个价值函数，所以可以使用时序差分方法做误差估计：$A(s,a)=r+\gamma V(s’)-V(s)$ 。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/easy_rl_exercise/6.%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%AE%B6%E7%AE%97%E6%B3%95/">https://wdndev.github.io/easy_rl_exercise/6.演员-评论家算法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/RL/">RL</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/easy_rl_exercise/1.%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="1.强化学习基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-24</div><div class="title">1.强化学习基础</div></div></a></div><div><a href="/easy_rl_exercise/10.%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0/" title="10.模仿学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-24</div><div class="title">10.模仿学习</div></div></a></div><div><a href="/easy_rl_exercise/2.%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/" title="2.马尔可夫决策过程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-24</div><div class="title">2.马尔可夫决策过程</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-text">关键词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98"><span class="toc-text">习题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BC%98%E5%8A%BF%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-text">6-1 完整的优势演员-评论员算法的工作流程是怎样的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E5%9C%A8%E5%AE%9E%E7%8E%B0%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E5%93%AA%E4%BA%9B%E6%8A%80%E5%B7%A7%EF%BC%9F"><span class="toc-text">6-2 在实现演员-评论员算法的时候有哪些技巧？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-%E5%BC%82%E6%AD%A5%E4%BC%98%E5%8A%BF%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E6%9C%89%E5%BE%88%E5%A4%9A%E7%9A%84%E8%BF%9B%E7%A8%8B%E8%BF%9B%E8%A1%8C%E5%BC%82%E6%AD%A5%E7%9A%84%E5%B7%A5%E4%BD%9C%EF%BC%8C%E6%9C%80%E5%90%8E%E5%86%8D%E5%B0%86%E4%BB%96%E4%BB%AC%E6%89%80%E8%8E%B7%E5%BE%97%E7%9A%84%E2%80%9C%E7%BB%93%E6%9E%9C%E2%80%9D%E9%9B%86%E5%90%88%E5%88%B0%E4%B8%80%E8%B5%B7%E3%80%82%E9%82%A3%E4%B9%88%E5%85%B6%E5%85%B7%E4%BD%93%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%90%E4%BD%9C%E7%9A%84%E5%91%A2%EF%BC%9F"><span class="toc-text">6-3 异步优势演员-评论员算法在训练时有很多的进程进行异步的工作，最后再将他们所获得的“结果”集合到一起。那么其具体是如何运作的呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-%E5%AF%B9%E6%AF%94%E7%BB%8F%E5%85%B8%E7%9A%84Q%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B7%AF%E5%BE%84%E8%A1%8D%E7%94%9F%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E6%9C%89%E5%93%AA%E4%BA%9B%E6%94%B9%E8%BF%9B%E4%B9%8B%E5%A4%84%EF%BC%9F"><span class="toc-text">6-4 对比经典的Q学习算法，路径衍生策略梯度有哪些改进之处？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-text">面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%AF%B7%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B%E5%BC%82%E6%AD%A5%E4%BC%98%E5%8A%BF%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%EF%BC%88A3C%EF%BC%89%EF%BC%8C%E5%8F%A6%E5%A4%96A3C%E6%98%AF%E5%90%8C%E7%AD%96%E7%95%A5%E8%BF%98%E6%98%AF%E5%BC%82%E7%AD%96%E7%95%A5%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%91%80%EF%BC%9F"><span class="toc-text">6-1 友善的面试官：请简述一下异步优势演员-评论员算法（A3C），另外A3C是同策略还是异策略的模型呀？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%AF%B7%E9%97%AE%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%E6%9C%89%E4%BD%95%E4%BC%98%E7%82%B9%E5%91%A2%EF%BC%9F"><span class="toc-text">6-2 友善的面试官：请问演员-评论员算法有何优点呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%AF%B7%E9%97%AE%E5%BC%82%E6%AD%A5%E4%BC%98%E5%8A%BF%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%E5%85%B7%E4%BD%93%E6%98%AF%E5%A6%82%E4%BD%95%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E7%9A%84%EF%BC%9F"><span class="toc-text">6-3 友善的面试官：请问异步优势演员-评论员算法具体是如何异步更新的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%E4%B8%AD%EF%BC%8C%E6%BC%94%E5%91%98%E5%92%8C%E8%AF%84%E8%AE%BA%E5%91%98%E4%B8%A4%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">6-4 友善的面试官：演员-评论员算法中，演员和评论员两者的区别是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%E8%AF%84%E8%AE%BA%E5%91%98%E8%B5%B7%E4%BA%86%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">6-5 友善的面试官：演员-评论员算法框架中的评论员起了什么作用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-6-%E5%8F%8B%E5%96%84%E7%9A%84%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E7%AE%80%E8%BF%B0%E5%BC%82%E6%AD%A5%E4%BC%98%E5%8A%BF%E6%BC%94%E5%91%98-%E8%AF%84%E8%AE%BA%E5%91%98%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E5%8A%BF%E5%87%BD%E6%95%B0%E3%80%82"><span class="toc-text">6-6 友善的面试官：简述异步优势演员-评论员算法的优势函数。</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

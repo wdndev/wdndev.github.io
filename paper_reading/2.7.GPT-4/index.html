@@ -1,0 +1,463 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文精读 GPT-4 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="8.GPT-4GPT-4 Technical Report：2303.08774.pdf (arxiv.org) OpenAI博客：https:&#x2F;&#x2F;openai.com&#x2F;research&#x2F;gpt-4 博客基本是99页技术报告的缩略版，2023.3.14发布。 0.疯狂的三月（202303） 03-08 微软发布Visual ChatGPT，聊天时可以用图片，并可以根据文字对图片进行修改 论文：ht">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文精读 GPT-4">
+<meta property="og:url" content="https://wdndev.github.io/paper_reading/2.7.GPT-4/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="8.GPT-4GPT-4 Technical Report：2303.08774.pdf (arxiv.org) OpenAI博客：https:&#x2F;&#x2F;openai.com&#x2F;research&#x2F;gpt-4 博客基本是99页技术报告的缩略版，2023.3.14发布。 0.疯狂的三月（202303） 03-08 微软发布Visual ChatGPT，聊天时可以用图片，并可以根据文字对图片进行修改 论文：ht">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-07-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.828Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="PaperReading">
+<meta property="article:tag" content="GPT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/paper_reading/2.7.GPT-4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文精读 GPT-4',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">论文精读 GPT-4</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-06T16:00:00.000Z" title="Created 2023-07-07 00:00:00">2023-07-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.828Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PaperReading/">PaperReading</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">5.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>17min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="论文精读 GPT-4"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="8-GPT-4"><a href="#8-GPT-4" class="headerlink" title="8.GPT-4"></a>8.GPT-4</h1><p>GPT-4 Technical Report：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.08774.pdf" title="2303.08774.pdf (arxiv.org)">2303.08774.pdf (arxiv.org)</a></p>
+<p>OpenAI博客：<a target="_blank" rel="noopener" href="https://openai.com/research/gpt-4" title="https://openai.com/research/gpt-4">https://openai.com/research/gpt-4</a></p>
+<p>博客基本是99页技术报告的缩略版，<strong>2023.3.14</strong>发布。</p>
+<h1 id="0-疯狂的三月（202303）"><a href="#0-疯狂的三月（202303）" class="headerlink" title="0.疯狂的三月（202303）"></a>0.疯狂的三月（202303）</h1><ul>
+<li><strong>03-08</strong> 微软发布Visual ChatGPT，聊天时可以用图片，并可以根据文字对图片进行修改<ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.04671" title="https://arxiv.org/abs/2303.04671">https://arxiv.org/abs/2303.04671</a></li>
+<li>代码：<a target="_blank" rel="noopener" href="https://github.com/microsoft/visual-chatgpt" title="https://github.com/microsoft/visual-chatgpt">https://github.com/microsoft/visual-chatgpt</a></li>
+</ul>
+</li>
+<li><strong>03-09</strong> 微软宣布将要发布大型多模态模型GPT4</li>
+<li><strong>03-09</strong> 10亿规模的模型GigaGAN推出<ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.05511" title="https://arxiv.org/abs/2303.05511">https://arxiv.org/abs/2303.05511</a></li>
+</ul>
+</li>
+<li><strong>03-13</strong> 斯坦福大学推出7B的Alpaca模型<ul>
+<li>代码：<a target="_blank" rel="noopener" href="https://github.com/tatsu-lab/stanford_alpaca" title="https://github.com/tatsu-lab/stanford_alpaca">https://github.com/tatsu-lab/stanford_alpaca</a></li>
+</ul>
+</li>
+<li><strong>03-14</strong> GPT4推出</li>
+<li><strong>03-14</strong> 谷歌公布PALM模型的API使用</li>
+<li><strong>03-14</strong> Anthropic介绍大型语言模型Claude，主打安全性</li>
+<li><strong>03-14</strong> Adapt.ai公布他们的模型也能够使用工具</li>
+<li><strong>03-15</strong> Midjourney推出第五代模型，可以完美处理手部细节</li>
+<li><strong>03-15</strong> pytorch2.0发布</li>
+<li><strong>03-16</strong> 微软公布ChatGPT加持的Copilot&#x20;</li>
+</ul>
+<p>GPT-4发布了99页的一份报告，但没有任何技术细节；</p>
+<p>pytorch创始人对GPT-4评价</p>
+<p><img src="image/image_KV2nvCVxS1.png" alt=""></p>
+<h1 id="1-导言"><a href="#1-导言" class="headerlink" title="1.导言"></a>1.导言</h1><h2 id="1-1-GPT-4-简介"><a href="#1-1-GPT-4-简介" class="headerlink" title="1.1 GPT-4 简介"></a>1.1 GPT-4 简介</h2><p>GPT-4是<strong>一个多模态的模型</strong>，<strong>能够接受文本或者是图片的输入，最后输出纯文本</strong>。</p>
+<p>GPT-4在真实世界中与人还是存在差距，但是在很多具有专业性或者学术性的数据集或者任务上面上，GPT-4有时候能够达到甚至超过人类的水平</p>
+<p>GPT-4<strong>基本能够达到类人的表现</strong>，在事实性、可控性和安全性上有了很大的进步。</p>
+<p>OpenAI花费了6个月通过对抗测试项目和ChatGPT的经验对齐（align）GPT-4，取得了有史以来最好的（虽然远非完美）的真实性、可控性。</p>
+<p>GPT-4能够通过律师考试资格证考试，且能在所有参加考试的人中排名前10%（GPT-3.5在同样的考试中无法通过，且只能排到最后10%）</p>
+<h2 id="1-2-GPT-4训练的稳定性"><a href="#1-2-GPT-4训练的稳定性" class="headerlink" title="1.2 GPT-4训练的稳定性"></a>1.2 GPT-4<strong>训练的稳定性</strong></h2><p>在此次GPT-4的训练过程中，训练表现出了前所未有的稳定性</p>
+<ul>
+<li>训练稳定</li>
+<li>硬件设施没有出错</li>
+<li>训练不会中断，一次训练直接跑到底</li>
+<li>loss没有跑飞</li>
+<li>更重要的是，可以<strong>准确预测模型训练的结果</strong>（通过在小规模计算成本下训练出来的模型可以准确地预估扩大计算成本之后模型的最终性能）</li>
+</ul>
+<p>对于大模型来讲，如果每次跑完训练才知道结果（参数的好坏，改进是否有效），花销比较大，一般会在较小的模型或者较小的数据集上做消融实验，验证之后再去大模型上进行实验</p>
+<p>对于语言模型来讲，由于语言的扩展较大，所以导致在小规模模型上做的实验可能有效，但是换到大模型上就达不到想要的结果了；并且大模型上特有的涌现能力在小模型上无法观测</p>
+<h1 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h1><p>与之前的GPT模型类似，GPT-4也是通过<strong>预测文章中下一个词的方式（Language Modeling Loss）去训练的</strong>，训练所用到的数据是公开数据（网络数据和公司所购买的数据）</p>
+<ul>
+<li>数据集非常大，包含了非常多的内容，比如数学问题的正确的解和不正确的解、弱推理、强推理、自相矛盾或者保持一致的陈述、各种意识形态和想法，以及更多的纯文本数据</li>
+<li>因为在大量的数据集上训练过，而且有的时候是在不正确的答案上训练过，所以预训练模型（Base Model）有些时候的回答跟想要得到的回答相差很远。为了能跟人的意图尽可能保持一致，并且更加安全可控，所以使用<strong>RLHF</strong>（Reinforcement Learning with Human Feedback）的方法对模型进行了微调。</li>
+</ul>
+<p><strong>模型的能力看起来像是从预训练的过程中得到的</strong>，后续RLHF所进行的微调并不能够提高在测试中的性能（如果没有好好调参，甚至会降低测试的性能）。</p>
+<ul>
+<li>模型所谓的涌现的能力靠堆数据、堆算力，然后用简单的Language Modeling Loss堆出来的</li>
+</ul>
+<p>但是，<strong>RLHF用来对模型做控制，让模型更加清楚人类的意图，并且按照人类所能接受的方式做出回答</strong>。</p>
+<ul>
+<li>这个预训练模型甚至需要prompt engineering才知道需要回答问题</li>
+</ul>
+<h1 id="3-可预测的扩展性（Predictable-scaling）"><a href="#3-可预测的扩展性（Predictable-scaling）" class="headerlink" title="3.可预测的扩展性（Predictable scaling）"></a>3.可预测的扩展性（<strong>Predictable scaling</strong>）</h1><p>GPT-4的关键问题在于<strong>如何构建深度学习的infrastructure</strong>，然后准确地进行扩大</p>
+<ul>
+<li>主要原因是在大模型上是<strong>不可能做大规模的模型调参的</strong>，首先需要很多的算力，其次需要很长的训练时间。如果增加训练机器的数量，训练的稳定性也不能保证，多机器的并行训练很容易导致Loss跑飞。</li>
+</ul>
+<p>OpenAI<strong>研发出来了一套整体的infrastructure和优化方法</strong>，可以在多个尺度上的实验上达到稳定预测。为了验证，利用内部的代码库在GPT-4模型刚开始训练的时候，就已经可以准确地预测到GPT-4最终训练完成的Loss（预测结果是由另外一个Loss外推出去的，用了比原始所需计算资源小一万倍的计算资源上用同样的计算方法训练出来的模型）。</p>
+<p><img src="image/image_g0WjhKBwfb.png" alt=""></p>
+<ul>
+<li>图中绿色的点是GPT-4最终的Loss的结果</li>
+<li>纵坐标可以理解成Loss的大小，单位是Bits per word</li>
+<li>横坐标表示所使用的算力（这里将数据集的大小、模型的大小全部混在一起，表示总体训练一个模型所需要的算力），越往左，模型的训练代价越小</li>
+</ul>
+<p>OpenAI通过将不同训练代价下的Loss点进行拟合，从而准确得到GPT-4最终的Loss。在同等的资源下，可以以更快的速度尝试更多的方法，最后得到更优的模型。</p>
+<p>还有一些能力是不能完全准确预测的：</p>
+<ul>
+<li>inverse scaling prize竞赛，<strong>专门给大模型找茬，用来测试是否存在一些任务是小模型做的好，大模型反而做不好的</strong>，而且最好能够找到那些任务（随着计算成本的增加，任务的结果越来越差）</li>
+</ul>
+<p><img src="image/image_WbDXvkADXK.png" alt=""></p>
+<ul>
+<li><strong>hindsight neglect</strong>：过去做一件事情的时候，使用很理性地判断做出一个决断，这个决断按道理来讲是正确的，但是运气不好导致最终的结果不是很好，那么如果回到过去，是继续选择当初选择的理性做法还是愿意赌一把选择一个更冒险的方式。</li>
+<li>按道理来讲，每次做选择都应该按照最理性的方式做选择，但是大模型在这种情况下出现了一个很有意思的现象：<strong>随着模型越来越大，反而越来越不理性，会根据最后的结果来判断到底应不应该做出决定</strong>。</li>
+<li>GPT-4的准确度达到了100%，从<strong>侧面说明了可能GPT-4已经拥有了一定的推理能力</strong>，不会受到最后结果的影响</li>
+</ul>
+<p><strong>hindsight neglect举例</strong></p>
+<blockquote>
+<p>两种示例：<br>1、张三玩一个游戏，有90%概率赢100块，10%概率输掉10块。张三玩后赢了，回到过去是否应该玩？<br>2、张三玩一个游戏，有10%概率赢10块，90%概率输掉100块。张三玩后赢了，回到过去是否应该玩？<br>从理性分析，这里就是计算数学期望，显然示例1中期望是89块，张三应该选择玩；示例2中期望是-89块，张三即使之前运气好赢了，也应该选择不玩。GPT4在这类问题中能够给出合理的行为。&#x20;</p>
+</blockquote>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a><strong>拓展</strong></h3><p>训练的稳定性多么难能可贵——斯坦福MLSYS 在MetaAi怎样用三个月的时间做了一个跟GPT-3同等大小的语言模型（OPT-175Billion）</p>
+<ul>
+<li>地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XT411v7c9?t=1283.6" title="https://www.bilibili.com/video/BV1XT411v7c9?t=1283.6">https://www.bilibili.com/video/BV1XT411v7c9?t=1283.6</a></li>
+<li>模型虽然性能一般，但是整个过程干货比较多</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/note/0980caa519c2cc5f2496a9ad2fdb9db2d630f9cc.png@690w_!web-note.webp" alt=""></p>
+<ul>
+<li>OPT-175Billion在整个一个多月的训练过程中，因为各种各样的原因（机器崩掉，网络中断、Loss跑飞等），中间一共中断了五十多次，图中的每一段就代表跑的一段</li>
+<li>训练一个大的模型的工程复杂度是难以想象的</li>
+</ul>
+<h1 id="4-能力"><a href="#4-能力" class="headerlink" title="4.能力"></a>4.能力</h1><p>在日常对话中，GPT-3.5和GPT-4的区别是非常小的，但是这个区别随着任务难度的增加慢慢会体现出来。<strong>GPT-4更加可靠，更加具有创造力，而且能够处理更加细微的人类的指示</strong>。</p>
+<p>为了弄清楚这两个模型之间的区别，OpenAI设计了一系列的benchmark，包含很多之前专门为人类设计的模拟考试，使用了最近公开的一些数据，比如奥赛题目、AP（美国高中的一些大学先修课中的问题、购买的执照考试的版权数据）。<strong>在这些考试上没有做过特殊的训练</strong>：</p>
+<ul>
+<li>可能有一些问题是之前在模型预训练的过程中被模型见过的，这里OpenAI为了澄清，他们跑了两个版本：<strong>一个版本是模型直接考试然后汇报分数</strong>；<strong>另一个版本虽然采用同样的模型，但是把在预训练数据集中出现的问题拿掉，只在那些模型可能没见过的问题上再做一次测试</strong>，最后取这两次的分钟较低的那一次来作为GPT-4的分数。希望这么做能更加具有说服力。</li>
+<li>这里的问题去重并没有说明具体的方法</li>
+<li>GPT-4能在众多的考试中都取得较好的结果，说明其参加考试的能力还是不错的</li>
+<li>GPT-4考试结果如下图所示</li>
+</ul>
+<p><img src="image/image_ltq9ehaSmj.png" alt=""></p>
+<ul>
+<li>柱状图是按照GPT-3.5的性能从低到高进行排列的</li>
+<li>GPT-3.5在最右侧的AP Environmental Science中表现是最好的</li>
+<li>淡绿色（no vision）表示没有使用图片</li>
+<li>图中可以看出GPT-4在有了图片加持之后，在有些考试上还能获得更大的进步</li>
+<li>在AP Caculus BC、AMC12、Codeforces Rating、AMC10上表现较差，<strong>GPT系列在数学上的表现比较差</strong>。</li>
+<li>此外，虽然GPT-4能够修改文案，修改语法、润色文章，但是<strong>在高中英语文学课上以及高中英语语言本身的考试上得分都比较差</strong>。GPT系列的模型虽然能够生成大段大段的文字，但是它所写出来的东西很多时候就是翻来覆去地说话，都是一些空话大话，非常冠冕堂皇，并没有真正的思考，从而形成深刻的洞见。</li>
+</ul>
+<p>具体的考试结果如下图所示</p>
+<p><img src="image/image_aEYox6s4vW.png" alt=""></p>
+<p>GPT-4在传统的benchmark上的性能测试结果如下图所示</p>
+<p><img src="image/image_W4oNc0KqOJ.png" alt=""></p>
+<p><strong>GPT-4在多语言方面的能力</strong></p>
+<ul>
+<li>GPT-4在多语言上已经做得很好了，不仅是英语语系中的各种语言，对中文的支持也是不错的（<strong>能够识别拼音的输入，简体/繁体的转换也能够处理</strong>）</li>
+<li>OpenAI为了进行测试，将MMLU全部进行了翻译（将14000多个多选题用微软的翻译全部翻译成不同的语言），通过测试发现，在26个语言中，其中24个语言中的测试结果GPT-4都要优于GPT-3.5和其他的一些大模型（Google的Chinchilla、PaLM），而且甚至在那些没有什么训练语料库的语言（Latvian、Welsh、Swahili）上表现也很好</li>
+<li>测试结果如下图所示</li>
+</ul>
+<p><img src="image/image_NNr3nz9qaQ.png" alt=""></p>
+<h1 id="5-视觉输入"><a href="#5-视觉输入" class="headerlink" title="5.视觉输入"></a>5.视觉输入</h1><h2 id="5-1-简介"><a href="#5-1-简介" class="headerlink" title="5.1 简介"></a>5.1 简介</h2><p>GPT-4是一个多模态的模型，可以接受图片作为输入；GPT-4可以允许用户任意自定义视觉或者语言任务，不管用户输入的是文本、图片或者是图片和文本混合的形式，GPT-4都能生成文本（自然语言、代码）。</p>
+<p>但是目前图像输入还是内测阶段，暂时不对大众开放。OpenAI目前只选择了一家合作伙伴Be My Eyes来测试视觉功能；初衷是将图片转化成文字，然后再转成语音，从而为盲人提供更加便利的生活。</p>
+<h2 id="5-2-示例"><a href="#5-2-示例" class="headerlink" title="5.2 示例"></a>5.2 示例</h2><p>1、用户输入几张照片，然后询问GPT-4这几张照片搞笑的地方在哪里？</p>
+<ul>
+<li>很多时候GPT-4都能给出解释，而且是一步一步的解释为什么搞笑。</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/note/bab8006b463e96405df9d75084d08eed0548e14c.png@690w_!web-note.webp" alt=""></p>
+<p>2、图中是一个截图，并不是机器能够直接阅读的，需要内部自己做一个OCR才能让模型知道图片中到底是什么内容（截图中是一道法语描述的物理题）</p>
+<ul>
+<li>GPT-4用英语进行了一步一步的解释，最后得出答案</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/note/d49338b9ffd2bdb57ba93edef20f74e671667092.png@690w_!web-note.webp" alt=""></p>
+<p>3、将一篇论文直接输入进GPT-4，让它输出对论文的总结</p>
+<p><img src="https://i0.hdslb.com/bfs/note/6e2587661cd2b923b1185fff2b394711fe811a31.png@690w_!web-note.webp" alt=""></p>
+<ul>
+<li>GPT-4能够很好地总结所输入的论文</li>
+<li>最近github上也发布了几个工具，通过调用OpenAI或者其他的模型，用户输入一个pdf，工具直接输出文章的摘要，而且也可以在里面随意地进行搜索（交互式地询问，而不用一个一个地找）（<a target="_blank" rel="noopener" href="https://www.chatpdf.com/" title="https://www.chatpdf.com">https://www.chatpdf.com</a>）</li>
+</ul>
+<h2 id="5-3-多模态性能"><a href="#5-3-多模态性能" class="headerlink" title="5.3 多模态性能"></a>5.3 多模态性能</h2><p><img src="image/image_DjQQBk12nL.png" alt=""></p>
+<p>测试结果虽然一般，不如在NLP中的测试结果那么惊艳，但是这些分数并不能完全代表GPT-4的能力，因为还在持续不断地发掘GPT-4更多的能力。</p>
+<h1 id="6-可操作性（Steerability）"><a href="#6-可操作性（Steerability）" class="headerlink" title="6.可操作性（Steerability）"></a>6.可操作性（<strong>Steerability</strong>）</h1><p><strong>定义语言模型的行为</strong>，让语言模型按照用户所想要的方式进行答复。相比于ChatGPT，ChatGPT的人格是固定的，每次都是同样的语调语气，回复的风格也是一致的；最新的GPT-4开发了一个新功能，除了发给它的prompt（描述用户需求的文字），前面<strong>添加了System Message</strong>。System Message可以定义AI使用什么样的语气语调进行对话。</p>
+<p>System Message是由整个Community发现的。</p>
+<p><strong>Steerability举例</strong></p>
+<p>作为一个苏格拉底式的辅导员，回复永远都应该是保持苏格拉底的风格，即永远不告诉学生真正的答案，而是询问一些启发式的问题，通过暗示来进行辅导让学生自己意识到问题的解决方式，从而培养学生自己解决问题的能力。在这个过程中，将难度较大的问题进行拆分，在学生能够听懂的水平上进行因材施教</p>
+<p><img src="https://i0.hdslb.com/bfs/note/13982ee16d4954c7f0a5640ea781c35056528c4c.png@690w_!web-note.webp" alt=""></p>
+<h1 id="7-限制（Limitations）"><a href="#7-限制（Limitations）" class="headerlink" title="7.限制（Limitations）"></a>7.限制（<strong>Limitations</strong>）</h1><p>1、在能力和局限性方面，GPT-4和之前的GPT系列模型差不多，还是<strong>不能完全可靠，有的时候还是会瞎编乱造，扭曲事实</strong>，并且推理的时候也可能会出错。因此在使用这些大模型的时候还是需要更加小心谨慎，尤其是在一些高风险的领域（法律、金融、新闻、政治）中</p>
+<ul>
+<li>虽然这些问题依然存在，但是GPT-4跟之前其他的模型以及外面的模型相比，在安全性上已经大幅提高了</li>
+<li>在OpenAI内部专门用来进行对抗性测试的Evaluation Benchmark上，GPT-4比之前的GPT-3.5的得分要高出40%以上，提升显著</li>
+</ul>
+<p><img src="image/image_avufJ_S9LW.png" alt=""></p>
+<ul>
+<li>图中纵坐标表示准确度，横坐标表示OpenAI内部所使用的benchmark所涉及的领域。</li>
+</ul>
+<p>2、GPT-4本身还会<strong>有各种各样的偏见</strong>，目前已经取得了一些进步，但是还有很多需要做的。</p>
+<p>3、GPT-4一般是<strong>缺少2021年9月份之后的知识</strong>，因为预训练数据就是截止到2021年9月份。但是ChatGPT有很多个版本，可能后续微调或者RLHF的时候，可能包含更新之后的数据，所以有时候也能正确回答2021年之后的一些问题。</p>
+<p>4、GPT-4在很多的领域里都表现出强大的能力，取得很高的分数，但是<strong>有时候会犯一些非常简单的推理错误</strong>，看上去有点不可思议。如果用户故意输入一些虚假的陈述，GPT-4还<strong>非常容易上当受骗</strong>。</p>
+<p>5、在一些特别困难的问题上，GPT-4跟人差不多，都会出现安全隐患，可能会写出不正确的代码。但是<strong>GPT-4哪怕有的时候预测错误了，也会非常自信</strong>。</p>
+<p>通过研究发现，这是因为经过预训练之后，GPT-4的model calibration做的非常完美</p>
+<p><strong>calibration（校准）的定义</strong></p>
+<p><img src="image/image_nZhBC1WysJ.png" alt=""></p>
+<ul>
+<li>从图中能够看出，模型经过了完美的矫正（可以因为预训练的语料库比较大，已经掌握了客观事实的规律，因此模型对自己产生的结果比较自信）</li>
+<li>但是<strong>经过后处理（Instructed Tuning或者是RLHF）之后，calibration的效果就没有了</strong>，模型的校准就没有处理前好了（可能是经过RLHF之后，模型更接近于人，具备一定的主观性，因此校准性能就下降了）。</li>
+</ul>
+<h1 id="8-Risks-amp-mitigations"><a href="#8-Risks-amp-mitigations" class="headerlink" title="8.Risks &amp; mitigations"></a>8.<strong>Risks &amp; mitigations</strong></h1><p>1、<strong>Red Teaming</strong>（对抗测试）：通过找各个领域的专家询问模型该问和不该问的问题，希望让模型知道哪些应该回答，哪些不该回答，通过<strong>人力的过程搜集数据，从而提升GPT-4的能力，能够拒绝不合理的要求</strong>。</p>
+<p>2、<strong>GPT-4还利用自己来提升安全性的要求，在后续的RLHF的训练过程中</strong>，又新加了一个专门做安全的reward signal</p>
+<ul>
+<li>这个reward signal是从自己已经预训练好的GPT-4模型开始，通过<strong>分类器</strong>分类当前prompt到底是不是sensitive，是不是存在危险，可能不应该进行回答</li>
+<li>通过reward signal让RLHF更加智能，让模型更加贴合人的意图，而且更加安全</li>
+</ul>
+<p>这种减少risk的方式能够显著提升GPT-4的安全性能，和GPT-3.5相比，<strong>对于那些不该回答的问题，GPT-4能比GPT-3.5少回答82%的问题</strong>。</p>
+<p><strong>安全性问题举例</strong></p>
+<p><img src="image/image_W2NdaGa_yw.png" alt=""></p>
+<p>总的来说，模型层面的干扰技巧能够很大程度上防止模型生成不好的行为，但是也不能完全阻止，<strong>总归是能找出各种各样的漏洞，还有很多的工作要做</strong>。</p>
+<h1 id="9其他"><a href="#9其他" class="headerlink" title="9其他"></a>9其他</h1><h2 id="9-1-AGI"><a href="#9-1-AGI" class="headerlink" title="9.1 AGI"></a>9.1 AGI</h2><p>微软拿早期的GPT-4模型，做了许多测试，发了一篇100多页论文：</p>
+<ul>
+<li>论文题目：Aparks of Artificial General Intelligence：Early experiments with GPT-4</li>
+<li>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.12712" title="https://arxiv.org/abs/2303.12712">https://arxiv.org/abs/2303.12712</a></li>
+</ul>
+<p><strong>GPT-4潜在能力</strong></p>
+<p>1、图像生成</p>
+<ul>
+<li>用户给GPT-4一些指示，生成一些能够作画的代码，然后使用这些代码直接生成图画，从而变相地进行图像生成（简单作画）</li>
+<li>不光能够生成画，还能够不断地对生成的画（实际上是代码）进行改进（GPT-4不光是可以根据用户的指示不断进化从而得到更好的结果，同时GPT-4的模型自己也在进化）</li>
+</ul>
+<p>2、音乐生成</p>
+<p>3、使用工具</p>
+<h2 id="9-2-GPTs对劳动力影响"><a href="#9-2-GPTs对劳动力影响" class="headerlink" title="9.2 GPTs对劳动力影响"></a>9.2 GPTs对劳动力影响</h2><ul>
+<li>论文名称：GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models</li>
+<li>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.10130" title="https://arxiv.org/abs/2303.10130">https://arxiv.org/abs/2303.10130</a></li>
+</ul>
+<p>1、大概有80%的美国劳动力会因为大语言模型的到来而受到影响，大概是平时工作中10%的任务（剩余90%的任务仍然需要人来完成），19%的工人会发现有50%的工作有可能会被影响（AI至少能够完成50%以上的工作任务）</p>
+<p>2、受影响比较多的工作</p>
+<ul>
+<li>如果有做<strong>科研（基础科学研究）的能力</strong>或者<strong>思维比较缜密，能够快速做出合理的决定</strong>，这些技能点大语言模型暂时还不具备</li>
+<li>和大语言模型冲突的技能点：写代码、写文章。凡是和这两个技能点相关的工作可能会收到较大的影响</li>
+</ul>
+<p>哪些职业会受到较大的影响：</p>
+<p><img src="https://i0.hdslb.com/bfs/note/c930468b4e6b78571358af74a35e578a4077e6c7.png@690w_!web-note.webp" alt=""></p>
+<p>3、基本不受影响的职业</p>
+<ul>
+<li>这些职业都是需要<strong>实际动手操作</strong>的，在机械臂和机器人成熟之前，必须要真人进行操作，因此这些工种暂时是不会受到大语言模型影响的。</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/note/a391fa82ccd20e7788c7dc3808304282d271baec.png@690w_!web-note.webp" alt=""></p>
+<h2 id="9-3-Yann-Lecun报告（20230324）"><a href="#9-3-Yann-Lecun报告（20230324）" class="headerlink" title="9.3 Yann Lecun报告（20230324）"></a>9.3 Yann Lecun报告（20230324）</h2><p><strong>Do Large language models need sensory grounding for meaning and understanding?</strong></p>
+<p>现在的很多大语言模型还是需要很多的改进，现在还不能称之为智能</p>
+<ul>
+<li>现在的大语言模型虽然性能非常惊人，但是同时也会范一些非常愚蠢的错误</li>
+<li>大语言模型对真实的世界一无所知，因为他们没有常识，也不能计划自己的输出（模型都是一个token一个token地生成然后向外输出的，而且每次生成的都不一样）</li>
+</ul>
+<h2 id="9-4未来研究方向"><a href="#9-4未来研究方向" class="headerlink" title="9.4未来研究方向"></a>9.4<strong>未来研究方向</strong></h2><p>现在机器学习还有很多的问题悬而未决，而且现在大语言模型遇到的问题其实跟30年前机器学习领域遇到的问题还是一样的，现在依然不知道大语言模型到底是怎样工作、怎么泛化的：</p>
+<ul>
+<li>如何从<strong>单语言到多语言</strong>？</li>
+<li>为什么会具有<strong>涌现</strong>的能力？</li>
+<li>如何提高模型<strong>做推理的能力</strong>（尤其是做因果推理）？</li>
+<li>需要更多的方式<strong>阻止语言模型生成有害的文字</strong>或者<strong>带来比较坏的社会影响</strong></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/paper_reading/2.7.GPT-4/">https://wdndev.github.io/paper_reading/2.7.GPT-4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a><a class="post-meta__tags" href="/tags/PaperReading/">PaperReading</a><a class="post-meta__tags" href="/tags/GPT/">GPT</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/paper_reading/2.5.GPT_GPT-2_GPT-3/" title="论文精读 GPT、GPT-2、GPT-3"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-01</div><div class="title">论文精读 GPT、GPT-2、GPT-3</div></div></a></div><div><a href="/paper_reading/2.6.InstructGPT/" title="论文精读 InstructGPT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">论文精读 InstructGPT</div></div></a></div><div><a href="/paper_reading/255.1.ChatGPT%20%E7%9B%B8%E5%85%B3%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95/" title="ChatGPT 相关核心算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-09</div><div class="title">ChatGPT 相关核心算法</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#8-GPT-4"><span class="toc-text">8.GPT-4</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E7%96%AF%E7%8B%82%E7%9A%84%E4%B8%89%E6%9C%88%EF%BC%88202303%EF%BC%89"><span class="toc-text">0.疯狂的三月（202303）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AF%BC%E8%A8%80"><span class="toc-text">1.导言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-GPT-4-%E7%AE%80%E4%BB%8B"><span class="toc-text">1.1 GPT-4 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-GPT-4%E8%AE%AD%E7%BB%83%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-text">1.2 GPT-4训练的稳定性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-text">2.训练过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%8F%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E6%89%A9%E5%B1%95%E6%80%A7%EF%BC%88Predictable-scaling%EF%BC%89"><span class="toc-text">3.可预测的扩展性（Predictable scaling）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%93%E5%B1%95"><span class="toc-text">拓展</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E8%83%BD%E5%8A%9B"><span class="toc-text">4.能力</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E8%A7%86%E8%A7%89%E8%BE%93%E5%85%A5"><span class="toc-text">5.视觉输入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">5.1 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%A4%BA%E4%BE%8B"><span class="toc-text">5.2 示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E5%A4%9A%E6%A8%A1%E6%80%81%E6%80%A7%E8%83%BD"><span class="toc-text">5.3 多模态性能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%8F%AF%E6%93%8D%E4%BD%9C%E6%80%A7%EF%BC%88Steerability%EF%BC%89"><span class="toc-text">6.可操作性（Steerability）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E9%99%90%E5%88%B6%EF%BC%88Limitations%EF%BC%89"><span class="toc-text">7.限制（Limitations）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-Risks-amp-mitigations"><span class="toc-text">8.Risks &amp; mitigations</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E5%85%B6%E4%BB%96"><span class="toc-text">9其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-AGI"><span class="toc-text">9.1 AGI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-GPTs%E5%AF%B9%E5%8A%B3%E5%8A%A8%E5%8A%9B%E5%BD%B1%E5%93%8D"><span class="toc-text">9.2 GPTs对劳动力影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3-Yann-Lecun%E6%8A%A5%E5%91%8A%EF%BC%8820230324%EF%BC%89"><span class="toc-text">9.3 Yann Lecun报告（20230324）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91"><span class="toc-text">9.4未来研究方向</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

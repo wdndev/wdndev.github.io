@@ -1,0 +1,2557 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-01-03 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Improving Multi-step RAG with Hypergraph-based Memory for Long-Context Complex Relational ModelingMulti-step retrieval-augmented generation (RAG) has become a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-01-03">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202601/2026-01-03/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Improving Multi-step RAG with Hypergraph-based Memory for Long-Context Complex Relational ModelingMulti-step retrieval-augmented generation (RAG) has become a">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:54.983Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202601/2026-01-03/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-01-03',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-01-03</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:54.983Z" title="Updated 2026-02-08 08:00:54">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">28.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>97min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-01-03"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Improving-Multi-step-RAG-with-Hypergraph-based-Memory-for-Long-Context-Complex-Relational-Modeling"><a href="#1-Improving-Multi-step-RAG-with-Hypergraph-based-Memory-for-Long-Context-Complex-Relational-Modeling" class="headerlink" title="1. Improving Multi-step RAG with Hypergraph-based Memory for Long-Context Complex Relational Modeling"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2512.23959">Improving Multi-step RAG with Hypergraph-based Memory for Long-Context Complex Relational Modeling</a></h3><p>Multi-step retrieval-augmented generation (RAG) has become a widely adopted strategy for enhancing large language models (LLMs) on tasks that demand global comprehension and intensive reasoning. Many RAG systems incorporate a working memory module to consolidate retrieved information. However, existing memory designs function primarily as passive storage that accumulates isolated facts for the purpose of condensing the lengthy inputs and generating new sub-queries through deduction. This static nature overlooks the crucial high-order correlations among primitive facts, the compositions of which can often provide stronger guidance for subsequent steps. Therefore, their representational strength and impact on multi-step reasoning and knowledge evolution are limited, resulting in fragmented reasoning and weak global sense-making capacity in extended contexts. We introduce HGMem, a hypergraph-based memory mechanism that extends the concept of memory beyond simple storage into a dynamic, expressive structure for complex reasoning and global understanding. In our approach, memory is represented as a hypergraph whose hyperedges correspond to distinct memory units, enabling the progressive formation of higher-order interactions within memory. This mechanism connects facts and thoughts around the focal problem, evolving into an integrated and situated knowledge structure that provides strong propositions for deeper reasoning in subsequent steps. We evaluate HGMem on several challenging datasets designed for global sense-making. Extensive experiments and in-depth analyses show that our method consistently improves multi-step RAG and substantially outperforms strong baseline systems across diverse tasks.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>多步检索增强生成（RAG）已成为提升大语言模型（LLM）在需要全局理解和深入推理任务中性能的一种广泛采用的策略。许多RAG系统引入了工作记忆模块以整合检索到的信息。然而，现有的记忆设计主要作为被动存储，累积孤立的事实，用于压缩冗长的输入并通过推理生成新的子查询。这种静态特性忽视了原始事实之间的重要高阶关联，而这些关联的组合常常能为后续步骤提供更有力的指导。因此，它们在多步推理和知识演化中的表示能力和影响有限，导致在扩展情境下推理碎片化，全局理解能力较弱。我们提出了HGMem，一种基于超图的记忆机制，将记忆的概念从简单存储扩展为用于复杂推理和全局理解的动态、富表达结构。在我们的方法中，记忆被表示为超图，其超边对应不同的记忆单元，从而使记忆内的高阶交互能够逐步形成。该机制将事实和思维围绕核心问题连接起来，演化为一个集成的、具情境性的知识结构，为后续步骤中的深入推理提供强有力的命题。我们在多个旨在全局理解的挑战性数据集上评估了HGMem。大量实验和深入分析表明，我们的方法在多步RAG中持续提升性能，并在多种任务中显著优于强基线系统。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文针对“多步检索增强生成（multi-step RAG）在长文本、复杂关系推理场景下全局理解能力不足”这一核心问题展开。具体而言，既有方法的工作记忆模块仅充当被动存储，把检索到的原始事实以扁平或二元结构累积，无法显式刻画事实之间的高阶关联（n-ary，n&gt;2），导致：</p>
+<ol>
+<li>记忆表示力弱，难以支撑跨段落、跨实体的复杂推理；</li>
+<li>子查询生成缺乏结构指引，检索过程容易碎片化；</li>
+<li>最终答案缺乏全局一致性，出现“见木不见林”的推理断裂。</li>
+</ol>
+<p>为此，作者提出 HGMEM——一种<strong>超图驱动的工作记忆机制</strong>，将记忆从“静态仓库”升级为“可演化的结构化推理骨架”，在多步 RAG 迭代中持续建立、更新、合并高阶超边，使记忆单元随推理深度动态扩展，从而显式建模复杂关系、引导后续检索并提升长文本全局理解性能。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文将相关研究划分为两大主线，并在第 2 节系统回顾。以下按主题归纳，均给出原文对应小节或代表文献，方便快速定位。</p>
+<p>1. 多步 RAG 的工作记忆机制</p>
+<p>（目标：在迭代检索-生成过程中累积、复用中间信息）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>代表方法 / 思想</th>
+<th>记忆形态</th>
+<th>关键局限（作者视角）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReAct (Yao et al., 2023)</td>
+<td>纯文本 log</td>
+<td>无结构，难回溯</td>
+</tr>
+<tr>
+<td>IRCOT (Trivedi et al., 2023)</td>
+<td>平面摘要</td>
+<td>同样丢失细粒度引用</td>
+</tr>
+<tr>
+<td>ComoRAG (Wang et al., 2025)</td>
+<td>事件 bullet</td>
+<td>仅平面列表，无高阶关系</td>
+</tr>
+<tr>
+<td>DeepRAG (Guan et al., 2025)</td>
+<td>文本记忆池</td>
+<td>无显式 n-ary 关联</td>
+</tr>
+<tr>
+<td>ERA-CoT (Liu et al., 2024)</td>
+<td>实体-关系图</td>
+<td>边只支持二元关系</td>
+</tr>
+<tr>
+<td>KnowTrace (Li et al., 2025a)</td>
+<td>同左</td>
+<td>同左</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>共同缺陷：记忆≈“平面记录”或“二元图”，无法表达≥3 元复杂关联，导致后续子查询与检索缺少结构指引。</p>
+</blockquote>
+<p>2. 结构化知识索引（长期记忆）</p>
+<p>（目标：在回答用户问题前，先对全库做离线组织）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>结构类型</th>
+<th>代表工作</th>
+<th>与本文差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>树索引</td>
+<td>RAPTOR, T-RAG, TreeRAG</td>
+<td>层级摘要，但节点间仍缺高阶超边</td>
+</tr>
+<tr>
+<td>二元知识图</td>
+<td>GraphRAG, LightRAG, HippoRAG v2</td>
+<td>边仅二元；构建后静态，不随查询演化</td>
+</tr>
+<tr>
+<td>超图索引</td>
+<td>HypergraphRAG, PropRAG</td>
+<td>引入超边，但离线一次性构建，查询阶段无动态更新/合并</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>作者强调：上述索引皆“ query-agnostic 静态库”，而 HGMEM 是“ query-aware 工作记忆”，在推理<strong>在线阶段</strong>持续演化高阶超边，以适配当下复杂关系。</p>
+</blockquote>
+<p>3. 其他可归类文献（文中提及）</p>
+<ul>
+<li><strong>上下文记忆</strong>：Chen et al. 2023; Lee et al. 2024 —— 把长对话或长文切块做向量缓存，仍属平面表征。</li>
+<li><strong>参数记忆</strong>：Qian et al. 2025 —— 用额外参数缓存知识，与检索流程正交。</li>
+<li><strong>超图神经网络基础</strong>：Feng et al. 2019 —— 提供超图数学定义，被本文借用到记忆建模。</li>
+</ul>
+<p>小结</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>是否支持高阶(n&gt;2)关系</th>
+<th>是否在线演化</th>
+<th>主要不足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平面/文本记忆</td>
+<td>×</td>
+<td>部分支持</td>
+<td>表示力弱</td>
+</tr>
+<tr>
+<td>二元图记忆</td>
+<td>×</td>
+<td>部分支持</td>
+<td>只能建模成对关系</td>
+</tr>
+<tr>
+<td>静态超图索引</td>
+<td>√</td>
+<td>×</td>
+<td>构建后即固化</td>
+</tr>
+<tr>
+<td>HGMEM（本文）</td>
+<td>√</td>
+<td>√</td>
+<td>——</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>因此，HGMEM 填补了“可演化的结构化工作记忆”这一空白，使多步 RAG 在复杂关系建模与长文本全局理解上获得新的支撑。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文将“被动存储式工作记忆”重构为“可演化的超图工作记忆（HGMEM）”，通过三条技术路线解决高阶关系缺失与全局理解不足的问题。</p>
+<p>1. 记忆建模：超图替代平面或二元图</p>
+<ul>
+<li>把记忆单元定义为<strong>超边</strong> e<em>j ，可一次性连接任意数量实体 |V</em>(e)_j|ge 2 ，天然支持 n-ary 关系。</li>
+<li>顶点集 V_M⊂eqV_G 与外部知识图谱共享实体空间，保证引用一致性。</li>
+<li>每条超边维护两部分：</li>
+<li>Omega_(rel) ：自然语言描述（供 LLM 读写）</li>
+<li>V_(e) ：所连实体列表（供检索定位）</li>
+</ul>
+<blockquote>
+<p>结果：记忆从“列表/二元边”升级为“高阶张量”，为复杂关联提供显式槽位。</p>
+</blockquote>
+<p>2. 检索策略：局部深挖 + 全局探索 的自适应切换</p>
+<p>在每一步 t ，LLM 先判断当前记忆 M^((t)) 是否足够；若不足，按以下两种模式生成子查询 Q^((t)) ：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>触发条件</th>
+<th>检索范围</th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local Investigation</td>
+<td>需要深挖已有超边 e_j</td>
+<td>以 V_(e)_j 为锚点，在 G 内一跳邻域检索</td>
+<td>V_q=R{N(Ve_j)(q)</td>
+</tr>
+<tr>
+<td>Global Exploration</td>
+<td>需寻找记忆外信息</td>
+<td>在 V_GsetminusV_M^((t)) 全集检索</td>
+<td>V<em>q=R</em>(C)(M^((t)))(q)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>结果：避免“一条道走到黑”的链式检索，兼顾聚焦与发散。</p>
+</blockquote>
+<p>3. 记忆演化：Update → Insert → Merge 三阶循环</p>
+<p>拿到新证据后，LLM 按顺序执行三种原子操作，把低阶事实逐步熔铸成高阶命题：</p>
+<ol>
+<li><p><strong>Update</strong><br>仅改写现有超边描述 Omega_(rel) ，实体集合不变，实现“纠错/细化”。</p>
+</li>
+<li><p><strong>Insertion</strong><br>为全新证据创建独立超边，扩展记忆容量。</p>
+</li>
+<li><p><strong>Merging</strong><br>对语义/逻辑可融合的若干超边 e_i,e_j 生成新超边 e_k ：</p>
+</li>
+</ol>
+<p>Omega<em>(rel)^(e)_karrowLLM(Omega</em>(rel)^(e)<em>i,Omega</em>(rel)^(e)<em>j,q),quad V</em>(e)<em>k=V</em>(e)<em>i∪V</em>(e)_j</p>
+<p>从而把原本分散的 n-元事实组合成更高维的复合关系。</p>
+<blockquote>
+<p>结果：记忆随迭代不断“升维”，从孤立点→低阶边→高阶超边，形成与查询强相关的“情境化知识骨架”。</p>
+</blockquote>
+<p>4. 响应生成：基于演化后的高阶记忆</p>
+<p>当终止条件触发（达到最大步数或记忆已充分），LLM 一次性读取：</p>
+<ul>
+<li>全部超边描述 Omega_(rel)^(e) </li>
+<li>所有实体关联文本块 D_(v_i) </li>
+</ul>
+<p>进行端到端生成，确保答案既覆盖细节又体现全局关联。</p>
+<p>效果验证（实验摘要）</p>
+<ul>
+<li>在 LongBench-v2、NarrativeQA、NoCha、Prelude 等 6 个长文本数据集上，HGMEM 相对最强基线平均提升 <strong>2–6 个百分点</strong>。</li>
+<li>消融实验显示：去掉 merging 操作后，sense-making 类查询准确率下降 <strong>5–10 个百分点</strong>，证实高阶关系是关键。</li>
+<li>成本分析：merging 仅增加 <strong>≈5% token 消耗与延迟</strong>，但带来显著质量收益。</li>
+</ul>
+<p>一句话总结</p>
+<p>HGMEM 用“超图骨架 + 在线演化”让工作记忆从静态仓库变成会“自我生长”的推理图谱，从而在多步 RAG 中显式建模高阶关系，实现长文本复杂全局理解。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕“长文本全局理解”这一核心场景，在两类任务、六套数据集上展开系统实验，全面验证 HGMEM 的有效性、效率与可解释性。以下按“实验设计 → 结果指标 → 关键发现”分层说明。</p>
+<p>1. 实验设计总览</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>任务类别</th>
+<th>数据集</th>
+<th>文档规模</th>
+<th>查询数</th>
+<th>评估指标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generative Sense-making QA</td>
+<td>LongBench-v2（Fin/Gov/Legal）</td>
+<td>平均 20–260 k tokens</td>
+<td>253</td>
+<td>Comprehensiveness ↑ Diversity ↑</td>
+</tr>
+<tr>
+<td>Long Narrative Understanding</td>
+<td>NarrativeQA</td>
+<td>平均 218 k</td>
+<td>100</td>
+<td>Accuracy ↑</td>
+</tr>
+<tr>
+<td>NoCha</td>
+<td>平均 139 k</td>
+<td>126</td>
+<td>Accuracy ↑</td>
+</tr>
+<tr>
+<td>Prelude</td>
+<td>平均 280 k</td>
+<td>135</td>
+<td>Accuracy ↑</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>** backbone LLM**：GPT-4o 与 Qwen2.5-32B-Instruct 双配置，验证方法对模型规模的普适性。</li>
+<li><strong>检索公平约束</strong>：所有基线每步平均召回相同数量文本块，避免“堆 token”带来的虚假增益。</li>
+<li><strong>最大迭代步数</strong>：6 步（含初始步 t=0），超过即强制终止并生成答案。</li>
+</ul>
+<p>2. 主实验：整体性能对比</p>
+<p>表 1 结果（节选，Acc 单位 %）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>NarrativeQA</th>
+<th>NoCha</th>
+<th>Prelude</th>
+<th>LongBench 平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HGMEM (GPT-4o)</td>
+<td>69.74</td>
+<td>55.00</td>
+<td>73.81</td>
+<td>65.73</td>
+</tr>
+<tr>
+<td>次优 Multi-step</td>
+<td>ComoRAG 65.82</td>
+<td>54.00</td>
+<td>63.49</td>
+<td>62.18</td>
+</tr>
+<tr>
+<td>次优 Traditional</td>
+<td>LightRAG 63.37</td>
+<td>44.00</td>
+<td>71.43</td>
+<td>61.55</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>HGMEM 在所有数据集<strong>均取得第一</strong>，且 Qwen2.5-32B-Instruct 版性能≈或&gt;GPT-4o 级基线，证明方法对开源模型同样有效。</li>
+<li>在“Comprehensiveness / Diversity”人工评测上，HGMEM 相对最佳基线平均提升 <strong>3.4 / 4.6 分</strong>（百分制）。</li>
+</ul>
+<p>3. 细粒度分析实验</p>
+<p>3.1 步级性能曲线</p>
+<ul>
+<li>强制模型在第 1–6 步均给出答案，观察记忆演化带来的边际增益。</li>
+<li>图 3 显示：t=3 时达到峰值，t&gt;3 无显著提升，验证“早期高阶融合即可捕获核心关系”。</li>
+</ul>
+<p>3.2 消融实验（表 2）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>消融项</th>
+<th>NarrativeQA Acc</th>
+<th>Prelude Acc</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>w/o Merging</td>
+<td>61.80 ↓4.71</td>
+<td>57.78 ↓4.44</td>
+<td>高阶关联最关键</td>
+</tr>
+<tr>
+<td>w/o Update</td>
+<td>64.92 ↓1.69</td>
+<td>60.00 ↓2.22</td>
+<td>纠错机制次要但仍有帮助</td>
+</tr>
+<tr>
+<td>GE Only</td>
+<td>61.67 ↓4.84</td>
+<td>59.26 ↓3.00</td>
+<td>全局探索单独使用易发散</td>
+</tr>
+<tr>
+<td>LI Only</td>
+<td>63.82 ↓2.69</td>
+<td>60.00 ↓2.22</td>
+<td>局部深挖单独使用易陷入局部极值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>自适应“局部+全局”策略与 merging 操作分别贡献最大。</p>
+</blockquote>
+<p>3.3 查询类型解剖（表 3）</p>
+<p>人工将 120 题划分为 Primitive vs. Sense-making：</p>
+<ul>
+<li><strong>Primitive</strong> 题：HGMEM 与 w/o Merging 准确率相近（70 % vs 70 %），但前者平均实体/超边数仍更高 → 略有冗余，无伤大雅。</li>
+<li><strong>Sense-making</strong> 题：HGMEM 平均 7.07 实体/超边，准确率 40 %；去掉 merging 后降至 4.10 实体/超边，准确率跌至 30 % → <strong>高阶融合直接决定深度推理上限</strong>。</li>
+</ul>
+<p>4. 效率与成本实验</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>NarrativeQA Avg-Tokens</th>
+<th>Avg-Latency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HGMEM</td>
+<td>4436</td>
+<td>15.8 s</td>
+</tr>
+<tr>
+<td>w/o Merging</td>
+<td>4154</td>
+<td>14.8 s</td>
+</tr>
+<tr>
+<td>ComoRAG</td>
+<td>5083</td>
+<td>18.2 s</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>merging 仅多消耗 <strong>≈ 6 % token 与 6 % 时间</strong>，却带来显著质量收益；整体成本与现有带记忆基线处于同一量级。</li>
+</ul>
+<p>5. 案例可视化（图 10 &amp; 表 6）</p>
+<ul>
+<li><strong>NarrativeQA 案例</strong>：HGMEM 通过两轮“全局探索→合并”自动拼出“Xodar 因被 Carter 击败→Issus 降其为奴”这一<strong>四元关系</strong>，而 GraphRAG/LightRAG 仅给出二元或错误因果。</li>
+<li><strong>NoCha 案例</strong>：HGMEM 利用“局部深挖”定位记忆点，确认“White Sands”并非 Anne 命名，成功判假；其他系统因缺少高阶验证而判真。</li>
+</ul>
+<p>6. 可重复性材料</p>
+<ul>
+<li>附录 A：六套数据集统计与采样方式</li>
+<li>附录 B：基线实现细节与超参</li>
+<li>附录 D/E：记忆演化、子查询生成的完整 prompt</li>
+<li>附录 F：GPT-4o-as-Judge 的评分 prompt 与两级打分细则</li>
+<li>代码与数据已开源（见脚注 GitHub 链接）。</li>
+</ul>
+<p>一句话总结</p>
+<p>实验从“宏观性能→步级演化→组件消融→查询类型→效率成本→直观案例”六个维度，系统证实：<strong>HGMEM 以可忽略的额外开销，持续构建高阶关系，从而在长文本复杂全局理解任务上全面超越现有 RAG 基线</strong>。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可被视为 HGMEM 的“直接延伸”或“深层扩展”，均围绕<strong>超图记忆的可扩展性、可解释性与通用性</strong>展开，供后续研究参考。</p>
+<p>1. 超图记忆的自监督构建</p>
+<ul>
+<li><strong>问题</strong>：目前 merging 与描述生成依赖 LLM 调用，成本高且可能受限于当前 prompt 质量。</li>
+<li><strong>探索</strong>：设计自监督目标（如超边重构、对比学习），让嵌入空间自动发现“可合并”结构，减少 LLM 调用次数；或采用“小模型+验证器”流水线，降低大模型依赖。</li>
+</ul>
+<p>2. 层次化-超图混合记忆</p>
+<ul>
+<li><strong>问题</strong>：单层超图在百万级实体场景下易爆炸（超边数量 ∝ 组合数）。</li>
+<li><strong>探索</strong>：</li>
+</ul>
+<ol>
+<li>引入“社区-超边”双层结构：先在外部大图做社区划分，得到宏观簇节点；再在簇内维护局部超图。</li>
+<li>采用超图粗化（coarsening）/解粗化（uncoarsening）策略，实现多粒度推理。</li>
+</ol>
+<p>3. 时序-超图动态记忆</p>
+<ul>
+<li><strong>问题</strong>：当前记忆仅按“迭代步”离散更新，没有时间戳或事件顺序。</li>
+<li><strong>探索</strong>：</li>
+<li>为超边增加时间属性 t，构建 temporal hypergraph，支持“时序约束的 merging”（如因果不可反向）。</li>
+<li>引入遗忘机制（decay or importance-based pruning），防止记忆无限膨胀。</li>
+</ul>
+<p>4. 可解释性：超边溯源与冲突检测</p>
+<ul>
+<li><strong>问题</strong>：合并后的高阶超边可能掩盖原始证据，难以审计。</li>
+<li><strong>探索</strong>：</li>
+<li>维护“provenance hypergraph”，记录每条超边由哪些原始句/三元组支撑，实现答案可追溯。</li>
+<li>当不同超边给出矛盾命题时，触发“冲突超边”节点，让 LLM 主动进行证据权衡与置信度重排。</li>
+</ul>
+<p>5. 参数-非参数混合更新</p>
+<ul>
+<li><strong>问题</strong>：记忆描述全用自然语言，查询时需反复输入长文本。</li>
+<li><strong>探索</strong>：</li>
+<li>采用“参数化超边”——用可训练向量封装关系语义，推理阶段以向量匹配代替长文本，最后仅对 Top-k 超边解码为文本供 LLM 阅读，实现“缓存-解码”双速模式。</li>
+<li>结合 LoRA/adapter 对 LLM 进行轻量微调，使其更擅长读写超图结构，减少 prompt 长度。</li>
+</ul>
+<p>6. 跨文档 / 多模态超图记忆</p>
+<ul>
+<li><strong>问题</strong>：当前只针对单文档衍生的图。</li>
+<li><strong>探索</strong>：</li>
+<li>跨文档实体对齐后，构建“全局超图记忆”，支持多书、多卷知识融合。</li>
+<li>将图片/表格经由多模态编码器转为节点，超边可同时连接文本实体与视觉概念，实现图文混合推理。</li>
+</ul>
+<p>7. 异构超边关系类型</p>
+<ul>
+<li><strong>问题</strong>：现有超边仅用一个文本描述，关系语义扁平。</li>
+<li><strong>探索</strong>：</li>
+<li>引入“超边模式 schema”（如 Cause-Effect, Comparison, Temporal-Sequence），让 merging 操作受类型约束，减少语义漂移。</li>
+<li>允许同一组节点存在多条异构超边，实现“多视角”记忆，回答时按需调用。</li>
+</ul>
+<p>8. 强化学习驱动的检索路径</p>
+<ul>
+<li><strong>问题</strong>：子查询生成目前用贪心式 prompt，无长期回报考量。</li>
+<li><strong>探索</strong>：</li>
+<li>将“超图状态 + 查询历史”作为 MDP 状态，以最终答案 F1/accuracy 为奖励，训练轻量化策略网络（如 3B 参数）自动选择 Local vs Global 模式与具体关键词，减少 LLM 反复调用。</li>
+</ul>
+<p>9. 记忆层面的安全性与隐私</p>
+<ul>
+<li><strong>问题</strong>：超图可能意外合并敏感事实，导致泄露。</li>
+<li><strong>探索</strong>：</li>
+<li>在 merging 前加入“敏感实体识别”过滤器；或对超边描述做差分隐私文本生成，保证外部系统无法逆向还原原始敏感句。</li>
+</ul>
+<p>10. 基准扩展：超图-aware 评测</p>
+<ul>
+<li><strong>问题</strong>：现有 QA 数据集只给答案，不评估“关系复杂度”。</li>
+<li><strong>探索</strong>：</li>
+<li>新建评测集标注“所需最小关系阶数”（2-ary, 3-ary, …），衡量系统能否在记忆内形成对应阶超边；</li>
+<li>引入“反事实扰动”测试——高阶关系若被删除，模型是否仍能正确推理，以验证超图记忆的真实作用而非表面相关性。</li>
+</ul>
+<p>小结</p>
+<p>可进一步探索的点可归纳为 <strong>“效率-规模-时序-多模态-可解释-自动化-安全-评测”</strong> 八大维度；任何一条路线若取得突破，都能把 HGMEM 从“概念验证”推向“生产级”复杂推理基础设施。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>论文提出 <strong>HGMEM</strong>（Hypergraph-based Memory for Multi-step RAG），把传统“被动存储”式工作记忆升级为“可演化超图”，以解决长文本复杂查询中 <strong>高阶关系缺失、全局理解碎片化</strong> 的问题。核心内容与贡献如下。</p>
+<p>1. 问题</p>
+<ul>
+<li>多步 RAG 需持续累积证据，但现有记忆多为<strong>平面摘要或二元图</strong>，只能记录孤立事实或成对关系。</li>
+<li>面对需要 <strong>n-元（n&gt;2）关联</strong> 的全局理解任务，推理链易断裂，子查询缺乏结构指引。</li>
+</ul>
+<p>2. 方法概览</p>
+<p><strong>HGMEM = 超图存储 + 自适应检索 + 三阶演化</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>关键公式/操作</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>超图存储</td>
+<td>M = (V_M, E_M) ，每超边  e_j  为独立记忆单元</td>
+<td>天然支持 n-元关系</td>
+</tr>
+<tr>
+<td>自适应检索</td>
+<td>局部深挖： V_q=R{N(Vej)}(q) ；全局探索： V_q=RC(M^((t)))(q)</td>
+<td>聚焦与发散兼顾</td>
+</tr>
+<tr>
+<td>记忆演化</td>
+<td>Update → Insert → Merge（合并生成新超边）</td>
+<td>低阶事实→高阶命题</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>3. 实验结果</p>
+<ul>
+<li><strong>6 套长文本数据集</strong>（LongBench-v2、NarrativeQA、NoCha、Prelude 等）全面领先，<strong>GPT-4o 与 Qwen2.5-32B 双模型一致最佳</strong>。</li>
+<li><strong>消融</strong>：去掉 merging 后 sense-making 查询 Acc 下降 <strong>5–10%</strong>，验证高阶关联是关键。</li>
+<li><strong>效率</strong>：merging 仅增加 ≈6% token/时间，收益显著。</li>
+</ul>
+<p>4. 结论</p>
+<p>HGMEM 让工作记忆从“静态仓库”变成“会生长的推理骨架”，在多步 RAG 中显式建模并持续演化 <strong>n-元复杂关系</strong>，显著提升长文本全局理解性能，兼具高效与可解释潜力。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Improving%20Multi-step%20RAG%20with%20Hypergraph-based%20Memory%20for%20Long-Context%20Complex%20Relational%20Modeling，链接是https://arxiv.org/pdf/2512.23959，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2512.23959。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Chulun Zhou,Chunkang Zhang,Guoxin Yu,Fandong Meng,Jie Zhou,Wai Lam,Mo Yu</p>
+<p><strong>Categories</strong>: cs.CL,cs.AI,cs.LG</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.23959.pdf">https://arxiv.org/pdf/2512.23959.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.23959">https://arxiv.org/abs/2512.23959</a></p>
+<p><strong>Arxiv ID</strong>: 2512.23959</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2512.23959">https://papers.cool/arxiv/2512.23959</a></p>
+<p><strong>Published</strong>: 2025-12-30T03:13:10Z</p>
+<p><strong>Updated</strong>: 2025-12-30T03:13:10.000Z</p>
+<hr>
+<h3 id="2-Dynamic-Large-Concept-Models-Latent-Reasoning-in-an-Adaptive-Semantic-Space"><a href="#2-Dynamic-Large-Concept-Models-Latent-Reasoning-in-an-Adaptive-Semantic-Space" class="headerlink" title="2. Dynamic Large Concept Models: Latent Reasoning in an Adaptive Semantic Space"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2512.24617">Dynamic Large Concept Models: Latent Reasoning in an Adaptive Semantic Space</a></h3><p>Large Language Models (LLMs) apply uniform computation to all tokens, despite language exhibiting highly non-uniform information density. This token-uniform regime wastes capacity on locally predictable spans while under-allocating computation to semantically critical transitions. We propose $\textbf{Dynamic Large Concept Models (DLCM)}$, a hierarchical language modeling framework that learns semantic boundaries from latent representations and shifts computation from tokens to a compressed concept space where reasoning is more efficient. DLCM discovers variable-length concepts end-to-end without relying on predefined linguistic units. Hierarchical compression fundamentally changes scaling behavior. We introduce the first $\textbf{compression-aware scaling law}$, which disentangles token-level capacity, concept-level reasoning capacity, and compression ratio, enabling principled compute allocation under fixed FLOPs. To stably train this heterogeneous architecture, we further develop a $\textbf{decoupled $μ$P parametrization}$ that supports zero-shot hyperparameter transfer across widths and compression regimes. At a practical setting ($R=4$, corresponding to an average of four tokens per concept), DLCM reallocates roughly one-third of inference compute into a higher-capacity reasoning backbone, achieving a $\textbf{+2.69$\%$ average improvement}$ across 12 zero-shot benchmarks under matched inference FLOPs.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>大型语言模型（LLM）对所有令牌应用统一计算，尽管语言表现出高度非均匀的信息密度。这种令牌统一的状态浪费了局部可预测范围的容量，同时对语义关键转移的计算分配不足。我们提出了$\textbf{动态大型概念模型（DLCM）}$，这是一个分层语言建模框架，它通过潜在表征学习语义边界，并将计算从代币转移到更高效的压缩概念空间，从而实现推理效率。DLCM能够从头到尾发现可变长度的概念，而不依赖预设的语言单元。分层压缩从根本上改变了缩放行为。我们引入首个$\textbf{压缩感知缩放定律}$，该定律解开了令牌级容量、概念层推理能力和压缩比，实现了固定浮点浮点下的原则性计算分配。为了稳定训练这种异构架构，我们进一步开发了$\textbf{解耦的$μ$P参数化}$，支持跨宽度和压缩区间的零截图超参数传输。在实际环境中（$R=4$，平均每个概念四个代币），DLCM 将大约三分之一的推理计算重新分配到更高容量的推理骨干中，在匹配推理 FLOP 下实现 12 个零样本基准测试的平均改进 $\textbf{+2.69$\%$ 平均改进}$。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在解决现代大语言模型（LLM）在“token-均匀”计算范式下的两大核心低效性：</p>
+<ol>
+<li><p>容量错配<br>自然语言的信息密度极不均匀：长段可局部预测的token与稀疏但语义关键的过渡交替出现。现有模型对所有token施加重度计算，导致在冗余区间浪费容量，而在真正需要推理的边界处却投入不足。</p>
+</li>
+<li><p>缺乏显式抽象机制<br>人类先在抽象概念层面完成推理，再展开为具体词句；token级自回归模型没有中间层抽象，只能逐层反复隐式推断高层结构，造成重复计算与误差累积。</p>
+</li>
+</ol>
+<p>为此，作者提出 Dynamic Large Concept Models（DLCM），通过以下方式重新分配计算：</p>
+<ul>
+<li>在潜在表示空间<strong>端到端学习可变长度语义边界</strong>，将序列动态分割为“概念”片段；</li>
+<li>把原本浪费在冗余token上的算力迁移到<strong>压缩后的概念序列</strong>，用高容量主干完成推理；</li>
+<li>再通过因果交叉注意力把概念表征解码回token预测，保持自回归特性。</li>
+</ul>
+<p>最终，在相同推理FLOPs 下，DLCM 把约 1/3 算力转投到高维概念主干，在 12 项零样本基准上平均提升 2.69%，验证“<strong>把计算放在语义关键处而非均匀铺 token</strong>”是提升规模效率的新路径。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文将相关研究归入两条主线，并在正文中逐一点评其局限，进而凸显 DLCM 的差异化定位。以下按原论文章节梳理，给出核心文献与关键论点，方便快速定位。</p>
+<p>2.1 从“隐空间推理”到“概念级语言建模”</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>代表工作</th>
+<th>主要思想</th>
+<th>作者指出的不足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>纯隐空间推理</td>
+<td>COCONUT [6]</td>
+<td>在连续隐状态之间直接递推，不生成中间 token，可并行探索多条推理路径</td>
+<td>缺乏可解释性，难以做精确符号操作</td>
+</tr>
+<tr>
+<td>句子级概念模型</td>
+<td>LCM [17]</td>
+<td>用冻结的多语 encoder 将整句映射为固定维语义向量，Transformer 在句子向量空间做自回归，再用冻结 decoder 还原 token</td>
+<td>1. 依赖预训练 encoder/decoder，规模瓶颈大；2. 粒度固定为“句子”，无法按任务自适应切分</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>DLCM 的回应：</p>
+<ul>
+<li>不依赖外部冻结模型，端到端学习可变长度概念边界；</li>
+<li>概念粒度由数据驱动，可随领域/任务/压缩比动态变化。</li>
+</ul>
+<p>2.2 “动态计算分配”在语言模型中的探索</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>代表工作</th>
+<th>主要思想</th>
+<th>作者指出的不足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>深度-循环类</td>
+<td>Universal Transformer [3]</td>
+<td>同一层重复应用，用 halt 网络决定每个位置何时停止更新</td>
+<td>关注“深度”而非“语义密度”，未解决信息密度不匹配</td>
+</tr>
+<tr>
+<td>条件参数激活</td>
+<td>MoE [12, 15]</td>
+<td>每 token 只激活部分专家子网络，提升参数规模而不增加 FLOPs</td>
+<td>侧重参数效率，仍对每 token 均匀施计算，未触及“哪里该算”</td>
+</tr>
+<tr>
+<td>字节级动态分段</td>
+<td>H-NET [11]</td>
+<td>可微边界检测 → 变长 chunk → 分层处理，显著节省注意力 FLOPs</td>
+<td>仅面向字节/子词压缩表征，未在主流 token 级自回归生成框架内验证</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>DLCM 的回应：</p>
+<ul>
+<li>把 H-NET 的“可学习边界”思想首次迁移到现代 decoder-only token 生成管道；</li>
+<li>通过“概念-再解码”结构，在保持自回归因果性的同时实现内容自适应的算力重分配。</li>
+</ul>
+<p>额外被引用或对比的基线</p>
+<ul>
+<li><strong>Chinchilla / 计算最优缩放定律</strong><br>8, 9<br>：DLCM 在其基础上引入压缩比 R 与概念主干比例 P，提出首个压缩感知缩放律。</li>
+<li><strong>µP (Maximal Update Parametrization)</strong><br>19<br>：作者扩展为“解耦 µP”，解决异构宽度（token vs. concept 层）下的学习率/初始化/Adam-ε 缩放，保证零样本超参迁移。</li>
+<li><strong>FlashAttention<br>2<br>、FlexAttention</strong>：为支持可变长 token→concept 映射，作者提出 concept-replication 策略，将 L×M 不规则交叉注意力转为 L×L 规则因果掩码，实现 1.26–1.73× 加速。</li>
+</ul>
+<p>小结</p>
+<p>DLCM 的差异化可概括为：</p>
+<ol>
+<li>粒度——“句子级”→“可学习的可变概念”；</li>
+<li>架构——“纯隐空间”或“字节压缩”→“token 生成框架下的 encoder-compressor-decoder”；</li>
+<li>缩放——“统一宽度”→“压缩感知 + 解耦 µP”，实现固定 FLOPs 下的最优容量分配。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文把“token-均匀计算”拆解为四个可操作的阶段，并在每一阶段引入针对性设计，使得<strong>计算从冗余 token 流向语义关键的概念区间</strong>。具体实现如下（按原文 §3 pipeline 展开）：</p>
+<p>1. Encoding —— 轻量提取，保留局部信息</p>
+<ul>
+<li>标准因果 Transformer，仅 10 层，维度  d_(token) 。</li>
+<li>输出细粒度表示 $H=<br>h_1,…,h_L<br>$，<strong>同时服务两个下游任务</strong>：<br>– 为边界检测提供“相似度探针”；<br>– 为最后解码阶段提供 token-级查询向量  Q 。</li>
+</ul>
+<p>2. Dynamic Segmentation —— 用表示空间里的“断裂”自动分概念</p>
+<p>2.1 可微边界检测</p>
+<ul>
+<li>每位置计算 query-key 余弦距离</li>
+</ul>
+<p>p<em>t = 1-cos(q</em>(t-1), k_t)/2, quad q_t=W_q h_t,; k_t=W_k h_t</p>
+<ul>
+<li>训练时 Gumbel-Softmax 采样，推理时硬阈值 $<br>p_tge 0.5<br>$。</li>
+</ul>
+<p>2.2 概念池化</p>
+<ul>
+<li>根据二进制边界序列  b  切分段  S_k ；</li>
+<li>段内 mean-pool + 线性投影  W<em>(up)  得到概念向量  c_k∈R^(d</em>(concept)) 。</li>
+</ul>
+<p>2.3 全局负载均衡（Global Parser）</p>
+<ul>
+<li>在分布式 batch 上同步统计</li>
+</ul>
+<p>G<em>(global)=(1) / (|T|)∑ p</em>(i,t),quad F<em>(global)=(1) / (|T|)∑ b</em>(i,t)</p>
+<ul>
+<li>加辅助损失</li>
+</ul>
+<p>L<em>(aux)=(R) / (R-1)[(R-1)F</em>(global)G<em>(global)+(1-F</em>(global))(1-G_(global))]-1</p>
+<p>强制<strong>全局平均压缩比</strong>趋近  1/R ，而单序列可自适应松紧。</p>
+<p>3. Concept-Level Reasoning —— 把“省下的 FLOPs”投入高维主干</p>
+<ul>
+<li>16 层 Transformer，维度  d<em>(concept)=3072 （&gt;2× d</em>(token) ），注意力复杂度  O(M^2)  且  M=L/R 。</li>
+<li>仅在此阶段做<strong>深度自回归推理</strong>；概念向量既编码语义又承载长程依赖。</li>
+</ul>
+<p>4. Token-Level Decoding —— 因果交叉注意力还原到 token 空间</p>
+<p>4.1 Concept Smoothing</p>
+<ul>
+<li>轻量 2 层自注意力消除硬池化导致的边界伪影，输出  tilde Z 。</li>
+</ul>
+<p>4.2 Causal Cross-Attention</p>
+<ul>
+<li>查询来自 encoder 的  H ，键值来自  tilde Z ；</li>
+<li>为避免 L×M 不规则掩码，采用 <strong>concept-replication</strong>：<br>– 按段长把  c_k  重复到对应 token 位，得到 L×L 标准因果掩码；<br>– 可直接调用 FlashAttention-VarLen，速度提升 1.26–1.73×。</li>
+<li>投影保持维度一致：</li>
+</ul>
+<p>Psi(H,Z)=Softmaxl((QK^top) / (√{d_(texthead))}+Mr)VW_O + H</p>
+<p>其中  Q=HW_Q,; K=tilde Z W_K,; V=tilde Z W_V 。</p>
+<p>5. 训练与缩放配套技术</p>
+<ul>
+<li>目标函数： L=L<em>(CE)+λL</em>(aux) ，两项梯度量级解耦，避免边界被 CE 淹没。</li>
+<li>解耦 µP：token 层、concept 层、嵌入层各自按宽度倒数缩放学习率与初始化方差，实现<strong>零样本超参迁移</strong>。</li>
+<li>压缩感知缩放律：</li>
+</ul>
+<p>L(N,D,R,P)=E<em>0+A</em>(token)(N(1-P)+t<em>(token))^(δ_1)+A</em>(concept)R^(γ)(NP+t<em>(concept))^(δ_2)+A</em>(data)(D+t_(data))^α</p>
+<p>在固定 FLOPs 下可解析求出最优  (R,P) ，理论预测与实证误差 &lt;0.05。</p>
+<p>效果验证</p>
+<ul>
+<li>R=4 时推理 FLOPs 降低 34%，却把省下的计算换成 2× 参数的高维概念主干；</li>
+<li>12 项零样本基准平均 +2.69%，推理型任务（ARC/OBQA/PIQA 等）增益最大；</li>
+<li>损失分布呈“U 型”——边界 token 显著下降，中段可预测区略升，证明<strong>计算被主动迁移到语义转折点</strong>。</li>
+</ul>
+<p>一句话总结</p>
+<p>DLCM 用“学习边界 → 压缩概念 → 重投算力 → 交叉还原”四步，把原本均匀铺开的 token 计算<strong>动态注入</strong>到信息密度最高的语义转折处，从而在同 FLOPs 预算下实现更强的推理能力。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕“<strong>同预算（FLOPs/参数/数据）下是否真能因为计算重分配而涨点</strong>”这一核心问题，设计了<strong>三大组共 7 项实验</strong>，覆盖缩放律、主结果、机制分析与消融。所有实验均用自研 1 T token 开源语料（DeepSeek-v3 分词）训练，确保对比公平可复现。</p>
+<p>1. 缩放律实验（§6）——先定架构，再训大模型</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实验</th>
+<th>目的</th>
+<th>规模/变量</th>
+<th>关键结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1 解耦 µP 调参</td>
+<td>验证异构宽度下零样本超参迁移</td>
+<td>87 M 代理模型→ 274 M / 468 M / 834 M 大模型</td>
+<td>最优 lr 与 1/width 成比例，代理模型调出的 base lr 可直接放大，无需再搜</td>
+</tr>
+<tr>
+<td>1.2 压缩—aware 缩放律拟合</td>
+<td>在训练前预测最优 (R, P)</td>
+<td>R∈{2,4,8}, P∈{30%,50%,70%}, 200 B token 拟合</td>
+<td>公式 R²&gt;0.98；理论最优 R=4, P=60%，与后续大模型实证一致</td>
+</tr>
+<tr>
+<td>1.3 衰减速率验证</td>
+<td>确保律在 WSD 后期仍成立</td>
+<td>90 %–99 % token 区间 log-linear 回归</td>
+<td>衰减速率 ∆decay 拟合 R²=0.93，验证律在 tail 阶段可用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2. 主结果对比（§7.1）——同 FLOPs 打擂台</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实验</th>
+<th>设置</th>
+<th>基准</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1 12 基准零样本</td>
+<td>DLCM 2.3 B vs LLaMA-1.3 B，均训 1 T token，推理 FLOPs 对齐</td>
+<td>CommonsenseQA、OBQA、ARC-e/c、PIQA、HellaSwag、Winogrande、BoolQ、RACE、MMLU、C-Eval、CMMLU</td>
+<td>平均 ↑+2.69 %；推理型任务最高 +3.00 %；粒度敏感任务略降（BoolQ −1.47 %）</td>
+</tr>
+<tr>
+<td>2.2 FLOPs-准确率曲线</td>
+<td>同参数系列 274 M–834 M，记录训练全程 Loss 与推理 FLOPs</td>
+<td>—</td>
+<td>DLCM 在任意 FLOPs 点均处于 Pareto 前沿，同等 Loss 节省 25 %–34 % FLOPs</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>3. 机制与消融（§7.2 &amp; §8）——拆组件看因果</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实验</th>
+<th>目的</th>
+<th>设计</th>
+<th>发现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1 Loss 分布探针</td>
+<td>计算是否真被搬到边界</td>
+<td>600 验证集样本对齐到 concept 内相对位置</td>
+<td>边界 0–2 &amp; 16+ 位置 Loss 显著↓，中段↑，呈 U 型，证实计算重分配</td>
+</tr>
+<tr>
+<td>3.2 边界学习 vs 规则</td>
+<td>可学习边界是否必要</td>
+<td>端到端网络预测 vs 固定余弦阈值 τ</td>
+<td>端到端出现“压缩 creep-up”，最终只压 1.9×；规则法稳定 4×，故主模型采用规则边界</td>
+</tr>
+<tr>
+<td>3.3 Global Parser 消融</td>
+<td>全局压缩正则化是否有效</td>
+<td>R=4，对比 per-sequence Laux vs batch-global Laux</td>
+<td>Global 版实现压缩比 3.92→更接近 4.0，5/6 任务涨分，平均 +2.1 %</td>
+</tr>
+<tr>
+<td>3.4 内容自适应验证</td>
+<td>模型能否按领域自动调节粒度</td>
+<td>统计不同域在 R=8/4/2 下的实际 tokens/concept</td>
+<td>技术英语 10.58，代码 6.14，中文 6.09，证实模型按信息密度自动分配压缩“预算”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4. 效率微基准（§4.2）—— kernel 级加速</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实验</th>
+<th>对比</th>
+<th>规模</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flash-VarLen vs Flex Attention</td>
+<td>概念复制策略</td>
+<td>seq 2 k–16 k, hidden 1 k–4 k</td>
+<td>1.26–1.73 × 加速，且随长度放大；内存-计算换带宽策略有效</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>一句话总结</p>
+<p>论文<strong>先靠缩放律定出 R=4/P=60 % 的最优架构</strong>，再<strong>同 FLOPs 下与标准 LLaMA 打擂拿到 +2.69 % 平均涨点</strong>，最后通过<strong>Loss 分布、边界消融、内容自适应</strong>三组机制实验，证明涨点确实来源于“<strong>把算力从可预测中段搬到语义边界</strong>”这一核心假设。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可直接继承 DLCM 的“动态概念-压缩推理”框架，继续向外扩展或向内深挖；每条都给出可验证的假设与可能方法，供后续工作参考。</p>
+<p>1. 自适应压缩比：让 R 成为输入依赖的变量</p>
+<ul>
+<li><strong>假设</strong>：不同样本的信息密度差异巨大，固定 R 会过度压缩高密度文本或浪费低密度文本。</li>
+<li><strong>探索</strong>：</li>
+<li>把 R 预测网络化为一个轻量 LSTM/MLP，以 encoder 隐态为输入，输出连续松弛系数 λ(x)；</li>
+<li>用强化学习（REINFORCE 或 Gumbel-Softmax）优化“下游任务奖励 - 压缩代价”目标，实现样本级自适应。</li>
+<li><strong>验证指标</strong>：同样 FLOPs 预算下，长尾复杂样本（数学、代码）的边界损失进一步下降。</li>
+</ul>
+<p>2. 多层级概念金字塔：由“概念”再递归到“超概念”</p>
+<ul>
+<li><strong>假设</strong>：篇章级推理需要跨段抽象，单层概念仍不够。</li>
+<li><strong>探索</strong>：</li>
+<li>在现有 concept 序列上再套一层边界检测 + 池化，得到更高阶 Super-Concept；</li>
+<li>采用 U-Net 式跳跃连接，让顶层梯度直接回流到底层 token 表示，缓解深度-退化。</li>
+<li><strong>验证任务</strong>：长文档问答、小说级情节推理、多步证明生成。</li>
+</ul>
+<p>3. 概念空间工具调用：把“隐推理”转成“可解释符号动作”</p>
+<ul>
+<li><strong>假设</strong>：纯连续向量虽高效，却难与外部工具（计算器、检索、API）对接。</li>
+<li><strong>探索</strong>：</li>
+<li>在 concept transformer 中插入可学习的“工具调用”特殊概念向量 <API>_t；</li>
+<li>当边界检测触发 <API> 概念时，解码器暂停生成，执行外部调用，将返回结果再编码为新概念继续推理。</li>
+<li><strong>验证场景</strong>：HotpotQA、GSM8K 多步数学题，看是否减少事实幻觉与算术错误。</li>
+</ul>
+<p>4. 在线压缩比调控：推理阶段“用多少算力”由用户即时指定</p>
+<ul>
+<li><strong>假设</strong>：生产环境对延迟与质量的需求动态变化。</li>
+<li><strong>探索</strong>：</li>
+<li>训练一次模型后，在推理时通过调节阈值 τ 或温度 α 连续改变压缩比；</li>
+<li>构造“质量-延迟”Pareto 曲线，提供 SLA 级旋钮。</li>
+<li><strong>验证</strong>：同硬件下测量吞吐 vs. 准确率，看是否覆盖多种在线 QoS 需求。</li>
+</ul>
+<p>5. 跨模态概念对齐：文本概念与图像/音频片段共享同一空间</p>
+<ul>
+<li><strong>假设</strong>：概念是语义而非模态特异，跨模态压缩可统一推理。</li>
+<li><strong>探索</strong>：</li>
+<li>用已有视觉-语言编码器（如 CLIP）将图像块/音频帧先映射到与 text concept 同维空间；</li>
+<li>在 concept transformer 中统一自回归，实现“图文交替”或“听一段写一段”生成。</li>
+<li><strong>验证任务</strong>：多模态长文档生成、视觉故事续写。</li>
+</ul>
+<p>6. 解码策略：概念级 beam search 与 token 级细调协同</p>
+<ul>
+<li><strong>假设</strong>：当前仅对 token 做 beam search，忽略了概念序列也应有多路径探索。</li>
+<li><strong>探索</strong>：</li>
+<li>双层 beam：先在 concept 空间保留 K 条高分序列，再对各 concept 并行展开 token 解码；</li>
+<li>用分层长度归一化与重复惩罚，减少“早期概念锁定”导致的退化。</li>
+<li><strong>验证指标</strong>：长文本生成重复率、多样性指标 (Self-BLEU, Distinct-n) 提升。</li>
+</ul>
+<p>7. 极端压缩下的 emergent 推理：R→10–20 是否仍可行？</p>
+<ul>
+<li><strong>假设</strong>：当压缩比极高时，概念向量需承载超长依赖，可能触发“容量瓶颈-相变”现象。</li>
+<li><strong>探索</strong>：</li>
+<li>系统扫描 R=10,16,20，观察验证 Loss 是否出现突然上升（相变点）；</li>
+<li>对比增大 d_concept 或采用递归记忆（Block-Recurrent, TTT）能否平滑相变。</li>
+<li><strong>科学意义</strong>：揭示“压缩-推理”权衡的临界行为，为极限边缘计算提供理论边界。</li>
+</ul>
+<p>8. 解耦 µP 的进一步泛化：异构深度 + 异构宽度</p>
+<ul>
+<li><strong>假设</strong>：当前仅宽度不同，深度也可能需要不同缩放规则。</li>
+<li><strong>探索</strong>：</li>
+<li>将概念层与 token 层的深度也作为独立变量，重新推导 µP 的 learning-rate/initialization 矩阵；</li>
+<li>验证零样本迁移是否仍成立，为后续“深度-MoE”或“深度-递归”概念模型奠基。</li>
+</ul>
+<p>9. 持续更新与概念漂移：流式数据下的边界学习稳定性</p>
+<ul>
+<li><strong>假设</strong>：真实世界数据分布随时间漂移，固定边界预测器会失效。</li>
+<li><strong>探索</strong>：</li>
+<li>采用 Experience Replay + 弹性权重巩固 (EWC) 只重放边界损失，减轻遗忘；</li>
+<li>或把边界检测做成在线贝叶斯，用变分推断持续更新。</li>
+<li><strong>验证协议</strong>：在新闻、社交媒体流上模拟“时间切片”训练，测量遗忘率与压缩比漂移。</li>
+</ul>
+<p>10. 安全与可解释：概念边界能否对应人类可理解的“命题”单元</p>
+<ul>
+<li><strong>假设</strong>：若概念边界与人类命题/论点一致，可提升可控性与安全性。</li>
+<li><strong>探索</strong>：</li>
+<li>收集人工标注的“论点分段”数据集，评估边界对齐度（B-score, F1）；</li>
+<li>通过注意力 rollout 可视化，看概念向量是否聚焦在论点关键词；</li>
+<li>引入对比损失，鼓励边界与人工标注重叠，测试对对抗样本的鲁棒性。</li>
+</ul>
+<p>总结</p>
+<p>DLCM 把“计算从 token 搬到概念”只是第一步；上面 10 条方向分别从<strong>粒度自适应、层级抽象、模态扩展、推理可控、临界行为、持续学习</strong>等角度切入，既可单独成文，也可组合形成下一代“动态多层级概念模型”。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>Dynamic Large Concept Models（DLCM）挑战了“每 token 均摊计算”的传统范式，核心思路与结果可浓缩为一句话：</p>
+<blockquote>
+<p><strong>用可学习的语义边界把序列压缩成可变长“概念”，再把省下的算力投进高维概念主干做推理，最后交叉注意力还原 token，从而在同等推理 FLOPs 下获得更优的推理性能。</strong></p>
+</blockquote>
+<p>具体要点如下：</p>
+<p>1. 问题与动机</p>
+<ul>
+<li>自然语言信息密度极不均匀，LLM 却对每个 token 施加重度计算 → 容量错配。</li>
+<li>人类先抽象再展开，而 token 级模型缺乏显式抽象层 → 重复推断、浪费算力。</li>
+</ul>
+<p>2. 解决方案（四段式 pipeline）</p>
+<ol>
+<li><strong>轻量 Encoder</strong>：10 层 Transformer 输出 token 级表示  H 。</li>
+<li><strong>动态分割</strong>：</li>
+</ol>
+<ul>
+<li>用余弦距离检测潜在“语义断裂”→ 可微边界概率  p_t ；</li>
+<li>全局负载均衡损失  L_(aux)  强制 batch 级压缩比 = 1/R，允许单序列自适应。</li>
+</ul>
+<ol>
+<li><strong>概念推理</strong>：</li>
+</ol>
+<ul>
+<li>段内 mean-pool + 投影 → 概念序列  C ；</li>
+<li>16 层、3072 dim 的高容量主干在  C  上做自回归，注意力 FLOPs 降  R^2  倍。</li>
+</ul>
+<ol>
+<li><strong>Token 解码</strong>：</li>
+</ol>
+<ul>
+<li>concept-replication 把  C  展回  L  长度，形成标准 L×L 因果掩码，可复用 FlashAttention；</li>
+<li>交叉注意力输出最终 logits，保持因果且兼容任意  d<em>(token) ≠ d</em>(concept) 。</li>
+</ul>
+<p>3. 训练与缩放配套</p>
+<ul>
+<li><strong>解耦 µP</strong>：token 层、concept 层、嵌入各自按宽度倒数缩放 lr 与初始化，实现零样本超参迁移。</li>
+<li><strong>压缩感知缩放律</strong>：</li>
+</ul>
+<p>L(N,D,R,P)=E<em>0+A</em>(token)(N(1-P)+t<em>(token))^(δ_1)+A</em>(concept)R^(γ)(NP+t<em>(concept))^(δ_2)+A</em>(data)(D+t_(data))^α</p>
+<p>在固定 FLOPs 下解析选出最优 (R=4, P=60 %)，理论与实证误差 &lt;0.05。</p>
+<p>4. 实验结果</p>
+<ul>
+<li><strong>主对比</strong>：DLCM 2.3 B vs LLaMA-1.3 B，同训 1 T token、同推理 FLOPs<br>– 12 基准平均 <strong>+2.69 %</strong>；推理主导任务最高 <strong>+3.00 %</strong>；<br>– 同等 Loss 节省 <strong>25 %–34 %</strong> FLOPs。</li>
+<li><strong>机制分析</strong>：Loss 分布呈 U 型，边界 token 显著下降，中段可预测区略升，证实<strong>计算被搬往语义转折点</strong>。</li>
+<li><strong>消融</strong>：<br>– 可学习边界受 CE 梯度主导，压缩比 creep-up → 最终采用<strong>规则边界</strong>；<br>– 全局正则化比 per-sequence 更稳定，实际压缩比 3.92 vs 3.15，任务平均 <strong>+2.1 %</strong>。</li>
+</ul>
+<p>5. 贡献一句话</p>
+<p>DLCM 给出<strong>首个压缩感知缩放律</strong>与<strong>异构架构的解耦 µP</strong>，证明“<strong>把算力从冗余 token 抽到高维概念空间</strong>”能在同 FLOPs 下稳定涨点，为后续多层抽象、跨模态、在线 QoS 等方向打开新路径。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Dynamic%20Large%20Concept%20Models%3A%20Latent%20Reasoning%20in%20an%20Adaptive%20Semantic%20Space，链接是https://arxiv.org/pdf/2512.24617，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2512.24617。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Xingwei Qu,Shaowen Wang,Zihao Huang,Kai Hua,Fan Yin,Rui-Jie Zhu,Jundong Zhou,Qiyang Min,Zihao Wang,Yizhi Li,Tianyu Zhang,He Xing,Zheng Zhang,Yuxuan Song,Tianyu Zheng,Zhiyuan Zeng,Chenghua Lin,Ge Zhang,Wenhao Huang</p>
+<p><strong>Categories</strong>: cs.LG,cs.AI</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.24617.pdf">https://arxiv.org/pdf/2512.24617.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.24617">https://arxiv.org/abs/2512.24617</a></p>
+<p><strong>Arxiv ID</strong>: 2512.24617</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2512.24617">https://papers.cool/arxiv/2512.24617</a></p>
+<p><strong>Published</strong>: 2025-12-31T04:19:33Z</p>
+<p><strong>Updated</strong>: 2025-12-31T04:19:33.000Z</p>
+<hr>
+<h3 id="3-DiffThinker-Towards-Generative-Multimodal-Reasoning-with-Diffusion-Models"><a href="#3-DiffThinker-Towards-Generative-Multimodal-Reasoning-with-Diffusion-Models" class="headerlink" title="3. DiffThinker: Towards Generative Multimodal Reasoning with Diffusion Models"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2512.24165">DiffThinker: Towards Generative Multimodal Reasoning with Diffusion Models</a></h3><p>While recent Multimodal Large Language Models (MLLMs) have attained significant strides in multimodal reasoning, their reasoning processes remain predominantly text-centric, leading to suboptimal performance in complex long-horizon, vision-centric tasks. In this paper, we establish a novel Generative Multimodal Reasoning paradigm and introduce DiffThinker, a diffusion-based reasoning framework. Conceptually, DiffThinker reformulates multimodal reasoning as a native generative image-to-image task, achieving superior logical consistency and spatial precision in vision-centric tasks. We perform a systematic comparison between DiffThinker and MLLMs, providing the first in-depth investigation into the intrinsic characteristics of this paradigm, revealing four core properties: efficiency, controllability, native parallelism, and collaboration. Extensive experiments across four domains (sequential planning, combinatorial optimization, constraint satisfaction, and spatial configuration) demonstrate that DiffThinker significantly outperforms leading closed source models including GPT-5 (+314.2\%) and Gemini-3-Flash (+111.6\%), as well as the fine-tuned Qwen3-VL-32B baseline (+39.0\%), highlighting generative multimodal reasoning as a promising approach for vision-centric reasoning.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>尽管近年来的多模态大型语言模型（MLLMs）在多模态推理方面取得了显著进展，但它们的推理过程仍以文本为中心，在复杂的长程视觉任务中表现不尽如人意。本文提出了一种新颖的生成性多模态推理范式，并引入了基于扩散的推理框架——DiffThinker。从概念上讲，DiffThinker将多模态推理重构为一种原生的图像到图像生成任务，在以视觉为中心的任务中实现了更优的逻辑一致性和空间精度。我们对DiffThinker与MLLMs进行了系统对比，首次深入探讨了该范式的内在特性，揭示了四个核心属性：效率、可控性、原生并行性和协作性。在四个领域（顺序规划、组合优化、约束满足和空间配置）进行的大量实验表明，DiffThinker显著超越了包括GPT-5（+314.2%）和Gemini-3-Flash（+111.6%）在内的领先闭源模型，以及微调后的Qwen3-VL-32B基线（+39.0%），凸显了生成性多模态推理作为视觉中心推理的一种有前景的方法。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在解决现有<strong>多模态大模型（MLLMs）</strong>在<strong>复杂长周期、以视觉为中心的任务</strong>中表现不佳的问题。具体而言，尽管MLLMs通过链式思维（Chain-of-Thought, CoT）和“用图像思考”（Thinking with Image）等机制增强了推理能力，但其推理过程仍以<strong>文本符号空间</strong>为主，导致以下关键缺陷：</p>
+<ol>
+<li><strong>视觉信息跟踪能力弱</strong>：难以在长序列推理中维持对视觉状态变化的准确感知。</li>
+<li><strong>推理效率低</strong>：依赖冗长的文本CoT，生成过程不可控且延迟高。</li>
+<li><strong>空间精度差</strong>：在需要精细空间操作的任务（如路径规划、拼图还原）中，文本输出的抽象性限制了细粒度视觉一致性。</li>
+</ol>
+<p>为此，论文提出<strong>生成式多模态推理（Generative Multimodal Reasoning）</strong>新范式，并设计<strong>DiffThinker</strong>框架，将多模态推理重构为<strong>原生图像到图像的生成任务</strong>，通过扩散模型直接在视觉空间中完成推理，从而显著提升逻辑一致性与空间精度。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文在第2节“Related Works”中系统梳理了两条主线研究，并指出其局限，进而凸显DiffThinker的差异化定位。相关研究可归纳如下：</p>
+<ul>
+<li><strong>2.1 Multimodal Reasoning</strong></li>
+<li><strong>RL-enhanced MLLMs</strong></li>
+<li>DeepSeek-R1、Satori-R1、Visual-R1 等通过“可验证奖励”强化链式思维，但仍停留在文本符号空间。</li>
+<li><strong>“Thinking with Image” 范式</strong></li>
+<li>早期方法：借助外部工具（代码、API）多轮调用生成中间图像，如 DeepEyes、Mini-o3。</li>
+<li>近期方法：直接生成视觉token或隐式图像，如 Latent Sketchpad、Machine Mental Imagery，但骨干仍是自回归LLM，长周期视觉一致性差。</li>
+<li><strong>“Thinking with Video” 范式</strong></li>
+<li>通过多轮工具调用或端到端视频生成实现推理，如 VideoChat-R1.5、V-ReasonBench。</li>
+<li>缺陷：闭源模型内部机制不透明，且视频生成计算开销极高。</li>
+<li><strong>2.2 Diffusion Models</strong></li>
+<li><strong>通用生成</strong></li>
+<li>潜空间扩散（LDM）、DiT、MMDiT 奠定高分辨率图像/视频生成基础。</li>
+<li><strong>专用推理</strong></li>
+<li>针对Sudoku、TSP、几何等单一任务设计专用扩散求解器（Difusco、Spatial Reasoners 等），需任务特定架构与从头训练。</li>
+<li><strong>DiffThinker 的差异化</strong><br>首次将<strong>多模态推理统一为通用图像到图像生成任务</strong>，利用单组扩散权重即可快速适配多领域，兼具“视觉原生、并行探索、可控推理”四特性，显著超越上述文本中心或任务专用方法。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过提出 <strong>DiffThinker</strong> 框架，将多模态推理从传统的“文本符号空间”彻底迁移到“视觉生成空间”，以 <strong>原生图像到图像扩散生成</strong> 的方式一次性解决复杂长周期、以视觉为中心的任务。核心手段可概括为以下四点：</p>
+<p>1. 问题重定义：把推理变成图像生成</p>
+<ul>
+<li>传统 MLLM： f_(Std)(x,c)to zto y ，中间链式思维  z  是冗长文本，输出  y  是符号答案。</li>
+<li>DiffThinker：直接学习生成函数</li>
+</ul>
+<p>G(x,c)to x_(sol)∈ X</p>
+<p>其中  x<em>(sol)  是一张“答案图”，再用确定性解析器  Psi(x</em>(sol))to y  得到符号结果，实现公平对比且杜绝答案泄露。</p>
+<p>2. 流匹配（Flow Matching）扩散引擎</p>
+<ul>
+<li>在潜空间执行 <strong>直线路径 ODE</strong>：</li>
+</ul>
+<p>x_t = t x_0 + (1-t)x_1,quad v_t = x_0 - x_1</p>
+<ul>
+<li>MMDiT 网络  v_θ  以图文联合条件  h=φ(S)  为输入，最小化</li>
+</ul>
+<p>L<em>(FM)=E</em>(t,x<em>0,x_1)|v</em>θ(x_t,t,h)-(x_0-x_1)|^2</p>
+<ul>
+<li>推理时固定 20 步 Euler 积分即可得到潜码  x_(t=1)≈ x_0 ，再经 VAE 解码为像素级答案图，保证 <strong>计算成本恒定</strong>、与问题逻辑复杂度无关。</li>
+</ul>
+<p>3. 任务统一：同一框架覆盖四域七任务</p>
+<p>所有任务都被转换成“输入图→答案图”形式，无需任务特定网络：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>任务类别</th>
+<th>答案图示意</th>
+<th>解析符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>序列规划 (VSP/Maze)</td>
+<td>红色轨迹线</td>
+<td>动作序列</td>
+</tr>
+<tr>
+<td>组合优化 (TSP)</td>
+<td>闭合环路</td>
+<td>城市访问顺序</td>
+</tr>
+<tr>
+<td>约束满足 (Sudoku)</td>
+<td>完整 9×9 网格</td>
+<td>81 位数字串</td>
+</tr>
+<tr>
+<td>空间配置 (Jigsaw/VisPuzzle)</td>
+<td>拼好的整体图</td>
+<td>块索引排列</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4. 原生并行 + 协作机制</p>
+<ul>
+<li><strong>并行探索</strong>：早期去噪阶段同时生成多条候选路径/环路，后续步骤通过全局约束自动剪枝，最终收敛到唯一可行解。</li>
+<li><strong>协作推理</strong>：DiffThinker 先生成  N  张候选答案图，MLLM 仅需做“验证+投票”，即可把准确率再提升，实现“视觉精度+符号反思”互补。</li>
+</ul>
+<p>通过以上设计，论文在 <strong>零样本或同等监督数据</strong> 下，使 DiffThinker 相对 GPT-5 提升 314.2%，相对 Gemini-3-Flash 提升 111.6%，同时保持 <strong>训练与推理耗时均低于 RL-based MLLM</strong>，验证了“生成式多模态推理”新范式的可行性与 scalability。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文在 <strong>4 个领域、7 项任务、共 20 个难度等级</strong> 上进行了系统实验，涵盖训练-推理效率、精度-延迟权衡、数据缩放、超参数敏感性、图像 vs 视频生成对比以及人机协作等维度。主要实验汇总如下（按研究问题组织）：</p>
+<p>1. 主实验：全任务精度对比</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>任务</th>
+<th>难度等级</th>
+<th>测试样本/级</th>
+<th>对比基线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>序列规划</td>
+<td>VSP、VSP-Super、Maze</td>
+<td>3×3→32×32 网格</td>
+<td>100</td>
+<td>GPT-5、Gemini-3-Flash、Qwen3-VL-8/32B（零样本 &amp; SFT &amp; GRPO）</td>
+</tr>
+<tr>
+<td>组合优化</td>
+<td>TSP</td>
+<td>12→18 座城市</td>
+<td>100</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>约束满足</td>
+<td>Sudoku</td>
+<td>30→45 个已知格</td>
+<td>100</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>空间配置</td>
+<td>Jigsaw、VisPuzzle</td>
+<td>2×2→4×4 拼图</td>
+<td>100</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>结果</strong>：DiffThinker 平均准确率 <strong>87.4 %</strong>，较最佳 MLLM（Qwen3-VL-32B-SFT 62.9 %）↑ <strong>39.0 %</strong>；较 GPT-5 ↑ <strong>314.2 %</strong>，较 Gemini-3-Flash ↑ <strong>111.6 %</strong>。</p>
+<p>2. 效率实验</p>
+<ul>
+<li><strong>训练耗时</strong>（8×H200）：</li>
+<li>DiffThinker-FlowMatching <strong>≈ 3 h</strong></li>
+<li>Qwen3-VL-32B-SFT <strong>≈ 3 h</strong></li>
+<li>Qwen3-VL-32B-GRPO <strong>≈ 23 h</strong></li>
+<li><strong>推理延迟</strong>（单样本平均）：</li>
+<li>DiffThinker <strong>1.1 s</strong></li>
+<li>Qwen3-VL-8B-SFT <strong>1.0 s</strong></li>
+<li>Qwen3-VL-32B-SFT <strong>1.4 s</strong></li>
+</ul>
+<p>3. 可控性 &amp; 精度-步骤权衡</p>
+<p>固定 Euler 步数 T∈{10,20,30,40}，在 VSP-Super、Maze、TSP、Sudoku、Jigsaw 上同时记录准确率与耗时。</p>
+<ul>
+<li><strong>20 步</strong> 为拐点：↑ 步数不再显著提升精度，但耗时线性增加，故后续实验统一采用 <strong>T=20</strong>。</li>
+</ul>
+<p>4. 数据缩放实验</p>
+<p>在 <strong>Maze-32</strong> 与 <strong>Sudoku-35</strong> 两个高难度任务上，训练样本从 10²→10⁵ 逐步扩增。</p>
+<ul>
+<li>DiffThinker 准确率随数据单调上升，10⁵ 样本时 &gt;90 %；</li>
+<li>同数据量下，Qwen3-VL-8/32B-SFT 准确率 &lt;60 %，显示 <strong>生成式范式数据效率更高</strong>。</li>
+</ul>
+<p>5. 超参数敏感性</p>
+<p><strong>Classifier-Free Guidance 尺度 w</strong> 消融（1→6）：</p>
+<ul>
+<li>视觉轨迹清晰度与逻辑精度在 <strong>w=4</strong> 处最佳；</li>
+<li>过大（w≥6）出现数值过饱和、纹理失真，精度下降。</li>
+</ul>
+<p>6. 图像 vs 视频生成对比</p>
+<p>构建 <strong>DiffThinker-Video</strong>（基于 Wan2.2-TI2V-5B），在 <strong>Maze-8</strong> 同等数据集上训练。</p>
+<ul>
+<li>视频版需 <strong>2× 训练时间</strong>，推理延迟 <strong>2.0 s</strong>（vs 1.1 s），准确率 <strong>低 12 %</strong>；</li>
+<li>说明 <strong>当前视频模型推理性价比仍不如图像扩散</strong>。</li>
+</ul>
+<p>7. 协作推理实验</p>
+<p>在 <strong>Jigsaw-4</strong> 上，DiffThinker 生成 <strong>N∈{1,5,10,20}</strong> 张候选图，由 Qwen3-VL-32B 进行约束验证并投票。</p>
+<ul>
+<li>单模型上限 <strong>72 %</strong>；</li>
+<li>协作后 <strong>N=20 时达 94 %</strong>，显著超越任一单模型，验证 <strong>“生成+验证”协同增益</strong>。</li>
+</ul>
+<p>8. 定性案例与失败分析</p>
+<p>提供 7 任务共 <strong>14 组成功/失败可视化</strong>，并给出 Gemini-3-Pro 的完整思维链与耗时，直观展示：</p>
+<ul>
+<li>DiffThinker 失败多因 <strong>过早并行路径未收敛</strong> 或 <strong>局部遮挡误判</strong>；</li>
+<li>MLLM 失败常因 <strong>长序列坐标跟踪错误</strong> 或 <strong>空间度量失真</strong>。</li>
+</ul>
+<p>综上，实验从 <strong>精度、效率、鲁棒性、协作能力</strong> 多维度验证了“生成式多模态推理”范式的有效性，并指出视频生成尚需更高效骨干方可实用化。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可视为对 DiffThinker 的“直接延伸”或“范式升级”，既弥补当前局限，也拓展生成式多模态推理的边界。为方便后续研究，按 <strong>短期可验证</strong> 与 <strong>长期探索性</strong> 两级列出。</p>
+<p>短期可验证（6–12 个月可落地）</p>
+<ol>
+<li><strong>鲁棒零样本泛化</strong></li>
+</ol>
+<ul>
+<li>构建 <strong>OOD 视觉推理基准</strong>：在训练分布外测试拼图块形状、TSP 城市分布、迷宫墙体纹理等变化，量化生成式 vs 符号式模型的鲁棒差距。</li>
+<li>引入 <strong>测试时缩放（test-time scaling）</strong>：在推理阶段增加去噪步数或并行候选数，观察是否像 LLM 的“思考 Token”一样持续提升 OOD 精度。</li>
+</ul>
+<ol>
+<li><strong>统一多任务权重</strong></li>
+</ol>
+<ul>
+<li>当前每任务独立训练 20B 模型。可尝试 <strong>多任务 Flow Matching</strong>：共享主干 MMDiT，用任务嵌入向量或 Prompt-Image 交叉注意力区分领域，验证是否保留精度并减少总参数量。</li>
+</ul>
+<ol>
+<li><strong>可验证奖励微调</strong></li>
+</ol>
+<ul>
+<li>将 GRPO 中的“部分奖励”升级为 <strong>像素级可验证奖励</strong>（如轨迹与真值 IoU、Sudoku 宫格逐像素 MSE），用强化学习微调扩散速度场，观察能否突破当前 90 % 数据天花板。</li>
+</ul>
+<ol>
+<li><strong>高效视频推理</strong></li>
+</ol>
+<ul>
+<li>采用 <strong>潜空间视频扩散</strong>（如 DiT-3D、Latent-VDM）替代 Wan2.2，降低训练与推理成本；同时引入 <strong>帧级解析器</strong> 把视频轨迹转符号，验证视频生成是否能在更大迷宫或多目标路径规划上超越图像范式。</li>
+</ul>
+<ol>
+<li><strong>协作策略优化</strong></li>
+</ol>
+<ul>
+<li>目前 MLLM 仅对 DiffThinker 的 N 张图做“一次性投票”。可引入 <strong>多轮对话验证</strong>：MLLM 主动要求 DiffThinker 针对可疑区域重新生成局部图，形成“视觉交叉审问”闭环，提升协作上限。</li>
+</ul>
+<p>长期探索性（1–3 年愿景）</p>
+<ol>
+<li><strong>生成式推理与工具调用统一</strong></li>
+</ol>
+<ul>
+<li>设计 <strong>可微工具箱</strong>：把“画轨迹”“测距离”“填数字”封装为可微操作子，扩散模型在生成过程中可梯度访问这些工具，实现“生成-工具-反馈”端到端训练，兼顾像素精度与符号约束。</li>
+</ul>
+<ol>
+<li><strong>跨模态反向推理</strong></li>
+</ol>
+<ul>
+<li>研究 <strong>文本←→图像双向 Flow</strong>：给定答案符号，能否反向生成“教学图”或“错误案例图”，实现“可解释生成式推理”，用于教育、故障诊断等场景。</li>
+</ul>
+<ol>
+<li><strong>连续-离散混合空间</strong></li>
+</ol>
+<ul>
+<li>探索 <strong>混合 ODE</strong>：在潜空间同时维护连续像素状态与离散符号状态（如可微图神经网络），让扩散过程直接在离散语义上施加约束，减少后解析误差传播。</li>
+</ul>
+<ol>
+<li><strong>长时序视觉记忆</strong></li>
+</ol>
+<ul>
+<li>引入 <strong>记忆增强扩散</strong>：用外部记忆矩阵或 K-V 缓存跨 episode 记住已探索路径，实现“ lifelong visual reasoning”，支持机器人长周期任务规划。</li>
+</ul>
+<ol>
+<li><strong>安全与对齐</strong></li>
+</ol>
+<ul>
+<li>生成式推理可能产生“看似合理却错误”的视觉答案。需构建 <strong>视觉一致性 Red-Team 基准</strong>，并研究 <strong>视觉 RLHF</strong>：人类对生成图像的正确性进行像素级排序，训练符合人类空间直觉的偏好模型。</li>
+</ul>
+<p>小结</p>
+<p>短期工作侧重 <strong>OOD 鲁棒、统一权重、可验证奖励、协作策略</strong>，可迅速验证生成式范式是否“只是另一个大模型”还是“新基础设施”。长期方向则瞄准 <strong>工具可微、混合空间、长时记忆与安全对齐</strong>，逐步把 DiffThinker 从“任务专用求解器”升级为 <strong>通用视觉认知引擎</strong>。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>论文提出“生成式多模态推理”新范式，核心是用扩散模型把复杂视觉推理直接做成<strong>图像→图像</strong>的生成任务，而不再依赖文本链式思维。主要贡献与结果如下：</p>
+<ol>
+<li>框架</li>
+</ol>
+<ul>
+<li>DiffThinker 基于 Flow-Matching 潜空间扩散，20 步 Euler 积分即可输出“答案图”，再用确定性解析器转符号，保证公平对比。</li>
+<li>统一适配四域七任务：序列规划(VSP/Maze)、组合优化(TSP)、约束满足(Sudoku)、空间配置(Jigsaw/VisPuzzle)。</li>
+</ul>
+<ol>
+<li>性能</li>
+</ol>
+<ul>
+<li>在 20 个难度等级上平均准确率 87.4%，<strong>较最佳 MLLM 提升 39%</strong>，较 GPT-5 ↑314%、Gemini-3-Flash ↑111%。</li>
+<li>训练耗时与 SFT 相当，推理延迟 1.1 s，低于同尺寸 MLLM；步数、数据、CFG 尺度消融给出明确最优配置。</li>
+</ul>
+<ol>
+<li>特性</li>
+</ol>
+<ul>
+<li><strong>高效</strong>：训练/推理成本均低于 RL 方法。</li>
+<li><strong>可控</strong>：固定 20 步生成，延迟与问题复杂度无关。</li>
+<li><strong>原生并行</strong>：早期同时探索多条路径，逐步剪枝收敛。</li>
+<li><strong>可协作</strong>：生成 N 张候选图让 MLLM 验证，准确率再提升 20+%。</li>
+</ul>
+<ol>
+<li>拓展</li>
+</ol>
+<ul>
+<li>视频版 DiffThinker-Video 验证“用视频推理”可行，但成本双倍、精度略低，提示需更高效视频基座。</li>
+<li>定性失败案例显示 OOD 泛化仍是主要瓶颈，呼吁构建更强视觉生成基础模型并与 MLLM 深度协同。</li>
+</ul>
+<p>综上，论文首次系统验证了“把推理搬到像素空间”可以显著突破长周期、视觉中心任务的精度与效率天花板，为后续多模态智能体提供新基线。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是DiffThinker%3A%20Towards%20Generative%20Multimodal%20Reasoning%20with%20Diffusion%20Models，链接是https://arxiv.org/pdf/2512.24165，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2512.24165。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Zefeng He,Xiaoye Qu,Yafu Li,Tong Zhu,Siyuan Huang,Yu Cheng</p>
+<p><strong>Categories</strong>: cs.CV</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.24165.pdf">https://arxiv.org/pdf/2512.24165.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.24165">https://arxiv.org/abs/2512.24165</a></p>
+<p><strong>Arxiv ID</strong>: 2512.24165</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2512.24165">https://papers.cool/arxiv/2512.24165</a></p>
+<p><strong>Published</strong>: 2025-12-30T11:51:18Z</p>
+<p><strong>Updated</strong>: 2025-12-30T11:51:18.000Z</p>
+<hr>
+<h3 id="4-On-the-Role-of-Discreteness-in-Diffusion-LLMs"><a href="#4-On-the-Role-of-Discreteness-in-Diffusion-LLMs" class="headerlink" title="4. On the Role of Discreteness in Diffusion LLMs"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2512.22630">On the Role of Discreteness in Diffusion LLMs</a></h3><p>Diffusion models offer appealing properties for language generation, such as parallel decoding and iterative refinement, but the discrete and highly structured nature of text challenges the direct application of diffusion principles. In this paper, we revisit diffusion language modeling from the view of diffusion process and language modeling, and outline five properties that separate diffusion mechanics from language-specific requirements. We first categorize existing approaches into continuous diffusion in embedding space and discrete diffusion over tokens. We then show that each satisfies only part of the five essential properties and therefore reflects a structural trade-off. Through analyses of recent large diffusion language models, we identify two central issues: (i) uniform corruption does not respect how information is distributed across positions, and (ii) token-wise marginal training cannot capture multi-token dependencies during parallel decoding. These observations motivate diffusion processes that align more closely with the structure of text, and encourage future work toward more coherent diffusion language models.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>扩散模型在语言生成中具有吸引人的特性，如并行解码和迭代优化，但文本的离散性和高度结构化特性使得扩散原理的直接应用面临挑战。在本文中，我们从扩散过程和语言建模的视角重新审视了扩散语言建模，并概述了五个将扩散机制与语言特定需求区分开的属性。我们首先将现有方法分为嵌入空间的连续扩散和基于词元的离散扩散。然后我们展示了每种方法仅满足这五个基本属性的一部分，因此体现了结构上的权衡。通过对最近的大规模扩散语言模型的分析，我们发现两个核心问题：（i）均匀扰动没有考虑信息在不同位置的分布情况，且（ii）基于词元的边际训练在并行解码时无法捕捉多词元依赖关系。这些观察为更贴合文本结构的扩散过程提供了动机，并鼓励未来的研究朝着更连贯的扩散语言模型方向发展。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在澄清“扩散”与“语言”之间的结构性错位，并据此提出更契合文本本质的扩散语言模型（DLM）设计方向。具体而言，工作聚焦以下核心问题：</p>
+<ol>
+<li><p>离散-连续失配<br>标准扩散假设状态空间连续、噪声平滑，而文本是离散符号；现有方法要么在嵌入空间做连续扩散（违背 L1 离散性），要么在 token 空间做掩码腐蚀（违背 D1 平滑性），均只能部分满足扩散-语言所需的五项基本性质。</p>
+</li>
+<li><p>信息分布不均导致的“均匀腐蚀”失效<br>均匀掩码或高斯噪声将同等强度的扰动施加到每个位置，但文本信息密度极不均匀——关键 token 被腐蚀后整句语义迅速崩塌，而冗余 token 被腐蚀几乎无损。结果：名义噪声水平 t 无法单调对应“可恢复信息量”，引发频率崩塌（frequency collapse）和过早边际化。</p>
+</li>
+<li><p>并行解码下的“边际陷阱”<br>现有训练目标多为逐位置交叉熵，模型只学习  p(x<em>i mid x</em>(visible)) ，未显式建模多 token 联合分布。当  T ll N  并行采样时，各位置独立抽取边际分布，容易生成局部合法但全局不兼容的序列（如 “I likes tennis” 或 “brain brain” 重复）。</p>
+</li>
+<li><p>统一视角下的性质空缺<br>通过提出 D1–D3（扩散侧）与 L1–L2（语言侧）五项性质，论文系统梳理了自回归、连续 DLM、离散 DLM 在每条性质上的满足度，揭示“保平滑必失离散”“保离散必失平滑”的固有权衡，并指出当前大规模系统仍在这张“性质表”上留有空缺。</p>
+</li>
+</ol>
+<p>综上，论文并非提出单一新模型，而是：</p>
+<ul>
+<li>诊断扩散与文本结构错位的根源；</li>
+<li>用理论与实验验证“均匀腐蚀+边际训练”带来的信息衰减失准与联合依赖缺失；</li>
+<li>呼吁未来研究围绕“信息平滑腐蚀”与“多位置联合依赖”两大挑战，设计更契合语言结构的扩散过程与训练/解码机制。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>以下研究按主题归类，均与“离散-扩散语言模型”直接相关，并在论文中被引用或可作为延伸阅读。</p>
+<ul>
+<li>连续扩散用于文本</li>
+<li>Diffusion-LM (Li et al., 2022)</li>
+<li>Self-conditioned Embedding Diffusion (Strudel et al., 2022)</li>
+<li>Continuous Diffusion for Categorical Data (Dieleman et al., 2022)</li>
+<li>DiffuSeq (Gong et al., 2022)</li>
+<li>离散 / 掩码扩散</li>
+<li>Structured Denoising Diffusion Models in Discrete State-Spaces (Austin et al., 2021)</li>
+<li>DiffusionBERT (He et al., 2023)</li>
+<li>Masked Diffusion Models are Secretly Time-agnostic Masked Models (Zheng et al., 2024)</li>
+<li>Simple and Effective Masked Diffusion Language Models (Sahoo et al., 2024)</li>
+<li>Discrete Flow Matching (Gat et al., 2024)</li>
+<li>Ratio-based Discrete Diffusion (Lou et al., 2024)</li>
+<li>大参数扩散语言模型</li>
+<li>Dream-7B (Ye et al., 2025)</li>
+<li>Large Language Diffusion Models (Nie et al., 2025)</li>
+<li>LLaDA 系列 (同期技术报告)</li>
+<li>混合或半自回归框架</li>
+<li>CANDI: Hybrid Discrete-Continuous Diffusion (Pynadath et al., 2025)</li>
+<li>SSD-LM (Han et al., 2023)</li>
+<li>AR-Diffusion (Wu et al., 2023)</li>
+<li>训练/解码策略改进</li>
+<li>CART（Context-Adaptive Rescheduling）— Dream-7B 内置机制 (Ye et al., 2025)</li>
+<li>dParallel: Learnable Parallel Decoding for DLMs (Chen et al., 2025)</li>
+<li>Soft-Masked Diffusion (Hersche et al., 2025)</li>
+<li>数据效率与多视角分析</li>
+<li>Diffusion Language Models are Super Data Learners (Ni et al., 2025a)</li>
+<li>Training Optimal Large Diffusion Language Models (Ni et al., 2025b)</li>
+<li>Understanding the Limitations of Diffusion LLMs through a Probabilistic Perspective (Cunxiao et al., 2025)</li>
+<li>任意顺序/灵活长度生成</li>
+<li>Any-Order Flexible Length Masked Diffusion (Kim et al., 2025)</li>
+</ul>
+<p>这些工作分别探索了连续或离散状态空间、腐蚀核设计、并行解码、训练目标与数据效率等问题，与论文提出的“五项性质”诊断框架形成直接对话。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文并未提出一套端到端的新模型，而是通过“诊断→归因→指路”三步，为后续研究提供可操作的解决思路。</p>
+<ol>
+<li><p>诊断：建立五元性质框架<br>将“扩散侧”要求（D1 平滑腐蚀、D2 可 tractable 中间状态、D3 迭代逆向）与“语言侧”约束（L1 离散性、L2 结构依赖）显式拆分，用表格形式量化现有 AR/连续 DLM/离散 DLM 的满足度，从而把“离散-连续失配”转化为可逐项补齐的性质空缺。</p>
+</li>
+<li><p>归因：定位两大核心障碍</p>
+</li>
+</ol>
+<ul>
+<li>信息层面失平滑（D1 失效）<br>均匀掩码或高斯噪声假设“各位置信息密度相同”，但文本信息高度倾斜。论文通过互信息衰减模型</li>
+</ul>
+<p>lim_(I(x_i;x_O)to 0) p(x_i|x_O)=p(x_i)</p>
+<p>证明：一旦局部上下文被剥夺，模型被迫退回到一元频率先验，出现频率崩塌。</p>
+<ul>
+<li>联合依赖缺失（L2 失效）<br>逐位置交叉熵只能拟合边际分布；当并行步数  Tll N  时，独立采样造成“边际陷阱”，生成训练分布中从未出现的 token 组合。</li>
+</ul>
+<ol>
+<li>指路：给出三条补性质的技术路线</li>
+</ol>
+<ul>
+<li>信息平滑腐蚀<br>不再以“掩码比例”或“方差”作为单调噪声度量，而以“可恢复信息量”为腐蚀标尺：<br>– 离散空间：设计细粒度转移核（具体→抽象→<br>MASK<br>），让 token 身份在更多步内保持可辨。<br>– 连续-离散混合：参考 CANDI，把“token 身份”与“连续表示”解耦，分别维护离散 ID 通道与连续梯度通道，使前者缓慢退化、后者保持平滑。</li>
+<li>联合依赖建模<br>– 训练目标：从单 token 交叉熵转向序列级或结构级损失（能量模型、对比式目标、Gibbs -style 联合分数匹配）。<br>– 状态表示：中间步维持软分布或延迟采样，允许后期步骤联合修正早期不一致决策。<br>– 解码调度：引入“确定性提前”机制（如 dParallel 的 certainty-forcing 蒸馏），或多轮坐标下降式小批量更新，使依赖强的 token 先收敛。</li>
+<li>动态损失/采样加权<br>借鉴 Dream-7B 的 CART 策略，按“到最近未掩码位置距离”的几何权重调整损失，避免模型过度惩罚已被上下文孤立的 mask，从而缓解信息分布不均带来的训练噪声。</li>
+</ul>
+<p>通过以上三步，论文把“如何设计更契合文本结构的扩散模型”转译为“如何同时满足 D1–D3 与 L1–L2 五项性质”，并给出可验证的改进抓手：信息平滑腐蚀、联合依赖建模、动态加权训练。后续工作可针对任一性质空缺进行消融与组合，逐步逼近“结构对齐”的扩散语言模型。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文的实验部分属于“诊断性”而非“对标性”评测，核心目的是用实证结果验证两项结构性失配（信息分布不均、联合依赖缺失）确实存在，并可视化其后果。具体实验如下：</p>
+<ol>
+<li>频率崩塌可视化实验<br>目的：验证“均匀掩码”下，远离上下文的位置会迅速退化为高频词/。<br>设置：</li>
+</ol>
+<ul>
+<li>选用 LIMA 数据集中的 100 条用户提问，格式化为<br><code>input = chat_template(user) ∥ [MASK]¹²⁸</code></li>
+<li>使用 LLaDA-Instruct（8B 掩码扩散模型）一次前向，提取 128 个 mask 位置上的 softmax 分布。</li>
+<li>记录每个位置的 top-3 token 概率并绘制热力图（Figure 2）。<br>结果：</li>
+<li>距提示最近的 0–2 位：预测置信度高，出现“Yes”“brain”等内容相关词。</li>
+<li>中段 12–29 位：分布迅速平坦化，高概率被“the”“,”等高频词占据。</li>
+<li>远端 30 位之后：概率峰值被 <code>&lt;eos&gt;</code> 接管，与语义无关，仅反映语料长度先验。<br>结论：均匀腐蚀导致“局部信息”与“名义噪声水平”严重脱节，符合第 5.1 节的互信息衰减分析。</li>
+</ul>
+<ol>
+<li>边际陷阱玩具验证<br>目的：说明逐位置交叉熵训练无法捕获联合约束。<br>设置：</li>
+</ol>
+<ul>
+<li>构造仅含两句的 toy 语料：“He likes apple” 和 “I play tennis”，各占 50%。</li>
+<li>训练最优 token-wise 模型，得到三个位置的边际分布：<br>p(Pos1)=0.5, He, 0.5, I ，<br>p(Pos2)=0.5, likes, 0.5, play ，<br>p(Pos3)=0.5, apple, 0.5, tennis 。</li>
+<li>独立采样生成新序列，出现训练集不存在的组合“I likes tennis”。<br>结论：即使每个位置边际正确，联合分布仍被违背，直观展示第 5.2 节“边际陷阱”。</li>
+</ul>
+<ol>
+<li>大模型重复词观测<br>目的：验证真实大规模掩码 DLM 在并行解码时也会出现局部重复。<br>设置：</li>
+</ol>
+<ul>
+<li>在 LLaDA-8B-Instruct 上采用与实验 1 相同的 128-mask 输入，仅做单次并行采样。<br>结果：</li>
+<li>相邻两 mask 位置均对“brain”给出非零概率，采样后出现“brain brain”连续重复。<br>结论：模型缺乏跨位置耦合机制，重复并非孤立现象，与玩具示例的机理一致。</li>
+</ul>
+<ol>
+<li>上下文距离-置信度统计（附录扩展）<br>目的：量化“距离最近未掩码位置”与预测熵的关系。<br>设置：</li>
+</ol>
+<ul>
+<li>对 100 条 LIMA 提示重复实验 1 流程，计算每个 mask 位置到左侧最近真实 token 的距离  d  与其预测分布的熵  H 。<br>结果： H  与  d  呈显著正相关（Pearson  r≈ 0.82 ）。<br>结论：再次支持“信息局域性”观点，为 CART 类几何加权策略提供统计依据。</li>
+</ul>
+<p>综上，论文未进行 BLEU/BERTScore 等生成质量对比，而是利用可视化、玩具示例与统计相关性，证实：</p>
+<ul>
+<li>均匀腐蚀→信息衰减极不均匀→频率崩塌；</li>
+<li>逐位置训练→缺乏联合约束→边际陷阱与重复采样。<br>这些诊断实验为第 5 节提出的“信息平滑腐蚀”与“联合依赖建模”两大改进方向提供了实证动机。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可直接承接论文“五项性质”诊断框架，把“补缺”转化为可验证的开放问题。每条均给出可量化指标或实验协议，便于后续工作快速落地。</p>
+<p>1. 信息平滑腐蚀（补 D1）</p>
+<ul>
+<li><p><strong>语义-梯度混合核</strong><br>设计离散转移矩阵  Q<em>t ，让 token 沿“具体→上位词→<br>MASK<br>”多步跳转，而非常规“保持/掩码”二元跳变。<br>度量：用  I(x_i; x</em>(obs))  随  t  的衰减斜率衡量“信息平滑度”，目标让不同位置该曲线方差  &lt; ε 。</p>
+</li>
+<li><p><strong>可恢复性驱动的噪声调度</strong><br>在线估计每个位置在当前腐蚀下的“recoverable bits”，动态调整掩码概率，使全局信息损失率恒定。<br>度量：训练阶段记录模型对 masked token 的 Top-1 准确率，要求随  t  线性下降  R^2 &gt; 0.95 。</p>
+</li>
+<li><p><strong>连续-离散双通道腐蚀</strong><br>借鉴 CANDI，维护离散 ID 通道与连续嵌入通道两条前向过程，前者缓慢掩码，后者加高斯噪声；二者共享同一时间索引  t 。<br>度量：对比单通道基线，观察相同  t  下 token 身份分类准确率提升是否  ≥ 15% 。</p>
+</li>
+</ul>
+<p>2. 联合依赖建模（补 L2）</p>
+<ul>
+<li><strong>序列级能量函数</strong><br>在训练阶段引入能量模型损失：</li>
+</ul>
+<p>L<em>(joint) = E</em>(x<em>0)[(E</em>θ(hat x) - E<em>θ(x_0) + Delta)</em>+],</p>
+<p>其中  hat x  为并行采样序列， E_θ  为 Transformer 输出的联合分数。<br>度量：人工构造 1 k 条违反一致性的句子（主谓不一致、重复词等），要求模型对其赋能量高于真实句  Delta &gt; 0.5 。</p>
+<ul>
+<li><p><strong>延迟承诺解码</strong><br>中间  T-1  步保持软分布  p_t(x_i) ，仅在最后一步做一次性采样；或采用坐标下降轮询，每次仅对置信度最低  k  个位置采样。<br>度量：在  T=N/4  的压缩解码预算下，重复词率从基线  8%  降至  &lt;2% 。</p>
+</li>
+<li><p><strong>对比式联合训练</strong><br>将同一序列的不同掩码视图视为正例，将并行采样得到的“非法”序列视为负例，做对比学习。<br>度量：观察语义一致性指标（BARTScore）相对提升是否  ≥ 3  分。</p>
+</li>
+</ul>
+<p>3. 动态加权与课程学习</p>
+<ul>
+<li><p><strong>信息-加权损失</strong><br>以  w_i = exp(-λ d_i)  对每位置损失加权， d_i  为到最近未掩码 token 距离；用课程学习让  λ  随 epoch 递增。<br>度量：对比均匀加权，训练集过拟合 epoch 延后  ≥ 5  个，验证集 PPL 下降  ≥ 5% 。</p>
+</li>
+<li><p><strong>局部恢复难度预测器</strong><br>训练轻量辅助网络  f<em>φ(x</em>(obs), i)  预测位置  i  的可恢复性；主模型根据该置信度动态决定是否提前采样。<br>度量：在相同总步数下，最终生成的一致片段率提升  ≥ 10% 。</p>
+</li>
+</ul>
+<p>4. 性质权衡的系统评测</p>
+<ul>
+<li><p><strong>五维雷达图评分</strong><br>对每条新方法，在 100 M 参数规模上统一实现并报告：</p>
+</li>
+<li><p>D1：信息衰减线性度</p>
+</li>
+<li>D2：边际分布解析解误差</li>
+<li>D3：迭代步数-质量曲线面积</li>
+<li>L1：离散符号准确率</li>
+<li>L2：人工标注一致性错误率<br>目标：用雷达图面积  A<em>(method) &gt; 0.8 × A</em>(ideal)  作为“结构对齐”达标线。</li>
+<li><strong>Pareto 前沿实验</strong><br>在 {速度, 质量, 可控性} 三维空间扫描不同腐蚀-解码组合，绘制 Pareto 前沿，检验是否存在同时支配 AR 与现有 DLM 的新工作点。</li>
+</ul>
+<p>5. 扩展状态空间与任务</p>
+<ul>
+<li><p><strong>子词-字符混合空间</strong><br>将腐蚀过程同时定义在 BPE 子词与字符两级，允许“局部拼写扰动→全局子词替换→<br>MASK<br>”三级平滑过渡，观察低资源拼写敏感任务（如 OCR 纠错）是否获益。</p>
+</li>
+<li><p><strong>结构化文本（代码、HTML）</strong><br>引入语法树或 AST 约束，设计树形腐蚀核，保证括号/标签成对掩码。度量：生成代码通过单元测试比例相对提升。</p>
+</li>
+<li><p><strong>多模态文本-图像段落</strong><br>将上述信息平滑腐蚀思想扩展到图文交错序列，验证是否减少图像-文本实体不一致问题（如性别错配）。</p>
+</li>
+</ul>
+<p>6. 理论深挖</p>
+<ul>
+<li><p><strong>离散空间下的 SDE 近似误差界</strong><br>对“连续时间离散状态”扩散，给出与词汇量  |V|  相关的 KL 散度上界，量化 D1 近似误差随  |V|  增大的收敛速率。</p>
+</li>
+<li><p><strong>边际陷阱与 copula 函数</strong><br>用 copula 建模多位置联合分布，推导当 copula 参数  θ=0 （独立）时一致性错误率下界，并证明引入 pairwise 能量项可将错误率降至  O(1/N) 。</p>
+</li>
+</ul>
+<p>以上方向均可用现有代码库（transformers/diffusers）快速原型化，并通过论文提出的“信息衰减线性度、重复词率、一致性错误率”三类指标进行量化验证。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>论文核心贡献可概括为“一个框架、两组实验、三条出路”，具体内容如下：</p>
+<p>1. 一个框架：五项性质诊断表</p>
+<ul>
+<li><strong>扩散侧</strong></li>
+<li>D1 平滑腐蚀</li>
+<li>D2 可 tractable 中间状态</li>
+<li>D3 迭代逆向生成</li>
+<li><strong>语言侧</strong></li>
+<li>L1 离散性</li>
+<li>L2 结构依赖</li>
+</ul>
+<p>用该表统一衡量 AR、连续 DLM、离散 DLM，指出它们各自只能满足子集，揭示“保平滑必失离散、保离散必失平滑”的固有权衡。</p>
+<p>2. 两组实验：验证结构性失配</p>
+<ul>
+<li><p><strong>频率崩塌</strong><br>在 LLaDA-8B 上一次性前向 128 个 mask，发现远离提示的位置迅速退化为“the/”，证实均匀腐蚀无法匹配文本信息分布。</p>
+</li>
+<li><p><strong>边际陷阱</strong><br>玩具语料仅含“He likes apple / I play tennis”，逐位置训练虽边际正确，并行采样却生成训练不存在的“I likes tennis”，证实缺乏联合约束。</p>
+</li>
+</ul>
+<p>3. 三条出路：补齐性质空缺</p>
+<ul>
+<li><p><strong>信息平滑腐蚀</strong><br>设计“具体→上位→<br>MASK<br>”多步转移核或连续-离散双通道，使可恢复信息量随 t 线性下降。</p>
+</li>
+<li><p><strong>联合依赖建模</strong><br>引入序列级能量损失、延迟承诺软分布或对比式负例，让多 token 决策相互耦合，减少并行采样不一致。</p>
+</li>
+<li><p><strong>动态加权与课程</strong><br>按“到最近真实 token 距离”几何加权损失，或在线预测局部恢复难度，防止模型过度惩罚信息孤岛位置。</p>
+</li>
+</ul>
+<p>4. 结论</p>
+<p>连续 DLM 满足扩散数学形式但丢失离散与依赖；离散 DLM 保留符号空间却牺牲平滑与联合约束。唯有同时补齐 D1 与 L2，才能构建真正“结构对齐”的扩散语言模型。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是On%20the%20Role%20of%20Discreteness%20in%20Diffusion%20LLMs，链接是https://arxiv.org/pdf/2512.22630，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2512.22630。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Ziqi Jin,Bin Wang,Xiang Lin,Lidong Bing,Aixin Sun</p>
+<p><strong>Categories</strong>: cs.CL</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.22630.pdf">https://arxiv.org/pdf/2512.22630.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.22630">https://arxiv.org/abs/2512.22630</a></p>
+<p><strong>Arxiv ID</strong>: 2512.22630</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2512.22630">https://papers.cool/arxiv/2512.22630</a></p>
+<p><strong>Published</strong>: 2025-12-27T16:03:08Z</p>
+<p><strong>Updated</strong>: 2025-12-27T16:03:08.000Z</p>
+<hr>
+<h3 id="5-FlowBlending-Stage-Aware-Multi-Model-Sampling-for-Fast-and-High-Fidelity-Video-Generation"><a href="#5-FlowBlending-Stage-Aware-Multi-Model-Sampling-for-Fast-and-High-Fidelity-Video-Generation" class="headerlink" title="5. FlowBlending: Stage-Aware Multi-Model Sampling for Fast and High-Fidelity Video Generation"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2512.24724">FlowBlending: Stage-Aware Multi-Model Sampling for Fast and High-Fidelity Video Generation</a></h3><p>In this work, we show that the impact of model capacity varies across timesteps: it is crucial for the early and late stages but largely negligible during the intermediate stage. Accordingly, we propose FlowBlending, a stage-aware multi-model sampling strategy that employs a large model and a small model at capacity-sensitive stages and intermediate stages, respectively. We further introduce simple criteria to choose stage boundaries and provide a velocity-divergence analysis as an effective proxy for identifying capacity-sensitive regions. Across LTX-Video (2B/13B) and WAN 2.1 (1.3B/14B), FlowBlending achieves up to 1.65x faster inference with 57.35% fewer FLOPs, while maintaining the visual fidelity, temporal coherence, and semantic alignment of the large models. FlowBlending is also compatible with existing sampling-acceleration techniques, enabling up to 2x additional speedup. Project page is available at: <a target="_blank" rel="noopener" href="https://jibin86.github.io/flowblending_project_page">https://jibin86.github.io/flowblending_project_page</a>.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>在这项工作中，我们展示了模型容量的影响在不同时间步上有所不同：在早期和后期阶段至关重要，而在中间阶段则基本可以忽略。因此，我们提出了 FlowBlending，一种阶段感知的多模型采样策略，在对容量敏感的阶段使用大模型，而在中间阶段使用小模型。我们进一步提出了简单的标准来选择阶段边界，并提供了速度-散度分析，作为识别容量敏感区域的有效代理。在 LTX-Video (2B/13B) 和 WAN 2.1 (1.3B/14B) 上，FlowBlending 实现了最高 1.65 倍的推理加速，同时 FLOPs 减少 57.35%，并保持了大型模型的视觉保真度、时间一致性和语义对齐。FlowBlending 还兼容现有的采样加速技术，可实现额外最高 2 倍的加速。项目页面可访问：<a target="_blank" rel="noopener" href="https://jibin86.github.io/flowblending_project_page。">https://jibin86.github.io/flowblending_project_page。</a></p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>该论文针对“视频扩散模型推理计算量过大”这一核心痛点，提出一种无需重训练、可即插即用的加速思路。具体而言，其试图解决以下三个紧密关联的问题：</p>
+<ol>
+<li><p><strong>均匀使用大模型的冗余性</strong><br>现有加速方法普遍假设“所有去噪步都需要大容量模型”，导致在语义与细节贡献较低的中间阶段仍消耗大量计算。论文质疑该假设，论证不同时间步对模型容量的敏感程度呈“U 型”分布。</p>
+</li>
+<li><p><strong>小模型单独使用的质量崩塌</strong><br>若全程仅用小型模型，虽然 FLOPs 骤降，但早期结构形成与晚期细节修正会失控，出现运动不一致、物体畸变、语义漂移等严重退化，无法达到商业可用标准。</p>
+</li>
+<li><p><strong>训练/蒸馏成本高昂</strong><br>传统蒸馏或少步采样方案需重新训练或精心设计数值求解器，周期长、资源重；而业界已同时释出成对“大/小”模型（如 LTX-Video 2B/13B、WAN 2.1 1.3B/14B），却缺乏直接利用二者容量差异的调度策略。</p>
+</li>
+</ol>
+<p>为此，论文提出 <strong>FlowBlending</strong>：一种“阶段感知的多模型采样”框架，通过</p>
+<ul>
+<li>早期用大模型奠定全局结构与运动</li>
+<li>中间段换小模型以节省 50%+ 计算</li>
+<li>晚期再唤回大模型抑制伪影、提升细节</li>
+</ul>
+<p>在无需任何权重更新、兼容现有加速插件（DPM++、蒸馏模型）的前提下，实现 1.65× 提速、57.35% FLOPs 削减，同时保持大模型级别的视觉保真度、时序一致性与文本对齐度。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文将相关研究划分为三大主线，并指出各自与 FlowBlending 的异同。以下按主题归纳，均给出核心文献索引（对应论文参考文献编号）：</p>
+<p>1. 扩散/流匹配加速：减少采样步数</p>
+<ul>
+<li><strong>改进 ODE/SDE 求解器</strong></li>
+<li><p>DPM-Solver<br>28<br>、DPM-Solver++<br>29</p>
+</li>
+<li><p>Elucidating the Design Space<br>19<br>、DDIM<br>38</p>
+</li>
+<li><p><strong>渐进蒸馏与一步蒸馏</strong></p>
+</li>
+<li><p>Progressive Distillation<br>35</p>
+</li>
+<li><p>SnapFusion<br>23<br>、SwiftBrush-v2<br>7</p>
+</li>
+<li><p>Adversarial Diffusion Distillation<br>36, 37<br>、UFOGen<br>46</p>
+</li>
+<li><p>视频专用：Efficient-VDiT<br>8<br>、SnapGen-V<br>45<br>、SF-V<br>52</p>
+</li>
+</ul>
+<p><strong>与 FlowBlending 关系</strong>：正交互补——上述方法压缩步数，FlowBlending 在不改步数的前提下压缩每步的模型容量，二者可叠加。</p>
+<p>2. 图像域多模型调度</p>
+<ul>
+<li><strong>OMS-DPM</strong><br>26<br>：通过动态规划为不同 timestep 搜索最优模型大小。</li>
+<li><strong>T-Stitch</strong><br>33<br>：在采样轨迹上“缝合”大小模型，以提升图像质量。</li>
+<li><strong>Step-Aware Models</strong><br>47<br>：为不同去噪步训练专用小网络。</li>
+</ul>
+<p><strong>与 FlowBlending 区别</strong>：</p>
+<ol>
+<li>面向视频，发现“早期结构-晚期细节” U 型容量需求曲线与图像域结论相反；</li>
+<li>目标为“保大模型质量”而非“提小模型质量”；</li>
+<li>无需重新训练或额外权重，直接复用官方发布的大小模型。</li>
+</ol>
+<p>3. 视频扩散模型与评测</p>
+<ul>
+<li><strong>基础模型</strong></li>
+<li><p>Stable Video Diffusion<br>1, 2<br>、VideoCrafter<br>6<br>、CogVideo<br>15</p>
+</li>
+<li><p>LTX-Video<br>11<br>、WAN 2.1<br>42<br>（本文实验对象）</p>
+</li>
+<li><strong>训练-free 视频加速</strong></li>
+<li><p>FasterCache<br>30<br>、Dynamic Token Carving<br>51<br>、Timestep Embedding Cache<br>27</p>
+</li>
+<li><p><strong>评测基准</strong></p>
+</li>
+<li>VBench<br>17<br>、PVD<br>3<br>、FVD<br>41<br>、FID<br>12</li>
+</ul>
+<p><strong>与 FlowBlending 关系</strong>：FlowBlending 作为零训练调度策略，可直接嵌入以上任何模型或加速框架，并用相同基准验证。</p>
+<p>小结</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>研究方向</th>
+<th>代表文献</th>
+<th>与 FlowBlending 的关联</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>少步/蒸馏加速</td>
+<td>[19, 28, 29, 35, 36, 37, 46]</td>
+<td>正交叠加，进一步 2× FLOPs 削减</td>
+</tr>
+<tr>
+<td>图像多模型调度</td>
+<td>[26, 33, 47]</td>
+<td>视频域需求相反，方法目标不同</td>
+</tr>
+<tr>
+<td>视频模型与评测</td>
+<td>[1, 2, 6, 11, 17, 41, 42]</td>
+<td>实验平台与评价指标，直接适用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>因此，FlowBlending 填补了“已有大小模型却缺乏阶段感知调度”这一空白，并与现有加速路线形成互补。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文将“大模型全程参与=冗余”这一观察形式化为<strong>阶段容量敏感度差异</strong>，进而提出<strong>FlowBlending</strong>框架，具体解决路径可分为<strong>发现-建模-调度-验证-兼容</strong>五步，均无需重新训练或修改权重：</p>
+<p>1. 发现：容量敏感度呈 U 型</p>
+<ul>
+<li>在 LTX-Video（2B/13B）与 WAN 2.1（1.3B/14B）上系统对比</li>
+<li>全程大模型（LLL）</li>
+<li>仅早期用大模型（LSS）</li>
+<li>仅晚期用大模型（SLL）</li>
+<li>全程小模型（SSS）</li>
+</ul>
+<p><strong>结论</strong></p>
+<ul>
+<li>早期 0–≈40% 步数：决定全局结构、运动与语义对齐，大模型不可替代。</li>
+<li>晚期最后 ≈20% 步数：负责高频细节与伪影抑制，大模型再次关键。</li>
+<li>中间段：大小模型输出几乎一致，容量可安全降级。</li>
+</ul>
+<p>2. 建模：速度场分歧作为量化代理</p>
+<p>对同一隐变量  z_t  同时喂给大/小模型，得到速度场</p>
+<p>v_t^((L)), v_t^((S))</p>
+<p>计算</p>
+<ul>
+<li>余弦距离  cos-dist(t)=1-cos!(v_t^((L)),v_t^((S))) </li>
+<li>ell_2  距离  |v_t^((L))-v_t^((S))|_2 </li>
+</ul>
+<p><strong>结果</strong></p>
+<ul>
+<li>曲线呈<strong>U 型</strong>，与上述经验阶段完全对齐→提供<strong>免人工、可自动检测</strong>的边界依据。</li>
+</ul>
+<p>3. 调度：LSL 三段式策略</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Early stage | Intermediate | Late stage</span><br><span class="line">L | S | L</span><br></pre></td></tr></table></figure>
+<ul>
+<li>边界由两条简单准则确定</li>
+<li>早期：DINO 相似度 ≥ 96% 的最早切换点</li>
+<li>晚期：FID 最小（V 形谷底）对应的最晚切回点</li>
+<li>计算图无需改动，仅在 PyTorch 层根据 t 选择不同 <code>nn.Module</code> 前向。</li>
+</ul>
+<p>4. 验证：质量-计算双指标</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>LLL</th>
+<th>LSL(ours)</th>
+<th>节省</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FID/FVD</td>
+<td>5.73 / 834</td>
+<td>5.70 / 752</td>
+<td>≈0% 退化</td>
+</tr>
+<tr>
+<td>推理时间</td>
+<td>49.7 s</td>
+<td>30.2 s</td>
+<td>1.65× 提速</td>
+</tr>
+<tr>
+<td>DiT FLOPs</td>
+<td>3496 T</td>
+<td>2005 T</td>
+<td>−57%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在 VBench、PVD 多数据集上均与 LLL 无统计显著差异，显著优于 LSS 与 SSS。</p>
+<p>5. 兼容：零成本叠加现有加速器</p>
+<ul>
+<li><strong>DPM++ 减半步数</strong>：LSL 仍保持 LLL 级质量，再省 50% FLOPs，总节省 <strong>≈2×</strong>。</li>
+<li><strong>蒸馏小模型替换</strong>：将中间段 S 换成官方 8-step 蒸馏模型 D，形成 LDL 策略，FLOPs 再降 49%，无可见伪影。</li>
+</ul>
+<p>总结</p>
+<p>论文通过“阶段敏感度分析→速度分歧量化→LSL 调度→边界自动选取→多模型正交叠加”这一完整 pipeline，把“必须全程用大模型”转变为“只在高敏感度阶段用大模型”，从而在不重新训练、不损失视觉保真度的前提下，实现视频扩散模型推理的显著加速。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕「阶段敏感度假设」与「FlowBlending 实用性」两条主线，共设计 5 组实验、覆盖 2 个开源视频模型（LTX-Video 2B/13B、WAN 2.1 1.3B/14B）与 2 个公开评测集（PVD、VBench）。所有实验均报告视觉质量（FID、FVD、VBench 六项指标）与计算开销（Runtime、DiT TFLOPs）。具体实验一览如下：</p>
+<p>1. 阶段敏感度验证实验</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>目的</th>
+<th>关键变量</th>
+<th>主要结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-a 早期段消融</td>
+<td>验证“早期决定结构/运动”</td>
+<td>调度：LLL / LSS / SLL / SSS</td>
+<td>LSS≈LLL，SLL≈SSS→早期容量关键</td>
+</tr>
+<tr>
+<td>1-b 晚期段消融</td>
+<td>验证“晚期决定细节/伪影”</td>
+<td>调度：LLL / LSS / LSL</td>
+<td>LSL 在 FID 与 Temporal Flicker 上显著优于 LSS</td>
+</tr>
+<tr>
+<td>1-c 速度场分歧测量</td>
+<td>提供可自动化的边界代理</td>
+<td>cos-dist &amp; ℓ2-dist 沿 t 曲线</td>
+<td>U 型曲线与经验边界 100% 重合</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2. 边界选取实验</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>方法</th>
+<th>搜索粒度</th>
+<th>选取准则</th>
+<th>结果示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2-a 早期边界</td>
+<td>滑动 L→S 切换点</td>
+<td>5/10 步</td>
+<td>DINO 相似度 ≥ 96%</td>
+<td>LTX: 40% 步数；WAN: 30% 步数</td>
+</tr>
+<tr>
+<td>2-b 晚期边界</td>
+<td>固定早段，滑动 S→L 切回点</td>
+<td>5/10 步</td>
+<td>FID 最小（V 形）</td>
+<td>LTX: 距终点 20%；WAN: 距终点 20%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>3. 整体质量-效率对比</p>
+<p>在 284/355 条 prompt 上对比 4 条代表性调度：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>调度</th>
+<th>FID↓</th>
+<th>FVD↓</th>
+<th>Aesthetic↑</th>
+<th>Runtime↓</th>
+<th>TFLOPs↓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLL</td>
+<td>5.73</td>
+<td>834</td>
+<td>45.4</td>
+<td>49.7 s</td>
+<td>3496 T</td>
+</tr>
+<tr>
+<td>LSL(ours)</td>
+<td>5.70</td>
+<td>752</td>
+<td>44.5</td>
+<td>30.2 s</td>
+<td>2005 T</td>
+</tr>
+<tr>
+<td>LSS</td>
+<td>5.75</td>
+<td>759</td>
+<td>44.2</td>
+<td>25.4 s</td>
+<td>1632 T</td>
+</tr>
+<tr>
+<td>SSS</td>
+<td>6.28</td>
+<td>952</td>
+<td>43.1</td>
+<td>10.7 s</td>
+<td>514 T</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>（WAN 2.1 结果趋势一致，见正文 Table 2b）</p>
+<p>4. exhaustive 调度空间扫描</p>
+<p>将 12.5% 步长作为一段，共 8 段，枚举 2^8=256 种 L/S 组合：</p>
+<ul>
+<li><strong>观察 1</strong>：任何以 S 开头的调度（SXX）FID 与 Motion Smoothness 显著劣化。</li>
+<li><strong>观察 2</strong>：LSL 位于 Pareto 前沿，且边界左右平移 1 段即性能下降→边界鲁棒。</li>
+</ul>
+<p>5. 与现有加速器正交实验</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组合方式</th>
+<th>NFE</th>
+<th>FID</th>
+<th>TFLOPs</th>
+<th>视觉结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DPM++ + LLL</td>
+<td>20</td>
+<td>5.78</td>
+<td>1748 T</td>
+<td>基准</td>
+</tr>
+<tr>
+<td>DPM++ + LSL</td>
+<td>20</td>
+<td>5.77</td>
+<td>928 T</td>
+<td>无差异</td>
+</tr>
+<tr>
+<td>DPM++ + SSS</td>
+<td>20</td>
+<td>6.11</td>
+<td>257 T</td>
+<td>出现形变/跳变</td>
+</tr>
+<tr>
+<td>蒸馏模型 + LSL (LDL)</td>
+<td>8</td>
+<td>5.93</td>
+<td>1774 T</td>
+<td>与 LLL 无可见差异</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>6. 评测数据集与指标</p>
+<ul>
+<li><strong>PVD 数据集</strong>（284/355 条 prompt）<br>– FID、FVD、Subject Consistency、Background Consistency、Motion Smoothness、Temporal Flicker、Aesthetic、Image Quality</li>
+<li><strong>VBench 数据集</strong>（355 条 prompt）<br>– 同上六项 VBench 指标，用于交叉验证趋势一致性</li>
+</ul>
+<p>7. 计算环境</p>
+<ul>
+<li>LTX-Video：A6000 GPU，40 步 ODE 求解</li>
+<li>WAN 2.1：A100 GPU，50 步 UniPC 求解</li>
+<li>统计方式：每条 prompt 生成 1 条 61/65 帧视频，取平均指标与 95% 置信区间</li>
+</ul>
+<p>总结</p>
+<p>实验从「现象-边界-整体- exhaustive-兼容」五个层次系统回答了三件事：</p>
+<ol>
+<li>阶段敏感度假设成立；</li>
+<li>自动边界选取可靠；</li>
+<li>FlowBlending 在 1.65× 提速、−57 % FLOPs 下仍保持大模型级质量，且可与少步求解器或蒸馏模型无缝叠加。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下展望均直接源自论文最后一节「Discussion &amp; Conclusion」与实验过程中的开放问题，可作为后续工作切入点：</p>
+<p>1. 自动、模型无关的阶段边界检测</p>
+<ul>
+<li>当前边界依赖“DINO-相似度≥96%”与“FID V形谷底”两套经验阈值，换模型需重跑网格搜索。</li>
+<li>可探索：<br>– 用速度场分歧曲线的一阶/二阶导数自动定位“拐点”；<br>– 引入轻量级元网络，输入 cos-dist/ℓ2-dist 序列直接输出边界百分比；<br>– 建立跨模型迁移的归一化特征空间，使边界对参数量、架构、数据集不敏感。</li>
+</ul>
+<p>2. 更细粒度的容量分级与动态插值</p>
+<ul>
+<li>目前仅二值化 {L, S}，可引入中等容量模型 M 或任意 checkpoint 沿权重插值路径：<br>– 设计连续容量旋钮，如 φ-weighted blending：</li>
+</ul>
+<p>v_t = α(t)·v_t^((L)) + (1-α(t))·v_t^((S))</p>
+<p>其中 α(t) 由速度分歧或不确定性估计动态生成，实现“软切换”而非硬调度。</p>
+<p>3. 与步数压缩的深度耦合</p>
+<ul>
+<li>实验显示 LSL+DPM++ 可在 20 NFE 内保持质量，但继续降到 8–10 NFE 时边界可能漂移。</li>
+<li>可研究：<br>– 联合优化 “步长调度 + 模型容量调度” 的双空间搜索；<br>– 用强化学习或可微分 solver，以 FID/FVD 奖励同时学习最优 NFE 序列与 L/S 选择。</li>
+</ul>
+<p>4. 引入任务或提示感知的自适应边界</p>
+<ul>
+<li>当前边界对所有 prompt 固定。观察到：<br>– 高运动复杂度 prompt（“篮球扣篮”）早期容量敏感段更长；<br>– 静态场景（“树叶特写”）可提前切换小模型。</li>
+<li>可基于 CLIP 文本嵌入或 motion prior 预测敏感段长度，实现 prompt-wise 动态边界。</li>
+</ul>
+<p>5. 视频-音频联合扩散的容量调度</p>
+<ul>
+<li>最新视频生成开始叠加音频扩散头，计算瓶颈进一步放大。</li>
+<li>探索音频流是否同样呈现 U 型敏感度，进而设计跨模态统一 LSL 策略。</li>
+</ul>
+<p>6. 理论层面：为什么视频呈 U 型而图像非 U 型？</p>
+<ul>
+<li>图像工作<br>47<br>发现“早期敏感-晚期不敏感”，视频却相反。</li>
+<li>可从流匹配最优传输路径、时空耦合维度、运动先验等角度建立数学解释，并预测新架构（3D-DiT、时空分离卷积）下的敏感度曲线形状。</li>
+</ul>
+<p>7. 硬件协同：专用缓存与流水线</p>
+<ul>
+<li>LSL 模式带来“计算峰-谷-峰”波形，可设计：<br>– 动态 GPU 频率调节，在 S 段降功耗；<br>– 异构部署：大模型放 A100，小模型放边缘卡，通过流水线掩盖传输延迟。</li>
+</ul>
+<p>8. 扩展到其他流匹配生成任务</p>
+<ul>
+<li>3D 场景生成、4D 点云序列、多视角图像扩散等同样采用流匹配框架。</li>
+<li>验证 U 型容量敏感度是否普遍成立，并构建跨域统一的阶段感知加速库。</li>
+</ul>
+<p>9. 质量-计算权衡的用户可控接口</p>
+<ul>
+<li>提供滑动条“real-time ←→ cinematic”：<br>– 实时模式 → 提前切入 S 段并降低 NFE；<br>– 电影级 → 延长 L 段并叠加超分后处理。</li>
+<li>底层即通过调节边界百分比与 α(t) 插值实现。</li>
+</ul>
+<p>10. 开源基准与自动调优平台</p>
+<ul>
+<li>建立公开 benchmark，包含：<br>– 多组大小模型对、标准化 prompt 池、自动计算速度场分歧脚本；<br>– 一键网格搜索 + 贝叶斯优化边界，促进社区在新模型上快速复现 LSL 式加速。</li>
+</ul>
+<p>以上方向均不改变“零训练”核心优势，可在方法层、理论层与系统层进一步挖掘 FlowBlending 的潜力。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>FlowBlending 核心内容速览</strong></p>
+<ol>
+<li><p>问题<br>视频扩散模型推理昂贵；现有加速方法默认“每一步都需大容量”，忽视不同去噪阶段对模型容量的真实需求。</p>
+</li>
+<li><p>关键发现<br>去噪过程对容量呈 <strong>U 型敏感度</strong>：</p>
+</li>
+</ol>
+<ul>
+<li>早期 ≈40% 步数：决定全局结构、运动与语义，大模型不可替代</li>
+<li>中间段：大小模型速度场几乎一致，可安全降级</li>
+<li>晚期 ≈20% 步数：需大模型抑制伪影、精炼细节</li>
+</ul>
+<ol>
+<li>方法<br><strong>FlowBlending</strong> 三段调度（LSL）：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Early | Intermediate | Late</span><br><span class="line">L | S | L</span><br></pre></td></tr></table></figure>
+<p>边界由 DINO 相似度 ≥96% 与 FID V 形谷底自动确定，无需重训练或改结构。</p>
+<ol>
+<li>结果</li>
+</ol>
+<ul>
+<li>1.65× 提速，57% FLOPs 削减</li>
+<li>FID/FVD、时序一致性与文本对齐与大模型无统计差异</li>
+<li>可与 DPM++、蒸馏模型正交叠加，再省 50% 计算</li>
+</ul>
+<ol>
+<li>贡献</li>
+</ol>
+<ul>
+<li>首次揭示视频扩散“阶段容量敏感度”U 型曲线</li>
+<li>提出零训练、即插即用的多模型调度框架</li>
+<li>给出基于速度场分歧的自动边界选取代理</li>
+<li>在 LTX-Video、WAN 2.1 两大开源模型上验证通用性与 Pareto 最优性</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是FlowBlending%3A%20Stage-Aware%20Multi-Model%20Sampling%20for%20Fast%20and%20High-Fidelity%20Video%20Generation，链接是https://arxiv.org/pdf/2512.24724，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2512.24724。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Jibin Song,Mingi Kwon,Jaeseok Jeong,Youngjung Uh</p>
+<p><strong>Categories</strong>: cs.CV</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.24724.pdf">https://arxiv.org/pdf/2512.24724.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.24724">https://arxiv.org/abs/2512.24724</a></p>
+<p><strong>Arxiv ID</strong>: 2512.24724</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2512.24724">https://papers.cool/arxiv/2512.24724</a></p>
+<p><strong>Published</strong>: 2025-12-31T08:41:27Z</p>
+<p><strong>Updated</strong>: 2025-12-31T08:41:27.000Z</p>
+<hr>
+<h3 id="6-Dream2Flow-Bridging-Video-Generation-and-Open-World-Manipulation-with-3D-Object-Flow"><a href="#6-Dream2Flow-Bridging-Video-Generation-and-Open-World-Manipulation-with-3D-Object-Flow" class="headerlink" title="6. Dream2Flow: Bridging Video Generation and Open-World Manipulation with 3D Object Flow"></a>6. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2512.24766">Dream2Flow: Bridging Video Generation and Open-World Manipulation with 3D Object Flow</a></h3><p>Generative video modeling has emerged as a compelling tool to zero-shot reason about plausible physical interactions for open-world manipulation. Yet, it remains a challenge to translate such human-led motions into the low-level actions demanded by robotic systems. We observe that given an initial image and task instruction, these models excel at synthesizing sensible object motions. Thus, we introduce Dream2Flow, a framework that bridges video generation and robotic control through 3D object flow as an intermediate representation. Our method reconstructs 3D object motions from generated videos and formulates manipulation as object trajectory tracking. By separating the state changes from the actuators that realize those changes, Dream2Flow overcomes the embodiment gap and enables zero-shot guidance from pre-trained video models to manipulate objects of diverse categories-including rigid, articulated, deformable, and granular. Through trajectory optimization or reinforcement learning, Dream2Flow converts reconstructed 3D object flow into executable low-level commands without task-specific demonstrations. Simulation and real-world experiments highlight 3D object flow as a general and scalable interface for adapting video generation models to open-world robotic manipulation. Videos and visualizations are available at <a target="_blank" rel="noopener" href="https://dream2flow.github.io/">https://dream2flow.github.io/</a>.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>生成性视频建模已经成为一个引人注目的工具，用于零样本推理开放世界操作中可能的物理交互。然而，将这些由人类引导的动作转化为机器人系统所需的低级动作仍然是一个挑战。我们观察到，给定初始图像和任务指令时，这些模型在合成合理的物体运动方面表现出色。因此，我们提出了 Dream2Flow，这是一个通过三维物体流作为中间表示，将视频生成与机器人控制连接起来的框架。我们的方法从生成的视频中重建三维物体运动，并将操作任务表述为物体轨迹追踪。通过将状态变化与实现这些变化的执行器分离，Dream2Flow 克服了具身鸿沟，使预训练视频模型能够零样本指导操作各种类别的物体，包括刚性物体、可关节物体、可变形物体和颗粒物体。通过轨迹优化或强化学习，Dream2Flow 将重建的三维物体流转换为可执行的低级命令，而无需特定任务的示范。仿真和现实世界实验表明，三维物体流作为一种通用且可扩展的接口，可将视频生成模型适应于开放世界的机器人操作。视频和可视化内容请访问 <a target="_blank" rel="noopener" href="https://dream2flow.github.io/。">https://dream2flow.github.io/。</a></p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>Dream2Flow 旨在解决“如何把生成式视频模型给出的‘人类演示’转化为机器人可执行的低层动作”这一核心问题。具体而言，现有文本-到-视频模型能够在零样本条件下合成符合物理直觉的物体运动，但这些运动通常以人类手部为执行主体，与机器人的 embodiment 及动作空间存在巨大差异，导致无法直接模仿。论文提出以“3D 对象流”作为中间接口，将视频里观察到的物体状态变化与具体执行器（机器人或人）解耦，从而把开放世界操作任务形式化为一个纯粹的“物体轨迹跟踪”问题，实现从语言指令+RGB-D 观测到机器人关节指令的零样本闭环。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文将相关研究归为三大类，并在第二节系统回顾：</p>
+<ul>
+<li><strong>A. Task Specification in Manipulation</strong></li>
+<li>经典符号规划：PDDL、时序逻辑、带代价的优化（TAMP、LGP 等）</li>
+<li>语言-视觉-动作端到端策略：CLIPort、Perceiver-Actor、RT-2、π0、OpenVLA 等</li>
+<li>目标图像/力觉目标驱动：Visual Foresight、R3M、VDN、Feel-the-Force</li>
+<li>物体-关键点/描述子接口：NDF、ReKep、VoxPoser、UAD</li>
+<li><strong>B. 2D/3D Flow in Robotics</strong></li>
+<li>场景流/光流作为跨本体接口：FlowBot3D、IFOR、FabricFlowNet、ToolFlowNet、G3Flow、SKIL、ActionSink 等</li>
+<li>物体-centric 3D 流：FLIP、FlowDreamer、3DFlowAction、Manitrend、Object-centric 3D Motion Field</li>
+<li>零样本跟踪与重建：RAFT-3D、DeformGS、RFTrans、Zero-MSF、4D 重建</li>
+<li>从人类视频重定向：Track2Act、AVDC、EC-Flow</li>
+<li><strong>C. Video Models for Robotics</strong></li>
+<li>视频作为辅助损失或数据增广：UniViP、SpacetimePT、VideoPred-Policies</li>
+<li>视频作为奖励/价值函数：Diffusion Reward、Video Prediction Models as Rewards</li>
+<li>视频直接做策略或动力学：Genie、RoboDreamer、Learning Universal Policies via Text-Guided Video Generation</li>
+<li>视频生成提供伪示范：DreamGen、Dreamitate、Gen2Act、RIGVID</li>
+</ul>
+<p>Dream2Flow 在上述脉络中定位为“利用预训练视频生成器获得人类演示 → 提取物体-centric 3D 流 → 轨迹优化/RL 跟踪”，与既有工作相比强调“物体运动-执行器解耦”与零样本开放世界操作。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>Dream2Flow 把“视频生成→机器人执行”拆成两级可复用模块，核心是把一切操作任务都转化为“让真实物体复现生成视频里看到的 3D 物体运动”。整体流程如下（对应原文 III 章）：</p>
+<ol>
+<li><p>视频生成<br>仅用初始 RGB 图与语言指令 ℓ，调用现成文生视频模型（Wan2.1 / Veo 3 等）合成一段“人类完成该任务”的 RGB 帧序列 {Vt}。</p>
+</li>
+<li><p>3D 物体流提取</p>
+</li>
+</ol>
+<ul>
+<li>用 SpatialTrackerV2 估计每帧深度，并与机器人自带深度 D0 做尺度-偏移对齐，得到度量深度 Zt。</li>
+<li>Grounding DINO + SAM 2 定位任务相关物体，获得初始掩膜 M。</li>
+<li>在 M 内采样 n 个像素，用 CoTracker3 做 2D 点跟踪，得到轨迹 ct i 与可见性 vt i。</li>
+<li>用相机内参与 Zt 把可见点反投影到机器人坐标系，得到“3D 物体流” P1:T ∈ℝT×n×3。</li>
+</ul>
+<ol>
+<li>动作推断（把 P1:T 当目标轨迹）<br>对任意 embodiment，只要求机器人让真实物体点 xobj t 尽可能贴近 P 中对应时刻的目标点 ˜Pt，即</li>
+</ol>
+<p>min<em>(mathbf u_0:H-1) ∑</em>(t=0)^(H-1) λ<em>(task)|mathbf x^(obj)_t - mathbf P_t|^2 + λ</em>(control)(mathbf x_t,mathbf u_t)</p>
+<p>具体实现分三种场景：</p>
+<ul>
+<li><strong>非抓取推任务</strong>（Push-T）：动作空间为“推技能”参数 (cx,cy,Δcx,Δcy,d)，用随机射击 + 粒子动力学模型（Point Transformer V3）预测 Δx，选成本最小者。</li>
+<li><strong>真实世界抓取任务</strong>：先用 AnyGrasp 生成候选抓取，选与视频中拇指位置最近的一个；随后假设被抓部分刚体，用 PyRoki 优化末端执行器位姿序列，使被抓点沿 P1:T 移动，同时加入可达性、平滑度、可操作度正则。</li>
+<li><strong>可变形/铰接任务</strong>（Door）：把上述目标成本直接当奖励，用 SAC 离线训练 sensimotor 策略，策略输入本体状态，输出 delta 末端位姿或关节角，实现跨本体（Panda/Spot/GR1）通用开门。</li>
+</ul>
+<p>通过“先想象物体该怎么动，再让机器人去跟踪这条 3D 流”，Dream2Flow 无需任何任务专用示范即可在仿真与真机上完成刚体、铰接、可变形、颗粒等多种对象的开放世界操作。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>实验围绕 5 个研究问题（Q1–Q5）展开，共 4 类测试场景、累计 300+ 仿真与 60 次真机试验，主要结果如下（均摘自原文 IV 章）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>任务</th>
+<th>目的</th>
+<th>关键结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. 3D 物体流属性</td>
+<td>Push-T 仿真（100 回合）</td>
+<td>考察“物体流”本身是否足够表达任务</td>
+<td>在 10 组初始状态各 10 次随机射击下，成功率 52/100；6 次因视频“变形”失败，其余跟踪误差&lt;2 cm/15°</td>
+</tr>
+<tr>
+<td>B. 真机零样本</td>
+<td>1. Put Bread in Bowl2. Open Oven3. Cover Bowl</td>
+<td>验证整套 pipeline 在真实世界是否可用</td>
+<td>各 10 试：8/10、8/10、3/10；对实例、背景、视角变化再各测 5 试，性能下降 ≤20%</td>
+</tr>
+<tr>
+<td>C. 与替代接口对比</td>
+<td>同上 3 任务</td>
+<td>比较“3D 物体流” vs 刚性变换</td>
+<td>AVDC 7/10｜0/10｜2/10；RIGVID 6/10｜6/10｜1/10；Dream2Flow 显著领先</td>
+</tr>
+<tr>
+<td>D. 作为 RL 奖励</td>
+<td>Door Opening（100 门随机位置）</td>
+<td>看“物体流”能否直接当奖励训练策略</td>
+<td>handcrafted 状态奖励 99/100｜99/100｜96/100；3D 流奖励 100/100｜100/100｜94/100，二者相当</td>
+</tr>
+<tr>
+<td>E. 视频生成器消融</td>
+<td>Push-T + Open Oven</td>
+<td>不同生成器对下游影响</td>
+<td>Wan2.1 在仿真 Push-T 达 52/100，高于 Kling 2.1 的 31/100；Veo 3 在真机 Open Oven 达 8/10，远高于 Wan2.1 的 2/10</td>
+</tr>
+<tr>
+<td>F. 动力学模型消融</td>
+<td>Push-T</td>
+<td>粒子 vs 姿态 vs 启发式</td>
+<td>粒子动力学 52/100，姿态 12/100，启发式 17/100，粒子显著更优</td>
+</tr>
+<tr>
+<td>G. 野外任务</td>
+<td>Pull Chair / Open Drawer / Sweep Pasta / Recycle Can</td>
+<td>展示开放世界通用性</td>
+<td>各 5 试全部成功，验证对刚体、铰接、可变形、颗粒对象均适用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>此外，论文给出失败统计：60 次真机试验共失败 20 次，其中 12 次源于视频“变形/幻觉”，4 次跟踪丢点，4 次抓取点选择错误，为后续改进提供明确方向。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<ul>
+<li><p><strong>动态-可变形-颗粒体的真实世界粒子动力学</strong><br>目前真机仍依赖“刚体抓取”假设；把仿真里验证的 Point-Transformer 粒子动力学迁移到真实可变形对象（布料、液体、颗粒）并在线自适应，是打通“推-拖-揉-倒”全任务的关键。</p>
+</li>
+<li><p><strong>多视角/4D 融合以对抗遮挡</strong><br>单视角视频在手持小物体时极易丢点。结合多机位视频生成或 4D 重建（如 Dynamic NeRF、4D 高斯散点）可恢复被遮挡的 3D 流，并提升对“手-物”交互的时空一致性。</p>
+</li>
+<li><p><strong>视频生成质量的“物理-一致性”约束</strong><br>现有 60 % 真机失败源于“变形/幻觉”。可在扩散去噪阶段引入：</p>
+</li>
+<li><p>深度-法向一致性损失</p>
+</li>
+<li>基于可微物理的碰撞-动量正则</li>
+<li>跨帧刚性/铰接约束<br>以减少伪影并提高下游跟踪可靠性。</li>
+<li><p><strong>跨 embodiment 的“技能原语”自动提取</strong><br>目前推、抓、拉分别手工定义参数空间。若能从视频里自动发现接触点、力方向、技能时序，再映射到不同机器人关节空间，可实现“零样本技能迁移”。</p>
+</li>
+<li><p><strong>闭环重规划与在线流修正</strong><br>当前采用开环跟踪 + 每步重采样。若把 3D 流作为滚动时域的“弹性参考”，结合实时点云反馈做 MPC 或 RL 在线微调，可补偿模型误差与外部扰动。</p>
+</li>
+<li><p><strong>语言-视觉-流的多模态条件视频编辑</strong><br>当任务失败或环境变化时，允许机器人用自然语言“重想象”局部运动（如“再向左 5 cm”），并通过视频编辑模型局部更新 3D 流，实现交互式修正。</p>
+</li>
+<li><p><strong>从大规模人类视频中预训练“通用物体流先验”</strong><br>把 YouTube 等海量人类操作视频转成 3D 流数据集，预训练一个“物体流预测”模型，再在新场景下用少量真机数据微调，可提升零样本泛化与样本效率。</p>
+</li>
+<li><p><strong>时序抽象与层次化规划</strong><br>将长程任务分解为子段 3D 流（sub-trajectory），上层做任务级规划（TAMP），下层做流跟踪，实现分钟级、多物体、多步骤的开放世界操作。</p>
+</li>
+<li><p><strong>安全与不确定性量化</strong><br>对视频生成、深度估计、粒子动力学分别建模不确定性，在规划时加入鲁棒或 chance-constrained 优化，避免抓取失败或碰撞风险。</p>
+</li>
+<li><p><strong>实时性优化</strong><br>目前视频生成占 3–11 min。探索蒸馏、流一致性模型或边缘端轻量级扩散架构，把端到端延迟压缩到秒级，才能用于在线人机协作。</p>
+</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>Dream2Flow 核心内容速览</strong></p>
+<ol>
+<li><p>问题<br>文本-到-视频模型能零样本合成“人执行任务”的高保真视频，却因 embodiment 差异无法直接用于机器人。亟需一条“零示范、跨对象、跨本体”的通用桥梁。</p>
+</li>
+<li><p>思路<br>把“任务”解耦成两步：</p>
+</li>
+</ol>
+<ul>
+<li>先想象“物体该怎么动”——用视频模型生成物体运动；</li>
+<li>再决定“机器人如何跟踪”——把运动转成 3D 点轨迹，让机器人纯跟踪轨迹。<br>中间接口命名为 <strong>3D Object Flow</strong>。</li>
+</ul>
+<ol>
+<li>方法（三步 pipeline）<br>① <strong>视频生成</strong>：初始 RGB + 语言 ℓ → 生成无机器人的人类操作视频 {Vt}。<br>② <strong>3D 流提取</strong>：</li>
+</ol>
+<ul>
+<li>深度估计 + 初始深度对齐 → 度量深度 Zt；</li>
+<li>Grounding DINO + SAM 2 定位物体 → 掩膜；</li>
+<li>CoTracker3 跟踪掩膜内像素 → 2D 轨迹；</li>
+<li>反投影到机器人坐标 → 3D 物体流 P1:T∈ℝ^{T×n×3}。<br>③ <strong>动作推断</strong>：将 P1:T 作为时变目标，求解</li>
+</ul>
+<p>min<em>(mathbf u_0:H-1) ∑</em>(t=0)^(H-1) λ<em>(task)|mathbf x^(obj)_t - mathbf P_t|^2 + λ</em>(control)</p>
+<ul>
+<li>推任务：随机射击 + 粒子动力学（Point Transformer）选最优推参数；</li>
+<li>真机抓取：AnyGrasp 生成候选，选视频中拇指最近者，再用 PyRoki 优化末端位姿序列；</li>
+<li>可变形/铰接：把目标成本当奖励，用 SAC 离线训练本体无关策略。</li>
+</ul>
+<ol>
+<li>实验</li>
+</ol>
+<ul>
+<li>仿真 Push-T：100 回合，成功率 52 %，粒子动力学显著优于姿态/启发式模型。</li>
+<li>真机 3 任务（Put Bread/Open Oven/Cover Bowl）：各 10 试，8/8/3 成功；对实例/背景/视角变化鲁棒。</li>
+<li>与 AVDC、RIGVID 对比：3D 流接口全面领先。</li>
+<li>3D 流当 RL 奖励：Franka/Spot/GR1 开门 100/100/94 成功，与手工奖励相当。</li>
+<li>视频生成器消融：Veo 3 真机最佳，Wan2.1 仿真最佳。</li>
+<li>野外任务：拉椅子、开抽屉、扫意面、回收罐 5×4 试全部成功。</li>
+</ul>
+<ol>
+<li>结论<br>3D Object Flow 是“视频生成 → 机器人零样本操作”的简单、通用且可扩展接口；无需任务示范即可处理刚体、铰接、可变形、颗粒对象；未来提升视频质量、动力学精度与实时性可进一步释放潜力。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Dream2Flow%3A%20Bridging%20Video%20Generation%20and%20Open-World%20Manipulation%20with%203D%20Object%20Flow，链接是https://arxiv.org/pdf/2512.24766，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2512.24766。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Karthik Dharmarajan,Wenlong Huang,Jiajun Wu,Li Fei-Fei,Ruohan Zhang</p>
+<p><strong>Categories</strong>: cs.RO,cs.AI,cs.CV</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.24766.pdf">https://arxiv.org/pdf/2512.24766.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.24766">https://arxiv.org/abs/2512.24766</a></p>
+<p><strong>Arxiv ID</strong>: 2512.24766</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2512.24766">https://papers.cool/arxiv/2512.24766</a></p>
+<p><strong>Published</strong>: 2025-12-31T10:25:24Z</p>
+<p><strong>Updated</strong>: 2025-12-31T10:25:24.000Z</p>
+<hr>
+<h3 id="7-TESO-Tabu-Enhanced-Simulation-Optimization-for-Noisy-Black-Box-Problems"><a href="#7-TESO-Tabu-Enhanced-Simulation-Optimization-for-Noisy-Black-Box-Problems" class="headerlink" title="7. TESO Tabu Enhanced Simulation Optimization for Noisy Black Box Problems"></a>7. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2512.24007">TESO Tabu Enhanced Simulation Optimization for Noisy Black Box Problems</a></h3><p>Simulation optimization (SO) is frequently challenged by noisy evaluations, high computational costs, and complex, multimodal search landscapes. This paper introduces Tabu-Enhanced Simulation Optimization (TESO), a novel metaheuristic framework integrating adaptive search with memory-based strategies. TESO leverages a short-term Tabu List to prevent cycling and encourage diversification, and a long-term Elite Memory to guide intensification by perturbing high-performing solutions. An aspiration criterion allows overriding tabu restrictions for exceptional candidates. This combination facilitates a dynamic balance between exploration and exploitation in stochastic environments. We demonstrate TESO’s effectiveness and reliability using an queue optimization problem, showing improved performance compared to benchmarks and validating the contribution of its memory components. Source code and data are available at: <a target="_blank" rel="noopener" href="https://github.com/bulentsoykan/TESO">https://github.com/bulentsoykan/TESO</a>.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>仿真优化（SO）经常面临评估噪声、高计算成本以及复杂、多峰的搜索空间等挑战。本文提出了禁忌增强仿真优化（TESO），这是一种将自适应搜索与基于记忆的策略相结合的新型元启发式框架。TESO 利用短期禁忌表防止循环并鼓励多样化，同时使用长期精英记忆通过扰动高性能解引导强化搜索。一个期望准则允许在特殊情况下覆盖禁忌限制。该组合在随机环境中实现了探索与利用之间的动态平衡。我们使用队列优化问题展示了 TESO 的有效性和可靠性，结果显示其性能优于基准方法，并验证了其记忆组件的贡献。源码和数据可在以下网址获取：<a target="_blank" rel="noopener" href="https://github.com/bulentsoykan/TESO">https://github.com/bulentsoykan/TESO</a>.</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文针对仿真优化（Simulation Optimization, SO）在<strong>含噪黑箱</strong>场景下的三大痛点：</p>
+<ol>
+<li>高保真仿真单次评估<strong>计算昂贵</strong>；</li>
+<li>输出受随机扰动影响，<strong>观测噪声显著</strong>；</li>
+<li>搜索空间<strong>高维、多峰、梯度不可解析</strong>，导致传统梯度或代理模型方法失效。</li>
+</ol>
+<p>为此提出<strong>TESO（Tabu-Enhanced Simulation Optimization）</strong>，核心目标是在<strong>有限仿真预算</strong>内，通过融合<strong>禁忌搜索的短期记忆</strong>与<strong>精英解长期记忆</strong>，在<strong>探索-利用权衡</strong>上实现动态平衡，从而<strong>可靠地收敛到高质量解</strong>。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文第 2 节将相关研究归为三大类，并指出它们与 TESO 的区别。要点如下：</p>
+<ol>
+<li>代理模型 / 贝叶斯优化</li>
+</ol>
+<ul>
+<li>代表：GP-BO、EGO、SBO 框架</li>
+<li>特点：用高斯过程等廉价代理替代昂贵仿真，以采集函数（EI、UCB）引导采样</li>
+<li>不足：高维或强噪声场景下代理拟合本身昂贵且对核函数、超参数敏感；不直接处理“黑箱”循环 revisit 问题</li>
+</ul>
+<ol>
+<li>排序与选择（R&amp;S）</li>
+</ol>
+<ul>
+<li>代表：KN、OCBA、BES</li>
+<li>特点：在有限离散方案间分配仿真预算，以统计保证选最优</li>
+<li>不足：离散/小规模方案集；连续或高维空间需额外离散化，预算指数增长</li>
+</ul>
+<ol>
+<li>元启发式（GA、SA、PSO 等）</li>
+</ol>
+<ul>
+<li>代表：<br>– GA：Miranda et al. 2015 自适应遗传算法<br>– SA：Haddock &amp; Mittenthal 1992 模拟退火<br>– PSO：Kuo &amp; Yang 2011 粒子群</li>
+<li>特点：无需梯度，全局探索能力强</li>
+<li>不足：</li>
+<li>噪声易误导选择，导致早熟收敛</li>
+<li>超参数（种群、退火 schedule、惯性权重）调优本身成为优化问题</li>
+<li>普遍<strong>缺乏短期记忆机制</strong>防止循环</li>
+</ul>
+<ol>
+<li>记忆型启发式（与 TESO 最相关）</li>
+</ol>
+<ul>
+<li>经典 Tabu Search：Glover 1990</li>
+<li>确定性优化，假设目标值无噪；“最佳移动”与“渴望准则”定义清晰</li>
+<li>精英集策略：Yu et al. 2023 将长期精英池用于预算分配，但仍基于 OCBA 框架，未结合禁忌机制</li>
+<li>TESO 区别：</li>
+<li>首次把<strong>短期 Tabu List + 长期 Elite Memory + 随机渴望准则</strong>整合到<strong>含噪黑箱 SO</strong></li>
+<li>所有决策（改进、渴望、更新）均基于<strong>重复仿真均值估计</strong>，而非确定性真值</li>
+<li>采用<strong>自适应扰动隐式邻域</strong>，而非显式离散邻域结构</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+</div></details>
+<p><strong>Authors</strong>: Bulent Soykan,Sean Mondesire,Ghaith Rabadi</p>
+<p><strong>Categories</strong>: cs.NE,cs.AI</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.24007.pdf">https://arxiv.org/pdf/2512.24007.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.24007">https://arxiv.org/abs/2512.24007</a></p>
+<p><strong>Arxiv ID</strong>: 2512.24007</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2512.24007">https://papers.cool/arxiv/2512.24007</a></p>
+<p><strong>Published</strong>: 2025-12-30T06:03:37Z</p>
+<p><strong>Updated</strong>: 2025-12-30T06:03:37.000Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202601/2026-01-03/">https://wdndev.github.io/daily/hf/202601/2026-01-03/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202507/2025-07-15/" title="HuggingFace Papers 2025-07-15"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-15</div></div></a></div><div><a href="/daily/hf/202507/2025-07-16/" title="HuggingFace Papers 2025-07-16"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-16</div></div></a></div><div><a href="/daily/hf/202507/2025-07-14/" title="HuggingFace Papers 2025-07-14"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-14</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Improving-Multi-step-RAG-with-Hypergraph-based-Memory-for-Long-Context-Complex-Relational-Modeling"><span class="toc-text">1. Improving Multi-step RAG with Hypergraph-based Memory for Long-Context Complex Relational Modeling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Dynamic-Large-Concept-Models-Latent-Reasoning-in-an-Adaptive-Semantic-Space"><span class="toc-text">2. Dynamic Large Concept Models: Latent Reasoning in an Adaptive Semantic Space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-DiffThinker-Towards-Generative-Multimodal-Reasoning-with-Diffusion-Models"><span class="toc-text">3. DiffThinker: Towards Generative Multimodal Reasoning with Diffusion Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-On-the-Role-of-Discreteness-in-Diffusion-LLMs"><span class="toc-text">4. On the Role of Discreteness in Diffusion LLMs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-FlowBlending-Stage-Aware-Multi-Model-Sampling-for-Fast-and-High-Fidelity-Video-Generation"><span class="toc-text">5. FlowBlending: Stage-Aware Multi-Model Sampling for Fast and High-Fidelity Video Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Dream2Flow-Bridging-Video-Generation-and-Open-World-Manipulation-with-3D-Object-Flow"><span class="toc-text">6. Dream2Flow: Bridging Video Generation and Open-World Manipulation with 3D Object Flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-TESO-Tabu-Enhanced-Simulation-Optimization-for-Noisy-Black-Box-Problems"><span class="toc-text">7. TESO Tabu Enhanced Simulation Optimization for Noisy Black Box Problems</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

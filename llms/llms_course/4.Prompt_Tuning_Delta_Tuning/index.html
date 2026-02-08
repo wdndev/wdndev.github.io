@@ -1,0 +1,659 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LLMs公开课 - 4.Prompt Tuning &amp; Delta Tuning | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.Background1.1 Fine Tuning : BERTBERT不管输入是单句还是两句，它实际上会对每一个token产生一个表征，这些表征可以进行分类。 如果做的是token级别的分类任务，比如NER，那么这些token的表征会送到一个分类层中，来对每个token进行分类。 如果做的是句子级别的分类任务，那么一般会把这个[CLS] token，代表句子级别语义，送到分类层中。 也就是时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLMs公开课 - 4.Prompt Tuning &amp; Delta Tuning">
+<meta property="og:url" content="https://wdndev.github.io/llms/llms_course/4.Prompt_Tuning_Delta_Tuning/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="1.Background1.1 Fine Tuning : BERTBERT不管输入是单句还是两句，它实际上会对每一个token产生一个表征，这些表征可以进行分类。 如果做的是token级别的分类任务，比如NER，那么这些token的表征会送到一个分类层中，来对每个token进行分类。 如果做的是句子级别的分类任务，那么一般会把这个[CLS] token，代表句子级别语义，送到分类层中。 也就是时">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2024-01-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.562Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="LLMs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/llms/llms_course/4.Prompt_Tuning_Delta_Tuning/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LLMs公开课 - 4.Prompt Tuning & Delta Tuning',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">LLMs公开课 - 4.Prompt Tuning &amp; Delta Tuning</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-04T16:00:00.000Z" title="Created 2024-01-05 00:00:00">2024-01-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.562Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LLMs/">LLMs</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">8.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>35min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LLMs公开课 - 4.Prompt Tuning &amp; Delta Tuning"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="1-Background"><a href="#1-Background" class="headerlink" title="1.Background"></a>1.Background</h1><h2 id="1-1-Fine-Tuning-BERT"><a href="#1-1-Fine-Tuning-BERT" class="headerlink" title="1.1 Fine Tuning : BERT"></a>1.1 Fine Tuning : BERT</h2><p>BERT不管输入是单句还是两句，它实际上会对每一个token产生一个表征，这些表征可以进行分类。</p>
+<p>如果做的是token级别的分类任务，比如NER，那么这些token的表征会送到一个分类层中，来对每个token进行分类。</p>
+<p>如果做的是句子级别的分类任务，那么一般会把这个<code>[CLS]</code> token，代表句子级别语义，送到分类层中。</p>
+<p>也就是时候，BERT对于不同的任务，会将不同的表征送到分类层中去，比从零学习的神经网络效果会好很多。</p>
+<p><img src="image/image_p8wsox93QP.png" alt=""></p>
+<p><strong>BERT : 关系抽取</strong></p>
+<p><img src="image/image_E78ftluugl.png" alt=""></p>
+<p><img src="image/image_qByq6KRfRp.png" alt=""></p>
+<ol>
+<li>用 [CLS] 进行分类</li>
+<li>Mention Pooling， 实体之间的所有token，concat到一起，然后再接分类层。</li>
+<li>Mention Pooling， 区分不同实体，在embedding加入Token type embedding；最后实体之间的所有token，concat到一起，然后再接分类层。考虑位置信息。</li>
+<li>Entity Markers : 词表中增加特殊的字符</li>
+</ol>
+<p>可以看到这些做法是非常经验性的，并且没有那么直观，最后我们都需要去训练一个分类器，即需要随机初始化一个分类层。将得到的表征喂给它，再和模型一起微调训练。</p>
+<p>这种方式越来不不适应于我们现在的时代。</p>
+<h2 id="1-2-GPT"><a href="#1-2-GPT" class="headerlink" title="1.2 GPT"></a>1.2 GPT</h2><p>GPT是一个生成模型，生成第<code>n</code>个token取决于前 <code>n-1</code> token的概率。</p>
+<p>将最后一个隐藏状态馈送到线性输出层</p>
+<script type="math/tex; mode=display">
+P\left(y \mid x^{1}, \ldots, x^{m}\right)=\operatorname{softmax}\left(h_{l}^{m} W_{y}\right)</script><p><img src="image/image_WOO679LsJ4.png" alt=""></p>
+<h2 id="1-3-T5"><a href="#1-3-T5" class="headerlink" title="1.3 T5"></a>1.3 T5</h2><ul>
+<li>Encoder-decoder架构，11B参数</li>
+<li>通过简单的演示将任务转换为<code>seq2seq</code>方式</li>
+<li>解码器经过训练以输出所需的Tokens</li>
+</ul>
+<p>假如要做情感分类任务，此时并不是输出0或1这种没有含义的表示。而是直接输出一个可以代表情感的单词，比如positive，来代替分类。</p>
+<p>这种做法的好处就是，把所有任务的范式统一成一个训练的框架，即seq2seq。</p>
+<p><img src="image/image_RJTEE8_pls.png" alt=""></p>
+<p>比如上图示一个QNLI的数据，它由一个question和一个sentence组成。将它们喂给T5的时候，会进行一些处理，比如会说<code>qnli question是什么</code>，<code>sentence是什么</code>。然后原来的target是0，现在改成了具体的单词entailment。</p>
+<p>即解码器被训练来输出需要的单词，而并不是我们所需要的那个类。通过这些简单的demonstration就把这些任务映射成了seq2seq之后，T5模型就可以训练了，不再需要额外的分类层让它重新训练了。</p>
+<p>这种做法表明了一种趋势。</p>
+<h2 id="1-4-GPT-3"><a href="#1-4-GPT-3" class="headerlink" title="1.4 GPT-3"></a>1.4 GPT-3</h2><ul>
+<li>175B参数的大模型</li>
+<li>参数量太大，微调很困难，采用prompts策略，应用到下游任务</li>
+</ul>
+<p><img src="image/image_tPO44xIpy-.png" alt=""></p>
+<h2 id="1-5-An-Irreversible-Trend"><a href="#1-5-An-Irreversible-Trend" class="headerlink" title="1.5 An Irreversible Trend"></a>1.5 An Irreversible Trend</h2><h3 id="（1）Model-Scaling"><a href="#（1）Model-Scaling" class="headerlink" title="（1）Model Scaling"></a>（1）Model Scaling</h3><ul>
+<li>更大的PLM往往会带来更好的性能</li>
+<li>更好的自然语言理解能力</li>
+<li>更好的自然语言生成质量</li>
+<li>更好的持续学习新知识的能力</li>
+</ul>
+<p><img src="image/image_sLcs5uS5yp.png" alt=""></p>
+<h3 id="（2）Difficult-Tuning"><a href="#（2）Difficult-Tuning" class="headerlink" title="（2）Difficult Tuning"></a>（2）Difficult Tuning</h3><ul>
+<li>主要方式：Fine-tuning</li>
+<li>更新所有参数困难</li>
+<li>为不同的任务保留单独的实例，占用存储空太大</li>
+<li>泛化不良，监督不足</li>
+<li>导致在研究中很少使用大规模PLM</li>
+</ul>
+<h2 id="1-6-Effective-Model-Adaptation"><a href="#1-6-Effective-Model-Adaptation" class="headerlink" title="1.6 Effective Model Adaptation"></a>1.6 Effective Model Adaptation</h2><p>有两种方式高效使用大模型：</p>
+<ul>
+<li><strong>任务和数据方面</strong>：通过缩小模型微调和预训练之间的差距，使用<strong>Prompt-learning</strong>来增强少量学习能力</li>
+<li><strong>优化方面</strong>：使用<strong>Delta Tuning</strong>来微调具有数十亿参数的模型，并优化一小部分参数。用小参数的优化去驱动大模型</li>
+</ul>
+<p><img src="image/image_x4IBRZ98Hs.png" alt=""></p>
+<h1 id="2-Prompt-learning"><a href="#2-Prompt-learning" class="headerlink" title="2.Prompt learning"></a>2.Prompt learning</h1><h2 id="2-1-基本组成与流程介绍"><a href="#2-1-基本组成与流程介绍" class="headerlink" title="2.1 基本组成与流程介绍"></a>2.1 基本组成与流程介绍</h2><h3 id="（1）Prompt-learning"><a href="#（1）Prompt-learning" class="headerlink" title="（1）Prompt-learning"></a>（1）Prompt-learning</h3><ul>
+<li>使用encoder作为PLMs的基本编码器</li>
+<li>Fine-tuning为特定任务添加额外的神经网络</li>
+<li>微调所有参数</li>
+<li>pre-training和fine-tuning之间存在差距。<strong>pre-training以mask的方式进行训练，而fine-tuning以QA的方式进行微调，存在差距</strong>。</li>
+</ul>
+<p><img src="image/image_3p4ZwvVkRD.png" alt=""></p>
+<h3 id="（2）Template-vs-Verbalizer"><a href="#（2）Template-vs-Verbalizer" class="headerlink" title="（2）Template vs Verbalizer"></a>（2）Template vs Verbalizer</h3><ul>
+<li>用 <code>[MASK]</code> 位置添加额外的上下文（Template）</li>
+<li>使用标签标记单词（Verbalizer）</li>
+<li>弥补pre-training and fine-tuning差距</li>
+</ul>
+<p><img src="image/image_cGom5ZcmFq.png" alt=""></p>
+<p>对于一个输入的实例，给它加一句话叫<code>it was [mask]</code>，即一个prompt，同时也给它保证成一个和预训练任务一样的形式。比如预训练中的MLM任务，这里也用mask的形式，让模型去预测该mask位置的单词。这里会预测出和预训练中一样的东西，即单词的概率分布。然后根据它子在整个词表上的分布，只去抽取其中想要的词。</p>
+<p>比如说是一个情感分类任务，那么可能会有一个正类和负类。那么对于正类，就有good或wonderful等这种词来代表正类；而bad或terrible这种词来代表负类。</p>
+<p>这里额外增加的这个上下文(<code>it wat [mask]</code>)称之为<strong>模板(template)</strong>；把标签映射到标签单词的映射器称为<strong>verbalizer</strong>；</p>
+<p>这种做法还有一个好处是，<strong>不再需要考虑各种任务之间的区别</strong>。同样一套数据，根据prompt设置的不同，或者verbalizer选择的不同，那么可以把不同的任务看成是不同的分类。</p>
+<p>这样就可以把所有的分类，甚至是生成任务都可以通过prompt重新组织成同样一个范</p>
+<h3 id="（3）Template-：情绪分类"><a href="#（3）Template-：情绪分类" class="headerlink" title="（3）Template ：情绪分类"></a>（3）Template ：情绪分类</h3><h4 id="使用模板提示"><a href="#使用模板提示" class="headerlink" title="使用模板提示"></a>使用模板提示</h4><p>首先有一个输入<code>x = &#39;I love this moive&#39;</code>。然后给它包一个prompt，变成<code>[x] Overall, it was a [z] movie</code>。这里<code>[z]</code>就是要预测的答案。最终经过prompt之后的数据变成了<code>x&#39;=&#39;I love this moive. Overall it was a [z] movie.&#39;</code>。</p>
+<p><img src="image/image_jcXgLQl-0S.png" alt=""></p>
+<h4 id="预测答案"><a href="#预测答案" class="headerlink" title="预测答案"></a>预测答案</h4><p>此时模型会输出一个词表上的概率分布，但只选择需要的概率最大的标签单词，假设这里时<code>fantastic</code>。</p>
+<p><img src="image/image_P9gyRrO2Du.png" alt=""></p>
+<h4 id="使用Verbalizer将答案映射到类标签"><a href="#使用Verbalizer将答案映射到类标签" class="headerlink" title="使用Verbalizer将答案映射到类标签"></a>使用Verbalizer将答案映射到类标签</h4><p>比如认为<code>fantastic</code>是一个positive的类。</p>
+<p>这样就通过prompt-learning完成情感分类的pipeline。</p>
+<p><img src="image/image_rzB6BpepV7.png" alt=""></p>
+<h3 id="（4）Prompt-learning-：注意事项"><a href="#（4）Prompt-learning-：注意事项" class="headerlink" title="（4）Prompt-learning ：注意事项"></a>（4）Prompt-learning ：注意事项</h3><p>预训练模型：</p>
+<ul>
+<li>Auto-regressive (GPT-1, GPT-2, GPT-3; OPT…)&#x20;</li>
+<li>Masked Language Modeling (BERT, RoBERTa, DeBERTa) &#x20;</li>
+<li>Encoder-Decoder (T5, BART)</li>
+</ul>
+<p>模板（Template）：</p>
+<ul>
+<li>Manually Design &#x20;</li>
+<li>Auto Generation &#x20;</li>
+<li>Textual or Continuous…</li>
+</ul>
+<p>用言语表达（Verbalizer）：</p>
+<ul>
+<li>Manually Design &#x20;</li>
+<li>Expanding by external knowledge…</li>
+</ul>
+<h2 id="2-2-PTM选取"><a href="#2-2-PTM选取" class="headerlink" title="2.2 PTM选取"></a>2.2 PTM选取</h2><h3 id="（1）生成式模型"><a href="#（1）生成式模型" class="headerlink" title="（1）生成式模型"></a>（1）生成式模型</h3><p>Auto-regressive (GPT-1, GPT-2, GPT-3; OPT…)&#x20;</p>
+<p><strong>一般的MASK放在最后，需要最后一个词</strong>，不一定适用于特别长的文本。但是现在几乎超大级别的模型，都是用这种自回归的方式去训练的。这种训练方式非常适用于超大模型。</p>
+<p><img src="image/image_QS6bX02gwE.png" alt=""></p>
+<h3 id="（2）MLM：分类模型，语言理解"><a href="#（2）MLM：分类模型，语言理解" class="headerlink" title="（2）MLM：分类模型，语言理解"></a>（2）MLM：分类模型，语言理解</h3><p>Masked Language Modeling (BERT, RoBERTa, DeBERTa) &#x20;</p>
+<p>如果要做理解任务或简单的分类任务，可能更好的办法用一个BERT或RoBERTa。</p>
+<p><strong>MASK位置在中间，会把前后的上下文attention</strong>。</p>
+<p><img src="image/image_Jc33C_Pv-8.png" alt=""></p>
+<h3 id="（3）Encoder-Decoder：T5"><a href="#（3）Encoder-Decoder：T5" class="headerlink" title="（3）Encoder-Decoder：T5"></a>（3）Encoder-Decoder：T5</h3><p>Encoder-Decoder (T5, BART)</p>
+<p>然后像T5模型，实际上在训练的时候，它已经有了一些所谓的比较简单的prompt。</p>
+<p>但没有做的事情是，详细地指明这个prompt可以长什么样。也没有说如果最后生成了那些单词之后，还可不可以做进一步地处理。</p>
+<p>T5模型有一个好处是比较通用，没有说像自回归模型那样那么不擅长做理解，又不像BERT模型那样不擅长做生成。</p>
+<p><img src="image/image_Apbm8US_cR.png" alt=""></p>
+<h2 id="2-3-Template构造"><a href="#2-3-Template构造" class="headerlink" title="2.3 Template构造"></a>2.3 Template构造</h2><h3 id="（1）根据任务特点人为设计"><a href="#（1）根据任务特点人为设计" class="headerlink" title="（1）根据任务特点人为设计"></a>（1）根据任务特点人为设计</h3><p>考虑任务的特性是什么，比如关系抽取、文本分类、对话等等，我们要考虑任务的特性来构造不同的模板，此时可能需要个人的先验知识。</p>
+<p>示例，利用人类的先验知识。对于不同的任务，确实可以利用人类的先验知识来设定不同的模板。</p>
+<p><img src="image/image_hGhHpk8eHl.png" alt=""></p>
+<p>TL；DR：to long, don’t reading</p>
+<h4 id="实体关系任务Template"><a href="#实体关系任务Template" class="headerlink" title="实体关系任务Template"></a><strong>实体关系任务Template</strong></h4><ul>
+<li>复制模板中的实体</li>
+<li>预测细粒度实体类型</li>
+<li>汲取世界知识</li>
+</ul>
+<p>假设输入是<code>London is one of the biggest cities in the world.</code>。假设要加一个模板，可以把<code>London</code>复制到模板中去，然后接上<code>is a [mask]</code>，来问模型<code>London</code>是什么类别。</p>
+<p>这样对于每个输入，该模板开头的单词都不一样，表示不同的实体。这样来完成实体分类，从而达到抽取世界知识的效果。</p>
+<p>通过这种做法，在少样本/零样本任务上表现特别好。</p>
+<p><img src="image/image_kVKeV1Av5Y.png" alt=""></p>
+<h4 id="逻辑增强Template"><a href="#逻辑增强Template" class="headerlink" title="逻辑增强Template"></a><strong>逻辑增强Template</strong></h4><p>人为定义的规则，加入分类任务中</p>
+<p>也可以让模板变得非常复杂，这个例子中要抽取<code>Mark Twain</code>和<code>Langdon</code>的关系。</p>
+<p>这里设计<code>prompt</code>的时候加入了一些人为定制的规则，如果要保证实体之间关系的类别，首先要保证它们实体本身类别的正确性。这样会带来额外一些制约，从而提升最终关系抽取分类的准确度。比如上图中的<code>x&#39;s parent was y</code>，必须要保证x和y都是person。</p>
+<p><img src="image/image_aB5Pk6AQKN.png" alt=""></p>
+<h3 id="（2）结构化，与规则相结合"><a href="#（2）结构化，与规则相结合" class="headerlink" title="（2）结构化，与规则相结合"></a>（2）结构化，与规则相结合</h3><ul>
+<li>所有提示符的<strong>键值对</strong></li>
+<li>将不同的任务组织成结构化的格式</li>
+</ul>
+<p>提醒模型应该做什么。通过这种提醒，加上训练去微调模型，在模型内部做成一个区分，而且是不同维度上的区分。</p>
+<p>首先定义一个<code>[Format]</code>表示格式是怎样的，然后定义一个<code>[Task]</code>表示数据集是怎么的，接着是<code>[Domain]</code>表示领域；然后是<code>[Question]</code>和<code>[Passage]</code>。</p>
+<p><img src="image/image_GRMF_Zwxil.png" alt=""></p>
+<p><strong>多个Template</strong></p>
+<ul>
+<li>为输入实例使用多个不同的提示</li>
+<li>降低即时工程成本</li>
+<li>稳定任务性能</li>
+</ul>
+<p>方法</p>
+<ul>
+<li>均匀平均</li>
+<li>加权平均</li>
+</ul>
+<p><img src="image/image_o4dxrl0Z7D.png" alt=""></p>
+<h3 id="（3）自动生成与搜索优化"><a href="#（3）自动生成与搜索优化" class="headerlink" title="（3）自动生成与搜索优化"></a>（3）自动生成与搜索优化</h3><h4 id="基于现有单词的梯度搜索提示"><a href="#基于现有单词的梯度搜索提示" class="headerlink" title="基于现有单词的梯度搜索提示"></a>基于现有单词的梯度搜索提示</h4><blockquote>
+<p>AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated Prompts. 2020</p>
+</blockquote>
+<p>这里给定输入后，定义了一些触发单词，然后定义一个prompt模板，其中每个单词都是由mask来初始化，通过最大化后验标签的概率来优化这些prompt的嵌入，然后从这些触发单词中找到和优化后的嵌入所对应的单词当成prompt。这会导致最后生成的模板看起来没有什么具体含义(语义不通)，但是它就是有效的，甚至比人类定义的prompt更加有效。</p>
+<p>这带给我们一些启示，通过prompt的目的是触发想要的单词，实际上这并不一定需要人类的直觉来定义。也就是说，<strong>对人类来说是最好的，对模型不一定是最好的</strong>。</p>
+<p><img src="image/image_VvoBnz9olA.png" alt=""></p>
+<h4 id="使用encoder-decoder模型生成prompts"><a href="#使用encoder-decoder模型生成prompts" class="headerlink" title="使用encoder-decoder模型生成prompts"></a>使用encoder-decoder模型生成prompts</h4><blockquote>
+<p>LM-BFF: Making Pre-trained Language Models Better Few-shot Learners. 2021</p>
+</blockquote>
+<p>利用额外的模型来生成prompt，比如对于一些情感分析类数据直接喂给T5，然后看哪些prompt加上这些数据后得到的准确度最高。选择最高的作为最终的模板。</p>
+<p><img src="image/image_4sPvzUfwV6.png" alt=""></p>
+<h3 id="（4）连续提示优化"><a href="#（4）连续提示优化" class="headerlink" title="（4）连续提示优化"></a>（4）连续提示优化</h3><ul>
+<li>通过优化连续提示，生成NLU模型</li>
+<li>P-tuning v1：prompts 输入层(与重新参数化)</li>
+<li>P-tuning v2：prompts 每一层(如前缀微调)</li>
+</ul>
+<blockquote>
+<p>P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks</p>
+</blockquote>
+<p>也可以通过特殊的字符来产生prompt</p>
+<p><img src="image/image_gV3S2mU__c.png" alt=""></p>
+<h2 id="2-4-Verbalizer构造"><a href="#2-4-Verbalizer构造" class="headerlink" title="2.4 Verbalizer构造"></a>2.4 Verbalizer构造</h2><p><strong>Verbalizer就是把标签映射成标签单词的过程。</strong></p>
+<p>可以把标签定义为一个或多个词，如果是多个词的话， 那么就求这些词概率的(加权)平均值。然后比较类别之间的概率。</p>
+<p>Verbalizer</p>
+<ul>
+<li>映射：answer → 不固定标签</li>
+<li>Tokens : 预训练语言模型词汇表中的一个或多个Tokens&#x20;</li>
+<li>Chunks : 由多个符号组成的词块</li>
+<li>Sentence : 任意长度的句子</li>
+</ul>
+<p>Construction &#x20;</p>
+<ul>
+<li>Hand-crafted &#x20;</li>
+<li>Auto-generation</li>
+</ul>
+<h3 id="（1）人工构造Verbalizer"><a href="#（1）人工构造Verbalizer" class="headerlink" title="（1）人工构造Verbalizer"></a>（1）人工构造Verbalizer</h3><ul>
+<li>人工设计与人类的先验知识</li>
+<li>从一个初始的标签词开始，释义和扩展</li>
+<li>从一个初始的标签词开始，使用外部知识并扩展</li>
+<li>用多个Tokens分解标签</li>
+<li>虚拟Tokens 和优化标签嵌入</li>
+</ul>
+<p>任务和相应的语言表达方法的例子</p>
+<p><img src="image/image_MXsFDLcqD7.png" alt=""></p>
+<h4 id="Knowledgeable-Prompting"><a href="#Knowledgeable-Prompting" class="headerlink" title="Knowledgeable Prompting"></a><strong>Knowledgeable Prompting</strong></h4><ul>
+<li>标签 → 单词</li>
+<li>使用外部知识扩展标签词</li>
+</ul>
+<blockquote>
+<p>Knowledgeable prompt-tuning: Incorporating knowledge into prompt verbalizer for text classification. 2021</p>
+</blockquote>
+<p>比如有一个问题：速度与加速度之间的关系是什么？ 然后加一个模板，<code>xx question</code>。这个<code>MASK</code>会预测认为定义的标签单词的概率，比如数学(mathematics)、运动(basketbal)和它们的同义词。</p>
+<p>接着定义一个verbalizer，先给定标签，比如这里是科学(SCIENCE)。然后用一个知识库去扩充它，接着去掉噪音词，再去选择最终需要的单词。</p>
+<p><img src="image/image_usWIY9OBNK.png" alt=""></p>
+<h4 id="Virtual-Tokens-as-Label-Words"><a href="#Virtual-Tokens-as-Label-Words" class="headerlink" title="Virtual Tokens as Label Words"></a><strong>Virtual Tokens as Label Words</strong></h4><ul>
+<li>将 [MASK] tokens 的隐藏状态投影到嵌入空间并学习原型</li>
+<li>学习到的原型构成了语言表达器，并将PLM输出映射到相应的标签。</li>
+</ul>
+<blockquote>
+<p>Prototypical Verbalizer for Prompt-based Few-shot Tuning. 2021</p>
+</blockquote>
+<p>除了用有意义的文本来构建之外，还可以用无意义的虚拟单词来表示标签单词。比如对于每个类别对应MASK的隐藏状态进行聚类，让不同的类别学到不同的簇，用这些簇中间的嵌入来表示最终的标签词。</p>
+<p><img src="image/image_LFF1mLFO2_.png" alt=""></p>
+<h2 id="2-5训练新范式"><a href="#2-5训练新范式" class="headerlink" title="2.5训练新范式"></a>2.5训练新范式</h2><p>训练模型的演变</p>
+<ol>
+<li>传统： 随机初始化后从零训练</li>
+<li>BERT之后： 预训练-微调</li>
+<li>T5： 基于文本-文本格式的预训练-微调</li>
+<li>GPT： 预训练然后使用prompt\&amp;in-context实现零/少样本学习</li>
+</ol>
+<p>Prompt-learning 引入了新的学习策略</p>
+<ul>
+<li>pre-training，prompting，优化所有参数(中型模型，few-shot设置)</li>
+<li>pre-training，添加soft prompts，冻结模型和优化prompt embeddings (delta tuning perspective)</li>
+<li>pre-training与prompted data，zero-shot推理(Instruction tuning和T0)</li>
+</ul>
+<h3 id="（1）Pre-trained-Prompt-Tuning"><a href="#（1）Pre-trained-Prompt-Tuning" class="headerlink" title="（1）Pre-trained Prompt Tuning"></a>（1）Pre-trained Prompt Tuning</h3><ul>
+<li>向输入层加入soft prompts (embeddings)</li>
+<li><strong>模型规模</strong></li>
+<li>与11B PLM条件下的微调结果相当</li>
+<li>本质上是一种<strong>参数高效(delta tuning)</strong> 方法</li>
+</ul>
+<p><img src="image/image_XuRvlBxLxr.png" alt=""></p>
+<p>给预训练注入Prompts</p>
+<ul>
+<li>完整数据：fine-tuning和prompt-tuning是可比较的</li>
+<li>数据少：只有tuning prompts性能较差</li>
+<li>vanilla prompt tuning不能在低数据情况下有效推广</li>
+<li>在预训练中注入soft prompts，提高prompt tuning的泛化性</li>
+</ul>
+<h3 id="（2）多任务预训练和人工prompts"><a href="#（2）多任务预训练和人工prompts" class="headerlink" title="（2）多任务预训练和人工prompts"></a>（2）多任务预训练和人工prompts</h3><ul>
+<li>微调一个130B PLM与提示60个任务</li>
+<li>大幅提高zero-shot 能力</li>
+</ul>
+<p><img src="image/image_w-2YLpihad.png" alt=""></p>
+<p>使用人工编写的prompts来训练encoder-decoder模型</p>
+<p><img src="image/image_1RiIPD0m2h.png" alt=""></p>
+<p>对未见过的任务进行zero-shot(绿色)。在1300亿的模型上去训练60个任务，为每个任务收集一些prompt，然后可以在未见过的任务上进行推理。</p>
+<p><img src="image/image_LhJK_3Wz5b.png" alt=""></p>
+<h2 id="2-6-应用"><a href="#2-6-应用" class="headerlink" title="2.6 应用"></a>2.6 应用</h2><p>已知的应用：</p>
+<ul>
+<li>大多数NLP任务：NLU，生成，信息抽取，QA，翻译，…</li>
+<li>具有位置相关性的任务可能比较困难，例如序列标记</li>
+</ul>
+<p>视觉，多模态，生物医药</p>
+<ul>
+<li>可以把输入加一些<code>soft token</code>，然后加上人工定义的医学领域的<code>prompt</code>，这样哪怕是小模型也可以在生物医学领域表现得特别好。</li>
+<li>可以应用到多模态上，本质上是训练图片和文本之间的理解。首先给图片中对象画个框，然后给定颜色，然后在文本中问，比如这个女人被框到了什么颜色里。让模型预测颜色是什么样的，从而让模型建立颜色和文字的理解。</li>
+</ul>
+<p><img src="image/image_6HTZl5ppS9.png" alt=""></p>
+<h1 id="3-Delta-Tuning"><a href="#3-Delta-Tuning" class="headerlink" title="3.Delta Tuning"></a>3.Delta Tuning</h1><p>和prompt-learning不同，delta tuning是从另一个角度来高效地微调模型。  思想是<strong>模型绝大部分参数不变，只微调一小部分模型，就能驱动大模型</strong>。</p>
+<p><img src="image/image_EWQ0BF__6x.png" alt=""></p>
+<p><strong>delta tuning</strong>，对于每个任务只优化小部分参数，称之为<strong>delta对象</strong>，它们可能有各种各样的结构。这些delta对象代表解决任务能力的参数化表示。实际上这些参数所占空间很小，那么就没有资源压力。</p>
+<p>实际上要考虑的地方也有很多，比如<strong>模型的选择、delta对象如何设计</strong>等等。</p>
+<p>为什么参数高效的微调是有用的？</p>
+<ul>
+<li>实际上在过去是不可能实现的，因为过去所有的网络参数都是随机初始化的。因为<strong>有了预训练之后</strong>，有了大模型之后，才能用delta tuning的范式。</li>
+<li>因为大模型通过无监督的方式学习了<strong>统一知识</strong>，很多人认为在下游任务的微调中，只是把这个统一知识激发出来。即在下游微调任务中，并没有学习更多的知识，而是激发已经学到的知识。</li>
+</ul>
+<p>delta tuing中的delta是什么？</p>
+<ul>
+<li><strong>Addition-based （增量式）</strong>：新插入模型原来不存在的参数，然后只训练这些额外插入的参数。</li>
+<li><strong>Specification-based （指定式）</strong>：指定模型哪些参数可以训练，哪些固定。</li>
+<li><strong>Reparameterization-based （重参数化式）</strong>：用低维子空间参数来重参数化原来存在的参数。</li>
+</ul>
+<p><img src="image/image_VRPRFz1NRj.png" alt=""></p>
+<h2 id="3-1-Addition-based-增量式"><a href="#3-1-Addition-based-增量式" class="headerlink" title="3.1 Addition-based (增量式)"></a>3.1 Addition-based (增量式)</h2><ul>
+<li>为Transformer层增加小的adapter(下图右边的网络模块)</li>
+<li>实际上是<strong>一个简单的双层神经网络，先缩小再非线性</strong>，再还原：$h \leftarrow f\left(h W<em>{d}\right) W</em>{u}+h$（还有残差连接）</li>
+<li>固定其他参数，只微调这些adapter</li>
+<li>可训练参数只有整个模型的<code>0.5%~8%</code></li>
+</ul>
+<p>这样<strong>可以达到和全参数模型几乎相同的效果</strong>。</p>
+<p><img src="image/image_z83QGb_dDb.png" alt=""></p>
+<p>增量式的方法还有一种，叫做prefix-tuning，它和prompt有些联系。</p>
+<ul>
+<li>Addition在线性层，layernorm之前加的，</li>
+<li>refix-tuning在每层的隐藏状态前增加soft token，然后只优化这些soft token。</li>
+</ul>
+<p><img src="image/image_T5u4qlSb7M.png" alt=""></p>
+<h2 id="3-2-Specification-based-指定式"><a href="#3-2-Specification-based-指定式" class="headerlink" title="3.2 Specification-based (指定式)"></a>3.2 Specification-based (指定式)</h2><p>这里介绍一种名为BitFit的方法，它只是去<strong>微调所有偏置(bias)</strong>，也能达到和全参数微调差不多的效果(简单任务)。</p>
+<p><img src="image/image_WvkrFbi0R6.png" alt=""></p>
+<h2 id="3-3-Reparameterization-based-重参数化"><a href="#3-3-Reparameterization-based-重参数化" class="headerlink" title="3.3 Reparameterization-based (重参数化)"></a>3.3 Reparameterization-based (重参数化)</h2><p>重参数方法认为<strong>优化过程可以在低维的空间完成</strong>，将120个任务的优化压缩到低维的子空间里。比如在一个五维的空间中训练，然后还原到原来的参数里。此时可以发现在低维空间找到的解，可以在120个任务上表现的很好。</p>
+<p><img src="image/image_aaXoJBcFV7.png" alt=""></p>
+<p><strong>LoRA</strong>认为<strong>要优化的矩阵本质上是低秩的</strong>，虽然实际上并不是低秩的，但可以强行做低秩分解，比如$1000 \times 1000$分解为 $1000 \times 2$和 $2 \times 1000$的，这样可以减少很多计算量。</p>
+<p><img src="image/image_IW00UibPD7.png" alt=""></p>
+<p>这些重参数化的方法本质上是有一些联系的，就是说<strong>它们都基于相似的减少，模型的优化可以用很少代价来完成</strong>。可以把它映射到一个低维或低秩的过程，用一个很简单的过程去完成这个模型的优化。</p>
+<blockquote>
+<p>[1] Intrinsic dimensionality explains the effectiveness of language model tuning, 2020.<br>[2] LoRA: Low-Rank Adaptation of Large Langauge Models, 2021.<br>[3] Exploring low-dimensional intrinsic task subspace via prompt tuning, 2021.</p>
+</blockquote>
+<p><img src="image/image_5Q_gH2KyL4.png" alt=""></p>
+<h2 id="3-4-统一tuing"><a href="#3-4-统一tuing" class="headerlink" title="3.4 统一tuing"></a>3.4 统一tuing</h2><p>这种联系可以扩展到更多的方法，最近有人建立了一种统一框架，把这三种方式联系起来。</p>
+<p><img src="image/image_RobluIfuas.png" alt=""></p>
+<p>认为它们本质上可能在做同一件事情。</p>
+<p><img src="image/image_8mR8zASNPJ.png" alt=""></p>
+<p>实际上它们都是<strong>固定大模型参数，只微调很小部分的delta对象</strong>。因此可以推导出更加通用的delta tuning变体。</p>
+<p><img src="image/image_rywWjh1QC2.png" alt=""></p>
+<p>在100多个NLP任务上进行了实验表明，delta tuning确实效果比较好，比如LoRA(LR)在100多个任务上只微调了0.38%的参数就能达到平均和全参数微调(FT)差不多的效果。</p>
+<p><img src="image/image_nQPquW561i.png" alt=""></p>
+<p>然后还可以发现不同的任务适用于不同的结构，那么是否存在一个最优结构呢。</p>
+<p>比如可以<strong>用自动机器学习的方法来搜索这个结构</strong>，在每个位置设定一个开关，表示使用哪种delta tuning方式。这样就能找到一个比较稀疏的解，能让模型的效果特别好。</p>
+<p><img src="image/image_puGgsEImHi.png" alt=""></p>
+<p>下图横轴表示参数量的稀疏程度(由多变少)，纵轴代表准确率。当参数量变少到万分之一的时候，其他的delta tuning方法都有显著的下降，而通过自动搜索方法得到的解它的效果和全参数微调还是保持相差不大。</p>
+<p><img src="image/image_qwt7P0Y5Y7.png" alt=""></p>
+<p>通过自动搜索的方法用更少的参数去探索一种极限。同时delta tuning还具备非常好的<strong>可迁移性</strong>，这几种delta tuning在不同的任务上得到的图像差不多。</p>
+<p><img src="image/image_E1NfAST3zc.png" alt=""></p>
+<h2 id="3-5-总结"><a href="#3-5-总结" class="headerlink" title="3.5 总结"></a>3.5 总结</h2><ul>
+<li><strong>delta tuning在超大规模的模型上非常高效</strong></li>
+<li>它的结构随着模型的增加变得越发不重要</li>
+</ul>
+<h1 id="4-OpenPrompt"><a href="#4-OpenPrompt" class="headerlink" title="4.OpenPrompt"></a>4.OpenPrompt</h1><h2 id="4-1-OpenPrompt"><a href="#4-1-OpenPrompt" class="headerlink" title="4.1 OpenPrompt"></a>4.1 OpenPrompt</h2><p><img src="image/image_HZnAwG8ezq.png" alt=""></p>
+<p>Prompt其实可以自定义很多不同的Template/verbalizer，比如一个普通的情感分类任务，模板可能是<code>it was__</code>。 &#x20;</p>
+<p>模板可能不同，mask位置可能不同，verbalizer也可能不同。</p>
+<p>之前通常将模板写死到代码中，不方便我们尝试不同的模板，也无法灵活地找到mask的位置。 &#x20;<br>OpenPrompt工具包的目的是解决上面所说的问题，<strong>定义统一的prompt tuning范式</strong>，使用不同的模板，定义不同的verbalizer，去实现不同的任务。</p>
+<p><img src="image/image_qYyVPhC-Vp.png" alt=""></p>
+<p>上图是API交互。<code>PromptDataset</code>的输出是一个<code>Tempate</code>，包裹上输入之后，被<code>PromptTokenizer</code>分词成可以输入模型的数据。<code>PromptModel</code>把该输入中的soft token转换成<code>TemplateEmbeddings</code>，再输入预训练模型(PLM)，最后把mask的位置的输出抽出来，送给<code>Verbalizer</code>进行预测。 &#x20;</p>
+<p>除此之外，通过<code>PromptTrainer</code>类提供了不同的训练方式。</p>
+<p>下面简单看一下如何使用OpenPrompt。</p>
+<ol>
+<li>定义一个任务</li>
+<li>选择预训练模型</li>
+<li>定义一个Template</li>
+<li>定义一个Verbalizer</li>
+<li>定义一个PromptModel</li>
+<li>训练并推理</li>
+</ol>
+<p>一些Template的例子： &#x20;</p>
+<p><img src="image/image_Qyx2aFdBee.png" alt=""></p>
+<p>实施各种快速学习管道 （灰线是暂时没有出现的方法）</p>
+<ul>
+<li>修改单独的模块和创建新的方法&#x20;</li>
+<li>将现有方法应用于其他场景</li>
+</ul>
+<p><img src="image/image_VHhBqyni_M.png" alt=""></p>
+<h2 id="4-2-OpenPrompt-demo"><a href="#4-2-OpenPrompt-demo" class="headerlink" title="4.2 OpenPrompt demo"></a>4.2 OpenPrompt demo</h2><p>下面用一个实例来进行演示。&#x20;</p>
+<p><a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1bQnMvui8Zb6EwNXWiC3DYKr8AH0IEbQa#scrollTo=j1r0_pLwaqtZ" title="OpenPrompt Demo - Colaboratory (google.com)">OpenPrompt Demo - Colaboratory (google.com)</a></p>
+<h4 id="（1）安装包"><a href="#（1）安装包" class="headerlink" title="（1）安装包"></a>（1）安装包</h4><p>首先安装需要的包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!pip install transformers --quiet</span><br><span class="line">!pip install datasets==2.0 --quiet</span><br><span class="line">!pip install openprompt --quiet</span><br><span class="line">!pip install torch --quiet</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="（2）加载数据集"><a href="#（2）加载数据集" class="headerlink" title="（2）加载数据集"></a>（2）加载数据集</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> load_dataset</span><br><span class="line">raw_dataset = load_dataset(<span class="string">&#x27;super_glue&#x27;</span>, <span class="string">&#x27;cb&#x27;</span>, cache_dir=<span class="string">&quot;../datasets/.cache/huggingface_datasets&quot;</span>)</span><br><span class="line">raw_dataset[<span class="string">&#x27;train&#x27;</span>][<span class="number">0</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#x27;premise&#x27;: &#x27;It was a complex language. Not written down but handed down. One might say it was peeled down.&#x27;,</span><br><span class="line"> &#x27;hypothesis&#x27;: &#x27;the language was peeled down&#x27;,</span><br><span class="line"> &#x27;idx&#x27;: 0,</span><br><span class="line"> &#x27;label&#x27;: 0&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>并查看样本。</p>
+<h4 id="（3）加载模型和tokenizer"><a href="#（3）加载模型和tokenizer" class="headerlink" title="（3）加载模型和tokenizer"></a>（3）加载模型和tokenizer</h4><p>下面加载模型和分词器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from openprompt.plms import load_plm</span><br><span class="line">plm, tokenizer, model_config, WrapperClass = load_plm(&quot;t5&quot;, &quot;t5-base&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="（4）构造输入"><a href="#（4）构造输入" class="headerlink" title="（4）构造输入"></a>（4）构造输入</h4><p><strong>构建输入</strong>，将原始数据集处理成OpenPrompt可以使用的格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from openprompt.data_utils import InputExample</span><br><span class="line"></span><br><span class="line">dataset = &#123;&#125;</span><br><span class="line">for split in [&#x27;train&#x27;, &#x27;validation&#x27;, &#x27;test&#x27;]:</span><br><span class="line">    dataset[split] = []</span><br><span class="line">    for data in raw_dataset[split]:</span><br><span class="line">        input_example = InputExample(text_a = data[&#x27;premise&#x27;], text_b = data[&#x27;hypothesis&#x27;], label=int(data[&#x27;label&#x27;]), guid=data[&#x27;idx&#x27;])</span><br><span class="line">        dataset[split].append(input_example)</span><br><span class="line">print(dataset[&#x27;train&#x27;][0])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;guid&quot;: 0,</span><br><span class="line">  &quot;label&quot;: 0,</span><br><span class="line">  &quot;meta&quot;: &#123;&#125;,</span><br><span class="line">  &quot;text_a&quot;: &quot;It was a complex language. Not written down but handed down. One might say it was peeled down.&quot;,</span><br><span class="line">  &quot;text_b&quot;: &quot;the language was peeled down&quot;,</span><br><span class="line">  &quot;tgt_text&quot;: null</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看到，有一部分叫<code>text_a</code>，另一部分输入叫<code>text_b</code>。还有刚才提到的<code>meta</code>信息。下面</p>
+<p><strong>定义模板文本</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from openprompt.prompts import ManualTemplate</span><br><span class="line">template_text = &#x27;&#123;&quot;placeholder&quot;:&quot;text_a&quot;&#125; Deduction: &#123;&quot;placeholder&quot;:&quot;text_b&quot;&#125;. Is it correct? &#123;&quot;mask&quot;&#125;.&#x27;</span><br><span class="line">mytemplate = ManualTemplate(tokenizer=tokenizer, text=template_text)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>模板定义如上所示，在mask位置输出我们想要的答案。</p>
+<p><strong>使用标记器包装器类对wrapped_example进行标记</strong></p>
+<p>为了更好地理解模板包裹了什么，我们看一个例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wrapped_example = mytemplate.wrap_one_example(dataset[&#x27;train&#x27;][0])</span><br><span class="line">wrapped_example</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[[&#123;&#x27;text&#x27;: &#x27;It was a complex language. Not written down but handed down. One might say it was peeled down.&#x27;,</span><br><span class="line">   &#x27;loss_ids&#x27;: 0,</span><br><span class="line">   &#x27;shortenable_ids&#x27;: 1&#125;,</span><br><span class="line">  &#123;&#x27;text&#x27;: &#x27; Deduction:&#x27;, &#x27;loss_ids&#x27;: 0, &#x27;shortenable_ids&#x27;: 0&#125;,</span><br><span class="line">  &#123;&#x27;text&#x27;: &#x27; the language was peeled down&#x27;,</span><br><span class="line">   &#x27;loss_ids&#x27;: 0,</span><br><span class="line">   &#x27;shortenable_ids&#x27;: 1&#125;,</span><br><span class="line">  &#123;&#x27;text&#x27;: &#x27;. Is it correct?&#x27;, &#x27;loss_ids&#x27;: 0, &#x27;shortenable_ids&#x27;: 0&#125;,</span><br><span class="line">  &#123;&#x27;text&#x27;: &#x27;&lt;mask&gt;&#x27;, &#x27;loss_ids&#x27;: 1, &#x27;shortenable_ids&#x27;: 0&#125;,</span><br><span class="line">  &#123;&#x27;text&#x27;: &#x27;.&#x27;, &#x27;loss_ids&#x27;: 0, &#x27;shortenable_ids&#x27;: 0&#125;],</span><br><span class="line"> &#123;&#x27;guid&#x27;: 0, &#x27;label&#x27;: 0&#125;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>shortenable_ids</code>表示是否可压缩，<code>loss_ids</code>表示是否需要计算损失。</p>
+<p>接下来处理这样的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wrapped_t5tokenizer = WrapperClass(max_seq_length=128, decoder_max_length=3, tokenizer=tokenizer,truncate_method=&quot;head&quot;)</span><br><span class="line"># or</span><br><span class="line">from openprompt.plms import T5TokenizerWrapper</span><br><span class="line">wrapped_t5tokenizer= T5TokenizerWrapper(max_seq_length=128, decoder_max_length=3, tokenizer=tokenizer,truncate_method=&quot;head&quot;)</span><br><span class="line"></span><br><span class="line"># You can see what a tokenized example looks like by</span><br><span class="line">tokenized_example = wrapped_t5tokenizer.tokenize_one_example(wrapped_example, teacher_forcing=False)</span><br><span class="line">print(tokenized_example)</span><br><span class="line">print(tokenizer.convert_ids_to_tokens(tokenized_example[&#x27;input_ids&#x27;]))</span><br><span class="line">print(tokenizer.convert_ids_to_tokens(tokenized_example[&#x27;decoder_input_ids&#x27;]))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#x27;input_ids&#x27;: [94, 47, 3, 9, 1561, 1612, 5, 933, 1545, 323, 68, 14014, 323, 5, 555, 429, 497, 34, 47, 158, 400, 26, 323, 5, 374, 8291, 10, 8, 1612, 47, 158, 400, 26, 323, 3, 5, 27, 7, 34, 2024, 58, 32099, 3, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], &#x27;attention_mask&#x27;: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], &#x27;decoder_input_ids&#x27;: [0, 32099, 0], &#x27;loss_ids&#x27;: [0, 1, 0]&#125;</span><br><span class="line">[&#x27;▁It&#x27;, &#x27;▁was&#x27;, &#x27;▁&#x27;, &#x27;a&#x27;, &#x27;▁complex&#x27;, &#x27;▁language&#x27;, &#x27;.&#x27;, &#x27;▁Not&#x27;, &#x27;▁written&#x27;, &#x27;▁down&#x27;, &#x27;▁but&#x27;, &#x27;▁handed&#x27;, &#x27;▁down&#x27;, &#x27;.&#x27;, &#x27;▁One&#x27;, &#x27;▁might&#x27;, &#x27;▁say&#x27;, &#x27;▁it&#x27;, &#x27;▁was&#x27;, &#x27;▁pe&#x27;, &#x27;ele&#x27;, &#x27;d&#x27;, &#x27;▁down&#x27;, &#x27;.&#x27;, &#x27;▁De&#x27;, &#x27;duction&#x27;, &#x27;:&#x27;, &#x27;▁the&#x27;, &#x27;▁language&#x27;, &#x27;▁was&#x27;, &#x27;▁pe&#x27;, &#x27;ele&#x27;, &#x27;d&#x27;, &#x27;▁down&#x27;, &#x27;▁&#x27;, &#x27;.&#x27;, &#x27;▁I&#x27;, &#x27;s&#x27;, &#x27;▁it&#x27;, &#x27;▁correct&#x27;, &#x27;?&#x27;, &#x27;&lt;extra_id_0&gt;&#x27;, &#x27;▁&#x27;, &#x27;.&#x27;, &#x27;&lt;/s&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;]</span><br><span class="line">[&#x27;&lt;pad&gt;&#x27;, &#x27;&lt;extra_id_0&gt;&#x27;, &#x27;&lt;pad&gt;&#x27;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这样对整个数据集进行处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">model_inputs = &#123;&#125;</span><br><span class="line">for split in [&#x27;train&#x27;, &#x27;validation&#x27;, &#x27;test&#x27;]:</span><br><span class="line">    model_inputs[split] = []</span><br><span class="line">    for sample in dataset[split]:</span><br><span class="line">        tokenized_example = wrapped_t5tokenizer.tokenize_one_example(mytemplate.wrap_one_example(sample), teacher_forcing=False)</span><br><span class="line">        model_inputs[split].append(tokenized_example)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="（5）构造dataloader"><a href="#（5）构造dataloader" class="headerlink" title="（5）构造dataloader"></a>（5）构造dataloader</h4><p>dataloader对象是一个可迭代的对象，迭代它将为模型的每次前向传递提供输入张量。&#x20;</p>
+<p>下面构建数据加载器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from openprompt import PromptDataLoader</span><br><span class="line"></span><br><span class="line">train_dataloader = PromptDataLoader(dataset=dataset[&quot;train&quot;], template=mytemplate, tokenizer=tokenizer,</span><br><span class="line">    tokenizer_wrapper_class=WrapperClass, max_seq_length=256, decoder_max_length=3,</span><br><span class="line">    batch_size=4,shuffle=True, teacher_forcing=False, predict_eos_token=False,</span><br><span class="line">    truncate_method=&quot;head&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="（6）构建Verbalizer"><a href="#（6）构建Verbalizer" class="headerlink" title="（6）构建Verbalizer"></a>（6）构建Verbalizer</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from openprompt.prompts import ManualVerbalizer</span><br><span class="line">import torch</span><br><span class="line"></span><br><span class="line"># for example the verbalizer contains multiple label words in each class</span><br><span class="line">myverbalizer = ManualVerbalizer(tokenizer, num_classes=3,</span><br><span class="line">                        label_words=[[&quot;yes&quot;], [&quot;no&quot;], [&quot;maybe&quot;]])</span><br><span class="line"></span><br><span class="line">print(myverbalizer.label_words_ids)</span><br><span class="line">logits = torch.randn(2,len(tokenizer)) # creating a pseudo output from the plm, and</span><br><span class="line">print(myverbalizer.process_logits(logits))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里指定了三个标签单词，分别对应三种类别。下面看verbalizer加工后的形状：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Parameter containing:</span><br><span class="line">tensor([[[4273]],</span><br><span class="line"></span><br><span class="line">        [[ 150]],</span><br><span class="line"></span><br><span class="line">        [[2087]]])</span><br><span class="line">tensor([[-2.6867, -0.1306, -2.9124],</span><br><span class="line">        [-0.6579, -0.8735, -2.7400]])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="（7）分类Pipeline"><a href="#（7）分类Pipeline" class="headerlink" title="（7）分类Pipeline"></a>（7）分类Pipeline</h4><p>下面定义一个分类Pipeline。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from openprompt import PromptForClassification</span><br><span class="line"></span><br><span class="line">use_cuda = torch.cuda.is_available()</span><br><span class="line">print(&quot;GPU enabled? &#123;&#125;&quot;.format(use_cuda))</span><br><span class="line">prompt_model = PromptForClassification(plm=plm,template=mytemplate, verbalizer=myverbalizer, freeze_plm=False)</span><br><span class="line">if use_cuda:</span><br><span class="line">    prompt_model=  prompt_model.cuda()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="（8）GPU训练"><a href="#（8）GPU训练" class="headerlink" title="（8）GPU训练"></a>（8）GPU训练</h4><p>把模型移到GPU上。在GPU上进行训练：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># Now the training is standard</span><br><span class="line">from transformers import  AdamW, get_linear_schedule_with_warmup</span><br><span class="line">loss_func = torch.nn.CrossEntropyLoss()</span><br><span class="line">no_decay = [&#x27;bias&#x27;, &#x27;LayerNorm.weight&#x27;]</span><br><span class="line"># it&#x27;s always good practice to set no decay to biase and LayerNorm parameters</span><br><span class="line">optimizer_grouped_parameters = [</span><br><span class="line">    &#123;&#x27;params&#x27;: [p for n, p in prompt_model.named_parameters() if not any(nd in n for nd in no_decay)], &#x27;weight_decay&#x27;: 0.01&#125;,</span><br><span class="line">    &#123;&#x27;params&#x27;: [p for n, p in prompt_model.named_parameters() if any(nd in n for nd in no_decay)], &#x27;weight_decay&#x27;: 0.0&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">optimizer = AdamW(optimizer_grouped_parameters, lr=1e-4)</span><br><span class="line"></span><br><span class="line">for epoch in range(5):</span><br><span class="line">    tot_loss = 0</span><br><span class="line">    for step, inputs in enumerate(train_dataloader):</span><br><span class="line">        if use_cuda:</span><br><span class="line">            inputs = inputs.cuda()</span><br><span class="line">        logits = prompt_model(inputs)</span><br><span class="line">        labels = inputs[&#x27;label&#x27;]</span><br><span class="line">        loss = loss_func(logits, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line">        tot_loss += loss.item()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        if step %100 ==1:</span><br><span class="line">            print(&quot;Epoch &#123;&#125;, average loss: &#123;&#125;&quot;.format(epoch, tot_loss/(step+1)), flush=True)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Epoch 0, average loss: 0.6918223202228546</span><br><span class="line">Epoch 1, average loss: 0.21019931323826313</span><br><span class="line">Epoch 2, average loss: 0.0998007245361805</span><br><span class="line">Epoch 3, average loss: 0.0021352323819883168</span><br><span class="line">Epoch 4, average loss: 0.00015113733388716355</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="（9）评估模型"><a href="#（9）评估模型" class="headerlink" title="（9）评估模型"></a>（9）评估模型</h4><p>最后我们评估一下模型效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">validation_dataloader = PromptDataLoader(dataset=dataset[&quot;validation&quot;], template=mytemplate, tokenizer=tokenizer,</span><br><span class="line">    tokenizer_wrapper_class=WrapperClass, max_seq_length=256, decoder_max_length=3,</span><br><span class="line">    batch_size=4,shuffle=False, teacher_forcing=False, predict_eos_token=False,</span><br><span class="line">    truncate_method=&quot;head&quot;)</span><br><span class="line"></span><br><span class="line">allpreds = []</span><br><span class="line">alllabels = []</span><br><span class="line">for step, inputs in enumerate(validation_dataloader):</span><br><span class="line">    if use_cuda:</span><br><span class="line">        inputs = inputs.cuda()</span><br><span class="line">    logits = prompt_model(inputs)</span><br><span class="line">    labels = inputs[&#x27;label&#x27;]</span><br><span class="line">    alllabels.extend(labels.cpu().tolist())</span><br><span class="line">    allpreds.extend(torch.argmax(logits, dim=-1).cpu().tolist())</span><br><span class="line"></span><br><span class="line">acc = sum([int(i==j) for i,j in zip(allpreds, alllabels)])/len(allpreds)</span><br><span class="line">print(acc)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.9107142857142857</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="5-OpenDelta介绍"><a href="#5-OpenDelta介绍" class="headerlink" title="5.OpenDelta介绍"></a>5.OpenDelta介绍</h1><p>下面介绍OpenDelta工具，用于delta tuning，它的特点有：</p>
+<ul>
+<li>干净：不需要编辑backonePTM的代码。 &#x20;</li>
+<li>简单：从全模型tuning迁移到delta-tuning只需要3行代码。 &#x20;</li>
+<li>可持续：外部库的进化不需要更新。</li>
+<li>可扩展：各种ptm可以共享相同的delta-tuning代码。 &#x20;</li>
+<li>灵活：能够应用delta-tuning到(几乎)任何位置。&#x20;</li>
+</ul>
+<p><img src="image/image_-OAUwkIeph.png" alt=""></p>
+<p>非常少的修改：</p>
+<p><img src="image/image_9s3Ai-JhRE.png" alt=""></p>
+<p>支持非常多的模型。</p>
+<p>还是来看一个实例吧。</p>
+<p>首先安装需要的包。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">!pip install transformers --quiet</span><br><span class="line">!pip install datasets==2.0 --quiet</span><br><span class="line">!pip install opendelta==0.2.2 --quiet</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在开头载入需要用到的包：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from dataclasses import dataclass, field</span><br><span class="line">from typing import Optional, List</span><br><span class="line">from transformers import Seq2SeqTrainingArguments, TrainerCallback </span><br><span class="line">from datasets import load_dataset, load_metric, concatenate_datasets</span><br><span class="line">import transformers</span><br><span class="line">from transformers import (</span><br><span class="line">    AutoConfig,</span><br><span class="line">    AutoModelForSeq2SeqLM,</span><br><span class="line">    AutoTokenizer,</span><br><span class="line">    HfArgumentParser,</span><br><span class="line">    MBartTokenizer,</span><br><span class="line">    default_data_collator,</span><br><span class="line">    set_seed,</span><br><span class="line">)</span><br><span class="line">from datasets import load_dataset</span><br><span class="line">import torch</span><br><span class="line">import numpy as np</span><br><span class="line">import random</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>定义模型的参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">@dataclass</span><br><span class="line">class ModelArguments:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Arguments pertaining to which model/config/tokenizer we are going to fine-tune from.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    model_name_or_path: str = field(</span><br><span class="line">        metadata=&#123;&quot;help&quot;: &quot;Path to pretrained model or model identifier from huggingface.co/models&quot;&#125;</span><br><span class="line">    )</span><br><span class="line">    config_name: Optional[str] = field(</span><br><span class="line">        default=None, metadata=&#123;&quot;help&quot;: &quot;Pretrained config name or path if not the same as model_name&quot;&#125;</span><br><span class="line">    )</span><br><span class="line">    tokenizer_name: Optional[str] = field(</span><br><span class="line">        default=None, metadata=&#123;&quot;help&quot;: &quot;Pretrained tokenizer name or path if not the same as model_name&quot;&#125;</span><br><span class="line">    )</span><br><span class="line">    cache_dir: Optional[str] = field(</span><br><span class="line">        default=None,</span><br><span class="line">        metadata=&#123;&quot;help&quot;: &quot;Where to store the pretrained models downloaded from huggingface.co&quot;&#125;,</span><br><span class="line">    )</span><br><span class="line">    use_fast_tokenizer: bool = field(</span><br><span class="line">        default=True,</span><br><span class="line">        metadata=&#123;&quot;help&quot;: &quot;Whether to use one of the fast tokenizer (backed by the tokenizers library) or not.&quot;&#125;,</span><br><span class="line">    )</span><br><span class="line">    model_revision: str = field(</span><br><span class="line">        default=&quot;main&quot;,</span><br><span class="line">        metadata=&#123;&quot;help&quot;: &quot;The specific model version to use (can be a branch name, tag name or commit id).&quot;&#125;,</span><br><span class="line">    )</span><br><span class="line">    use_auth_token: bool = field(</span><br><span class="line">        default=False,</span><br><span class="line">        metadata=&#123;</span><br><span class="line">            &quot;help&quot;: &quot;Will use the token generated when running `transformers-cli login` (necessary to use this script &quot;</span><br><span class="line">            &quot;with private models).&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">model_args = ModelArguments(model_name_or_path=&quot;t5-large&quot;, )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用传统的方式加载模型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">config = AutoConfig.from_pretrained(</span><br><span class="line">    model_args.config_name if model_args.config_name else model_args.model_name_or_path,</span><br><span class="line">    cache_dir=model_args.cache_dir,</span><br><span class="line">    revision=model_args.model_revision,</span><br><span class="line">    use_auth_token=True if model_args.use_auth_token else None,</span><br><span class="line">)</span><br><span class="line">config.dropout_rate = 0.0</span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(</span><br><span class="line">    model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,</span><br><span class="line">    cache_dir=model_args.cache_dir,</span><br><span class="line">    use_fast=model_args.use_fast_tokenizer,</span><br><span class="line">    revision=model_args.model_revision,</span><br><span class="line">    use_auth_token=True if model_args.use_auth_token else None,</span><br><span class="line">)</span><br><span class="line">model = AutoModelForSeq2SeqLM.from_pretrained(</span><br><span class="line">    model_args.model_name_or_path,</span><br><span class="line">    from_tf=bool(&quot;.ckpt&quot; in model_args.model_name_or_path),</span><br><span class="line">    config=config,</span><br><span class="line">    cache_dir=model_args.cache_dir,</span><br><span class="line">    revision=model_args.model_revision,</span><br><span class="line">    use_auth_token=True if model_args.use_auth_token else None,</span><br><span class="line">)</span><br><span class="line">model.resize_token_embeddings(len(tokenizer))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>下面演示一下opendelta提供的可视化功能：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from opendelta import Visualization</span><br><span class="line">Visualization(model).structure_graph();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="image/image_BAKFvyUQLJ.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">root</span><br><span class="line">├── shared(Embedding),lm_head(Linear) weight:[<span class="number">32100</span>, <span class="number">1024</span>]</span><br><span class="line">├── encoder (T5Stack)</span><br><span class="line">│   ├── embed_tokens (Embedding) weight:[<span class="number">32100</span>, <span class="number">1024</span>]</span><br><span class="line">│   ├── block (ModuleList)</span><br><span class="line">│   │   ├── <span class="number">0</span> (T5Block)</span><br><span class="line">│   │   │   └── layer (ModuleList)</span><br><span class="line">│   │   │       ├── <span class="number">0</span> (T5LayerSelfAttention)</span><br><span class="line">│   │   │       │   ├── SelfAttention (T5Attention)</span><br><span class="line">│   │   │       │   │   ├── q,k,v,o(Linear) weight:[<span class="number">1024</span>, <span class="number">1024</span>]</span><br><span class="line">│   │   │       │   │   └── relative_attention_bias (Embedding) weight:[<span class="number">32</span>, <span class="number">16</span>]</span><br><span class="line">│   │   │       │   └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">│   │   │       └── <span class="number">1</span> (T5LayerFF)</span><br><span class="line">│   │   │           ├── DenseReluDense (T5DenseActDense)</span><br><span class="line">│   │   │           │   ├── wi (Linear) weight:[<span class="number">4096</span>, <span class="number">1024</span>]</span><br><span class="line">│   │   │           │   └── wo (Linear) weight:[<span class="number">1024</span>, <span class="number">4096</span>]</span><br><span class="line">│   │   │           └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">│   │   └── <span class="number">1</span>-<span class="number">23</span>(T5Block)</span><br><span class="line">│   │       └── layer (ModuleList)</span><br><span class="line">│   │           ├── <span class="number">0</span> (T5LayerSelfAttention)</span><br><span class="line">│   │           │   ├── SelfAttention (T5Attention)</span><br><span class="line">│   │           │   │   └── q,k,v,o(Linear) weight:[<span class="number">1024</span>, <span class="number">1024</span>]</span><br><span class="line">│   │           │   └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">│   │           └── <span class="number">1</span> (T5LayerFF)</span><br><span class="line">│   │               ├── DenseReluDense (T5DenseActDense)</span><br><span class="line">│   │               │   ├── wi (Linear) weight:[<span class="number">4096</span>, <span class="number">1024</span>]</span><br><span class="line">│   │               │   └── wo (Linear) weight:[<span class="number">1024</span>, <span class="number">4096</span>]</span><br><span class="line">│   │               └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">│   └── final_layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">└── decoder (T5Stack)</span><br><span class="line">    ├── embed_tokens (Embedding) weight:[<span class="number">32100</span>, <span class="number">1024</span>]</span><br><span class="line">    ├── block (ModuleList)</span><br><span class="line">    │   ├── <span class="number">0</span> (T5Block)</span><br><span class="line">    │   │   └── layer (ModuleList)</span><br><span class="line">    │   │       ├── <span class="number">0</span> (T5LayerSelfAttention)</span><br><span class="line">    │   │       │   ├── SelfAttention (T5Attention)</span><br><span class="line">    │   │       │   │   ├── q,k,v,o(Linear) weight:[<span class="number">1024</span>, <span class="number">1024</span>]</span><br><span class="line">    │   │       │   │   └── relative_attention_bias (Embedding) weight:[<span class="number">32</span>, <span class="number">16</span>]</span><br><span class="line">    │   │       │   └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">    │   │       ├── <span class="number">1</span> (T5LayerCrossAttention)</span><br><span class="line">    │   │       │   ├── EncDecAttention (T5Attention)</span><br><span class="line">    │   │       │   │   └── q,k,v,o(Linear) weight:[<span class="number">1024</span>, <span class="number">1024</span>]</span><br><span class="line">    │   │       │   └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">    │   │       └── <span class="number">2</span> (T5LayerFF)</span><br><span class="line">    │   │           ├── DenseReluDense (T5DenseActDense)</span><br><span class="line">    │   │           │   ├── wi (Linear) weight:[<span class="number">4096</span>, <span class="number">1024</span>]</span><br><span class="line">    │   │           │   └── wo (Linear) weight:[<span class="number">1024</span>, <span class="number">4096</span>]</span><br><span class="line">    │   │           └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">    │   └── <span class="number">1</span>-<span class="number">23</span>(T5Block)</span><br><span class="line">    │       └── layer (ModuleList)</span><br><span class="line">    │           ├── <span class="number">0</span> (T5LayerSelfAttention)</span><br><span class="line">    │           │   ├── SelfAttention (T5Attention)</span><br><span class="line">    │           │   │   └── q,k,v,o(Linear) weight:[<span class="number">1024</span>, <span class="number">1024</span>]</span><br><span class="line">    │           │   └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">    │           ├── <span class="number">1</span> (T5LayerCrossAttention)</span><br><span class="line">    │           │   ├── EncDecAttention (T5Attention)</span><br><span class="line">    │           │   │   └── q,k,v,o(Linear) weight:[<span class="number">1024</span>, <span class="number">1024</span>]</span><br><span class="line">    │           │   └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">    │           └── <span class="number">2</span> (T5LayerFF)</span><br><span class="line">    │               ├── DenseReluDense (T5DenseActDense)</span><br><span class="line">    │               │   ├── wi (Linear) weight:[<span class="number">4096</span>, <span class="number">1024</span>]</span><br><span class="line">    │               │   └── wo (Linear) weight:[<span class="number">1024</span>, <span class="number">4096</span>]</span><br><span class="line">    │               └── layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line">    └── final_layer_norm (T5LayerNorm) weight:[<span class="number">1024</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>下面演示同一个backbone(T5)加上不同delta：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from opendelta import AutoDeltaConfig, AutoDeltaModel</span><br><span class="line"></span><br><span class="line">delta_model_spelling = AutoDeltaModel.from_finetuned(&quot;thunlp/Spelling_Correction_T5_LRAdapter_demo&quot;, backbone_model=model)</span><br><span class="line">delta_model_spelling.detach()</span><br><span class="line"></span><br><span class="line">delta_model_topic = AutoDeltaModel.from_finetuned(&quot;thunlp/Question_Topic_T5-large_Compacter&quot;, backbone_model=model)</span><br><span class="line">delta_model_topic.detach()</span><br><span class="line"></span><br><span class="line">delta_model_fact = AutoDeltaModel.from_finetuned(&quot;thunlp/FactQA_T5-large_Adapter&quot;, backbone_model=model)</span><br><span class="line">delta_model_fact.detach()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>下面定义多任务服务函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def multitask_serving(input_text):</span><br><span class="line">  # 首先进行拼写改错</span><br><span class="line">    input_ids = tokenizer(input_text, return_tensors=&quot;pt&quot;).input_ids#.cuda()</span><br><span class="line">    delta_model_spelling.attach()</span><br><span class="line">    answers_ids =model.generate(input_ids=input_ids, max_length=20, num_beams=4)</span><br><span class="line">    input_text = tokenizer.decode(answers_ids[0], skip_special_tokens=True)</span><br><span class="line">    print(&quot;Correct Spelling: &#123;&#125;&quot;.format(input_text))</span><br><span class="line">    delta_model_spelling.detach()</span><br><span class="line">  # 然后传入主题分类模型</span><br><span class="line">    delta_model_topic.attach()</span><br><span class="line">    input_ids = tokenizer(input_text, return_tensors=&quot;pt&quot;).input_ids#.cuda()</span><br><span class="line">    answers_ids =model.generate(input_ids=input_ids, max_length=20, num_beams=4)</span><br><span class="line">    topic = tokenizer.decode(answers_ids[0], skip_special_tokens=True)</span><br><span class="line">    delta_model_topic.detach()</span><br><span class="line">    print(&quot;Question Topic: &#123;&#125;&quot;.format(topic))</span><br><span class="line">  # 最后做问答</span><br><span class="line">    delta_model_fact.attach()</span><br><span class="line">    input_ids = tokenizer(input_text, return_tensors=&quot;pt&quot;).input_ids#.cuda()</span><br><span class="line">    answers_ids =model.generate(input_ids=input_ids, max_length=20, num_beams=4)</span><br><span class="line">    input_text = tokenizer.decode(answers_ids[0], skip_special_tokens=True)</span><br><span class="line">    delta_model_fact.detach()</span><br><span class="line">    print(&quot;Question Answer: &#123;&#125;&quot;.format(input_text))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>多个任务的切换通过先<code>attach</code>再<code>detach</code>。</p>
+<p>这里展示两个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">multitask_serving(&quot;When was Beiiing olymp#ic heldd ?&quot;)</span><br><span class="line">multitask_serving(&quot;What the commmon career of Newton ad eintesin?&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Correct Spelling: When was Beijing Olympic held?</span><br><span class="line">Question Topic: The question&#x27;s topic is sports.</span><br><span class="line">Question Answer: 2008</span><br><span class="line">Correct Spelling: What was the common career of Newton and Einstein?</span><br><span class="line">Question Topic: The question&#x27;s topic is science.</span><br><span class="line">Question Answer: Physicists</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看到拼写模型把修正后的输入给了主题模型和问答模型。</p>
+<p>如果我们想把这个预训练模型回退到没有加delta模型的模型，只要执行<code>detach</code>即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">delta_model_spelling.detach()</span><br><span class="line">delta_model_topic.detach()</span><br><span class="line">delta_model_fact.detach()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/llms/llms_course/4.Prompt_Tuning_Delta_Tuning/">https://wdndev.github.io/llms/llms_course/4.Prompt_Tuning_Delta_Tuning/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a><a class="post-meta__tags" href="/tags/LLMs/">LLMs</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/llms/llms_article/1.llm%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/" title="LLMs 推理优化技术"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">LLMs 推理优化技术</div></div></a></div><div><a href="/llms/llms_article/2.%E4%B8%BB%E6%B5%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E7%BB%86%E8%8A%82/" title="主流大语言模型的技术原理细节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">主流大语言模型的技术原理细节</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Background"><span class="toc-text">1.Background</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Fine-Tuning-BERT"><span class="toc-text">1.1 Fine Tuning : BERT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-GPT"><span class="toc-text">1.2 GPT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-T5"><span class="toc-text">1.3 T5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-GPT-3"><span class="toc-text">1.4 GPT-3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-An-Irreversible-Trend"><span class="toc-text">1.5 An Irreversible Trend</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Model-Scaling"><span class="toc-text">（1）Model Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Difficult-Tuning"><span class="toc-text">（2）Difficult Tuning</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-Effective-Model-Adaptation"><span class="toc-text">1.6 Effective Model Adaptation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Prompt-learning"><span class="toc-text">2.Prompt learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E4%B8%8E%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.1 基本组成与流程介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Prompt-learning"><span class="toc-text">（1）Prompt-learning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Template-vs-Verbalizer"><span class="toc-text">（2）Template vs Verbalizer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Template-%EF%BC%9A%E6%83%85%E7%BB%AA%E5%88%86%E7%B1%BB"><span class="toc-text">（3）Template ：情绪分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF%E6%8F%90%E7%A4%BA"><span class="toc-text">使用模板提示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E6%B5%8B%E7%AD%94%E6%A1%88"><span class="toc-text">预测答案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Verbalizer%E5%B0%86%E7%AD%94%E6%A1%88%E6%98%A0%E5%B0%84%E5%88%B0%E7%B1%BB%E6%A0%87%E7%AD%BE"><span class="toc-text">使用Verbalizer将答案映射到类标签</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89Prompt-learning-%EF%BC%9A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">（4）Prompt-learning ：注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-PTM%E9%80%89%E5%8F%96"><span class="toc-text">2.2 PTM选取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E7%94%9F%E6%88%90%E5%BC%8F%E6%A8%A1%E5%9E%8B"><span class="toc-text">（1）生成式模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89MLM%EF%BC%9A%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%EF%BC%8C%E8%AF%AD%E8%A8%80%E7%90%86%E8%A7%A3"><span class="toc-text">（2）MLM：分类模型，语言理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Encoder-Decoder%EF%BC%9AT5"><span class="toc-text">（3）Encoder-Decoder：T5</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Template%E6%9E%84%E9%80%A0"><span class="toc-text">2.3 Template构造</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%A0%B9%E6%8D%AE%E4%BB%BB%E5%8A%A1%E7%89%B9%E7%82%B9%E4%BA%BA%E4%B8%BA%E8%AE%BE%E8%AE%A1"><span class="toc-text">（1）根据任务特点人为设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E4%BB%BB%E5%8A%A1Template"><span class="toc-text">实体关系任务Template</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%A2%9E%E5%BC%BATemplate"><span class="toc-text">逻辑增强Template</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E7%BB%93%E6%9E%84%E5%8C%96%EF%BC%8C%E4%B8%8E%E8%A7%84%E5%88%99%E7%9B%B8%E7%BB%93%E5%90%88"><span class="toc-text">（2）结构化，与规则相结合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%B8%8E%E6%90%9C%E7%B4%A2%E4%BC%98%E5%8C%96"><span class="toc-text">（3）自动生成与搜索优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%8E%B0%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E6%A2%AF%E5%BA%A6%E6%90%9C%E7%B4%A2%E6%8F%90%E7%A4%BA"><span class="toc-text">基于现有单词的梯度搜索提示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8encoder-decoder%E6%A8%A1%E5%9E%8B%E7%94%9F%E6%88%90prompts"><span class="toc-text">使用encoder-decoder模型生成prompts</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E8%BF%9E%E7%BB%AD%E6%8F%90%E7%A4%BA%E4%BC%98%E5%8C%96"><span class="toc-text">（4）连续提示优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-Verbalizer%E6%9E%84%E9%80%A0"><span class="toc-text">2.4 Verbalizer构造</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E4%BA%BA%E5%B7%A5%E6%9E%84%E9%80%A0Verbalizer"><span class="toc-text">（1）人工构造Verbalizer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Knowledgeable-Prompting"><span class="toc-text">Knowledgeable Prompting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Virtual-Tokens-as-Label-Words"><span class="toc-text">Virtual Tokens as Label Words</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5%E8%AE%AD%E7%BB%83%E6%96%B0%E8%8C%83%E5%BC%8F"><span class="toc-text">2.5训练新范式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Pre-trained-Prompt-Tuning"><span class="toc-text">（1）Pre-trained Prompt Tuning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%A4%9A%E4%BB%BB%E5%8A%A1%E9%A2%84%E8%AE%AD%E7%BB%83%E5%92%8C%E4%BA%BA%E5%B7%A5prompts"><span class="toc-text">（2）多任务预训练和人工prompts</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E5%BA%94%E7%94%A8"><span class="toc-text">2.6 应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Delta-Tuning"><span class="toc-text">3.Delta Tuning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Addition-based-%E5%A2%9E%E9%87%8F%E5%BC%8F"><span class="toc-text">3.1 Addition-based (增量式)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Specification-based-%E6%8C%87%E5%AE%9A%E5%BC%8F"><span class="toc-text">3.2 Specification-based (指定式)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Reparameterization-based-%E9%87%8D%E5%8F%82%E6%95%B0%E5%8C%96"><span class="toc-text">3.3 Reparameterization-based (重参数化)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E7%BB%9F%E4%B8%80tuing"><span class="toc-text">3.4 统一tuing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E6%80%BB%E7%BB%93"><span class="toc-text">3.5 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-OpenPrompt"><span class="toc-text">4.OpenPrompt</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-OpenPrompt"><span class="toc-text">4.1 OpenPrompt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-OpenPrompt-demo"><span class="toc-text">4.2 OpenPrompt demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">（1）安装包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">（2）加载数据集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B%E5%92%8Ctokenizer"><span class="toc-text">（3）加载模型和tokenizer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%9E%84%E9%80%A0%E8%BE%93%E5%85%A5"><span class="toc-text">（4）构造输入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E6%9E%84%E9%80%A0dataloader"><span class="toc-text">（5）构造dataloader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E6%9E%84%E5%BB%BAVerbalizer"><span class="toc-text">（6）构建Verbalizer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%887%EF%BC%89%E5%88%86%E7%B1%BBPipeline"><span class="toc-text">（7）分类Pipeline</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%888%EF%BC%89GPU%E8%AE%AD%E7%BB%83"><span class="toc-text">（8）GPU训练</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%889%EF%BC%89%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9E%8B"><span class="toc-text">（9）评估模型</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-OpenDelta%E4%BB%8B%E7%BB%8D"><span class="toc-text">5.OpenDelta介绍</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

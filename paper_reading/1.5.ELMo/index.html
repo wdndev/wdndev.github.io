@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文精读 ELMo | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="论文名称：Embeddings from Language Models 论文地址：1802.05365.pdf (arxiv.org)  1.ELMo简介ELMo是2018年3月由华盛顿大学提出的一种预训练模型。 ELMo模型提出的动机源于研究人员认为一个好的预训练语言模型应该能够包含丰富的句法和语义信息， 并且能够对多义词进行建模。 而传统的词向量(2013年的word2vec, 2014年">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文精读 ELMo">
+<meta property="og:url" content="https://wdndev.github.io/paper_reading/1.5.ELMo/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="论文名称：Embeddings from Language Models 论文地址：1802.05365.pdf (arxiv.org)  1.ELMo简介ELMo是2018年3月由华盛顿大学提出的一种预训练模型。 ELMo模型提出的动机源于研究人员认为一个好的预训练语言模型应该能够包含丰富的句法和语义信息， 并且能够对多义词进行建模。 而传统的词向量(2013年的word2vec, 2014年">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-11-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.763Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="PaperReading">
+<meta property="article:tag" content="DeepLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/paper_reading/1.5.ELMo/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文精读 ELMo',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">论文精读 ELMo</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-11-12T16:00:00.000Z" title="Created 2023-11-13 00:00:00">2023-11-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.763Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PaperReading/">PaperReading</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>9min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="论文精读 ELMo"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><ul>
+<li>论文名称：Embeddings from Language Models</li>
+<li>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1802.05365.pdf" title="1802.05365.pdf (arxiv.org)">1802.05365.pdf (arxiv.org)</a></li>
+</ul>
+<h1 id="1-ELMo简介"><a href="#1-ELMo简介" class="headerlink" title="1.ELMo简介"></a>1.ELMo简介</h1><p>ELMo是2018年3月由华盛顿大学提出的一种预训练模型。</p>
+<p>ELMo模型提出的动机源于研究人员认为一个好的预训练语言模型应该能够包含丰富的句法和语义信息， 并且能够对多义词进行建模。 而<strong>传统的词向量(2013年的word2vec, 2014年的GloVe)都是上下文无关的</strong>，也就是固定的词向量。最典型的例子就是”apple”在不同的语境下, 应该可以表示水果或公司，但是固定的词向量显然无法做到这一点。 因为<strong>研究团队利用新的语言模型训练一个上下文相关的预训练模型， 成为ELMo</strong>， 并在6个NLP任务上获得提升。</p>
+<h1 id="2-ELMo架构"><a href="#2-ELMo架构" class="headerlink" title="2.ELMo架构"></a>2.ELMo架构</h1><h2 id="2-1-总体架构"><a href="#2-1-总体架构" class="headerlink" title="2.1 总体架构"></a>2.1 总体架构</h2><p><img src="image/image_06zXTLpwnj.png" alt=""></p>
+<p>从上面的架构图中可以看到， 宏观上ELMo分三个主要模块。</p>
+<ul>
+<li>最底层黄色标记的<strong>Embedding模块</strong>。</li>
+<li>中间层蓝色标记的两部分<strong>双层LSTM模块</strong>。</li>
+<li>最上层绿色标记的<strong>词向量表征模块</strong>。</li>
+</ul>
+<h2 id="2-2-Embedding模块"><a href="#2-2-Embedding模块" class="headerlink" title="2.2 Embedding模块"></a>2.2 Embedding模块</h2><p>ELMo最底层的词嵌入采用<strong>CNN对字符级进行编码</strong>，本质就是获得一个静态的词嵌入向量作为网络的底层输入。</p>
+<h2 id="2-3-两部分的双层LSTM模块"><a href="#2-3-两部分的双层LSTM模块" class="headerlink" title="2.3 两部分的双层LSTM模块"></a>2.3 两部分的双层LSTM模块</h2><p>这是整个ELMo中最重要的部分, 架构中分成<strong>左侧的前向LSTM网络</strong>， 和<strong>右侧的反向LSTM网络</strong>。</p>
+<p>ELMo的做法是我们只预训练一个Language Model， 而<strong>word embedding是通过输入的句子实时给出的</strong>，这样<strong>单词的嵌入向量就包含了上下文的信息</strong>，也就彻底改变了Word2Vec和GloVe的静态词向量的做法.</p>
+<p>ELMo的这一模块分为左右两部分, 本质上就是一个双向LM, 对于左半部分, 给定了N个tokens(t1, t2, …, tN), Language Model通过<strong>前面k-1个位置的token序列来计算第k个token出现的概率</strong>, 构成<strong>前向双层LSTM模型</strong>.</p>
+<script type="math/tex; mode=display">
+p\left(t_{1}, t_{2}, \cdots, t_{N}\right)=\prod_{k=1}^{N} p\left(t_{k} \mid t_{1}, t_{2}, \cdots, t_{k-1}\right)</script><p>同理, 对于架构中的右半部分, 给定了N个tokens(t(k+1), t(k+2), …, t(N)), Language Model<strong>通过后面N-k个位置的token序列来计算第k个token出现的概率,</strong> 构成<strong>后向双层LSTM模型</strong>.</p>
+<script type="math/tex; mode=display">
+p\left(t_{1}, t_{2}, \cdots, t_{N}\right)=\prod_{k=1}^{N} p\left(t_{k} \mid t_{k+1}, t_{k+2}, \cdots, t_{N}\right)</script><p>ELMo在训练过程中的目标函数就是最大化下面的公式:</p>
+<script type="math/tex; mode=display">
+\sum_{k=1}^{N}\left(\log p\left(t_{k} \mid t_{1}, \cdots, t_{k-1} ; \Theta_{x}, \vec{\Theta}_{L S T M}, \Theta_{s}\right)+\log p\left(t_{k} \mid t_{k+1}, \cdots, t_{N} ; \Theta_{x}, \overleftarrow{\Theta}_{L S T M}, \Theta_{s}\right)\right)</script><h2 id="2-4-词向量表征模块"><a href="#2-4-词向量表征模块" class="headerlink" title="2.4 词向量表征模块"></a>2.4 词向量表征模块</h2><p>因为ELMo是个语言模型, 对于每个token, 通过一个L层的双向LSTM网络可以计算出<code>2L+1</code>个表示向量如下:</p>
+<script type="math/tex; mode=display">
+R_{k}=\left\{x_{k}^{L M}, \stackrel{\rightarrow}{h_{k, j}}, \stackrel{\leftarrow}{h} h_{k, j} \mid j=1, \cdots, L\right\}=\left\{h_{k, j}^{L M} \mid j=0, \cdots, L\right\}</script><ul>
+<li>从上面的公式可以清楚的看到, 有3个不同的组成部分, 第一个就是对token直接进行CNN编码的结果, 也是ELMo最底层模块的输出；第二个就是前向LSTM的输出结果, 每一层都会有一个输出， 总共L层就会有L个输出； 第三个就是后向LSTM的输出结果, 每一层都会有一个输出, 总共L层就会有L个输出；综合三部分的输出加在一起, 就是<code>2L+1</code>个输出向量.</li>
+</ul>
+<p>通过整个网络, 每一个token得到了<code>2L+1</code>个表示向量，但是我们希望每一个token能对应一个向量。最简单的做法就是取最上层的输出结果作为token的表示向量，更通用的做法是<strong>加入若干参数来融合所有层的信息</strong>， 如下所示:</p>
+<script type="math/tex; mode=display">
+E L M o_{k}^{\text {task }}=E\left(R_{k} ; \Theta^{\text {task }}\right)=\gamma^{\text {task }} \sum_{j=0}^{L} s_{j}^{\text {task }} h_{k, j}^{L M}</script><ul>
+<li>上式的意思是对于2L+1个向量，每一个前面都加上一个权重稀疏，然后直接融合成一个向量，最后再乘一个系数作为最终该token的词向量。</li>
+<li>原始论文中提到最前面的那个系数，在不同任务中取不同的值效果会有较大的差异， 需要注意在SQuAD中设置为0.01取得的效果要好于设置为1。</li>
+<li>原始论文中在进行底层token编码时，用CNN形成了一个512维的列向量，也就是初始嵌入维度等于512。 中间层使用了双层的LSTM分别进行前向编码和后向编码，每层的单个LSTM输入维度是512，输出维度也是512，保持一致。因为是双向编码并且分左右两部分，所以每层的输出维度是512*2=1024，最后进行权重融合后的向量维度就是1024。</li>
+</ul>
+<h1 id="3-ELMo预训练任务"><a href="#3-ELMo预训练任务" class="headerlink" title="3.ELMo预训练任务"></a>3.ELMo预训练任务</h1><h2 id="3-1-ELMo的本质思想"><a href="#3-1-ELMo的本质思想" class="headerlink" title="3.1 ELMo的本质思想"></a>3.1 ELMo的本质思想</h2><p>首先用一个语言模型学好一个单词的word embedding， 此时是无法区分多义词的，但没关系。<strong>当实际使用word embedding的时候，该单词已经具备了特定的上下文信息，这个时候可以根据上下文单词的语义去调整单词的word embedding表示</strong>，这样经过调整后得到的word embedding向量就可以准确的表达单词在当前上下文中的真实含义了，也就自然的解决了多义词问题.</p>
+<p>结论就是<strong>ELMo模型是个根据当前上下文对word embedding动态调整的语言模型</strong>。</p>
+<h2 id="3-2-ELMo的预训练"><a href="#3-2-ELMo的预训练" class="headerlink" title="3.2 ELMo的预训练"></a>3.2 ELMo的预训练</h2><p>ELMo的预训练采用了典型的两阶段过程。</p>
+<ul>
+<li>第一阶段：利用语言模型进行预训练。</li>
+<li>第二阶段：在做下游任务时, <strong>从预训练网络中提取对应单词的网络各层的word embedding作为新特征补充到下游任务中</strong>。</li>
+</ul>
+<h3 id="（1）第一阶段-语言模型预训练"><a href="#（1）第一阶段-语言模型预训练" class="headerlink" title="（1）第一阶段: 语言模型预训练"></a>（1）第一阶段: 语言模型预训练</h3><p>再次回到ELMo的总体架构图, 网络结构采用了双层双向LSTM.</p>
+<p>目前语言模型训练的任务目标是根据单词Wi的上下文去正确预测单词Wi，Wi之前的单词序列context-before称为<strong>上文</strong>，Wi之后的单词序列context-after称为<strong>下文</strong>。</p>
+<p>架构图上左侧的前向双层LSTM代表正方向编码器, 输入的是从左向右顺序的除了预测单词Wi之外的上文context-before；右侧的反向双层LSTM代表反方向编码器, 输入的是从右向左的逆序的下文context-after；</p>
+<p>每个编码器的深度都是L=2, 即双层LSTM叠加.</p>
+<p>使用上述的网络结构利用大量语料做语言模型任务就能预训练好这个网络。当输入一个新句子<code>S_new</code>时, 句子中每个单词都能得到对应的3个embedding向量：</p>
+<ul>
+<li>1-最底层的单词的word embedding。</li>
+<li>2-中间第一层双向LSTM中对应单词位置的embedding，这层编码对应单词的句法信息更多一些。</li>
+<li>3-中间第二层双向LSTM中对应单词位置的embedding，这层编码对应单词的语义信息更多一些。</li>
+</ul>
+<p>ELMo的预训练过程不仅仅学会了单词的<strong>word embedding</strong>，还学习了一个<strong>双层双向的LSTM网络</strong>， 这两者后续都会用到，是整个ELMo预训练的两大产出结果。</p>
+<h3 id="（2）第二阶段-下游任务的调整"><a href="#（2）第二阶段-下游任务的调整" class="headerlink" title="（2）第二阶段: 下游任务的调整"></a>（2）第二阶段: 下游任务的调整</h3><p>比如我们的下游任务是QA问题.</p>
+<p>对于问句X, 可以先将句子X作为预训练好的ELMo网络的输入, 这样X中每个单词在ELMo中都能获得3个对应的embedding向量。之后赋给这3个向量各自一个权重a，这个权重a既可以是学习得来的也可以是最简单的平均分布赋值，然后把3个向量加权求和，整个成一个词向量。最后将整合后的词向量作为X在自己任务的那个网络结构中对应单词的输入, 以此作为新特征补充进下游任务中。对于回答Y可以同样处理。</p>
+<p>因为ELMo给下游提供的是每个单词的特征形式，所以这一类预训练方法被称为”<strong>Feature-based Pre-Training</strong>“。</p>
+<h1 id="4-ELMo模型的效果"><a href="#4-ELMo模型的效果" class="headerlink" title="4.ELMo模型的效果"></a>4.ELMo模型的效果</h1><p>ELMo对于多义词问题的解决结果:</p>
+<p><img src="image/image_7OflOnDruG.png" alt=""></p>
+<ul>
+<li>前面提到静态的word embedding无法解决多义词的问题, 那么ELMo引入上下文动态语义调整后的embedding word可以解决多义词问题吗? 答案正如上图所示，而且比我们期待的解决效果要更好。</li>
+<li>上图中的例子，对于GloVe训练出来的word embedding来说，多义词比如play，根据它的embedding找出最接近其语义的单词，发现结果集合几乎全部都在体育领域，这很明显是因为训练数据中包含play的语句中体育领域的数量明显占多数导致的。</li>
+<li>再来看使用ELMo后的效果，根据上下文动态调整后的embedding word不仅仅能找出对应于”play”:”演出”的相同语义的句子， 而且还可以保证找出的句子中的play对应的词性也是相同的，这真的是超出期待之外的惊喜！</li>
+<li>原始论文中提到ELMo的试验效果, 在6个NLP主流任务中性能都有不同幅度的提升, 最高的提升达到25%, 任务的覆盖范围很广, 包含句子语义关系判断, 分类任务, 阅读理解等等.</li>
+</ul>
+<h1 id="5-ELMo待改进点"><a href="#5-ELMo待改进点" class="headerlink" title="5.ELMo待改进点"></a>5.ELMo待改进点</h1><p>ELMo在传统静态word embedding方法（Word2Vec, GloVe）的基础上提升了很多, 但是依然存在缺陷, 有很大的改进余地.</p>
+<ul>
+<li>第一点：一个很明显的缺点<strong>在于特征提取器的选择上</strong>， ELMo使用了双向双层LSTM，而不是现在横扫千军的Transformer，在特征提取能力上肯定是要弱一些的。设想如果ELMo的提升提取器选用Transformer，那么后来的BERT的反响将远不如当时那么火爆了。</li>
+<li>第二点：<strong>ELMo选用双向拼接的方式进行特征融合</strong>，这种方法肯定不如BERT一体化的双向提取特征好.</li>
+</ul>
+<h1 id="6-小结"><a href="#6-小结" class="headerlink" title="6.小结"></a>6.小结</h1><p>学习了什么是ELMo.</p>
+<ul>
+<li>ELMo是2018年3月由华盛顿大学提出的一种预训练语言模型.</li>
+<li>ELMo在6种NLP测试任务中有很大的提升表现.</li>
+</ul>
+<p>学习了ELMo的结构.</p>
+<ul>
+<li>ELMo架构总体上采用了双向双层LSTM的结构.</li>
+<li>最底层的Embedding模块.</li>
+<li>中间层的双向双层LSTM模块.</li>
+<li>最上层的特征融合模块.</li>
+</ul>
+<p>学习了ELMo的预训练任务.</p>
+<ul>
+<li>ELMo的本质思想就是根据当前上下文对word embedding进行动态调整的语言模型.</li>
+<li>ELMo的预训练是一个明显的两阶段过程.<ul>
+<li>第一阶段: 利用语言模型进行预训练, 得到基础静态词向量和双向双层LSTM网络.</li>
+<li>第二阶段: 在拥有上下文的环境中, 将上下文输入双向双层LSTM中, 得到动态调整后的word embedding, 等于将单词融合进了上下文的语义, 可以更准确的表达单词的真实含义.</li>
+</ul>
+</li>
+</ul>
+<p>学习了ELMo的效果.</p>
+<ul>
+<li>经过与GloVe静态词向量的对比, 明显可以看出ELMo的词向量可以更好的表达真实语义, 更好的解决多义词的问题.</li>
+</ul>
+<p>学习了ELMo的待改进点.</p>
+<ul>
+<li>ELMo的特征提取器没有选用更强大的Transformer, 在提取特征上肯定弱于现在的最优结果.</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/paper_reading/1.5.ELMo/">https://wdndev.github.io/paper_reading/1.5.ELMo/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PaperReading/">PaperReading</a><a class="post-meta__tags" href="/tags/DeepLearning/">DeepLearning</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/paper_reading/1.1.GNN/" title="论文精读 GNN"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-07</div><div class="title">论文精读 GNN</div></div></a></div><div><a href="/paper_reading/1.2.GAN/" title="论文精读 GAN"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-07</div><div class="title">论文精读 GAN</div></div></a></div><div><a href="/paper_reading/1.3.MoCo/" title="论文精读 MoCo"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-17</div><div class="title">论文精读 MoCo</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-ELMo%E7%AE%80%E4%BB%8B"><span class="toc-text">1.ELMo简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-ELMo%E6%9E%B6%E6%9E%84"><span class="toc-text">2.ELMo架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">2.1 总体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Embedding%E6%A8%A1%E5%9D%97"><span class="toc-text">2.2 Embedding模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E4%B8%A4%E9%83%A8%E5%88%86%E7%9A%84%E5%8F%8C%E5%B1%82LSTM%E6%A8%A1%E5%9D%97"><span class="toc-text">2.3 两部分的双层LSTM模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E8%AF%8D%E5%90%91%E9%87%8F%E8%A1%A8%E5%BE%81%E6%A8%A1%E5%9D%97"><span class="toc-text">2.4 词向量表征模块</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-ELMo%E9%A2%84%E8%AE%AD%E7%BB%83%E4%BB%BB%E5%8A%A1"><span class="toc-text">3.ELMo预训练任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-ELMo%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%80%9D%E6%83%B3"><span class="toc-text">3.1 ELMo的本质思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-ELMo%E7%9A%84%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-text">3.2 ELMo的预训练</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-text">（1）第一阶段: 语言模型预训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5-%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%B0%83%E6%95%B4"><span class="toc-text">（2）第二阶段: 下游任务的调整</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-ELMo%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-text">4.ELMo模型的效果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-ELMo%E5%BE%85%E6%94%B9%E8%BF%9B%E7%82%B9"><span class="toc-text">5.ELMo待改进点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%B0%8F%E7%BB%93"><span class="toc-text">6.小结</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

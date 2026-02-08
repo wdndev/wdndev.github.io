@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>为何Transformer在计算机视觉中如此受欢迎？ | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="转自：为何Transformer在计算机视觉中如此受欢迎？ (msra.cn) 2021-09-24 | 作者：胡瀚 编者按：近一年来，Transformer 在计算机视觉领域所带来的革命性提升，引起了学术界的广泛关注，有越来越多的研究人员投入其中。Transformer 的特点和优势是什么？为什么在计算机领域中 Transformer 可以频频出圈？让我们通过今天的文章来一探究竟吧！  “统一性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为何Transformer在计算机视觉中如此受欢迎？">
+<meta property="og:url" content="https://wdndev.github.io/llms/transformer/4.Transformer%E4%B8%BA%E5%95%A5%E8%BF%99%E4%B9%88%E6%AC%A2%E8%BF%8E/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="转自：为何Transformer在计算机视觉中如此受欢迎？ (msra.cn) 2021-09-24 | 作者：胡瀚 编者按：近一年来，Transformer 在计算机视觉领域所带来的革命性提升，引起了学术界的广泛关注，有越来越多的研究人员投入其中。Transformer 的特点和优势是什么？为什么在计算机领域中 Transformer 可以频频出圈？让我们通过今天的文章来一探究竟吧！  “统一性">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-06-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.705Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/llms/transformer/4.Transformer%E4%B8%BA%E5%95%A5%E8%BF%99%E4%B9%88%E6%AC%A2%E8%BF%8E/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '为何Transformer在计算机视觉中如此受欢迎？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">为何Transformer在计算机视觉中如此受欢迎？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-06-06T16:00:00.000Z" title="Created 2023-06-07 00:00:00">2023-06-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.705Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transformer/">Transformer</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>15min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="为何Transformer在计算机视觉中如此受欢迎？"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>转自：<a target="_blank" rel="noopener" href="https://www.msra.cn/zh-cn/news/features/cv-transformer">为何Transformer在计算机视觉中如此受欢迎？ (msra.cn)</a></p>
+<p>2021-09-24 | 作者：胡瀚</p>
+<p>编者按：近一年来，Transformer 在计算机视觉领域所带来的革命性提升，引起了学术界的广泛关注，有越来越多的研究人员投入其中。Transformer 的特点和优势是什么？为什么在计算机领域中 Transformer 可以频频出圈？让我们通过今天的文章来一探究竟吧！</p>
+<hr>
+<p>“统一性”是很多学科共同追求的目标，例如在物理学领域，科学家们追求的大统一，就是希望用单独一种理论来解释力与力之间的相互作用。人工智能领域自然也存在着关于“统一性”的目标。在深度学习的浪潮中，人工智能领域已经朝着统一性的目标前进了一大步。比如，一个新的任务基本都会遵循同样的流程对新数据进行预测：收集数据，做标注，定义网络结构，训练网络参数。</p>
+<p>但是，在人工智能的不同子领域中，基本建模的方式各种各样，并不统一，例如：在自然语言处理（NLP）领域目前的主导建模网络是 Transformer；计算机视觉（CV）领域很长一段时间的主导网络是卷积神经网络（CNN）；社交网络领域目前的主导网络则是图网络等。</p>
+<p>尽管如此，从2020年年底开始，Transformer 还是在 CV 领域中展现了革命性的性能提升。这就表明 CV 和 NLP 有望统一在 Transformer 结构之下。这一趋势对于两个领域的发展来说有很多好处：<strong>1）使视觉和语言的联合建模更容易；2）两个领域的建模和学习经验可以深度共享，从而加快各自领域的进展</strong>。</p>
+<h2 id="1-Transformer在视觉任务中的优异性能"><a href="#1-Transformer在视觉任务中的优异性能" class="headerlink" title="1.Transformer在视觉任务中的优异性能"></a>1.Transformer在视觉任务中的优异性能</h2><p>视觉 Transformer 的先驱工作是谷歌在 ICLR 2021 上发表的 ViT [1]，该工作把图像分成多个图像块（例如16x16像素大小），并把这些图像块比作 NLP 中的 token。然后直接将 NLP 中的标准 Transformer 编码器应用于这些 “token”，并据此进行图像分类。该工作结合了海量的预训练数据（如谷歌内部3亿图片分类训练库 JFT-300M），在 ImageNet-1K 的 validation 评测集上取得了88.55%的准确率，刷新了该榜单上的纪录。</p>
+<p>ViT 应用 Transformer 比较简单直接，因为其<strong>没有仔细考虑视觉信号本身的特点</strong>，所以它主要适应于图像分类任务，对于区域级别和像素级别的任务并不是很友好，例如物体检测和语义分割等。为此，学术界展开了大量的改进工作。其中，Swin Transformer 骨干网络 [2] 在物体检测和语义分割任务中大幅刷新了此前的纪录，让学术界更加确信 Transformer 结构将会成为视觉建模的新主流。</p>
+<p>具体而言，在物体检测的重要评测集 COCO 上，Swin Transformer 取得了单模型58.7的 box mAP 和51.1的 mask mAP，分别比此前最好的、没有扩充数据的单模型方法高出了+2.7个点和+2.6个点。此后，通过改进检测框架以及更好地利用数据，基于 Swin Transformer 网络的方法性能进一步取得了61.3的 box mAP 和53.0的 mask mAP，累计提升达+5.3 box mAP 和+5.5 mask mAP。在语义分割的重要评测数据集 ADE20K 上，Swin Transformer 也取得了显著的性能提升，达到了53.5 mIoU，比此前最好的方法高出+3.2 mIoU，此后随着分割框架和训练方法的进一步改进，目前已达到57.0 mIoU 的性能。</p>
+<p><img src="images/1686120321197.png" alt="1686120321197" title="*图1 历年COCO物体检测评测集上的记录*"></p>
+<center><p>图1 历年COCO物体检测评测集上的记录</p></center>
+
+<p>除了在物体检测和语义分割任务上表现亮眼外，基于 Swin Transformer 骨干网络的方法在众多视觉任务中也取得了优异的成绩，如视频动作识别 [3]、视觉自监督学习 [4] [5]、图像复原 [6]、行人 Re-ID [7]、医疗图像分割 [8]等。</p>
+<p>Swin Transformer 的主要思想是<strong>将具有很强建模能力的 Transformer 结构和重要的视觉信号先验结合起来</strong>。这些先验具有<strong>层次性（Hierarchy）</strong>、<strong>局部性（locality）</strong>以及<strong>平移不变性的特点（translation invariance）</strong>。Swin Transformer 的一个重要设计是移位的不重叠窗口（shifted windows），不同于传统的滑动窗，不重叠窗口的设计对硬件实现更加友好，从而具有更快的实际运行速度。如图2（左）所示，在滑动窗口设计中，不同的点采用了不同的邻域窗口来计算相互关系，这种计算对硬件并不友好。而如图2（右）所示，Swin Transformer 使用的不重叠窗口中，统一窗口内的点将采用相同的邻域来进行计算，对速度更友好。实际测试表明，非重叠窗口方法的速度比滑动窗口方法快了2倍左右。在两个连续的层中还做了移位的操作。在 L 层中，窗口分区从图像的左上角开始；在 L+1 层中，窗口划分则往右下移动了半个窗口。这样的设计保证了不重叠的窗口间可以有信息的交换。</p>
+<p><img src="images/1686128650551.png" alt="1686128650551" title="*图2：传统的滑动窗口方法（左），由于不同的查询所用到的关键字集合不同，其对存储的访问不太友好，实际运行速度较慢。移位的不重叠窗口方法（右），由于不同的查询共享关键字集合，所以实际运行速度更快，从而更实用。*"></p>
+<center><p>图2：传统的滑动窗口方法（左），由于不同的查询所用到的关键字集合不同，其对存储的访问不太友好，实际运行速度较慢。移位的不重叠窗口方法（右），由于不同的查询共享关键字集合，所以实际运行速度更快，从而更实用。</p></center>
+
+<p>在过去的大半年中，学术界视觉 Transformer 还涌现了大量变种，包括 DeiT [9]，LocalViT [10]，Twins [11]，PvT [12]，T2T-ViT [13], ViL [14]，CvT [15]，CSwin [16]，Focal Transformer [17]，Shuffle Transformer [18] 等。</p>
+<h2 id="2-拥抱Transformer的五个理由"><a href="#2-拥抱Transformer的五个理由" class="headerlink" title="2.拥抱Transformer的五个理由"></a>2.拥抱Transformer的五个理由</h2><p>除了刷新很多视觉任务的性能纪录以外，视觉 Transformer 还拥有诸多好处。事实上，过去4年间学术界不断挖掘出了 Transformer 建模的各种优点，可以总结为图3所示的五个方面。</p>
+<p><img src="images/1686128721835.png" alt="1686128721835" title="*图3：过去4年学术界不断挖掘出的 Transformer 建模的五个优点*"></p>
+<center><p>图3：过去4年学术界不断挖掘出的 Transformer 建模的五个优点</p></center>
+
+<h3 id="理由1：通用的建模能力"><a href="#理由1：通用的建模能力" class="headerlink" title="理由1：通用的建模能力"></a>理由1：通用的建模能力</h3><p>Transformer 的通用建模能力来自于两个方面：一方面 <strong>Transformer 可以看作是一种图建模方法</strong>。图是全连接的，节点之间的关系通过数据驱动的方式来学习得到。由于任意概念（无论具体或抽象）都可以用图中的节点来表示，且概念之间的关系可以用图上的边来刻画，因此 Transformer 建模具有很强的通用性。</p>
+<p>另一方面，<strong>Transformer 通过验证的哲学来建立图节点之间的关系</strong>，具有较好的通用性：无论节点多么异构，<strong>它们之间的关系都可以通过投影到一个可以比较的空间里计算相似度来建立</strong>。如图4（右）所示，节点可以是不同尺度的图像块，也可以是“运动员”的文本输入，Transformer 均可以刻画这些异构节点之间的关系。</p>
+<p><img src="images/1686130053895.png" alt="1686130053895" title="*图4：促成 Transformer 通用建模能力的两大原因：图建模（左）和验证哲学（右）*"></p>
+<center><p>图4：促成 Transformer 通用建模能力的两大原因：图建模（左）和验证哲学（右）</p></center>
+
+<p>正是因为具备这样的通用建模能力，Transformer 中的注意力单元可以被应用到各种各样的视觉任务中。具体而言，计算机视觉处理的对象主要涉及两个层次的基本元素：像素和物体。而计算机视觉所涉及到的任务主要就囊括了这些基本元素之间的关系，包括像素-像素，物体-像素和物体-物体的关系建模。此前，前两种关系建模主要是分别由卷积和 RoIAlign 来实现的，最后一种关系通常没有很好的建模方法。但是，Transformer 中的注意力单元因其通用的建模能力，可以被应用到所有这些基本关系的建模中。</p>
+<p>近些年，在这个领域中已经出现了很多代表性的工作，例如：1） 非局部网络 [19]。王小龙等人将注意力单元用于建模像素-像素的关系，证明了 Transformer 可以帮助视频动作分类和物体检测等任务。元玉慧等人将其应用于语义分割问题，也取得了显著的性能提升[20]。2）物体关系网络 [21]。注意力单元用于物体检测中的物体关系建模，这一模块也被广泛应用于视频物体分析中 [22, 23, 24]。3）物体和像素的关系建模，典型的工作包括 DETR [25]，LearnRegionFeat [26]，以及 RelationNet++ [27]等。</p>
+<p><img src="images/1686130290248.png" alt="1686130290248" title="*图5：Transformer 能被应用于各种视觉基本元素之间的关系建模，包括像素-像素（左），物体-像素（中），物体-物体（右）*"></p>
+<center><p>图5：Transformer 能被应用于各种视觉基本元素之间的关系建模，包括像素-像素（左），物体-像素（中），物体-物体（右）</p></center>
+
+<h3 id="理由2：和卷积形成互补"><a href="#理由2：和卷积形成互补" class="headerlink" title="理由2：和卷积形成互补"></a>理由2：和卷积形成互补</h3><p><strong>卷积是一种局部操作，一个卷积层通常只会建模邻域像素之间的关系。Transformer 则是全局操作，一个 Transformer 层能建模所有像素之间的关系，双方可以很好地进行互补</strong>。最早将这种互补性联系起来的是非局部网络 [19]，在这个工作中，少量 Transformer 自注意单元被插入到了原始网络的几个地方，作为卷积网络的补充，并被证明其在物体检测、语义分割和视频动作识别等问题中广泛有效。</p>
+<p>此后，也有工作发现非局部网络在视觉中很难真正学到像素和像素之间的二阶关系 [28]，为此，有研究员们也提出了一些针对这一模型的改进，例如解耦非局部网络 [29]。</p>
+<h3 id="理由3：更强的建模能力"><a href="#理由3：更强的建模能力" class="headerlink" title="理由3：更强的建模能力"></a>理由3：更强的建模能力</h3><p>卷积可以看作是一种模板匹配，图像中不同位置采用相同的模板进行滤波。<strong>而 Transformer 中的注意力单元则是一种自适应滤波，模板权重由两个像素的可组合性来决定，这种自适应计算模块具有更强的建模能力</strong>。</p>
+<p>最早将 Transformer 这样一种自适应计算模块应用于视觉骨干网络建模的方法是局部关系网络 LR-Net [30] 和 SASA [31]，它们都将自注意的计算限制在一个局部的滑动窗口内，在相同理论计算复杂度的情况下取得了相比于 ResNet 更好的性能。然而，虽然理论上与 ResNet 的计算复杂度相同，但在实际使用中它们却要慢得多。一个主要原因是不同的查询（query）使用不同的关键字（key）集合，如图2（左）所示，对内存访问不太友好。</p>
+<p>Swin Transformer 提出了一种新的局部窗口设计——移位窗口（shifted windows）。这一局部窗口方法将图像划分成不重叠的窗口，这样在同一个窗口内部，不同查询使用的关键字集合将是相同的，进而可以拥有更好的实际计算速度。在下一层中，窗口的配置会往右下移动半个窗口，从而构造了前一层中不同窗口像素间的联系。</p>
+<h3 id="理由4：对大模型和大数据的可扩展性"><a href="#理由4：对大模型和大数据的可扩展性" class="headerlink" title="理由4：对大模型和大数据的可扩展性"></a>理由4：对大模型和大数据的可扩展性</h3><p>在 NLP 领域，<strong>Transformer 模型在大模型和大数据方面展示了强大的可扩展性</strong>。图6中，蓝色曲线显示近年来 NLP 的模型大小迅速增加。大家都见证了大模型的惊人能力，例如微软的 Turing 模型、谷歌的 T5 模型以及 OpenAI 的 GPT-3 模型。</p>
+<p>视觉 Transformer 的出现为视觉模型的扩大提供了重要的基础，目前最大的视觉模型是谷歌的150亿参数 ViT-MoE 模型 [32]，这些大模型在 ImageNet-1K 分类上刷新了新的纪录。</p>
+<p><img src="images/1686130501173.png" alt="1686130501173" title="*图6：NLP 领域和计算机视觉领域模型大小的变迁*"></p>
+<center><p>图6：NLP 领域和计算机视觉领域模型大小的变迁</p></center>
+
+<h3 id="理由5：更好地连接视觉和语言"><a href="#理由5：更好地连接视觉和语言" class="headerlink" title="理由5：更好地连接视觉和语言"></a>理由5：更好地连接视觉和语言</h3><p>在以前的视觉问题中，科研人员通常只会处理几十类或几百类物体类别。例如 COCO 检测任务中包含了80个物体类别，而 ADE20K 语义分割任务包含了150个类别。<strong>视觉 Transformer 模型的发明和发展，使视觉领域和 NLP 领域的模型趋同，有利于联合视觉和 NLP 建模，从而将视觉任务与其所有概念联系起来</strong>。这方面的先驱性工作主要有 OpenAI 的 CLIP [33] 和 DALL-E 模型 [34]。</p>
+<p>考虑到上述的诸多优点，相信视觉 Transformer 将开启计算机视觉建模的新时代，我们也期待学术界和产业界共同努力，进一步挖掘和探索这一新的建模方法给视觉领域带来的全新机遇和挑战。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, Jakob Uszkoreit, Neil Houlsby. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021</p>
+<p>[2] Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, Baining Guo. Swin Transformer: Hierarchical Vision Transformer using Shifted Windows. ICCV 2021</p>
+<p>[3] Ze Liu, Jia Ning, Yue Cao, Yixuan Wei, Zheng Zhang, Stephen Lin, Han Hu. Video Swin Transformer. Tech report 2021</p>
+<p>[4] Zhenda Xie, Yutong Lin, Zhuliang Yao, Zheng Zhang, Qi Dai, Yue Cao, Han Hu. Self-Supervised Learning with Swin Transformers. Tech report 2021</p>
+<p>[5] Chunyuan Li, Jianwei Yang, Pengchuan Zhang, Mei Gao, Bin Xiao, Xiyang Dai, Lu Yuan, Jianfeng Gao. Efficient Self-supervised Vision Transformers for Representation Learning. Tech report 2021</p>
+<p>[6] Jingyun Liang, Jiezhang Cao, Guolei Sun, Kai Zhang, Luc Van Gool, Radu Timofte. SwinIR: Image Restoration Using Swin Transformer. Tech report 2021</p>
+<p>[7] <a target="_blank" rel="noopener" href="https://github.com/layumi/Person_reID_baseline_pytorch">https://github.com/layumi/Person_reID_baseline_pytorch</a></p>
+<p>[8] Hu Cao, Yueyue Wang, Joy Chen, Dongsheng Jiang, Xiaopeng Zhang, Qi Tian, Manning Wang. Swin-Unet: Unet-like Pure Transformer for Medical Image Segmentation. Tech report 2021</p>
+<p>[9] Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre Sablayrolles, Hervé Jégou. Training data-efficient image transformers &amp; distillation through attention. Tech report 2021</p>
+<p>[10] Yawei Li, Kai Zhang, Jiezhang Cao, Radu Timofte, Luc Van Gool. LocalViT: Bringing Locality to Vision Transformers. Tech report 2021</p>
+<p>[11] Xiangxiang Chu, Zhi Tian, Yuqing Wang, Bo Zhang, Haibing Ren, Xiaolin Wei, Huaxia Xia, Chunhua Shen. Twins: Revisiting the Design of Spatial Attention in Vision Transformers. Tech report 2021</p>
+<p>[12] Wenhai Wang, Enze Xie, Xiang Li, Deng-Ping Fan, Kaitao Song, Ding Liang, Tong Lu, Ping Luo, Ling Shao. Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions. ICCV 2021</p>
+<p>[13] Li Yuan, Yunpeng Chen, Tao Wang, Weihao Yu, Yujun Shi, Zihang Jiang, Francis EH Tay, Jiashi Feng, Shuicheng Yan. Tokens-to-Token ViT: Training Vision Transformers from Scratch on ImageNet. Tech report 2021</p>
+<p>[14] Pengchuan Zhang, Xiyang Dai, Jianwei Yang, Bin Xiao, Lu Yuan, Lei Zhang, Jianfeng Gao. Multi-Scale Vision Longformer: A New Vision Transformer for High-Resolution Image Encoding. Tech report 2021</p>
+<p>[15] Haiping Wu, Bin Xiao, Noel Codella, Mengchen Liu, Xiyang Dai, Lu Yuan, Lei Zhang. CvT: Introducing Convolutions to Vision Transformers. ICCV 2021</p>
+<p>[16] Xiaoyi Dong, Jianmin Bao, Dongdong Chen, Weiming Zhang, Nenghai Yu, Lu Yuan, Dong Chen, Baining Guo. CSWin Transformer: A General Vision Transformer Backbone with Cross-Shaped Windows. Tech report 2021</p>
+<p>[17] Jianwei Yang, Chunyuan Li, Pengchuan Zhang, Xiyang Dai, Bin Xiao, Lu Yuan, Jianfeng Gao. Focal Self-attention for Local-Global Interactions in Vision Transformers. Tech report 2021</p>
+<p>[18] Zilong Huang, Youcheng Ben, Guozhong Luo, Pei Cheng, Gang Yu, Bin Fu. Shuffle Transformer: Rethinking Spatial Shuffle for Vision Transformer. Tech report 2021</p>
+<p>[19] Xiaolong Wang, Ross Girshick, Abhinav Gupta, Kaiming He. Non-local Neural Networks. CVPR 2018</p>
+<p>[20] Yuhui Yuan, Lang Huang, Jianyuan Guo, Chao Zhang, Xilin Chen, Jingdong Wang. OCNet: Object Context for Semantic Segmentation. IJCV 2021</p>
+<p>[21] Han Hu, Jiayuan Gu, Zheng Zhang, Jifeng Dai, Yichen Wei. Relation Networks for Object Detection. CVPR 2018</p>
+<p>[22] Jiarui Xu, Yue Cao, Zheng Zhang, Han Hu. Spatial-Temporal Relation Networks for Multi-Object Tracking. ICCV 2019</p>
+<p>[23] Yihong Chen, Yue Cao, Han Hu, Liwei Wang. Memory Enhanced Global-Local Aggregation for Video Object Detection. CVPR 2020</p>
+<p>[24] Jiajun Deng, Yingwei Pan, Ting Yao, Wengang Zhou, Houqiang Li, and Tao Mei. Relation distillation networks for video object detection. ICCV 2019</p>
+<p>[25] Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, Sergey Zagoruyko. End-to-End Object Detection with Transformers. ECCV 2020</p>
+<p>[26] Jiayuan Gu, Han Hu, Liwei Wang, Yichen Wei, Jifeng Dai. Learning Region Features for Object Detection. ECCV 2018</p>
+<p>[27] Cheng Chi, Fangyun Wei, Han Hu. RelationNet++: Bridging Visual Representations for Object Detection via Transformer Decoder. NeurIPS 2020</p>
+<p>[28] Yue Cao, Jiarui Xu, Stephen Lin, Fangyun Wei, Han Hu. GCNet: Non-local Networks Meet Squeeze-Excitation Networks and Beyond. ICCV workshop 2019</p>
+<p>[29] Minghao Yin, Zhuliang Yao, Yue Cao, Xiu Li, Zheng Zhang, Stephen Lin, Han Hu. Disentangled Non-Local Neural Networks. ECCV 2020</p>
+<p>[30] Han Hu, Zheng Zhang, Zhenda Xie, Stephen Lin. Local Relation Networks for Image Recognition. ICCV 2019</p>
+<p>[31] Prajit Ramachandran, Niki Parmar, Ashish Vaswani, Irwan Bello, Anselm Levskaya, Jonathon Shlens. Stand-Alone Self-Attention in Vision Models. NeurIPS 2019</p>
+<p>[32] Carlos Riquelme, Joan Puigcerver, Basil Mustafa, Maxim Neumann, Rodolphe Jenatton, André Susano Pinto, Daniel Keysers, Neil Houlsby. Scaling Vision with Sparse Mixture of Experts. Tech report 2021</p>
+<p>[33] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, Gretchen Krueger, Ilya Sutskever. Learning Transferable Visual Models from Natural Language Supervision. Tech report 2021</p>
+<p>[34] Aditya Ramesh, Mikhail Pavlov, Gabriel Goh, Scott Gray, Chelsea Voss, Alec Radford, Mark Chen, Ilya Sutskever. Zero-Shot Text-to-Image Generation. Tech report 2021</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/llms/transformer/4.Transformer%E4%B8%BA%E5%95%A5%E8%BF%99%E4%B9%88%E6%AC%A2%E8%BF%8E/">https://wdndev.github.io/llms/transformer/4.Transformer为啥这么欢迎/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/paper_reading/2.1.Transformer/" title="论文精读 Transformer"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-31</div><div class="title">论文精读 Transformer</div></div></a></div><div><a href="/paper_reading/2.2.BERT/" title="论文精读 BERT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-06</div><div class="title">论文精读 BERT</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Transformer%E5%9C%A8%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%E7%9A%84%E4%BC%98%E5%BC%82%E6%80%A7%E8%83%BD"><span class="toc-text">1.Transformer在视觉任务中的优异性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%8B%A5%E6%8A%B1Transformer%E7%9A%84%E4%BA%94%E4%B8%AA%E7%90%86%E7%94%B1"><span class="toc-text">2.拥抱Transformer的五个理由</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E7%94%B11%EF%BC%9A%E9%80%9A%E7%94%A8%E7%9A%84%E5%BB%BA%E6%A8%A1%E8%83%BD%E5%8A%9B"><span class="toc-text">理由1：通用的建模能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E7%94%B12%EF%BC%9A%E5%92%8C%E5%8D%B7%E7%A7%AF%E5%BD%A2%E6%88%90%E4%BA%92%E8%A1%A5"><span class="toc-text">理由2：和卷积形成互补</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E7%94%B13%EF%BC%9A%E6%9B%B4%E5%BC%BA%E7%9A%84%E5%BB%BA%E6%A8%A1%E8%83%BD%E5%8A%9B"><span class="toc-text">理由3：更强的建模能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E7%94%B14%EF%BC%9A%E5%AF%B9%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">理由4：对大模型和大数据的可扩展性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E7%94%B15%EF%BC%9A%E6%9B%B4%E5%A5%BD%E5%9C%B0%E8%BF%9E%E6%8E%A5%E8%A7%86%E8%A7%89%E5%92%8C%E8%AF%AD%E8%A8%80"><span class="toc-text">理由5：更好地连接视觉和语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

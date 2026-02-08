@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Transformer架构细节 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Transformer架构细节 1.Transformer各个模块的作用（1）Encoder 模块&#x20; 经典的Transformer架构中的Encoder模块包含6个Encoder Block. &#x20; 每个Encoder Block包含两个⼦模块, 分别是多头⾃注意⼒层, 和前馈全连接层. &#x20; 多头⾃注意⼒层采⽤的是⼀种Scaled Dot-Product Attenti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformer架构细节">
+<meta property="og:url" content="https://wdndev.github.io/llms/transformer/6.Transformer%E6%9E%B6%E6%9E%84%E7%BB%86%E8%8A%82/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="Transformer架构细节 1.Transformer各个模块的作用（1）Encoder 模块&#x20; 经典的Transformer架构中的Encoder模块包含6个Encoder Block. &#x20; 每个Encoder Block包含两个⼦模块, 分别是多头⾃注意⼒层, 和前馈全连接层. &#x20; 多头⾃注意⼒层采⽤的是⼀种Scaled Dot-Product Attenti">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-06-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.713Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/llms/transformer/6.Transformer%E6%9E%B6%E6%9E%84%E7%BB%86%E8%8A%82/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Transformer架构细节',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Transformer架构细节</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-06-23T16:00:00.000Z" title="Created 2023-06-24 00:00:00">2023-06-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.713Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transformer/">Transformer</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>18min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Transformer架构细节"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="Transformer架构细节"><a href="#Transformer架构细节" class="headerlink" title="Transformer架构细节"></a>Transformer架构细节</h1><p><img src="image/image_DJsgN20AKC.png" alt=""></p>
+<h2 id="1-Transformer各个模块的作用"><a href="#1-Transformer各个模块的作用" class="headerlink" title="1.Transformer各个模块的作用"></a>1.Transformer各个模块的作用</h2><h3 id="（1）Encoder-模块-x20"><a href="#（1）Encoder-模块-x20" class="headerlink" title="（1）Encoder 模块&#x20;"></a>（1）Encoder 模块&#x20;</h3><ul>
+<li>经典的Transformer架构中的Encoder模块包含6个Encoder Block. &#x20;</li>
+<li>每个Encoder Block包含两个⼦模块, 分别是多头⾃注意⼒层, 和前馈全连接层. &#x20;<ul>
+<li>多头⾃注意⼒层采⽤的是⼀种Scaled Dot-Product Attention的计算⽅式, 实验结果表  明, Multi-head可以在更细致的层⾯上提取不同head的特征, ⽐单⼀head提取特征的  效果更佳. &#x20;</li>
+<li>前馈全连接层是由两个全连接层组成, 线性变换中间增添⼀个Relu激活函数, 具体的 维度采⽤4倍关系, 即多头⾃注意⼒的d_model=512, 则层内的变换维度d_ff=2048. &#x20;</li>
+</ul>
+</li>
+</ul>
+<h3 id="（2）Decoder-模块-x20"><a href="#（2）Decoder-模块-x20" class="headerlink" title="（2）Decoder 模块 &#x20;"></a>（2）Decoder 模块 &#x20;</h3><ul>
+<li>经典的Transformer架构中的Decoder模块包含6个Decoder Block. &#x20;</li>
+<li>每个Decoder Block包含3个⼦模块, 分别是多头⾃注意⼒层, Encoder-Decoder Attention  层, 和前馈全连接层. &#x20;<ul>
+<li>多头⾃注意⼒层采⽤和Encoder模块⼀样的Scaled Dot-Product Attention的计算⽅  式, 最⼤的 区别在于<strong>需要添加look-ahead-mask,</strong> 即遮掩”未来的信息”. &#x20;</li>
+<li>Encoder-Decoder Attention层和上⼀层多头⾃注意⼒层最主要的区别在于Q != K = V,  矩阵Q来源于上⼀层Decoder Block的输出, 同时K, V来源于Encoder端的输出. &#x20;</li>
+<li>前馈全连接层和Encoder中完全⼀样. &#x20;</li>
+</ul>
+</li>
+</ul>
+<h3 id="（3）Add-amp-Norm模块-x20"><a href="#（3）Add-amp-Norm模块-x20" class="headerlink" title="（3）Add &amp; Norm模块 &#x20;"></a>（3）Add &amp; Norm模块 &#x20;</h3><ul>
+<li>Add &amp; Norm模块接在每⼀个Encoder Block和Decoder Block中的每⼀个⼦层的后⾯. &#x20;</li>
+<li>对于每⼀个Encoder Block, ⾥⾯的两个⼦层后⾯都有Add &amp; Norm. &#x20;</li>
+<li>对于每⼀个Decoder Block, ⾥⾯的三个⼦层后⾯都有Add &amp; Norm. &#x20;</li>
+<li>Add表示残差连接, 作⽤是为了将信息⽆损耗的传递的更深, 来增强模型的拟合能⼒. &#x20;</li>
+<li>Norm表示LayerNorm, 层级别的数值标准化操作, 作⽤是防⽌参数过⼤过⼩导致的学习过程异常 , 模型收敛特别慢的问题. &#x20;</li>
+</ul>
+<h3 id="（4）位置编码器-Positional-Encoding-x20"><a href="#（4）位置编码器-Positional-Encoding-x20" class="headerlink" title="（4）位置编码器 Positional Encoding &#x20;"></a>（4）位置编码器 Positional Encoding &#x20;</h3><ul>
+<li>Transformer中采⽤三⻆函数来计算位置编码. &#x20;</li>
+<li>因为三⻆函数是周期性函数, 不受序列⻓度的限制, ⽽且这种计算⽅式可以对序列中不同  位置的编码的重要程度同等看待</li>
+</ul>
+<h2 id="2-Decoder端训练和预测的输入"><a href="#2-Decoder端训练和预测的输入" class="headerlink" title="2.Decoder端训练和预测的输入"></a>2.Decoder端训练和预测的输入</h2><ol>
+<li>在Transformer结构中的Decoder模块的输⼊, 区分于不同的Block, 最底层的Block输⼊有其特殊的地⽅。第⼆层到第六层的输⼊⼀致, 都是上⼀层的输出和Encoder的输出。</li>
+<li>最底层的Block在<strong>训练阶段</strong>, 每⼀个time step的输⼊是上⼀个time step的输⼊加上真实标  签序列向后移⼀位. 具体来看, 就是每⼀个time step的输⼊序列会越来越⻓, 不断的将之前的  输⼊融合进来. &#x20;<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">假设现在的真实标签序列等于&quot;How are you?&quot;, 当time step=1时, 输⼊张量为⼀个特殊的token, ⽐如&quot;SOS&quot;; 当time step=2时, 输⼊张量为&quot;SOS How&quot;; 当time step=3时, 输⼊张量为&quot;SOS How are&quot;, 以此类推...</span><br></pre></td></tr></table></figure></li>
+<li>最底层的Block在<strong>训练阶段</strong>, 真实的代码实现中, 采⽤的是MASK机制来模拟输⼊序列不断添  加的过程. &#x20;</li>
+<li>最底层的Block在<strong>预测阶段</strong>, 每⼀个time step的输⼊是从time step=0开始, ⼀直到上⼀个  time step的预测值的累积拼接张量. 具体来看, 也是随着每⼀个time step的输⼊序列会越来  越⻓. 相⽐于训练阶段最⼤的不同是这⾥不断拼接进来的token是每⼀个time step的预测值,  ⽽不是训练阶段每⼀个time step取得的groud truth值<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">当time step=1时, 输⼊的input_tensor=&quot;SOS&quot;, 预测出来的输出值是output_tensor=&quot;What&quot;;</span><br><span class="line">当time step=2时, 输⼊的input_tensor=&quot;SOS What&quot;, 预测出来的输出值是output_tensor=&quot;is&quot;;</span><br><span class="line">当time step=3时, 输⼊的input_tensor=&quot;SOS What is&quot;, 预测出来的输出值是output_tensor=&quot;the&quot;;</span><br><span class="line">当time step=4时, 输⼊的input_tensor=&quot;SOS What is the&quot;, 预测出来的输出值是output_tensor=&quot;matter&quot;;</span><br><span class="line">当time step=5时, 输⼊的input_tensor=&quot;SOS What is the matter&quot;, 预测出来的输出值是output_tensor=&quot;?&quot;;</span><br><span class="line">当time step=6时, 输⼊的input_tensor=&quot;SOS What is the matter ?&quot;, 预测出来的输出值是output_tensor=&quot;EOS&quot;, 代表句⼦的结束符, 说明解码结束, 预测结束.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="3-Self-attention"><a href="#3-Self-attention" class="headerlink" title="3.Self-attention"></a>3.Self-attention</h2><blockquote>
+<p>Transformer中⼀直强调的self-attention是什么? 为什么能  发挥如此⼤的作⽤? 计算的时候如果不使⽤三元组(Q, K, V), ⽽  仅仅使⽤(Q, V)或者(K, V)或者(V)⾏不⾏?</p>
+</blockquote>
+<h3 id="（1）self-attention的机制和原理"><a href="#（1）self-attention的机制和原理" class="headerlink" title="（1）self-attention的机制和原理"></a>（1）self-attention的机制和原理</h3><p>self-attention是⼀种通过⾃身和⾃身进⾏关联的attention机制, 从⽽得到更好的  representation来表达⾃身. &#x20;</p>
+<p>self-attention是attention机制的⼀种特殊情况:  在self-attention中, Q=K=V, <strong>序列中的每个单词(token)都和该序列中的其他所有单词 (token)进⾏attention规则的计算.</strong> &#x20;</p>
+<p>attention机制计算的特点在于, 可以<strong>直接跨越⼀句话中不同距离的token, 可以远距离的学习到序列的知识依赖和语序结构.</strong></p>
+<p><img src="image/image_y4Ch3Hjyc9.png" alt=""></p>
+<ul>
+<li>从上图中可以看到, self-attention可以远距离的捕捉到语义层⾯的特征(it的指代对象是  animal). &#x20;</li>
+<li>应⽤传统的RNN, LSTM, 在获取⻓距离语义特征和结构特征的时候, <strong>需要按照序列顺序依次  计算, 距离越远的联系信息的损耗越⼤, 有效提取和捕获的可能性越⼩.</strong> &#x20;</li>
+<li>但是应⽤self-attention时, 计算过程中会直接将句⼦中任意两个token的联系通过⼀个计算  步骤直接联系起来,</li>
+</ul>
+<h3 id="（2）关于self-attention为什么要使⽤-Q-K-V-三元组⽽不是其他形式"><a href="#（2）关于self-attention为什么要使⽤-Q-K-V-三元组⽽不是其他形式" class="headerlink" title="（2）关于self-attention为什么要使⽤(Q, K, V)三元组⽽不是其他形式"></a>（2）关于self-attention为什么要使⽤(Q, K, V)三元组⽽不是其他形式</h3><p>⾸先⼀条就是从分析的⻆度看, 查询Query是⼀条独⽴的序列信息, 通过关键词Key的提示作⽤, 得到最终语义的真实值Value表达, 数学意义更充分, 完备. &#x20;</p>
+<p>这⾥不使⽤(K, V)或者(V)没有什么必须的理由, 也没有相关的论⽂来严格阐述⽐较试验的结果差异, 所以可以作为开放性问题未来去探索, 只要明确在经典self-attention实现中⽤的是三元组就好</p>
+<h2 id="4-Self-attention归一化和放缩"><a href="#4-Self-attention归一化和放缩" class="headerlink" title="4.Self-attention归一化和放缩"></a>4.Self-attention归一化和放缩</h2><h3 id="（1）self-attention中的归⼀化概述"><a href="#（1）self-attention中的归⼀化概述" class="headerlink" title="（1）self-attention中的归⼀化概述"></a>（1）self-attention中的归⼀化概述</h3><p><strong>训练上的意义</strong>：随着词嵌⼊维度d_k的增⼤, q * k 点积后的结果也会增⼤, 在训练时会将  softmax函数推⼊梯度⾮常⼩的区域, 可能出现梯度消失的现象, 造成模型收敛困难. &#x20;</p>
+<p><strong>数学上的意义</strong>: 假设q和k的统计变量是满⾜标准正态分布的独⽴随机变量, 意味着q和k满⾜均  值为0, ⽅差为1。** 那么q和k的点积结果就是均值为0, ⽅差为**$d_k$<strong>, 为了抵消这种⽅差被放⼤</strong>$d_k$**  倍的影响, 在计算中主动将点积缩放**$\frac{1}{\sqrt(d_k)}$, 这样点积后的结果依然满⾜均值为0, ⽅差为  1。</p>
+<h3 id="（2）softmax的梯度变化"><a href="#（2）softmax的梯度变化" class="headerlink" title="（2）softmax的梯度变化"></a>（2）softmax的梯度变化</h3><p>这⾥我们分3个步骤来解释softmax的梯度问题: &#x20;</p>
+<h4 id="第⼀步-softmax函数的输⼊分布是如何影响输出的"><a href="#第⼀步-softmax函数的输⼊分布是如何影响输出的" class="headerlink" title="第⼀步: softmax函数的输⼊分布是如何影响输出的"></a>第⼀步: softmax函数的输⼊分布是如何影响输出的</h4><p>对于⼀个输⼊向量x, softmax函数将其做了⼀个归⼀化的映射, ⾸先通过⾃然底数e将输⼊元素之间的差距先”拉⼤”, 然后再归⼀化为⼀个新的分布。 <strong>在这个过程中假设某个输⼊x  中最⼤的元素下标是k, 如果输⼊的数量级变⼤(就是x中的每个分量绝对值都很⼤), 那么在数学上会造成y_k的值⾮常接近1。</strong> &#x20;</p>
+<p>具体⽤⼀个例⼦来演示, 假设输⼊的向量$x = [a, a, 2a]$, 那么随便给⼏个不同数量级的值来看看对y3产⽣的影响</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 1时,   y3 = 0.5761168847658291</span><br><span class="line">a = 10时,  y3 = 0.9999092083843412</span><br><span class="line">a = 100时, y3 = 1.0</span><br></pre></td></tr></table></figure>
+<p>采⽤⼀段实例代码将a在不同取值下, 对应的y3全部画出来, 以曲线的形式展示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> exp</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">f = <span class="keyword">lambda</span> x: exp(x * <span class="number">2</span>) / (exp(x) + exp(x) + exp(x * <span class="number">2</span>))</span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">y_3 = [f(x_i) <span class="keyword">for</span> x_i <span class="keyword">in</span> x]</span><br><span class="line">plt.plot(x, y_3)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="image/image_k8mmMoDYKQ.png" alt=""></p>
+<p>从上图可以很清楚的看到输⼊元素的数量级对softmax最终的分布影响⾮常之⼤。&#x20;</p>
+<p><strong>结论</strong>： <strong>在输⼊元素的数量级较⼤时, softmax函数⼏乎将全部的概率分布都分配给了最⼤值分量所对应的标签</strong></p>
+<h4 id="第⼆步-softmax函数在反向传播的过程中是如何梯度求导的"><a href="#第⼆步-softmax函数在反向传播的过程中是如何梯度求导的" class="headerlink" title="第⼆步: softmax函数在反向传播的过程中是如何梯度求导的"></a>第⼆步: softmax函数在反向传播的过程中是如何梯度求导的</h4><p>首先，定义神经网络的输入和输出</p>
+<script type="math/tex; mode=display">
+设X=[x_1,x_2,..., x_n], Y=softmax(X)=[y_1, y_2,..., y_3] \\
+则~y_i=\frac{e^{x_i}}{\sum_{j=1}^{n} e^{x_j}},~显然~  \sum_{j=1}^{n} e^{x_j}=1</script><p>反向传播就是输出端的损失函数对输⼊端求偏导的过程, 这⾥要分两种情况,&#x20;</p>
+<p>**（1）当 **$i=j$<strong>时：</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial y_{i}}{\partial x_{j}}& =\frac{\partial y_i}{\partial x_i}  \\
+&=\frac{\partial}{\partial x_i}(\frac{e^{x_i}}{\sum_k e^{x_k}}) \\
+&=\frac{(e^{x_i})'(\sum_k e^{x_k})-e^{x_i}(\sum_k e^{x_k})'}{(\sum_k e^{x_k})^2} \\
+&=\frac{e^{x_i}\cdot(\sum_ke^{x_k})-e^{x_i}\cdot e^{x_i}}{(\sum_ke^{x_k})^2} \\
+&=\frac{e^{x_i}\cdot(\sum_k e^{x_k})}{(\sum_k e^{x_k})^2}-\frac{e^{x_i}\cdot e^{x_i}}{(\sum_k e^{x_k})^2} \\
+&=\frac{e^{x_i}}{\sum_k e^{x_k}}-\frac{e^{x_i}}{\sum_k e^{x_k}}\cdot\frac{e^{x_i}}{\sum_k e^{x_k}} \\
+&=y_i-y_i\cdot y_i \\
+&=y_i(1-y_i)
+\end{aligned}</script><p><strong>（2）当</strong>$  i ≠ j $<strong>时：</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial y_{i}}{\partial x_{j}} & =\frac{\partial}{\partial x_{j}}\left(\frac{e^{x_{i}}}{\sum_{k} e^{x_{k}}}\right) \\
+& =\frac{\left(e^{x_{i}}\right)^{\prime}\left(\sum_{k} e^{x_{k}}\right)-e^{x_{i}}\left(\sum_{k} e^{x_{k}}\right)^{\prime}}{\left(\sum_{k} e^{x_{k}}\right)^{2}} \\
+& =\frac{0 \cdot\left(\sum_{k} e^{x_{k}}\right)-e^{x_{i}} \cdot e^{x_{j}}}{\left(\sum_{k} e^{x_{k}}\right)^{2}} \\
+& =-\frac{e^{x_{i}} \cdot e^{x_{j}}}{\left(\sum_{k} e^{x_{k}}\right)^{2}} \\
+& =-\frac{e^{x_{i}}}{\sum_{k} e^{x_{k}}} \cdot \frac{e^{x_{i}}}{\sum_{k} e^{x_{k}}} \\
+& =-y_{i} \cdot y_{i}
+\end{aligned}</script><p>经过对两种情况分别的求导计算, 可以得出最终的结论如下:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+& 综上所述：\frac{\partial y_i}{\partial x_j}=\begin{cases}y_i-y_i\cdot y_i,&\text{i=j}\\ \\ 0-y_i\cdot y_i,&\text{i}\neq\text{j}\end{cases} \\
+& 所以：\frac{\partial Y}{\partial X}=diag(Y)-Y^T\cdot Y（当Y的shape为(1,n)时）
+\end{aligned}</script><h4 id="第三步-softmax函数出现梯度消失现象的原因"><a href="#第三步-softmax函数出现梯度消失现象的原因" class="headerlink" title="第三步: softmax函数出现梯度消失现象的原因"></a>第三步: softmax函数出现梯度消失现象的原因</h4><p>根据第二步中softmax函数的求导结果, 可以将最终的结果以矩阵形式展开如下:</p>
+<script type="math/tex; mode=display">
+\frac{\partial g(X)}{\partial X} \approx\left[\begin{array}{cccc}
+\hat{y}_{1} & 0 & \cdots & 0 \\
+0 & \hat{y}_{2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \hat{y}_{d}
+\end{array}\right]-\left[\begin{array}{cccc}
+\hat{y}_{1}^{2} & \hat{y}_{1} \hat{y}_{2} & \cdots & \hat{y}_{1} \hat{y}_{d} \\
+\hat{y}_{2} \hat{y}_{1} & \hat{y}_{2}^{2} & \cdots & \hat{y}_{2} \hat{y}_{d} \\
+\vdots & \vdots & \ddots & \vdots \\
+\hat{y}_{d} \hat{y}_{1} & \hat{y}_{d} \hat{y}_{2} & \cdots & \hat{y}_{d}^{2}
+\end{array}\right]</script><p>根据第一步中的讨论结果, 当输入x的分量值较大时, softmax函数会将大部分概率分配给最大的元素, 假设最大元素是x1, 那么softmax的输出分布将产生一个接近one-hot的结果张量y_ = [1, 0, 0,…, 0], 此时结果矩阵变为:</p>
+<script type="math/tex; mode=display">
+\frac{\partial g(X)}{\partial X} \approx\left[\begin{array}{cccc}1 & 0 & \cdots & 0 \\ 0 & 0 & \cdots & 0 \\ & & & \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 0\end{array}\right]-\left[\begin{array}{cccc}1 & 0 & \cdots & 0 \\ 0 & 0 & \cdots & 0 \\ & & & \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 0\end{array}\right]=0</script><p>结论：综上可以得出,** 所有的梯度都消失为0(接近于0), 参数几乎无法更新, 模型收敛困难**.</p>
+<h3 id="（3）维度与点积大小的关系"><a href="#（3）维度与点积大小的关系" class="headerlink" title="（3）维度与点积大小的关系"></a>（3）维度与点积大小的关系</h3><p>针对为什么维度会影响点积的大小, 原始论文中有这样的一点解释如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">To illustrate why the dot products get large, assume that the components of q and k are independent random variables with mean 0 and variance 1. Then their doct product,q*k = (q1k1+q2k2+......+q(d_k)k(d_k)), has mean 0 and variance d_k.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>分两步对其进行一个推导, 首先就是假设向量q和k的各个分量是相互独立的随机变量, $X = q_i$, $Y = k_i$, X和Y各自有d_k个分量, 也就是向量的维度等于d_k, 有$E(X) = E(Y) = 0$, 以及$D(X) = D(Y) = 1$.</p>
+<p>可以得到$E(XY) = E(X)E(Y) = 0 * 0 = 0$</p>
+<p>同理, 对于$D(XY)$推导如下:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+D(XY)& =E(X^2\cdot Y^2)-[E(XY)]^2  \\
+&=E(X^2)E(Y^2)-[E(X)E(Y)]^2 \\
+&=E(X^2-0^2)E(Y^2-0^2)-[E(X)E(Y)]^2 \\
+&=E(X^2-[E(X)]^2)E(Y^2-[E(Y)]^2)-[E(X)E(Y)]^2 \\
+&=D(X)D(Y)-[E(X)E(Y)]^2 \\
+&=1\times1-\left(0\times0\right)^2 \\
+&=1
+\end{aligned}</script><p>根据期望和方差的性质, 对于互相独立的变量满足下式：</p>
+<script type="math/tex; mode=display">
+\begin{gathered}
+E(\sum_{i}Z_{i})=\sum_{i}E(Z_{i}), \\
+D(\sum_{i}Z_{i})=\sum_{i}D(Z_{i}) 
+\end{gathered}</script><p>根据上面的公式, 可以很轻松的得出q*k的均值为$E(qk) = 0$, $D(qk) = d_k$。所以方差越大, <strong>对应的qk的点积就越大, 这样softmax的输出分布就会更偏向最大值所在的分量</strong>。一个技巧就是将点积除以$\sqrt{d_k}$ 将方差在数学上重新”拉回1”, 如下所示</p>
+<script type="math/tex; mode=display">
+D(\frac{q\cdot k}{\sqrt{d_k}})=\frac{d_k}{(\sqrt{d_k})^2}=1</script><p>最终的结论：<strong>通过数学上的技巧将方差控制在1, 也就有效的控制了点积结果的发散, 也就控制了对应的梯度消失的问题</strong>!</p>
+<h2 id="5-Multi-head-Attention"><a href="#5-Multi-head-Attention" class="headerlink" title="5.Multi-head Attention"></a>5.Multi-head Attention</h2><h3 id="（1）采⽤Multi-head-Attention的原因-x20"><a href="#（1）采⽤Multi-head-Attention的原因-x20" class="headerlink" title="（1）采⽤Multi-head Attention的原因 &#x20;"></a>（1）采⽤Multi-head Attention的原因 &#x20;</h3><ol>
+<li>原始论⽂中提到进⾏Multi-head Attention的原因是将模型分为多个头, <strong>可以形成多个子空间间, 让模型去关注不同方面的信息</strong>, 最后再将各个⽅⾯的信息综合起来得到更好的效果. &#x20;</li>
+<li>多个头进⾏attention计算最后再综合起来, 类似于CNN中采⽤多个卷积核的作⽤, 不同的卷  积核提取不同的特征, <strong>关注不同的部分, 最后再进行融合</strong>. &#x20;</li>
+<li>直观上讲, <strong>多头注意力有助于神经⽹络捕捉到更丰富的特征信息</strong>.</li>
+</ol>
+<h4 id="（2）Multi-head-Attention的计算⽅式-x20"><a href="#（2）Multi-head-Attention的计算⽅式-x20" class="headerlink" title="（2）Multi-head Attention的计算⽅式 &#x20;"></a>（2）Multi-head Attention的计算⽅式 &#x20;</h4><ol>
+<li>Multi-head Attention和单⼀head的Attention唯⼀的区别就在于,** 其对特征张量的最后⼀个维度进行了分割, ⼀般是对词嵌入的embedding_dim=512进⾏切割成head=8, **这样每⼀个head的嵌⼊维度就是512/8=64, 后续的Attention计算公式完全⼀致, 只不过是在64这个维度上进⾏⼀系列的矩阵运算⽽已. &#x20;</li>
+<li>在head=8个头上分别进⾏注意⼒规则的运算后, 简单采⽤拼接<strong>concat</strong>的⽅式对结果张量进  ⾏融合就得到了Multi-head Attention的计算结果.</li>
+</ol>
+<h2 id="6-Transformer和RNN"><a href="#6-Transformer和RNN" class="headerlink" title="6.Transformer和RNN"></a>6.Transformer和RNN</h2><h3 id="（1）Transformer的并行计算-x20"><a href="#（1）Transformer的并行计算-x20" class="headerlink" title="（1）Transformer的并行计算 &#x20;"></a>（1）Transformer的并行计算 &#x20;</h3><p>对于Transformer⽐传统序列模型RNN/LSTM具备优势的第⼀⼤原因就是强⼤的并⾏计算能力.&#x20;</p>
+<p>对于RNN来说, 任意时刻t的输⼊是时刻t的输⼊x(t)和上⼀时刻的隐藏层输出h(t-1), 经过运算后得到当前时刻隐藏层的输出h(t), 这个h(t)也即将作为下⼀时刻t+1的输⼊的⼀部分.  这个计算过程是RNN的本质特征, RNN的历史信息是需要通过这个时间步⼀步⼀步向后传递的. <strong>⽽这就意味着RNN序列后⾯的信息只能等到前⾯的计算结束后, 将历史信息通过hidden state传递给后⾯才能开始计算, 形成链式的序列依赖关系, 无法实现</strong>并行. &#x20;</p>
+<p>对于Transformer结构来说, 在self-attention层, ⽆论序列的⻓度是多少, 都可以⼀次性计算所有单词之间的注意⼒关系, 这个attention的计算是同步的, 可以实现并⾏. &#x20;</p>
+<h3 id="（2）Transformer的特征抽取能力-x20"><a href="#（2）Transformer的特征抽取能力-x20" class="headerlink" title="（2）Transformer的特征抽取能力&#x20;"></a>（2）Transformer的特征抽取能力&#x20;</h3><p>对于Transformer⽐传统序列模型RNN/LSTM具备优势的第⼆⼤原因就是强⼤的特征抽取能力 。&#x20;</p>
+<p>Transformer因为采⽤了Multi-head Attention结构和计算机制, 拥有⽐RNN/LSTM更强⼤的特征抽取能⼒, 这⾥并不仅仅由理论分析得来, 而是⼤量的试验数据和对⽐结果, 清楚的展示了Transformer的特征抽取能⼒远远胜于RNN/LSTM. &#x20;</p>
+<p><strong>注意</strong>: 不是越先进的模型就越无敌, 在很多具体的应⽤中RNN/LSTM依然⼤有⽤武之地, 要具体问题具体分析</p>
+<h2 id="7-Transformer代替seq2seq？"><a href="#7-Transformer代替seq2seq？" class="headerlink" title="7.Transformer代替seq2seq？"></a>7.Transformer代替seq2seq？</h2><h3 id="（1）seq2seq的两大缺陷-x20"><a href="#（1）seq2seq的两大缺陷-x20" class="headerlink" title="（1）seq2seq的两大缺陷 &#x20;"></a>（1）seq2seq的两大缺陷 &#x20;</h3><ol>
+<li>seq2seq架构的第⼀⼤缺陷是将Encoder端的所有信息<strong>压缩成⼀个固定⻓度的语义向量中,  ⽤这个固定的向量来代表编码器端的全部信息. 这样既会造成信息的损耗</strong>, 也⽆法让Decoder 端在解码的时候去⽤注意⼒聚焦哪些是更重要的信息. &#x20;</li>
+<li>seq2seq架构的第二大缺陷是<strong>无法并行</strong>, 本质上和RNN/LSTM无法并行的原因⼀样. &#x20;</li>
+</ol>
+<h3 id="（2）Transformer的改进-x20"><a href="#（2）Transformer的改进-x20" class="headerlink" title="（2）Transformer的改进 &#x20;"></a>（2）Transformer的改进 &#x20;</h3><p>Transformer架构同时解决了seq2seq的两⼤缺陷, 既可以并⾏计算, ⼜应⽤Multi-head  Attention机制来解决Encoder固定编码的问题, 让Decoder在解码的每⼀步可以通过注意⼒去  关注编码器输出中最重要的那些部分.</p>
+<h2 id="8-Transformer并行化"><a href="#8-Transformer并行化" class="headerlink" title="8.Transformer并行化"></a>8.Transformer并行化</h2><h3 id="（1）Encoder并行化"><a href="#（1）Encoder并行化" class="headerlink" title="（1）Encoder并行化"></a>（1）Encoder并行化</h3><p><img src="image/image_FXmXoczdDm.png" alt=""></p>
+<ol>
+<li>上图最底层绿⾊的部分, 整个序列所有的token可以并⾏的进⾏Embedding操作, 这⼀层的处理是没有依赖关系的. &#x20;</li>
+<li>上图第⼆层⼟⻩⾊的部分, 也就是Transformer中最重要的self-attention部分, 这⾥对于任意⼀个单词⽐如x1, 要计算x1对于其他所有token的注意⼒分布, 得到z1. 这个过程是具有依赖性的, 必须等到序列中所有的单词完成Embedding才可以进⾏。因此这⼀步是不能并⾏处理的。 但是从另⼀个⻆度看, 我们真实计算注意⼒分布的时候, 采⽤的都是矩阵运算, 也就是可以⼀次性的计算出所有token的注意⼒张量, 从这个⻆度看也算是实现了并⾏, 只是矩 阵运算的”并⾏”和词嵌⼊的”并⾏”概念上不同⽽已. &#x20;</li>
+<li>上图第三层蓝⾊的部分, 也就是前馈全连接层, 对于不同的向量z之间也是没有依赖关系的, 所以这⼀层是可以实现并⾏化处理的. 也就是所有的向量z输⼊Feed Forward⽹络的计算可以同步进⾏, 互不⼲扰</li>
+</ol>
+<h3 id="（2）Decoder的并行化"><a href="#（2）Decoder的并行化" class="headerlink" title="（2）Decoder的并行化"></a>（2）Decoder的并行化</h3><p><img src="image/image_ASVylibmq1.png" alt=""></p>
+<ol>
+<li>Decoder模块在训练阶段采用了并行化处理。 其中Self-Attention和Encoder-Decoder Attention两个子层的并行化也是在进行矩阵乘法, 和Encoder的理解是一致的. 在进行Embedding和Feed Forward的处理时, 因为各个token之间没有依赖关系, 所以也是可以完全并行化处理的, 这里和Encoder的理解也是一致的.</li>
+<li>Decoder模块在预测阶段基本上不认为采用了并行化处理. 因为第一个time step的输入只是一个”SOS”, 后续每一个time step的输入也只是依次添加之前所有的预测token.</li>
+<li><strong>注意:</strong> 最重要的区别是训练阶段目标文本如果有20个token, 在训练过程中是一次性的输入给Decoder端, 可以做到一些子层的并行化处理. 但是在预测阶段, 如果预测的结果语句总共有20个token, 则需要重复处理20次循环的过程, 每次的输入添加进去一个token, 每次的输入序列比上一次多一个token, 所以不认为是并行处理.</li>
+</ol>
+<h3 id="（3）总结"><a href="#（3）总结" class="headerlink" title="（3）总结"></a>（3）总结</h3><p><strong>Transformer架构中Encoder模块的并行化机制</strong></p>
+<ul>
+<li><strong>Encoder模块在训练阶段和测试阶段都可以实现完全相同的并行化.</strong></li>
+<li>Encoder模块在Embedding层, Feed Forward层, Add &amp; Norm层都是可以并行化的.</li>
+<li>Encoder模块在self-attention层, 因为各个token之间存在依赖关系, 无法独立计算, 不是真正意义上的并行化.</li>
+<li>Encoder模块在self-attention层, 因为采用了矩阵运算的实现方式, 可以一次性的完成所有注意力张量的计算, 也是另一种”并行化”的体现.</li>
+</ul>
+<p><strong>Transformer架构中Decoder模块的并行化机制</strong></p>
+<ul>
+<li><strong>Decoder模块在训练阶段可以实现并行化</strong>.</li>
+<li>Decoder模块在训练阶段的Embedding层, Feed Forward层, Add &amp; Norm层都是可以并行化的.</li>
+<li>Decoder模块在self-attention层, 以及Encoder-Decoder Attention层, 因为各个token之间存在依赖关系, 无法独立计算, 不是真正意义上的并行化.</li>
+<li>Decoder模块在self-attention层, 以及Encoder-Decoder Attention层, 因为采用了矩阵运算的实现方式, 可以一次性的完成所有注意力张量的计算, 也是另一种”并行化”的体现.</li>
+<li><strong>Decoder模块在预测计算不能并行化处理.</strong></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/llms/transformer/6.Transformer%E6%9E%B6%E6%9E%84%E7%BB%86%E8%8A%82/">https://wdndev.github.io/llms/transformer/6.Transformer架构细节/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/paper_reading/2.1.Transformer/" title="论文精读 Transformer"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-31</div><div class="title">论文精读 Transformer</div></div></a></div><div><a href="/paper_reading/2.2.BERT/" title="论文精读 BERT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-06</div><div class="title">论文精读 BERT</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Transformer%E6%9E%B6%E6%9E%84%E7%BB%86%E8%8A%82"><span class="toc-text">Transformer架构细节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Transformer%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">1.Transformer各个模块的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Encoder-%E6%A8%A1%E5%9D%97-x20"><span class="toc-text">（1）Encoder 模块 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Decoder-%E6%A8%A1%E5%9D%97-x20"><span class="toc-text">（2）Decoder 模块  </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Add-amp-Norm%E6%A8%A1%E5%9D%97-x20"><span class="toc-text">（3）Add &amp; Norm模块  </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%E5%99%A8-Positional-Encoding-x20"><span class="toc-text">（4）位置编码器 Positional Encoding  </span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Decoder%E7%AB%AF%E8%AE%AD%E7%BB%83%E5%92%8C%E9%A2%84%E6%B5%8B%E7%9A%84%E8%BE%93%E5%85%A5"><span class="toc-text">2.Decoder端训练和预测的输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Self-attention"><span class="toc-text">3.Self-attention</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89self-attention%E7%9A%84%E6%9C%BA%E5%88%B6%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-text">（1）self-attention的机制和原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%85%B3%E4%BA%8Eself-attention%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E2%BD%A4-Q-K-V-%E4%B8%89%E5%85%83%E7%BB%84%E2%BD%BD%E4%B8%8D%E6%98%AF%E5%85%B6%E4%BB%96%E5%BD%A2%E5%BC%8F"><span class="toc-text">（2）关于self-attention为什么要使⽤(Q, K, V)三元组⽽不是其他形式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Self-attention%E5%BD%92%E4%B8%80%E5%8C%96%E5%92%8C%E6%94%BE%E7%BC%A9"><span class="toc-text">4.Self-attention归一化和放缩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89self-attention%E4%B8%AD%E7%9A%84%E5%BD%92%E2%BC%80%E5%8C%96%E6%A6%82%E8%BF%B0"><span class="toc-text">（1）self-attention中的归⼀化概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89softmax%E7%9A%84%E6%A2%AF%E5%BA%A6%E5%8F%98%E5%8C%96"><span class="toc-text">（2）softmax的梯度变化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E2%BC%80%E6%AD%A5-softmax%E5%87%BD%E6%95%B0%E7%9A%84%E8%BE%93%E2%BC%8A%E5%88%86%E5%B8%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E8%BE%93%E5%87%BA%E7%9A%84"><span class="toc-text">第⼀步: softmax函数的输⼊分布是如何影响输出的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E2%BC%86%E6%AD%A5-softmax%E5%87%BD%E6%95%B0%E5%9C%A8%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E6%A2%AF%E5%BA%A6%E6%B1%82%E5%AF%BC%E7%9A%84"><span class="toc-text">第⼆步: softmax函数在反向传播的过程中是如何梯度求导的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-softmax%E5%87%BD%E6%95%B0%E5%87%BA%E7%8E%B0%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E7%8E%B0%E8%B1%A1%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">第三步: softmax函数出现梯度消失现象的原因</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E7%BB%B4%E5%BA%A6%E4%B8%8E%E7%82%B9%E7%A7%AF%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">（3）维度与点积大小的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Multi-head-Attention"><span class="toc-text">5.Multi-head Attention</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E9%87%87%E2%BD%A4Multi-head-Attention%E7%9A%84%E5%8E%9F%E5%9B%A0-x20"><span class="toc-text">（1）采⽤Multi-head Attention的原因  </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Multi-head-Attention%E7%9A%84%E8%AE%A1%E7%AE%97%E2%BD%85%E5%BC%8F-x20"><span class="toc-text">（2）Multi-head Attention的计算⽅式  </span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Transformer%E5%92%8CRNN"><span class="toc-text">6.Transformer和RNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Transformer%E7%9A%84%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97-x20"><span class="toc-text">（1）Transformer的并行计算  </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Transformer%E7%9A%84%E7%89%B9%E5%BE%81%E6%8A%BD%E5%8F%96%E8%83%BD%E5%8A%9B-x20"><span class="toc-text">（2）Transformer的特征抽取能力 </span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Transformer%E4%BB%A3%E6%9B%BFseq2seq%EF%BC%9F"><span class="toc-text">7.Transformer代替seq2seq？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89seq2seq%E7%9A%84%E4%B8%A4%E5%A4%A7%E7%BC%BA%E9%99%B7-x20"><span class="toc-text">（1）seq2seq的两大缺陷  </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Transformer%E7%9A%84%E6%94%B9%E8%BF%9B-x20"><span class="toc-text">（2）Transformer的改进  </span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Transformer%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-text">8.Transformer并行化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Encoder%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-text">（1）Encoder并行化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Decoder%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%8C%96"><span class="toc-text">（2）Decoder的并行化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%80%BB%E7%BB%93"><span class="toc-text">（3）总结</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

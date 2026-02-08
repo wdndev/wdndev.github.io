@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文精读 ZeRO | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ZeRO: Memory Optimizations Toward Training Trillion Parameter Models  论文链接：ZeRO: Memory Optimizations Toward Training Trillion Parameter Models 代码链接： https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;DeepSpeed 李沐讲解：https:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文精读 ZeRO">
+<meta property="og:url" content="https://wdndev.github.io/paper_reading/4.1.ZeRO/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="ZeRO: Memory Optimizations Toward Training Trillion Parameter Models  论文链接：ZeRO: Memory Optimizations Toward Training Trillion Parameter Models 代码链接： https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;DeepSpeed 李沐讲解：https:">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-12-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.856Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="LLMs">
+<meta property="article:tag" content="PaperReading">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/paper_reading/4.1.ZeRO/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文精读 ZeRO',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">论文精读 ZeRO</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-12-15T16:00:00.000Z" title="Created 2023-12-16 00:00:00">2023-12-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.856Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PaperReading/">PaperReading</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">8.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>26min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="论文精读 ZeRO"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</p>
+<ul>
+<li>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.02054" title="ZeRO: Memory Optimizations Toward Training Trillion Parameter Models">ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</a></li>
+<li>代码链接： <a target="_blank" rel="noopener" href="https://github.com/microsoft/DeepSpeed" title="https://github.com/microsoft/DeepSpeed">https://github.com/microsoft/DeepSpeed</a></li>
+<li>李沐讲解：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tY411g7ZT" title="https://www.bilibili.com/video/BV1tY411g7ZT">https://www.bilibili.com/video/BV1tY411g7ZT</a></li>
+</ul>
+<h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1.摘要"></a>1.摘要</h2><p>ZeRO 是一种用于大规模深度学习模型的内存优化解决方案，通过消除数据和模型并行训练中的内存冗余，同时保持了低通信量和高计算粒度。</p>
+<p>实现了ZeRO，可以训练超过100B参数的模型，在400个GPUs上实现超线性加速。</p>
+<p><strong>模型训练的挑战</strong>：传统的 DP 方法不能减少每个设备的内存使用量，导致在当时 32G 显存的 GPU 上无法训练超过 14 亿个参数的模型</p>
+<p><strong>现有的方法</strong>：流水线并行，模型并行， CPU offloading，在功能性，内存使用，<strong>计算通信效率之间做出了取舍</strong></p>
+<p>作者提到<strong>模型并行（张量并行）最有潜力</strong>，需要将模型在垂直方向上进行切分，并将每个层的计算和参数在多个设备之间进行划分，当时的 11B 参数的 T5，8.3B 的 Megatron-LM 都使用了模型并行。但是<strong>这需要大量的层间通信</strong>，虽然在单个节点内表现良好，作者在两个 DGX-2 节点上使用 Megatron-LM 测试了 40B 的模型，每个 V100 GPU 的计算性能仅为 5 TFLOPS（仅为5%的理论峰值）。</p>
+<p>作者发现内存消耗主要集中两个部分：</p>
+<ol>
+<li>模型状态：优化器，梯度，参数</li>
+<li>residual states：激活值，buffer，内存碎片</li>
+</ol>
+<p>针对这两个部分提出了 ZeRO（Zero Redundancy Optimizer）</p>
+<h2 id="2-引论（ZeRO总结）"><a href="#2-引论（ZeRO总结）" class="headerlink" title="2.引论（ZeRO总结）"></a>2.引论（ZeRO总结）</h2><h3 id="2-1优化模型状态内存"><a href="#2-1优化模型状态内存" class="headerlink" title="2.1优化模型状态内存"></a>2.1优化模型状态内存</h3><p><strong>数据并行 （DP）不足</strong>：不需要频繁地通信，但需要在每个进程中复制整个模型状态，浪费内存</p>
+<p><strong>模型并行（MP）不足</strong>：对模型状态分区以高效率使用内存，但会导致过细的计算粒度，需要频繁通信</p>
+<p>整体来看，上述方法需要在整个训练过程中静态地维护所有模型状态，但在训练时不总是需要所有的模型状态</p>
+<p>改进：</p>
+<p>提出了 ZeRO-DP，ZeRO-powered DP ，通过<strong>分区模型状态而不是复制来消除 DP 时的内存冗余，并使用动态通信调度策略优化计算通信效率</strong>，提出了三个优化阶段</p>
+<ul>
+<li><strong>优化器分区（Pos）</strong>：内存减少4倍，与DP具有相同的通信量</li>
+<li><strong>梯度分区（Pos+g）</strong>：内存减少8倍，与DP具有相同的通信量</li>
+<li><strong>模型参数分区（Pos+g+p）</strong>：内存减少量与 DP 的份数成线性关系。如在 64 个 GPU 上拆分将减少64倍内存。通信仅增加 50%</li>
+</ul>
+<p>图中 $Ψ$ 表示模型参数量，K 表示优化器状态的内存倍数，Nd 表示 DP 份数。在该示例中，假设基于 Adam 优化器的混合精度训练，$Ψ=7.5B，Nd=64，K=12$，其中的详细计算方法后面会介绍：</p>
+<p><img src="image/image_RbDm1rZNtr.png" alt=""></p>
+<p>作者在这里计算了通过上述优化在 1024 张 GPU 上训练万亿参数模型，使用 fp16，需要 16TB 空间存储优化器状态，梯度和参数，每张卡占用 16GB 显存</p>
+<h3 id="2-2-优化-residual-states-内存"><a href="#2-2-优化-residual-states-内存" class="headerlink" title="2.2 优化 residual states 内存"></a>2.2 优化 residual states 内存</h3><p>为了优化激活值，buffer，内存碎片的占用，提出了** ZeRO-R**，有以下几个优化点</p>
+<ul>
+<li>使用对激活值的 checkpointing 来节省内存，还对激活值切片，根据需要将激活数据转移至 CPU 来优化激活值的内存占用</li>
+<li>ZeRO-R 定义了适当的临时缓冲区大小，使内存和计算效率平衡</li>
+<li>根据不同 tensor 的生命周期，主动管理内存，预防内存碎片化</li>
+</ul>
+<p>综上，<strong>ZeRO 主要是由 ZeRO-DP 和 ZeRO-R 两种优化结合</strong></p>
+<h3 id="2-3-ZeRO-搭配模型并行（MP）"><a href="#2-3-ZeRO-搭配模型并行（MP）" class="headerlink" title="2.3 ZeRO 搭配模型并行（MP）"></a>2.3 ZeRO 搭配模型并行（MP）</h3><p>虽然使用 ZeRO 的策略后，MP 的策略变得不那么重要了，MP 在使用时还需要修改模型，相比 DP，有诸多限制</p>
+<p>但在激活内存占用非常大时，这时 ZeRO-R 的策略也不能满足训练优化，可以搭配 MP 减少激活内存占用。并且，在结合 ZeRO 和 MP 时，理论上可以优化到 $Nd * Nm$（MP 份数） 倍的内存占用</p>
+<p>在小模型的情况下，单独使用 DP 会导致 batch size 过大可能无法收敛，使用 MP 可以在加速的同时减小 batch size 到合适的值，帮助模型收敛</p>
+<p>作者进行了一些上述工作的实验，得出如下结论</p>
+<p><img src="image/image_N5ExZA9B-r.png" alt=""></p>
+<blockquote>
+<p>X轴不同大小的模型</p>
+</blockquote>
+<ul>
+<li>模型大小：将 Megatron 与 MP 相结合，ZeRO-100B 可以高效地运行 1700 亿参数的模型，而单独使用 Megatron 等现有系统在 40 亿参数以上的规模上无法高效扩展。相比于SOTA，模型大小增加了8倍以上</li>
+<li>训练速度：改进的内存效率提高了吞吐量和训练速度。通过在 400 台 Nvidia V100 GPU 上运行，ZeRO 可以以每个 GPU 38 TFlops 的速度训练 1000 亿参数的模型，总性能超过 15 Petaflops。与 SOTA 相比，对于相同模型大小，训练速度提高了 10 倍以上</li>
+<li>可扩展性：当使用64-400个GPU时，性能呈现超线性加速，即当GPU数量加倍时，性能增加了一倍以上。这是 ZeRO-DP 的特性，它随着DP度数的增加减少了模型状态的内存占用，使得每个GPU能够承载更大的 <code>batch_size</code>，从而提高性能</li>
+<li>大规模训练可行性：ZeRO-100B 使得 130亿参数的模型只需重构即可训练。相比之下，现有系统（如PyTorch Distributed Data Parallel）在 14 亿参数的规模上就会出现内存不足的情况</li>
+<li>SOTA：ZeRO 支持拥有 170 亿参数的 Turing-NLG 模型，并取得了 SOTA 的成绩</li>
+</ul>
+<h2 id="3-相关工作"><a href="#3-相关工作" class="headerlink" title="3.相关工作"></a>3.相关工作</h2><h3 id="3-1-DP-TP-and-PP"><a href="#3-1-DP-TP-and-PP" class="headerlink" title="3.1 DP, TP and PP"></a>3.1 DP, TP and PP</h3><h4 id="（1）DP（数据并行）"><a href="#（1）DP（数据并行）" class="headerlink" title="（1）DP（数据并行）"></a>（1）DP（数据并行）</h4><p><strong>将每批输入的训练数据都在 DP 的 worker 之间进行平分</strong>。反向传播之后，需要进行通信来规约梯度，以保证优化器在各个 worker 上可以得到相同的更新。</p>
+<p><strong>优势</strong>：计算效率高，工程上易于实现</p>
+<p><strong>不足</strong>：会在所有 worker 之间复制模型和优化器，因此显存效率不高。且随着并行度的提高，每个 worker 执行的计算量是恒定的。 DP 可以在小规模上实现近乎线性扩展。但是，因为在 worker 之间规约梯度的通信成本跟模型大小成正相关，所以当模型很大或通信带宽很低时，计算效率会受到限制。</p>
+<p><strong>改进</strong>：梯度累积可以增加 batch size，在本地使用 micro-batch 进行多次正向和反向传播，在进行优化器更新之前再规约梯度，从而分摊通信成本。</p>
+<h4 id="（2）TP（模型并行）"><a href="#（2）TP（模型并行）" class="headerlink" title="（2）TP（模型并行）"></a>（2）TP（模型并行）</h4><p><strong>在多个 worker 之间划分模型的各个层。</strong> 模型并行的计算和通信因模型结构而异，因此需要很大的工作量来实现。DeepSpeed 利用了 Megatron-LM 来构建基于 Transformer的大规模模型并行语言模型。</p>
+<p><strong>优势</strong>：会根据 worker 数量成比例地减少显存使用，这是这三种并行模式中显存效率最高的。且可以通过在模型并行 worker 之间划分激活显存，减少显存占用。</p>
+<p><strong>不足</strong>：每次前向和反向传播中都需要额外通信来传递激活，模型并行的计算效率很低。模型并行需要高通信带宽，并且不能很好地扩展到通信带宽受限的单个节点之外。此外，每个模型并行worker都会减少每个通信阶段之间执行的计算量，从而影响计算效率。</p>
+<h4 id="（3）PP（流水线并行）"><a href="#（3）PP（流水线并行）" class="headerlink" title="（3）PP（流水线并行）"></a>（3）PP（流水线并行）</h4><p><strong>将模型的各层划分为可以并行处理的阶段</strong>。当一个阶段完成一个 micro-batch 的正向传播时，激活内存将被发送给流水线的下一个阶段。类似地，当下一阶段完成反向传播时，将通过流水线把梯度反向传递回来。为了确保流水线的各个阶段能并行计算，必须同时计算多个 micro-batch</p>
+<p>在 PipeDream 的实现中，通过保留多份旧参数来隐藏流水线泡沫，而且不会过多增加 batch size，本文通过梯度累积来实现并行的方法，在相同的 batch size下可以达到与传统 DP 和模型并行相同的训练效果。</p>
+<p><strong>优势</strong>：流水线并行减少的显存与流水线的阶段数成正比，这使模型的大小可以随 worker 的数量线性扩展，并且通过 micro-batch 可以有效减少 bubble。此外，流水线的通信量只和阶段边界的各层的激活值大小成正比，所以流水线并行的通信量最低。</p>
+<p><strong>不足</strong>：每个 worker 必须同时存储并运行的各个 micro-batch 的激活值，导致流水线第一阶段的激活内存与单个 mirco-batch 的总激活内存大致相同。不断增加流水线大小会减少每个流水线阶段的计算量，降低计算通信效率。流水线并行还对每个阶段的负载均衡有很高的要求。此外，由于水平拆分和 micro-batch，如tied-weight 和 batch-normalization 等功能难以实现。</p>
+<h3 id="3-2非并行化方法节省内存"><a href="#3-2非并行化方法节省内存" class="headerlink" title="3.2非并行化方法节省内存"></a>3.2非并行化方法节省内存</h3><h4 id="（1）减少激活内存"><a href="#（1）减少激活内存" class="headerlink" title="（1）减少激活内存"></a>（1）减少激活内存</h4><p>作者引用了几篇文献举例如何优化激活内存</p>
+<h5 id="压缩内存"><a href="#压缩内存" class="headerlink" title="压缩内存"></a>压缩内存</h5><p>论文主要研究了在深度神经网络（DNNs）的训练中，GPU主内存限制导致训练更深层次的网络时出现瓶颈的问题。研究发现，<strong>主要的内存占用问题来自于中间层的输出（特征图）</strong>。为了解决这个问题，论文提出了<strong>一种DNN层特定的优化框架，通过对特定层（如卷积、ReLU、池化）进行编码和解码，以显著降低GPU主内存的压力</strong>。其核心方法是<strong>在两个时间点之间存储特征图的编码表示，并在反向传播时解码，而在前向传播时使用完整的特征图</strong>。作者还介绍了名为Gist的系统，它采用两类层特定的编码方案（无损和有损），利用DNN训练中现有的数值冗余，显著减少了目标特征图的内存消耗。例如，通过充分利用从池化到ReLU层的反向传播的计算特性，可以将中间特征图的存储精简至每个值仅使用1位而不是32位。通过在一流的DNN框架（CNTK）中部署这些机制，Gist在5个最先进的图像分类DNN上将内存占用降低了最多2倍，平均降低了1.8倍，仅带来4%的性能开销。此外，论文还表明，进一步的软件（例如CuDNN）和硬件（例如动态分配）优化可以进一步降低内存占用，最多可减少4.1倍</p>
+<h5 id="激活内存-checkpoint"><a href="#激活内存-checkpoint" class="headerlink" title="激活内存 checkpoint"></a>激活内存 checkpoint</h5><p>论文提出了一种系统性方法，旨在<strong>减少深度神经网络训练的内存消耗</strong>。主要关注点是<strong>减少存储中间结果（特征图）和梯度所需的内存成本</strong>，因为与许多常见的深度架构中的中间特征图相比，参数的大小相对较小。论文<strong>使用计算图分析进行自动原地操作和内存共享优化</strong>。论文还提出了一种新的方法来以计算为代价来换取内存，用于特征图训练n层网络，成本为$O(\sqrt n)$的内存，仅需双倍的前向传播计算成本。在极端情况下，可以使用仅O(logn)的内存来训练n层网络的特征图</p>
+<p>作者介绍了他们开发的系统 Checkmate，该系统旨在解决张量重新生成调度的最佳化问题。Checkmate 可以在合理的时间内（不到一小时）使用现成的MILP（Mixed Integer Linear Programming）求解器或使用近似算法找到接近最优的调度方案。这些调度方案可以用于加速数百万次的训练迭代。除了减少训练成本外，Checkmate还可以使现实世界中的网络能够使用比以前大约多5.1倍的输入尺寸进行训练</p>
+<h5 id="实时内存管理"><a href="#实时内存管理" class="headerlink" title="实时内存管理"></a>实时内存管理</h5><p>作者提出了SuperNeurons 动态的GPU内存调度运行时策略，包括三种内存优化技术：<strong>Liveness Analysis（存活性分析）、Unified Tensor Pool（统一张量池）和 Cost-Aware Recomputation（成本感知的重计算）</strong>。这些技术共同有效地将网络整体的内存峰值使用量降低到各层中的最大内存使用量。此外，SuperNeurons还解决了这些内存节省技术中的性能问题。鉴于有限的GPU DRAM，SuperNeurons不仅提供了训练所需的内存，还动态分配内存用于卷积工作空间，以实现高性能的训练。SuperNeurons 能够在一个12GB的 K40c GPU上训练包含104个基本网络层的 ResNet2500</p>
+<p>本文的 ZeRO-R 同时使用了压缩内存和 checkpoint 技术</p>
+<h4 id="（2）CPU-Offload"><a href="#（2）CPU-Offload" class="headerlink" title="（2）CPU Offload"></a>（2）CPU Offload</h4><p>这里引用了其它两种内存卸载方法</p>
+<h5 id="优化执行算法"><a href="#优化执行算法" class="headerlink" title="优化执行算法"></a>优化执行算法</h5><p>论文介绍了一种名为“<code>L2L</code>”的新型执行算法，它<strong>采用一种中继式执行技术</strong>。<strong>在任何给定时刻，设备内存主要仅填充了正在执行的层的占用空间</strong>。模型驻留在DRAM内存中，连接到CPU或FPGA，作为一种称为“eager param-server（EPS）”的实体。为了解决将参数传递到EPS的带宽问题，该模型采用了一种逐层执行的方式，而不是传统的小批量执行整个模型的方法。这意味着模型以多个微批次的方式执行，而不是传统的小批量方式。这种方法可以显著减少内存占用，并提高吞吐量</p>
+<h5 id="虚拟内存-Offload"><a href="#虚拟内存-Offload" class="headerlink" title="虚拟内存 Offload"></a>虚拟内存 Offload</h5><p>论文提出了一种名为**<code>vDNN</code><strong>**的虚拟化DNN</strong>，主要思想是<em>*保守地分配GPU内存，以立即使用给定层的计算，从而大幅减少最大和平均内存使用 \</em>*。vDNN 利用分配的数据结构的数据依赖性，特别是占内存使用量大部分的中间特征映射，在 GPU 和 CPU 内存之间释放或移动这些中间数据。具体来说，如果没有进一步的重用，就积极地从 GPU 内存中释放这些特征映射，如果存在进一步的重用，但不是立即需要，就从CPU内存卸载/预取。通过 DNN 络的层间内存访问和重用模式，内存管理器智能地将正常的 DNN 计算与卸载/预取/释放 操作重叠，几乎没有性能损失</p>
+<p>上面的文献利用计算节点的异构性，分别通过算法设计或虚拟化内存将模型状态转移到CPU内存。但是这导致有50%的时间被浪费在GPU-CPU-GPU传输。ZeRO的不同之处在于，它显著降低了内存消耗，而无需将模型状态存储到CPU内存中。在极少数情况下，ZeRO-R可能只针对非常大的模型才 offload 激活 checkpoint，以提高性能</p>
+<h4 id="（3）Memory-Efficient-Optimizer"><a href="#（3）Memory-Efficient-Optimizer" class="headerlink" title="（3）Memory Efficient Optimizer"></a>（3）Memory Efficient Optimizer</h4><p>自适应梯度优化器如 Adagrad 和 Adam 方法在 NLP 任务中取得了不错的性能，然而这些方法为每个参数维护了二阶统计信息，因此引入了显著的内存开销，限制了可使用的模型大小以及每个小批量中的示例数量。下面是过去提出的优化内存的文献</p>
+<h5 id="自适应学习率"><a href="#自适应学习率" class="headerlink" title="自适应学习率"></a>自适应学习率</h5><p>论文提出了一种名为 Adafactor 的自适应学习率优化算法，为了减少内存占用，仅维护每行和每列的移动平均和二阶矩的和，然后基于这些和来估计每个参数的二阶矩。这种方法在实验中表现出与传统方法相似的结果。最后，作者还提出了根据参数本身的规模来调整参数更新的方法</p>
+<h5 id="自适应优化器"><a href="#自适应优化器" class="headerlink" title="自适应优化器"></a>自适应优化器</h5><p>作者提出了一种自适应优化算法 SM3，该算法通过使用参数的覆盖集合来减少内存需求，其中每个集合都对应一个变量，通过维护一组覆盖集合，并对每个集合的最大方差进行求和，确定每个梯度条目的学习率。通过减少内存需求实现了两倍的速度提升</p>
+<p>上面的文献通过获取模型参数或梯度的粗粒度统计数据来减少自适应优化方法的内存消耗，这可能会对模型收敛保证产生影响。ZeRO与这些工作不同，它的优化不会改变模型优化方法或影响模型收敛，但会有效地减少每个设备的优化器状态和梯度的内存占用</p>
+<h3 id="3-3-训练优化器"><a href="#3-3-训练优化器" class="headerlink" title="3.3 训练优化器"></a>3.3 训练优化器</h3><p>对于大型模型，自适应优化（Adaptive）方法对于达到 SOTA 性能和精度至关重要。与 SGD 相比，它以显著的内存占用为代价，维护每个模型参数和梯度的细粒度一阶和二阶统计信息。ZeRO可以将这些优化器的内存占用减少几个数量级，使这些复杂的优化方法在训练大模型时非常有效。它还允许开发和使用更复杂、内存消耗更大、收敛性更好的优化器</p>
+<h2 id="4-优化内存占用"><a href="#4-优化内存占用" class="headerlink" title="4.优化内存占用"></a>4.优化内存占用</h2><p>前面提到内存消耗主要集中在</p>
+<ul>
+<li><strong>模型状态</strong>：优化器，梯度，参数</li>
+<li><strong>Residual states</strong>：激活值，buffer，内存碎片</li>
+</ul>
+<p>下面展开讨论为何会这样</p>
+<h3 id="4-1-模型状态：优化器状态，梯度与参数"><a href="#4-1-模型状态：优化器状态，梯度与参数" class="headerlink" title="4.1 模型状态：优化器状态，梯度与参数"></a>4.1 模型状态：优化器状态，梯度与参数</h3><p>在使用adam优化器训练时，Adam<strong>使用指数移动平均来计算梯度，这需要保存梯度的拷贝</strong>，以稳定更新参数。Adam还使用了自适应学习率机制，会为每个参数自动调整学习率。学习率的自适应性依赖于每个参数的梯度方差。<strong>为了计算梯度方差，就需要保存梯度的平方的移动平均值</strong>，以便在参数更新时更好地适应局部梯度的特性。</p>
+<p>在使用<strong>混合精度训练</strong>时，**将参数和梯度存储为 <strong><strong><code>fp16</code></strong></strong>，并在前反向传播时都使用<code>fp16</code><strong>更新，但是</strong>为了反向传播结束后保证计算的精确，需要保存参数和优化器状态的<code>fp32</code>**<strong>副本</strong>，以Adam优化器为例，使用Adam对具有$Ψ$个参数的模型进行混合精度训练需要足够的内存来存储参数和梯度的<code>fp16</code>副本，内存需求分别为 $2Ψ$ 和 $2Ψ$ 字节（参数和梯度）。此外，还需要存储优化器状态：参数、动量和方差的 <code>fp32</code>副本，内存需求分别为 $4Ψ$、$4Ψ$ 和 $4Ψ$ 字节（一个w和两个状态）。文中使用 K 来表示优化器状态的内存乘数，即存储它们所需的额外内存为 $KΨ$ 字节。混合精度 Adam 的 K 值为 12。这导致了 $ 2+2+12=16 Ψ  $字节的内存需求。对于像 GPT-2 这样有15亿参数的模型，至少需要24GB的内存，远远高于 <code>3GB</code> 内存来存储 <code>fp16</code> 参数的需求</p>
+<h3 id="4-2-Residual-内存消耗"><a href="#4-2-Residual-内存消耗" class="headerlink" title="4.2 Residual 内存消耗"></a>4.2 Residual 内存消耗</h3><p>在训练过程中，使用的激活函数会占用大量内存。以 GPT-2 模型为例，当序列长度为 1K，<code>batch_size</code>为 32时，1.5B 参数的模型需要大约 60GB 的内存.</p>
+<p>计算公式：$激活值内存 = Transformer 层数 × hidden_dim × batch_size × seq_len × Transformer 层数$</p>
+<p>使用激活值 checkpoint 方法可以减少激活函数内存的消耗，会增加 33% 的 recompute 开销，但可以将激活函数内存消耗降低到约 8GB 但对于更大的模型，激活函数的内存消耗仍然可能非常大。如一个拥有 1000 亿参数的 GPT-like 模型，在 <code>batch_size</code>为32 时，即使使用了激活值 checkpoint 仍需60GB的内存。此外，对于大型模型，用于存储中间结果的临时 buffer 也会占用相当大的内存。例如，对梯度 <code>all_reduce</code>或梯度计算时会将所有梯度融合到一个 flattened buffer 中，尽管梯度可以以 <code>fp16</code>存储，但 buffer 可能还是 <code>fp32</code>。对于一个具有 15 亿参数的模型，一个 flattened fp32 buffer 要占用6GB的内存</p>
+<p>此外，<strong>内存碎片的问题也要注意，在极端情况下，内存碎片可浪费 30% 的内存</strong></p>
+<h2 id="5-ZeRO"><a href="#5-ZeRO" class="headerlink" title="5.ZeRO"></a>5.ZeRO</h2><p>ZeRO 提出了两组优化：</p>
+<ul>
+<li><strong>ZeRO-DP</strong>：优化模型状态内存消耗</li>
+<li><strong>ZeRO-R</strong>：优化 Residual 内存消耗</li>
+</ul>
+<h3 id="5-1-ZeRO-DP"><a href="#5-1-ZeRO-DP" class="headerlink" title="5.1 ZeRO-DP"></a>5.1 ZeRO-DP</h3><p><strong>DP</strong>：优点：计算粒度高，通信低；不足： DP 进程之间冗余存储</p>
+<p><strong>MP</strong>：优点：通过分区模型利用内存；不足：计算粒度降低</p>
+<p><strong>ZeRO-DP</strong> <strong>通过分区模型状态并使用动态的通信调度，同时有 DP 和 MP 的优点</strong></p>
+<p>假设两块卡做数据并行，一个层</p>
+<p><img src="image/image_Z6NIHTGklt.png" alt=""></p>
+<p><strong>梯度（FP16）</strong>：两个卡维护的梯度不同，不同发送给对方，来得到全局的梯度</p>
+<p><strong>状态（FP32）</strong>：得到梯度后，将各个部分梯度累加，得到中间状态；再将中间状态发送到权重参数W（FP16）上，同一块卡直接复制，不同卡进行发送</p>
+<h4 id="（1）Pos-：-Optimizer-State-Partitioning"><a href="#（1）Pos-：-Optimizer-State-Partitioning" class="headerlink" title="（1）Pos ： Optimizer State Partitioning"></a>（1）Pos ： Optimizer State Partitioning</h4><p>在DP中，通过将优化器的状态分成N个分区，使得每个DP进程只更新对应的分区的优化器状态，也就是1/N的总优化器状态参数量</p>
+<h4 id="（2）Pg-：Gradient-Partitioning"><a href="#（2）Pg-：Gradient-Partitioning" class="headerlink" title="（2）Pg ：Gradient Partitioning"></a>（2）Pg ：Gradient Partitioning</h4><p>梯度的计算被分为不同的分区，每个 DP 进程只处理和更新对应参数分区的梯度。文中还采用了一种 ucketization  策略，将同一参数分区的梯度进行分组，并一次性对整个组进行归约操作。类似于NVIDIA的 AMP 优化器中将全局梯度计算进行 bucketization 以重叠计算通信。通过在最后一个分区进行 all-reduce，以减少内存占用，实现计算通信重叠</p>
+<h4 id="（3）Pp-：-Parameter-Partitioning"><a href="#（3）Pp-：-Parameter-Partitioning" class="headerlink" title="（3）Pp ： Parameter Partitioning"></a>（3）Pp ： Parameter Partitioning</h4><p>参数分区是在 DP 训练中减少内存消耗的一种方式。每个进程只存储与其分区相对应的参数，当需要使用到其他分区的参数进行前向和反向传播时，通过 broadcast 从相应的 DP 进程接收这些参数</p>
+<h4 id="（4）Implication-on-Model-Size"><a href="#（4）Implication-on-Model-Size" class="headerlink" title="（4）Implication on Model Size"></a>（4）Implication on Model Size</h4><p>在 1024 DP 的情况下，搭配 Pos+g+p，可以实现 1.5 万亿参数的训练，如果只使用 DP 训练，仅能训练 1.5 Billion 参数量</p>
+<h4 id="（5）内存消耗对比"><a href="#（5）内存消耗对比" class="headerlink" title="（5）内存消耗对比"></a>（5）内存消耗对比</h4><p><img src="image/image_9sBUSXq3Bt.png" alt=""></p>
+<h4 id="（6）通信量分析"><a href="#（6）通信量分析" class="headerlink" title="（6）通信量分析"></a>（6）通信量分析</h4><h5 id="1）DP-通信量"><a href="#1）DP-通信量" class="headerlink" title="1）DP 通信量"></a>1）DP 通信量</h5><p>在每次反向后执行 all-reduce 平均，这种 all-reduce 会在大模型上会完全依赖通信带宽，现在的 all-reduce 通过流水线执行 reduce-scatter 再 all-gather 达到 all-reduce 的效果，会有两倍的数据通信量</p>
+<h5 id="2）ZeRO-DP-通信量"><a href="#2）ZeRO-DP-通信量" class="headerlink" title="2）ZeRO-DP 通信量"></a>2）ZeRO-DP 通信量</h5><p><strong>Pos+g ： Zero-2</strong></p>
+<p>因为每个进程只保存其分区的梯度，对梯度进程进行 scatter-reduce，再执行 all-gather，通信量与 DP 相同，为 $2Ψ$</p>
+<p><strong>Pos+g+p ： Zero-3</strong></p>
+<p>通过参数分区，每个进程只存储更新的参数。在计算前向传播结果前，每个分区的进程将权重 braodcast 到所有进程，在前向传播时，通过流水线执行 all-gather 接受其他分区的参数，以减少内存占用，前向传播后，丢弃权重。在反向传播时需要再次 all-gather，因此，总通信量为$  (Ψ * N) / N = Ψ $</p>
+<p>综上，<strong>总通信量为 3Ψ，为 DP 的 1.5 倍</strong></p>
+<h3 id="5-2-ZeRO-R"><a href="#5-2-ZeRO-R" class="headerlink" title="5.2 ZeRO-R"></a>5.2 ZeRO-R</h3><p>将使用的内存分为两类：</p>
+<ul>
+<li><strong>长期存在</strong>：前向传播时的激活值 checkpoint，反向传播时的参数梯度</li>
+<li><strong>短期存在</strong>：前向传播时的 recompute，反向传播时的激活值梯度</li>
+</ul>
+<p>ZeRO-R <strong>通过将激活值 checkpoint 和 梯度 移动到预先分配的连续 buffer 中，进行实时内存碎片整理，还减少了查找空闲连续内存的时间</strong>（带宽换时间）</p>
+<p>ZeRO-R主要用于模型并行，假设有一个层，又对应的输入，假设有2块卡。</p>
+<p><img src="image/image_3ev3Uc-yLA.png" alt=""></p>
+<h4 id="（1）Pa-：Partitioned-Activation-Checkpointing"><a href="#（1）Pa-：Partitioned-Activation-Checkpointing" class="headerlink" title="（1）Pa ：Partitioned Activation Checkpointing"></a>（1）Pa ：Partitioned Activation Checkpointing</h4><p>通过激活值 checkpoint 分区，消除了 MP 中的内存冗余，只有在计算中需要使用激活时，才会将激活值复制</p>
+<p>在模型中一层完成前向完成时，会将激活值分区到所有并行进程上，如果在反向传播过程中被使用时，则使用 all-gather 重新创建激活值的 copy</p>
+<h4 id="（2）-C-B-：Constant-Size-Buffers"><a href="#（2）-C-B-：Constant-Size-Buffers" class="headerlink" title="（2）$C_B$：Constant Size Buffers"></a>（2）$C_B$：Constant Size Buffers</h4><p>因为做了切片，需要不断通信，当机器数变多之后，一个层的切片数据就变得很多，每一次发出去的数据可能很小，在带宽很大的情况下，这样发是不划算的。</p>
+<p>使用固定大小的Buffer，等到填满后，再发出去。</p>
+<p>通过保持足够大的常量 buffer ，在计算之前将所有参数融合到这个单独的 buffer 中，可以加速内存读写效率.</p>
+<h4 id="（3）-M-D-Memory-Defragmentation"><a href="#（3）-M-D-Memory-Defragmentation" class="headerlink" title="（3）$M_D$ : Memory Defragmentation"></a>（3）$M_D$ : Memory Defragmentation</h4><p>前向传播过程中通过激活值 checkpoint 只保留了部分激活值，其余的激活值会被丢弃，因为它们在后向传播时可以重新计算。同样，在后向传播过程中，参数梯度是长期存在的，而激活梯度和其他用于计算参数梯度的缓冲区是短期存在的。这种长期和短期内存的交织导致了内存碎片化的问题</p>
+<p>文中提出了 In-place Activation Reuse 的方法，在反向传播过程中可以重复使用激活值的内存，而无需每次都重新分配内存。将不再需要的激活值内存标记为可重用，并在下一次需要相同大小内存的地方重用它们。减少了内存分配和释放的次数，减少了碎片化.</p>
+<h4 id="（4）通信量分析"><a href="#（4）通信量分析" class="headerlink" title="（4）通信量分析"></a>（4）通信量分析</h4><p>下面通过分析分区激活值 checkpoint（Pa）与MP，DP通信量决定使用Pa还是Pa+cpu</p>
+<p>Pa 的通信量权衡取决于模型大小、checkpoint 策略和 MP 策略。论文使用 Megatron-LM 实现的模型背景下进行分析。 在带有激活值 checkpoint 的 Megatron-LM 中，每个transformer在正向传播中执行两个大小为 $batch × seq_length × hidden_dim$ 的 all-reduce 操作用于正向传播时的重计算，另外两个 all-reduce 操作用于反向传播。每个块的总通信量为 $12 × seq length × hidden dim$，因为 all-reduce 的通信量为$  2 × message_size $。 当 ZeRO-R 对激活值 checkpoint 进行分区时，在每个激活值 checkpoint 上的反向传播的正向重新计算之前需要额外的 all-gather 操作。会检查每个transformer块的输入激活，需要一个 all-gather，因此，Pa 的通信量为 $seq_length ∗ hidden_dim$。因为 all-gather 的通信量为 <code>message_size</code>，计算 Pa 的总通信量小于 MP 原始通信量的 10%。当MP与DP结合使用时，Pa可用于将Pa通信量减少一个数量级，而模型并行通信量增加10%，并在 DP 通信成为性能瓶颈时显著提高效率。另外，Pa将激活内存消耗降低了 MP 并行度，从而允许按比例增加 <code>batch_size</code>。由于 Pa 导致 <code>batch_size</code> 增加一个数量级可能导致 DP 通信量减少一个数量级。 如果采用 Pa+cpu，分区激活值 checkpoint 将卸载到cpu，就不再需要激活内存了，与Pa相比，cpu内存之间增加了2倍的数据移动。在极端情况下，DP 通信量是主要瓶颈，因为即使使用Pa，<code>batch_size</code> 也很小，在小<code>batch_size</code>的情况下，只要 cpu 数据传输开销小于DP通信量开销，Pa+cpu 就可以通过增加 batch\_size 来提高效率。在给定模型和硬件特性的情况下，可以利用上述分析来决定是否以及何时使用Pa还是Pa+cpu</p>
+<h2 id="6-万亿参数训练"><a href="#6-万亿参数训练" class="headerlink" title="6.万亿参数训练"></a>6.万亿参数训练</h2><p>仅使用 DP，ZeRO能够在1024个GPU上容纳超过1万亿参数的模型。此外，如下表所示，当与 MP 结合使用时，每个DGX2节点内使用16路MP，跨节点使用64路DP，ZeRO能够在1024个GPU上运行超过1万亿参数的模型，但训练时长会超过一年，期待未来算力提升</p>
+<p><img src="image/image_hOqphgTvhv.png" alt=""></p>
+<h2 id="7-实验评估"><a href="#7-实验评估" class="headerlink" title="7.实验评估"></a>7.实验评估</h2><p>实施：基于 PyTorch 的 ZeRO-100B，包括Pos+g 和 ZeRO-R 中的全部优化点</p>
+<p>硬件：由 400 个 V100 GPU（25个DGX-2节点）组成的集群，节点间通信带宽为800 Gbps</p>
+<p>Baseline：没有MP的实验使用了 torch 的 DDP，MP 的实验使用 Megatron-LM 的 MP</p>
+<p>ZeRO：没有MP的实验使用了 ZeRO-100B 中基于 ZeRO 的 DP 实现。MP 的实验将 ZeRO-100B 中的 ZeRO-powered DP 与 Megatron-LM 的 MP 相结合</p>
+<p>模型：基于GPT-2的 transformer 模型，下表是参数配置</p>
+<p><img src="image/image_mNjbLHGwaE.png" alt=""></p>
+<h3 id="7-1-Speed-and-Model-size"><a href="#7-1-Speed-and-Model-size" class="headerlink" title="7.1 Speed and Model size"></a>7.1 Speed and Model size</h3><p>Baseline 的 Megatron MP 在模型规模增大时性能会快速下降，因为 MP 在 GPU 之间产生了高额通信量，而在超过单个节点以适应更大的模型时，每条链路（NVSwitch）的通信带宽从300GB/秒下降为12.5GB/秒，导致性能严重下降。对比之下，ZeRO-100B 会有 10 倍的训练速度提升</p>
+<h3 id="7-2-Super-Linear-Scalability"><a href="#7-2-Super-Linear-Scalability" class="headerlink" title="7.2 Super-Linear Scalability"></a>7.2 Super-Linear Scalability</h3><p>如下图所示，使用ZeRO-100B可以实现超线性可扩展性，并通过增加 DP 并行度来提高每个GPU的吞吐量，从而适应更大的 batch_size</p>
+<p><img src="image/image_1Qj1nuyQK6.png" alt=""></p>
+<h3 id="7-3-Democratizing-Large-Model-Training"><a href="#7-3-Democratizing-Large-Model-Training" class="headerlink" title="7.3 Democratizing Large Model Training"></a>7.3 Democratizing Large Model Training</h3><p>下图使用128个GPU，ZeRO-100B 可以训练13B参数的模型，平均每个GPU吞吐量超过40 TFlops。相比之下，没有使用ZeRO，仅使用DP的最大可训练模型仅有 1.4B 参数，每个 GPU 的吞吐量不到 20 TFlops。此外，由于没有 MP 带来的通信开销，这些模型可以在具有较低端计算节点上进行训练，无需 NVLINK 或 NVSwitch 这种高速互联方式</p>
+<p><img src="image/image_RB2o3B2eqt.png" alt=""></p>
+<h3 id="7-4-Memory-and-Performance-Analysis"><a href="#7-4-Memory-and-Performance-Analysis" class="headerlink" title="7.4 Memory and Performance Analysis"></a>7.4 Memory and Performance Analysis</h3><p>作者讨论了不同优化方法对最大模型大小、内存消耗和性能的影响。作者将这些优化方法分为配置1到5（C1-C5），如下表所示，通过使用固定 <code>batch_size</code>和 MP 为16，观察启用不同ZeRO优化的可训练模型的最大尺寸</p>
+<p><img src="image/image_Jr7EDtwCJA.png" alt=""></p>
+<p>在最大模型尺寸方面，如 Figure 6 所示，通过使用 Pa 优化，模型大小从40B增加到了60B。而通过使用Pos+g优化，在C2的基础上，模型大小增加到了140B，这是因为与C2相比，该优化使模型状态的内存需求减半。使用C5进一步减少了激活内存，将分区激活值 checkpoint 转移到CPU内存，使模型大小增加到150B</p>
+<p>对于每个训练迭代中 PyTorch 缓存的最大内存，如 Figure 7 所示，作者观察了40B和100B模型的情况。从C1到C2，缓存的内存大小如期减少。C2到C3的内存消耗差异取决于模型状态与激活内存的大小关系，当激活内存较大时，差异可能增加，当模型状态较大时，差异可能减小。值得注意的是，在40B模型中，从C4到C5时，缓存的内存大小没有减少，但在100B模型中有减少。这是因为100B的激活内存较大，减少不明显。作者指出，当我们处理非常大的模型时，Pa+cpu优化可用于适应更大的 <code>batch_size</code></p>
+<p>对于不同优化设置的最佳性能，如 Figure 8 所示，性能提升与内存消耗的减少相对应。较低的内存消耗可以实现更大的 batch\_size，从而提高性能。唯一的例外是60B参数模型在C4和C5之间的性能下降。尽管内存消耗较低，但C5会导致激活在CPU之间移动，这通常会导致性能下降，除非模型非常大以至于无法在没有C5的情况下运行，或者可以在没有C5的情况下运行的 <code>batch_size</code>很小（例如在 Figure 8 中具有170B参数的模型）。在训练过程中，Pa+cpu优化只在有益时才启用</p>
+<p><img src="image/image_ajuHX6EIaH.png" alt=""></p>
+<h3 id="7-5-Turing-NLG-the-SOTA-language-model-with-17B-parameters"><a href="#7-5-Turing-NLG-the-SOTA-language-model-with-17B-parameters" class="headerlink" title="7.5 Turing-NLG, the SOTA language model with 17B parameters"></a>7.5 Turing-NLG, the SOTA language model with 17B parameters</h3><p>下图展示了在300K次迭代中与之前最先进的Megatron-LM 8.3B参数模型的验证 Perplexity 对比，使用 ZeRO 训练得到的模型指标优于 Megatron-LM，此外 ZeRO100B 还实现了持续的 41.4 TFlops/GPU的吞吐量</p>
+<p><img src="image/image_TfpquXtfIo.png" alt=""></p>
+<h2 id="8-结论"><a href="#8-结论" class="headerlink" title="8.结论"></a>8.结论</h2><p><strong>通讯换内存</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/paper_reading/4.1.ZeRO/">https://wdndev.github.io/paper_reading/4.1.ZeRO/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LLMs/">LLMs</a><a class="post-meta__tags" href="/tags/PaperReading/">PaperReading</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/llms/llms_article/1.llm%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/" title="LLMs 推理优化技术"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">LLMs 推理优化技术</div></div></a></div><div><a href="/llms/llms_article/2.%E4%B8%BB%E6%B5%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E7%BB%86%E8%8A%82/" title="主流大语言模型的技术原理细节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">主流大语言模型的技术原理细节</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%91%98%E8%A6%81"><span class="toc-text">1.摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%BC%95%E8%AE%BA%EF%BC%88ZeRO%E6%80%BB%E7%BB%93%EF%BC%89"><span class="toc-text">2.引论（ZeRO总结）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B%E7%8A%B6%E6%80%81%E5%86%85%E5%AD%98"><span class="toc-text">2.1优化模型状态内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%BC%98%E5%8C%96-residual-states-%E5%86%85%E5%AD%98"><span class="toc-text">2.2 优化 residual states 内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-ZeRO-%E6%90%AD%E9%85%8D%E6%A8%A1%E5%9E%8B%E5%B9%B6%E8%A1%8C%EF%BC%88MP%EF%BC%89"><span class="toc-text">2.3 ZeRO 搭配模型并行（MP）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">3.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-DP-TP-and-PP"><span class="toc-text">3.1 DP, TP and PP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89DP%EF%BC%88%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C%EF%BC%89"><span class="toc-text">（1）DP（数据并行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89TP%EF%BC%88%E6%A8%A1%E5%9E%8B%E5%B9%B6%E8%A1%8C%EF%BC%89"><span class="toc-text">（2）TP（模型并行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89PP%EF%BC%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%B9%B6%E8%A1%8C%EF%BC%89"><span class="toc-text">（3）PP（流水线并行）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E9%9D%9E%E5%B9%B6%E8%A1%8C%E5%8C%96%E6%96%B9%E6%B3%95%E8%8A%82%E7%9C%81%E5%86%85%E5%AD%98"><span class="toc-text">3.2非并行化方法节省内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%87%8F%E5%B0%91%E6%BF%80%E6%B4%BB%E5%86%85%E5%AD%98"><span class="toc-text">（1）减少激活内存</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%86%85%E5%AD%98"><span class="toc-text">压缩内存</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%BF%80%E6%B4%BB%E5%86%85%E5%AD%98-checkpoint"><span class="toc-text">激活内存 checkpoint</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-text">实时内存管理</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89CPU-Offload"><span class="toc-text">（2）CPU Offload</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%89%A7%E8%A1%8C%E7%AE%97%E6%B3%95"><span class="toc-text">优化执行算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98-Offload"><span class="toc-text">虚拟内存 Offload</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Memory-Efficient-Optimizer"><span class="toc-text">（3）Memory Efficient Optimizer</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="toc-text">自适应学习率</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-text">自适应优化器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%AE%AD%E7%BB%83%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-text">3.3 训练优化器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8"><span class="toc-text">4.优化内存占用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%A8%A1%E5%9E%8B%E7%8A%B6%E6%80%81%EF%BC%9A%E4%BC%98%E5%8C%96%E5%99%A8%E7%8A%B6%E6%80%81%EF%BC%8C%E6%A2%AF%E5%BA%A6%E4%B8%8E%E5%8F%82%E6%95%B0"><span class="toc-text">4.1 模型状态：优化器状态，梯度与参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Residual-%E5%86%85%E5%AD%98%E6%B6%88%E8%80%97"><span class="toc-text">4.2 Residual 内存消耗</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-ZeRO"><span class="toc-text">5.ZeRO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-ZeRO-DP"><span class="toc-text">5.1 ZeRO-DP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Pos-%EF%BC%9A-Optimizer-State-Partitioning"><span class="toc-text">（1）Pos ： Optimizer State Partitioning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Pg-%EF%BC%9AGradient-Partitioning"><span class="toc-text">（2）Pg ：Gradient Partitioning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Pp-%EF%BC%9A-Parameter-Partitioning"><span class="toc-text">（3）Pp ： Parameter Partitioning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89Implication-on-Model-Size"><span class="toc-text">（4）Implication on Model Size</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E5%86%85%E5%AD%98%E6%B6%88%E8%80%97%E5%AF%B9%E6%AF%94"><span class="toc-text">（5）内存消耗对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E9%80%9A%E4%BF%A1%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">（6）通信量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%EF%BC%89DP-%E9%80%9A%E4%BF%A1%E9%87%8F"><span class="toc-text">1）DP 通信量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%EF%BC%89ZeRO-DP-%E9%80%9A%E4%BF%A1%E9%87%8F"><span class="toc-text">2）ZeRO-DP 通信量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-ZeRO-R"><span class="toc-text">5.2 ZeRO-R</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Pa-%EF%BC%9APartitioned-Activation-Checkpointing"><span class="toc-text">（1）Pa ：Partitioned Activation Checkpointing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89-C-B-%EF%BC%9AConstant-Size-Buffers"><span class="toc-text">（2）$C_B$：Constant Size Buffers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89-M-D-Memory-Defragmentation"><span class="toc-text">（3）$M_D$ : Memory Defragmentation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E9%80%9A%E4%BF%A1%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">（4）通信量分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E4%B8%87%E4%BA%BF%E5%8F%82%E6%95%B0%E8%AE%AD%E7%BB%83"><span class="toc-text">6.万亿参数训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%AE%9E%E9%AA%8C%E8%AF%84%E4%BC%B0"><span class="toc-text">7.实验评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-Speed-and-Model-size"><span class="toc-text">7.1 Speed and Model size</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-Super-Linear-Scalability"><span class="toc-text">7.2 Super-Linear Scalability</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-Democratizing-Large-Model-Training"><span class="toc-text">7.3 Democratizing Large Model Training</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-Memory-and-Performance-Analysis"><span class="toc-text">7.4 Memory and Performance Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-Turing-NLG-the-SOTA-language-model-with-17B-parameters"><span class="toc-text">7.5 Turing-NLG, the SOTA language model with 17B parameters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E7%BB%93%E8%AE%BA"><span class="toc-text">8.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

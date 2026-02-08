@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2025-07-17 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Towards Agentic RAG with Deep Reasoning: A Survey of RAG-Reasoning Systems in LLMsRetrieval-Augmented Generation (RAG) lifts the factuality of Large Language">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2025-07-17">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202507/2025-07-17/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Towards Agentic RAG with Deep Reasoning: A Survey of RAG-Reasoning Systems in LLMsRetrieval-Augmented Generation (RAG) lifts the factuality of Large Language">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:54.753Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202507/2025-07-17/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2025-07-17',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2025-07-17</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:54.753Z" title="Updated 2026-02-08 08:00:54">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">7.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>33min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2025-07-17"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Towards-Agentic-RAG-with-Deep-Reasoning-A-Survey-of-RAG-Reasoning-Systems-in-LLMs"><a href="#1-Towards-Agentic-RAG-with-Deep-Reasoning-A-Survey-of-RAG-Reasoning-Systems-in-LLMs" class="headerlink" title="1. Towards Agentic RAG with Deep Reasoning: A Survey of RAG-Reasoning Systems in LLMs"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.09477">Towards Agentic RAG with Deep Reasoning: A Survey of RAG-Reasoning Systems in LLMs</a></h3><p>Retrieval-Augmented Generation (RAG) lifts the factuality of Large Language Models (LLMs) by injecting external knowledge, yet it falls short on problems that demand multi-step inference; conversely, purely reasoning-oriented approaches often hallucinate or mis-ground facts. This survey synthesizes both strands under a unified reasoning-retrieval perspective. We first map how advanced reasoning optimizes each stage of RAG (Reasoning-Enhanced RAG). Then, we show how retrieved knowledge of different type supply missing premises and expand context for complex inference (RAG-Enhanced Reasoning). Finally, we spotlight emerging Synergized RAG-Reasoning frameworks, where (agentic) LLMs iteratively interleave search and reasoning to achieve state-of-the-art performance across knowledge-intensive benchmarks. We categorize methods, datasets, and open challenges, and outline research avenues toward deeper RAG-Reasoning systems that are more effective, multimodally-adaptive, trustworthy, and human-centric. The collection is available at <a target="_blank" rel="noopener" href="https://github.com/DavidZWZ/Awesome-RAG-Reasoning">https://github.com/DavidZWZ/Awesome-RAG-Reasoning</a>.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>检索增强生成（RAG）通过注入外部知识来提高大型语言模型（LLM）的真实性，但它在需要多步推理的问题上存在不足；相反，纯粹以推理为导向的方法往往会产生幻觉或误解事实。这项调查在统一的推理检索视角下综合了这两个方面。我们首先绘制了高级推理如何优化RAG（推理增强RAG）的每个阶段。然后，我们展示了检索到的不同类型的知识如何为复杂推理提供缺失的前提并扩展上下文（RAG增强推理）。最后，我们重点介绍新兴的协同RAG推理框架，其中（代理）LLM迭代地交织搜索和推理，以在知识密集型基准测试中实现最先进的性能。我们对方法、数据集和开放式挑战进行了分类，并概述了通往更深入的RAG推理系统的研究途径，这些系统更有效、多模自适应、值得信赖和以人为本。该系列可在<a target="_blank" rel="noopener" href="https://github.com/DavidZWZ/Awesome-RAG-Reasoning">https://github.com/DavidZWZ/Awesome-RAG-Reasoning</a>.</p>
+</div></details>
+<p><strong>Authors</strong>: Yangning Li,Weizhi Zhang,Yuyao Yang,Wei-Chieh Huang,Yaozu Wu,Junyu Luo,Yuanchen Bei,Henry Peng Zou,Xiao Luo,Yusheng Zhao,Chunkit Chan,Yankai Chen,Zhongfen Deng,Yinghui Li,Hai-Tao Zheng,Dongyuan Li,Renhe Jiang,Ming Zhang,Yangqiu Song,Philip S. Yu</p>
+<p><strong>Categories</strong>: cs.CL,cs.AI</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.09477.pdf">https://arxiv.org/pdf/2507.09477.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.09477">https://arxiv.org/abs/2507.09477</a></p>
+<p><strong>Arxiv ID</strong>: 2507.09477</p>
+<p><strong>Published</strong>: 2025-07-13T03:29:41Z</p>
+<p><strong>Updated</strong>: 2025-07-13T03:29:41.000Z</p>
+<hr>
+<h3 id="2-PhysX-Physical-Grounded-3D-Asset-Generation"><a href="#2-PhysX-Physical-Grounded-3D-Asset-Generation" class="headerlink" title="2. PhysX: Physical-Grounded 3D Asset Generation"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.12465">PhysX: Physical-Grounded 3D Asset Generation</a></h3><p>3D modeling is moving from virtual to physical. Existing 3D generation primarily emphasizes geometries and textures while neglecting physical-grounded modeling. Consequently, despite the rapid development of 3D generative models, the synthesized 3D assets often overlook rich and important physical properties, hampering their real-world application in physical domains like simulation and embodied AI. As an initial attempt to address this challenge, we propose \textbf{PhysX}, an end-to-end paradigm for physical-grounded 3D asset generation. 1) To bridge the critical gap in physics-annotated 3D datasets, we present PhysXNet - the first physics-grounded 3D dataset systematically annotated across five foundational dimensions: absolute scale, material, affordance, kinematics, and function description. In particular, we devise a scalable human-in-the-loop annotation pipeline based on vision-language models, which enables efficient creation of physics-first assets from raw 3D assets.2) Furthermore, we propose \textbf{PhysXGen}, a feed-forward framework for physics-grounded image-to-3D asset generation, injecting physical knowledge into the pre-trained 3D structural space. Specifically, PhysXGen employs a dual-branch architecture to explicitly model the latent correlations between 3D structures and physical properties, thereby producing 3D assets with plausible physical predictions while preserving the native geometry quality. Extensive experiments validate the superior performance and promising generalization capability of our framework. All the code, data, and models will be released to facilitate future research in generative physical AI.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>3D建模正在从虚拟转向物理。现有的3D生成主要强调几何形状和纹理，而忽略了物理基础建模。因此，尽管3D生成模型发展迅速，但合成的3D资产往往忽视了丰富而重要的物理属性，阻碍了它们在模拟和实体AI等物理领域的实际应用。作为应对这一挑战的初步尝试，我们提出了\textbf{PhysX}，这是一种基于物理的3D资产生成的端到端范式。1）为了弥合物理注释3D数据集的关键差距，我们提出了PhysXNet——第一个在五个基本维度上系统注释的基于物理的3D数据集：绝对尺度、材料、启示、运动学和功能描述。特别是，我们基于视觉语言模型设计了一个可扩展的人在环注释管道，该管道能够从原始3D资产中高效创建物理优先资产。2）此外，我们提出了\textbf{PhysXGen}，这是一个用于基于物理的图像到3D资产生成的前馈框架，将物理知识注入预训练的3D结构空间。具体来说，PhysXGen采用双分支架构来显式地模拟3D结构和物理特性之间的潜在相关性，从而在保持原生几何质量的同时，生成具有合理物理预测的3D资产。广泛的实验验证了我们的框架的卓越性能和有前景的泛化能力。所有的代码、数据和模型都将被发布，以促进生成物理人工智能的未来研究。</p>
+</div></details>
+<p><strong>Authors</strong>: Ziang Cao,Zhaoxi Chen,Linag Pan,Ziwei Liu</p>
+<p><strong>Categories</strong>: cs.CV</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.12465.pdf">https://arxiv.org/pdf/2507.12465.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.12465">https://arxiv.org/abs/2507.12465</a></p>
+<p><strong>Arxiv ID</strong>: 2507.12465</p>
+<p><strong>Published</strong>: 2025-07-16T17:59:35Z</p>
+<p><strong>Updated</strong>: 2025-07-16T17:59:35.000Z</p>
+<hr>
+<h3 id="3-MMHU-A-Massive-Scale-Multimodal-Benchmark-for-Human-Behavior-Understanding"><a href="#3-MMHU-A-Massive-Scale-Multimodal-Benchmark-for-Human-Behavior-Understanding" class="headerlink" title="3. MMHU: A Massive-Scale Multimodal Benchmark for Human Behavior Understanding"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.12463">MMHU: A Massive-Scale Multimodal Benchmark for Human Behavior Understanding</a></h3><p>Humans are integral components of the transportation ecosystem, and understanding their behaviors is crucial to facilitating the development of safe driving systems. Although recent progress has explored various aspects of human behavior$\unicode{x2014}$such as motion, trajectories, and intention$\unicode{x2014}$a comprehensive benchmark for evaluating human behavior understanding in autonomous driving remains unavailable. In this work, we propose $\textbf{MMHU}$, a large-scale benchmark for human behavior analysis featuring rich annotations, such as human motion and trajectories, text description for human motions, human intention, and critical behavior labels relevant to driving safety. Our dataset encompasses 57k human motion clips and 1.73M frames gathered from diverse sources, including established driving datasets such as Waymo, in-the-wild videos from YouTube, and self-collected data. A human-in-the-loop annotation pipeline is developed to generate rich behavior captions. We provide a thorough dataset analysis and benchmark multiple tasks$\unicode{x2014}$ranging from motion prediction to motion generation and human behavior question answering$\unicode{x2014}$thereby offering a broad evaluation suite. Project page : <a target="_blank" rel="noopener" href="https://MMHU-Benchmark.github.io">https://MMHU-Benchmark.github.io</a>.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>人类是交通生态系统不可或缺的组成部分，了解他们的行为对于促进安全驾驶系统的发展至关重要。尽管最近的进展已经探索了人类行为的各个方面，如运动、轨迹和意图，但评估自动驾驶中人类行为理解的综合基准仍然不可用。在这项工作中，我们提出了$\textbf{MMHU}$，这是一个大规模的人类行为分析基准，具有丰富的注释，如人类运动和轨迹、人类运动的文本描述、人类意图以及与驾驶安全相关的关键行为标签。我们的数据集包括从不同来源收集的5.7万个人体运动片段和173万帧，包括Waymo等成熟的驾驶数据集、YouTube上的野生视频和自行收集的数据。开发了一个人在循环注释管道来生成丰富的行为说明。我们提供全面的数据集分析和基准测试多个任务，从运动预测到运动生成和人类行为问题回答，从而提供广泛的评估套件。项目页面：<a target="_blank" rel="noopener" href="https://MMHU-Benchmark.github.io">https://MMHU-Benchmark.github.io</a>.</p>
+</div></details>
+<p><strong>Authors</strong>: Renjie Li,Ruijie Ye,Mingyang Wu,Hao Frank Yang,Zhiwen Fan,Hezhen Hu,Zhengzhong Tu</p>
+<p><strong>Categories</strong>: cs.CV</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.12463.pdf">https://arxiv.org/pdf/2507.12463.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.12463">https://arxiv.org/abs/2507.12463</a></p>
+<p><strong>Arxiv ID</strong>: 2507.12463</p>
+<p><strong>Published</strong>: 2025-07-16T17:59:30Z</p>
+<p><strong>Updated</strong>: 2025-07-16T17:59:30.000Z</p>
+<hr>
+<h3 id="4-MOSPA-Human-Motion-Generation-Driven-by-Spatial-Audio"><a href="#4-MOSPA-Human-Motion-Generation-Driven-by-Spatial-Audio" class="headerlink" title="4. MOSPA: Human Motion Generation Driven by Spatial Audio"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.11949">MOSPA: Human Motion Generation Driven by Spatial Audio</a></h3><p>Enabling virtual humans to dynamically and realistically respond to diverse auditory stimuli remains a key challenge in character animation, demanding the integration of perceptual modeling and motion synthesis. Despite its significance, this task remains largely unexplored. Most previous works have primarily focused on mapping modalities like speech, audio, and music to generate human motion. As of yet, these models typically overlook the impact of spatial features encoded in spatial audio signals on human motion. To bridge this gap and enable high-quality modeling of human movements in response to spatial audio, we introduce the first comprehensive Spatial Audio-Driven Human Motion (SAM) dataset, which contains diverse and high-quality spatial audio and motion data. For benchmarking, we develop a simple yet effective diffusion-based generative framework for human MOtion generation driven by SPatial Audio, termed MOSPA, which faithfully captures the relationship between body motion and spatial audio through an effective fusion mechanism. Once trained, MOSPA could generate diverse realistic human motions conditioned on varying spatial audio inputs. We perform a thorough investigation of the proposed dataset and conduct extensive experiments for benchmarking, where our method achieves state-of-the-art performance on this task. Our model and dataset will be open-sourced upon acceptance. Please refer to our supplementary video for more details.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>使虚拟人能够动态、真实地响应不同的听觉刺激仍然是角色动画中的一个关键挑战，需要将感知建模和运动合成相结合。尽管这项任务意义重大，但在很大程度上仍未得到探索。之前的大多数工作主要集中在映射语音、音频和音乐等模态以生成人体运动。到目前为止，这些模型通常忽略了空间音频信号中编码的空间特征对人体运动的影响。为了弥合这一差距，并实现对人类运动的高质量建模以响应空间音频，我们引入了第一个全面的空间音频驱动人体运动（SAM）数据集，其中包含各种高质量的空间音频和运动数据。为了进行基准测试，我们开发了一个简单而有效的基于扩散的生成框架，用于由空间音频驱动的人类运动生成，称为MOSPA，它通过有效的融合机制忠实地捕捉了身体运动和空间音频之间的关系。一旦经过训练，MOSPA可以根据不同的空间音频输入生成各种逼真的人体运动。我们对提出的数据集进行了彻底的调查，并进行了广泛的基准测试实验，我们的方法在这项任务上达到了最先进的性能。我们的模型和数据集将在验收后开源。请参阅我们的补充视频了解更多详细信息。</p>
+</div></details>
+<p><strong>Authors</strong>: Shuyang Xu,Zhiyang Dou,Mingyi Shi,Liang Pan,Leo Ho,Jingbo Wang,Yuan Liu,Cheng Lin,Yuexin Ma,Wenping Wang,Taku Komura</p>
+<p><strong>Categories</strong>: cs.GR,cs.CV,cs.RO</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.11949.pdf">https://arxiv.org/pdf/2507.11949.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.11949">https://arxiv.org/abs/2507.11949</a></p>
+<p><strong>Arxiv ID</strong>: 2507.11949</p>
+<p><strong>Published</strong>: 2025-07-16T06:33:11Z</p>
+<p><strong>Updated</strong>: 2025-07-16T06:33:11.000Z</p>
+<hr>
+<h3 id="5-SWE-Perf-Can-Language-Models-Optimize-Code-Performance-on-Real-World-Repositories"><a href="#5-SWE-Perf-Can-Language-Models-Optimize-Code-Performance-on-Real-World-Repositories" class="headerlink" title="5. SWE-Perf: Can Language Models Optimize Code Performance on Real-World Repositories?"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.12415">SWE-Perf: Can Language Models Optimize Code Performance on Real-World Repositories?</a></h3><p>Code performance optimization is paramount in real-world software engineering and critical for production-level systems. While Large Language Models (LLMs) have demonstrated impressive capabilities in code generation and bug fixing, their proficiency in enhancing code performance at the repository level remains largely unexplored. To address this gap, we introduce SWE-Perf, the first benchmark specifically designed to systematically evaluate LLMs on code performance optimization tasks within authentic repository contexts. SWE-Perf comprises 140 carefully curated instances, each derived from performance-improving pull requests from popular GitHub repositories. Each benchmark instance includes the relevant codebase, target functions, performance-related tests, expert-authored patches, and executable environments. Through a comprehensive evaluation of representative methods that span file-level and repo-level approaches (e.g., Agentless and OpenHands), we reveal a substantial capability gap between existing LLMs and expert-level optimization performance, highlighting critical research opportunities in this emerging field.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>代码性能优化在现实世界的软件工程中至关重要，对生产级系统至关重要。虽然大型语言模型（LLM）在代码生成和错误修复方面表现出了令人印象深刻的能力，但它们在提高存储库级别的代码性能方面的熟练程度在很大程度上仍未得到探索。为了解决这一差距，我们引入了SWE Perf，这是第一个专门用于在真实存储库上下文中系统评估LLM代码性能优化任务的基准。SWE Perf包含140个精心策划的实例，每个实例都来自流行的GitHub存储库的性能改进拉取请求。每个基准实例都包括相关的代码库、目标函数、性能相关测试、专家编写的补丁和可执行环境。通过对跨越文件级和仓库级方法（如无代理和OpenHands）的代表性方法的全面评估，我们揭示了现有LLM和专家级优化性能之间的巨大能力差距，突出了这一新兴领域的关键研究机会。</p>
+</div></details>
+<p><strong>Authors</strong>: Xinyi He,Qian Liu,Mingzhe Du,Lin Yan,Zhijie Fan,Yiming Huang,Zejian Yuan,Zejun Ma</p>
+<p><strong>Categories</strong>: cs.SE</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.12415.pdf">https://arxiv.org/pdf/2507.12415.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.12415">https://arxiv.org/abs/2507.12415</a></p>
+<p><strong>Arxiv ID</strong>: 2507.12415</p>
+<p><strong>Published</strong>: 2025-07-16T17:05:17Z</p>
+<p><strong>Updated</strong>: 2025-07-16T17:05:17.000Z</p>
+<hr>
+<h3 id="6-DrafterBench-Benchmarking-Large-Language-Models-for-Tasks-Automation-in-Civil-Engineering"><a href="#6-DrafterBench-Benchmarking-Large-Language-Models-for-Tasks-Automation-in-Civil-Engineering" class="headerlink" title="6. DrafterBench: Benchmarking Large Language Models for Tasks Automation in Civil Engineering"></a>6. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.11527">DrafterBench: Benchmarking Large Language Models for Tasks Automation in Civil Engineering</a></h3><p>Large Language Model (LLM) agents have shown great potential for solving real-world problems and promise to be a solution for tasks automation in industry. However, more benchmarks are needed to systematically evaluate automation agents from an industrial perspective, for example, in Civil Engineering. Therefore, we propose DrafterBench for the comprehensive evaluation of LLM agents in the context of technical drawing revision, a representation task in civil engineering. DrafterBench contains twelve types of tasks summarized from real-world drawing files, with 46 customized functions/tools and 1920 tasks in total. DrafterBench is an open-source benchmark to rigorously test AI agents’ proficiency in interpreting intricate and long-context instructions, leveraging prior knowledge, and adapting to dynamic instruction quality via implicit policy awareness. The toolkit comprehensively assesses distinct capabilities in structured data comprehension, function execution, instruction following, and critical reasoning. DrafterBench offers detailed analysis of task accuracy and error statistics, aiming to provide deeper insight into agent capabilities and identify improvement targets for integrating LLMs in engineering applications. Our benchmark is available at <a target="_blank" rel="noopener" href="https://github.com/Eason-Li-AIS/DrafterBench">https://github.com/Eason-Li-AIS/DrafterBench</a>, with the test set hosted at <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/Eason666/DrafterBench">https://huggingface.co/datasets/Eason666/DrafterBench</a>.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>大型语言模型（LLM）代理在解决现实世界问题方面显示出巨大的潜力，并有望成为工业任务自动化的解决方案。然而，需要更多的基准来从工业角度系统地评估自动化代理，例如在土木工程中。因此，我们提出了DrafterBench，用于在技术图纸修订的背景下对LLM代理进行综合评估，这是土木工程中的一项表示任务。DrafterBanch包含从现实世界图纸文件中总结的12种任务，共有46个定制功能/工具和1920个任务。DrafterBench是一个开源基准，用于严格测试人工智能代理在解释复杂和长上下文指令、利用先验知识以及通过隐式策略意识适应动态指令质量方面的熟练程度。该工具包全面评估了结构化数据理解、函数执行、指令遵循和批判性推理方面的不同能力。DrafterBench提供了对任务准确性和错误统计的详细分析，旨在更深入地了解代理功能，并确定将LLM集成到工程应用程序中的改进目标。我们的基准可在<a target="_blank" rel="noopener" href="https://github.com/Eason-Li-AIS/DrafterBench，测试集托管在https://huggingface.co/datasets/Eason666/DrafterBench">https://github.com/Eason-Li-AIS/DrafterBench，测试集托管在https://huggingface.co/datasets/Eason666/DrafterBench</a>.</p>
+</div></details>
+<p><strong>Authors</strong>: Yinsheng Li,Zhen Dong,Yi Shao</p>
+<p><strong>Categories</strong>: cs.AI,cs.CE</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.11527.pdf">https://arxiv.org/pdf/2507.11527.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.11527">https://arxiv.org/abs/2507.11527</a></p>
+<p><strong>Arxiv ID</strong>: 2507.11527</p>
+<p><strong>Published</strong>: 2025-07-15T17:56:04Z</p>
+<p><strong>Updated</strong>: 2025-07-15T17:56:04.000Z</p>
+<hr>
+<h3 id="7-Seq-vs-Seq-An-Open-Suite-of-Paired-Encoders-and-Decoders"><a href="#7-Seq-vs-Seq-An-Open-Suite-of-Paired-Encoders-and-Decoders" class="headerlink" title="7. Seq vs Seq: An Open Suite of Paired Encoders and Decoders"></a>7. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.11412">Seq vs Seq: An Open Suite of Paired Encoders and Decoders</a></h3><p>The large language model (LLM) community focuses almost exclusively on decoder-only language models, since they are easier to use for text generation. However, a large subset of the community still uses encoder-only models for tasks such as classification or retrieval. Previous work has attempted to compare these architectures, but is forced to make comparisons with models that have different numbers of parameters, training techniques, and datasets. We introduce the SOTA open-data Ettin suite of models: paired encoder-only and decoder-only models ranging from 17 million parameters to 1 billion, trained on up to 2 trillion tokens. Using the same recipe for both encoder-only and decoder-only models produces SOTA recipes in both categories for their respective sizes, beating ModernBERT as an encoder and Llama 3.2 and SmolLM2 as decoders. Like previous work, we find that encoder-only models excel at classification and retrieval tasks while decoders excel at generative tasks. However, we show that adapting a decoder model to encoder tasks (and vice versa) through continued training is subpar compared to using only the reverse objective (i.e. a 400M encoder outperforms a 1B decoder on MNLI, and vice versa for generative tasks). We open-source all artifacts of this study including training data, training order segmented by checkpoint, and 200+ checkpoints to allow future work to analyze or extend all aspects of training.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>大型语言模型（LLM）社区几乎完全专注于仅解码器语言模型，因为它们更容易用于文本生成。然而，社区的一大部分人仍然使用仅编码器的模型来完成分类或检索等任务。之前的工作试图比较这些架构，但被迫与具有不同数量的参数、训练技术和数据集的模型进行比较。我们介绍了SOTA开放数据Ettin模型套件：仅配对编码器和仅解码器模型，范围从1700万个参数到10亿个参数，训练了多达2万亿个令牌。对仅编码器和仅解码器型号使用相同的配方，可以在这两个类别中为各自的尺寸生成SOTA配方，击败了作为编码器的ModernBERT和作为解码器的Llama 3.2和SmolLM2。与之前的工作一样，我们发现只有编码器的模型擅长分类和检索任务，而解码器擅长生成任务。然而，我们发现，与仅使用反向目标相比，通过持续训练使解码器模型适应编码器任务（反之亦然）的效果较差（即400M编码器在MNLI上优于1B解码器，反之亦然）。我们开源了这项研究的所有工件，包括训练数据、按检查点分割的训练顺序和200多个检查点，以便未来的工作能够分析或扩展训练的各个方面。</p>
+</div></details>
+<p><strong>Authors</strong>: Orion Weller,Kathryn Ricci,Marc Marone,Antoine Chaffin,Dawn Lawrie,Benjamin Van Durme</p>
+<p><strong>Categories</strong>: cs.CL,cs.IR,cs.LG</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.11412.pdf">https://arxiv.org/pdf/2507.11412.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.11412">https://arxiv.org/abs/2507.11412</a></p>
+<p><strong>Arxiv ID</strong>: 2507.11412</p>
+<p><strong>Published</strong>: 2025-07-15T15:31:51Z</p>
+<p><strong>Updated</strong>: 2025-07-15T15:31:51.000Z</p>
+<hr>
+<h3 id="8-AnyI2V-Animating-Any-Conditional-Image-with-Motion-Control"><a href="#8-AnyI2V-Animating-Any-Conditional-Image-with-Motion-Control" class="headerlink" title="8. AnyI2V: Animating Any Conditional Image with Motion Control"></a>8. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.02857">AnyI2V: Animating Any Conditional Image with Motion Control</a></h3><p>Recent advancements in video generation, particularly in diffusion models, have driven notable progress in text-to-video (T2V) and image-to-video (I2V) synthesis. However, challenges remain in effectively integrating dynamic motion signals and flexible spatial constraints. Existing T2V methods typically rely on text prompts, which inherently lack precise control over the spatial layout of generated content. In contrast, I2V methods are limited by their dependence on real images, which restricts the editability of the synthesized content. Although some methods incorporate ControlNet to introduce image-based conditioning, they often lack explicit motion control and require computationally expensive training. To address these limitations, we propose AnyI2V, a training-free framework that animates any conditional images with user-defined motion trajectories. AnyI2V supports a broader range of modalities as the conditional image, including data types such as meshes and point clouds that are not supported by ControlNet, enabling more flexible and versatile video generation. Additionally, it supports mixed conditional inputs and enables style transfer and editing via LoRA and text prompts. Extensive experiments demonstrate that the proposed AnyI2V achieves superior performance and provides a new perspective in spatial- and motion-controlled video generation. Code is available at <a target="_blank" rel="noopener" href="https://henghuiding.com/AnyI2V/">https://henghuiding.com/AnyI2V/</a>.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>视频生成的最新进展，特别是在扩散模型方面，推动了文本到视频（T2V）和图像到视频（I2V）合成的显著进展。然而，在有效地整合动态运动信号和灵活的空间约束方面仍然存在挑战。现有的T2V方法通常依赖于文本提示，这本身就缺乏对生成内容的空间布局的精确控制。相比之下，I2V方法受到其对真实图像的依赖性的限制，这限制了合成内容的可编辑性。尽管一些方法结合了ControlNet来引入基于图像的调节，但它们通常缺乏明确的运动控制，并且需要计算昂贵的训练。为了解决这些局限性，我们提出了AnyI2V，这是一个无需训练的框架，可以使用用户定义的运动轨迹对任何条件图像进行动画处理。AnyI2V支持更广泛的模态作为条件图像，包括ControlNet不支持的网格和点云等数据类型，从而实现了更灵活、更通用的视频生成。此外，它支持混合条件输入，并通过LoRA和文本提示实现样式转换和编辑。大量实验表明，所提出的AnyI2V实现了卓越的性能，为空间和运动控制视频生成提供了新的视角。代码可在以下网址获得<a target="_blank" rel="noopener" href="https://henghuiding.com/AnyI2V/">https://henghuiding.com/AnyI2V/</a>.</p>
+</div></details>
+<p><strong>Authors</strong>: Ziye Li,Hao Luo,Xincheng Shuai,Henghui Ding</p>
+<p><strong>Categories</strong>: cs.CV</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.02857.pdf">https://arxiv.org/pdf/2507.02857.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.02857">https://arxiv.org/abs/2507.02857</a></p>
+<p><strong>Arxiv ID</strong>: 2507.02857</p>
+<p><strong>Published</strong>: 2025-07-03T17:59:02Z</p>
+<p><strong>Updated</strong>: 2025-07-03T17:59:02.000Z</p>
+<hr>
+<h3 id="9-SpatialTrackerV2-3D-Point-Tracking-Made-Easy"><a href="#9-SpatialTrackerV2-3D-Point-Tracking-Made-Easy" class="headerlink" title="9. SpatialTrackerV2: 3D Point Tracking Made Easy"></a>9. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.12462">SpatialTrackerV2: 3D Point Tracking Made Easy</a></h3><p>We present SpatialTrackerV2, a feed-forward 3D point tracking method for monocular videos. Going beyond modular pipelines built on off-the-shelf components for 3D tracking, our approach unifies the intrinsic connections between point tracking, monocular depth, and camera pose estimation into a high-performing and feedforward 3D point tracker. It decomposes world-space 3D motion into scene geometry, camera ego-motion, and pixel-wise object motion, with a fully differentiable and end-to-end architecture, allowing scalable training across a wide range of datasets, including synthetic sequences, posed RGB-D videos, and unlabeled in-the-wild footage. By learning geometry and motion jointly from such heterogeneous data, SpatialTrackerV2 outperforms existing 3D tracking methods by 30%, and matches the accuracy of leading dynamic 3D reconstruction approaches while running 50$\times$ faster.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>我们提出了SpatialTrackerV2，这是一种用于单目视频的前馈3D点跟踪方法。超越了基于现成组件构建的用于3D跟踪的模块化管道，我们的方法将点跟踪、单目深度和相机姿态估计之间的内在联系统一为高性能和前馈的3D点跟踪器。它将世界空间3D运动分解为场景几何、相机自我运动和像素级对象运动，具有完全可微分和端到端的架构，允许在广泛的数据集上进行可扩展的训练，包括合成序列、姿势RGB-D视频和未标记的野生镜头。通过从这些异构数据中联合学习几何和运动，SpatialTrackerV2的性能比现有的3D跟踪方法高出30%，在运行速度快50倍的同时，与领先的动态3D重建方法的精度相匹配。</p>
+</div></details>
+<p><strong>Authors</strong>: Yuxi Xiao,Jianyuan Wang,Nan Xue,Nikita Karaev,Yuri Makarov,Bingyi Kang,Xing Zhu,Hujun Bao,Yujun Shen,Xiaowei Zhou</p>
+<p><strong>Categories</strong>: cs.CV</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.12462.pdf">https://arxiv.org/pdf/2507.12462.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.12462">https://arxiv.org/abs/2507.12462</a></p>
+<p><strong>Arxiv ID</strong>: 2507.12462</p>
+<p><strong>Published</strong>: 2025-07-16T17:59:03Z</p>
+<p><strong>Updated</strong>: 2025-07-16T17:59:03.000Z</p>
+<hr>
+<h3 id="10-AI-Wizards-at-CheckThat-2025-Enhancing-Transformer-Based-Embeddings-with-Sentiment-for-Subjectivity-Detection-in-News-Articles"><a href="#10-AI-Wizards-at-CheckThat-2025-Enhancing-Transformer-Based-Embeddings-with-Sentiment-for-Subjectivity-Detection-in-News-Articles" class="headerlink" title="10. AI Wizards at CheckThat! 2025: Enhancing Transformer-Based Embeddings with Sentiment for Subjectivity Detection in News Articles"></a>10. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.11764">AI Wizards at CheckThat! 2025: Enhancing Transformer-Based Embeddings with Sentiment for Subjectivity Detection in News Articles</a></h3><p>This paper presents AI Wizards’ participation in the CLEF 2025 CheckThat! Lab Task 1: Subjectivity Detection in News Articles, classifying sentences as subjective/objective in monolingual, multilingual, and zero-shot settings. Training/development datasets were provided for Arabic, German, English, Italian, and Bulgarian; final evaluation included additional unseen languages (e.g., Greek, Romanian, Polish, Ukrainian) to assess generalization. Our primary strategy enhanced transformer-based classifiers by integrating sentiment scores, derived from an auxiliary model, with sentence representations, aiming to improve upon standard fine-tuning. We explored this sentiment-augmented architecture with mDeBERTaV3-base, ModernBERT-base (English), and Llama3.2-1B. To address class imbalance, prevalent across languages, we employed decision threshold calibration optimized on the development set. Our experiments show sentiment feature integration significantly boosts performance, especially subjective F1 score. This framework led to high rankings, notably 1st for Greek (Macro F1 = 0.51).</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>本文介绍了AI奇才参与CLEF 2025 CheckThat！实验任务1：新闻文章中的主观检测，在单语、多语言和零样本环境中将句子分类为主观/客观。为阿拉伯语、德语、英语、意大利语和保加利亚语提供了培训/发展数据集；最终评估包括其他看不见的语言（如希腊语、罗马尼亚语、波兰语、乌克兰语）来评估泛化能力。我们的主要策略通过将从辅助模型中得出的情感得分与句子表示相结合来增强基于变换器的分类器，旨在改进标准的微调。我们使用mDeBERTaV3库、ModernBERT库（英语）和Llama3.2-1B探索了这种情感增强的架构。为了解决跨语言普遍存在的类不平衡问题，我们采用了在开发集上优化的决策阈值校准。我们的实验表明，情感特征整合显著提高了性能，尤其是主观F1得分。这一框架导致了很高的排名，尤其是希腊排名第一（宏观F1=0.51）。</p>
+</div></details>
+<p><strong>Authors</strong>: Matteo Fasulo,Luca Babboni,Luca Tedeschini</p>
+<p><strong>Categories</strong>: cs.CL,cs.IR</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.11764.pdf">https://arxiv.org/pdf/2507.11764.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.11764">https://arxiv.org/abs/2507.11764</a></p>
+<p><strong>Arxiv ID</strong>: 2507.11764</p>
+<p><strong>Published</strong>: 2025-07-15T22:10:20Z</p>
+<p><strong>Updated</strong>: 2025-07-15T22:10:20.000Z</p>
+<hr>
+<h3 id="11-Lizard-An-Efficient-Linearization-Framework-for-Large-Language-Models"><a href="#11-Lizard-An-Efficient-Linearization-Framework-for-Large-Language-Models" class="headerlink" title="11. Lizard: An Efficient Linearization Framework for Large Language Models"></a>11. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.09025">Lizard: An Efficient Linearization Framework for Large Language Models</a></h3><p>We propose Lizard, a linearization framework that transforms pretrained Transformer-based Large Language Models (LLMs) into flexible, subquadratic architectures for infinite-context generation. Transformer-based LLMs face significant memory and computational bottlenecks as context lengths increase, due to the quadratic complexity of softmax attention and the growing key-value (KV) cache. Lizard addresses these limitations by introducing a subquadratic attention mechanism that closely approximates softmax attention while preserving the output quality. Unlike previous linearization methods, which are often limited by fixed model structures and therefore exclude gating mechanisms, Lizard incorporates a gating module inspired by recent state-of-the-art linear models. This enables adaptive memory control, supports constant-memory inference, offers strong length generalization, and allows more flexible model design. Lizard combines gated linear attention for global context compression with sliding window attention enhanced by meta memory, forming a hybrid mechanism that captures both long-range dependencies and fine-grained local interactions. Moreover, we introduce a hardware-aware algorithm that accelerates the training speed of our models. Extensive experiments show that Lizard achieves near-lossless recovery of the teacher model’s performance across standard language modeling tasks, while significantly outperforming previous linearization methods. On the 5-shot MMLU benchmark, Lizard improves over prior models by 18 points and shows significant improvements on associative recall tasks.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>我们提出了Lizard，这是一个线性化框架，它将基于预训练变换器的大型语言模型（LLM）转换为灵活的亚二次架构，用于无限上下文生成。由于softmax注意力的二次复杂性和不断增长的键值（KV）缓存，随着上下文长度的增加，基于变压器的LLM面临着巨大的内存和计算瓶颈。Lizard通过引入亚二次注意力机制来解决这些局限性，该机制在保持输出质量的同时，非常接近softmax注意力。与之前的线性化方法不同，这些方法通常受到固定模型结构的限制，因此排除了门控机制，Lizard采用了受最新最先进线性模型启发的门控模块。这实现了自适应记忆控制，支持恒定记忆推理，提供了强大的长度泛化能力，并允许更灵活的模型设计。Lizard将用于全局上下文压缩的门控线性注意力与元记忆增强的滑动窗口注意力相结合，形成了一种混合机制，可以捕获长距离依赖关系和细粒度局部交互。此外，我们引入了一种硬件感知算法，加快了模型的训练速度。大量实验表明，Lizard在标准语言建模任务中实现了教师模型性能的近乎无损恢复，同时显著优于之前的线性化方法。在5-shot MMLU基准测试中，Lizard比之前的模型提高了18分，并在联想回忆任务上显示出显著的改进。</p>
+</div></details>
+<p><strong>Authors</strong>: Chien Van Nguyen,Ruiyi Zhang,Hanieh Deilamsalehy,Puneet Mathur,Viet Dac Lai,Haoliang Wang,Jayakumar Subramanian,Ryan A. Rossi,Trung Bui,Nikos Vlassis,Franck Dernoncourt,Thien Huu Nguyen</p>
+<p><strong>Categories</strong>: cs.CL,cs.LG</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.09025.pdf">https://arxiv.org/pdf/2507.09025.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.09025">https://arxiv.org/abs/2507.09025</a></p>
+<p><strong>Arxiv ID</strong>: 2507.09025</p>
+<p><strong>Published</strong>: 2025-07-11T21:19:18Z</p>
+<p><strong>Updated</strong>: 2025-07-11T21:19:18.000Z</p>
+<hr>
+<h3 id="12-RLEP-Reinforcement-Learning-with-Experience-Replay-for-LLM-Reasoning"><a href="#12-RLEP-Reinforcement-Learning-with-Experience-Replay-for-LLM-Reasoning" class="headerlink" title="12. RLEP: Reinforcement Learning with Experience Replay for LLM Reasoning"></a>12. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.07451">RLEP: Reinforcement Learning with Experience Replay for LLM Reasoning</a></h3><p>Reinforcement learning (RL) for large language models is an energy-intensive endeavor: training can be unstable, and the policy may gradually drift away from its pretrained weights. We present \emph{RLEP}\, — \,Reinforcement Learning with Experience rePlay\, — \,a two-phase framework that first collects verified trajectories and then replays them during subsequent training. At every update step, the policy is optimized on mini-batches that blend newly generated rollouts with these replayed successes. By replaying high-quality examples, RLEP steers the model away from fruitless exploration, focuses learning on promising reasoning paths, and delivers both faster convergence and stronger final performance. On the Qwen2.5-Math-7B base model, RLEP reaches baseline peak accuracy with substantially fewer updates and ultimately surpasses it, improving accuracy on AIME-2024 from 38.2% to 39.9%, on AIME-2025 from 19.8% to 22.3%, and on AMC-2023 from 77.0% to 82.2%. Our code, datasets, and checkpoints are publicly available at <a target="_blank" rel="noopener" href="https://github.com/Kwai-Klear/RLEP">https://github.com/Kwai-Klear/RLEP</a> to facilitate reproducibility and further research.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>大型语言模型的强化学习（RL）是一项能源密集型的工作：训练可能不稳定，策略可能会逐渐偏离其预训练的权重。我们介绍了\emph{RLEP}\，—\，强化学习与经验回放\，—\，这是一个两阶段框架，首先收集经过验证的轨迹，然后在后续训练中回放它们。在每个更新步骤中，该策略都会在小批量上进行优化，这些小批量将新生成的推出与这些重播的成功混合在一起。通过重放高质量的示例，RLEP引导模型远离无果的探索，将学习重点放在有前景的推理路径上，并提供更快的收敛速度和更强的最终性能。在Qwen2.5-Math-7B基础模型上，RLEP在更新次数大幅减少的情况下达到了基线峰值精度，并最终超越了它，使AIME-2024的精度从38.2%提高到39.9%，AIME-2025从19.8%提高到22.3%，AMC-2023从77.0%提高到82.2%。我们的代码、数据集和检查点可在以下网址公开获取<a target="_blank" rel="noopener" href="https://github.com/Kwai-Klear/RLEP以促进可重复性和进一步研究。">https://github.com/Kwai-Klear/RLEP以促进可重复性和进一步研究。</a></p>
+</div></details>
+<p><strong>Authors</strong>: Hongzhi Zhang,Jia Fu,Jingyuan Zhang,Kai Fu,Qi Wang,Fuzheng Zhang,Guorui Zhou</p>
+<p><strong>Categories</strong>: cs.CL</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.07451.pdf">https://arxiv.org/pdf/2507.07451.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.07451">https://arxiv.org/abs/2507.07451</a></p>
+<p><strong>Arxiv ID</strong>: 2507.07451</p>
+<p><strong>Published</strong>: 2025-07-10T05:58:55Z</p>
+<p><strong>Updated</strong>: 2025-07-10T05:58:55.000Z</p>
+<hr>
+<h3 id="13-Replacing-thinking-with-tool-usage-enables-reasoning-in-small-language-models"><a href="#13-Replacing-thinking-with-tool-usage-enables-reasoning-in-small-language-models" class="headerlink" title="13. Replacing thinking with tool usage enables reasoning in small language models"></a>13. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.05065">Replacing thinking with tool usage enables reasoning in small language models</a></h3><p>Recent advances have established a new machine learning paradigm based on scaling up compute at inference time as well as at training time. In that line of work, a combination of Supervised Fine-Tuning (SFT) on synthetic demonstrations and Reinforcement Learning with Verifiable Rewards (RLVR) is used for training Large Language Models to expend extra compute during inference in the form of “thoughts” expressed in natural language. In this paper, we propose to instead format these tokens as a multi-turn interaction trace with a stateful tool. At each turn, the new state of the tool is appended to the context of the model, whose job is to generate the tokens necessary to control the tool via a custom DSL. We benchmark this approach on the problem of repairing malfunctioning Python code, and show that this constrained setup allows for faster sampling of experience and a denser reward signal, allowing even models of size up to 3B parameters to learn how to proficiently expend additional compute on the task.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>最近的进展建立了一种新的机器学习范式，该范式基于在推理时和训练时扩展计算。在这项工作中，综合演示的监督微调（SFT）和具有可验证奖励的强化学习（RLVR）的组合用于训练大型语言模型，以便在推理过程中以自然语言表达的“思想”形式消耗额外的计算。在本文中，我们建议使用有状态工具将这些令牌格式化为多轮交互跟踪。在每个回合，工具的新状态都会附加到模型的上下文中，模型的工作是生成通过自定义DSL控制工具所需的令牌。我们将这种方法与修复故障Python代码的问题进行了基准测试，并表明这种受约束的设置允许更快的经验采样和更密集的奖励信号，甚至允许大小高达3B参数的模型学习如何在任务上熟练地消耗额外的计算。</p>
+</div></details>
+<p><strong>Authors</strong>: Corrado Rainone,Tim Bakker,Roland Memisevic</p>
+<p><strong>Categories</strong>: cs.LG,cs.AI</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.05065.pdf">https://arxiv.org/pdf/2507.05065.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.05065">https://arxiv.org/abs/2507.05065</a></p>
+<p><strong>Arxiv ID</strong>: 2507.05065</p>
+<p><strong>Published</strong>: 2025-07-07T14:49:18Z</p>
+<p><strong>Updated</strong>: 2025-07-07T14:49:18.000Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202507/2025-07-17/">https://wdndev.github.io/daily/hf/202507/2025-07-17/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202507/2025-07-15/" title="HuggingFace Papers 2025-07-15"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-15</div></div></a></div><div><a href="/daily/hf/202507/2025-07-16/" title="HuggingFace Papers 2025-07-16"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-16</div></div></a></div><div><a href="/daily/hf/202507/2025-07-14/" title="HuggingFace Papers 2025-07-14"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-14</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Towards-Agentic-RAG-with-Deep-Reasoning-A-Survey-of-RAG-Reasoning-Systems-in-LLMs"><span class="toc-text">1. Towards Agentic RAG with Deep Reasoning: A Survey of RAG-Reasoning Systems in LLMs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-PhysX-Physical-Grounded-3D-Asset-Generation"><span class="toc-text">2. PhysX: Physical-Grounded 3D Asset Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-MMHU-A-Massive-Scale-Multimodal-Benchmark-for-Human-Behavior-Understanding"><span class="toc-text">3. MMHU: A Massive-Scale Multimodal Benchmark for Human Behavior Understanding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-MOSPA-Human-Motion-Generation-Driven-by-Spatial-Audio"><span class="toc-text">4. MOSPA: Human Motion Generation Driven by Spatial Audio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-SWE-Perf-Can-Language-Models-Optimize-Code-Performance-on-Real-World-Repositories"><span class="toc-text">5. SWE-Perf: Can Language Models Optimize Code Performance on Real-World Repositories?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-DrafterBench-Benchmarking-Large-Language-Models-for-Tasks-Automation-in-Civil-Engineering"><span class="toc-text">6. DrafterBench: Benchmarking Large Language Models for Tasks Automation in Civil Engineering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Seq-vs-Seq-An-Open-Suite-of-Paired-Encoders-and-Decoders"><span class="toc-text">7. Seq vs Seq: An Open Suite of Paired Encoders and Decoders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-AnyI2V-Animating-Any-Conditional-Image-with-Motion-Control"><span class="toc-text">8. AnyI2V: Animating Any Conditional Image with Motion Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-SpatialTrackerV2-3D-Point-Tracking-Made-Easy"><span class="toc-text">9. SpatialTrackerV2: 3D Point Tracking Made Easy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-AI-Wizards-at-CheckThat-2025-Enhancing-Transformer-Based-Embeddings-with-Sentiment-for-Subjectivity-Detection-in-News-Articles"><span class="toc-text">10. AI Wizards at CheckThat! 2025: Enhancing Transformer-Based Embeddings with Sentiment for Subjectivity Detection in News Articles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Lizard-An-Efficient-Linearization-Framework-for-Large-Language-Models"><span class="toc-text">11. Lizard: An Efficient Linearization Framework for Large Language Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-RLEP-Reinforcement-Learning-with-Experience-Replay-for-LLM-Reasoning"><span class="toc-text">12. RLEP: Reinforcement Learning with Experience Replay for LLM Reasoning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-Replacing-thinking-with-tool-usage-enables-reasoning-in-small-language-models"><span class="toc-text">13. Replacing thinking with tool usage enables reasoning in small language models</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

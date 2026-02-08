@@ -1,0 +1,426 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文精读 GPT、GPT-2、GPT-3 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="5.GPT，GPT-2，GPT-3大力出奇迹模型  李沐讲解：GPT，GPT-2，GPT-3 论文精读  最近以GPT系列为代表的大语言模型LLM掀起了一阵热潮，许多人惊叹LLM的震撼能力，因此紧跟时代潮流，学习GPT系列论文，加深自己对LLM的理解。总的来说，GPT整体的模型架构都是以Transformer的解码器为模块进行堆叠而成。主要的创新点集中在模型训练策略，还有就是讲究一个大力出奇迹。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文精读 GPT、GPT-2、GPT-3">
+<meta property="og:url" content="https://wdndev.github.io/paper_reading/2.5.GPT_GPT-2_GPT-3/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="5.GPT，GPT-2，GPT-3大力出奇迹模型  李沐讲解：GPT，GPT-2，GPT-3 论文精读  最近以GPT系列为代表的大语言模型LLM掀起了一阵热潮，许多人惊叹LLM的震撼能力，因此紧跟时代潮流，学习GPT系列论文，加深自己对LLM的理解。总的来说，GPT整体的模型架构都是以Transformer的解码器为模块进行堆叠而成。主要的创新点集中在模型训练策略，还有就是讲究一个大力出奇迹。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-06-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.815Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="PaperReading">
+<meta property="article:tag" content="GPT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/paper_reading/2.5.GPT_GPT-2_GPT-3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文精读 GPT、GPT-2、GPT-3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">论文精读 GPT、GPT-2、GPT-3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-06-30T16:00:00.000Z" title="Created 2023-07-01 00:00:00">2023-07-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.815Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PaperReading/">PaperReading</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">5.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>17min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="论文精读 GPT、GPT-2、GPT-3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="5-GPT，GPT-2，GPT-3"><a href="#5-GPT，GPT-2，GPT-3" class="headerlink" title="5.GPT，GPT-2，GPT-3"></a>5.GPT，GPT-2，GPT-3</h1><p>大力出奇迹模型</p>
+<ul>
+<li>李沐讲解：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1AF411b7xQ/?spm_id_from=333.999.0.0\&amp;vd_source=24ca68bef609ca7dbede1b048fc4a2f4" title="GPT，GPT-2，GPT-3 论文精读">GPT，GPT-2，GPT-3 论文精读</a></li>
+</ul>
+<p>最近以GPT系列为代表的大语言模型LLM掀起了一阵热潮，许多人惊叹LLM的震撼能力，因此紧跟时代潮流，学习GPT系列论文，加深自己对LLM的理解。总的来说，GPT整体的模型架构都是以Transformer的解码器为模块进行堆叠而成。主要的创新点集中在模型训练策略，还有就是讲究一个大力出奇迹。</p>
+<h1 id="0-论文时间轴"><a href="#0-论文时间轴" class="headerlink" title="0.论文时间轴"></a>0.论文时间轴</h1><p><img src="image/image_HP6M_yvq-4.png" alt=""></p>
+<p><strong>GPT</strong>：Transformer解码器，在没有标号的大量的文本数据上，训练一个语言模型，来获得预训练模型，后续在子任务上做微调，得到每一个任务所用的分类器。</p>
+<p><strong>BERT</strong>：Transformer编码器，收集了一个更大的数据集，用来做预训练，效果比GPT好。BERT有两个模型，BERT-base模型与GPT模型参数相差不大，BERT-Large比BERT-base模型大。</p>
+<p><strong>GPT-2</strong>：原作者吸取教训，收集更大的数据集，训练了一个更大的模型，GPT-2的模型比BERT-large要大。继续使用Transformer的解码器，发现非常适合做Zero Shot，步子跨的太大，效果上不是那么好。</p>
+<p><strong>GPT-3</strong>：GPT-3对GPT-2的改进就是数据和模型都大了100倍。大力出奇迹，效果非常惊艳。几乎没有什么团队去复现结果。</p>
+<p>Transformer和BERT来自Google，想要解决的问题都比较小；Transformer就想解决机器翻译这样的问题，从一个序列到另外一个序列；BERT想把计算机视觉中成熟的那一套预训练模型应用到NLP中。在同样大小的模型上，BERT的效果是要好于GPT的。所以，后续的工作，非常愿意使用BERT，而不是GPT。</p>
+<h1 id="1-GPT"><a href="#1-GPT" class="headerlink" title="1.GPT"></a>1.GPT</h1><p>论文标题：“Improving Language Understanding by Generative Pre-Training”，2018.6.</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf" title="language_understanding_paper.pdf">language_understanding_paper.pdf</a></p>
+<h2 id="1-1-摘要"><a href="#1-1-摘要" class="headerlink" title="1.1 摘要"></a>1.1 摘要</h2><p>在自然语言处理领域，有很多各式各样的的任务，如问答，文本分类等。然而，现有的<strong>无标签文本非常多，而有标签的文本很少</strong>，这使得在这些有标签文本训练一个好的分辨模型很难，因为数据集太少。因此GPT第一个版本主要就是为了解决这个问题而提出的一套针对语言模型的预训练方法，<strong>使得大量的无标签数据能够被使用，并且对预训练好的模型加以微调使其适用于许多的下游任务</strong>。</p>
+<p>在微调时，构造与子任务相关的输入，从而之只需要很少改变模型架构。</p>
+<p>结果：12个任务中，有9个超过之前最好的成绩</p>
+<h2 id="1-2-引言"><a href="#1-2-引言" class="headerlink" title="1.2 引言"></a>1.2 引言</h2><p>如何利用无标签的数据，当时最成功的还是词嵌入模型（Word Embeddings）。</p>
+<p>使用无标记数据时，需要的两个困难：</p>
+<ol>
+<li><strong>损失函数设计困难</strong>：不清楚什么样的优化目标对文本有效</li>
+<li><strong>特征迁移困难</strong>：怎么样把学习到的问题表示，传递到下游的子任务上；没有一种表示，能够迁移到所有子任务上</li>
+</ol>
+<p>提出一个半监督的方法（预训练+微调）：在没有标号的数据上，训练一个比较大的语言模型，然后再再子任务上微调。</p>
+<ul>
+<li>半监督学习：有一些标记的数据，但还有大量没有标记的相似数据，怎么把这些没有标记的数据用过来。</li>
+<li>后续的BERT、GPT的方法，预训练 + 微调，不再叫做半监督学习，而叫做自监督学习。</li>
+</ul>
+<p>GPT架构使用Transformer块，相比于RNN，在做迁移学习时，Transformer块学到的特征更加稳健。作者猜测Transformer里面有更结构化的记忆，使得能够处理更长的问题信息，从而能偶抽取出句子层面、段落层面的语义信息。在迁移时，使用任务相关的输入表示。</p>
+<h2 id="1-3-Framework"><a href="#1-3-Framework" class="headerlink" title="1.3 Framework"></a>1.3 Framework</h2><p>两个阶段：<strong>无监督预训练+有监督微调</strong></p>
+<h3 id="（1）无监督预训练：预训练"><a href="#（1）无监督预训练：预训练" class="headerlink" title="（1）无监督预训练：预训练"></a>（1）无监督预训练：预训练</h3><p>给定一个未监督的语料信息 $\mathcal{U}=\left{u<em>{1}, \ldots, u</em>{n}\right}$，使用标准的语言模型，使下面这个似然函数最大化：</p>
+<script type="math/tex; mode=display">
+L_{1}(\mathcal{U})=\sum \log P\left(u_{i} \mid u_{i-k}, \ldots, u_{i-1} ; \Theta\right)</script><p>其中，k为上下文窗口大小，$\Theta$ 为模型参数。</p>
+<p>简单来说就是<strong>根据上文的k个单词，预测下一个最大概率的单词</strong>$u_i$<strong>。</strong></p>
+<p>使用多层Transformer decoder块作为语言模型（标准的语言模型，根据已有的词进行下一个词的预测，不能使它看到所有的词，所以只有解码器）。</p>
+<p>模型输入输出如下所示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} h_{0} & =U W_{e}+W_{p} \\ h_{l} & =\operatorname{transformer\_ block}\left(h_{l-1}\right) \forall i \in[1, n] \\ P(u) & =\operatorname{softmax}\left(h_{n} W_{e}^{T}\right)\end{aligned}</script><p>其中，$U=\left(u<em>{-k}, \ldots, u</em>{-1}\right)$为上下文tokens向量，$n$为transformer的层数，$W_e$为词嵌入矩阵维度，$W_p$为位置编码矩阵。</p>
+<p>GPT和BERT区别：</p>
+<ul>
+<li>BERT：用的不是标准的语言模型，使用带掩码的语言模型，就是完形填空，预测时，既能看到之前的词，也能看到之后的词，对应使用Transformer的编码器。</li>
+<li>区别：使用解码器和编码器不是主要的区别；主要时目标函数的选取不同，GPT选择更难的，给前面一句话，预测后面这个词，预测未来比完形填空更难。</li>
+</ul>
+<h3 id="（2）有监督微调"><a href="#（2）有监督微调" class="headerlink" title="（2）有监督微调"></a>（2）有监督微调</h3><p>在得到预训练模型后，就使用有标签的数据进行微调。具体来说每一次我给你一个长为m的一个词的序列，然后告诉你这个序列它对应的标号是y，也就是每次给定一个序列预测他这个y。微调优化目标是最小化分类目标函数。 &#x20;</p>
+<p>预测y，将 $x^{1}, \ldots, x^{m}$序列放入之前训练好的GPT模型中，获得Transformer块的最后一层输出 $h_l^m$，然后乘以输出层 $W_y$，做softmax就得到y的概率</p>
+<script type="math/tex; mode=display">
+P\left(y \mid x^{1}, \ldots, x^{m}\right)=\operatorname{softmax}\left(h_{l}^{m} W_{y}\right).</script><p>做目标函数最大化：</p>
+<script type="math/tex; mode=display">
+L_{2}(\mathcal{C})=\sum_{(x, y)} \log P\left(y \mid x^{1}, \ldots, x^{m}\right)</script><p>然后总的损失除了考虑微调损失，还考虑了预训练部分的损失，并用λ加权。 &#x20;</p>
+<script type="math/tex; mode=display">
+L_{3}(\mathcal{C})=L_{2}(\mathcal{C})+\lambda * L_{1}(\mathcal{C})</script><p>NLP领域四大常见的应用：</p>
+<ol>
+<li><strong>分类</strong>：给定一段话或文本，判断所属标号；如用户的评价是正面还是负面的。一段文本，在前面加入开始词元<code>[Start]</code>，在后面加入抽取词元<code>[Extract]</code>，做成一个序列，放入Transformer解码器中，模型对最后一个词抽取的特征<code>[Extract]</code>放入线性层进行分类。</li>
+<li><strong>蕴含</strong>：给一段话，再给一个假设，判断前面一段话是否蕴含提出的假设。如文本：a给b送一朵玫瑰；假设：a喜欢b。判断前面文本是否支持假设。即两端文本做三分类问题，支持，不支持，既不支持也不反对。将两端问题串成一个序列，使用<code>开始符</code>，<code>分隔符</code>，<code>抽取符</code>。</li>
+<li><strong>相似</strong>：判断两段文字是不是相似。如一个搜索词与文档是不是相似，或两个文档相似去重。相似是对称的，a和b相似，则b和a也相似。所以，做了两个序列，两个序列的文字顺序不同，再使用<code>开始符</code>，<code>分隔符</code>，<code>抽取符</code>。得到两段输出后，经过Transformer，在做加号，最后经过线性层输出，得到是相似还是不是相似的二分类问题。</li>
+<li><strong>多选题</strong>：问一个问题，给几个答案，选择最可能的几个答案。如果有n个答案，构造n个序列，前面是问题，每一个答案作为第二个序列；每个序列进入Transformer块，最后经过线性层，输出答案的置信度；最后做一个softmax。</li>
+</ol>
+<p>复用预训练的Transformer的结构，加一个线性层，不同的任务需要不同的输入。</p>
+<p><img src="image/image_QhDU1zKo9R.png" alt=""></p>
+<h2 id="1-4-实验"><a href="#1-4-实验" class="headerlink" title="1.4 实验"></a>1.4 实验</h2><p>实验主要关注两点。</p>
+<ul>
+<li>第一点是GPT在一个叫做BooksCorpus 的一个数据集上训练出来的，这个地方有7,000篇没有被发表的书。</li>
+<li>第二个是GPT整体模型，用了12层的一个Transformer 的解码器，每一层的维度是768。</li>
+</ul>
+<h1 id="2-GPT-2"><a href="#2-GPT-2" class="headerlink" title="2.GPT-2"></a>2.GPT-2</h1><p>论文标题：Language Models are Unsupervised Multitask Learners，2019</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" title="Language Models are Unsupervised Multitask Learners">Language Models are Unsupervised Multitask Learners</a></p>
+<h2 id="2-1-摘要"><a href="#2-1-摘要" class="headerlink" title="2.1 摘要"></a>2.1 摘要</h2><p>自从GPT提出后，Google紧随其后提出了BERT预训练模型，采用更大的模型和更大的数据，在各方面效果都要优于GPT。作为竞争对手，GPT当然是要反击的，那怎么做呢？如果单纯加大模型于增加数据量，或许能击败BERT，但是却少了些新意，因此GPT2从另外一个角度，除了加大模型和数据量，还引入了zero-shot设定，就是在做下游任务是，不需要下游任务的任何标签信息，也不需要重新训练一个模型，即在更难的一个设定上体现他的一个新意度。</p>
+<ul>
+<li>构造 WebText 大数据集：百万级别文本</li>
+<li>GPT-2：15亿参数，BERT-large参数3.4亿</li>
+<li>zero-shot设置</li>
+</ul>
+<h2 id="2-2-引言"><a href="#2-2-引言" class="headerlink" title="2.2 引言"></a>2.2 引言</h2><p>现在主流的机器学习系统训练方式为：一个任务收集一个数据集，然后再上面做模型训练和预测，因现在模型泛化性能不是很好。</p>
+<p>多任务学习：训练一个模型时，同时看多个数据集，通过多个损失函数，来达到一个模型能够在多个任务上都能用。但是NLP中使用的不多，主要使用的还是<strong>预训练+微调方式</strong>。但还是有两个问题：第一个是对每一个下游任务，需要重新训练模型；二是需要收集有标号的数据才行。这样导致，拓展到新的任务上，还是有成本的。</p>
+<p>GPT-2还是在做语言模型，在到下游任务时，会使用<strong>zero-shot的设定</strong>（不需要下游任务的标注信息，不引入模型没有见过的特殊符号），这样训练一个模型，任何地方都可以用。</p>
+<h2 id="2-3-模型"><a href="#2-3-模型" class="headerlink" title="2.3 模型"></a>2.3 模型</h2><h3 id="（1）GPT-1和GPT-2区别"><a href="#（1）GPT-1和GPT-2区别" class="headerlink" title="（1）GPT-1和GPT-2区别"></a>（1）GPT-1和GPT-2区别</h3><p>GPT-1时，根据不同的下游任务，会调整输入信息，会加入<code>开始符</code>、<code>分隔符</code>、<code>结束符</code>等信息，然后在使用有标记的数据进行微调，让模型去认识这些符号。</p>
+<p>而GPT-2做下游任务时，不再加入<code>开始符</code>、<code>分隔符</code>、<code>结束符</code>等模型未见过的信息，而是采用zero-shot的设定。</p>
+<p>GPT-2下游任务模型的输入，和预训练时，模型看到的输入是一样的。</p>
+<p>例如：</p>
+<ol>
+<li>英语翻译为法语：<code>translate to french, english text, french text</code></li>
+<li>做阅读理解：<code>answer the question, document, question, answer</code></li>
+</ol>
+<p>这个提示符后面叫做<strong>Prompt</strong>。</p>
+<h3 id="（2）训练数据"><a href="#（2）训练数据" class="headerlink" title="（2）训练数据"></a>（2）训练数据</h3><p>BERT训练数据：Wikipedia</p>
+<p>Common Crawl项目：一个公开的爬虫项目，不断抓取网页放在AWS上，是能下载到最大的文本数据集，TB级别的数据量。但作者认为这个不好用，因为信噪比比较低，抓取的网页，较多是没有信息的网页。</p>
+<p>GPT-2使用Reddit里面的数据，选取最近3词评论以上的数据，得到4500万分链接，将数据抽取出来，得到一个数据集，约800万文本，40GB的文字。</p>
+<h3 id="（3）GPT-2模型大小"><a href="#（3）GPT-2模型大小" class="headerlink" title="（3）GPT-2模型大小"></a>（3）GPT-2模型大小</h3><p>GPT2也是基于Transformer解码器的架构，作者设计了4种大小的模型，参数结构如下： &#x20;</p>
+<p><img src="image/image_SjL3HobPNQ.png" alt=""></p>
+<p>可以看到，最大模型的参数量已经去到了15个亿。还有一个细节就是GPT2调整了transformer解码器结构：将layer normalization放到每个sub-block之前，并在最后一个Self-attention后再增加一个layer normalization。</p>
+<h2 id="2-4-训练范式"><a href="#2-4-训练范式" class="headerlink" title="2.4 训练范式"></a>2.4 训练范式</h2><p>采用预训练+zero-shot的训练范式。为实现zero-shot，GPT2在做下游任务时，输入就不能像GPT那样在构造输入时加入开始、中间和结束的特殊字符，因为这些特殊字符是模型在预训练时没有见过的。正确的输入应该和预训练模型看到的文本一样，更像一个自然语言。比如在做机器翻译时，直接可以输入“请将下面一段英文翻译成法语，英文文本”，由于在训练时可能已经存在很多这样的翻译文本样例，因此模型就可以实现输出一段法语。</p>
+<h2 id="2-5-实验"><a href="#2-5-实验" class="headerlink" title="2.5 实验"></a>2.5 实验</h2><p>数据集：Webtext，包含4500w个链接的文本信息，总计800w的文本和40GB的文字。</p>
+<p>训练：GPT-2去掉了fine-tuning训练，只保留无监督的预训练阶段，不再针对不同任务分别进行微调建模，而是不定义这个模型应该做什么任务，模型会自动识别出来需要做什么任务。</p>
+<h1 id="3-GPT-3"><a href="#3-GPT-3" class="headerlink" title="3.GPT-3"></a>3.GPT-3</h1><p>论文题目：Language Models are Few-Shot Learners，2020</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.14165.pdf" title="https://arxiv.org/pdf/2005.14165.pdf">https://arxiv.org/pdf/2005.14165.pdf</a></p>
+<h2 id="3-1-摘要"><a href="#3-1-摘要" class="headerlink" title="3.1 摘要"></a>3.1 摘要</h2><p>GPT-3：自回归语言模型，有1750亿个可学习参数，比之前非稀疏模型在可学习参数上要大10倍。</p>
+<p>GPT-3作用到子任务上，<strong>不做任何的梯度更新或是微调</strong>；</p>
+<p>GPT-3可以生成一些人类难以区分的文章。</p>
+<h2 id="3-2引言"><a href="#3-2引言" class="headerlink" title="3.2引言"></a>3.2引言</h2><p>GPT2实验采用了zero-shot设定，在新意度上很高，但是有效性却比较低。而GPT3则是尝试解决GPT2的有效性，因此回到了GPT提到的<code>Few-shot</code>设置，即模型在做下游任务时，可以看到一些任务的样例，而不是像GPT2那样啥样例都不给。此外，GPT3还是只采用无监督预训练方式，那么传统的二阶段训练方式（预训练+微调）有什么问题？二阶段训练方式在预训练好一个模型后，<strong>还需要一个与任务相关的数据集，以及跟任务相关的微调方式</strong>。去除这种方式是可取的，有以下几个原因：</p>
+<ol>
+<li><strong>微调需要一个较大的有标签数据</strong>，对于一些如问答型任务，做标签是很困难的；</li>
+<li><strong>当一个样本没有出现在数据分布里是，微调模型的泛化能力不一定好</strong>，即尽管微调效果好，也不一定说明预训练的模型泛化能力好，因为极有可能微调是过拟合了预训练的训练数据，或者说预训练训练数据和下游任务数据有一定重合性，所以效果会好一点；</li>
+<li>以人类角度来阐述为什么不用微调，就是说人<strong>类做任务不需要一个很大的数据集进行微调</strong>，比如一个人有一定的语言功底，让你去做一个别的事情，可能就是告诉你怎么做并提供几个样例就可以了，GPT3就是采用一样的思想。</li>
+</ol>
+<p>总的来说，GPT3就是一个参数特别大，效果也很好的一个模型。</p>
+<p><strong>多任务预训练（上下文训练）</strong></p>
+<p><img src="image/image_wLb_1C3_st.png" alt=""></p>
+<p>模型评估方式（3种）：</p>
+<ol>
+<li><strong>few-shot learning</strong>：语境学习允许尽可能多的示例活动将适合模型的上下文窗口(通常10 - 100)</li>
+<li><strong>one-shot learning</strong>：只提供一个示例，如英语翻译德语时，只提供第一个词怎么翻译，后续让模型自己翻译</li>
+<li><strong>zero-shot</strong>：一个示例样本都没有</li>
+</ol>
+<p>在三个设定下，模型的学习区别，x轴为语言模型的大小，其中虚线是每个子任务，做平均变成了实线。</p>
+<p><img src="image/image_dzIXrAcPvX.png" alt=""></p>
+<h2 id="3-3-模型"><a href="#3-3-模型" class="headerlink" title="3.3 模型"></a>3.3 模型</h2><h3 id="（1）训练方式"><a href="#（1）训练方式" class="headerlink" title="（1）训练方式"></a>（1）训练方式</h3><p><img src="image/image_naR0Dd-aHQ.png" alt=""></p>
+<ul>
+<li><strong>Fine-tuning</strong>：训练完成预训练模型后，在每一个子任务上提供训练样本；微调对数据量的要求少于从0开始训练；</li>
+<li><strong>Zero-shot</strong>：任务描述和prompt之间没有任何样本</li>
+<li><strong>One-shot</strong>：任务描述和prompt之前，插入一个样本进来。样本只做预测，不做训练，模型在前向推理时，使用注意力机制，处理比较长的信息，从中间抽取出有用的信息。</li>
+<li><strong>Few-shot</strong>：任务描述和prompt之前，插入多个样本进来。多个不一定有用，可能模型不能处理很长的数据。</li>
+</ul>
+<p>几种训练方式简单概括如下： &#x20;</p>
+<ol>
+<li>fine-tuning：预训练 + 微调计算loss更新梯度，然后预测。会更新模型参数 &#x20;</li>
+<li>zero-shot：预训练 + task description + prompt，直接预测。不更新模型参数 &#x20;</li>
+<li>one-shot：预训练 + task description + example + prompt，预测。不更新模型参数 &#x20;</li>
+<li>few-shot：预训练 + task description + examples + prompt，预测。不更新模型参数</li>
+</ol>
+<h3 id="（2）模型架构"><a href="#（2）模型架构" class="headerlink" title="（2）模型架构"></a>（2）模型架构</h3><p>GPT-3的模型和GPT-2的模型是一样的，稍微有点改动，把transformer换成了Sparse Transformer中的结构，并设计8个不同大小的模型。</p>
+<p><img src="image/image_GzqitUanm9.png" alt=""></p>
+<ul>
+<li>整体：GPT3模型偏扁</li>
+<li>Batch Size：使用相对比较大的批量大小，计算性能更好，每台机器的并行度更高，通讯量变低，降低批量里的噪音分布式比较好，小的模型批量大小更容易过拟合—些。</li>
+<li>过拟合：模型越来越大的时候过拟合没有那么的严重，搜索范围更广，可能存在一个比较简单的模型架构，SDG可以帮助找到那个模型，使泛化精度更好一些。</li>
+<li>学习率模型批量大小增大学习率下降。</li>
+</ul>
+<h4 id="Sparse-Transformer-x20"><a href="#Sparse-Transformer-x20" class="headerlink" title="Sparse Transformer&#x20;"></a>Sparse Transformer&#x20;</h4><ul>
+<li>Self-Attention：每个 token 之间两两计算 attention，复杂度$  O(n²) $</li>
+<li>Sparse Attention：每个 token 只与其他 token 的一个子集计算 attention，复杂度 $O(n∗logn)$</li>
+<li>sparseattention 除了相对距离不超过k以及相对距离为$k，2k，3k，…$ 的 token，其他所有token的注意力都设为0：</li>
+</ul>
+<p><img src="image/image_0_CF4-hsZ7.png" alt=""></p>
+<h3 id="（3）训练数据"><a href="#（3）训练数据" class="headerlink" title="（3）训练数据"></a>（3）训练数据</h3><p>训练数据基于Common Crawl，做了三个步骤，是数据变得更干净：</p>
+<ol>
+<li><strong>过滤数据</strong>。GPT-2中使用的数据集为Raddit，质量较高。训练一个二分类网络，Raddit中数据为正例，Common Crawl部分数据为负例。使用这个二分类网络，对所有的Common Crawl中的数据进行分类，分类为正例留下，负例剔除。</li>
+<li><strong>数据去重</strong>。LSH算法去重：很快的判断一个集合（一篇文章的单词）与另一个很大集合之间的相似度。</li>
+<li><strong>增加高质量数据</strong>：增加一些已知的高质量数据集。</li>
+</ol>
+<p>最后，得到一个很大的一个数据集。</p>
+<p><img src="image/image_opdt36hHBb.png" alt=""></p>
+<p>虽然Common Crawl数据已经经过处理，但作者认为质量还是比较差，在采样的时候，使用了较低的权重。</p>
+<h3 id="（4）模型训练"><a href="#（4）模型训练" class="headerlink" title="（4）模型训练"></a>（4）模型训练</h3><p>V100GPU训练</p>
+<h3 id="（5）模型评估"><a href="#（5）模型评估" class="headerlink" title="（5）模型评估"></a>（5）模型评估</h3><p>使用上下文学习评估，在每个下游任务里面，在训练集中，采样k个样本作为条件，k可以等于0或其他数值；</p>
+<p>prompt使用：”<code>Answer:</code> “ or “<code>A:</code>“，比如二分类问题中，使用True和False，而不是0或1，因为0和1在训练过程中，出现的概率比较低。</p>
+<p>如果回答的答案是自由的，采用Beam Search，和机器翻译类似，生成一个序列，使用Beam Search找到一个比较好的答案</p>
+<h2 id="3-4-实验"><a href="#3-4-实验" class="headerlink" title="3.4 实验"></a>3.4 实验</h2><h3 id="（1）模型大小与计算量"><a href="#（1）模型大小与计算量" class="headerlink" title="（1）模型大小与计算量"></a>（1）模型大小与计算量</h3><p>不同大小模型训练时与计算量的关系，x轴表示计算量，y轴表示验证损失，每根线表示一个参数的模型。黄色表示GPT-3参数最大的模型。</p>
+<p>各个模型最好的点拉成一条线（黑色虚线），是一个power law的分布，即在最好的情况下，找到合适模型，随着计算量的指数级别的增加，损失是线性往下降的。</p>
+<p><img src="image/image_1D8RJI4Se_.png" alt=""></p>
+<h3 id="（2）不同训练方式精度"><a href="#（2）不同训练方式精度" class="headerlink" title="（2）不同训练方式精度"></a>（2）不同训练方式精度</h3><p>最好的Few-shot，还是与人类有差距。</p>
+<p><img src="image/image_y9ZQXEXfDV.png" alt=""></p>
+<h3 id="（3）开放区域QA任务"><a href="#（3）开放区域QA任务" class="headerlink" title="（3）开放区域QA任务"></a>（3）开放区域QA任务</h3><p><img src="image/image_-BvN4Mt5VZ.png" alt=""></p>
+<h3 id="（4）机器翻译任务"><a href="#（4）机器翻译任务" class="headerlink" title="（4）机器翻译任务"></a>（4）机器翻译任务</h3><p>实线表示：其他语言翻译到英语</p>
+<p>虚线表示：英语翻译到其他语言</p>
+<p><img src="image/image_v7Tts4oWp1.png" alt=""></p>
+<h2 id="3-5-局限性"><a href="#3-5-局限性" class="headerlink" title="3.5 局限性"></a>3.5 局限性</h2><ol>
+<li>生成长文本依旧困难，比如写小说，可能还是会重复； &#x20;</li>
+<li>语言模型只能看到前面的信息； &#x20;</li>
+<li>语言模型只是根据前面的词均匀预测下一个词，而不知道前面哪个词权重大； &#x20;</li>
+<li>只有文本信息，缺乏多模态； &#x20;</li>
+<li>样本有效性不够； &#x20;</li>
+<li>模型是从头开始学习到了知识，还是只是记住了一些相似任务，这一点不明确； &#x20;</li>
+<li>可解释性弱，模型是怎么决策的，其中哪些权重起到决定作用都不好解释 &#x20;</li>
+<li>负面影响：可能会生成假新闻；可能有一定的性别、地区及种族歧视。</li>
+</ol>
+<p><strong>偏见</strong>：</p>
+<p><img src="image/image_2ZiIV97sKr.png" alt=""></p>
+<p>种族偏见：</p>
+<p><img src="image/image_JaeRTvr29Y.png" alt=""></p>
+<h2 id="3-6-总结"><a href="#3-6-总结" class="headerlink" title="3.6 总结"></a>3.6 总结</h2><p>1750亿参数的语言模型，在NLP的任务中，做了zero-shot, one-shot, 和few-shot 的学习，在很多任务下，它能够媲美使用更多有标记数据微调的算法；能够生成一些高质量的文本，展示了不用微调的可能性。</p>
+<h1 id="4-评论"><a href="#4-评论" class="headerlink" title="4.评论"></a>4.评论</h1><p>GPT首先把Transformer的部分拿过来做预训练，但是在二选一时，选择了一条不太好走的路，但作者没有放弃，因为有钱有人，所以一条路走到黑。</p>
+<p>GPT-2把模型做的更大，尝试一个更难的问题，不再下游任务上做微调；</p>
+<p>GPT-3，如果还打不过，加钱加人，终于扳回一局。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/paper_reading/2.5.GPT_GPT-2_GPT-3/">https://wdndev.github.io/paper_reading/2.5.GPT_GPT-2_GPT-3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a><a class="post-meta__tags" href="/tags/PaperReading/">PaperReading</a><a class="post-meta__tags" href="/tags/GPT/">GPT</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/paper_reading/2.6.InstructGPT/" title="论文精读 InstructGPT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">论文精读 InstructGPT</div></div></a></div><div><a href="/paper_reading/2.7.GPT-4/" title="论文精读 GPT-4"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-07</div><div class="title">论文精读 GPT-4</div></div></a></div><div><a href="/paper_reading/255.1.ChatGPT%20%E7%9B%B8%E5%85%B3%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95/" title="ChatGPT 相关核心算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-09</div><div class="title">ChatGPT 相关核心算法</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#5-GPT%EF%BC%8CGPT-2%EF%BC%8CGPT-3"><span class="toc-text">5.GPT，GPT-2，GPT-3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E8%AE%BA%E6%96%87%E6%97%B6%E9%97%B4%E8%BD%B4"><span class="toc-text">0.论文时间轴</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-GPT"><span class="toc-text">1.GPT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%91%98%E8%A6%81"><span class="toc-text">1.1 摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%BC%95%E8%A8%80"><span class="toc-text">1.2 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-Framework"><span class="toc-text">1.3 Framework</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%97%A0%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%EF%BC%9A%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-text">（1）无监督预训练：预训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83"><span class="toc-text">（2）有监督微调</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%AE%9E%E9%AA%8C"><span class="toc-text">1.4 实验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-GPT-2"><span class="toc-text">2.GPT-2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%91%98%E8%A6%81"><span class="toc-text">2.1 摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%BC%95%E8%A8%80"><span class="toc-text">2.2 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%A8%A1%E5%9E%8B"><span class="toc-text">2.3 模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89GPT-1%E5%92%8CGPT-2%E5%8C%BA%E5%88%AB"><span class="toc-text">（1）GPT-1和GPT-2区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE"><span class="toc-text">（2）训练数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89GPT-2%E6%A8%A1%E5%9E%8B%E5%A4%A7%E5%B0%8F"><span class="toc-text">（3）GPT-2模型大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F"><span class="toc-text">2.4 训练范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%AE%9E%E9%AA%8C"><span class="toc-text">2.5 实验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-GPT-3"><span class="toc-text">3.GPT-3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%91%98%E8%A6%81"><span class="toc-text">3.1 摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E5%BC%95%E8%A8%80"><span class="toc-text">3.2引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.3 模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%AE%AD%E7%BB%83%E6%96%B9%E5%BC%8F"><span class="toc-text">（1）训练方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="toc-text">（2）模型架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sparse-Transformer-x20"><span class="toc-text">Sparse Transformer </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE"><span class="toc-text">（3）训练数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">（4）模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="toc-text">（5）模型评估</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%AE%9E%E9%AA%8C"><span class="toc-text">3.4 实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%A8%A1%E5%9E%8B%E5%A4%A7%E5%B0%8F%E4%B8%8E%E8%AE%A1%E7%AE%97%E9%87%8F"><span class="toc-text">（1）模型大小与计算量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E4%B8%8D%E5%90%8C%E8%AE%AD%E7%BB%83%E6%96%B9%E5%BC%8F%E7%B2%BE%E5%BA%A6"><span class="toc-text">（2）不同训练方式精度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%BC%80%E6%94%BE%E5%8C%BA%E5%9F%9FQA%E4%BB%BB%E5%8A%A1"><span class="toc-text">（3）开放区域QA任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%E4%BB%BB%E5%8A%A1"><span class="toc-text">（4）机器翻译任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">3.5 局限性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-%E6%80%BB%E7%BB%93"><span class="toc-text">3.6 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E8%AF%84%E8%AE%BA"><span class="toc-text">4.评论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

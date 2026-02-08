@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Transformer中的注意力 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Transformer中的注意力本文主要来自：The Illustrated Transformer 1.自注意力假设我们要翻译下边这句话：“The animal didn’t cross the street because it was too tired”。这里it指的是什么？是street还是animal？人理解起来很容易，但是对算法来讲就不那么容易了。 当模型处理it这个词的时候，自注意">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformer中的注意力">
+<meta property="og:url" content="https://wdndev.github.io/llms/transformer/5.Transformer%E4%B8%AD%E7%9A%84%E6%B3%A8%E6%84%8F%E5%8A%9B/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="Transformer中的注意力本文主要来自：The Illustrated Transformer 1.自注意力假设我们要翻译下边这句话：“The animal didn’t cross the street because it was too tired”。这里it指的是什么？是street还是animal？人理解起来很容易，但是对算法来讲就不那么容易了。 当模型处理it这个词的时候，自注意">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-06-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.709Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/llms/transformer/5.Transformer%E4%B8%AD%E7%9A%84%E6%B3%A8%E6%84%8F%E5%8A%9B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Transformer中的注意力',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Transformer中的注意力</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-06-09T16:00:00.000Z" title="Created 2023-06-10 00:00:00">2023-06-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.709Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transformer/">Transformer</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Transformer中的注意力"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="Transformer中的注意力"><a href="#Transformer中的注意力" class="headerlink" title="Transformer中的注意力"></a>Transformer中的注意力</h1><p>本文主要来自：<a target="_blank" rel="noopener" href="https://jalammar.github.io/illustrated-transformer/" title="The Illustrated Transformer">The Illustrated Transformer</a></p>
+<h1 id="1-自注意力"><a href="#1-自注意力" class="headerlink" title="1.自注意力"></a>1.自注意力</h1><p>假设我们要翻译下边这句话：“The animal didn’t cross the street because it was too tired”。这里<code>it</code>指的是什么？是<code>street</code>还是<code>animal</code>？人理解起来很容易，但是对算法来讲就不那么容易了。</p>
+<p><strong>当模型处理it这个词的时候，自注意力会让**</strong><code>it</code><strong><strong>和</strong></strong><code>animal</code><strong>**关联起来</strong>。</p>
+<p>当模型编码每个位置上的单词的时候，自注意力的作用就是：看一看输入句子中其他位置的单词，试图寻找一种对当前单词更好的编码方式。</p>
+<p>如果你熟悉RNNs模型，回想一下RNN如何处理当前时间步的隐藏状态：将之前的隐藏状态与当前位置的输入结合起来。</p>
+<p>在Transformer中，自注意力机制也可以将其他相关单词的“理解”融入到我们当前处理的单词中。</p>
+<p><img src="image/image_tFpf1GBUq8.png" alt=""></p>
+<p>可以去<a target="_blank" rel="noopener" href="https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb" title="Tensor2Tensor">Tensor2Tensor</a> ，自己体验一下上图的可视化。动图如下所示：</p>
+<p><img src="image/attention_35nwxhUMX3.gif" alt=""></p>
+<h2 id="2-图解注意力计算"><a href="#2-图解注意力计算" class="headerlink" title="2.图解注意力计算"></a>2.图解注意力计算</h2><p>先画图用向量解释一下自注意力是怎么算的，之后再看一下实际实现中是怎么用矩阵算的。</p>
+<h4 id="第一步：计算query、key、value向量"><a href="#第一步：计算query、key、value向量" class="headerlink" title="第一步：计算query、key、value向量"></a><strong>第一步</strong>：计算query、key、value向量</h4><p>对编码器的每个输入向量都计算三个向量，就是对每个输入向量都算一个query、key、value向量。</p>
+<p>把输入的词嵌入向量与三个权重矩阵相乘。权重矩阵是模型训练阶段训练出来的。</p>
+<p><strong>注意</strong>：这三个向量维度是64，比嵌入向量的维度小，嵌入向量、编码器的输入输出维度都是512。这三个向量<strong>不是必须</strong>比编码器输入输出的维数小，这样做主要是为了让多头注意力的计算更稳定。</p>
+<p><img src="image/image_fvOLMgXzfg.png" alt=""></p>
+<p>将$x_1$和$W^Q$权重矩阵相乘得到$q_1$，就得到与该单词（$x_1$）相关的查询（query）。按照这样的方法，最终我们给输入的每个单词都计算出一个”query”，一个”key” 和一个”value”。</p>
+<h4 id="第二步：计算注意力得分"><a href="#第二步：计算注意力得分" class="headerlink" title="第二步：计算注意力得分"></a>第二步：计算注意力得分</h4><p>假设我们现在在计算输入中第一个单词<code>Thinking</code>的自注意力。我们需要使用自注意力给输入句子中的每个单词打分，这个分数决定当我们编码某个位置的单词的时候，应该对其他位置上的单词给予多少关注度。</p>
+<p>这个得分是query和key的点乘积得出来的。</p>
+<p>举个栗子，我们要算第一个位置的注意力得分的时候就要将第一个单词的query和其他的key依次相乘，在这里就是 $q_1 \cdot k_1$，$q_1 \cdot k_2$</p>
+<p><img src="image/image_vNyb--4Pct.png" alt=""></p>
+<h4 id="第三步：将计算获得注意力分数除以-sqrt-d-8"><a href="#第三步：将计算获得注意力分数除以-sqrt-d-8" class="headerlink" title="第三步：将计算获得注意力分数除以 $\sqrt{d}=8$"></a>第三步：将计算获得注意力分数除以 $\sqrt{d}=8$</h4><p>为什么选8？是因为key向量的维度是64，取其平方根，这样让梯度计算的时候更稳定。</p>
+<h4 id="第四步：归一化softmax"><a href="#第四步：归一化softmax" class="headerlink" title="第四步：归一化softmax"></a>第四步：归一化softmax</h4><p>&#x20;除8之后将结果扔进softmax计算，使结果归一化，softmax之后注意力分数相加等于1，并且都是正数。</p>
+<p><img src="image/image_2DzVZj8Etr.png" alt=""></p>
+<p>这个softmax之后的注意力分数表示 在计算当前位置的时候，其他单词受到的关注度的大小。显然在当前位置的单词肯定有一个高分，但是有时候也会注意到与当前单词相关的其他词汇。</p>
+<h4 id="第五步：计算注意力分数"><a href="#第五步：计算注意力分数" class="headerlink" title="第五步：计算注意力分数"></a>第五步：计算注意力分数</h4><p>将每个value向量乘以注意力分数。这是为了留下我们想要关注的单词的value，并把其他不相关的单词丢掉。</p>
+<p>在第一个单词位置得到新的$v_1$</p>
+<h4 id="第六步：计算注意力结果"><a href="#第六步：计算注意力结果" class="headerlink" title="第六步：计算注意力结果"></a>第六步：计算注意力结果</h4><p>将上一步的结果相加，输出本位置的注意力结果。第一个单词的注意力结果就是 $z_1$。</p>
+<p><img src="image/image_AV_bivY4tR.png" alt=""></p>
+<p>这就是自注意力的计算。计算得到的向量直接传递给前馈神经网络。但是为了处理的更迅速，实际是用矩阵进行计算的。接下来我们看一下怎么用矩阵计算。</p>
+<h2 id="3-矩阵计算self-attention"><a href="#3-矩阵计算self-attention" class="headerlink" title="3.矩阵计算self-attention"></a>3.矩阵计算self-attention</h2><p>计算Query, Key, Value矩阵。直接把输入的向量打包成一个矩阵$X$，再把它乘以训练好的$\color{purple}{W^Q}$, $\color{yellow}{W^K}$,$  \color{cyan}{W^V} $.</p>
+<p>X矩阵每一行都代表输入句子中的一个单词，整个矩阵代表输入的句子。</p>
+<p><img src="image/image_DG4O6x-sHq.png" alt=""></p>
+<blockquote>
+<p>论文中词嵌入矩阵维度维512，q、k、v矩阵的长度为64，这里分别使用4个格子和3个格子表示。</p>
+</blockquote>
+<p>因为我们现在用矩阵处理，所以可以直接将之前的第二步到第六步压缩到一个公式中一步到位获得最终的注意力结果 $\color{pink}{Z}$</p>
+<p><img src="image/image_5Zhltf8IU3.png" alt=""></p>
+<h2 id="4-多头自注意力"><a href="#4-多头自注意力" class="headerlink" title="4.多头自注意力"></a>4.多头自注意力</h2><p>论文进一步改进了自注意力层，增加了一个机制，也就是多头注意力机制。这样做有两个好处：</p>
+<ol>
+<li>扩展了模型专注于不同位置的能力</li>
+<li>给了注意力层多个“表示子空间”</li>
+</ol>
+<h3 id="4-1-扩展了模型专注于不同位置的能力"><a href="#4-1-扩展了模型专注于不同位置的能力" class="headerlink" title="4.1 扩展了模型专注于不同位置的能力"></a>4.1 扩展了模型专注于不同位置的能力</h3><p>在上面例子里只计算一个自注意力的的例子中，编码“Thinking”的时候，虽然最后 $Z_1$或多或少包含了其他位置单词的信息，但是它实际编码中还是被“Thinking”单词本身所支配。</p>
+<p>如果我们翻译一个句子，比如“The animal didn’t cross the street because it was too tired”，我们会想知道“it”指的是哪个词，这时模型的“多头”注意力机制会起到作用。</p>
+<h3 id="4-2-给了注意力层多个“表示子空间”"><a href="#4-2-给了注意力层多个“表示子空间”" class="headerlink" title="4.2 给了注意力层多个“表示子空间”"></a>4.2 给了注意力层多个“表示子空间”</h3><p>就是在多头注意力中同时用多个不同的$\color{purple}{W^Q}$, $\color{yellow}{W^K}$,$  \color{cyan}{W^V} $权重矩阵(Transformer使用8个头部，因此我们最终会得到8个计算结果)，每个权重都是随机初始化的。经过训练每个$\color{purple}{W^Q}$, $\color{yellow}{W^K}$,$  \color{cyan}{W^V} $都能将输入的矩阵投影到不同的表示子空间。</p>
+<p><img src="image/image_4TDT9YHSs_.png" alt=""></p>
+<p>Transformer中的一个多头注意力（有8个head）的计算，就相当于用自注意力做8次不同的计算，并得到8个不同的结果$\color{pink}{Z}$</p>
+<p><img src="image/image_nWN7f8tXSd.png" alt=""></p>
+<p>但是这会存在一点问题，多头注意力出来的结果会进入一个前馈神经网络，这个前馈神经网络可不能一下接收8个注意力矩阵，它的输入需要是单个矩阵（矩阵中每个行向量对应一个单词），所以我们需要一种方法把这8个压缩成一个矩阵。</p>
+<p><img src="image/image_PxWLZypxsk.png" alt=""></p>
+<p>以上就是多头自注意力的全部内容。让我们把多头注意力上述内容 放到一张图里看一下子：</p>
+<p><img src="image/image_kcyI07MfCJ.png" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/llms/transformer/5.Transformer%E4%B8%AD%E7%9A%84%E6%B3%A8%E6%84%8F%E5%8A%9B/">https://wdndev.github.io/llms/transformer/5.Transformer中的注意力/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/paper_reading/2.1.Transformer/" title="论文精读 Transformer"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-31</div><div class="title">论文精读 Transformer</div></div></a></div><div><a href="/paper_reading/2.2.BERT/" title="论文精读 BERT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-06</div><div class="title">论文精读 BERT</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Transformer%E4%B8%AD%E7%9A%84%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">Transformer中的注意力</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">1.自注意力</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9B%BE%E8%A7%A3%E6%B3%A8%E6%84%8F%E5%8A%9B%E8%AE%A1%E7%AE%97"><span class="toc-text">2.图解注意力计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E8%AE%A1%E7%AE%97query%E3%80%81key%E3%80%81value%E5%90%91%E9%87%8F"><span class="toc-text">第一步：计算query、key、value向量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%BE%97%E5%88%86"><span class="toc-text">第二步：计算注意力得分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%B0%86%E8%AE%A1%E7%AE%97%E8%8E%B7%E5%BE%97%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%88%86%E6%95%B0%E9%99%A4%E4%BB%A5-sqrt-d-8"><span class="toc-text">第三步：将计算获得注意力分数除以 $\sqrt{d}&#x3D;8$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%BD%92%E4%B8%80%E5%8C%96softmax"><span class="toc-text">第四步：归一化softmax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%88%86%E6%95%B0"><span class="toc-text">第五步：计算注意力分数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%BB%93%E6%9E%9C"><span class="toc-text">第六步：计算注意力结果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97self-attention"><span class="toc-text">3.矩阵计算self-attention</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%A4%9A%E5%A4%B4%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">4.多头自注意力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%89%A9%E5%B1%95%E4%BA%86%E6%A8%A1%E5%9E%8B%E4%B8%93%E6%B3%A8%E4%BA%8E%E4%B8%8D%E5%90%8C%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%83%BD%E5%8A%9B"><span class="toc-text">4.1 扩展了模型专注于不同位置的能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E7%BB%99%E4%BA%86%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%B1%82%E5%A4%9A%E4%B8%AA%E2%80%9C%E8%A1%A8%E7%A4%BA%E5%AD%90%E7%A9%BA%E9%97%B4%E2%80%9D"><span class="toc-text">4.2 给了注意力层多个“表示子空间”</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

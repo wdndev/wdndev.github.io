@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文精读 MoE | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参考文章：  Mixture of Experts-Introduction Understanding the Mixture-of-Experts Model in Deep Learning  论文相关：  论文名称：Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer 论文地址：Out">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文精读 MoE">
+<meta property="og:url" content="https://wdndev.github.io/paper_reading/1.6.MoE/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="参考文章：  Mixture of Experts-Introduction Understanding the Mixture-of-Experts Model in Deep Learning  论文相关：  论文名称：Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer 论文地址：Out">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-11-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.764Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="PaperReading">
+<meta property="article:tag" content="DeepLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/paper_reading/1.6.MoE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文精读 MoE',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">论文精读 MoE</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-11-19T16:00:00.000Z" title="Created 2023-11-20 00:00:00">2023-11-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.764Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PaperReading/">PaperReading</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>11min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="论文精读 MoE"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>参考文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://abdulkaderhelwan.medium.com/mixture-of-experts-introduction-39f244a4ff05" title="Mixture of Experts-Introduction">Mixture of Experts-Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@jain.sm/understanding-the-mixture-of-experts-model-in-deep-learning-71d2e20650ac" title="Understanding the Mixture-of-Experts Model in Deep Learning">Understanding the Mixture-of-Experts Model in Deep Learning</a></li>
+</ul>
+<p>论文相关：</p>
+<ul>
+<li>论文名称：Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer</li>
+<li>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1701.06538" title="Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer">Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer</a></li>
+</ul>
+<p>混合专家（Mixture of Experts，MoE）就像是神经网络世界中的一种团队合作技术。想象一下，把一项大任务分解成更小的部分，让不同的专家来处理每个部分。然后，有一个聪明的法官，他根据情况决定遵循哪位专家的建议，所有这些建议都融合在一起。</p>
+<p>尽管它最初是用神经网络来解释的，但你可以将这个想法用于任何类型的专家或模型。这有点像你把不同的味道结合在一起做一道美味的菜，这属于一组很酷的综合学习方法，称为元学习。</p>
+<p>因此，在本文中，您将了解专家组合模型的技巧。</p>
+<h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1.摘要"></a>1.摘要</h2><ul>
+<li>神经网络的<strong>吸收信息的容量（capacity）受限于</strong>参数数目。</li>
+<li><strong>条件计算（conditional computation）**</strong>针对于每个样本，<strong> ​</strong>激活网络的部分子网络进行计算**，它在理论上已证明，可以作为一种显著增加模型容量的方法。</li>
+<li>在实际中，我们在牺牲少量计算效率的情况下，实现了 <strong>1000 倍</strong>的<strong>模型容量（model capacity）</strong> 的提升。</li>
+<li>我们引入了<strong>稀疏门控专家混合层（Sparsely-Gated Mixture-of-Experts Layer）</strong>，包括数以千计的前馈子网络。对于每一个样本，有一个<strong>可训练的门控网络（gating network）会计算这些</strong>专家（指前馈子网络）<strong>的</strong>稀疏组合。</li>
+<li>我们把<strong>专家混合（MoE）应用于</strong>语言建模和<strong>机器翻译</strong>任务中，对于这些任务，从训练语料库中吸收的巨量知识，是十分关键的。</li>
+<li>在我们提出的模型架构里，MoE 包含 1370 亿个参数，以卷积的方式放在<strong>堆叠 LSTM 层</strong>之间。</li>
+<li>在大型语言建模和及其翻译的基准测试中，该模型以更少的计算成本，实现了比最先进方法更好的结果。</li>
+</ul>
+<h2 id="2-介绍和相关工作"><a href="#2-介绍和相关工作" class="headerlink" title="2.介绍和相关工作"></a>2.介绍和相关工作</h2><h3 id="2-1-条件计算"><a href="#2-1-条件计算" class="headerlink" title="2.1 条件计算"></a>2.1 条件计算</h3><p><strong>充分利用训练数据和模型大小的规模</strong>，一直以来都是深度学习成功的关键。</p>
+<ul>
+<li>当训练集足够大，增加神经网络的容量（即参数数目），可以得到更高的预测准确度。</li>
+<li>对于传统的深度学习模型，<strong>对每一个样本都会激活整个模型</strong>，这会导致在训练成本上，以<strong>大约二次方的速度增长</strong>，因为<strong>模型大小和训练样本数目都增加了</strong>。</li>
+<li>当前计算能力和分布式计算的进展，并不能满足这样的需求。</li>
+</ul>
+<p>因此有很多工作提出了各种形式的条件计算，<strong>它们在不显著增加计算成本的情况下</strong>**，尽量增加模型的容量**。</p>
+<ul>
+<li>在这些算法里，<strong>以每个样本为基础（on a per-example basis）</strong>，会<strong>激活或冻结</strong>网络中的大部分。</li>
+<li>这种<strong>门控决策机制</strong>，可以是<strong>二进制的</strong>，也可以是<strong>稀疏而连续的</strong>；可以是<strong>随机性的</strong>，也可以是<strong>确定性的</strong>。</li>
+<li>门控决策通过有各种形式的强化学习和反向传播来训练。</li>
+</ul>
+<p><img src="image/image_yB43QT3_Fz.png" alt=""></p>
+<blockquote>
+<p>Figure 1：MoE 层嵌入到循环语言模型中。在本例中，稀疏的门控函数选择<strong>两个专家</strong>来执行计算。门控网络会调整专家的输出。</p>
+</blockquote>
+<p>尽管这种思想在理论上很有前景，但是目前为止，还没有工作展现在模型容量、训练时间或模型质量上有足够的提升。我们把原因归结为这些挑战：</p>
+<ul>
+<li>现代计算设备（特别是 GPU），相比<strong>分支（branching）而言，在</strong>数值计算上更快。</li>
+<li>大的批量大小对于性能很关键。而条件计算减少了批量大小。</li>
+<li>网络带宽会成为性能瓶颈。</li>
+<li>损失项可能对于实现好的效果是必需的，因此损失项可能会影响模型质量和负载平衡。</li>
+<li>对于大型数据集，模型容量是最关键的。目前条件计算的文献处理的图像识别数据集都相对太小了，难以为大模型提供足够多的信号。</li>
+</ul>
+<p>本文首先解决了上述挑战，并且最后看到了条件计算的前景。</p>
+<ul>
+<li>我们得到了 1000 倍的模型容量提升，只花费了少量计算开销</li>
+<li>得到的结果也优于最顶尖的结果</li>
+</ul>
+<h3 id="2-2-本文方法：稀疏门控专家混合层"><a href="#2-2-本文方法：稀疏门控专家混合层" class="headerlink" title="2.2 本文方法：稀疏门控专家混合层"></a>2.2 本文方法：稀疏门控专家混合层</h3><p>我们的条件计算方法，就是引入了一个新的通用神经网络组件类型：<strong>稀疏门控专家混合层</strong>。</p>
+<p>MoE 包含：</p>
+<ul>
+<li>一些专家，每个专家都是一个<strong>简单的前馈神经网络</strong>。</li>
+<li>一个<strong>可训练的门控网络</strong>，它会挑选专家的一个稀疏组合，用来处理每个输入。</li>
+<li>所有网络都是<strong>使用反向传播联合训练</strong>的。</li>
+</ul>
+<p>尽管该技术是通用的，但是本文聚焦在语言建模和机器翻译任务中（这些任务都受益于非常大的模型）。</p>
+<ul>
+<li>具体说来，如图一所示，我们把 MoE <strong>以卷积的方式（convolutionally）放在</strong>多层 LSTM 层之间。</li>
+<li>在文本的每个位置上，就会调用 MoE 一次，进而<strong>可能选择不同的专家组合</strong>。</li>
+<li>不同的专家<strong>会倾向于变得高度专业化（基于语法和语义）</strong>。</li>
+</ul>
+<h2 id="3-混合专家层的结构"><a href="#3-混合专家层的结构" class="headerlink" title="3.混合专家层的结构"></a>3.混合专家层的结构</h2><h3 id="3-1-MoE层"><a href="#3-1-MoE层" class="headerlink" title="3.1 MoE层"></a>3.1 MoE层</h3><p>MoE 层包括 ：</p>
+<ul>
+<li>n 个“<strong>专家网络</strong>”：$E1,⋯,En$。</li>
+<li>一个<strong>门控网络</strong> $G$，其输出是一个稀疏的 $n$ 维向量。</li>
+</ul>
+<p>尽管从理论上讲，每个专家网络只要保持一致的输入大小和输出大小就可以了；但是，在本文的研究里，我们限制了专家网络具有相同的网络结构，而网络参数保持独立。</p>
+<p>给定输入 $x$，定义 $G(x)$是门控网络的输出；$Ei(x)$ 是第 $i$ 个专家网络的输出。于是 MoE 模块的输出为：</p>
+<script type="math/tex; mode=display">
+y=\sum_{i=1}^{n} G(x)_{i} E_{i}(x)</script><p>基于 $G(x)$ 输出的稀疏性，可以节省计算量。</p>
+<ul>
+<li>当 $G(x)i=0$时，我们无需计算 $Ei(x)$。</li>
+<li>在我们的实验中，我们<strong>有数以千计的专家</strong>，但是针对每个样本，只需要用到<strong>少量的专家</strong>。</li>
+<li>如果专家数目非常大，我们可能要采用<strong>层次化的 MoE</strong>；本文我们不会使用层次化的 MoE，相关细节感兴趣可以见附录 B。</li>
+</ul>
+<p><img src="image/image_T8RSJA__tA.png" alt=""></p>
+<h3 id="3-2-层次化MoE"><a href="#3-2-层次化MoE" class="headerlink" title="3.2 层次化MoE"></a>3.2 层次化MoE</h3><p>如果专家数量很大，<strong>可以通过使用两级层次MoE来降低分支因子</strong>。在分层MoE中，主选通网络选择“专家”的稀疏加权组合，每个专家本身就是具有自己选通网络的专家的二次混合。&#x20;</p>
+<p>主选通网络是$Gprimary$，次选通网络为$（G1，G2，…，Ga）$，专家网络为$（E0,0，E0,1，…，Ea，b）$。MoE的输出由以下公式给出：</p>
+<script type="math/tex; mode=display">
+y_{H}=\sum_{i=1}^{a} \sum_{j=1}^{b} G_{p r i m a r y}(x)_{i} \cdot G_{i}(x)_{j} \cdot E_{i, j}(x)</script><h3 id="3-3-门控网络"><a href="#3-3-门控网络" class="headerlink" title="3.3 门控网络"></a>3.3 门控网络</h3><h4 id="（1）Softmax-Gating"><a href="#（1）Softmax-Gating" class="headerlink" title="（1）Softmax Gating"></a>（1）Softmax Gating</h4><p>一种朴素的想法是，用一个矩阵乘上输入，然后经过一个 Softmax 函数，这种方法实际上是一种非稀疏的门控函数：</p>
+<script type="math/tex; mode=display">
+G_{\sigma}(x)=\operatorname{Softmax}\left(x \cdot W_{g}\right)</script><h4 id="（2）Noise-Top-K-Gating"><a href="#（2）Noise-Top-K-Gating" class="headerlink" title="（2）Noise Top-K Gating"></a>（2）Noise Top-K Gating</h4><p>在 Softmax 门控网络基础上，**加入两个元素：**<strong>稀疏性和噪声</strong>。在执行 Softmax 函数之前：</p>
+<p>我们加入了<strong>可调的高斯噪声</strong>，噪声项是为了帮助<strong>负载均衡（load balancing）</strong>，我们在附录 A 有详细讨论。</p>
+<p>并且<strong>保留前 k 个值</strong>，其他设置为 $-\infty$。这种稀疏性是为了节省计算资源，<strong>尽管这种形式的稀疏性，从理论上会造成一些可怕的输出间断性</strong>，<strong>但在实际使用中，我们并没有观察到这种问题</strong>。</p>
+<p>每个分量的噪音量，通过另一个可训练的权重矩阵 $W_{noise}$  来控制。</p>
+<script type="math/tex; mode=display">
+G(x)=\operatorname{Softmax}(\operatorname{KeepTopK}(H(x), k))</script><script type="math/tex; mode=display">
+H(x)_{i}=\left(x \cdot W_{g}\right)_{i}+ StandardNormal ()\cdot \operatorname{Softplus}\left(\left(x \cdot W_{\text {noise }}\right)_{i}\right)</script><script type="math/tex; mode=display">
+KeepTopK (v, k)_{i}=\left\{\begin{array}{ll}v_{i} & \text { if } v_{i} \text { is in the top } k \text { elements of } v \\ -\infty & \text { otherwise. }\end{array}\right.</script><h3 id="3-4训练门控网络"><a href="#3-4训练门控网络" class="headerlink" title="3.4训练门控网络"></a>3.4训练门控网络</h3><p>我们使用<strong>简单的反向传播</strong>来训练门控网络以及接下来的模型。</p>
+<h2 id="4-解决性能挑战"><a href="#4-解决性能挑战" class="headerlink" title="4.解决性能挑战"></a>4.解决性能挑战</h2><h3 id="4-1-批量减小问题（The-Shrinking-Batch-Problem）"><a href="#4-1-批量减小问题（The-Shrinking-Batch-Problem）" class="headerlink" title="4.1 批量减小问题（The Shrinking Batch Problem）"></a>4.1 批量减小问题（The Shrinking Batch Problem）</h3><p>由于门控网络对每个样本，在 $n$ 个专家中，选择 $k$ 个。那么对于 $b$个样本的批次，每个转接都会收到更加更加小的批次（大概 $\frac{kb}{n} &lt;&lt; b$）。这会导致朴素的 MoE 实现<strong>在专家数量增加时，非常低效</strong>。解决批量减小问题，就是需要让<strong>原始的批量大小尽可能的大</strong>。然而，批量大小会收到内存的限制。我们提出如下技术来提高批量大小：</p>
+<ul>
+<li><strong>混合数据并行和模型并行（Mixing Data Parallelism and Model Parallelism）</strong>:相当于变相的扩大b，假设有d个device，每个device上一次处理b个样本，那么在这次训练中，batch=bd，从而每个expert会接收kbd/n个样本。</li>
+<li>充分利用卷积</li>
+<li>增加循环 MoE 的批量大小</li>
+</ul>
+<h3 id="4-2-网络带宽"><a href="#4-2-网络带宽" class="headerlink" title="4.2 网络带宽"></a>4.2 网络带宽</h3><h2 id="5-平衡专家的利用率"><a href="#5-平衡专家的利用率" class="headerlink" title="5.平衡专家的利用率"></a>5.平衡专家的利用率</h2><p>我们观察到，门控网络倾向于收敛到<strong>一种不好的状态，即对相同的少量专家，总是会得到较大的权重</strong>。<strong>这种不平衡是不断自我强化的</strong>，随着更好的专家不断训练学习，它们更有可能被门控网络选中。面对这种问题，过去文献有的用<strong>硬性约束</strong>，有的用<strong>软性约束</strong>。</p>
+<p>而我们采用<strong>软性约束方法</strong>。我们定义对<strong>于一个批次训练样本</strong>的<strong>专家重要度（the importance of an expert）</strong>，即该专家<strong>在一个批次上的门控输出值的和</strong>。并且定义损失项 $L<em>{importance}$ ，加入到模型的总损失上。该损失项等于<strong>所有专家重要度的方差的平方</strong>，再加上一个手工调节的比例因子 $w</em>{important}$。这个损失项<strong>会鼓励所有专家有相同的重要度</strong>。</p>
+<script type="math/tex; mode=display">
+Importance (X)=\sum_{x \in X} G(x)</script><script type="math/tex; mode=display">
+L_{\text {importance }}(X)=w_{\text {importance }} \cdot C V(\text { Importance }(X))^{2}</script><p>尽管现在的损失函数可以保证相同的重要度，<strong>专家仍然可能接收到差异很大的样本数目</strong>。例如，某些专家可能接收到少量的大权重的样本；而某些专家可能接收到更多的小权重的样本。为了解决这个问题，我们引入了第二个损失函数：$ L_{load}  $，它可以保证负载均衡。附录 A 会包含该函数的定义。&#x20;</p>
+<h2 id="6-实验"><a href="#6-实验" class="headerlink" title="6.实验"></a>6.实验</h2><h3 id="6-1-10-亿词汇的语言建模基准"><a href="#6-1-10-亿词汇的语言建模基准" class="headerlink" title="6.1 10 亿词汇的语言建模基准"></a>6.1 10 亿词汇的语言建模基准</h3><p>MoE模型：所提出的模型由两个堆叠的LSTM层组成，它们之间有一个MoE层。</p>
+<p>使用包含4、32和256名专家的平面MoE以及包含256、1024和4096名专家的分层MoE来训练模型。</p>
+<p>每个专家都有大约100万个参数。</p>
+<p>对于所有MoE层，每次输入都有4名专家活跃。</p>
+<p><img src="image/image_lGlKf9jWJ6.png" alt=""></p>
+<p>左图：有4名始终活跃的专家的模型与计算匹配的基线模型表现相似（不足为奇），而最大的模型（4096名专家）在测试集上的困惑度降低了24%，令人印象深刻。&#x20;</p>
+<p>右图：与LSTM模型相比，MoE模型在相似的计算预算下实现了更低的困惑。</p>
+<p><img src="image/image_dcBv61RWEj.png" alt=""></p>
+<p>对于没有MoE的基线模型，观察到的计算效率在1.07–1.29 TFLOPS/GPU之间。</p>
+<p>对于所提出的低计算MoE模型，计算效率在0.74-0.90 TFLOPS/GPU之间，但4专家模型没有充分利用可用的并行性。</p>
+<p>计算量最高的MoE模型在1.56 TFLOPS/GPU时效率更高，这可能是由于矩阵更大。</p>
+<h3 id="6-2-1000-亿词汇的谷歌新闻语料库"><a href="#6-2-1000-亿词汇的谷歌新闻语料库" class="headerlink" title="6.2 1000 亿词汇的谷歌新闻语料库"></a>6.2 1000 亿词汇的谷歌新闻语料库</h3><p><img src="image/image_t1jcKFT5RA.png" alt=""></p>
+<p>当训练超过1000亿个单词时，测试困惑度显著提高，达到65536个专家（680亿个参数），比计算匹配的基线低39%，但在131072个专家时会下降，这可能是稀疏性过大的结果。</p>
+<h3 id="6-3-机器翻译"><a href="#6-3-机器翻译" class="headerlink" title="6.3 机器翻译"></a>6.3 机器翻译</h3><p>这里使用的MoE模型是<a target="_blank" rel="noopener" href="https://sh-tsang.medium.com/review-googles-neural-machine-translation-system-bridging-the-gap-between-human-and-machine-518595d87226" title="GNMT">GNMT</a>的修改版本。</p>
+<p>为了减少计算，编码器和解码器中的LSTM层的数量分别从9和8减少到3和2。</p>
+<p>MoE层被插入编码器（在层2和3之间）和解码器（在层1和2之间）中。每个MoE层包含多达2048名专家，每个专家都有大约200万个参数，总共为模型增加了大约80亿个参数。</p>
+<p><img src="image/image_6jwKtLAljL.png" alt=""></p>
+<blockquote>
+<p><strong>Results on WMT’14 En&gt;Fr newstest2014</strong></p>
+</blockquote>
+<p><img src="image/image_m_KbM1Dnld.png" alt=""></p>
+<blockquote>
+<p><strong>Results on WMT’14 En&gt;De newstest2014</strong></p>
+</blockquote>
+<p>所提出的方法在WMT’14 En&gt;Fr和En&gt;De基准上获得了40.56和26.03的BLEU分数，优于GNMT和Deep-Att。</p>
+<p><img src="image/image_uhbo2VvSZ_.png" alt=""></p>
+<p>在Google Production数据集上，MoE模型在训练了六分之一的时间后，测试BLEU得分也提高了1.01。</p>
+<p><img src="image/image_cnqmpG977Q.png" alt=""></p>
+<h2 id="7-结论"><a href="#7-结论" class="headerlink" title="7.结论"></a>7.结论</h2><ul>
+<li>该工作是第一个展现<strong>基于深度网络的条件计算</strong>的重大胜利。</li>
+<li>我们探讨了设计考虑、条件计算的挑战、从算法和工程上的解决方案。</li>
+<li>虽然我们聚焦在文本领域上，条件计算仍然可以在其他领域发挥作用。我们期望有更多条件计算的实现和应用。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/paper_reading/1.6.MoE/">https://wdndev.github.io/paper_reading/1.6.MoE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PaperReading/">PaperReading</a><a class="post-meta__tags" href="/tags/DeepLearning/">DeepLearning</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/paper_reading/1.1.GNN/" title="论文精读 GNN"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-07</div><div class="title">论文精读 GNN</div></div></a></div><div><a href="/paper_reading/1.2.GAN/" title="论文精读 GAN"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-07</div><div class="title">论文精读 GAN</div></div></a></div><div><a href="/paper_reading/1.3.MoCo/" title="论文精读 MoCo"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-17</div><div class="title">论文精读 MoCo</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%91%98%E8%A6%81"><span class="toc-text">1.摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.介绍和相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%9D%A1%E4%BB%B6%E8%AE%A1%E7%AE%97"><span class="toc-text">2.1 条件计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%9C%AC%E6%96%87%E6%96%B9%E6%B3%95%EF%BC%9A%E7%A8%80%E7%96%8F%E9%97%A8%E6%8E%A7%E4%B8%93%E5%AE%B6%E6%B7%B7%E5%90%88%E5%B1%82"><span class="toc-text">2.2 本文方法：稀疏门控专家混合层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B7%B7%E5%90%88%E4%B8%93%E5%AE%B6%E5%B1%82%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">3.混合专家层的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-MoE%E5%B1%82"><span class="toc-text">3.1 MoE层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%B1%82%E6%AC%A1%E5%8C%96MoE"><span class="toc-text">3.2 层次化MoE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E9%97%A8%E6%8E%A7%E7%BD%91%E7%BB%9C"><span class="toc-text">3.3 门控网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Softmax-Gating"><span class="toc-text">（1）Softmax Gating</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Noise-Top-K-Gating"><span class="toc-text">（2）Noise Top-K Gating</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4%E8%AE%AD%E7%BB%83%E9%97%A8%E6%8E%A7%E7%BD%91%E7%BB%9C"><span class="toc-text">3.4训练门控网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%A7%A3%E5%86%B3%E6%80%A7%E8%83%BD%E6%8C%91%E6%88%98"><span class="toc-text">4.解决性能挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%89%B9%E9%87%8F%E5%87%8F%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%88The-Shrinking-Batch-Problem%EF%BC%89"><span class="toc-text">4.1 批量减小问题（The Shrinking Batch Problem）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E7%BD%91%E7%BB%9C%E5%B8%A6%E5%AE%BD"><span class="toc-text">4.2 网络带宽</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%B9%B3%E8%A1%A1%E4%B8%93%E5%AE%B6%E7%9A%84%E5%88%A9%E7%94%A8%E7%8E%87"><span class="toc-text">5.平衡专家的利用率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%AE%9E%E9%AA%8C"><span class="toc-text">6.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-10-%E4%BA%BF%E8%AF%8D%E6%B1%87%E7%9A%84%E8%AF%AD%E8%A8%80%E5%BB%BA%E6%A8%A1%E5%9F%BA%E5%87%86"><span class="toc-text">6.1 10 亿词汇的语言建模基准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-1000-%E4%BA%BF%E8%AF%8D%E6%B1%87%E7%9A%84%E8%B0%B7%E6%AD%8C%E6%96%B0%E9%97%BB%E8%AF%AD%E6%96%99%E5%BA%93"><span class="toc-text">6.2 1000 亿词汇的谷歌新闻语料库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91"><span class="toc-text">6.3 机器翻译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%BB%93%E8%AE%BA"><span class="toc-text">7.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LLMs公开课 - 3.Transformer基础 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.Transformer1.1 注意力机制（1）Seq2Seq注意力传统的Seq2Seq序列模型存在信息瓶颈的问题  源句子编码的单向量需要捕获远举子的所有信息 单向量限制了编码器的表示能力：信息瓶颈   注意力机制：  注意力提供了瓶颈问题的解决方案； 核心思想：在解码器的每一步，专注于源序列的特定部分。  （2）Seq2Seq注意力机制 Encoder隐藏状态：$h{1}, h{2} \ld">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLMs公开课 - 3.Transformer基础">
+<meta property="og:url" content="https://wdndev.github.io/llms/llms_course/3.Transformer%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="1.Transformer1.1 注意力机制（1）Seq2Seq注意力传统的Seq2Seq序列模型存在信息瓶颈的问题  源句子编码的单向量需要捕获远举子的所有信息 单向量限制了编码器的表示能力：信息瓶颈   注意力机制：  注意力提供了瓶颈问题的解决方案； 核心思想：在解码器的每一步，专注于源序列的特定部分。  （2）Seq2Seq注意力机制 Encoder隐藏状态：$h{1}, h{2} \ld">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2024-01-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.552Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="LLMs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/llms/llms_course/3.Transformer%E5%9F%BA%E7%A1%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LLMs公开课 - 3.Transformer基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">LLMs公开课 - 3.Transformer基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-01T16:00:00.000Z" title="Created 2024-01-02 00:00:00">2024-01-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.552Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LLMs/">LLMs</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>9min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LLMs公开课 - 3.Transformer基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="1-Transformer"><a href="#1-Transformer" class="headerlink" title="1.Transformer"></a>1.Transformer</h1><h2 id="1-1-注意力机制"><a href="#1-1-注意力机制" class="headerlink" title="1.1 注意力机制"></a>1.1 注意力机制</h2><h3 id="（1）Seq2Seq注意力"><a href="#（1）Seq2Seq注意力" class="headerlink" title="（1）Seq2Seq注意力"></a>（1）Seq2Seq注意力</h3><p>传统的Seq2Seq序列模型存在信息瓶颈的问题</p>
+<ul>
+<li>源句子编码的单向量需要捕获远举子的所有信息</li>
+<li>单向量限制了编码器的表示能力：信息瓶颈</li>
+</ul>
+<p><img src="image/image_lOTpq5OeIz.png" alt=""></p>
+<p>注意力机制：</p>
+<ul>
+<li>注意力提供了瓶颈问题的解决方案；</li>
+<li>核心思想：<strong>在解码器的每一步，专注于源序列的特定部分</strong>。</li>
+</ul>
+<h3 id="（2）Seq2Seq注意力机制"><a href="#（2）Seq2Seq注意力机制" class="headerlink" title="（2）Seq2Seq注意力机制"></a>（2）Seq2Seq注意力机制</h3><ol>
+<li>Encoder隐藏状态：$h<em>{1}, h</em>{2} \ldots, h_{N} \in \mathbb{R}^{h}$</li>
+<li>Decoder在$t$时刻的隐藏状态：$s_{t} \in \mathbb{R}^{h}$</li>
+<li>在$t$时刻，计算注意力分数 $e<em>t$ ： $e^{t}=\left[s</em>{t}^{T} h<em>{1}, \ldots, s</em>{t}^{T} h_{N}\right] \in \mathbb{R}^{N}$</li>
+<li>使用softmax得到注意力分布$\alpha_t$ ：$\alpha^{t}=\operatorname{softmax}\left(e^{t}\right) \in \mathbb{R}^{N}$</li>
+<li>利用注意力分布计算编码器隐藏状态的加权和作为注意力输出 ： $o<em>{t}=\sum</em>{i=1}^{N} \alpha<em>{i}^{t} h</em>{i} \in \mathbb{R}^{h}$</li>
+<li>连接注意力输出和解码器隐藏状态来预测单词 ：$\left[o<em>{t} ; s</em>{t}\right] \in \mathbb{R}^{2 h}$</li>
+</ol>
+<p><img src="image/image_9UqnbcFKUt.png" alt=""></p>
+<p><img src="image/image_3w0mAdKSFz.png" alt=""></p>
+<p><img src="image/image_Pf--D-VHXF.png" alt=""></p>
+<p><img src="image/image_nfdploqSzi.png" alt=""></p>
+<p><img src="image/image_zorAic9xaq.png" alt=""></p>
+<h3 id="（3）注意力机制的变体"><a href="#（3）注意力机制的变体" class="headerlink" title="（3）注意力机制的变体"></a>（3）注意力机制的变体</h3><p>不同注意力分数的计算，有不同的变体，$\mathrm{e} \in \mathbb{R}^{N}$</p>
+<h4 id="Additive-attention"><a href="#Additive-attention" class="headerlink" title="Additive attention"></a>Additive attention</h4><script type="math/tex; mode=display">
+e_{i}=v^{T} \tanh \left(W_{1} h_{i}+W_{2} s\right) \in \mathbb{R}</script><p>其中，$W<em>{1} \in \mathbb{R}^{d</em>{3} \times d<em>{1}}, W</em>{2} \in \mathbb{R}^{d<em>{3} \times d</em>{2}}$是权重矩阵，$v \in \mathbb{R}^{d_{3}}$是权重向量。</p>
+<h4 id="Basic-dot-product-attention"><a href="#Basic-dot-product-attention" class="headerlink" title="Basic dot-product attention"></a>Basic dot-product attention</h4><script type="math/tex; mode=display">
+e_{i}=s^{T} h_{i} \in \mathbb{R}</script><p>假设向量$d_1=d_2$</p>
+<h4 id="Multiplicative-attention"><a href="#Multiplicative-attention" class="headerlink" title="Multiplicative attention"></a>Multiplicative attention</h4><script type="math/tex; mode=display">
+e_{i}=s^{T} W h_{i} \in \mathbb{R}, \quad W \in \mathbb{R}^{d_{2} \times d_{1}}</script><h3 id="（4）注意力通用定义"><a href="#（4）注意力通用定义" class="headerlink" title="（4）注意力通用定义"></a>（4）注意力通用定义</h3><p>给定一个query向量和一组value向量，注意力技术根据query计算值的加权和</p>
+<p>根据查询，<strong>加权和是值的选择性汇总</strong>。可以通过注意机制获得任意一组表征的固定大小的表征。</p>
+<p>数学表示：</p>
+<ul>
+<li>如果存在value向量$\boldsymbol{h}<em>{1}, \boldsymbol{h}</em>{2} \ldots, \boldsymbol{h}<em>{N} \in \mathbb{R}^{d</em>{1}}$，query向量$\mathbf{s} \in \mathbb{R}^{d_{2}}$</li>
+<li>根据注意力分数$\mathbf{e} \in \mathbb{R}^{N}$，计算得到注意力输出$\mathbf{o} \in \mathbb{R}^{d_{1}}$</li>
+</ul>
+<script type="math/tex; mode=display">
+\boldsymbol{\alpha}=\operatorname{softmax}(\boldsymbol{e}) \in \mathbb{R}^{N}</script><script type="math/tex; mode=display">
+\boldsymbol{o}=\sum_{i=1}^{N} \alpha_{i} \boldsymbol{h}_{i} \in \mathbb{R}^{h}</script><ul>
+<li>有几种不同的方法来计算的注意力分数$\mathbf{e} \in \mathbb{R}^{N}$</li>
+</ul>
+<h3 id="（5）注意力机制的特点"><a href="#（5）注意力机制的特点" class="headerlink" title="（5）注意力机制的特点"></a>（5）注意力机制的特点</h3><p><strong>注意力解决Seq2Seq瓶颈问题</strong>，解码器可以直接查看全部encoder输出</p>
+<p><strong>注意力有助于消除梯度问题</strong></p>
+<p>注意力提供了一些可解释性，可以通过注意图找出解码器关注的是什么；注意力允许网络对齐相关的单词</p>
+<p><img src="image/image_k0fVtzGdSd.png" alt=""></p>
+<h2 id="1-2-Transformer结构"><a href="#1-2-Transformer结构" class="headerlink" title="1.2 Transformer结构"></a>1.2 Transformer结构</h2><h3 id="（1）总览"><a href="#（1）总览" class="headerlink" title="（1）总览"></a>（1）总览</h3><ul>
+<li>架构：Encoder-Decoder &#x20;</li>
+<li>输入：byte pair encoding +  positional encoding &#x20;</li>
+<li>模型：多个Encoder-Decoder  堆叠</li>
+<li>输出：翻译单词的概率</li>
+<li>损失函数：标准的交叉熵损失</li>
+</ul>
+<p><img src="image/image_RJZXjK6jv5.png" alt=""></p>
+<h3 id="（2）Input-Encoding"><a href="#（2）Input-Encoding" class="headerlink" title="（2）Input Encoding"></a>（2）Input Encoding</h3><p>输入：byte pair encoding +  positional encoding &#x20;</p>
+<h4 id="Byte-Pair-Encoding（BPE）"><a href="#Byte-Pair-Encoding（BPE）" class="headerlink" title="Byte Pair Encoding（BPE）"></a>Byte Pair Encoding（BPE）</h4><p>一种分词算法。从字符词汇开始；将最常见的n-gram转换为新的n-gram。</p>
+<p>之前使用空格，之类的切分，词表必定不会包含所有单词，所以BPE将单词切分为更小的词元。</p>
+<p>通过将稀有词和未知词编码为子词单元序列来解决OOV (out of vocabulary)问题</p>
+<ul>
+<li>在上面的例子中，OOV单词“最低”将被分割成“最低”。</li>
+<li>“low”和“lowest”之间的关系可以概括为“smart”和“smartest”。</li>
+</ul>
+<p>原始词汇表：</p>
+<p><img src="image/image_DQLE30zO78.png" alt=""></p>
+<p>1、将各个字母添加到词表中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l, o, w, e, r, n, w, s, t, i, d</span><br></pre></td></tr></table></figure>
+<p>2、将频次为9的<code>es</code>对添加进去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l, o, w, e, r, n, w, s, t, i, d,  es</span><br></pre></td></tr></table></figure>
+<p>3、因为<code>s</code>不单独出现，是和<code>es</code>一起出现，删除<code>s</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l, o, w, e, r, n, w, t, i, d, es</span><br></pre></td></tr></table></figure>
+<p>4、将频次为9的<code>est</code>对添加进去，且<code>es</code>不是单独出现，和<code>est</code>一起出现，删除<code>es</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l, o, w, e, r, n, w, t, i, d,  est</span><br></pre></td></tr></table></figure>
+<p>循环这个过程，直到达到词表的大小要求即可。</p>
+<h4 id="Positional-Encoding（PE）"><a href="#Positional-Encoding（PE）" class="headerlink" title="Positional Encoding（PE）"></a>Positional Encoding（PE）</h4><p>Transformer block对位置不同的相同单词不敏感；添加位置编码 <strong>，以便相同的单词在不同位置具有不同的表示</strong></p>
+<script type="math/tex; mode=display">
+P E_{(p o s, 2 i)}=\sin \left(\right. pos \left./ 10000^{2 i / d}\right)</script><script type="math/tex; mode=display">
+P E_{(p o s, 2 i+1)}=\cos \left(p o s / 10000^{2 i / d}\right)</script><p>其中，$i$为词嵌入索引，范围为$[0, d/2]$</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p><code>Input = BPE + PE</code></p>
+<p><img src="image/image_kx2cPK0Lx-.png" alt=""></p>
+<h3 id="（3）Transformer-Block"><a href="#（3）Transformer-Block" class="headerlink" title="（3）Transformer Block"></a>（3）Transformer Block</h3><h4 id="Dot-Product-Attention"><a href="#Dot-Product-Attention" class="headerlink" title="Dot-Product Attention"></a>Dot-Product Attention</h4><p>输入：</p>
+<ul>
+<li>一个query向量$q$，一组键值对 $(k, v)$</li>
+<li>$q$、k向量维度为$d_k$</li>
+<li>$v$向量维度为$d_v$</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li><strong>输出是</strong>$v$<strong>向量的加权和</strong></li>
+<li>每个值的权重由查询和对应键的点积计算： $A(q, K, V)=\sum<em>{i} \frac{e^{q \cdot k</em>{i}}}{\sum<em>{j} e^{q \cdot k</em>{j}}} v_{i}$</li>
+<li>堆叠多个query为一个矩阵Q： $A(Q, K, V)=\operatorname{softmax}\left(Q K^{T}\right) V$</li>
+</ul>
+<p>图示：</p>
+<script type="math/tex; mode=display">
+A(Q, K, V)=\operatorname{softmax}\left(Q K^{T}\right) V</script><p><img src="image/image_j5eM7EbHEZ.png" alt=""></p>
+<h4 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h4><p>点积注意力问题：</p>
+<ul>
+<li><strong>如果</strong>$d_k$<strong>维度过大，则</strong>$q^T \cdot k$** 的方差也会变得很大**​</li>
+<li>经过softmax后的注意力分布变得会很尖锐，梯度会变得很小</li>
+</ul>
+<p>解决方法：</p>
+<ul>
+<li>带有缩放的点积注意力：$A(Q, K, V)=\operatorname{softmax}\left(\frac{Q K^{T}}{\sqrt{d_{k}}}\right) V$</li>
+</ul>
+<p><img src="image/image_KUP56Iuwgd.png" alt=""></p>
+<h4 id="Self-attention"><a href="#Self-attention" class="headerlink" title="Self-attention"></a>Self-attention</h4><p>让词向量自己选择彼此</p>
+<p>Q, K, V是从一个句子的单词向量中得到的</p>
+<p><img src="image/image_jrF26UA9es.png" alt=""></p>
+<h4 id="Multi-head-Attention"><a href="#Multi-head-Attention" class="headerlink" title="Multi-head Attention"></a>Multi-head Attention</h4><p>不同的head：相同的计算，不同的参数</p>
+<p>连接所有输出并馈送到线性层</p>
+<script type="math/tex; mode=display">
+\operatorname{head}_{i}=\mathrm{A}\left(Q W_{i}^{Q}, K W_{i}^{K}, V W_{i}^{V}\right)</script><script type="math/tex; mode=display">
+\operatorname{MultiHead}(Q, K, V)=\operatorname{Concat}\left(\right. head _{1}, \ldots, head \left._{h}\right) W^{O}</script><p><img src="image/image_lOixttIaq0.png" alt=""></p>
+<h4 id="Encoder-Block"><a href="#Encoder-Block" class="headerlink" title="Encoder Block"></a>Encoder Block</h4><p>在每一层中，Q, K, V与前一层的输出相同</p>
+<p><img src="image/image_tzT2xy9QOk.png" alt=""></p>
+<h4 id="Decoder-Block"><a href="#Decoder-Block" class="headerlink" title="Decoder Block"></a>Decoder Block</h4><p><strong>Mask self-attention</strong>：单词只能看前面的单词，mask用于遮掩Encoder输出的未来的信息</p>
+<p><strong>Encoder-Decoder 注意力</strong>：query来自解码器，而key和value来自编码器</p>
+<p><img src="image/image_DcLkbzuVqc.png" alt=""></p>
+<h3 id="（4）Trick"><a href="#（4）Trick" class="headerlink" title="（4）Trick"></a>（4）Trick</h3><ul>
+<li>残差连接</li>
+<li>层归一化：将输入向量变化为均值为0，方差为1的向量</li>
+<li>标签平滑</li>
+<li>ADAM优化器</li>
+<li>在加入残差之前，在每一层的训练中Dropout</li>
+<li>带波束搜索(beam search)和长度惩罚(length penalties)的自回归解码</li>
+</ul>
+<h3 id="（5）优缺点"><a href="#（5）优缺点" class="headerlink" title="（5）优缺点"></a>（5）优缺点</h3><p>优点</p>
+<ul>
+<li>Transformer是一个强大的模型，在许多NLP任务中被证明是有效的</li>
+<li>Transformer适合<strong>并行化</strong></li>
+<li>证明了<strong>注意机制</strong>的有效性</li>
+<li>它还提供了对最近NLP进展，如BERT和GPT</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>架构难以优化，对模型修改敏感</li>
+<li>每层注意力计算的复杂度高$O(n^2)$，对输入文本长度有要求，最大不能超过512</li>
+</ul>
+<h1 id="2-PLM（Pretrained-Language-Models）"><a href="#2-PLM（Pretrained-Language-Models）" class="headerlink" title="2.PLM（Pretrained Language Models）"></a>2.PLM（Pretrained Language Models）</h1><h2 id="2-1-语言模型"><a href="#2-1-语言模型" class="headerlink" title="2.1 语言模型"></a>2.1 语言模型</h2><p>语言建模是<strong>预测即将出现的单词</strong>的任务，计算即将到来的单词K的条件概率。</p>
+<script type="math/tex; mode=display">
+P\left(w_{n} \mid w_{1}, w_{2}, \cdots, w_{n-1}\right)</script><p><img src="image/image_8asp79WWux.png" alt=""></p>
+<p><strong>语言建模</strong>：最基本和最重要的NLP任务</p>
+<ul>
+<li>包含多种语言理解知识，如语言知识和事实知识</li>
+<li>只需要纯文本，不需要任何人工注释</li>
+</ul>
+<p>通过语言模型学习到的语言知识可以很容易地转移到其他NLP任务中</p>
+<p>NLP迁移学习有三种代表性模型</p>
+<ul>
+<li>Word2vec</li>
+<li>Pre-trained RNN</li>
+<li>GPT &amp; BERT</li>
+</ul>
+<h2 id="2-2-PLMs（Pre-trained-Langue-Models）"><a href="#2-2-PLMs（Pre-trained-Langue-Models）" class="headerlink" title="2.2 PLMs（Pre-trained Langue Models）"></a>2.2 PLMs（Pre-trained Langue Models）</h2><p>PLM：对其他NLP任务具有强大可移植性的语言模型。word2vec是第一个PLM，如今的PLM都是基于Transformer的模型。</p>
+<p>主要有两个分支：</p>
+<p>1、<strong>Feature-based 方法</strong></p>
+<ul>
+<li>基于特征的方法中最具有代表性的模型是word2vec</li>
+<li>使用PLM的输出作为下游模型的输入</li>
+</ul>
+<p>2、<strong>Fine-tuning 方法</strong></p>
+<ul>
+<li>最具代表性的微调方法模型是BERT</li>
+<li>语言模型也是下游模型，其参数将被更新。</li>
+</ul>
+<h3 id="（1）GPT"><a href="#（1）GPT" class="headerlink" title="（1）GPT"></a>（1）GPT</h3><p><a href="https://wdndev.github.io/paper_reading/2.5.GPT_GPT-2_GPT-3/" title="论文精读 GPT、GPT-2、GPT-3 | 37.2° Blog (wdndev.github.io)">论文精读 GPT、GPT-2、GPT-3 | 37.2° Blog (wdndev.github.io)</a></p>
+<p>受Transformer在不同NLP任务中的成功启发，GPT是第一个基于Transformer预训练PLM的工作；</p>
+<p>在自然语言处理领域，有很多各式各样的的任务，如问答，文本分类等。然而，现有的无标签文本非常多，而有标签的文本很少，这使得在这些有标签文本训练一个好的分辨模型很难，因为数据集太少。因此GPT第一个版本主要就是为了解决这个问题而提出的一套针对语言模型的预训练方法，使得大量的无标签数据能够被使用，并且对预训练好的模型加以微调使其适用于许多的下游任务。</p>
+<p>在微调时，构造与子任务相关的输入，从而之只需要很少改变模型架构。</p>
+<p>GPT = Transformer + left-to-right LM</p>
+<p>GPT在下游任务上fine-tuned</p>
+<p><img src="image/image_Voqt2gbfQz.png" alt=""></p>
+<h3 id="（2）BERT"><a href="#（2）BERT" class="headerlink" title="（2）BERT"></a>（2）BERT</h3><p><a href="https://wdndev.github.io/paper_reading/2.2.BERT/" title="论文精读 BERT | 37.2° Blog (wdndev.github.io)">论文精读 BERT | 37.2° Blog (wdndev.github.io)</a></p>
+<p>BERT的出现使得我们能够在一个大的数据集上面训练好一个比较深的神经网络，然后应用在很多的NLP任务上面，这样既简化了NLP任务的训练，又提升了它的性能，所以BERT和它之后的一系列工作使得自然语言处理在过去三年中有了质的飞跃。</p>
+<p><strong>输入</strong>：</p>
+<p><img src="image/image_LAzTpzdBR0.png" alt=""></p>
+<h2 id="2-3-Masked-LM的应用"><a href="#2-3-Masked-LM的应用" class="headerlink" title="2.3 Masked LM的应用"></a>2.3 Masked LM的应用</h2><p><strong>基本思想</strong>：<strong>使用双向的信息去预测目标token</strong></p>
+<p>将不同域的对象一起输入，并根据输入的对象预测目标对象</p>
+<h3 id="（1）跨语言LM预训练"><a href="#（1）跨语言LM预训练" class="headerlink" title="（1）跨语言LM预训练"></a>（1）跨语言LM预训练</h3><p>Translation Language Modeling (TLM)</p>
+<p>TLM目标将<strong>MLM扩展到平行句对</strong>(例如，英语-法语)；为了预测一个被屏蔽的英语单词，该模型可以同时关注英语句子及其法语翻译，并鼓励对齐英语和法语表示</p>
+<p>翻译语言建模(TLM)的目标是利用并行数据改进跨语言语言模型的预训练</p>
+<p><img src="image/image_K1a6TVZJ2-.png" alt=""></p>
+<h3 id="（2）跨模态LM预训练"><a href="#（2）跨模态LM预训练" class="headerlink" title="（2）跨模态LM预训练"></a>（2）跨模态LM预训练</h3><p>自动语音识别(ASR)的视频和文本对</p>
+<p>通过使用预训练模型将分层向量量化应用于视频衍生的特征，生成一系列“视觉词”</p>
+<p>鼓励模型关注视频中的高级语义和较长时间动态</p>
+<h2 id="2-5-PLMs前沿技术"><a href="#2-5-PLMs前沿技术" class="headerlink" title="2.5 PLMs前沿技术"></a>2.5 PLMs前沿技术</h2><h3 id="（1）GPT-3"><a href="#（1）GPT-3" class="headerlink" title="（1）GPT-3"></a>（1）GPT-3</h3><p><a href="https://wdndev.github.io/paper_reading/2.5.GPT_GPT-2_GPT-3/" title="论文精读 GPT、GPT-2、GPT-3 | 37.2° Blog (wdndev.github.io)">论文精读 GPT、GPT-2、GPT-3 | 37.2° Blog (wdndev.github.io)</a></p>
+<p>GPT-3：大规模的PLM</p>
+<p><img src="image/image_pQTUKd17hu.png" alt=""></p>
+<h3 id="（2）T5"><a href="#（2）T5" class="headerlink" title="（2）T5"></a>（2）T5</h3><p>Encoder-Decoder架构</p>
+<p><strong>将所有NLP任务重新构建为统一的文本到文本格式</strong>，其中输入和输出始终是文本字符串</p>
+<p><img src="image/image_x9y_A0bKby.png" alt=""></p>
+<h3 id="（3）MoE"><a href="#（3）MoE" class="headerlink" title="（3）MoE"></a>（3）MoE</h3><p>加强Encoder-Decoder与MoE(Mixture of Experts)数十亿的参数</p>
+<p>Gshard 600B参数</p>
+<p>Switch Transformer 1571b参数</p>
+<p><img src="image/image_ShhrpNkfiz.png" alt=""></p>
+<h1 id="3-Transformers-API教程"><a href="#3-Transformers-API教程" class="headerlink" title="3.Transformers API教程"></a>3.Transformers API教程</h1><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1400131016443506688" title="transformers 教程 - 知乎 (zhihu.com)">transformers 教程 - 知乎 (zhihu.com)</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/llms/llms_course/3.Transformer%E5%9F%BA%E7%A1%80/">https://wdndev.github.io/llms/llms_course/3.Transformer基础/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a><a class="post-meta__tags" href="/tags/LLMs/">LLMs</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/llms/llms_article/1.llm%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/" title="LLMs 推理优化技术"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">LLMs 推理优化技术</div></div></a></div><div><a href="/llms/llms_article/2.%E4%B8%BB%E6%B5%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E7%BB%86%E8%8A%82/" title="主流大语言模型的技术原理细节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">主流大语言模型的技术原理细节</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Transformer"><span class="toc-text">1.Transformer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-text">1.1 注意力机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Seq2Seq%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">（1）Seq2Seq注意力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Seq2Seq%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-text">（2）Seq2Seq注意力机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E7%9A%84%E5%8F%98%E4%BD%93"><span class="toc-text">（3）注意力机制的变体</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Additive-attention"><span class="toc-text">Additive attention</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Basic-dot-product-attention"><span class="toc-text">Basic dot-product attention</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multiplicative-attention"><span class="toc-text">Multiplicative attention</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%B3%A8%E6%84%8F%E5%8A%9B%E9%80%9A%E7%94%A8%E5%AE%9A%E4%B9%89"><span class="toc-text">（4）注意力通用定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">（5）注意力机制的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Transformer%E7%BB%93%E6%9E%84"><span class="toc-text">1.2 Transformer结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%80%BB%E8%A7%88"><span class="toc-text">（1）总览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Input-Encoding"><span class="toc-text">（2）Input Encoding</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Byte-Pair-Encoding%EF%BC%88BPE%EF%BC%89"><span class="toc-text">Byte Pair Encoding（BPE）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Positional-Encoding%EF%BC%88PE%EF%BC%89"><span class="toc-text">Positional Encoding（PE）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Input"><span class="toc-text">Input</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Transformer-Block"><span class="toc-text">（3）Transformer Block</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Dot-Product-Attention"><span class="toc-text">Dot-Product Attention</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scaled-Dot-Product-Attention"><span class="toc-text">Scaled Dot-Product Attention</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Self-attention"><span class="toc-text">Self-attention</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multi-head-Attention"><span class="toc-text">Multi-head Attention</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Encoder-Block"><span class="toc-text">Encoder Block</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Decoder-Block"><span class="toc-text">Decoder Block</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89Trick"><span class="toc-text">（4）Trick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">（5）优缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-PLM%EF%BC%88Pretrained-Language-Models%EF%BC%89"><span class="toc-text">2.PLM（Pretrained Language Models）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="toc-text">2.1 语言模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-PLMs%EF%BC%88Pre-trained-Langue-Models%EF%BC%89"><span class="toc-text">2.2 PLMs（Pre-trained Langue Models）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89GPT"><span class="toc-text">（1）GPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89BERT"><span class="toc-text">（2）BERT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Masked-LM%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">2.3 Masked LM的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%B7%A8%E8%AF%AD%E8%A8%80LM%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-text">（1）跨语言LM预训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E8%B7%A8%E6%A8%A1%E6%80%81LM%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-text">（2）跨模态LM预训练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-PLMs%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF"><span class="toc-text">2.5 PLMs前沿技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89GPT-3"><span class="toc-text">（1）GPT-3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89T5"><span class="toc-text">（2）T5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89MoE"><span class="toc-text">（3）MoE</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Transformers-API%E6%95%99%E7%A8%8B"><span class="toc-text">3.Transformers API教程</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

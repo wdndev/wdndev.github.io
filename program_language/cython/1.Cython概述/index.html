@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>1.Cython概述 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1、关于Cython1.1 CythonCython 是一门编程语言，它将 C、C++ 的静态类型系统融合在了 Python 身上。文件的后缀是 .pyx，它是 Python 的一个超集；语法是 Python 语法和 C 语法的混血，当然我们说它是 Python 的一个超集，因此你写纯 Python 代码也是可以的。 cython 是一个编译器，负责将 Cython 源代码翻译成高效的 C 或者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.Cython概述">
+<meta property="og:url" content="https://wdndev.github.io/program_language/cython/1.Cython%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="1、关于Cython1.1 CythonCython 是一门编程语言，它将 C、C++ 的静态类型系统融合在了 Python 身上。文件的后缀是 .pyx，它是 Python 的一个超集；语法是 Python 语法和 C 语法的混血，当然我们说它是 Python 的一个超集，因此你写纯 Python 代码也是可以的。 cython 是一个编译器，负责将 Cython 源代码翻译成高效的 C 或者">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2022-08-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.865Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="PL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/program_language/cython/1.Cython%E6%A6%82%E8%BF%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1.Cython概述',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">1.Cython概述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-08-19T16:00:00.000Z" title="Created 2022-08-20 00:00:00">2022-08-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.865Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PL/">PL</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PL/Cython/">Cython</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>10min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="1.Cython概述"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="1、关于Cython"><a href="#1、关于Cython" class="headerlink" title="1、关于Cython"></a>1、关于Cython</h1><h2 id="1-1-Cython"><a href="#1-1-Cython" class="headerlink" title="1.1 Cython"></a>1.1 Cython</h2><p>Cython 是一门<strong>编程语言</strong>，它将 C、C++ 的静态类型系统融合在了 Python 身上。文件的后缀是 <code>.pyx</code>，它是 Python 的一个超集；语法是 Python 语法和 C 语法的混血，当然我们说它是 Python 的一个超集，因此你写纯 Python 代码也是可以的。</p>
+<p>cython 是一个<strong>编译器</strong>，负责将 Cython 源代码翻译成高效的 C 或者 C++ 源代码；Cython 源文件被编译之后的最终形式可以是 Python 的扩展模块（<code>.pyd</code>），也可以是一个独立的可执行文件。</p>
+<p>因此 Cython 的强大之处就在于它将 Python 和 C 结合了起来，可以让你像写 Python 代码一样的同时还可以获得 C 的高效率；所以我们看到 Cython 相当于是高级语言 Python 和低级语言 C 之间的一个融合。</p>
+<h2 id="1-2-Cython和CPython的区别"><a href="#1-2-Cython和CPython的区别" class="headerlink" title="1.2 Cython和CPython的区别"></a>1.2 Cython和CPython的区别</h2><p>Python 是一门语言，它有自己的语法规则。按照 Python 语言规定的语法规则编写的代码就是 Python 源代码，但是源代码只是一个或多个普通的文本文件，需要使用 Python 语言对应的解释器来执行它。</p>
+<p>而 Python 解释器也会按照同样的语法规则来对我们编写的 Python 源代码进行分词、语法解析等等，如果我们编写的代码不符合 Python 的语法规则，那么会报出语法错误，也就是 SyntaxError。如果符合语法规范的话，那么会顺利的生成抽象语法树（Abstract Syntax Tree，简称AST），然后将 AST 编译成指令集合，也就是所谓的字节码（bytes code），最后再执行字节码。</p>
+<p>所以我们看到 Python 源代码是需要 Python 解释器来操作的，我们想做一些事情的话，如果光写成源代码是不行的，必须要由 <strong>Python 解释器将我们的代码解释成机器可以识别的指令进行执行</strong>才可以。而 <strong>CPython 正是 Python 语言对应的解释器</strong>，并且它也是官方实现的标准解释器，同时还是是使用最广泛的一种解释器。基本上我们使用的解释器都是 CPython，也就是从官网下载、然后安装之后所得到的。</p>
+<p><strong>标准解释器 CPython 是由 C 语言实现的</strong>，除了 CPython 之外还有 Jython（java实现的 Python 解释器）、PyPy（Python 语言实现的 Python 解释器）等等。总之设计出一门语言，还要有相应的解释器才可以；至于编译型语言，则是对应的编译器。</p>
+<p>最后重点来了， CPython 解释器是由 C 实现的，它给 Python 语言提供了 C 级别的接口，也就是熟知的 Python/C API。比如：Python 中的列表，底层对应的是 PyListObject；字典则对应 PyDictObject，等等。所以当我们在Python中创建一个列表，那么 CPython 在执行的时候，就会在底层创建一个 PyListObject。因为 CPython 是用C来实现的，最终肯定是将 Python 代码翻译成 C 级别的代码，然后再变成机器码交给 CPU 执行。而 Cython 也是如此，Cython 代码也是要被翻译成 C 代码的，而实现这一点的就是 cython 编译器（本质上是一个第三方模块，所以同样依赖于 CPython）。因此 Cython 是一门语言，它并不是Python 解释器的另一种实现，它的地位和 CPython 不是等价的，不过和 Python 是平级的。</p>
+<p>因此 Cython 是一门语言，可以通过 Cython 源代码生成高效的扩展模块，同样需要 CPython 来进行调用。</p>
+<h1 id="2、Python、C、C扩展、Cython比较"><a href="#2、Python、C、C扩展、Cython比较" class="headerlink" title="2、Python、C、C扩展、Cython比较"></a>2、Python、C、C扩展、Cython比较</h1><p>以简单的斐波那契数列为例，来测试一下它们执行效率的差异：</p>
+<p><strong>Python代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):</span><br><span class="line">    a, b = <span class="number">0.0</span>, <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        a, b = a + b, a</span><br><span class="line">    <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
+<p><strong>C代码</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="title function_">cfib</span><span class="params">(<span class="type">int</span> n)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">double</span> a=<span class="number">0.0</span>, b=<span class="number">1.0</span>, tmp;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; ++i) </span><br><span class="line">    &#123;</span><br><span class="line">        tmp = a; a = a + b; b = tmp;</span><br><span class="line">    &#125;</span><br><span class="line"> 	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面便是 C 实现的一个斐波那契数列，可能有人好奇为什么使用浮点型，而不是整型呢？答案是 C 中的整型是有范围的，所以使用 double，而且 Python 中 float 在底层对应的是PyFloatObject、其内部也是通过 double 来存储的。</p>
+<p>然后是 <strong>C 扩展</strong>:</p>
+<p>注意：C 扩展不是我们的重点，写 C 扩展和写 Cython 本质是一样的，都是为 Python 编写扩展模块，但是写 Cython 绝对要比写 C 扩展简单的多。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> PyObject * <span class="title function_">fib</span><span class="params">(PyObject *self, PyObject *n)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!PyLong_CheckExact(n)) &#123;</span><br><span class="line">        PyErr_Format(PyExc_ValueError, <span class="string">&quot;function fib excepted int, not %s&quot;</span>, Py_TYPE(n) -&gt; tp_name);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PyObject *z;</span><br><span class="line">    <span class="type">double</span> a = <span class="number">0.0</span>, b = <span class="number">1.0</span>, tmp;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; PyLong_AsLong(n); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        tmp = a; a = a + b; b = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    z = PyFloat_FromDouble(a);</span><br><span class="line">    <span class="keyword">return</span> z;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Cython:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params"><span class="built_in">int</span> n</span>):</span><br><span class="line">    cdef <span class="built_in">int</span> i</span><br><span class="line">    cdef double a = <span class="number">0.0</span>, b = <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        a, b = a + b, a</span><br><span class="line">    <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
+<p> Python 中所有的变量都是一个 <code>PyObject *</code>，在底层中就是 C 的一个指针。PyObject（C 的一个结构体）内部有两个成员，分别是 <code>ob_refcnt</code>：保存对象的引用计数、<code>ob_type *</code>：保存对象类型的指针。不管是整型、字符串、元组、字典，亦或是其它的什么，所有指向它们的变量都是一个 <code>PyObject *</code>，当进行操作的时候，首先要通过 <code>-&gt; ob_type</code> 来获取对应的类型的指针，再进行转化。</p>
+<p>比如：这里的 a 和 b，我们虽然知道无论进行哪一层循环，结果指向的都是浮点数，但是 Python 解释器不会做这种推断。每一次相加都要进行检测，判断到底是什么类型并进行转化，然后执行加法的时候，再去找内部的 <strong>add</strong> 方法，将两个对象相加，创建一个新的对象，执行结束后再将这个新对象的指针转成 PyObject *，然后返回。并且 Python 中的对象都是在堆上分配空间，再加上 a 和 b 不可变，所以每一次循环都会创建新的对象，并将之前的对象给回收掉。</p>
+<h2 id="2-1-效率差异"><a href="#2-1-效率差异" class="headerlink" title="2.1 效率差异"></a>2.1 效率差异</h2><p><img src="./image/1_1.jpg" alt="效率差异"></p>
+<p>提升的倍数，指的是相对于纯 Python 来说在效率上提升了多少倍；第二列是fib(0)，显然它没有真正进行循环，fib(0) 测量的是<strong>调用一个函数所需要花费的开销</strong>；而倒数第二列 “循环体耗时” 指的是执行 fib(90) 的时候，排除函数调用本身的开销，也就是执行内部循环体所花费的时间。</p>
+<ul>
+<li>Python：各方面都是表现最差的那一个。从 fib(0) 来看，调用一个函数要花 590 纳秒。和 C 相比慢了这么多，原因就在于 Python 调用一个函数的时候需要创建一个栈帧，而这个栈帧是分配在堆上的，而且结束之后还要涉及栈帧的销毁等等。至于 fib(90)，显然无需分析了。</li>
+<li>C：显然此时没有和 Python 运行时的交互，因此消耗的性能最小。</li>
+<li>C扩展：看一下循环体耗时，发现 C 扩展和纯 C 是差不多的，区别就是函数调用上花的时间比较多。原因就在于在调用扩展模块的函数时，需要先将 Python 中的数据转成 C 中的数据，然后在 C 计算斐波那契数列，计算完了再将 C 中的数据转成 Python 中的数据。C 扩展本质也是 C 语言，只不过在编写的时候遵循 Python 提供的 API 规范，可以将 C 代码编译成 pyd 文件，直接让 Python 来调用。</li>
+<li>Cython：单独看循环体耗时的话，我们看到纯 C、C 扩展、Cython 都是差不多的，但是编写 Cython 显然是最方便的。 Cython 做的事情和 C 扩展本质是类似的，都是为 Python 提供扩展模块，所以对于 Cython 来说，将 Python 的数据转成 C 的数据、进行计算、然后再转成 Python 中的数据返回，这一过程是无可避免的。但是我们看到 Cython 在函数调用时的耗时相比 C 扩展却要少很多，主要是 Cython 生成的C代码是经过高度优化的。</li>
+</ul>
+<h2 id="2-2-Python的for循环为什么这么慢？"><a href="#2-2-Python的for循环为什么这么慢？" class="headerlink" title="2.2 Python的for循环为什么这么慢？"></a>2.2 Python的for循环为什么这么慢？</h2><p>通过循环体耗时我们看到，Python 的 for 循环真的是出了名的慢，那么原因是什么呢？</p>
+<h3 id="2-2-1-Python-的-for-循环机制"><a href="#2-2-1-Python-的-for-循环机制" class="headerlink" title="2.2.1 Python 的 for 循环机制"></a>2.2.1 Python 的 for 循环机制</h3><p>Python 在遍历一个可迭代对象的时候，会先调用这个可迭代对象内部的<code>__iter__</code> 方法返回其对应的迭代器，然后再不断地调用这个迭代器的 <code>__next__</code>方法，将值一个一个的迭代出来，直到迭代器抛出 StopIteration 异常，for循环捕捉，终止循环。而迭代器是有状态的，Python 解释器需要时刻记录迭代器的迭代状态。</p>
+<h3 id="2-2-2-python的算数操作"><a href="#2-2-2-python的算数操作" class="headerlink" title="2.2.2 python的算数操作"></a>2.2.2 python的算数操作</h3><p>Python 由于其动态特性，使得其<strong>无法做任何基于类型的优化</strong>。比如：循环体中的 a + b，这个 a、b 指向的可以是整数、浮点数、字符串、元组、列表，甚至是实现了魔法方法 <code>__add__</code> 的类的实例对象，等等。尽管我们知道是浮点数，但是 Python 不会做这种假设，所以每一次执行 a + b 的时候，都会检测其类型到底是什么？然后判断内部是否有<code>__add__</code>方法，以及两者能不能相加，然后条件满足的话再调用对应的 <code>__add__</code> 方法，将 a 和 b 作为参数，将 a 和 b 指向的对象进行相加。计算出结果之后，再返回其指针转成 PyObject * 返回。</p>
+<p>而对于 C 和 Cython 来说，在创建变量的时候就实现规定了类型。就是这个类型，不是其它的，因此编译之后的 a + b 只是一条简单的机器指令。这对比下来，Python 尼玛能不慢吗。</p>
+<h3 id="2-2-3-Python中对象的内存分配"><a href="#2-2-3-Python中对象的内存分配" class="headerlink" title="2.2.3 Python中对象的内存分配"></a>2.2.3 Python中对象的内存分配</h3><p>Python 中的对象是分配在<strong>堆</strong>上面的，因为 Python 中的对象本质上就是 C 中的 malloc 函数为结构体在堆区申请的一块内存。在堆区进行内存的分配和释放是需要付出很大的代价的，而栈则要小很多，并且它是由操作系统维护的，会自动回收，效率极高。而堆显然没有此待遇，而恰恰 Python 的对象都是分配在堆上的，尽管 Python 引入了内存池机制使得其在一定程度上避免了和操作系统的频繁交互，并且还引入了小整数对象池以及针对字符串的intern机制。但事实上，当涉及到对象（任意对象、包括标量）的创建和销毁时，都会增加动态分配内存、以及 Python 内存子系统的开销。而 float 对象又是不可变的，因此每循环一次都会创建和销毁一次，所以效率依旧是不高的。</p>
+<p>而 Cython 分配的变量，这里是 a 和 b，它们就不再是指针了（我们说 Python 中的变量本质上都是一个指针），而是分配在栈上的双精度浮点数。而栈上分配的效率远远高于堆，因此非常适合 for 循环，所以效率要比 Python 高很多。</p>
+<p>所以在 for 循环方面，C 和 Cython 要比纯 Python 快了一个数量级以上，这并不是奇怪的事情，因为 Python 每次迭代都要做很多的工作。</p>
+<h2 id="2-3-使用Cython保证C代码"><a href="#2-3-使用Cython保证C代码" class="headerlink" title="2.3 使用Cython保证C代码"></a>2.3 使用Cython保证C代码</h2><p>C代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fib.h</span></span><br><span class="line"><span class="type">double</span> <span class="title function_">cfib</span><span class="params">(<span class="type">int</span> n)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// fib.c</span></span><br><span class="line"><span class="type">double</span> <span class="title function_">cfib</span><span class="params">(<span class="type">int</span> n)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">double</span> a=<span class="number">0.0</span>, b=<span class="number">1.0</span>, tmp;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; ++i) </span><br><span class="line">    &#123;</span><br><span class="line">        tmp = a; a = a + b; b = tmp;</span><br><span class="line">    &#125;</span><br><span class="line"> 	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Cython代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cdef extern <span class="keyword">from</span> <span class="string">&quot;cfib.h&quot;</span>:</span><br><span class="line">    double cfib(<span class="built_in">int</span> n)</span><br><span class="line">   </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="comment"># 调用 C 实现的斐波那契函数</span></span><br><span class="line">    <span class="keyword">return</span> cfib(n)</span><br></pre></td></tr></table></figure>
+<p>cdef extern from 可以看成是导入头文件，内部相当于定义要使用的 C 函数。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/program_language/cython/1.Cython%E6%A6%82%E8%BF%B0/">https://wdndev.github.io/program_language/cython/1.Cython概述/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PL/">PL</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/program_language/pl_idx/" title="编程语言 (Programming Language)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-07</div><div class="title">编程语言 (Programming Language)</div></div></a></div><div><a href="/program_language/cython/2.Cython%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C/" title="2.Cython编译运行"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-20</div><div class="title">2.Cython编译运行</div></div></a></div><div><a href="/program_language/cython/3.Cython%E8%AF%AD%E6%B3%95%E4%BB%8B%E7%BB%8D/" title="3.Cython语法介绍"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-20</div><div class="title">3.Cython语法介绍</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E5%85%B3%E4%BA%8ECython"><span class="toc-text">1、关于Cython</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Cython"><span class="toc-text">1.1 Cython</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Cython%E5%92%8CCPython%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">1.2 Cython和CPython的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Python%E3%80%81C%E3%80%81C%E6%89%A9%E5%B1%95%E3%80%81Cython%E6%AF%94%E8%BE%83"><span class="toc-text">2、Python、C、C扩展、Cython比较</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%95%88%E7%8E%87%E5%B7%AE%E5%BC%82"><span class="toc-text">2.1 效率差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Python%E7%9A%84for%E5%BE%AA%E7%8E%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E6%85%A2%EF%BC%9F"><span class="toc-text">2.2 Python的for循环为什么这么慢？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-Python-%E7%9A%84-for-%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6"><span class="toc-text">2.2.1 Python 的 for 循环机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-python%E7%9A%84%E7%AE%97%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="toc-text">2.2.2 python的算数操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-Python%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="toc-text">2.2.3 Python中对象的内存分配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E4%BD%BF%E7%94%A8Cython%E4%BF%9D%E8%AF%81C%E4%BB%A3%E7%A0%81"><span class="toc-text">2.3 使用Cython保证C代码</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

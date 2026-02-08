@@ -1,0 +1,546 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LLMs公开课 - 6.文本理解和生成大模型 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.简介1.1 NLP的主要应用NLP的主要应用主要分为两类：自然语言理解(NLU)和自然语言生成(NLG)。 &#x20;  信息检索是NLU非常有代表性的应用； 文本生成是NLG一个代表性例子； 机器问答综合了自然语言理解和自然语言生成两个任务。  在这三种任务中，大模型都带来了一定的变革。  1.2 信息检索信息检索是非常古老、非常经典的任务。在这一方面，大模型可以帮助机器来提供更加智能、更">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLMs公开课 - 6.文本理解和生成大模型">
+<meta property="og:url" content="https://wdndev.github.io/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="1.简介1.1 NLP的主要应用NLP的主要应用主要分为两类：自然语言理解(NLU)和自然语言生成(NLG)。 &#x20;  信息检索是NLU非常有代表性的应用； 文本生成是NLG一个代表性例子； 机器问答综合了自然语言理解和自然语言生成两个任务。  在这三种任务中，大模型都带来了一定的变革。  1.2 信息检索信息检索是非常古老、非常经典的任务。在这一方面，大模型可以帮助机器来提供更加智能、更">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2024-01-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.635Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="LLMs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LLMs公开课 - 6.文本理解和生成大模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">LLMs公开课 - 6.文本理解和生成大模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-09T16:00:00.000Z" title="Created 2024-01-10 00:00:00">2024-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.635Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LLMs/">LLMs</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">6.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>20min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LLMs公开课 - 6.文本理解和生成大模型"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><h2 id="1-1-NLP的主要应用"><a href="#1-1-NLP的主要应用" class="headerlink" title="1.1 NLP的主要应用"></a>1.1 NLP的主要应用</h2><p>NLP的主要应用主要分为两类：<strong>自然语言理解(NLU)</strong>和<strong>自然语言生成(NLG)</strong>。 &#x20;</p>
+<ul>
+<li><strong>信息检索</strong>是NLU非常有代表性的应用；</li>
+<li><strong>文本生成</strong>是NLG一个代表性例子；</li>
+<li><strong>机器问答</strong>综合了自然语言理解和自然语言生成两个任务。</li>
+</ul>
+<p>在这三种任务中，大模型都带来了一定的变革。</p>
+<p><img src="image/image_-SAdnB-JPD.png" alt=""></p>
+<h2 id="1-2-信息检索"><a href="#1-2-信息检索" class="headerlink" title="1.2 信息检索"></a>1.2 信息检索</h2><p>信息检索是非常古老、非常经典的任务。在这一方面，大模型可以帮助机器来提供更加智能、更加准确的搜索结果。</p>
+<p><img src="image/image_89Mw0WZw8M.png" alt=""></p>
+<h2 id="1-3-机器问答"><a href="#1-3-机器问答" class="headerlink" title="1.3 机器问答"></a>1.3 机器问答</h2><p>问机器一些问题，希望机器能提供我们想要的答案。<strong>传统的机器问答方法是基于模板、或者基于知识库的，这样使得它的问答范围受限</strong>。</p>
+<p>但现在大模型允许机器回答更加复杂的问题，从下面的例子中，列出一些最先进的大模型可以回答的问题。可以看到，即使它背后没有一个知识库去支撑它搜索相关的知识，大模型里面蕴含的知识也足以帮助机器回答上述问题。</p>
+<p><img src="image/image_vFAP46ZWa3.png" alt=""></p>
+<h2 id="1-4文本生成"><a href="#1-4文本生成" class="headerlink" title="1.4文本生成"></a>1.4文本生成</h2><p>利用大模型可以帮助机器生成更加流畅、自然的文本。</p>
+<p><img src="image/image_BY6TOK02AS.png" alt=""></p>
+<h1 id="2-信息检索"><a href="#2-信息检索" class="headerlink" title="2.信息检索"></a>2.信息检索</h1><h2 id="2-1-背景"><a href="#2-1-背景" class="headerlink" title="2.1 背景"></a>2.1 背景</h2><p>信息以爆炸的形式增加，用户对信息检索的需求也是在急剧增长。</p>
+<p>可以看到全球的信息用户数量也非常庞大。 &#x20;</p>
+<p>自动检索：<strong>根据用户的查询，从海量的文本信息中提炼出少量的与用户需求高度相关的文档</strong>，反馈给用户。</p>
+<p><img src="https://img-blog.csdnimg.cn/552a214fc0e744ee93a0b37f9036404a.png" alt=""></p>
+<p>信息检索有很多典型的应用，比如搜索引擎、问答系统和智能写作等。</p>
+<h2 id="2-2-IR定义和评价"><a href="#2-2-IR定义和评价" class="headerlink" title="2.2 IR定义和评价"></a>2.2 IR定义和评价</h2><h3 id="（1）IR定义"><a href="#（1）IR定义" class="headerlink" title="（1）IR定义"></a>（1）IR定义</h3><p>首先来看下如何定义信息检索(IR)任务。</p>
+<ul>
+<li>给定一个<code>query</code> $q$</li>
+<li>给定一个文档库 $D = {\cdots,d_i,\cdots }$</li>
+<li>IR系统计算相关系数得分$f(q,d_i)$，然后根据该得分进行排序</li>
+</ul>
+<p>一个典型的IR系统分为两个阶段：检索和重排阶段。</p>
+<ul>
+<li>在检索阶段，针对整个文档库，从中找到相关文档的子集，它<strong>重视的检索速度和相关文档的召回率</strong>；</li>
+<li>在重排序阶段针对上一步得到的少量文档进行精排，看重的是<strong>性能和效果</strong>。</li>
+</ul>
+<p><img src="image/image_8dp8clk9s2.png" alt=""></p>
+<h3 id="（2）IR评价指标"><a href="#（2）IR评价指标" class="headerlink" title="（2）IR评价指标"></a>（2）IR评价指标</h3><p>IR中常用的三个指标是<code>MRR@k</code>、<code>MAP@k</code>和<code>NDCG@k</code>。后面的<code>@k</code>表示在评测中，只要考虑top K个排序的结果。</p>
+<h4 id="MRR-Mean-Reciprocal-Rank"><a href="#MRR-Mean-Reciprocal-Rank" class="headerlink" title="MRR (Mean Reciprocal Rank)"></a>MRR (Mean Reciprocal Rank)</h4><p>MRR是平均倒数排名，给定一个待评测的查询集合 <code>Q</code>，MRR只会考虑哪个查询排名<strong>最靠前的第一个相关文档的位置</strong>。 &#x20;</p>
+<script type="math/tex; mode=display">
+M R R=\frac{1}{|Q|} \sum_{i=1}^{|Q|} \frac{1}{\operatorname{rank}_{i}}</script><p>比如说查询集合中一个有三个查询：cat、torus和virus。这三个查询排在首位的相关文档位置，分别是第3位、第2位和第1位。那么对它们取倒数之后就是<code>1/3</code>、<code>1/2</code>和<code>1</code>。对它们求均值之后得到<code>0.61</code>，就是MRR评测的结果。</p>
+<script type="math/tex; mode=display">
+M R R=(1 / 3+1 / 2+1) / 3=0.61</script><p><img src="image/image_OJgNUWQ2X3.png" alt=""></p>
+<h4 id="MAP-Mean-Average-Precision"><a href="#MAP-Mean-Average-Precision" class="headerlink" title="MAP (Mean Average Precision)"></a>MAP (Mean Average Precision)</h4><p>MAP，<strong>一组查询平均准确率的均值，它会考虑所有相关文档</strong>。这里也举个例子，这个查询集合中一共有两个查询，它们分别有4篇和5篇相关文档。 &#x20;</p>
+<p>在query1中，这四篇相关文档都被成功地召回了，它们被召回的位置分别是第1位、2位、4位和7位。同样对它们取倒数排名，计算均值之后得到0.83。 &#x20;</p>
+<p>在query2中，五篇中只成功召回了3篇，位置是1,3和5。那么计算它们的倒数分数，求均值得到0.45。 &#x20;</p>
+<p>接着对这两个查询的分数相加，再求平均，得到0.64。才是最终MAP的得分。</p>
+<p><img src="image/image_3o1YFOjutf.png" alt=""></p>
+<h4 id="NDCG-Normalized-Discounted-Cumulative-Gain"><a href="#NDCG-Normalized-Discounted-Cumulative-Gain" class="headerlink" title="NDCG (Normalized Discounted Cumulative Gain)"></a>NDCG (Normalized Discounted Cumulative Gain)</h4><p>NDCG，<strong>归一化的折损累积增益</strong>，该<strong>指标是商业的搜索引擎/推荐系统中最常用的评价指标</strong>。它会将文档设置成不同的相关等级，相关程度越高，等级越高。 &#x20;</p>
+<p>它的计算方式为：用待评测的排序列表的DCG分数，除以IDCG的分数。IDCG的分数就是一个理想状态下列表的真实排序方式；DCG的计算公式如下图所示。</p>
+<p><img src="image/image_h1e8B6K41f.png" alt=""></p>
+<p>也看一个具体的例子，针对一个query抽回的五篇文档，分别有不同的相关等级 $ rel_i  $。 &#x20;</p>
+<p>会计算它的增益和折损后的增益，最后再求和就是DCG的分数。</p>
+<p><img src="image/image_sQQC_YHcLo.png" alt=""></p>
+<h2 id="2-3-传统方法"><a href="#2-3-传统方法" class="headerlink" title="2.3 传统方法"></a>2.3 传统方法</h2><h3 id="（1）BM25"><a href="#（1）BM25" class="headerlink" title="（1）BM25"></a>（1）BM25</h3><h4 id="BM25-Best-Matching-25"><a href="#BM25-Best-Matching-25" class="headerlink" title="BM25 (Best Matching 25)"></a>BM25 (Best Matching 25)</h4><p>给定一个查询，其中包含相应的单词，BM25会计算<strong>该查询与每一篇文档的匹配分数</strong>。</p>
+<p><img src="image/image_6Z-TYb1vtD.png" alt=""></p>
+<h4 id="TF-Term-Frequency"><a href="#TF-Term-Frequency" class="headerlink" title="TF (Term Frequency)"></a>TF (Term Frequency)</h4><p>TF就是<strong>词频</strong>，为查询中每个单词在文档中出现的频率。</p>
+<p><img src="image/image_swNUF-CYvB.png" alt=""></p>
+<h4 id="IDF-Inverse-Document-Frequency"><a href="#IDF-Inverse-Document-Frequency" class="headerlink" title="IDF (Inverse Document Frequency)"></a>IDF (Inverse Document Frequency)</h4><p>而IDF是<strong>逆文档频率</strong>，评估查询单词的稀有程度。如果一个文档在所有文档中都出现，那么它的IDF分数反而很低。</p>
+<p><img src="image/image_VcOCEG0Gt7.png" alt=""></p>
+<h3 id="（2）缺点"><a href="#（2）缺点" class="headerlink" title="（2）缺点"></a>（2）缺点</h3><p>那么这种基于词汇匹配的算法存在两方面的问题。</p>
+<p>首先是<strong>词汇失配</strong>的问题，因为人类会使用不同的单词来表达同一个意思。&#x20;</p>
+<p><img src="image/image__0glioEdhZ.png" alt=""></p>
+<p>其次是<strong>语义失配</strong>问题，可能即使文档和词汇有很高的匹配率，但描述的含义却完全不一样。</p>
+<p><img src="image/image_bBXUB4iJAs.png" alt=""></p>
+<h2 id="2-4-神经网络方法"><a href="#2-4-神经网络方法" class="headerlink" title="2.4 神经网络方法"></a>2.4 神经网络方法</h2><h3 id="（1）简介"><a href="#（1）简介" class="headerlink" title="（1）简介"></a>（1）简介</h3><p>神经网络IR<strong>使用神经网络将用户的查询和文档库的中的文档投射到同一个向量空间，然后计算两者的相关性分数</strong>，从而避免了传统IR中的词汇失配合语义失配的问题。</p>
+<p><img src="image/image_u4HWHk82C4.png" alt=""></p>
+<p>从性能上来说，Neural IR的方法尤其是基于大预训练语言模型的方法，它的检索性能远远超越了传统IR的方法。也可以看到Neural IR的研究热度是逐年增加的。</p>
+<p><img src="image/image_CP7TFf0go6.png" alt=""></p>
+<p>通常会在<strong>重排序阶段</strong>采用左边的<strong>Cross-Encoder的大模型架构</strong>，它会将查询和问答进行词汇级别的拼接，然后进行一个精细地交互式建模，生成一个<code>查询-文档</code>的共同表示，然后产生相关性分数。这种建模方式的好处是比较精细，达到的检索性能也较好，但缺点是计算代价比较高。所以一般使用在重排序阶段。</p>
+<p>而在第一阶段，<strong>检索阶段</strong>，一般采用右边的<strong>Dual-encoder，双塔的架构</strong>，使用大模型对查询和文档分别进行编码，形成两个独立的向量，然后再去计算向量间的相似性。这样可以极大地降低计算的开销。</p>
+<p><img src="image/image_j70AV_P8cg.png" alt=""></p>
+<h3 id="（2）Cross-Encoder架构"><a href="#（2）Cross-Encoder架构" class="headerlink" title="（2）Cross-Encoder架构"></a>（2）Cross-Encoder架构</h3><p><strong>会先把查询和文档进行拼接，然后一起喂给大模型</strong>。这里以BERT为例，拼接完之后，经过多层transformer的建模之后，把最后一层的CLS token作为<code>查询-文档</code>的共同表示。经过一个NLP的投射变成一个标量的分数，可以作为<code>查询-文档</code>相关性的分数。</p>
+<p>在训练该大模型的时候，训练数据的形式是每个查询配一个相关文档，和至少一篇的不相关文档。</p>
+<p>然后采用常见的Ranking Loss，比如这里的Pairwise hinge loss，为相关文档和查询分配更高的分数。</p>
+<p><img src="image/image_x1UKCSqUvV.png" alt=""></p>
+<p>这里分别展示了以BERT和T5作为bacakbone的重排序结果，可以看到相比传统的IR方法，基于大模型的方法可以达到更出色的重排序效果。并且随着模型参数量的增加，重排序的性能也会持续地增强。</p>
+<blockquote>
+<p>Dai, Zhuyun, et al. SIGIR 2019. Deeper Text Understanding for IR with Contextual Neural Language Modeling. &#x20;<br>Nogueira Rodrigo, et al. EMNLP 2020. Document Ranking with a Pretrained Sequence-to-Sequence Model.</p>
+</blockquote>
+<p><img src="image/image_vzWLAp2xgC.png" alt=""></p>
+<h3 id="（3）Dual-Encoder架构"><a href="#（3）Dual-Encoder架构" class="headerlink" title="（3）Dual-Encoder架构"></a>（3）Dual-Encoder架构</h3><p>这里以DPR为例，它使用两个独立的Encoder分别对查询和文档进行编码，然后用类似softmax这种NLL损失来训练模型。</p>
+<blockquote>
+<p>Karpukhin Vladimir, et al. EMNLP 2020. Dense Passage Retrieval for Open-Domain Question Answering</p>
+</blockquote>
+<p><img src="image/image_wZARrDchyH.png" alt=""></p>
+<p>Dual-Encoder架构的好处是，因为是<strong>独立编码</strong>，所以可以提前计算缓存整个文档库的编码。然后只需要计算用户的新查询编码，接着使用一些最近邻搜索的工具，比如<code>faiss</code>，去找出最相近的<code>k</code>个文档。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss" title="https://github.com/facebookresearch/faiss">https://github.com/facebookresearch/faiss</a></p>
+</blockquote>
+<p><img src="image/image_aZFHYPpCJp.png" alt=""></p>
+<p>在检索性能方法，在第一阶段检索时，以BERT、T5作为backbone的效果。在使用1K训练数据的情况下，它的效果已经超过了BM25，同时随着训练数据的增加，大模型的性能也会增加。同样模型的大小增加，效果也越好。</p>
+<blockquote>
+<p>Karpukhin Vladimir, et al. EMNLP 2020. Dense Passage Retrieval for Open-Domain Question Answering. &#x20;<br>Ni, Jianmo, et al. arXiv 2022. Large dual encoders are generalizable retrievers</p>
+</blockquote>
+<p><img src="image/image_8OrmCprbfy.png" alt=""></p>
+<h2 id="2-5-前沿热点"><a href="#2-5-前沿热点" class="headerlink" title="2.5 前沿热点"></a>2.5 前沿热点</h2><p>本小节介绍几种比较常见的基于大模型的Neural IR架构，和IR领域比较前沿的研究热点。</p>
+<h3 id="（1）Negative-enhanced-Fine-tuning"><a href="#（1）Negative-enhanced-Fine-tuning" class="headerlink" title="（1）Negative-enhanced Fine-tuning"></a>（1）Negative-enhanced Fine-tuning</h3><p>首先有相当一部分工作是在研究<strong>如何在微调阶段去挖掘更好的负例</strong>，目前几种常见的训练负例有上图这么几种。 &#x20;</p>
+<ul>
+<li><code>In-bach negative</code>：在训练中同一个batch的正例可以作为其他query的一个负例。 &#x20;</li>
+<li><code>Random negative</code>：随机地从文档中进行采样。 &#x20;</li>
+<li><code>BM25的负例</code>：先用BM25针对每个query抽回一些top k的文档，然后删除掉相关文档，剩下的就是不相关的。</li>
+</ul>
+<p>在In-batch空间中，它们的分布是非常不一样的， 因此它最大对大模型检索的性能影响也是比较大的。&#x20;</p>
+<p><img src="image/image_b-Oc0fVC4m.png" alt=""></p>
+<p>下面介绍一篇工作，它在训练过程中使用模型本身去挖掘更难的负样本，从而获得更好的性能。</p>
+<h4 id="ANCE-Approximate-nearest-neighbor-Negative-Contrastive-Learning"><a href="#ANCE-Approximate-nearest-neighbor-Negative-Contrastive-Learning" class="headerlink" title="ANCE (Approximate nearest neighbor Negative Contrastive Learning)"></a>ANCE (Approximate nearest neighbor Negative Contrastive Learning)</h4><p>该方法称为ANCE，它会在模型的训练过程中（图中的绿线）去异步地维护Inferencer的程序，然后每隔k步，去把最新的模型拿过来推理一下，把那些排名靠前的难负样本抽回来，加到下一轮的训练过程中，这样不断地迭代刷新。</p>
+<blockquote>
+<p>Xiong et al. ICLR 2021. Approximate nearest neighbor negative contrastive learning for dense text retrieval.</p>
+</blockquote>
+<p><img src="image/image_ovqsMyDQF6.png" alt=""></p>
+<h4 id="RocketQA-NAACL-2021"><a href="#RocketQA-NAACL-2021" class="headerlink" title="RocketQA (NAACL 2021)"></a>RocketQA (NAACL 2021)</h4><p>还有一类方法，比如RocketQA，它建模<strong>更精细的Cross-Encoder来帮助Dual-Encoder去过滤难负例</strong>，然后加到Dual-Encoder的训练中，这样交叠学习，从而提升Dual-Encoder第一阶段检索的性能。</p>
+<blockquote>
+<p>Qu Yingqi, et al. NAACL 2021. RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering.</p>
+</blockquote>
+<p><img src="image/image_I43oqyB8zG.png" alt=""></p>
+<h3 id="（2）IR-oriented-Pretraining"><a href="#（2）IR-oriented-Pretraining" class="headerlink" title="（2）IR-oriented Pretraining"></a>（2）IR-oriented Pretraining</h3><p>上面是在微调阶段的一个研究热点，第二个研究热点集中在<strong>大规模的预训练阶段</strong>。</p>
+<h4 id="SEED-Encoder-EMNLP-2021"><a href="#SEED-Encoder-EMNLP-2021" class="headerlink" title="SEED-Encoder (EMNLP 2021)"></a>SEED-Encoder (EMNLP 2021)</h4><p>SEED-Encoder，它通过在<strong>预训练阶段为Encoder配置一个较弱的Decoder，来促使下面的Encoder对文本形成一个更好的表示</strong>。它主要的调整，第一个在于Encoder和Decoder之间的连接，第二个在于限制Decoder的Span。这些操作的目地在于<strong>让CLS的表示足够强</strong>，这个模型在预训练的时候只能通过CLS token来重建出原文本。CLS表现能力的增强，对IR是非常有帮助的。</p>
+<blockquote>
+<p>Lu Shuqi, et al. EMNLP 2021. Less is More: Pre-train a Strong Text Encoder for Dense Retrieval Using a Weak Decoder.</p>
+</blockquote>
+<p><img src="image/image_qeiB-U12bJ.png" alt=""></p>
+<h4 id="ICT-Inverse-Cloze-Task"><a href="#ICT-Inverse-Cloze-Task" class="headerlink" title="ICT (Inverse Cloze Task)"></a>ICT (Inverse Cloze Task)</h4><p>ICT，是在预训练的数据上去做一些操作，比如它会针对预训练的文本，随机地抽取文本中任意的一个句子，把这个句子作为我们的查询，剩下的虚线的文本框，作为查询的一个正例。这样就构建出来在微调阶段才能有的数据，接着它再用In-batch negative来配合着进行提前的预训练。</p>
+<blockquote>
+<p>Chang Wei-Cheng, et al. ICLR 2021. Pre-training Tasks for Embedding-based Large-scale Retrieval</p>
+</blockquote>
+<p><img src="image/image_zKer11IoUo.png" alt=""></p>
+<h3 id="（3）Few-Zero-Shot-IR"><a href="#（3）Few-Zero-Shot-IR" class="headerlink" title="（3）Few/Zero-Shot IR"></a>（3）Few/Zero-Shot IR</h3><p>现在越来越多的工作开始关注到Few-shot IR领域，因为在现实生活中，有很多检索场景，都是少样本的场景。这些场景缺乏大规模的监督数据，比如长尾的网页搜索、 涉及隐私的个人检索/企业检索、人工标注昂贵的医学/法律等专业领域的检索。</p>
+<h4 id="Weak-supervision-generation"><a href="#Weak-supervision-generation" class="headerlink" title="Weak supervision generation"></a>Weak supervision generation</h4><p>在这些领域，有一部分工作在研究如何用<strong>弱监督的数据去取代监督的数据来训练大模型</strong>。比如下图列了三种不同弱监督数据来源。有文档的标题与文本的正文、网页中的锚文本对、还有的直接用大模型去根据文本生成一个query，这样通过大模型生成数据。</p>
+<p><img src="image/image_8odTYGHswj.png" alt=""></p>
+<p>但由于刚才提到的弱监督数据是没有经过人工质量检测，不可避免会存在不同程度噪音。因此也涌现了一类工作，去研究如何针对弱监督数据进行去噪学习。比如ReinfoSelect。</p>
+<blockquote>
+<p>Kaitao Zhang, et al. WWW 2020. Selective weak supervision for neural information retrieval.</p>
+</blockquote>
+<p><img src="image/image_pbF2kzfEgI.png" alt=""></p>
+<h4 id="（4）其他"><a href="#（4）其他" class="headerlink" title="（4）其他"></a>（4）其他</h4><p>还有两个有意思的研究方向，</p>
+<ul>
+<li>一个是<strong>对话式IR</strong>，针对用户会同时提多个问题，且后面的问题与前面的问题有关联。 &#x20;</li>
+<li>另一个方向是<strong>使用大模型去检索长文本</strong>。因为长文本情况下，模型需要考虑的问题比较多，比如长距离依赖。</li>
+</ul>
+<p><img src="image/image_8SazZfgbGO.png" alt=""></p>
+<h1 id="3-QA"><a href="#3-QA" class="headerlink" title="3.QA"></a>3.QA</h1><p>QA分为很多种：</p>
+<ul>
+<li>机器阅读理解：阅读特定的文本并回答问题</li>
+<li>开放领域QA：搜索并阅读相关文档以回答问题</li>
+<li>基于知识的QA：根据知识图谱回答问题</li>
+<li>对话式QA：根据对话历史回答问题</li>
+</ul>
+<p>这里主要介绍前面两种。机器阅读理解是在检索到相关文档后，让机器代替人类去从相关文档中抽取答案的过程。</p>
+<h2 id="3-1-机器阅读理解"><a href="#3-1-机器阅读理解" class="headerlink" title="3.1 机器阅读理解"></a>3.1 机器阅读理解</h2><h3 id="（1）RC定义与类型"><a href="#（1）RC定义与类型" class="headerlink" title="（1）RC定义与类型"></a>（1）RC定义与类型</h3><p>阅读理解的定义：首先会有一篇文章，以及对应的题目，通过理解题目的含义来回答问题。</p>
+<p>阅读理解的形式有很多种。 &#x20;</p>
+<ul>
+<li>有<strong>完形填空</strong>，通过挖掉句子中某些词，希望模型能正确输出被挖掉的词。</li>
+<li>多选：</li>
+<li>抽取式的阅读理解，它的答案隐藏在文章中，让机器去预测问题的答案实际上是文章中的某个词/短语。</li>
+</ul>
+<p>从机器阅读理解的数据集类型可以看到它的发展。</p>
+<h3 id="（2）Traditional-Pipeline"><a href="#（2）Traditional-Pipeline" class="headerlink" title="（2）Traditional Pipeline"></a>（2）Traditional Pipeline</h3><p>介绍阅读理解领域一些经典的方法。</p>
+<p>在大模型出来之前，机器阅读理解经典的框架是这样的。</p>
+<blockquote>
+<p>Seo et al., Bidirectional Attention Flow for Machine Comprehension, In Proceedings of ICLR 2017</p>
+</blockquote>
+<p>它是一个四层的结构：</p>
+<ol>
+<li>首先<strong>对文档和问题分别进行编码，得分文档和问题的向量集合</strong>。</li>
+<li>然后<strong>分别处理这些向量集合</strong>，同时包括一些注意力，得分文档和问题的汇聚向量表示。</li>
+<li>接着基于从文档到问题/从问题到文档的<strong>交互得到融合问题和文档的向量</strong></li>
+<li>最后喂给线性层进行<strong>预测</strong>。</li>
+</ol>
+<p><img src="image/image_bifZ2B9LaT.png" alt=""></p>
+<p>BiDAF就是遵循了上面的框架实现的模型。</p>
+<blockquote>
+<p>Seo et al., Bidirectional Attention Flow for Machine Comprehension, In Proceedings of ICLR 2017</p>
+</blockquote>
+<p><img src="image/image_lDvuimXgzq.png" alt=""></p>
+<p>这些设计很复杂，并且迁移性不好。</p>
+<h3 id="（3）Big-model-based-Methods"><a href="#（3）Big-model-based-Methods" class="headerlink" title="（3）Big-model-based Methods"></a>（3）Big-model-based Methods</h3><p>有了大模型之后，<strong>只需要用一个大模型就可以替代上面的前三层</strong>。</p>
+<p><img src="image/image_mT9xp5pK9x.png" alt=""></p>
+<p>这里给出了BERT刚出来时非常简单的实现问答系统的示例。</p>
+<p>将问题和上下文的连接提供给BERT。获得问题感知上下文表示，以预测答案的开始/结束</p>
+<p>直接拼接问题和文档，作为BERT的输入，然后用<code>[CLS]</code>进行分类得到最终的答案。</p>
+<p><img src="image/image_IfbzIman_9.png" alt=""></p>
+<p>大模型的好处除了在于简化阅读理解的Pipeline之外，还有另一个好处是可以<strong>统一不同问答系统的形式</strong>。</p>
+<p>可以统一成<code>text-to-text</code>的形式，比如抽取式QA可以看成给定输入，直接输出答案。</p>
+<blockquote>
+<p>Khashabi et al., UNIFIEDQA: Crossing Format Boundaries with a Single QA System, Findings of EMNLP 2020</p>
+</blockquote>
+<p><img src="image/image_MXQ6hzmZ02.png" alt=""></p>
+<h2 id="3-2-开放式QA"><a href="#3-2-开放式QA" class="headerlink" title="3.2 开放式QA"></a>3.2 开放式QA</h2><p>开放式QA假设的是<strong>没有给出相关的文章，模型必须自己去寻找相关的文章</strong>。比如从维基百科中去寻找相关文章。开放式QA最终的目标是<strong>建立一个端到端的QA系统</strong>，只需要喂给它问题就能得到答案。</p>
+<p>开放式QA有两种类型：生成式和检索式。</p>
+<h3 id="（1）生成式QA"><a href="#（1）生成式QA" class="headerlink" title="（1）生成式QA"></a>（1）生成式QA</h3><p>生成式的方法就是<strong>用大模型内所存储的知识，直接去回答问题</strong>。</p>
+<blockquote>
+<p>Roberts et al., How Much Knowledge Can You Pack Into the Parameters of a Language Model?, EMNLP 2020</p>
+</blockquote>
+<p><img src="image/image_TetNy1S42Z.png" alt=""></p>
+<h3 id="（2）检索式QA"><a href="#（2）检索式QA" class="headerlink" title="（2）检索式QA"></a>（2）检索式QA</h3><p>第二种是基于检索的方法，通常由两部分组成：<code>Document retriever</code>和<code>Document reader。</code></p>
+<p>分别用于检索出相关文章以及从相关文章中找出对应答案。&#x20;</p>
+<p><img src="image/image_AjToZN5Amo.png" alt=""></p>
+<h3 id="（3）REALM"><a href="#（3）REALM" class="headerlink" title="（3）REALM"></a>（3）REALM</h3><p>在大模型流行起来后一个非常重要的方向是<strong>如何用检索来辅助大模型的预训练过程</strong>。 &#x20;</p>
+<p>让大模型在下游的机器问答环节中表现得更好。 &#x20;</p>
+<p>REALM这篇工作它在<strong>模型的预训练过程中加入了一个检索的任务，让大模型把预训练当成一个开放式QA的任务，在预训练的时候，同时训练大模型和知识检索器</strong>。然后在下游的任务中直接用检索器进行检索，从而能够达到更好的表现。</p>
+<p><img src="image/image_Ikt_sHQLjY.png" alt=""></p>
+<p>它具体是如何做的呢？首先在预训练语料库中有一个样本，比如遮盖了pyramidion(金字塔)这样一个词。然后把预训练的过程看作是一个问答的过程， 要去回答这个问题需要在知识库中进行一些检索。把该样本当成一个问题，然后让神经检索器去进行一些检索。再把检索到的相关文章和该问题一起输入到大模型中，希望大模型根据这些文章为找到问题的答案。</p>
+<p><img src="image/image_wd1Ocx41gE.png" alt=""></p>
+<p>在下游的微调过程中，就可以用相同的Pipeline，给定一个问题，用前面预训练好的检索器检索相关的文章，然后通过相关的文章来回答问题。</p>
+<p><img src="image/image_qpwEJJS0Od.png" alt=""></p>
+<h3 id="（4）WebGPT"><a href="#（4）WebGPT" class="headerlink" title="（4）WebGPT"></a>（4）WebGPT</h3><p>WebGPT比前面介绍的模型更强大，在于它不限定只能在维基百科中寻找答案，而是可以<strong>直接在搜索引擎上去寻找相关的文章，然后回答问题</strong>。</p>
+<ul>
+<li>将文档检索外包给微软必应网络搜索API</li>
+<li>利用无监督的预训练，通过微调GPT-3来实现高质量的文档合成</li>
+<li>创建一个基于文本的网页浏览环境，人类和语言模型都可以与之交互</li>
+</ul>
+<p>训练前让很多标注人员给定一些问题，让他们用基于文本的检索器去寻找答案。并记录了标注人员每一步的操作。比如可以去搜索，点击每个链接，把有用的句子摘录出来，然后 继续寻找下一个相关的内容。</p>
+<p>用这些记录的行为去微调GPT-3，希望GPT-3能够模仿人类行为来使用浏览器。然后惊奇的发现，即使给定较少的训练数据，比如几千条，GPT-3就可以很容易地学会怎么去操控浏览器，它每次可以进行检索，记下重要的引用，再通过这些引用生成最终的问题答案。</p>
+<p><img src="image/image_VwLyinmtYg.png" alt=""></p>
+<h1 id="4-文本生成"><a href="#4-文本生成" class="headerlink" title="4.文本生成"></a>4.文本生成</h1><p>文本生成可以<strong>把一些非语言性的表示信息，通过模型以一种人类可以理解的语言表示处理</strong>。 &#x20;</p>
+<p>非语言性的表示就是常说的数据，比如图片、表格、图等。我们统一把这种生成叫做<code>date-to-text</code>生成，实际上广义上还包括<code>text-to-text</code>的生成。</p>
+<h2 id="4-1-文本生成任务"><a href="#4-1-文本生成任务" class="headerlink" title="4.1 文本生成任务"></a>4.1 文本生成任务</h2><p><img src="image/image_nxyXNBoVWZ.png" alt=""></p>
+<ol>
+<li><code>Data-To-Text (image, table, graph)</code> : 输入可以有很多种形式，比如说图片、表格、图等。</li>
+<li><code>Dialogue</code>  : 模型针对用户的特定输入，给予一些回答。 &#x20;</li>
+<li><code>Machine Translation</code>   : 机器翻译，尽可能保留语义和语法</li>
+<li><code>Poetry Generation</code>   : 诗歌的生成，在生成诗歌的时候，不仅要求它包含某种主题，包含某些关键词，同时还要求它满足一些诗歌的格律。</li>
+<li><code>Style Transfer</code>   : 文本风格转移，把输入文本的风格转移成所需要的风格。上面是文本风格转移中一些常见的子任务。</li>
+<li><code>Storytelling</code> : 故事生成，在给定关键词/故事线下进行故事的生成。上面是一个简单的例子。</li>
+</ol>
+<p>文本生成任务中还包括总结生成的任务，输入是较长的文档，希望模型能生成较短的关于文档的摘要。</p>
+<h2 id="4-2-神经网络文本生成"><a href="#4-2-神经网络文本生成" class="headerlink" title="4.2 神经网络文本生成"></a>4.2 神经网络文本生成</h2><h3 id="（1）语言模型"><a href="#（1）语言模型" class="headerlink" title="（1）语言模型"></a>（1）语言模型</h3><p>**基于前面<code>t-1</code><strong><strong>词生成第</strong></strong><code>t</code>**<strong>个词</strong>。</p>
+<p><img src="image/image_RoMUqRBw3c.png" alt=""></p>
+<p>有<strong>条件的语言建模</strong>，不仅基于已经生成的词，还基于其他输入。比如机器翻译。</p>
+<p><img src="image/image_1x2dr-pjxs.png" alt=""></p>
+<h3 id="（2）Seq2seq"><a href="#（2）Seq2seq" class="headerlink" title="（2）Seq2seq"></a>（2）Seq2seq</h3><p>Seq2Seq也是一种条件语言模型。&#x20;</p>
+<p>在<strong>训练时以teacher forcing的方式进行训练，而测试时基于已生成的单词</strong>。 &#x20;</p>
+<p>这会带来训练与测试分布的gap。</p>
+<p><img src="image/image_EwX6sHdifJ.png" alt=""></p>
+<p>T5也是一种seq2sqe模型，它基于Transformer实现，将所有的NLP任务统一成<code>text-to-text</code>的形式表表示。</p>
+<p>上图左侧是Encoder部分，右侧是Decoder部分。</p>
+<p><img src="image/image_otVGlA0kT6.png" alt=""></p>
+<p>T5模型在清洗过的数据集上进行训练，<strong>训练时遮盖句子中的部分单词</strong>。在训练时，<strong>希望模型能通过这样的输入预测出被遮盖的部分</strong>。</p>
+<p><img src="image/image_IZ6fwtak2D.png" alt=""></p>
+<h3 id="（3）Autoregressive-models"><a href="#（3）Autoregressive-models" class="headerlink" title="（3）Autoregressive models"></a>（3）Autoregressive models</h3><p>语言模型分为两大类，其一是自回归生成。 &#x20;</p>
+<p><strong>在预测时以过去的输出作为参考来生成下一个单词</strong>。</p>
+<p><img src="image/image_NaopUwBWjH.png" alt=""></p>
+<p><strong>GPT一系列模型就是自回归生成的典型例子</strong>。</p>
+<p>它拿到了Transformer中的Decoder部分：</p>
+<ul>
+<li>GPT1认为<strong>可以通过生成式预训练来提升语言理解能力</strong>；</li>
+<li>GPT-2认为<strong>语言模型是一种无监督的多任务学习者</strong>；</li>
+<li>GPT3认为<strong>语言模型是少样本学习者</strong>。</li>
+</ul>
+<p><img src="image/image_5bME8IWKQM.png" alt=""></p>
+<p>以GPT-2为例，<strong>它是在无标签的数据上训练的，可以根据下游具体的有标签数据进行微调</strong>。</p>
+<p><img src="image/image_0i1Ff19zAU.png" alt=""></p>
+<h3 id="（4）Non-autoregressive-models"><a href="#（4）Non-autoregressive-models" class="headerlink" title="（4）Non-autoregressive models"></a>（4）Non-autoregressive models</h3><p>另一类是非自回归生成。</p>
+<p>在给定source和target的情况下，<strong>编码器会对source进行编码，在解码器生成的过程中，每个解码器之间是没有时序关系的</strong>。可以通过编码器的信息一次性地并行地生成所有的输出单词。</p>
+<p><img src="image/image_ETU5tIYd0-.png" alt=""></p>
+<p>在给定输入的情况下，输出只与两部分相关。</p>
+<ol>
+<li>输入会决定目标句子的长度  <code>m</code>；</li>
+<li>在生成当成单词的时候只与 <code>z</code>和 <code>x</code>相关， <code>x</code>是输入的表示， <code>z</code>是计算得到的不同 <code>x</code>和不同 <code>y</code>之间的权重关系。可以看到<code>z</code>中是没有 $y_{t-1}$ 这一项的。所以可以并行地对这些词进行生成。</li>
+</ol>
+<p><img src="image/image_hqByI8mzEq.png" alt=""></p>
+<h3 id="（5）Decoding-strategy"><a href="#（5）Decoding-strategy" class="headerlink" title="（5）Decoding strategy"></a>（5）Decoding strategy</h3><h4 id="Greedy-Decoding"><a href="#Greedy-Decoding" class="headerlink" title="Greedy Decoding"></a>Greedy Decoding</h4><p>Greedy Decoding，在<strong>生成的每步中都会选择计算概率最大的单词作为输出单词</strong>。</p>
+<p>这种方法的缺点是<strong>很容易生成重复的文本，这样可读性较差</strong>。</p>
+<p><img src="image/image_lh-S_ia5jv.png" alt=""></p>
+<h4 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h4><p>束搜索是另一种方法，它**在生成时的每步选择最好的<code>k</code>个局部序列。最终从这 ​<code>k</code>**<strong>个序列中选择概率最大的输出</strong>。</p>
+<p><img src="image/image__xGaR2gaJb.png" alt=""></p>
+<p>这两种做法在每步中都会概率最大的那个/些单词，是否有必要选择一个这样概率最大的单词呢？</p>
+<p>实际上是每必要的，那么要怎么做呢？ 下面介绍一些基于采用的方法。</p>
+<p><img src="image/image_n0A4VspAJV.png" alt=""></p>
+<h4 id="Sampling-based-Decoding"><a href="#Sampling-based-Decoding" class="headerlink" title="Sampling-based Decoding"></a>Sampling-based Decoding</h4><p>这些方法按照模型计算出来单词的概率分布，<strong>按照概率随机地从词表中选择生成的单词</strong>，从而增加模型生成的多样性。</p>
+<p>但也有可能生成无关的概率较小的单词，为了避免大量出现这种无意义的词，可以采取<code>top-n</code>和<code>top-p</code>两种方法。</p>
+<ul>
+<li><code>top-n</code>就是在采样的过程中局限于 <code>n</code>个最有可能的单词上进行采样。</li>
+<li><code>top-p</code>限制采样在若干个单词上进行，这些单词满足怎样的条件呢？概率最大的这些单词概率之和要大于一个阈值 <code>p</code>。</li>
+<li><code>sample with temperature</code> : 在最终的softmax之前，inputs除以温度洗漱 $\tau$</li>
+</ul>
+<p><img src="image/image_Ljy9og0UCr.png" alt=""></p>
+<p><img src="image/image_zaUVflTga9.png" alt=""></p>
+<h2 id="4-3-受控文本生成"><a href="#4-3-受控文本生成" class="headerlink" title="4.3 受控文本生成"></a>4.3 受控文本生成</h2><h3 id="（1）Prompt-methods"><a href="#（1）Prompt-methods" class="headerlink" title="（1）Prompt methods"></a>（1）Prompt methods</h3><p>首先**通过<code>prompt</code>**<strong>的形式来控制</strong>，比如图中在 <code>A knife</code>前面加上<code>Horror</code>来生成恐怖的描述；或者在前面加上<code>Reviews</code>来生成关于它的评价。</p>
+<p><img src="image/image_e0BgHguA15.png" alt=""></p>
+<p>除了可以在文本前面加一个<code>Prompt</code>，还可以在模型前加一个<code>Prefix</code>。比如增加较小的参数矩阵(Prefix)拼在Transformer前面，<strong>只对Prefix进行训练</strong>。来指导模型完成不同的任务。</p>
+<p><img src="image/image_8e1xUDPUH9.png" alt=""></p>
+<h3 id="（2）Modifying-probability-distribution"><a href="#（2）Modifying-probability-distribution" class="headerlink" title="（2）Modifying probability distribution"></a>（2）Modifying probability distribution</h3><p>另一种是<strong>通过修改概率分布的方法</strong>，这里会再多训练两个模型，一个<strong>生成非歧视语言的模型</strong>，另一个生成<strong>带有严重歧视的语言模型</strong>。</p>
+<p>在<strong>文本生成时希望生成的语言贴近非歧视语言模型，而原理歧视语言模型</strong>。</p>
+<script type="math/tex; mode=display">
+\tilde{P}\left(X_{t} \mid \boldsymbol{x}_{<t}\right)=\operatorname{softmax}\left(\mathbf{z}_{t}+\alpha\left(\mathbf{z}_{t}^{+}-\mathbf{z}_{t}^{-}\right)\right)</script><p><img src="image/image_LRjZjKIrxr.png" alt=""></p>
+<h3 id="（3）Reconstructing-model-architecture"><a href="#（3）Reconstructing-model-architecture" class="headerlink" title="（3）Reconstructing model architecture"></a>（3）Reconstructing model architecture</h3><p>还有一种做法是<strong>直接修改模型结构</strong>，这里给控制信号额外增加了一系列的transfomer结构，这类transformer只负责编码控制信号。</p>
+<p><img src="image/image_2re7Zluzzx.png" alt=""></p>
+<h2 id="4-4-文本生成评估"><a href="#4-4-文本生成评估" class="headerlink" title="4.4 文本生成评估"></a>4.4 文本生成评估</h2><p>本小节介绍文本生成的评估方法，主要分为两类。</p>
+<p>一类是通用的，另一类是专用的。</p>
+<h3 id="（1）通用方法"><a href="#（1）通用方法" class="headerlink" title="（1）通用方法"></a>（1）通用方法</h3><ul>
+<li><code>BLEU</code>：生成的文本的n-gram与tokens的text的类似度，BP是对短句的惩罚</li>
+<li><code>PPL</code>：测试集上，有多大的概率生成sample，sample和test集上的拟合度越高，<code>ppl</code>越低</li>
+<li><code>ROUGE</code>：基于召回计算的方法，主要解决模型生成低召回率问题。</li>
+</ul>
+<p><img src="image/image_8TFXRh6wCu.png" alt=""></p>
+<p><img src="image/image_vFciIwPj1J.png" alt=""></p>
+<h3 id="（2）其他方法"><a href="#（2）其他方法" class="headerlink" title="（2）其他方法"></a>（2）其他方法</h3><p>除了通用的方法外， 还有其他的测量矩阵。比如基于距离可以测量文本的余弦相似度。</p>
+<p><img src="image/image_b5nfXdDJ-8.png" alt=""></p>
+<h2 id="4-5-挑战"><a href="#4-5-挑战" class="headerlink" title="4.5 挑战"></a>4.5 挑战</h2><ul>
+<li>生成重复的文本，然后还有seq2seq方法中的gap。</li>
+<li>模型生成的文本往往缺乏逻辑的一致性。</li>
+<li>在控制性方面很难同时保证语言质量与可控质量。</li>
+<li>在评估是如何在不同模型之间统一测量标准。</li>
+</ul>
+<p><img src="image/image_cssangheVf.png" alt=""></p>
+<p>在这些领域，有一部分工作在研究如何用弱监督的数据去取代监督的数据来训练大模型。比如上面列了三种不同弱监督数据来源。有文档的标题与文本的正文、网页中的锚文本对、还有的直接用大模型去根据文本生成一个query，这样通过大模型生成数据。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/llms/llms_course/6.%E6%96%87%E6%9C%AC%E7%90%86%E8%A7%A3%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%A7%E6%A8%A1%E5%9E%8B/">https://wdndev.github.io/llms/llms_course/6.文本理解和生成大模型/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a><a class="post-meta__tags" href="/tags/LLMs/">LLMs</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/llms/llms_article/1.llm%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/" title="LLMs 推理优化技术"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">LLMs 推理优化技术</div></div></a></div><div><a href="/llms/llms_article/2.%E4%B8%BB%E6%B5%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E7%BB%86%E8%8A%82/" title="主流大语言模型的技术原理细节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">主流大语言模型的技术原理细节</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1.简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-NLP%E7%9A%84%E4%B8%BB%E8%A6%81%E5%BA%94%E7%94%A8"><span class="toc-text">1.1 NLP的主要应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2"><span class="toc-text">1.2 信息检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%9C%BA%E5%99%A8%E9%97%AE%E7%AD%94"><span class="toc-text">1.3 机器问答</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90"><span class="toc-text">1.4文本生成</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2"><span class="toc-text">2.信息检索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%83%8C%E6%99%AF"><span class="toc-text">2.1 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-IR%E5%AE%9A%E4%B9%89%E5%92%8C%E8%AF%84%E4%BB%B7"><span class="toc-text">2.2 IR定义和评价</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89IR%E5%AE%9A%E4%B9%89"><span class="toc-text">（1）IR定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89IR%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-text">（2）IR评价指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MRR-Mean-Reciprocal-Rank"><span class="toc-text">MRR (Mean Reciprocal Rank)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAP-Mean-Average-Precision"><span class="toc-text">MAP (Mean Average Precision)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NDCG-Normalized-Discounted-Cumulative-Gain"><span class="toc-text">NDCG (Normalized Discounted Cumulative Gain)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95"><span class="toc-text">2.3 传统方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89BM25"><span class="toc-text">（1）BM25</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BM25-Best-Matching-25"><span class="toc-text">BM25 (Best Matching 25)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TF-Term-Frequency"><span class="toc-text">TF (Term Frequency)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDF-Inverse-Document-Frequency"><span class="toc-text">IDF (Inverse Document Frequency)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E7%BC%BA%E7%82%B9"><span class="toc-text">（2）缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%96%B9%E6%B3%95"><span class="toc-text">2.4 神经网络方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E7%AE%80%E4%BB%8B"><span class="toc-text">（1）简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Cross-Encoder%E6%9E%B6%E6%9E%84"><span class="toc-text">（2）Cross-Encoder架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Dual-Encoder%E6%9E%B6%E6%9E%84"><span class="toc-text">（3）Dual-Encoder架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%89%8D%E6%B2%BF%E7%83%AD%E7%82%B9"><span class="toc-text">2.5 前沿热点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Negative-enhanced-Fine-tuning"><span class="toc-text">（1）Negative-enhanced Fine-tuning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ANCE-Approximate-nearest-neighbor-Negative-Contrastive-Learning"><span class="toc-text">ANCE (Approximate nearest neighbor Negative Contrastive Learning)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RocketQA-NAACL-2021"><span class="toc-text">RocketQA (NAACL 2021)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89IR-oriented-Pretraining"><span class="toc-text">（2）IR-oriented Pretraining</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SEED-Encoder-EMNLP-2021"><span class="toc-text">SEED-Encoder (EMNLP 2021)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ICT-Inverse-Cloze-Task"><span class="toc-text">ICT (Inverse Cloze Task)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Few-Zero-Shot-IR"><span class="toc-text">（3）Few&#x2F;Zero-Shot IR</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Weak-supervision-generation"><span class="toc-text">Weak supervision generation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E5%85%B6%E4%BB%96"><span class="toc-text">（4）其他</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-QA"><span class="toc-text">3.QA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%9C%BA%E5%99%A8%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3"><span class="toc-text">3.1 机器阅读理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89RC%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%B1%BB%E5%9E%8B"><span class="toc-text">（1）RC定义与类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Traditional-Pipeline"><span class="toc-text">（2）Traditional Pipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Big-model-based-Methods"><span class="toc-text">（3）Big-model-based Methods</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%BC%80%E6%94%BE%E5%BC%8FQA"><span class="toc-text">3.2 开放式QA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E7%94%9F%E6%88%90%E5%BC%8FQA"><span class="toc-text">（1）生成式QA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%A3%80%E7%B4%A2%E5%BC%8FQA"><span class="toc-text">（2）检索式QA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89REALM"><span class="toc-text">（3）REALM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89WebGPT"><span class="toc-text">（4）WebGPT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90"><span class="toc-text">4.文本生成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1"><span class="toc-text">4.1 文本生成任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90"><span class="toc-text">4.2 神经网络文本生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="toc-text">（1）语言模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Seq2seq"><span class="toc-text">（2）Seq2seq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Autoregressive-models"><span class="toc-text">（3）Autoregressive models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89Non-autoregressive-models"><span class="toc-text">（4）Non-autoregressive models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89Decoding-strategy"><span class="toc-text">（5）Decoding strategy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Greedy-Decoding"><span class="toc-text">Greedy Decoding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Beam-Search"><span class="toc-text">Beam Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sampling-based-Decoding"><span class="toc-text">Sampling-based Decoding</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%8F%97%E6%8E%A7%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90"><span class="toc-text">4.3 受控文本生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Prompt-methods"><span class="toc-text">（1）Prompt methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Modifying-probability-distribution"><span class="toc-text">（2）Modifying probability distribution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Reconstructing-model-architecture"><span class="toc-text">（3）Reconstructing model architecture</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%AF%84%E4%BC%B0"><span class="toc-text">4.4 文本生成评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">（1）通用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="toc-text">（2）其他方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E6%8C%91%E6%88%98"><span class="toc-text">4.5 挑战</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

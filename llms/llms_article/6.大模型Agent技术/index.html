@@ -1,0 +1,506 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>大模型Agent技术 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="视频链接：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1mC4y1g7cT文字版链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;PL-QjlvVugUfmRD4g0P-qQ 现在全球对Agent的关注也是非常狂热的，几个月前，OpenAI 在内部就开始高度关注智能体（Agent）领域，Deep Mind的联合创始人最近也提到下一代 AI 技术走向并非是生成性 A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大模型Agent技术">
+<meta property="og:url" content="https://wdndev.github.io/llms/llms_article/6.%E5%A4%A7%E6%A8%A1%E5%9E%8BAgent%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="视频链接：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1mC4y1g7cT文字版链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;PL-QjlvVugUfmRD4g0P-qQ 现在全球对Agent的关注也是非常狂热的，几个月前，OpenAI 在内部就开始高度关注智能体（Agent）领域，Deep Mind的联合创始人最近也提到下一代 AI 技术走向并非是生成性 A">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2023-12-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:55.327Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="LLMs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/llms/llms_article/6.%E5%A4%A7%E6%A8%A1%E5%9E%8BAgent%E6%8A%80%E6%9C%AF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大模型Agent技术',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">大模型Agent技术</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-12-06T16:00:00.000Z" title="Created 2023-12-07 00:00:00">2023-12-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:55.327Z" title="Updated 2026-02-08 08:00:55">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LLMs/">LLMs</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">12.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>38min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="大模型Agent技术"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1mC4y1g7cT" title="https://www.bilibili.com/video/BV1mC4y1g7cT">https://www.bilibili.com/video/BV1mC4y1g7cT</a><br>文字版链接：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/PL-QjlvVugUfmRD4g0P-qQ" title="https://mp.weixin.qq.com/s/PL-QjlvVugUfmRD4g0P-qQ">https://mp.weixin.qq.com/s/PL-QjlvVugUfmRD4g0P-qQ</a></p>
+<p>现在全球对Agent的关注也是非常狂热的，几个月前，OpenAI 在内部就开始高度关注智能体（Agent）领域，Deep Mind的联合创始人最近也提到下一代 AI 技术走向并非是生成性 AI，而应该是交互性 AI。这种交互性 AI 在很大程度上类似提到的智能体，用户要求完成各种任务，智能体则可以对软件进行操作或者与人进行协作，完成相关的工作。</p>
+</blockquote>
+<p>主要包含以下内容：</p>
+<ol>
+<li><strong>LLM Agents综述</strong>：对从大模型到现在的智能体的技术发展做一个串讲</li>
+<li><strong>通用智能基本原理</strong>：介绍通用智能原理和面向目标架构这个两个根本性问题</li>
+<li><strong>面向目标架构</strong>：</li>
+<li><strong>前瞻性分析</strong>：</li>
+</ol>
+<h2 id="1-LLM-Agents综述"><a href="#1-LLM-Agents综述" class="headerlink" title="1. LLM Agents综述"></a>1. LLM Agents综述</h2><p>如果你一直关注 AI 领域，你应该能看到一个清晰的技术脉络，一开始大家玩** Prompt 工程，接着是Prompt Chain或Flow，再到Agent，多Agent**，很清晰的一个脉络架构，我们也会沿着这个脉络给大家分享相关的经典工作。</p>
+<p><img src="image/image_7LjFxktlGe.png" alt=""></p>
+<p>回到 Agent 这个概念上，实际上，人类是这个星球上最强大的 Agent。<strong>Agent是一个能感知并自主地采取行动的实体，这里的自主性极其关键，Agent要能够实现设定的目标，其中包括具备学习和获取知识的能力以提高自身性能</strong>。</p>
+<p>Agent 的复杂程度各不相同，一个简单的恒温器可以是一个 Agent，一个大型的国家或者一个生物群体也可能是个 Agent。感知环境、自主决策、具备行动能力，设定明确的目标和任务，适应环境及学习能力，都是 Agent 的关键特点。</p>
+<p><img src="image/image_ZrDtpgpuLd.png" alt=""></p>
+<p>Agent 理论在大模型时代之前已经被学术界研究了很多年，许多理论研究都试图创造出具有人类智能水平的 Agent。然而，在大模型出现之前，Agent 的技术始终面对天花板限制，无法取得实用的进步，它的本质问题还是AGI问题，反过来说，<strong>只有AGI的技术进步才能让 Agent 技术进步</strong>。</p>
+<p><img src="image/image_34modshq0W.png" alt=""></p>
+<p>在学术领域，最经典的案例可能是与机器人相关的研究，都涉及到了Agent 技术。在大模型时代之前，比较知名的垂直领域 Agent 的例子比如 Alphago，它有感知环境、做决策、采取行动的闭环，当时的主要研究方向还有使用强化学习打游戏的DeepMind的Agent57，后来更加通用的Gato，还有OpenAI玩“躲猫猫”的多智能体。</p>
+<p>我们认为<strong>Agent技术是未来实现社会全面自动化的关键技术</strong>。在大模型出现之前，自动化更多的是一些偏结构化固定模式环境中通过实现固定算法流程来完成自动化任务，而大模型智能体的通用性带来了灵活性，使其可能应对人类在脑力劳动中面临的各种复杂长尾任务，进一步实现体力和脑力任务的全面自动化。</p>
+<p>大模型和Agent技术开启了全面自动化的新时代。<strong>大模型是第一个可以自主学习并拥有广泛知识的模型，所以在大模型时代，Agent技术开始迅速发展</strong>。今天，我们可能只是在起点，我们看到的Agent还偏向于玩具，但是预计在未来几年，这个领域将产生极大的改变，它的发展速度可能会超越我们的想象，因为我们现在看到改进每天都在发生，天花板远未来到，甚至天花板可能不会再来了。</p>
+<h3 id="1-1-Prompt工程"><a href="#1-1-Prompt工程" class="headerlink" title="1.1 Prompt工程"></a>1.1 Prompt工程</h3><p><img src="image/image_6BmEUuvPIG.png" alt=""></p>
+<p>Prompt工程，把大模型当成一种编程语言来看待。人们通过描述角色技能、任务关键词、任务目标及任务背景，告知大模型需要输出的格式，并调用大模型进行输出。这种方法就是经典的把大模型当做工具来调用，可以称为<strong>工具模式</strong>。</p>
+<p><img src="image/image_DgsZwXLnb1.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor" title="https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor">https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor</a></p>
+<h3 id="1-2-Prompt外挂"><a href="#1-2-Prompt外挂" class="headerlink" title="1.2 Prompt外挂"></a>1.2 Prompt外挂</h3><p>仅凭Prompt工程根本无法满足人们日益增长的大模型需要，鉴于大模型本身的诸多缺陷，如不能及时更新知识，上下文有限等等，人们开始给大模型加入插件，如<strong>引入向量数据库，把数据索引进向量数据库，再召回数据，再提交给大模型做Prompt工程</strong>，这样就可以使用最新的知识和比大模型里的知识更准确的知识。</p>
+<p><img src="image/image_3-Eyi5nA4o.png" alt=""></p>
+<p>这些还不够，人们又开启了外挂模式，尝试<strong>让 GPT 调用函数和使用工具</strong>，一系列关于工具使用的实践开始出现，ChatGPT也推出了插件体系。当人们发现大模型的推理能力很差时，开始试图让模型自身清楚地描述问题，把问题转化为 PDDL （Planning Domain Definition Language）格式的描述语言，通过调用通用规划器来解决规划问题，再把解决方案转化为可执行的动作，以更好地逻辑推理和规划等任务。</p>
+<p><img src="image/image_9-bKZi4alr.png" alt=""></p>
+<p>此外，大模型虽然具备一定的推理能力和思考能力，在很多推理任务上依然力不从心，能不能让模型自己不做规划推理，让他把问题描述清楚，转化成一个 PDDL 的一个关于规划描述的语言，然后使用通用的规划器去做规划，再转化成动作执行，这就把大模型作为一个中转器，把规划器当做了一个外挂。</p>
+<p>我们可能会思考，大模型或许真的就是我们以前想象的那样，会达到人类智慧水平的普适性机器么？显然从各项评测来看还有很多任务做不到，更何况这些任务评测本身的覆盖度也不够完备。</p>
+<p><img src="image/image_dnBFfXPoGs.png" alt=""></p>
+<p>有一个经典概念被誉为”通用任务解决器”，在达特茅斯会议之后得名“<strong>GPS</strong>”，即General Problem Solver。这是由赫伯特·西蒙（Herbert Simon）和艾伦·纽维尔（Allen Newell）在早期提出的概念，他们尝试寻找可用于解决数学问题的通用解决方案。这套理念其实很简洁，可以看作是早期的面向目标架构。它的<strong>主要内容是将目标状态列出，然后在解空间中搜索可以将初始状态转化为目标状态的操作组合，这样的组合便是问题的答案</strong>。</p>
+<p><img src="image/image_sJCQyrUSnO.png" alt=""></p>
+<h3 id="1-3-分解与组合"><a href="#1-3-分解与组合" class="headerlink" title="1.3 分解与组合"></a>1.3 分解与组合</h3><p>然而，目前我们发现，在通用人工智能（AGI）的漫长旅途中，大模型虽显强大，仍<strong>存在着显著的技术天花板</strong>。许多人开始探索如何挖掘大模型在大任务执行能力上的可能性，<strong>其中一个基本策略就是能够分解和组合</strong>。例如，经典的 MapReduce 模式可以将一个大型文本进行摘要，因为它的上下文有限，一种解决办法是扩大 context 的范围。另一个解决方案是，在有限的 context 中，先将文本拆分成小片段，对每个片段进行摘要，然后再将其组合，从而得出结果。</p>
+<p><img src="image/image_fZ5J-gEust.png" alt=""></p>
+<p>大家也发现大模型直接给出答案似乎并不靠谱，那么是否可以让它像人类一样，一步一步思考呢？毕竟，人类在解决问题时，也是逐渐构建解决方案，而并非立即给出答案。因此，开始出现了一系列的尝试解法，比如<strong>思维链、多思维链、思维树和思维图</strong>等。</p>
+<p><img src="image/image_0TUOLnNhqx.png" alt=""></p>
+<p><strong>思维链（Chain of Thought，CoT）</strong>，它<strong>要求模型展示其思考过程，而非仅给出答案</strong>。这可以通过两种方式实现：</p>
+<ol>
+<li>一种是<strong>具体说明</strong>，即要求模型详细地、一步步地思考；</li>
+<li>另一种是<strong>示例说明</strong>，即通过给定问题和答案的同时，提供思考过程。</li>
+</ol>
+<p>这样，当询问模型时，模型会模仿此过程，逐渐思考并给出答案。再往后，我们发现一个CoT有时可能出现错误，然后开始尝试让它发散，<strong>尝试多种思路来解决问题，然后投票选择最佳答案</strong>，这就是<strong>CoT-SC</strong>了。</p>
+<p><img src="image/image_TWgky_AX_E.png" alt=""></p>
+<p><img src="image/image_9Rnb691WlS.png" alt=""></p>
+<p>在这过程中，<strong>这种发散的方法也有局限性</strong>，例如24点问题，它不能很好地解决，那么<strong>就会尝试把这个问题进行垂直分解，分成三步来做，每一步分解成多个子问题，类似于动态规划的做法，就好像把一个大任务拆解成了三个小的子任务，然后再一步一步地去实现它</strong>。</p>
+<p><img src="image/image_NJPkHG378v.png" alt=""></p>
+<p>这就是<strong>思维树（ToT， Tree of Thought）</strong>的一个主要思路，它会<strong>根据当前的问题分解出多个可能，然后每一个树节点就是父节点的一个子问题，逐层扩散，遍布整个解空间，一些节点就直接会发现不合适而终止掉，达到了有效剪枝的作用</strong>。然而 ToT 的方式也存在问题，<strong>对于一些需要分解后再整合的问题</strong>，比如排序问题，排序你可能需要分解和排序，然后再merge，就不行了。</p>
+<p><img src="image/image_jgA4w0YicL.png" alt=""></p>
+<p>为了解决这个问题，一种名为<strong>思维图（Graph of Tree，GoT）</strong>的方法被提出。这种思维图<strong>既可以分解，也可以合并</strong>。</p>
+<p><img src="image/image_yumwNgccHL.png" alt=""></p>
+<p>2023年9月26日，清华姚期智团队又提出了更新的方法——<strong>累计推理</strong>，在24点问题上成功率已经达到98%的SOTA。他们方式很接近主流 Agent 的实现方式，具备一定的通用性。它首先会提出一个初步的想法，然后再对这个想法进行验证，看这个提案是否合适。如果提案合适，就将它添加到图的下一个节点，每一步都基于已经建立的图节点进行下一个思考节点的创建，这样发散、合并或删除直到达到最终目标状态，完备性和灵活性大大增强。</p>
+<h3 id="1-4-反馈"><a href="#1-4-反馈" class="headerlink" title="1.4 反馈"></a>1.4 反馈</h3><p>上述的讨论主要是任务分解和组合，他们尽管强大，<strong>却不能与外界进行互动</strong>，这就不得不讲到反馈机制了。反馈是整个控制论的基石，也是动物体从诞生之初就具备的基本能力。</p>
+<p><img src="image/image_7LKIZunU04.png" alt=""></p>
+<p>最经典的方法实际就是 <strong>ReACT</strong>，这个方法非常经典，基本把智能体最核心的能力圈出来了，当然它也有它的缺陷，将在后面讨论为什么还会有 Agent 更多的复杂技术以克服它的不足。<strong>ReACT让大模型先进行思考，思考完再进行行动，然后根据行动的结果再进行观察，再进行思考，这样一步一步循环下去。</strong> 这种行为模式基本上就是人类这样的智能体主要模式。</p>
+<p><strong>ChatGPT的代码解释器主要采用的就是这种模式</strong>。首先，代码解释器能够与用户进行简单的互动，如用户的问侧和解释器的回应。当用户的问题需要外部调用时，例如询问天气情况，解释器会生成相应的代码，利用代码调用外部工具获取结果。基于这些结果，代码解释器会将信息反馈给用户，如“今天天气很好”。下图是，我们调研的ChatGPT Code Interpreter 的主要实现方式。</p>
+<p><img src="image/image_KYrrm7q2Cg.png" alt=""></p>
+<p>然而，我们始终觉得这样仍然不够，<strong>希望大模型在完成每一个任务后，能够积累经验，故而产生了借鉴强化学习思路的”反射”机制</strong>。反射机制能够让机器记住每一次任务的完成情况，无论效果好坏，以供未来参考，提升模型的性能。</p>
+<p><img src="image/image_QljHWWUC5x.png" alt=""></p>
+<p>Agent的框架都会让模型输出JSON进行函数调用，OpenAI也就推出了Funtion Calling，将外部调用内化到模型中，变成了一种原生能力。 &#x20;</p>
+<p><img src="image/image_wGolkhGct3.png" alt=""></p>
+<h3 id="1-5-Agent"><a href="#1-5-Agent" class="headerlink" title="1.5 Agent"></a>1.5 Agent</h3><p>今天，全世界都在关注这个领域，Agent 模式的研究和应用都在迅猛发展，作为一个”共识”可预见的未来该技术的进步将势不可挡。</p>
+<p><img src="image/image_GRhtRak5_B.png" alt=""></p>
+<h4 id="（1）AutoGPT"><a href="#（1）AutoGPT" class="headerlink" title="（1）AutoGPT"></a>（1）AutoGPT</h4><p>下图是AutoGPT 发布的进行中的架构图，<strong>旨在实现对任务的有效管理</strong>。<strong>生成的任务将会被加入优先级队列中，随后系统会不断从优先队列中选择优先级最高的任务进行执行，整个过程中，任何反馈都会通过记忆进行迭代优化代码</strong>。</p>
+<p><img src="image/image_QnwSmfOn0R.png" alt=""></p>
+<p>这个主要框架虽然相对简单，但其设计理念具有重要意义。首先，创建一个初始的计划，然后进入主循环。系统会让模型判断在当前计划下该进行何种行动，接着会执行行动。执行完毕后，结果会写入下一次循环中。如此，每次决策都会基于之前的结果、记忆和计划，从而制定出新的行动方案。</p>
+<p><img src="image/image_uEahzCS6wX.png" alt=""></p>
+<p>在该框架中，模型的决策过程涉及到动作选择，这也是主要的功能之一。此外，整个过程中我们主要关注的一些工具包括“Start Another Agent”以及“Task Complete”。这两个工具体现了<strong>Agent可以被调用，从而将大任务拆解为若干小任务进行处理，继而形成层次化的树状结构</strong>，这种结构与人类分工和协作的工作方式极为相似。</p>
+<h4 id="（2）Jarvis-HuggingGPT"><a href="#（2）Jarvis-HuggingGPT" class="headerlink" title="（2）Jarvis HuggingGPT"></a>（2）Jarvis HuggingGPT</h4><p><img src="image/image_frsF7Kelx3.png" alt=""></p>
+<p>值得一提的是，微软的贾维斯 (Jarvis)一个深度学习任务调度系统，也采用了类似思想。主要关注<strong>如何调用模型来执行各种深度学习任务</strong>，<strong>涉及到了先做计划，再选择模型，然后执行任务，获取反馈，然后进入下一轮循环等环节</strong>。</p>
+<h4 id="（3）RecurrentGPT"><a href="#（3）RecurrentGPT" class="headerlink" title="（3）RecurrentGPT"></a>（3）RecurrentGPT</h4><p><img src="image/image_cW5obr08hp.png" alt=""></p>
+<p>有的研究者会尝试使用大模型写小说，<strong>借鉴LSTM这个经典深度网络的思想发明RecurrentGPT</strong>，还引入了长时记忆和短时记忆机制，使模型拥有了更佳的记忆和学习功能。</p>
+<p>在每一个时间步中，RecurrentGPT会接收上一个时间步生成的内容、最近生成内容的摘要（短期记忆），历史生成内容中和当前时间步最相关的内容（长期记忆），以及一个对下一步生成内容的梗概。</p>
+<p><img src="image/image_yd8hlh2DhV.png" alt=""></p>
+<h4 id="（4）Voyager"><a href="#（4）Voyager" class="headerlink" title="（4）Voyager"></a>（4）Voyager</h4><p>其他方向，我们看到<strong>把大模型视作一个虚拟世界中的智能体</strong>，如MineCraft游戏中所设定的角色。这个角色可以沿着指定的路线，完成一些在环境中探索的任务，如建房子、挖矿、打怪等。这个角色首先需要被告知怎样去执行任务，例如<strong>自动训练课程计划</strong>的使用。然后逐步的完成任务，形成自己的<strong>执行代码库、技能库</strong>等，这样就算是在以后遇到相似的任务，它都能快速调用已有的技能和经验来完成任务。某种意义上，这就是一种强化学习的方式。</p>
+<p><img src="image/image_-qG5inTuGM.png" alt=""></p>
+<p><img src="image/image_aPi8wOT10o.png" alt=""></p>
+<h4 id="（5）XAgent"><a href="#（5）XAgent" class="headerlink" title="（5）XAgent"></a>（5）XAgent</h4><p>这个方向的变化真的是一日千里，2023年10月17日，清华联合面壁发布了XAgent，提出了双循环机制在效果上碾压了AutoGPT。这种机制中，外循环负责宏观规划，而内循环则负责细节的执行。</p>
+<p><img src="image/image_kPZRtnGu2g.png" alt=""></p>
+<p>双循环模式：</p>
+<ul>
+<li><strong>外循环</strong>：负责全局任务规划，将复杂任务分解为可操作的简单任务。</li>
+<li><strong>内循环</strong>：负责局部任务执行，专注于细节。</li>
+</ul>
+<p>在完成各类任务的时候，它的能力也大大胜过 GPT 4</p>
+<h3 id="1-6-Multi-Agent"><a href="#1-6-Multi-Agent" class="headerlink" title="1.6 Multi-Agent"></a>1.6 Multi-Agent</h3><h4 id="（1）斯坦福小镇"><a href="#（1）斯坦福小镇" class="headerlink" title="（1）斯坦福小镇"></a>（1）斯坦福小镇</h4><p>进一步，人们很自然地想到了多智能体（Multi-agent）模式， “斯坦福小镇”开了一个好头。在这个虚拟的小镇里，每个角色都是一个单独的智能体，每天依据制定的计划按照设定的角色去活动和做事情，当他们相遇并交谈时，他们的交谈内容会被存储在记忆数据库中，并在第二天的活动计划中被回忆和引用，<strong>这一过程中就能涌现出许多颇有趣味性的社会学现象</strong>，我们成为群体智能的涌现。</p>
+<p><img src="image/image_CB9_impjrd.png" alt=""></p>
+<h4 id="（2）MetaGPT"><a href="#（2）MetaGPT" class="headerlink" title="（2）MetaGPT"></a>（2）MetaGPT</h4><p>再看2023年7月份，一个被命名为MetaGPT的项目引起了广泛关注，这个项目中定义了产品经理、架构师、项目管理员、工程师和质量保证等角色，各角色之间通过相互协作，基本可以胜任完成500行左右代码的小工程了。</p>
+<p><img src="image/image_sT5eoOHKTD.png" alt=""></p>
+<p>Meta GPT 最有价值的思想是<strong>借鉴人类社会中的协作方式</strong>，尤其是SOP，之于Agent 设计则平平无奇，也包括观察、思考、状态管理、任务行动以及结果反馈等等必备组件。</p>
+<p><img src="image/image_TE1Fxfu6mX.png" alt=""></p>
+<p>两层架构设计：</p>
+<ol>
+<li>基础组件层，这对于代理操作和系统范围的通信至关重要；</li>
+<li>协作层，通过关键机制（例如知识共享和工作流封装）促进代理协调</li>
+</ol>
+<p>在该框架内，MetaGPT中的代理能力已经得到了显著增强。由“锚代理”所引导的专门角色提示的代理实例化，为角色提供观察、思考、反思和知识积累能力。这些角色通过已经建立的订阅和发布方法与环境进行交互。</p>
+<h4 id="（3）实在智能TARS-RPA-Agent产品"><a href="#（3）实在智能TARS-RPA-Agent产品" class="headerlink" title="（3）实在智能TARS-RPA-Agent产品"></a>（3）实在智能TARS-RPA-Agent产品</h4><p>值得一提的是，Agent 的应用方向其实非常广泛。比如 RPA 公司实在智能把 Agent 用于他们的产品调用常见桌面软件，如淘宝网、钉钉，来自动完成桌面任务。</p>
+<p><img src="image/image_x30kuqBdNA.png" alt=""></p>
+<h4 id="（4）Agents开源框架"><a href="#（4）Agents开源框架" class="headerlink" title="（4）Agents开源框架"></a>（4）Agents开源框架</h4><p>而任何一个 Agent 的实现，似乎共性都挺多，都需要有长短时记忆能力、工具使用能力、通信能力，甚至包括 SOP 的能力，自然而言就有人要做这样的框架了，如 agents。</p>
+<p><img src="image/image_jzzHmDjmGn.png" alt=""></p>
+<h3 id="1-7-简单的难题"><a href="#1-7-简单的难题" class="headerlink" title="1.7 简单的难题"></a>1.7 简单的难题</h3><p>尽管 GPT-4 等模型非常强大、Agent的发展似乎牛气冲天，它们仍然无法满足很多任务的需要，甚至一些在我们看来很简单的任务都完成不了，比如我们构造的这个任务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">给小学生展示一下两数相加的每一步计算过程，如1135 + 78</span><br><span class="line">答：计算详细过程如下</span><br><span class="line">5+8=13， 进位1</span><br><span class="line">3+7+1=11， 进位1</span><br><span class="line">一个数已经加完，剩余数11 + 1 = 12</span><br><span class="line">结果为：1211</span><br><span class="line">下面请列出以下两数的详细计算过程：</span><br><span class="line">81728738271872871871672 + 28781729836746721</span><br></pre></td></tr></table></figure>
+<p>尽管AI在一定程度上模仿了人脑的工作方式，但实际上，<strong>机器人和人脑在处理信息时采用的策略有很大的不同</strong>。因此，即使在未来，也需要继续改进 AI 框架，以解决这种差距。比如一个百万位数的加法任务，GPT-4囿于token数的限制是不可能完成这个任务的，但人类却可以，这恰是人类和AI需要弥补的Gap。我们进行了一些简单的试验，还没有发现大模型和Agent能搞定这个任务。其中，ChatGPT4的Code Interpreter是表现最好的，因为它调用了外部计算器，但中间的过程描述还是发生了错误。</p>
+<p><img src="image/image_IGscHXI0u4.png" alt=""></p>
+<p>至此，我们已经讲述了大模型到 Agent 的发展历程。接下来的时间，我们将从人类智能的视角，结合面向目标架构的理念，分析 Agent 技术的本质、存在的缺陷以及未来可能的发展方向。</p>
+<h2 id="2-通用智能基本原理"><a href="#2-通用智能基本原理" class="headerlink" title="2. 通用智能基本原理"></a>2. 通用智能基本原理</h2><p>首先来看看这个众人熟知的认知飞轮，感知、认知、决策、行动，今天的人工智能代理更像是基于这个认知飞轮构建的。但是从本质上，人类智能远比这复杂。</p>
+<p><img src="image/image_nTdcfOfl7O.png" alt=""></p>
+<p>在漫长的进化历史中，生物神经网络从简单的条件反射逐渐进化到今天的主动预测，我们已经可以在大脑中构建世界模型，进行强大的推理和分析。看似繁杂的过程，实际上都发生在核心的架构上，并且逐步完善。无论是<strong>工作记忆</strong>，还是<strong>人类处理语言的能力的诞生</strong>，这些都是智能的必不可少的元素，尤其是<strong>符号能力</strong>，对人类智能的发展有着不可替代的作用。</p>
+<p><img src="image/image_YvUKwZ1M71.png" alt=""></p>
+<p>因此，先提出一个更为宏观的问题，<strong>智能究竟是什么</strong>？我强烈推荐这本名为《预测算法》的书，它在20年发表，那一年，GPT 3也刚刚问世，我在阅读之后，就有这样一个感觉：<strong>生成模型是战略正确的</strong>。在之前关于AGI的分享中，也提到过这个观点，<strong>智能是通过预测来解决应对世界的不确定性的</strong>，分享视频参见这里https\://www.bilibili.com/video/BV16h4y1w79A/</p>
+<p>深入理解一下模拟的概念，当一个低等动物接触到外界的刺激，它会收缩来逃避潜在的风险。这其实是一种模拟，只不过这个模拟反射神经元对有些过于反应敏锐，它假设所有的刺激都是潜在的危险。然而，对于人类来说，我们的模拟则更为精细。我们对世界进行建模，把世界以实体、关系、属性描绘出来。然而，这也是我们认知的极限，我们只能理解一个对象化的世界，非对象化的世界我们无法理解。比如，当我们探索量子的时候，我们还常常用对事物进行对象化的方式去理解，但是发现我们的理解力有时候是有限的，因为量子世界的真相超出了人类认知能力的范围，我们智能使用低维空间的投影去推断它，就像我们无法在三维世界去想象十一维世界的样子。</p>
+<p><img src="image/image_Wlhb2sRGTF.png" alt=""></p>
+<p>在过去的四十年里，科学家对认知架构有很多深入的研究，并尝试据此研发出通用人工智能，但天地不仁以万物为刍狗，当前来看只有GPT系列模型距离实现通用人工智能最近，当然这些认知理论依然具有巨大的参考和指导意义。</p>
+<p><img src="image/image_84WlAQTyyy.png" alt=""></p>
+<p>深入地聊认知架构和智能原理之前，我们必须要聊的是绕不开的《思考快与慢》，这是一本畅销书，其后面的学术道理也十分受用。大脑中的<strong>系统1</strong>和<strong>系统2</strong>是我们所有人都熟知的，尽管在实际实现中，系统2可能由系统1涌现，但至少在表现上，我们的大脑看起来有两个系统，系统1和系统2，分别负责不同的功能。<strong>知识和情感的快速反应被称为系统1</strong>，而<strong>逻辑性强、思考速度慢的反应被称为系统2</strong>。</p>
+<p><img src="image/image_3_G4G0jV9f.png" alt=""></p>
+<p><strong>GWT(Global Workspace Theory，全局工作空间理论)</strong></p>
+<p>接下来我们看看这些认知架构中，有一个叫做<strong>GWT(Global Workspace Theory，全局工作空间理论)</strong>，如下图所示：</p>
+<p>全局工作空间理论（GWT）是认知科学家伯纳德·巴尔斯（Bernard Baars）和斯坦·富兰克林（Stan Franklin）在20世纪80年代后期提出的一种意识思维框架。它被开发出来，以定性地解释一系列有意识和无意识过程之间的匹配。GWT在建模意识和高级认知方面具有影响力，认为它们是从广泛、并行的神经过程中信息的竞争和集成流动中产生的。</p>
+<p>系统1涵盖了神经网络的外围连接，涉及长期记忆、价值系统、感知运动控制相关的神经网络，系统2则是一个高度集中的“舞台”，人类的有意识思考，如做数学题时，脑中想象数字相加的过程，都在这个舞台上进行。这个舞台叫全局工作空间，记忆在这个舞台上被拉进来加工，然后被扔出去。LIDA (Learning Intelligent Distribution Agent) 受到多种计算范例的启发，并且实现了GWT。认知模块包括知觉关联记忆，情景记忆，意识，程序性记忆和行动选择。由 LIDA 架构控制的认知机器人和软件代理将能够进行多种学习机制。</p>
+<p><img src="image/image_O_hwwSJafb.png" alt=""></p>
+<p>其实在大模型Agent技术出现之前，人们就已经意识到，试图集成各种深度学习模型以实现人工普遍智能（AGI）并不够，还需要更高层次的认知模型。Lecun在思考AGI时对大模型的出现也提出过意见，<strong>它认为世界模型才是关键</strong>，但前两天新的研究却认为大模型中有世界模型。但毫无疑问的一点是，世界模型对于我们对世界的认知是非常关键的，无论大模型中是否包含世界的认知，<strong>Agent都必须对世界有准确的理解才能做出正确的决策。当模型不能正确运行时，决策就会出错；只有当世界模型构建的正确，才能选择正确的模型，进而做出正确的决策</strong>。</p>
+<p>总结一下，系统2包含意识、思考、符号主义、逻辑推理图灵、机制结构化和模型。而系统1包含快速思考、神经网络连接主义、长期记忆、深度学习、亚符号、潜意识和非结构化数据。在构建 Agent 时，可以参考这两种系统的思维框架。在理解智能架构的概念时，我们需要从<strong>记忆空间、符号系统、世界模型构建与加工</strong>三个方向去考虑。记忆空间是基础，符号系统是思考和推理的核心，而世界模型的构建和加工则是其中最重要的环节。在现在的大模型中，如 GPT，虽然很多人认为它没有符号系统，但我们认为，其内部的注意力机制可能已经在激活流转过程中模拟了世界模型的加工过程，只是这个过程并不显式，而且无法控制，只能通过Prompt工程引导它进行，但它会经常跑偏。</p>
+<p><img src="image/image_wdPow5AhYm.png" alt=""></p>
+<blockquote>
+<p>智能要素的汇合</p>
+</blockquote>
+<p><img src="image/image_40__SprCBq.png" alt=""></p>
+<blockquote>
+<p>一种通用智能架构示意</p>
+</blockquote>
+<p>我们通过学习掌握了对世界的知识，并针对感知数据尝试在符号系统中构建世界模型，进行预测和行动。如弹钢琴这样的行动，我们需要通过反复训练，逐渐将运动序列内化，变成肌肉记忆和反射。这些在系统2中反复出现的行为，会逐渐沉淀到系统1中。这个过程可以理解为一个“<strong>快捷通道</strong>”的形成过程，称为<strong>Shortcut</strong>。</p>
+<p>人的视觉识别过程是一个层次性的关系，从最初级的视觉皮层一直到更高级的皮层，从简单的视觉边缘特征到线条的方向性，再到线条之间的组合，如角等更高维特征的形成，直到形成物体的感知。这些物体的概念再对应符号系统和自然语言的绑定，当图像信息经过解码过程进入符号系统后，我们的关联记忆会帮助我们召回数字等语义概念。</p>
+<p><img src="image/image_Aiv_VTkT2f.png" alt=""></p>
+<p>以人类做加法为例，假设我们要解决“219 + 13”的问题，这个过程可能会遇到一个看似相同的图形，比如图中有”13”和”B”的歧义。这就打破了现在很多人的想法，通常我们喜欢做前向过程，先使用一个视觉模型处理输入，然后再将其输出传递给大模型进行处理。实际上，人在理解这个场景时是一个双向过程，<strong>首先有一些直觉的特征传入到系统2，系统2会推断这是一个做加法任务，并将看似“B”的图形解释为13</strong>，这个过程称为<strong>Projection</strong>。例如，我们经常从一些像素点中识别出人脸，这就是由上至下的功效发挥作用，这是对未来人工智能代理（Agent）的一种启发。</p>
+<p><img src="image/image_kiJ-1pMrTw.png" alt=""></p>
+<blockquote>
+<p>Projection示例</p>
+</blockquote>
+<p>另一个关键的能力是<strong>关联记忆</strong>。当我们开始观察某个物体时，比如进行加法操作时，我们的大脑并不会以固定模式运作。相反，<strong>我们的神经网络会并行运行，有的神经网络开始将加法的概念、数字的概念以及加法规则等各种信息激活，所有这些信息都会基于一个关联网络唤醒出来</strong>，这样我们就可以开始下一步的工作。接下来就是所谓的结构推理，我们会开始将这些符号结构化，例如，如果它是一个三位数，我们就会开始理解它的每一位构成整体和部分之间的关系。</p>
+<p><img src="image/image_GrHy3_1ilu.png" alt=""></p>
+<blockquote>
+<p>Structure / Grammar Inference</p>
+</blockquote>
+<p>当我们已经理解到219 + 13是加法时，我们也会执行Structure Inference得到结构的认知A+B=C的两位数加法结构，并将219和A对应上，13和B对应上，这个过程就是Variable Binding了，我们将具体的实例与它的角色对应上了。</p>
+<p><img src="image/image_galRR-f6QM.png" alt=""></p>
+<p>接着我们要遵循加法规则进行运算以实现我们的目标——完成加法任务。根据我们打算完成的目标以及现在的状态，我们需要规划出达成目标所需要的具体步骤，即执行加法规则。进入到这样一个循环过程之中，我们会额外提到两个概念，即”<strong>Shortcut</strong>“和”<strong>Exception</strong>“。</p>
+<p>那么什么是Shortcut呢？当我们初次开始书写数字时，速度往往很慢，但随着练习，我们将逐渐写得越来越快。这个过程实际上包含了一个叫做“<strong>Recoding</strong>”的过程，我们<strong>会将熟悉的操作或流程用神经元重新表示，这样就把一个复杂的操作简化为了一个子任务，通过类似于传参的方式控制一个子神经网络完成任务</strong>。比如开车，一开始，每个动作都需要集中注意力，严重依赖系统2，但是开了一段时间之后，就可以自如地进行了，这就是因为系统2的控制能力已经被沉淀到了系统1里面，称为Shortcut。</p>
+<p><img src="image/image_Sjt_3xm_78.png" alt=""></p>
+<blockquote>
+<p>Action、Shortcut、Exception</p>
+</blockquote>
+<p>另一个重要的方面是<strong>异常处理能力</strong>，人类最强大的能力就是能够随时应对异常。譬如，你在走路时突然被绊了一跤，你首先需要应对的就是摔倒这个状况，然后再回到原来的路线上继续走。</p>
+<p>因此，在执行加法过程中，并不是由于一个细节被中断或遇到各种异常，才开始执行加法。我们会发现，在遇到各种问题时，我们<strong>总是会奔着目标勇往直前</strong>。人是一个运作着面向目标架构的复杂过程。面向目标架构是人类智能的一个核心机制，当然并不是唯一的。有时，我们也会没有具体的目标或者说目标不是显式的，同时有一些底层的目标机制，诸如生存，这说明人的面向目标架构要复杂许多，这就是我们不得不说的智能核心的面向目标架构。</p>
+<h2 id="3-面向目标架构"><a href="#3-面向目标架构" class="headerlink" title="3. 面向目标架构"></a>3. 面向目标架构</h2><p>我们的情绪系统其实也在解决目标问题，例如，你会因为目标无法达成而生气，因为目标可能无法达成焦虑，因为别阻碍你的目标而愤怒。显而易见，许多情绪都与目标机制有所关联。因此，这套面向目标的机制在人的智能运作中占有极其核心的地位。</p>
+<p><img src="image/image_XYIGVZrDSG.png" alt=""></p>
+<blockquote>
+<p>目标驱动机制</p>
+</blockquote>
+<p>让我们通过一个简单的模型来描述该机制。首先，我们需要对这个世界有理解，因此我们会在脑中构建一个关于世界的模型。这个模型在结构化之后，就会变成了当前世界状态。而我们的目标是对应的一个目标世界状态。因此，人类就是在不停地消除当前状态和目标状态之间的差异，这个消除的过程就是目标驱动的过程。</p>
+<p>在目标驱动的过程中，你开始尝试去解决这个问题，消除这个差异，你也可能有现成的解决方案，直接动用已有的解决方案执行已知的运动序列，也可能需要进行一定的思考，做出推理分析帮助你解决问题。</p>
+<p>一旦你找到了一些执行序列，这些序列可能会变成一个子序列，子序列里有子目标。每个子目标的执行有可能是直接完成的，也可能需要进一步思考才能完成。正如我们可以看到，GPS这段代码就是在为了达成某一个目标而工作，它会遍历所有的目标，尝试让每一个目标都能够达成，一旦达成就结束。有兴趣的同学可以读一下这个代码，就是做暴力遍历找出达到目标状态的操作序列。</p>
+<p><img src="image/image_qqn3XxqELt.png" alt=""></p>
+<p><img src="image/image__MvmP0MS4v.png" alt=""></p>
+<p>不过，<strong>像GPS这种理想的解决方案在现实世界中可能并不奏效，因为真实世界的解空间过于庞大</strong>，想想AlphaGo的故事就理解了，这也是为什么虽然此想法在理论上看起来很好，但在实际操作时却无法实施。</p>
+<p>但这种思考很有启发，在Newell和Simon1972年出版的《Human Problem Solving》一书中，他们研究了人类如何解决问题，并意识到我们经常进行手段-目的分析(means-ends)</p>
+<p>举一个例子：</p>
+<blockquote>
+<p>“我想把儿子送到幼儿园。我现在的状态和我想要的状态之间有什么区别？其中一个是距离。<br>是什么因素会改变距离？我的汽车。可是我的汽车坏了。要让它工作需要什么？一个新电池。<br>哪里能买到新电池？汽车修理店。我想让修理店为我安装一个新电池，但店里不知道我需要一个新电池。问题出在哪里？是沟通的问题。什么能让沟通变得容易？一部电话……以此类推。”</p>
+</blockquote>
+<p>在计算机领域，有很多方法都与目标机制相关。例如，<strong>过程描述语言（PDL）</strong> 就是一种经典的方法，主要用于解决机器人问题。我们可以描述世界上的对象，它们当前的状态是怎样的，目标状态是怎样的，有哪些可以采取的操作，然后我们可以基于这些操作，使用规划器寻找一个合适的运动序列来解决问题。</p>
+<p><img src="image/image_30SuS7GleN.png" alt=""></p>
+<blockquote>
+<p>PDDL</p>
+</blockquote>
+<p>但在今天计算机领域的工程实践中，人们更多采用的是面向过程架构，无论是接口、函数、UI界面，还是组件，又或者是一个应用程序，都是以接口的形式存在的。而这个接口实质上是一种被调用的子流程，借此过程的完成，我们希望执行结果符合我们的预期，但程序并不为结果负责。它<strong>解决的是过程和流程问题</strong>，系统内没有目标的概念。</p>
+<p><img src="image/image_NBWWfsrdM_.png" alt=""></p>
+<blockquote>
+<p>面向过程架构（Process Oriented Architure）</p>
+</blockquote>
+<p>当然，也存在一些以目标导向为核心理念的的软件工程，例如声明式编程，它只需要你描述你想要什么，而无需关心执行的过程，像HTML和SQL便是其经典例子。在这样的架构下，程序能够自行寻找达成目标的方法。</p>
+<p><img src="image/image_t8R-NI8mmS.png" alt=""></p>
+<blockquote>
+<p>命令式编程 vs 声明式编程</p>
+</blockquote>
+<p>然而问题在于，这种面向目标的架构只能应用于垂直领域，而<strong>无法普遍应用到所有领域，只有在特定的领域内才能发挥作用，这就限制了它的应用范围</strong>。 &#x20;</p>
+<p><img src="image/image_oQBHEXCNED.png" alt=""></p>
+<blockquote>
+<p>面向过程架构 vs 面向目标架构</p>
+</blockquote>
+<p>总的来说，尽管面向目标架构在计算机领域有一席之地，但由于其只能在特定领域发挥作用，而无法解决所有领域的问题，因此它的应用还是有所限制，更多出现在特定的DSL（领域特定语言）中，这种架构的确也发挥了巨大的作用。在软件工程的范式迁移中，我们发现<strong>面向过程架构与面向目标架构之间的重要区别点：随着人类的生产方式的变化，软件工程可能正逐步演化为智能体工程(Agent Engineering)；</strong> 以前我们主导的生产方式是人类处于中心位，AI做辅助。而未来可能会变成以 AI 为中心，人类变为辅助。由此，整个产品形态和平台的构成可能会发生这样的转变。</p>
+<p>在这一转变中，原本由人类主导的功能开发，逐渐演变为以智能体为主要驱动力。传统的用户界面，由于其垂直的任务层级架构，每一层都需要人类逐一生成，未来这个过程可能会被智能体自主生成并改良。此外，原本只能解决有限范围的任务，未来的架构则可以解决无限域的任务。就如同头条这样的平台，它是一个信息的分发平台。那么，是否会出现新的平台模式？比如一种知识和世界模型的分发平台。以前我们只能处理大量长尾数据，在未来可能能解决大量长尾任务。以前是廉价的规模化加昂贵的个性化，以后是廉价的规模化的个性化。</p>
+<h2 id="4-前瞻性分析"><a href="#4-前瞻性分析" class="headerlink" title="4. 前瞻性分析"></a>4. 前瞻性分析</h2><p>根据上面的分析，我们能看到 Agent 技术在未来的发展还有很大的提升空间。我认为，这些提升主要可以从几个方向开始，包括引入<strong>中央执行机构、学习能力、输入感知、输出执行、世界模型和记忆</strong>等几个方面，这些构成因素是完备非正交的，都对提升 AI 技术至关重要。</p>
+<p><img src="image/image_0h2EqEVCV2.png" alt=""></p>
+<h3 id="4-1-Central-Executive"><a href="#4-1-Central-Executive" class="headerlink" title="4.1 Central Executive"></a>4.1 Central Executive</h3><p>中央执行机构，这是一个核心的概念，但常常被人们忽视。现在的 Agent 只是一个规划器，它负责做规划。但实际上，这个流程中还存在很多未明确的问题，比如，<strong>是否存在一个内部加工过程</strong>，以及这个过程是否透明可控等。一种可能的解决办法是，将内部加工过程外部化，用系统2包裹起来，使每一步细粒度的思考都可以展现出来。</p>
+<p><img src="image/image_6efpF9_-ZX.png" alt=""></p>
+<p>其次是<strong>世界模型，</strong>现在的大模型只能输入语言，显然这样是不够的，进一步理解世界需要多模态输入。这是我们在未来需要处理的关键问题。同样地，对于时间和自身的身体运动控制的认知也需要能够输入到大模型里面去。我们观察到，无论是自动驾驶汽车、大模型Agent，还是其他的诸多智能体模型，都已经在应用这种<strong>面向目标的架构</strong>。目前的挑战在于如何在细节上加以改进，如找出此架构未能完成某些任务的原因，以及这些缺陷是源于大模型底层的子任务能力不足，还是需要对框架本身做出改进，比如增加更多的思考层次，或加入更多的内部推演等。</p>
+<p>另一个重要的问题是<strong>宏观注意力</strong>，由于大模型的上下文限制，是否可以让模型自身主动去探索外部世界，将其精力和注意力主动地投入到解答某些具有目标性的问题上去，实现主动的注意力机制？这不仅涉及到搜索和尝试的问题，如针对一些无法思考出解决方案的情况，模型应如何去进行尝试，而且这些尝试何时能够带来进步，以及如何去寻找更为优秀的解决空间，进行推理和规划。</p>
+<h3 id="4-2-Memory"><a href="#4-2-Memory" class="headerlink" title="4.2 Memory"></a>4.2 Memory</h3><p>值得注意的是，数学和逻辑学习也会涉及到上述问题，比如人类在很多情况下不擅长规划，那么我们是否可以利用网络和记忆机制来实现规划的功能？这其中就涉及到<strong>记忆的内化</strong>，也就是把大模型从外部世界获取的经验转化为内部参数，或者说把这些经验转化为内存。</p>
+<p><img src="image/image_n3d4HYLcZ1.png" alt=""></p>
+<p>目前，我们依赖的记忆机制主要是把所有的信息存储在历史记录里，然后在需要的时候进行召回。然而，这些信息并未经过整理，在一些试图<strong>整理记忆</strong>的尝试中，我们发现人类是具有这种能力的。人类在获得大量相关的知识后，不会简单地把它们堆积在脑中，因为人的神经元存储空间是有限的。相反，人脑会通过海马体进行整理，而在我们做梦时，大脑会重新构造这些相关的知识，使得记忆网络变得有序。</p>
+<p>目前还未见到具有<strong>遗忘功能</strong>的模型，也就是删掉一些垃圾信息或错误的信息。在大模型训练过程中，产生了许多无用甚至是错误的信息，而我们在工作中只是采用了许多方式来规避这些错误的信息，但为什么不试图去删掉它们呢？如果能够将这些信息替换为有价值的信息，那将是一件有价值的事。我注意到在人工智能领域中，<strong>对于长短时记忆与工作记忆</strong>，以及它们之间的关系讨论并不深入，更常见的是，人们将长短时记忆简化为向量数据库。我想解决这个问题，尝试对这两者进行深层次的理解，并建立更完备，更正交的关系也很重要。</p>
+<h3 id="4-3-Sensory"><a href="#4-3-Sensory" class="headerlink" title="4.3 Sensory"></a>4.3 Sensory</h3><p>当人工智能Agent融入人类生活后，它与我们的体验和经历能否成为Agent自身的存储内容？如果可以，那么在未来，我们与Agent之间的互动将会变得更加实用，更加贴近现实生活，更加有温度。</p>
+<p><img src="image/image_aESTrhWcLW.png" alt=""></p>
+<p>在输入的问题上，我明确地看到了<strong>多模态</strong>输入的必要性，同时，对于时间感知我认为也非常重要，时间性对于运动控制任务极其重要。引入多模态输入后，我们还要解决一个<strong>自上而下</strong>的机制问题，就是Projection启发的这个点，OCR嫁接术一定会在某类任务存在缺陷。</p>
+<h3 id="4-4-Motor"><a href="#4-4-Motor" class="headerlink" title="4.4 Motor"></a>4.4 Motor</h3><p>在交流方式上，我认为不应仅仅依赖于语言，虽然现在的交流基本都是基于语言的，但是，语言是一个低带宽且低效的通信工具。我在想，我们能否引入一种新的沟通方式 - 类似心灵感应的方式，让Agent在隐空间通信。</p>
+<p><img src="image/image_iKS3hRuQOo.png" alt=""></p>
+<p>关于运动控制，当前的方式包括一些机器人应用，都比较<strong>结构化</strong>。但我认为，在未来，大模型的神经网络应该可以直接连接到运动控制的神经网络，实现层次化控制，使得运动更为流畅，甚至比人类更为灵活。</p>
+<p>在另一方面，运动控制也应该是<strong>数据化</strong>的，而不是仅仅处于我们所说的”计划者“的层面。如果有一个命令下达，神经网络应该可以直接执行。</p>
+<p>除此之外，还有一些<strong>亚符号的控制</strong>，在大模型直接对接神经网络时，我们应当避免通过语言来描述，因为我们可以通过这种方式得到的信息量会比通过语言描述来得多。</p>
+<p>同时，也需要进行一些<strong>外部工具的优化</strong>，让现有的工具更适应我们的需求，比如一些愿意为了方便Agent调用进行改造的工具服务商将会在新的价值网络中占据一席之地，如一个旅游服务供应商，加入下一代Agent平台之后，Agent在完成用户旅游类任务时可能会有限调用它，并使用类似Web3的技术进行价值分配。</p>
+<h3 id="4-5-Learning"><a href="#4-5-Learning" class="headerlink" title="4.5 Learning"></a>4.5 Learning</h3><p>任何一个产品，或者说Agent，都需要学习。学习的过程是十分重要的，尤其是模型需要学会对自身的可靠性进行判断，<strong>知道自己知道什么，更重要的是，知道自己并不知道什么</strong>，不擅长什么，这将会对模型的发展产生重大影响。关于大型模型的优化，我认为最关键的问题就在于<strong>模型需要明确自己的能力范围</strong>。有些问题，大模型不能张口就来直接给出答案，过于逞能，它应该经过仔细的思考，保证任务目标的准确达成。</p>
+<p><img src="image/image_oz_-FIxgX5.png" alt=""></p>
+<p>同时，我们也需要考虑模型的<strong>权威性</strong>问题。大模型可能从互联网和垃圾信息中学到很多知识，但这并不意味着它在解决问题时能提供最权威、最佳的做法。我们需要把这个模型训练到，即使是在面对垃圾信息输入时，它也能输出更好的、更有价值的解决方案。</p>
+<p>另一方面，我们还需要考虑到<strong>模型的多样性</strong>。很多时候，为了保证任务的有效执行，往往会控制模型的温度参数，以保持其输出的稳定性。但是，在保证模型正确性的同时，我们也不应该忽略它的思维活跃度。我们应允许智能体在解决任务时有更大的解空间，以便找到最优的解决方案。</p>
+<h3 id="4-6-World-Models"><a href="#4-6-World-Models" class="headerlink" title="4.6 World Models"></a>4.6 World Models</h3><p>关于世界模型 ，需要注意的是，尽管模型的训练数据中可能含有很多垃圾信息和错误信息，我们还需要<strong>让模型具有辨别和整理这些信息的能力</strong>，以构建一个无矛盾、统一的实体网络，这一点鲜被提及，我认为现在黯然神伤的之前做知识图谱的同学可以重点考虑一下这个方向。</p>
+<p><img src="image/image_LupLNzojvr.png" alt=""></p>
+<p>在此基础上，还需要让模型具备<strong>推理能力</strong>。一个优秀的智能体不应该仅仅依赖于内部推理，而应该有能力借助外部推理，当然这个外部推理可以当做工具来使用。</p>
+<p>最后，我们还必须强化模型的<strong>内部思考机制</strong>。当调用一些有成本的接口时，模型不能只是“想到就做到”，而应该有自我觉知的能力，或者叫Mental Simulation，预判自己的行动可能会带来的结果，并在内部进行纠错，以保证行动的可靠性，这不同于Reflection是执行后根据执行结果再反思。进一步，我们可能更大的关注点应该是它在家庭生活及现实社会中的应用上，将其实现为实体化的机器人，那么<strong>动力学机制和时间性认知</strong>还是很重要的，而当前的大模型仅是一个简单的循环调用，无法实现这方面的任务。</p>
+<p>好，以上就是我对一些方向的浅显思考。</p>
+<p>最后，我们以伟人的一段话来结尾：Agent 技术，它是站在海岸遥望海中已经看得见桅杆尖头了的一只航船，它是立于高山之巅远看东方已见光芒四射喷薄欲出的一轮朝日，它是躁动于母腹中的快要成熟了的一个婴儿。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li>Wikipedia Agent. <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Intelligent_agent" title="https://en.wikipedia.org/wiki/Intelligent_agent">https://en.wikipedia.org/wiki/Intelligent_agent</a></li>
+<li>Intelligent Agents 综述 <a target="_blank" rel="noopener" href="https://vsis-www.informatik.uni-hamburg.de/getDoc.php/publications/373/INTELLIGENT_AGENTS_v7_final.pdf" title="https://vsis-www.informatik.uni-hamburg.de/getDoc.php/publications/373/INTELLIGENT_AGENTS_v7_final.pdf">https://vsis-www.informatik.uni-hamburg.de/getDoc.php/publications/373/INTELLIGENT_AGENTS_v7_final.pdf</a></li>
+<li>Prompt经典收集。<a target="_blank" rel="noopener" href="https://github.com/f/awesome-chatgpt-prompts" title="https://github.com/f/awesome-chatgpt-prompts">https://github.com/f/awesome-chatgpt-prompts</a></li>
+<li>LLM+P: Empowering Large Language Models with Optimal Planning Proficiency</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Cranial-XIX/llm-pddl" title="https://github.com/Cranial-XIX/llm-pddl">https://github.com/Cranial-XIX/llm-pddl</a></li>
+<li>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</li>
+<li>Self-Consistency Improves Chain of Thought Reasoning in Language Models</li>
+<li>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</li>
+<li>Graph of Thoughts: Solving Elaborate Problems with Large Language Models</li>
+<li>Cumulative Reasoning with Large Language Models</li>
+<li>ReAct: Synergizing Reasoning and Acting in Language Models</li>
+<li>Reflexion: Language Agents with Verbal Reinforcement Learning</li>
+<li><a target="_blank" rel="noopener" href="https://openai.com/blog/function-calling-and-other-api-updates" title="https://openai.com/blog/function-calling-and-other-api-updates">https://openai.com/blog/function-calling-and-other-api-updates</a></li>
+<li>人大综述https\://arxiv.org/pdf/2308.11432.pdf</li>
+<li>复旦综述 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2309.07864.pdf" title="https://arxiv.org/pdf/2309.07864.pdf">https://arxiv.org/pdf/2309.07864.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Significant-Gravitas/AutoGPT" title="https://github.com/Significant-Gravitas/AutoGPT">https://github.com/Significant-Gravitas/AutoGPT</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/microsoft/JARVIS" title="https://github.com/microsoft/JARVIS">https://github.com/microsoft/JARVIS</a></li>
+<li>HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face</li>
+<li>GPT-Researcher <a target="_blank" rel="noopener" href="https://github.com/assafelovic/gpt-researcher" title="https://github.com/assafelovic/gpt-researcher">https://github.com/assafelovic/gpt-researcher</a></li>
+<li>RecurrentGPT <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.13304" title="https://arxiv.org/abs/2305.13304">https://arxiv.org/abs/2305.13304</a></li>
+<li>Voyager <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.16291" title="https://arxiv.org/abs/2305.16291">https://arxiv.org/abs/2305.16291</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/OpenBMB/XAgent" title="https://github.com/OpenBMB/XAgent">https://github.com/OpenBMB/XAgent</a></li>
+<li>斯坦福小镇代码 <a target="_blank" rel="noopener" href="https://github.com/joonspk-research/generative_agents" title="https://github.com/joonspk-research/generative_agents">https://github.com/joonspk-research/generative_agents</a></li>
+<li>斯坦福小镇论文 Generative Agents: Interactive Simulacra of Human Behavior</li>
+<li>MetaGPT代码 <a target="_blank" rel="noopener" href="https://github.com/geekan/MetaGPT" title="https://github.com/geekan/MetaGPT">https://github.com/geekan/MetaGPT</a></li>
+<li>MetaGPT论文 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2308.00352.pdf" title="https://arxiv.org/pdf/2308.00352.pdf">https://arxiv.org/pdf/2308.00352.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ChatDev" title="https://github.com/OpenBMB/ChatDev">https://github.com/OpenBMB/ChatDev</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/OpenBMB/AgentVerse" title="https://github.com/OpenBMB/AgentVerse">https://github.com/OpenBMB/AgentVerse</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2307.07924.pdf" title="https://arxiv.org/pdf/2307.07924.pdf">https://arxiv.org/pdf/2307.07924.pdf</a></li>
+<li>Agents: An Open-source Framework for Autonomous Language Agents</li>
+<li><a target="_blank" rel="noopener" href="https://lilianweng.github.io/posts/2023-06-23-agent/" title="https://lilianweng.github.io/posts/2023-06-23-agent/">https://lilianweng.github.io/posts/2023-06-23-agent/</a></li>
+<li>Phase transitions of brain evolution that produced human language and beyond</li>
+<li>A Review of 40 Years in Cognitive Architecture Research Core Cognitive Abilities and Practical Applications</li>
+<li>LIDA: A Computational Model of Global Workspace Theory and Developmental Learning</li>
+<li><a target="_blank" rel="noopener" href="https://hal.science/hal-03311492/document" title="https://hal.science/hal-03311492/document">https://hal.science/hal-03311492/document</a></li>
+<li><a target="_blank" rel="noopener" href="https://ai.meta.com/blog/yann-lecun-advances-in-ai-research/" title="https://ai.meta.com/blog/yann-lecun-advances-in-ai-research/">https://ai.meta.com/blog/yann-lecun-advances-in-ai-research/</a></li>
+<li>Projection: A Mechanism for Human-like Reasoning in Artificial Intelligence</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language" title="https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language">https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language</a></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/llms/llms_article/6.%E5%A4%A7%E6%A8%A1%E5%9E%8BAgent%E6%8A%80%E6%9C%AF/">https://wdndev.github.io/llms/llms_article/6.大模型Agent技术/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transformer/">Transformer</a><a class="post-meta__tags" href="/tags/LLMs/">LLMs</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/llms/llms_idx/" title="LLMs 目录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">LLMs 目录</div></div></a></div><div><a href="/llms/llms_article/1.llm%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/" title="LLMs 推理优化技术"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">LLMs 推理优化技术</div></div></a></div><div><a href="/llms/llms_article/2.%E4%B8%BB%E6%B5%81%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E7%BB%86%E8%8A%82/" title="主流大语言模型的技术原理细节"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">主流大语言模型的技术原理细节</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-LLM-Agents%E7%BB%BC%E8%BF%B0"><span class="toc-text">1. LLM Agents综述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Prompt%E5%B7%A5%E7%A8%8B"><span class="toc-text">1.1 Prompt工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Prompt%E5%A4%96%E6%8C%82"><span class="toc-text">1.2 Prompt外挂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%88%86%E8%A7%A3%E4%B8%8E%E7%BB%84%E5%90%88"><span class="toc-text">1.3 分解与组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%8F%8D%E9%A6%88"><span class="toc-text">1.4 反馈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-Agent"><span class="toc-text">1.5 Agent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89AutoGPT"><span class="toc-text">（1）AutoGPT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Jarvis-HuggingGPT"><span class="toc-text">（2）Jarvis HuggingGPT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89RecurrentGPT"><span class="toc-text">（3）RecurrentGPT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89Voyager"><span class="toc-text">（4）Voyager</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%885%EF%BC%89XAgent"><span class="toc-text">（5）XAgent</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-Multi-Agent"><span class="toc-text">1.6 Multi-Agent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%B0%8F%E9%95%87"><span class="toc-text">（1）斯坦福小镇</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89MetaGPT"><span class="toc-text">（2）MetaGPT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%AE%9E%E5%9C%A8%E6%99%BA%E8%83%BDTARS-RPA-Agent%E4%BA%A7%E5%93%81"><span class="toc-text">（3）实在智能TARS-RPA-Agent产品</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89Agents%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6"><span class="toc-text">（4）Agents开源框架</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%BE%E9%A2%98"><span class="toc-text">1.7 简单的难题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%80%9A%E7%94%A8%E6%99%BA%E8%83%BD%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-text">2. 通用智能基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%9D%A2%E5%90%91%E7%9B%AE%E6%A0%87%E6%9E%B6%E6%9E%84"><span class="toc-text">3. 面向目标架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%89%8D%E7%9E%BB%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-text">4. 前瞻性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Central-Executive"><span class="toc-text">4.1 Central Executive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Memory"><span class="toc-text">4.2 Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Sensory"><span class="toc-text">4.3 Sensory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Motor"><span class="toc-text">4.4 Motor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-Learning"><span class="toc-text">4.5 Learning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-World-Models"><span class="toc-text">4.6 World Models</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-text">参考文章</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oe7vzWxH80qwJJjWslYTCViT-gzGzoHsz',
+      appKey: 'k89nSbK0BTbmzmpQottRHvNI',
+      avatar: 'monsterid',
+      serverURLs: 'https://oe7vzwxh.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

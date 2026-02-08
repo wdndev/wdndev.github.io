@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2025-08-01 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Seed-Prover: Deep and Broad Reasoning for Automated Theorem ProvingLLMs have demonstrated strong mathematical reasoning abilities by leveraging reinforcement">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2025-08-01">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202508/2025-08-01/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Seed-Prover: Deep and Broad Reasoning for Automated Theorem ProvingLLMs have demonstrated strong mathematical reasoning abilities by leveraging reinforcement">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:54.768Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202508/2025-08-01/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2025-08-01',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2025-08-01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:54.768Z" title="Updated 2026-02-08 08:00:54">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">8.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>27min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2025-08-01"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Seed-Prover-Deep-and-Broad-Reasoning-for-Automated-Theorem-Proving"><a href="#1-Seed-Prover-Deep-and-Broad-Reasoning-for-Automated-Theorem-Proving" class="headerlink" title="1. Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.23726">Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving</a></h3><p>LLMs have demonstrated strong mathematical reasoning abilities by leveraging reinforcement learning with long chain-of-thought, yet they continue to struggle with theorem proving due to the lack of clear supervision signals when solely using natural language. Dedicated domain-specific languages like Lean provide clear supervision via formal verification of proofs, enabling effective training through reinforcement learning. In this work, we propose \textbf{Seed-Prover}, a lemma-style whole-proof reasoning model. Seed-Prover can iteratively refine its proof based on Lean feedback, proved lemmas, and self-summarization. To solve IMO-level contest problems, we design three test-time inference strategies that enable both deep and broad reasoning. Seed-Prover proves $78.1\%$ of formalized past IMO problems, saturates MiniF2F, and achieves over 50\% on PutnamBench, outperforming the previous state-of-the-art by a large margin. To address the lack of geometry support in Lean, we introduce a geometry reasoning engine \textbf{Seed-Geometry}, which outperforms previous formal geometry engines. We use these two systems to participate in IMO 2025 and fully prove 5 out of 6 problems. This work represents a significant advancement in automated mathematical reasoning, demonstrating the effectiveness of formal verification with long chain-of-thought reasoning.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>法学硕士通过利用具有长思维链的强化学习表现出了强大的数学推理能力，但由于仅使用自然语言时缺乏明确的监督信号，它们继续在定理证明方面遇到困难。精益等专用领域特定语言通过证明的形式验证提供明确的监督，通过强化学习实现有效的培训。在这项工作中，我们提出了 \textbf{Seed-Prover}，一种引理式的全证明推理模型。Seed-Prover 可以根据精益反馈、已证明引理和自我总结迭代完善其证明。为了解决 IMO 级别的竞赛问题，我们设计了三种测试时推理策略，这些策略既能实现深度推理，又能进行广泛的推理。Seed-Prover 证明了 78.1\%$ 的正式过去 IMO 问题，使 MiniF2F 饱和，并在 PutnamBench 上实现了超过 50\%，大大优于之前的最先进的技术。为了解决精益中缺乏几何支持的问题，我们引入了一个几何推理引擎 \textbf{Seed-Geometry}，它的性能优于以前的形式化几何引擎。我们使用这两个系统来参与 IMO 2025，并完全证明了 6 个问题中的 5 个。这项工作代表了自动化数学推理的重大进步，证明了长思维链推理的形式验证的有效性。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p><strong>A</strong>: 这篇论文试图解决如何利用大型语言模型（LLMs）进行自动化的数学定理证明问题，特别是在处理复杂的数学竞赛问题和正式化数学问题时的挑战。具体而言，论文提出了一种名为Seed-Prover的模型，旨在通过结合正式语言（如Lean）的清晰监督信号和长链推理能力，克服自然语言证明中缺乏明确监督信号的问题，从而有效提升定理证明的性能。</p>
+<p>此外，论文还针对Lean在几何问题支持上的不足，引入了一个专门的几何推理引擎Seed-Geometry，以增强系统在解决几何问题方面的能力。最终目标是在国际数学奥林匹克竞赛（IMO）等高水平数学竞赛中实现自动化的定理证明，并在多个正式化的数学基准测试中取得优异表现。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p><strong>A</strong>: 论文中提到了以下相关研究：</p>
+<ul>
+<li><strong>AlphaProof</strong>：使用Lean成功解决了2024年国际数学奥林匹克竞赛（IMO）中的3个问题，展示了LLMs在正式语言中证明复杂问题的能力。</li>
+<li><strong>Proof Artifact Co-training</strong>、<strong>Curriculum Learning</strong>、<strong>Hypertree Proof Search</strong>、<strong>ReProver</strong>、<strong>COPRA</strong>、<strong>DeepSeek-Prover-V1</strong>、<strong>InternLM2-Math-Plus</strong>、<strong>TheoremLlama</strong>、<strong>Lean-STaR</strong>、<strong>InternLM2-StepProver</strong>、<strong>DeepSeek-Prover-V1.5</strong>、<strong>ABEL</strong>、<strong>Alchemy</strong>、<strong>InternLM2.5-StepProver</strong>、<strong>3D-Prover</strong>、<strong>HunyuanProver</strong>、<strong>STP</strong>、<strong>BFS-Prover</strong>、<strong>Goedel-Prover</strong>、<strong>Leanabell-Prover</strong>、<strong>Kimina-Prover-Preview</strong>、<strong>DeepSeek-Prover-V2</strong>、<strong>DSP+</strong>、<strong>Kimina-Prover</strong>、<strong>Goedel-Prover-V2</strong>、<strong>Delta-Prover</strong>：这些是近年来在MiniF2F测试中性能不断提升的模型，展示了在正式化数学问题上的研究进展。</li>
+<li><strong>Big-Math</strong>：一个大规模、高质量的数学数据集，用于通过强化学习训练语言模型。</li>
+<li><strong>DeepSeek-AI</strong>：通过强化学习激励LLMs的推理能力，特别是在数学基准测试如MATH和AIME上。</li>
+<li><strong>STP</strong>：自博弈LLM定理证明器，通过迭代猜想和证明进行自我提升。</li>
+<li>**Draft, Sketch, and Pro</li>
+</ul>
+</div></details>
+<p><strong>Authors</strong>: Luoxin Chen,Jinming Gu,Liankai Huang,Wenhao Huang,Zhicheng Jiang,Allan Jie,Xiaoran Jin,Xing Jin,Chenggang Li,Kaijing Ma,Cheng Ren,Jiawei Shen,Wenlei Shi,Tong Sun,He Sun,Jiahui Wang,Siran Wang,Zhihong Wang,Chenrui Wei,Shufa Wei,Yonghui Wu,Yuchen Wu,Yihang Xia,Huajian Xin,Fan Yang,Huaiyuan Ying,Hongyi Yuan,Zheng Yuan,Tianyang Zhan,Chi Zhang,Yue Zhang,Ge Zhang,Tianyun Zhao,Jianqiu Zhao,Yichi Zhou,Thomas Hanwen Zhu</p>
+<p><strong>Categories</strong>: cs.AI,cs.CL</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.23726.pdf">https://arxiv.org/pdf/2507.23726.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.23726">https://arxiv.org/abs/2507.23726</a></p>
+<p><strong>Arxiv ID</strong>: 2507.23726</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2507.23726">https://papers.cool/arxiv/2507.23726</a></p>
+<p><strong>Published</strong>: 2025-07-31T17:00:30Z</p>
+<p><strong>Updated</strong>: 2025-07-31T17:00:30.000Z</p>
+<hr>
+<h3 id="2-RecGPT-Technical-Report"><a href="#2-RecGPT-Technical-Report" class="headerlink" title="2. RecGPT Technical Report"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2507.22879">RecGPT Technical Report</a></h3><p>Recommender systems are among the most impactful applications of artificial intelligence, serving as critical infrastructure connecting users, merchants, and platforms. However, most current industrial systems remain heavily reliant on historical co-occurrence patterns and log-fitting objectives, i.e., optimizing for past user interactions without explicitly modeling user intent. This log-fitting approach often leads to overfitting to narrow historical preferences, failing to capture users’ evolving and latent interests. As a result, it reinforces filter bubbles and long-tail phenomena, ultimately harming user experience and threatening the sustainability of the whole recommendation ecosystem. To address these challenges, we rethink the overall design paradigm of recommender systems and propose RecGPT, a next-generation framework that places user intent at the center of the recommendation pipeline. By integrating large language models (LLMs) into key stages of user interest mining, item retrieval, and explanation generation, RecGPT transforms log-fitting recommendation into an intent-centric process. To effectively align general-purpose LLMs to the above domain-specific recommendation tasks at scale, RecGPT incorporates a multi-stage training paradigm, which integrates reasoning-enhanced pre-alignment and self-training evolution, guided by a Human-LLM cooperative judge system. Currently, RecGPT has been fully deployed on the Taobao App. Online experiments demonstrate that RecGPT achieves consistent performance gains across stakeholders: users benefit from increased content diversity and satisfaction, merchants and the platform gain greater exposure and conversions. These comprehensive improvement results across all stakeholders validates that LLM-driven, intent-centric design can foster a more sustainable and mutually beneficial recommendation ecosystem.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>推荐系统是人工智能最具影响力的应用之一，作为连接用户、商家和平台的关键基础设施。然而，当前大多数工业系统仍然严重依赖历史共现模式和日志拟合目标，即优化过去用户互动，而没有明确建模用户意图。这种日志拟合方法往往导致对狭窄历史偏好的过拟合，未能捕捉用户不断变化和潜在的兴趣。因此，这加剧了过滤气泡和长尾现象，最终损害用户体验，并威胁到整个推荐生态系统的可持续性。为了解决这些挑战，我们重新思考推荐系统的总体设计范式，并提出了RecGPT，一个将用户意图置于推荐管道中心的下一代框架。通过将大型语言模型（LLMs）集成到用户兴趣挖掘、物品检索和解释生成的关键阶段，RecGPT将日志拟合推荐转变为以意图为中心的过程。为了在规模上有效地将通用LLMs与上述特定领域的推荐任务对齐，RecGPT结合了多阶段训练范式，集成了增强推理的预对齐和自我训练演变，指导以人类-LLM合作评判系统。目前，RecGPT已在淘宝App上全面部署。在线实验表明，RecGPT在各利益相关者中实现了一致的性能提升：用户受益于内容多样性和满意度的提高，商家和平台获得了更大的曝光率和转化率。这些在所有利益相关者中的全面改善结果验证了以LLM驱动的、以意图为中心的设计可以促进更可持续和互惠的推荐生态系统。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p><strong>A</strong>: 这篇论文试图解决传统推荐系统在用户意图理解和推荐结果多样性方面的局限性问题。具体来说，论文指出当前大多数工业推荐系统过度依赖于历史共现模式和日志拟合目标，即主要通过优化过去的用户交互来生成推荐，而没有明确建模用户的意图。这种做法导致了以下问题：</p>
+<ul>
+<li><strong>信息茧房和长尾现象</strong>：推荐系统往往会过度拟合用户狭窄的历史偏好，无法捕捉用户不断演变和潜在的兴趣，从而加剧了信息茧房效应，并且进一步边缘化了长尾内容。</li>
+<li><strong>用户体验受损</strong>：由于无法有效发现用户的潜在兴趣，推荐系统可能会提供重复或过于集中的推荐内容，降低了用户的探索性和满意度。</li>
+<li><strong>商业可持续性问题</strong>：对于商家和平台而言，这种推荐方式可能会导致流量和转化集中在少数热门项目上，而忽视了长尾项目的价值，不利于整个推荐生态系统的可持续发展。</li>
+</ul>
+<p>为了解决这些问题，论文提出了 RecGPT，这是一个下一代的推荐系统框架，它将用户意图置于推荐流程的核心位置，并通过整合大型语言模型（LLMs）来挖掘用户兴趣、检索项目和生成解释，从而将传统的日志拟合推荐转变为以意图为中心的推荐过程。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p><strong>A</strong>: 论文中提到了多个与推荐系统和大型语言模型（LLMs）相关的研究领域，这些研究为 RecGPT 的提出提供了理论基础和技术背景。以下是一些关键的相关研究：</p>
+<p>推荐系统领域</p>
+<ul>
+<li><p><strong>特征工程和模型架构的演进</strong>：论文回顾了推荐系统在特征表示和模型架构方面的进展，从手工制作的统计特征到序列和交叉特征，再到最新的生成式 Transformer 背骨网络。这些研究包括：</p>
+<ul>
+<li><strong>Factorization Machines</strong> (Rendle, 2010)：一种经典的推荐系统模型，通过分解用户和物品的特征来捕捉用户-物品之间的交互。</li>
+<li><strong>Deep Matching Networks</strong> (Zhang et al., 2019)：利用深度学习技术来建模用户和物品之间的复杂匹配关系。</li>
+<li><strong>Graph Neural Models</strong> (Wu et al., 2022)：通过图神经网络来捕捉用户和物品之间的图结构关系。</li>
+<li><strong>Generative Transformer Models</strong> (Deldjoo et al., 2024)：利用 Transformer 架构来生成推荐结果，捕捉用户行为的长序列依赖关系。</li>
+</ul>
+</li>
+<li><p><strong>用户意图建模</strong>：论文强调了用户意图建模的重要性，并指出传统方法在这一方面的不足。相关研究包括：</p>
+<ul>
+<li><strong>User Intent Modeling</strong>：通过分析用户行为来推断用户的潜在意图，例如通过搜索查询、点击行为等来理解用户的需求。</li>
+<li><strong>Causal Reasoning in Recommendations</strong> (Wang et al., 2022)：利用因果推理来理解用户行为背后的动机，从而提供更准确的推荐。</li>
+</ul>
+</li>
+</ul>
+<p>大型语言模型（LLMs）领域</p>
+<ul>
+<li><p><strong>LLMs 的应用</strong>：论文讨论了 LLMs 在推荐系统中的应用，指出 LLMs 的世界知识和推理能力可以用来更准确地分析用户兴趣和生成推荐。相关研究包括：</p>
+<ul>
+<li><strong>LLMs for Recommendation</strong> (Wu et al., 2024)：探索如何利用 LLMs 来增强推荐系统，尤其是在小规模、离线基准测试中的应用。</li>
+<li><strong>Reasoning Capabilities of LLMs</strong> (Zhao et al., 2023)：研究 LLMs 的推理能力，这些能力对于理解用户行为和生成合理的推荐至关重要。</li>
+</ul>
+</li>
+<li><p><strong>LLM-as-a-Judge</strong>：论文提出了利用 LLMs 作为评估工具的方法，以提高推荐系统的评估效率和准确性。相关研究包括：</p>
+<ul>
+<li><strong>LLM-as-a-Judge for Evaluation</strong> (Chen et al., 2024; Gu et al., 2024)：利用 LLMs 来评估推荐系统的输出，通过自动化评估减少人工标注的需求。</li>
+<li><strong>Bias and Fairness in LLMs</strong> (Dai et al., 2024)：研究 LLMs 在评估过程中可能出现的偏差和不公平性，这对于确保推荐系统的公正性至关重要。</li>
+</ul>
+</li>
+</ul>
+<p>其他相关研究</p>
+<ul>
+<li><p><strong>Curriculum Learning</strong>：论文中提到了利用课程学习（Curriculum Learning）来逐步训练模型，使其能够处理更复杂的任务。相关研究包括：</p>
+<ul>
+<li><strong>Curriculum Learning for Multiple Tasks</strong> (Pentina et al., 2015)：通过课程学习来逐步训练模型，使其能够处理多个任务。</li>
+<li><strong>Survey on Curriculum Learning</strong> (Soviany et al., 2022)：对课程学习的全面综述，探讨了其在不同领域的应用。</li>
+</ul>
+</li>
+<li><p><strong>Reinforcement Learning</strong>：论文提出了利用强化学习（Reinforcement Learning）来优化推荐系统，以适应不断变化的用户偏好和产品特性。相关研究包括：</p>
+<ul>
+<li><strong>Reinforcement Learning from Human Feedback</strong> (Casper et al., 2023)：利用人类反馈来训练强化学习模型，以优化推荐系统的性能。</li>
+<li><strong>Survey of Reinforcement Learning from Human Feedback</strong> (Kaufmann et al., 2024)：对利用人类反馈进行强化学习的综述，探讨了其在推荐系统中的应用。</li>
+</ul>
+</li>
+</ul>
+<p>这些相关研究为 RecGPT 的提出提供了坚实的基础，并展示了如何利用最新的技术进展来解决推荐系统中的关键问题。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p><strong>A</strong>: 为了解决传统推荐系统在用户意图理解和推荐结果多样性方面的局限性问题，论文提出了 RecGPT，这是一个以用户意图为中心的下一代推荐系统框架。RecGPT 通过整合大型语言模型（LLMs）到推荐流程的关键阶段，将传统的日志拟合推荐转变为以意图为中心的推荐过程。以下是 RecGPT 解决问题的具体方法：</p>
+<p>1. 用户意图挖掘（User Interest Mining）</p>
+<p>RecGPT 首先利用一个用户兴趣 LLM（LLMUI）来分析用户的终身行为历史，并生成一个简洁的自然语言用户兴趣画像。为了适应 LLM 的上下文窗口限制并提高兴趣挖掘的效率，论文提出了以下方法：</p>
+<ul>
+<li><strong>可靠行为序列压缩</strong>：通过可靠行为提取和层次化行为压缩，将用户的多源异构行为序列压缩成信息密度更高的格式，以适应 LLM 的上下文窗口限制。</li>
+<li><strong>多阶段任务对齐框架</strong>：通过课程学习基础多任务微调、推理增强预对齐和自训练演化，逐步提升 LLMUI 在用户兴趣挖掘任务上的性能。</li>
+</ul>
+<p>2. 项目标签预测（Item Tag Prediction）</p>
+<p>基于用户兴趣挖掘的结果，RecGPT 使用一个项目标签 LLM（LLMIT）来预测用户可能感兴趣的项目标签。这些标签用于后续的项目检索阶段。为了使 LLM 能够适应特定的产品领域，论文采用了以下方法：</p>
+<ul>
+<li><strong>多阶段任务对齐</strong>：通过推理增强预对齐和自训练演化，使 LLMIT 能够理解和处理与产品相关的上下文信息。</li>
+<li><strong>增量学习</strong>：通过定期使用用户的在线交互记录进行增量学习，使模型能够适应用户兴趣的变化和新的产品趋势。</li>
+</ul>
+<p>3. 项目检索（Item Retrieval）</p>
+<p>RecGPT 提出了一种标签感知的语义相关性检索方法，将预测的标签映射到特定的项目，同时结合用户行为的协同信号，以平衡语义相关性和协同相关性。具体方法包括：</p>
+<ul>
+<li><strong>用户-项目-标签检索框架</strong>：通过用户塔、项目塔和标签塔的协同工作，生成协同分数和语义分数，最终通过加权融合实现可控的推荐。</li>
+<li><strong>优化算法</strong>：通过对比学习优化协同相关性和语义相关性，同时引入类别对比损失函数以增强语义区分能力。</li>
+</ul>
+<p>4. 推荐解释生成（Recommendation Explanation Generation）</p>
+<p>为了提高推荐系统的透明度和用户体验，RecGPT 使用一个推荐解释 LLM（LLMRE）为最终推荐的项目生成个性化的解释。具体方法包括：</p>
+<ul>
+<li><strong>任务对齐</strong>：通过推理增强预对齐和自训练演化，使 LLMRE 能够生成符合用户兴趣和项目特征的解释。</li>
+<li><strong>离线生产</strong>：通过离线生成兴趣-项目-解释查找表，实现在在线推荐时快速检索个性化解释。</li>
+</ul>
+<p>5. 人机协作评估系统（Human-LLM Cooperative Judge）</p>
+<p>为了确保 LLM 生成的推荐结果符合人类的主观期望，论文提出了一个人机协作评估系统。该系统通过以下方法实现：</p>
+<ul>
+<li><strong>LLM 作为评估工具</strong>：利用 LLM 的推理能力进行自动化评估，减少人工标注的需求。</li>
+<li><strong>人类在循环中</strong>：通过定期的人类监督和针对性的微调，确保评估系统的可靠性和适应性。</li>
+</ul>
+<p>通过上述方法，RecGPT 不仅能够更准确地挖掘用户的潜在兴趣，还能生成多样化的推荐结果，并为用户提供透明的推荐解释。这不仅提高了用户体验，还为商家和平台带来了更大的商业价值，最终建立了一个更可持续和互利共赢的推荐生态系统。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p><strong>A</strong>: 论文中进行了多种实验来验证 RecGPT 的有效性，包括在线 A/B 测试、人类评估实验、案例研究和用户体验调查。以下是详细的实验内容：</p>
+<p>在线 A/B 测试</p>
+<ul>
+<li><strong>实验设置</strong>：在淘宝首页的“猜你喜欢”场景中进行了为期一个月的在线 A/B 测试。实验组和对照组各分配了 1% 的流量。实验组使用 RecGPT 系统生成推荐，而对照组继续使用现有的基础推荐系统。</li>
+<li><strong>评估指标</strong>：<ul>
+<li><strong>用户体验</strong>：用户停留时间（DT）、曝光物品类别多样性（EICD）、点击物品类别多样性（CICD）。</li>
+<li><strong>平台收益</strong>：物品页面浏览量（IPV）、点击通过率（CTR）、每日点击活跃用户数（DCAU）、加入购物车数量（ATC）。</li>
+</ul>
+</li>
+<li><strong>实验结果</strong>：<ul>
+<li><strong>用户体验</strong>：RecGPT 显著提高了用户停留时间（+4.82%）、曝光物品类别多样性（+0.11%）和点击物品类别多样性（+6.96%）。这表明 RecGPT 能够通过语义理解发现用户的潜在兴趣，提供更广泛类别的推荐，同时保持相关性。</li>
+<li><strong>平台收益</strong>：RecGPT 在关键参与度指标上表现出显著提升，包括 IPV（+9.47%）、CTR（+6.33%）和 DCAU（+3.72%）。这表明 RecGPT 能够更精准地推荐与用户兴趣相符的物品，减少浪费的展示，提高内容相关性。</li>
+<li><strong>商家收益</strong>：RecGPT 有效缓解了马太效应，为不同规模和受欢迎程度的商家提供更公平的曝光机会。如图 1 所示，与基线系统相比，RecGPT 在不同物品受欢迎程度组别中实现了更均匀的 CTR 表现，为较不受欢迎的物品提供了有意义的曝光机会。</li>
+</ul>
+</li>
+</ul>
+<p>人类评估实验</p>
+<ul>
+<li><strong>实验目的</strong>：验证 LLM 作为评估工具在推荐生成任务中的有效性。</li>
+<li><strong>实验设置</strong>：使用 Qwen3 作为基础评估模型，通过监督式微调（SFT）在收集的人类评估数据上进行训练，得到 Qwen3-Judge-SFT 模型。对用户兴趣挖掘、项目标签预测和推荐解释生成三个任务的生成输出进行评估，采用二元分类或多级评估标准。</li>
+<li><strong>评估指标</strong>：准确率（ACC）、精确率、召回率和 F1 分数。</li>
+<li><strong>实验结果</strong>：<ul>
+<li><strong>用户兴趣挖掘</strong>：Qwen3-Judge-Base 的准确率为 67.77%，经过 SFT 后，Qwen3-Judge-SFT 的准确率提升至 76.89%。</li>
+<li><strong>项目标签预测</strong>：Qwen3-Judge-Base 的准确率为 87.41%，Qwen3-Judge-SFT 的准确率提升至 93.08%。</li>
+<li><strong>推荐解释生成</strong>：Qwen3-Judge-Base 的准确率为 56.77%，Qwen3-Judge-SFT 的准确率大幅提升至 89.76%。</li>
+</ul>
+</li>
+</ul>
+<p>这些结果表明，通过在人类评估数据上进行监督式微调，可以显著提高 LLM 作为评估工具的性能，使其能够可靠地评估推荐生成任务的质量。</p>
+<p>案例研究</p>
+<ul>
+<li><strong>实验目的</strong>：通过具体案例展示 RecGPT 的工作流程和效果。</li>
+<li><strong>实验内容</strong>：以一位 30 岁女性用户为例，分析其在淘宝上的三年行为历史，包括购买、搜索和浏览活动。RecGPT 的用户兴趣挖掘模块识别出“时尚穿搭”和“育儿与婴儿护理”两大兴趣领域。项目标签预测模块将这些兴趣转化为具体的项目标签，如“亚麻混纺阔腿裤套装”和“婴儿水温测量计”。用户-项目-标签检索框架利用这些标签选择与用户多样化兴趣相匹配的相关产品。个性化推荐解释模块生成个性化理由，将推荐项目与用户的行为历史清晰地联系起来。</li>
+</ul>
+<p>这个案例强调了 RecGPT 的核心优势：利用特定任务的大型语言模型，结合广泛的世界知识和逻辑推理，揭示用户隐藏的和多样化的兴趣，同时保持相关性。</p>
+<p>用户体验调查</p>
+<ul>
+<li><strong>实验目的</strong>：系统地验证 RecGPT 在提高推荐质量和用户体验方面的有效性。</li>
+<li><strong>实验设置</strong>：随机选择 500 名活跃用户，分为对照组和实验组。对照组接收由基线算法生成的推荐，实验组接收由 RecGPT 增强的推荐系统生成的推荐。</li>
+<li><strong>评估方法</strong>：<ul>
+<li>采用三名评估者共识机制，只有在评估者意见一致时才将决策视为有效响应，以确保高可靠性并最小化主观偏差。</li>
+<li>评估过程包括历史回顾、推荐分析和冗余评估三个步骤。</li>
+</ul>
+</li>
+<li><strong>实验结果</strong>：RecGPT 有效减少了推荐的冗余性。人类评估者在 RecGPT 系统中识别出更少的重复项目，重复率从基线的 37.1% 降低到 36.2%。在前 4 个推荐位置中，相似产品聚类的减少更为显著，从 27.7% 降低到 25.3%，表明 RecGPT 成功地在用户最关注的位置多样化了推荐。</li>
+</ul>
+<p>这些实验结果表明，RecGPT 在提高推荐质量和用户体验方面具有显著优势，能够有效减少推荐的冗余性，提供更丰富多样的选择。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p><strong>A</strong>: 尽管 RecGPT 在在线 A/B 测试中展现出了显著的性能提升，但论文也指出了其存在的一些局限性，并提出了未来可以进一步探索的方向：</p>
+<p>1. 建模超长用户序列</p>
+<ul>
+<li><strong>问题</strong>：处理超长用户行为序列对当前模型来说是一个挑战。一方面，模型训练和推理的计算负担巨大，处理大量用户历史记录时成本过高；另一方面，模型可能在长序列中关注到无关的噪声，而非有意义的兴趣模式，导致对用户兴趣的理解出现偏差。</li>
+<li><strong>探索方向</strong>：研究专门针对 LLMs 的先进序列建模技术，重点改进上下文工程，动态优化用户行为序列的长期和短期记忆管理、上下文选择以及信息压缩。</li>
+</ul>
+<p>2. 多目标联合学习与强化学习</p>
+<ul>
+<li><strong>问题</strong>：目前 RecGPT 依赖于监督学习和定期的模型更新，这在适应现实世界中不断演变的用户偏好和产品特性方面存在局限性。此外，不同的生成任务是分开训练的，没有实现理想的联合优化，尽管它们共同服务于最终的推荐目标。</li>
+<li><strong>探索方向</strong>：引入基于强化学习（RL）的多目标联合优化，利用在线用户反馈数据作为统一的优化信号。这将允许在所有生成任务之间进行联合训练，同时优化多个目标，如用户参与度、转化率和平台长期健康度，从而提高模型对真实世界用户互动的适应性。</li>
+</ul>
+<p>3. 端到端的 LLM-as-a-Judge 系统</p>
+<ul>
+<li><strong>问题</strong>：当前的 RecGPT 评估框架侧重于单独评估各个任务的质量，需要为不同的评估维度准备单独的训练数据。这导致了一个分散的评估过程，缺乏全面的端到端上下文理解，无法综合评估多个方面。</li>
+<li><strong>探索方向</strong>：开发一个端到端的 LLM-as-a-Judge 系统，结合人类反馈的强化学习（RLHF）方法，使用人类反馈来训练能够进行综合多任务评估的评估器。此外，探索推理时可扩展的生成式奖励模型，以在推理过程中动态分配计算资源，提高评估质量，并提供更细致的流程评估。</li>
+</ul>
+<p>4. 实时交互与动态反馈</p>
+<ul>
+<li><strong>问题</strong>：在现实世界的应用场景中，用户的行为和偏好是动态变化的，而推荐系统需要能够实时响应这些变化，以提供最相关和及时的推荐。</li>
+<li><strong>探索方向</strong>：研究如何使 RecGPT 更好地适应实时交互和动态反馈。例如，通过引入在线学习机制，使模型能够实时更新和调整其对用户兴趣的理解，从而提供更精准的推荐。</li>
+</ul>
+<p>5. 多模态融合</p>
+<ul>
+<li><strong>问题</strong>：目前 RecGPT 主要依赖于文本信息来进行用户兴趣挖掘和项目推荐，但在实际应用中，用户的行为和偏好可能还受到其他模态信息（如图像、视频等）的影响。</li>
+<li><strong>探索方向</strong>：探索如何将多模态信息融合到 RecGPT 中，以更全面地理解用户兴趣和生成更丰富的推荐。例如，利用图像识别技术来分析用户对商品外观的偏好，或者利用视频内容来挖掘用户对特定主题的兴趣。</li>
+</ul>
+<p>6. 跨领域推荐</p>
+<ul>
+<li><strong>问题</strong>：在一些情况下，用户可能在不同的领域或平台上表现出不同的兴趣和行为模式，而这些信息对于提供更全面的推荐可能非常有价值。</li>
+<li><strong>探索方向</strong>：研究如何使 RecGPT 能够跨领域进行推荐，即将用户在不同领域或平台上的行为和偏好信息整合起来，以提供更个性化和多样化的推荐。</li>
+</ul>
+<p>7. 用户隐私和数据安全</p>
+<ul>
+<li><strong>问题</strong>：随着推荐系统对用户数据的依赖程度越来越高，用户隐私和数据安全问题变得越来越重要。</li>
+<li><strong>探索方向</strong>：研究如何在保护用户隐私和数据安全的前提下，有效地利用用户数据来训练和优化 RecGPT。例如，采用差分隐私技术或联邦学习方法来保护用户数据。</li>
+</ul>
+<p>这些探索方向将有助于进一步提升 RecGPT 的性能和适应性，使其能够更好地满足用户需求，为用户提供更优质、更个性化的推荐体验。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>A</strong>: 论文提出了 RecGPT，这是一个创新的推荐系统框架，旨在通过整合大型语言模型（LLMs）来解决传统推荐系统在用户意图理解和推荐结果多样性方面的局限性。以下是论文的主要内容总结：</p>
+<p>研究背景</p>
+<ul>
+<li>传统的推荐系统主要依赖于历史共现模式和日志拟合目标，缺乏对用户意图的明确建模，导致推荐结果往往局限于用户的历史偏好，无法捕捉用户的潜在兴趣。</li>
+<li>这种方法容易导致信息茧房效应，强化用户的过滤泡沫，同时加剧了长尾现象，不利于用户体验和推荐生态系统的可持续发展。</li>
+</ul>
+<p>研究目标</p>
+<ul>
+<li>提出一个以用户意图为中心的推荐系统框架，通过利用 LLMs 的世界知识和推理能力，更准确地挖掘用户兴趣，提供多样化的推荐结果，打破信息茧房，促进推荐生态系统的健康发展。</li>
+</ul>
+<p>方法</p>
+<ul>
+<li><strong>RecGPT 框架</strong>：RecGPT 通过将用户意图挖掘、项目标签预测、项目检索和推荐解释生成四个关键阶段与 LLMs 相结合，实现从日志拟合推荐到意图驱动推荐的转变。</li>
+<li><strong>用户意图挖掘</strong>：使用 LLMUI 分析用户的终身行为历史，生成自然语言的用户兴趣画像。通过可靠行为序列压缩和多阶段任务对齐框架，提升 LLMUI 的性能。</li>
+<li><strong>项目标签预测</strong>：基于用户兴趣挖掘结果，LLMIT 预测用户可能感兴趣的项目标签。采用多阶段任务对齐和增量学习方法，使 LLMIT 能够适应产品领域的特定需求。</li>
+<li><strong>项目检索</strong>：提出标签感知的语义相关性检索方法，结合用户行为的协同信号，平衡语义相关性和协同相关性，提高推荐的准确性和多样性。</li>
+<li><strong>推荐解释生成</strong>：LLMRE 根据用户兴趣和推荐项目生成个性化的推荐解释，提高推荐系统的透明度和用户体验。</li>
+<li><strong>人机协作评估系统</strong>：利用 LLM 作为评估工具，结合人类专家的监督，确保推荐结果符合人类的主观期望，同时提高评估效率。</li>
+</ul>
+<p>实验</p>
+<ul>
+<li><strong>在线 A/B 测试</strong>：在淘宝首页的“猜你喜欢”场景中进行的测试表明，RecGPT 在用户体验（如用户停留时间、物品类别多样性）和平台收益（如物品页面浏览量、点击通过率）方面均取得了显著提升。</li>
+<li><strong>人类评估实验</strong>：验证了 LLM 作为评估工具的有效性，经过监督式微调的 LLM 在用户兴趣挖掘、项目标签预测和推荐解释生成等任务上的性能得到了显著提升。</li>
+<li><strong>案例研究</strong>：通过具体案例展示了 RecGPT 如何通过分析用户行为历史，挖掘用户兴趣，并生成与用户兴趣相匹配的推荐项目和个性化解释。</li>
+<li><strong>用户体验调查</strong>：通过用户调查验证了 RecGPT 在减少推荐冗余、提高推荐多样性方面的优势。</li>
+</ul>
+<p>结论</p>
+<p>RecGPT 通过利用 LLMs 的强大能力，成功地将用户意图挖掘和语义理解引入推荐系统，为用户提供更个性化、多样化的推荐体验，同时为商家和平台带来了显著的商业价值。此外，RecGPT 的人机协作评估系统为推荐系统的优化提供了一种高效、可靠的方法。</p>
+<p>未来工作</p>
+<ul>
+<li><strong>超长用户序列建模</strong>：探索先进的序列建模技术，以更好地处理超长用户行为序列。</li>
+<li><strong>多目标联合学习与强化学习</strong>：引入强化学习进行多目标联合优化，以适应不断变化的用户偏好和产品特性。</li>
+<li><strong>端到端的 LLM-as-a-Judge 系统</strong>：开发能够进行综合多任务评估的端到端评估系统，提高评估的全面性和效率。</li>
+</ul>
+<p>RecGPT 的提出为推荐系统领域带来了新的视角和方法，展示了 LLMs 在提升推荐质量和用户体验方面的巨大潜力。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p><strong>A</strong>: 以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.moonshot.cn/_prefill_chat?prefill_prompt= 我们要讨论的论文是RecGPT%20Technical%20Report，链接是  https://arxiv.org/pdf/2507.22879  ，已有的FAQ链接是  https://papers.cool/arxiv/kimi?paper=2507.22879  。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Chao Yi,Dian Chen,Gaoyang Guo,Jiakai Tang,Jian Wu,Jing Yu,Mao Zhang,Sunhao Dai,Wen Chen,Wenjun Yang,Yuning Jiang,Zhujin Gao,Bo Zheng,Chi Li,Dimin Wang,Dixuan Wang,Fan Li,Fan Zhang,Haibin Chen,Haozhuang Liu,Jialin Zhu,Jiamang Wang,Jiawei Wu,Jin Cui,Ju Huang,Kai Zhang,Kan Liu,Lang Tian,Liang Rao,Longbin Li,Lulu Zhao,Na He,Peiyang Wang,Qiqi Huang,Tao Luo,Wenbo Su,Xiaoxiao He,Xin Tong,Xu Chen,Xunke Xi,Yang Li,Yaxuan Wu,Yeqiu Yang,Yi Hu,Yinnan Song,Yuchen Li,Yujie Luo,Yujin Yuan,Yuliang Yan,Zhengyang Wang,Zhibo Xiao,Zhixin Ma,Zile Zhou,Ziqi Zhang</p>
+<p><strong>Categories</strong>: cs.IR,cs.CL</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.22879.pdf">https://arxiv.org/pdf/2507.22879.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.22879">https://arxiv.org/abs/2507.22879</a></p>
+<p><strong>Arxiv ID</strong>: 2507.22879</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2507.22879">https://papers.cool/arxiv/2507.22879</a></p>
+<p><strong>Published</strong>: 2025-07-30T17:55:06Z</p>
+<p><strong>Updated</strong>: 2025-07-30T17:55:06.000Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202508/2025-08-01/">https://wdndev.github.io/daily/hf/202508/2025-08-01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202507/2025-07-15/" title="HuggingFace Papers 2025-07-15"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-15</div></div></a></div><div><a href="/daily/hf/202507/2025-07-16/" title="HuggingFace Papers 2025-07-16"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-16</div></div></a></div><div><a href="/daily/hf/202507/2025-07-14/" title="HuggingFace Papers 2025-07-14"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-14</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Seed-Prover-Deep-and-Broad-Reasoning-for-Automated-Theorem-Proving"><span class="toc-text">1. Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-RecGPT-Technical-Report"><span class="toc-text">2. RecGPT Technical Report</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

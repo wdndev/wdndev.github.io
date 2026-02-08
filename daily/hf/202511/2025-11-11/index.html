@@ -1,0 +1,2814 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2025-11-11 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Too Good to be Bad: On the Failure of LLMs to Role-Play VillainsLarge Language Models (LLMs) are increasingly tasked with creative generation, including the s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2025-11-11">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202511/2025-11-11/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Too Good to be Bad: On the Failure of LLMs to Role-Play VillainsLarge Language Models (LLMs) are increasingly tasked with creative generation, including the s">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-08T00:00:54.917Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202511/2025-11-11/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2025-11-11',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-08 08:00:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">942</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2025-11-11</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-08T00:00:54.917Z" title="Updated 2026-02-08 08:00:54">2026-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">37.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>128min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2025-11-11"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Too-Good-to-be-Bad-On-the-Failure-of-LLMs-to-Role-Play-Villains"><a href="#1-Too-Good-to-be-Bad-On-the-Failure-of-LLMs-to-Role-Play-Villains" class="headerlink" title="1. Too Good to be Bad: On the Failure of LLMs to Role-Play Villains"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.04962">Too Good to be Bad: On the Failure of LLMs to Role-Play Villains</a></h3><p>Large Language Models (LLMs) are increasingly tasked with creative generation, including the simulation of fictional characters. However, their ability to portray non-prosocial, antagonistic personas remains largely unexamined. We hypothesize that the safety alignment of modern LLMs creates a fundamental conflict with the task of authentically role-playing morally ambiguous or villainous characters. To investigate this, we introduce the Moral RolePlay benchmark, a new dataset featuring a four-level moral alignment scale and a balanced test set for rigorous evaluation. We task state-of-the-art LLMs with role-playing characters from moral paragons to pure villains. Our large-scale evaluation reveals a consistent, monotonic decline in role-playing fidelity as character morality decreases. We find that models struggle most with traits directly antithetical to safety principles, such as <code>Deceitful&#39;&#39; and</code>Manipulative’’, often substituting nuanced malevolence with superficial aggression. Furthermore, we demonstrate that general chatbot proficiency is a poor predictor of villain role-playing ability, with highly safety-aligned models performing particularly poorly. Our work provides the first systematic evidence of this critical limitation, highlighting a key tension between model safety and creative fidelity. Our benchmark and findings pave the way for developing more nuanced, context-aware alignment methods.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>大型语言模型（LLMs）越来越多地被赋予创造性生成的任务，包括模拟虚构角色。然而，它们在描绘非亲社会、对抗性角色的能力仍然很少被研究。我们假设，现代LLMs的安全性对齐与真实扮演道德模糊或反派角色的任务之间存在根本冲突。为此，我们引入了Moral RolePlay（道德角色扮演）基准，这是一套新的数据集，具有四级道德对齐量表和一个平衡的测试集，以进行严格评估。我们让最先进的LLMs扮演从道德典范到纯反派的角色。我们的大规模评估显示，随着角色道德性的降低，角色扮演的忠实度呈现出一致的单调下降。我们发现，模型在处理与安全原则直接对立的特质（如“欺骗”和“操控”）时表现最差，通常会用表面的攻击性代替细致的恶意特征。此外，我们证明，一般聊天机器人的熟练程度不能很好地预测其扮演反派角色的能力，高度安全对齐的模型表现尤其差。我们的工作首次系统地提供了这一关键局限性的证据，凸显了模型安全与创造性忠实度之间的关键张力。我们的基准和研究成果为开发更细致、具上下文感知的对齐方法铺平了道路。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在回答一个尚未被系统验证的核心问题：<br><strong>“安全对齐是否会阻碍大语言模型在虚构情境中真实扮演道德负面或反派角色？”</strong></p>
+<p>具体而言，作者观察到现有 LLM 普遍接受了“有益、无害、诚实”的对齐训练，却缺乏对以下风险的实证评估：</p>
+<ul>
+<li>对齐目标与创作需求之间的张力可能使模型无法逼真地模拟自私、欺骗、残忍等反派特质；</li>
+<li>这种“不能为恶”的局限会削弱交互式叙事、游戏、教育等应用的角色丰富度。</li>
+</ul>
+<p>为此，论文首次构建了带四级道德标签且均衡覆盖反派角色的 <strong>Moral RolePlay 基准</strong>，通过零样本扮演任务，量化验证了一个假设：</p>
+<blockquote>
+<p>随着角色道德水平降低，LLM 的角色保真度呈单调下降，且最大跌幅出现在“ flawed-good → egoist”边界；<br>该现象根源于对齐训练对“欺骗、操控”等特质的系统性抑制，而非一般角色扮演能力不足。</p>
+</blockquote>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文将相关研究归为两条主线，并指出既有工作留下的关键空白：</p>
+<ol>
+<li>角色扮演语言智能体</li>
+</ol>
+<ul>
+<li>早期方法用静态问卷（MBTI 等）或多项选择测试角色一致性（Wang et al. 2024; Zhou et al. 2025; Tu et al. 2024）。</li>
+<li>近期转向开放、多轮交互环境，如 COSER、BookWorld、SocialBench、CharacterEval 等（Wang et al. 2025a; Ran et al. 2025; Chen et al. 2024a,b）。<br><strong>空白</strong>：这些基准未系统标注“道德极性”与细粒度负面特质，也未探讨对齐对反角扮演的抑制效应。</li>
+</ul>
+<ol>
+<li>大模型安全对齐</li>
+</ol>
+<ul>
+<li>经典工作集中在过滤有害语料、RLHF/RLAIF、拒绝机制等（Ziegler et al. 2019; Dai et al. 2023; Yuan et al. 2024, 2025）。</li>
+<li>文献提出“对齐税”概念，指出过度对齐会削弱流畅度、创造力或推理表现（Wen et al. 2025; Chen et al. 2025）。<br><strong>空白</strong>：尚无基准级实证研究把“对齐税”具体到角色扮演场景，量化模型在“欺骗、操控、残忍”等特质上的失效程度。</li>
+</ul>
+<p>因此，作者首次将两条研究流交叉，用 Moral RolePlay 基准系统验证“对齐-创作张力”对反派角色保真度的影响。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文采用“构建专用基准 + 大规模零样本评测 + 细粒度归因分析”的三段式方案，将“对齐是否抑制反派扮演”这一抽象假设转化为可量化、可复现的实证研究。</p>
+<ol>
+<li>构建 Moral RolePlay 基准</li>
+</ol>
+<ul>
+<li>四级道德标签：Paragon → Flawed-but-Good → Egoist → Villain</li>
+<li>77 维人格特质标注（含 17 项负面特质）</li>
+<li>均衡测试集：800 角色×200/级，解决真实语料中反派稀缺导致的评估偏差</li>
+<li>统一提示模板：以“专业演员”身份零样本进入角色，控制上下文与情感极性</li>
+</ul>
+<ol>
+<li>大规模零样本评测</li>
+</ol>
+<ul>
+<li>覆盖 17 个 SOTA 模型（含开源与商用、高对齐与弱对齐 variant）</li>
+<li>双视角稳健性检验：第一人称 vs. 第三人称；显式推理 vs. 无推理</li>
+<li>指标：Character Fidelity 得分</li>
+</ul>
+<p>S = 5 − 0.5×D − 0.1×D_m + 0.15×T</p>
+<p>其中 D 为累计不一致扣分，D_m 为最大单次扣分，T 为对话轮数</p>
+<ul>
+<li>结果：所有模型均出现“道德水平 ↓ → fidelity 单调 ↓”，最大跌幅位于 L2→L3（-0.42）</li>
+</ul>
+<ol>
+<li>细粒度归因与错位分析</li>
+</ol>
+<ul>
+<li>特质级惩罚：负面特质平均扣分 3.41，显著高于正面 3.16；其中 Deceitful、Manipulative、Selfish 位列前三</li>
+<li>建立 Villain RolePlay (VRP) 排行榜：通用 Arena 排名与反派扮演能力相关系数低，高对齐模型（Claude 系列）在 VRP 上普遍骤降</li>
+<li>定性案例：高对齐模型将“心理操控”简化为“直接辱骂+肢体威胁”，验证安全护栏对欺骗性语言的额外抑制</li>
+</ul>
+<p>通过上述步骤，论文把“对齐-创作张力”转译为可度量指标，首次系统证实：安全对齐在虚构情境下同样会抑制对反派特质的真实建模。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕“对齐是否抑制反派扮演”这一核心假设，设计并执行了四类实验，全部在零样本设定下完成，以保证结论的通用性。</p>
+<ol>
+<li>主实验：四级道德角色扮演 fidelity 评测</li>
+</ol>
+<ul>
+<li>模型：17 个 SOTA LLM（含 Gemini-2.5-pro、Claude-opus-4.1、ChatGPT-4o、Qwen3-max、DeepSeek 系列、GLM-4.6 等）</li>
+<li>数据：Moral RolePlay 均衡测试集 800 角色（每级 200）</li>
+<li>指标：Character Fidelity 得分</li>
+<li>结果：平均 fidelity 从 L1 3.21 单调降至 L4 2.61，最大跌幅 Δ=−0.42 出现在 L2→L3，验证“道德越低越难演”</li>
+</ul>
+<ol>
+<li>稳健性实验<br>2.1 叙事视角消融</li>
+</ol>
+<ul>
+<li>对比第一人称 vs. 第三人称提示</li>
+<li>结论：两种视角下均呈现相同单调下降趋势，说明发现非提示假象</li>
+</ul>
+<p>2.2 显式推理消融</p>
+<ul>
+<li>对 7 个“推理开关”模型（Gemini-2.5-pro、Claude-opus-4.1-thinking 等）开启/关闭 CoT</li>
+<li>结论：开启推理未带来提升，反而在 L2-L4 轻微降分，表明链式思考不能缓解反派扮演难度</li>
+</ul>
+<ol>
+<li>特质级惩罚分析</li>
+</ol>
+<ul>
+<li>将 77 维人格标注按“正/中/负”分类，计算每类平均扣分</li>
+<li>负面特质平均 penalty 3.41，显著高于正面 3.16；Deceitful、Manipulative、Selfish 位列最高 penalty</li>
+<li>定位“对齐-冲突”具体落在欺骗、操控、自私三项</li>
+</ul>
+<ol>
+<li>Villain RolePlay（VRP）排行榜实验</li>
+</ol>
+<ul>
+<li>仅使用 L4（Villain）200 角色，按 fidelity 得分排序得到 VRP 排名</li>
+<li>与通用 Arena 排名对比：相关系数低，高对齐模型（Claude 系列）VRP 排名骤降，GLM-4.6 跃居第一</li>
+<li>定性抽样：同一幕“Maeve vs. Erawan”心理博弈，高对齐模型把精密操控写成“互骂+动手”，而 GLM-4.6 保留“试探-反击”的微妙张力</li>
+</ul>
+<p>四类实验共同构成一条完整证据链：<br>“对齐训练 → 对欺骗/操控等特质额外抑制 → 反派角色保真度系统性下降”，且该现象与提示视角、推理开关、通用聊天能力均无明显耦合。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可继续推进，分为“数据与任务”“方法”“评测”“应用与伦理”四个层面：</p>
+<ul>
+<li>数据与任务</li>
+<li>多语言反派：验证对齐抑制是否跨文化存在，收集非英语文学中的反派角色。</li>
+<li>多模态反派：引入语音语调、面部表情、肢体动作，考察视觉-语言对齐对“邪恶气质”的再抑制。</li>
+<li>动态长程剧情：从单轮扩展至多幕弧光，让反派随故事推进逐渐暴露恶意，测试模型能否持续维持欺骗张力。</li>
+<li>方法</li>
+<li>上下文可控对齐：在推理阶段引入“道德档位”条件向量，实现同一模型在“安全助手”与“反派演员”之间平滑切换。</li>
+<li>对抗性角色微调：用 Moral RolePlay 54 k 训练集进行 LoRA/QLoRA 微调，配合拒绝惩罚加权，探索能否在不泄露有害内容的前提下提升欺骗/操控表现力。</li>
+<li>分层解码策略：在生成阶段对“恶意但无害”token 提高概率，对可导致现实伤害的输出仍保持低概率，实现“戏剧真实”与“现实安全”双目标优化。</li>
+<li>评测</li>
+<li>人类-机器混合裁判：引入专业编剧/心理学专家做盲评，与 LLM-as-judge 对比，量化机器评分的偏差。</li>
+<li>细粒度心理量表：除 77 维特质外，加入 Dark Triad、PID-5 等临床量表，检验模型输出的精神病态、马基雅维利主义得分与角色设定一致性。</li>
+<li>反探测指标：测量外部安全分类器对反派扮演文本的误报率，评估“看起来邪恶”与“实际有害”的分离度。</li>
+<li>应用与伦理</li>
+<li>教育场景双刃剑：研究在历史/文学教学中让学生与“希特勒/麦克白”对话的沉浸收益，与潜在情感冲击之间的权衡。</li>
+<li>红队攻防演练：把反派模型当作“攻击方”参与 Prompt Injection、Social Engineering 模拟，检验系统防御鲁棒性。</li>
+<li>法规与标识：探索“虚构反派”输出必须携带的元数据水印或免责声明，以满足未来生成式 AI 监管要求。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>论文核心概要</strong><br>题目：Too Good to be Bad: LLM 无法逼真扮演反派的大样本实证研究</p>
+<ol>
+<li>研究动机</li>
+</ol>
+<ul>
+<li>安全对齐强调“有益、诚实、无害”，与虚构创作所需的“欺骗、操控、残忍”存在天然张力。</li>
+<li>缺乏系统基准验证“对齐税”是否会降低反派角色保真度。</li>
+</ul>
+<ol>
+<li>Moral RolePlay 基准</li>
+</ol>
+<ul>
+<li>四级道德光谱：Paragon → Flawed-but-Good → Egoist → Villain</li>
+<li>77 维人格特质标注（17 项负面）</li>
+<li>均衡测试集 800 角色（每级 200），解决反派稀缺偏差</li>
+<li>零样本“专业演员”提示，控制情感与上下文变量</li>
+</ul>
+<ol>
+<li>主实验结果（17 个 SOTA 模型）</li>
+</ol>
+<ul>
+<li>角色 fidelity 得分单调下降：L1 3.21 → L4 2.61</li>
+<li>最大跌幅 Δ=−0.42 出现在 L2→L3，揭示“自我中心”是首要障碍</li>
+<li>负面特质平均扣分 3.41，显著高于正面 3.16；Deceitful、Manipulative、Selfish 最难再现</li>
+</ul>
+<ol>
+<li>稳健性与错位分析</li>
+</ol>
+<ul>
+<li>第一/三人称、开/关 CoT 均不改变下降趋势</li>
+<li>Villain RolePlay 排行榜：通用 Arena 排名与反派能力相关性低；高对齐模型（Claude 系列）VRP 排名骤降</li>
+<li>定性案例：高对齐模型把精密心理博弈写成“互骂+动手”，验证安全护栏对欺骗性语言的额外抑制</li>
+</ul>
+<ol>
+<li>结论与启示</li>
+</ol>
+<ul>
+<li>首次提供大样本证据：安全对齐在虚构情境下仍会系统抑制反派特质，导致“太善良而演不了坏人”</li>
+<li>通用聊天能力无法预测反派扮演水平；需发展上下文感知、道德档位可控的新一代对齐方法</li>
+<li>发布基准与 54 k 训练资源，推动“既安全又能演恶”的研究方向</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Too%20Good%20to%20be%20Bad%3A%20On%20the%20Failure%20of%20LLMs%20to%20Role-Play%20Villains，链接是https://arxiv.org/pdf/2511.04962，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.04962。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Zihao Yi,Qingxuan Jiang,Ruotian Ma,Xingyu Chen,Qu Yang,Mengru Wang,Fanghua Ye,Ying Shen,Zhaopeng Tu,Xiaolong Li,Linus</p>
+<p><strong>Categories</strong>: cs.CL,cs.AI</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.04962.pdf">https://arxiv.org/pdf/2511.04962.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.04962">https://arxiv.org/abs/2511.04962</a></p>
+<p><strong>Arxiv ID</strong>: 2511.04962</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.04962">https://papers.cool/arxiv/2511.04962</a></p>
+<p><strong>Published</strong>: 2025-11-07T03:50:52Z</p>
+<p><strong>Updated</strong>: 2025-11-07T03:50:52.000Z</p>
+<hr>
+<h3 id="2-DeepEyesV2-Toward-Agentic-Multimodal-Model"><a href="#2-DeepEyesV2-Toward-Agentic-Multimodal-Model" class="headerlink" title="2. DeepEyesV2: Toward Agentic Multimodal Model"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.05271">DeepEyesV2: Toward Agentic Multimodal Model</a></h3><p>Agentic multimodal models should not only comprehend text and images, but also actively invoke external tools, such as code execution environments and web search, and integrate these operations into reasoning. In this work, we introduce DeepEyesV2 and explore how to build an agentic multimodal model from the perspectives of data construction, training methods, and model evaluation. We observe that direct reinforcement learning alone fails to induce robust tool-use behavior. This phenomenon motivates a two-stage training pipeline: a cold-start stage to establish tool-use patterns, and reinforcement learning stage to further refine tool invocation. We curate a diverse, moderately challenging training dataset, specifically including examples where tool use is beneficial. We further introduce RealX-Bench, a comprehensive benchmark designed to evaluate real-world multimodal reasoning, which inherently requires the integration of multiple capabilities, including perception, search, and reasoning. We evaluate DeepEyesV2 on RealX-Bench and other representative benchmarks, demonstrating its effectiveness across real-world understanding, mathematical reasoning, and search-intensive tasks. Moreover, DeepEyesV2 exhibits task-adaptive tool invocation, tending to use image operations for perception tasks and numerical computations for reasoning tasks. Reinforcement learning further enables complex tool combinations and allows model to selectively invoke tools based on context. We hope our study can provide guidance for community in developing agentic multimodal models.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>具有自主能力的多模态模型不仅应理解文本和图像，还应能够主动调用外部工具，例如代码执行环境和网络搜索，并将这些操作整合到推理过程中。在本研究中，我们介绍了 DeepEyesV2，并从数据构建、训练方法和模型评估的角度探讨如何构建具有自主能力的多模态模型。我们观察到，单纯的直接强化学习无法有效诱导稳健的工具使用行为。这一现象促使我们设计了一个两阶段训练流程：冷启动阶段用于建立工具使用模式，强化学习阶段用于进一步优化工具调用。我们策划了一个多样化、适中难度的训练数据集，特别包括那些工具使用有明显好处的示例。我们还引入了 RealX-Bench，这是一个综合性基准，用于评估现实世界中的多模态推理，其本质上需要整合包括感知、搜索和推理在内的多项能力。我们在 RealX-Bench 及其他代表性基准上评估了 DeepEyesV2，展示了其在现实世界理解、数学推理和密集搜索任务中的有效性。此外，DeepEyesV2 展示了任务自适应的工具调用倾向：在感知任务中倾向使用图像操作，而在推理任务中倾向使用数值计算。强化学习进一步促进了复杂工具的组合，并使模型能够根据上下文选择性地调用工具。我们希望本研究能为社区在开发具有自主能力的多模态模型方面提供指导。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在构建一种“具身多模态模型”（agentic multimodal model），使其不仅能理解文本与图像，还能在推理过程中主动调用外部工具（代码执行、网络搜索等），并将这些操作无缝整合到动态推理循环中，从而提升在真实世界场景下的准确性、可解释性与泛化能力。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>相关研究可归纳为三大脉络：</p>
+<ol>
+<li>多模态大模型（MLLMs）</li>
+</ol>
+<ul>
+<li>早期工作通过轻量适配器将视觉编码器与 LLM 连接，实现基础视觉-语言对齐，如 BLIP-2、LLaVA 系列。</li>
+<li>近期架构扩大数据与参数规模，提升感知与描述能力，如 Qwen2.5-VL、InternVL3、LLaVA-OneVision。</li>
+<li>Omni-MLLMs 进一步支持语音-视频-图像混合输入，如 Baichuan-Omni-1.5。<br>共同局限：模型被动，无法主动调用外部工具完成计算或检索。</li>
+</ul>
+<ol>
+<li>“用图像思考”范式（Thinking with Images）</li>
+</ol>
+<ul>
+<li>o3 首次展示在推理链中迭代操作图像的能力。</li>
+<li>后续工作多采用“冷启动+强化学习”两阶段训练，仅支持裁剪等有限操作，如 DeepEyes、GRIT、Chain-of-Focus。</li>
+<li>PyVision、Thyme 引入可执行代码实现灵活视觉操作，但仍局限于图像域，缺乏知识检索。</li>
+</ul>
+<ol>
+<li>面向搜索的推理（Search-oriented Reasoning）</li>
+</ol>
+<ul>
+<li>传统 RAG 从静态知识库检索文本，如 Search-R1。</li>
+<li>近期研究引入在线搜索，支持图文混合查询，如 MMSearch、WebWatcher、VRAG-RL。<br>局限：通常仅使用单一工具（搜索或裁剪），未在统一框架内协同多种工具。</li>
+</ul>
+<p>综上，现有方法要么仅操作图像，要么仅检索知识，尚无工作像 DeepEyesV2 一样在单一推理循环内动态组合代码执行与网络搜索，并系统研究数据构建、两阶段训练与跨能力评测。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文从“训练策略–数据构造–评测基准”三条线协同推进，形成可复现的完整方案：</p>
+<ol>
+<li>两阶段训练框架</li>
+</ol>
+<ul>
+<li>冷启动监督微调：先让模型学会“可执行”工具范式<br>– 用高难度、工具收益明确的精选数据做 SFT，建立稳定调用代码/搜索的模式</li>
+<li>强化学习精炼：再在交互环境里稀疏奖励优化<br>– 仅使用“答案正确+格式合规”双奖励，不设计复杂塑形，避免奖励黑客<br>– 允许动态决定“是否调用、调用几次、组合谁”，实现上下文自适应</li>
+</ul>
+<ol>
+<li>数据工程</li>
+</ol>
+<ul>
+<li>收集感知、推理、搜索三类真实场景题，经难度过滤与工具增益过滤，保留“基模型做不对但用了工具能对”的案例</li>
+<li>用强模型（Gemini-2.5-Pro 等）合成带工具标记的长链轨迹，执行后只留“答案对且代码无错”的高质量序列</li>
+<li>划分冷启动集合（含长 CoT）与 RL 集合，保证两阶段互补</li>
+</ul>
+<ol>
+<li>统一推理管线</li>
+</ol>
+<ul>
+<li>把 Python 沙箱与 SerpAPI 封装成同构“观察”接口，模型以同一格式插入 <code>&lt;code&gt;</code> 或 <code>&lt;tool_call&gt;</code></li>
+<li>执行结果（图像、数值、网页摘要）即时回灌上下文，支持多轮迭代，直到输出最终答案</li>
+</ul>
+<ol>
+<li>新基准 RealX-Bench</li>
+</ol>
+<ul>
+<li>300 组真实世界图文问答题，同时考核感知-搜索-推理的协同</li>
+<li>提供自动脚本判分，弥补现有基准仅测单能力的空白</li>
+</ul>
+<p>通过“先学会用→再优化何时用”这一分阶段路线，DeepEyesV2 在 RealX-Bench 及多项感知、数学、搜索基准上取得一致提升，验证了主动工具调用对多模态推理的增益。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>实验围绕“真实世界理解–数学推理–搜索密集型任务”三条主线展开，并辅以消融与行为分析，系统验证 DeepEyesV2 的工具调用有效性。</p>
+<ol>
+<li>RealX-Bench 综合评测</li>
+</ol>
+<ul>
+<li>300 题跨感知/搜索/推理三能力</li>
+<li>人类准确率 70 %，最佳专有模型仅 46 %；DeepEyesV2 达到 28.3 %，显著领先同规模开源模型（+6.0 平均绝对分）</li>
+</ul>
+<ol>
+<li>真实世界 &amp; OCR &amp; 图表理解</li>
+</ol>
+<ul>
+<li>覆盖 V*、HRBench、MME-RealWorld、TreeBench、OCRBench、SEED-2-Plus、CharXiv、ChartQA 等 9 个基准</li>
+<li>7B 参数下平均提升 3.3–7.6 分，部分榜单超过 Qwen2.5-VL-32B</li>
+</ul>
+<ol>
+<li>多模态数学推理</li>
+</ol>
+<ul>
+<li>MathVista、MathVerse、MathVision、WeMath、LogicVista 5 套题库</li>
+<li>在 MathVerse 上绝对提升 7.1（→52.7 %），优于文本专用推理模型 MM-Eureka 等</li>
+</ul>
+<ol>
+<li>在线搜索能力</li>
+</ol>
+<ul>
+<li>FVQA-test、InfoSeek、MMSearch、SimpleVQA</li>
+<li>MMSearch 达 63.7 %，比专用搜索模型 MMSearch-R1 再高出 9.9 分</li>
+</ul>
+<ol>
+<li>消融实验</li>
+</ol>
+<ul>
+<li>冷启动数据：仅感知/仅推理/仅长 CoT → 组合后最佳，证明多样性与长思维链缺一不可</li>
+<li>RL 数据：仅感知→数学掉分；仅推理→搜索掉分；三源混合后全任务均衡提升</li>
+</ul>
+<ol>
+<li>工具行为分析</li>
+</ol>
+<ul>
+<li>任务相关分布：感知题 80 % 以上调用裁剪，数学题 70 % 以上运行数值代码，搜索题 90 % 以上触发检索</li>
+<li>RL 后调用频次下降但方差高，模型学会“能不用则不用，该用则组合用”</li>
+<li>训练曲线：平均回复长度缩短，奖励稳步上升，复杂问题仍保持多轮工具组合</li>
+</ul>
+<p>综上，实验从宏观性能到微观调用细节，全面验证了“冷启动→RL”两阶段框架对构建可信赖的具身多模态模型的有效性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可继续推进，括号内给出可验证的初步指标或实验设计供参考：</p>
+<ul>
+<li><strong>工具空间扩展</strong></li>
+<li>引入可微分或神经工具（如深度估计、3D 重建、OCR API），观察 RealX-Bench“Integration”子集能否再提升 ≥5 %</li>
+<li>支持多工具并行调用，对比串行调用在耗时-准确率 Pareto 前沿的变化</li>
+<li><strong>奖励函数与 RL 算法</strong></li>
+<li>测试 dense reward（如每步执行正确性）vs 稀疏 reward，统计是否减少 Tool Selection Error ≥30 %</li>
+<li>采用组相对策略优化（GRPO）或 MCTS 引导探索，比较样本效率（达到同等准确率所需 rollout 数）</li>
+<li><strong>多轮自进化数据飞轮</strong></li>
+<li>让模型自主生成新问题→自评→加入 RL 数据池，监控三轮迭代后 MathVerse 分数是否持续提升而不坍缩</li>
+<li>引入“拒绝采样+难度重打分”策略，保证自采数据难度分布与人工冷启动数据一致（KL&lt;0.05）</li>
+<li><strong>跨模态工具泛化</strong></li>
+<li>在视频帧序列上测试时序裁剪+搜索，构建 VideoX-Bench（300 视频问答），验证工具组合是否仍优于单工具 ≥10 %</li>
+<li>引入音频转文本工具，考察 Omni 场景下工具选择错误率能否控制在 &lt;15 %</li>
+<li><strong>安全与可解释</strong></li>
+<li>建立 Tool-Call Attribution 数据集，标注每一步工具输出对最终答案的贡献，训练解释头，使 Attribution F1 ≥0.75</li>
+<li>评估搜索内容毒性/代码注入风险，采用红队 prompt 1000 次，攻击成功率目标 &lt;2 %</li>
+<li><strong>高效推理与边缘部署</strong></li>
+<li>研究“工具调用早停”策略，当置信度 &gt;0.9 时直接回答，对比原模型在保持准确率下降 &lt;1 % 前提下平均 token 节省 ≥25 %</li>
+<li>将工具执行结果缓存，重复查询命中率提升至 40 % 以上，减少实际搜索/代码执行开销</li>
+<li><strong>人机协同接口</strong></li>
+<li>允许用户实时否决或修正工具调用，收集 5000 条人机交互日志，再训练后观察人类满意度（≥4.5/5）与自动指标双升</li>
+<li><strong>理论分析</strong></li>
+<li>形式化“工具增强推理”的样本复杂度，证明在 MDP 框架下冷启动阶段可将探索指数从 O(|A|^T) 降至 O(|A|·T)，并用实验验证趋势一致</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>DeepEyesV2：构建可主动调用工具的多模态智能体</strong></p>
+<ol>
+<li><p>问题<br>现有多模态大模型被动应答，无法可靠地“边看边搜边算”，导致在真实世界复杂场景下准确率受限、幻觉增多。</p>
+</li>
+<li><p>方案</p>
+</li>
+</ol>
+<ul>
+<li>两阶段训练<br>– 冷启动 SFT：用高质量、工具收益明确的多样化数据（感知+推理+搜索+长 CoT）教会模型生成可执行代码与搜索查询<br>– 强化学习：仅设“答案正确+格式合规”稀疏奖励，让模型在交互环境中自主决定“何时、如何、组合”调用工具</li>
+<li>统一推理管线<br>代码沙箱与 SerpAPI 封装为同构观察，模型可在单轮推理链中交替执行 <code>&lt;code&gt;</code> 与 <code>&lt;tool_call&gt;</code>，迭代至得出答案</li>
+<li>新基准 RealX-Bench<br>300 道真实图文问答，同时考核感知-搜索-推理协同，自动判分，填补跨能力评测空白</li>
+</ul>
+<ol>
+<li>结果</li>
+</ol>
+<ul>
+<li>RealX-Bench 平均 28.3 %，领先同规模开源模型 +6.0；三能力集成子集 +10.0</li>
+<li>9 项真实世界/OCR/图表任务平均提升 3.3–7.6 分，部分超 Qwen2.5-VL-32B</li>
+<li>MathVerse 提升 7.1 至 52.7 %，优于文本专用推理模型</li>
+<li>MMSearch 达 63.7 %，比专用搜索基线再 +9.9</li>
+<li>消融：冷启动需多样任务+长 CoT；RL 需三源数据混合；RL 后工具调用频次降但复杂度升，呈现任务自适应</li>
+</ul>
+<ol>
+<li>结论<br>冷启动先建立可靠工具范式，再用稀疏奖励 RL 精炼策略，可在 7B 量级实现“边看边搜边算”的通用多模态智能体，为社区提供数据构造、训练与评测的完整参考。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是DeepEyesV2%3A%20Toward%20Agentic%20Multimodal%20Model，链接是https://arxiv.org/pdf/2511.05271，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.05271。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Jack Hong,Chenxiao Zhao,ChengLin Zhu,Weiheng Lu,Guohai Xu,Xing Yu</p>
+<p><strong>Categories</strong>: cs.CV,cs.AI</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.05271.pdf">https://arxiv.org/pdf/2511.05271.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.05271">https://arxiv.org/abs/2511.05271</a></p>
+<p><strong>Arxiv ID</strong>: 2511.05271</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.05271">https://papers.cool/arxiv/2511.05271</a></p>
+<p><strong>Published</strong>: 2025-11-07T14:31:20Z</p>
+<p><strong>Updated</strong>: 2025-11-07T14:31:20.000Z</p>
+<hr>
+<h3 id="3-Visual-Spatial-Tuning"><a href="#3-Visual-Spatial-Tuning" class="headerlink" title="3. Visual Spatial Tuning"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.05491">Visual Spatial Tuning</a></h3><p>Capturing spatial relationships from visual inputs is a cornerstone of human-like general intelligence. Several previous studies have tried to enhance the spatial awareness of Vision-Language Models (VLMs) by adding extra expert encoders, which brings extra overhead and usually harms general capabilities. To enhance the spatial ability in general architectures, we introduce Visual Spatial Tuning (VST), a comprehensive framework to cultivate VLMs with human-like visuospatial abilities, from spatial perception to reasoning. We first attempt to enhance spatial perception in VLMs by constructing a large-scale dataset termed VST-P, which comprises 4.1 million samples spanning 19 skills across single views, multiple images, and videos. Then, we present VST-R, a curated dataset with 135K samples that instruct models to reason in space. In particular, we adopt a progressive training pipeline: supervised fine-tuning to build foundational spatial knowledge, followed by reinforcement learning to further improve spatial reasoning abilities. Without the side-effect to general capabilities, the proposed VST consistently achieves state-of-the-art results on several spatial benchmarks, including $34.8\%$ on MMSI-Bench and $61.2\%$ on VSIBench. It turns out that the Vision-Language-Action models can be significantly enhanced with the proposed spatial tuning paradigm, paving the way for more physically grounded AI.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>从视觉输入中捕捉空间关系是类人通用智能的基石。此前有若干研究尝试通过增加额外的专家编码器来增强视觉语言模型（VLMs）的空间感知能力，但这会带来额外开销，并通常损害模型的通用能力。为了在通用架构中提升空间能力，我们提出了视觉空间调优（Visual Spatial Tuning，VST）框架，该框架旨在培养具有类人视觉空间能力的VLMs，从空间感知到推理能力。我们首先尝试通过构建一个大型数据集VST-P来增强VLMs的空间感知，该数据集包含410万条样本，涵盖单视图、多图像和视频中的19项技能。接着，我们提出了VST-R，这是一个精选数据集，包含13.5万条样本，用以指导模型进行空间推理。特别地，我们采用渐进训练流程：先进行监督微调以建立基础的空间知识，再通过强化学习进一步提高空间推理能力。在不影响模型通用能力的前提下，所提VST在多个空间基准测试中持续取得最先进的结果，包括MMSI-Bench的34.8%和VSIBench的61.2%。事实证明，通过所提出的空间调优范式，视觉-语言-行动模型的能力可以显著提升，为更具物理基础的人工智能铺平了道路。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在解决现有视觉-语言模型（VLM）在“空间智能”方面的显著缺陷：<br>它们虽然能在像素级 2D 图像中识别与定位物体，却难以像人类一样从连续视觉观察中建立并推理 3D 空间关系。这一缺陷直接限制了 VLM 在机器人、自动驾驶、AR/VR 等需要与物理世界交互的场景中的可用性。</p>
+<p>为此，作者提出 <strong>Visual Spatial Tuning（VST）</strong> 框架，目标是在<strong>不引入额外 3D 专家编码器、不牺牲通用能力</strong>的前提下，让通用 VLM 具备类人级的空间感知与空间推理能力，具体包括：</p>
+<ol>
+<li>空间感知：单目/多视角/视频输入下，准确估计深度、距离、3D 框、物体间位置关系等。</li>
+<li>空间推理：在多视角或时序观测中，基于内部空间模型进行方向判断、路径规划、物体关联等高级推理。</li>
+</ol>
+<p>通过大规模感知数据 VST-P（4.1 M）与精心设计的推理数据 VST-R（135 K）以及“监督微调→思维链冷启动→在线强化学习”三阶段训练，VST 在多个空间基准上取得 SOTA，且可无缝迁移到视觉-语言-动作（VLA）模型，显著提升机器人操纵任务成功率。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>与 Visual Spatial Tuning（VST）直接相关的研究可归纳为两条主线：</p>
+<ol>
+<li>增强 Vision-Language Model（VLM）空间理解的数据/架构方法；</li>
+<li>利用强化学习或外部知识提升空间推理的最新工作。按时间顺序与贡献维度梳理如下：</li>
+</ol>
+<ul>
+<li><p><strong>SpatialVLM</strong> (Chen et al., CVPR 2024)<br>最早用 VLM 做空间问答，通过专家深度模型生成 3D 标注，构建 2D-3D 对齐的 VQA 数据，但仅单图、无推理链。</p>
+</li>
+<li><p><strong>SAT</strong> (Ray et al., arXiv 2024)<br>在仿真环境中生成动态场景视频，训练 VLM 预测“物体还能往哪移”，引入运动先验，但未涉及多视角几何或 RL。</p>
+</li>
+<li><p><strong>MM-Spatial</strong> (Daxberger et al., arXiv 2025)<br>提出多图空间问答基准与数据，强调跨视角深度一致性，但模型仍依赖冻结的 3D 编码器，且无 RL 阶段。</p>
+</li>
+<li><p><strong>SPAR</strong> (Zhang et al., arXiv 2025)<br>构建 3D 定位-描述-推理三任务数据集，用混合专家编码器注入 3D 特征，性能提升显著，却带来额外参数量与推理延迟。</p>
+</li>
+<li><p><strong>Space-R / MindCube</strong> (Ouyang et al., arXiv 2025; Yin et al., arXiv 2025)<br>首次在视频空间推理中引入“文本认知地图”与在线 RL，但仅针对视频，未覆盖单目 3D 感知，且未公开大规模感知数据。</p>
+</li>
+<li><p><strong>VLM-3R</strong> (Fan et al., arXiv 2025)<br>将 3D 重建网络与 VLM 联合微调，实现“重建-推理-回答”闭环，依赖额外 3D 网络，且未在多图问答基准上取得明显提升。</p>
+</li>
+<li><p><strong>InternVL3-Spatial / InternSpatial</strong> (Deng et al., arXiv 2025)<br>开源 3B-38B 多模态模型，引入 3D 定位与相对方向数据，但训练目标为通用多模态，空间任务仅作为辅助头，无专门 RL 强化阶段。</p>
+</li>
+<li><p><strong>BLINK / VSIBench / MMSI-Bench</strong> (Fu et al., ECCV 2024; Yang et al., CVPR 2025; Yang et al., arXiv 2025)<br>提供多视角、视频空间问答评测指标，成为后续工作的标准基准；VST 在这些榜单上取得 SOTA。</p>
+</li>
+<li><p><strong>GRPO / DeepSeek-R1 范式</strong> (Shao et al., arXiv 2024; Guo et al., arXiv 2025)<br>首次将“组相对策略优化”用于数学推理，VST 借鉴该思路，把 3D IoU+F1 作为可验证奖励，实现空间推理的在线 RL。</p>
+</li>
+</ul>
+<p>综上，VST 与上述工作的核心差异在于：</p>
+<ol>
+<li>不引入额外 3D 编码器，仅用统一 ViT-MLP-LLM 架构；</li>
+<li>首次将“感知-推理”拆分为渐进式三阶段训练（SFT→CoT 冷启动→GRPO）；</li>
+<li>提供 4.1 M 感知+135 K 推理的大规模开源数据，覆盖单图/多图/视频三种场景，可直接迁移至 VLA 机器人任务。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文将“让通用 VLM 获得类人空间智能”这一宏观目标拆解为<strong>空间感知</strong>与<strong>空间推理</strong>两大子任务，并通过“数据+训练范式”双轮驱动的方式系统解决。核心流程可概括为 <strong>“两大数据集 + 三阶段训练”</strong>，具体步骤如下：</p>
+<p>1. 构建两大数据集</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>规模</th>
+<th>覆盖场景</th>
+<th>关键设计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VST-P（感知）</td>
+<td>4.1 M 样本</td>
+<td>单图 64.8 %多图 33.1 %视频 2.1 %</td>
+<td>19 类任务：3D 检测、深度比较、距离估计、相机运动、物体对应等；统一相机坐标系 + FoV 归一化，消除跨设备内参差异；引入多轮对话与场景 caption，防止模型过拟合数值。</td>
+</tr>
+<tr>
+<td>VST-R（推理）</td>
+<td>135 K 样本</td>
+<td>多图为主</td>
+<td>77.8 % 带 CoT 描述：利用 BEV 俯视图作为辅助提示，让大模型生成准确的空间布局文字；22.2 % 规则可验证题：用于在线 RL 阶段提供即时奖励。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2. 三阶段渐进训练</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 监督微调（SFT）</span><br><span class="line">目标：注入基础 3D 知识</span><br><span class="line">数据：VST-P + 800 K–2.4 M 通用多模态样本</span><br><span class="line">收益：在 CVBench-3D 提升 ≈ 20 %，BLINK 提升 ≈ 5 %。</span><br><span class="line"></span><br><span class="line"><span class="bullet">2.</span> CoT 冷启动</span><br><span class="line">目标：让模型“先文字重建场景，再作答”</span><br><span class="line">数据：VST-R 的 CoT 部分 + 通用推理样本</span><br><span class="line">技术：提示词中拼接 BEV 图 → 教师模型生成高质量推理链</span><br><span class="line">收益：MMSI-Bench 从 26.4 → 31.7 %。</span><br><span class="line"></span><br><span class="line"><span class="bullet">3.</span> 在线强化学习（GRPO）</span><br><span class="line">目标：强化推理可靠性，抑制幻觉</span><br><span class="line">奖励：多选/开放题用规则判分；3D 检测用</span><br><span class="line"></span><br><span class="line">R=α · 3D-IoU+(1-α)· F1, quad α=0.5</span><br><span class="line"></span><br><span class="line">收益：MMSI-Bench 进一步提升至 34.8 %；CoT 推理准确率反超无 CoT 模式。</span><br></pre></td></tr></table></figure>
+<p>3. 无需额外 3D 编码器</p>
+<ul>
+<li>仅使用标准 ViT-MLP-LLM 骨架（Qwen2.5-VL），通过统一 FoV 投影与多轮布局对话，让 ViT 自身隐式学习几何一致性。</li>
+<li>对比 VLM-3R、SPAR 等引入额外 3D 网络的工作，VST 在 SUN RGB-D AP@15 指标上仍领先 44.2 vs 33.5。</li>
+</ul>
+<p>4. 向下游 VLA 迁移</p>
+<ul>
+<li>将 VST-tuned VLM 直接作为视觉-语言-动作模型骨干，动作空间离散为 256 个 token。</li>
+<li>在 LIBERO 机器人基准上，<strong>零机器人预训练</strong>即可比基线提升 8.6 % 成功率，证明空间先验对物理交互任务的正向迁移。</li>
+</ul>
+<p>综上，论文通过“大规模多场景数据 + 渐进式训练”范式，在<strong>不增加推理时架构复杂度</strong>的前提下，使通用 VLM 首次在单目、多视角、视频三种输入下均取得空间感知与推理的 SOTA，并可无缝强化机器人策略学习。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文从 <strong>空间理解能力、3D 检测精度、通用多模态保持度、机器人策略迁移</strong> 四个维度展开系统实验，共包含 <strong>12 张表格与 2 组曲线图</strong>，可归纳为以下 6 类：</p>
+<p>1. 主流空间基准对比（Table 2–4）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>基准</th>
+<th>模态</th>
+<th>指标</th>
+<th>最佳结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CVBench</td>
+<td>单图</td>
+<td>Acc</td>
+<td>86.5 (VST-7B-RL) ↑ 1.3 vs Seed1.5-VL</td>
+</tr>
+<tr>
+<td>MMSI-Bench</td>
+<td>多图</td>
+<td>Acc</td>
+<td>34.8 (VST-7B-RL) ↑ 4.5 vs GPT-4o</td>
+</tr>
+<tr>
+<td>VSIBench</td>
+<td>视频</td>
+<td>Acc</td>
+<td>61.2 (VST-7B-RL) ↑ 27.2 vs GPT-4o</td>
+</tr>
+<tr>
+<td>SUN RGB-D 3D Det</td>
+<td>单图</td>
+<td>AP@15</td>
+<td>44.2 (VST-7B-RL) ↑ 11.7 vs Gemini-2.0-Pro</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2. 通用能力保持度（Table 2 右侧）</p>
+<p>在 MMStar、MMBench、RealworldQA、MMMU、OCRBench、AI2D 六大通用榜单取平均（MM-AVG）：</p>
+<ul>
+<li>VST-7B-SFT 84.9 vs 原基线 Qwen2.5-VL-7B 83.9</li>
+<li>VST-7B-RL 83.5 仅下降 0.4，验证 <strong>无显著灾难遗忘</strong>。</li>
+</ul>
+<p>3. 消融实验：数据贡献度（Tables 5–7）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>增益 (S-AVG)</th>
+<th>关键结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单目 3D 检测</td>
+<td>+1.0</td>
+<td>仅提升 CV-3D</td>
+</tr>
+<tr>
+<td>场景 caption</td>
+<td>+2.3</td>
+<td>泛化到 VSIBench +2.1</td>
+</tr>
+<tr>
+<td>深度数据</td>
+<td>+3.6</td>
+<td>CV-3D ↑ 10.4</td>
+</tr>
+<tr>
+<td>多图对应</td>
+<td>+1.3</td>
+<td>BLINK ↑ 1.8</td>
+</tr>
+<tr>
+<td>相机运动</td>
+<td>+2.0</td>
+<td>BLINK ↑ 2.0</td>
+</tr>
+<tr>
+<td>视频自采数据</td>
+<td>+16.6</td>
+<td>VSIBench 绝对增益最大</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4. 缩放实验：模型/数据尺度（Tables 8–9）</p>
+<ul>
+<li><p><strong>模型放大</strong><br>3B→7B：S-AVG +1.3，SUN RGB-D AP@15 +4.2<br>7B→32B：S-AVG 再 +1.7，但 3D 检测饱和，提示 <strong>7B 已足够拟合基础几何</strong>。</p>
+</li>
+<li><p><strong>数据放大 3×</strong><br>3B/7B/32B 的 S-AVG 分别 +1.1/+1.5/+1.7，呈 <strong>越大模型越吃数据</strong> 趋势。</p>
+</li>
+</ul>
+<p>5. 推理链与 RL 消融（Tables 10–11）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>设置</th>
+<th>MMSI-Bench</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无 CoT 基线</td>
+<td>26.4</td>
+<td>—</td>
+</tr>
+<tr>
+<td>数值 CoT</td>
+<td>29.2</td>
+<td>用 3D 框坐标计算</td>
+</tr>
+<tr>
+<td>文字重建 CoT</td>
+<td>30.0</td>
+<td>更符合人类直觉</td>
+</tr>
+<tr>
+<td>+BEV 提示</td>
+<td>31.1</td>
+<td>减少空间幻觉</td>
+</tr>
+<tr>
+<td>+RL 后 CoT</td>
+<td>35.3</td>
+<td>反超无 CoT 的 33.6，证明 RL 让模型真正学会用推理链</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>6. 3D 检测细节与奖励设计（Tables 12–13）</p>
+<ul>
+<li><strong>FoV 统一</strong>：ARKitScenes AP@15 +2.5</li>
+<li><strong>多轮 vs 单轮</strong>：SUN RGB-D AP@15 –1.7，验证多轮布局有助于几何一致性</li>
+<li><strong>奖励函数</strong>：3D-IoU+F1 比 3D-IoU+Recall 提升 4.2 AP，说明 <strong>稀疏匹配奖励更鲁棒</strong></li>
+</ul>
+<p>7. 机器人策略迁移（Table 14）</p>
+<p>在 LIBERO 套件（Spatial/Object/Goal/Long）共 50 任务 × 50 rollout：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>训练步数</th>
+<th>基线 Qwen2.5-VL-3B</th>
+<th>VST-tuned</th>
+<th>Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.5 K</td>
+<td>53.1 %</td>
+<td>61.7 %</td>
+<td>+8.6</td>
+</tr>
+<tr>
+<td>10 K</td>
+<td>67.9 %</td>
+<td>70.8 %</td>
+<td>+2.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>首次证明</strong>：仅通过空间微调，无需任何机器人预训练，即可显著提升 VLA 成功率。</p>
+<p>8. 数据引擎可视化与规模曲线（Appendix Figure 5）</p>
+<ul>
+<li>3D 检测数据 0→1.6 M：SUN/ARK 的 AP@15 单调上升，<strong>尚未饱和</strong></li>
+<li>深度数据 0→1.6 M：CV-3D 与 BLINK-D 同步提升，<strong>200 K 后边际递减</strong></li>
+</ul>
+<p>综上，实验覆盖 <strong>感知-推理-检测-通用-机器人</strong> 全链路，既验证 SOTA 又解释增益来源，同时给出缩放曲线与工程细节，保证可复现性与落地价值。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可被视为 VST 框架的直接延伸或潜在突破点，按“数据-模型-评测-应用”四条线展开：</p>
+<p>1. 数据层面</p>
+<ul>
+<li><p><strong>室外、开放世界 3D 数据</strong><br>当前 VST-P 以室内 RGB-D 为主，室外场景存在尺度大、深度稀疏、动态物体多等问题。可引入 nuScenes、Waymo Open 等自动驾驶数据，构建“城市级”空间感知子集，研究跨室内-室外尺度一致性。</p>
+</li>
+<li><p><strong>动态物体与时空一致性</strong><br>现有视频数据仅覆盖简单“出现顺序/计数”任务。可引入带实例 ID 的长时序视频（Ego4D、HOI4D），构造“物体轨迹预测”“遮挡推理”等新任务，迫使模型显式维护时序几何状态。</p>
+</li>
+<li><p><strong>可验证的“反事实”空间数据</strong><br>利用仿真器（Isaac Sim、NVIDIA Omniverse）生成“同一布局、不同相机/光照/材质”的渲染对，构造反事实问答（“若椅子再往左 20 cm，电视是否仍可见？”），为 RL 提供无限可验证信号。</p>
+</li>
+</ul>
+<p>2. 模型层面</p>
+<ul>
+<li><p><strong>统一 3D 表征空间</strong><br>将 VST 的“文字布局描述”升级为显式 3D voxel/点云 token，设计 ViT 与 3D 稀疏 Transformer 的并联或交替注意力，实现“像素-体素-语言”三空间端到端训练，兼顾通用性与几何精度。</p>
+</li>
+<li><p><strong>自监督深度估计头</strong><br>在 VST 框架内增加轻量级深度解码器，采用 DINOv2 式自监督损失，利用大规模无标注视频学习深度，再蒸馏回主模型，缓解对 RGB-D 标注的依赖。</p>
+</li>
+<li><p><strong>链-of-3D-Actions</strong><br>把 CoT 从“文字布局”拓展为“3D 路径点序列”：</p>
+</li>
+</ul>
+<p>langle think rangle p_1, p_2, dots, p_k langle /think rangle answer</p>
+<p>让模型在推理过程中输出中间 3D 航点，可直接被机器人路径规划器执行，实现“推理-动作”无缝衔接。</p>
+<p>3. 训练与评测</p>
+<ul>
+<li><p><strong>可验证奖励的泛化边界</strong><br>目前 RL 仅覆盖选择题、3D 检测等可自动判分任务。可引入“模糊几何”场景（如部分遮挡、对称物体），研究当奖励信号存在噪声或稀疏时，GRPO 的收敛性与泛化上限。</p>
+</li>
+<li><p><strong>多模态链式评测</strong><br>构建“视觉-语言-动作”联合 benchmark：给定自然语言指令与单目视频，模型需输出 3D 边界框序列+动作 token，最终用真实机器人成功率作为唯一指标，倒逼空间感知与动作生成同步提升。</p>
+</li>
+<li><p><strong>人类空间认知对照实验</strong><br>在相同多视角图片下，同步记录人类被试的眼动轨迹与答题时间，与 VST 的 attention map、推理链进行对比，量化模型是否真正习得“人类-like”空间注意力策略。</p>
+</li>
+</ul>
+<p>4. 应用与系统</p>
+<ul>
+<li><p><strong>实时空间 VLA 部署</strong><br>当前 VLA 实验仅在 LIBERO 仿真桌面场景。下一步可在真实机械臂 + 手持单目相机上闭环运行，研究运动模糊、自动对焦、延迟等物理因素对 3D 推理的影响，并引入在线自适应微调。</p>
+</li>
+<li><p><strong>AR/VR 即时布局编辑</strong><br>把 VST 模型蒸馏为轻量 on-device 版本，接入 Apple Vision Pro 或 Meta Quest，实现“一句话修改房间布局”：用户说“把沙发左移 30 cm”，模型实时输出更新后的 3D 框并渲染叠加，实现真正的“空间 Copilot”。</p>
+</li>
+<li><p><strong>多智能体协同空间推理</strong><br>扩展至分布式相机网络（如仓库、停车场），每个边缘节点运行轻量 VST-Agent，通过共享 3D 场景图进行协同推理，解决“遮挡视角下谁在谁前面”等跨视角一致性难题。</p>
+</li>
+</ul>
+<p>5. 理论层面</p>
+<ul>
+<li><p><strong>尺度-感知-动作的泛化理论</strong><br>研究“预训练 2D ViT → 空间微调 → 动作控制”三阶段的表征迁移界限，量化每一阶段对下游策略样本复杂度的影响，建立空间智能的“ scaling law”。</p>
+</li>
+<li><p><strong>语言先验 vs 几何先验的权衡</strong><br>通过控制实验（屏蔽深度数据 vs 屏蔽文本数据）测量两种先验对最终推理错误的贡献度，回答“空间推理究竟更多依赖语言常识还是几何精度”。</p>
+</li>
+</ul>
+<p>综上，VST 打开了“用通用 VLM 做 3D 空间智能”的入口，但室外尺度、显式 3D 表征、可验证反事实数据、实时 VLA 闭环等方向仍待深入，兼具学术价值与落地潜力。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>Visual Spatial Tuning (VST)</strong> 提出一套<strong>不引入额外 3D 编码器</strong>的通用方案，让 Vision-Language Model 在<strong>单图-多图-视频</strong>三种输入下同时获得<strong>类人级空间感知与空间推理</strong>能力，并可直接迁移到机器人策略模型。核心内容可概括为 <strong>“两大数据集 + 三阶段训练 + 四大实验验证”</strong>：</p>
+<p>1. 两大数据集</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>规模</th>
+<th>任务</th>
+<th>关键创新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VST-P 感知集</td>
+<td>4.1 M</td>
+<td>19 类：3D 检测、深度比较、距离估计、相机运动、物体对应等</td>
+<td>统一相机坐标系 + FoV 归一化；多轮对话与场景 caption 防止数值过拟合</td>
+</tr>
+<tr>
+<td>VST-R 推理集</td>
+<td>135 K</td>
+<td>多视角方向判断、路径规划、反事实问答等</td>
+<td>77 % 带 CoT：用 BEV 俯视图辅助大模型生成文字布局；23 % 规则可验证题供 RL 奖励</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2. 三阶段渐进训练</p>
+<ol>
+<li><strong>SFT</strong>──在 VST-P 上注入 3D 基础知识</li>
+<li><strong>CoT 冷启动</strong>──用 VST-R 的 CoT 样本教会模型“先文字重建场景，再作答”</li>
+<li><strong>在线 RL</strong>──采用 GRPO，以 3D-IoU+F1 为可验证奖励，进一步抑制幻觉、强化推理链</li>
+</ol>
+<p>3. 主要结果（四大验证）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>基准</th>
+<th>最佳成绩</th>
+<th>对比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空间理解</td>
+<td>MMSI-Bench / VSIBench</td>
+<td>34.8 % / 61.2 %</td>
+<td>超 GPT-4o 4.5 / 27.2 个百分点</td>
+</tr>
+<tr>
+<td>3D 检测</td>
+<td>SUN RGB-D AP@15</td>
+<td>44.2</td>
+<td>超 Gemini-2.0-Pro 11.7</td>
+</tr>
+<tr>
+<td>通用能力</td>
+<td>MM-AVG 六大榜单</td>
+<td>83.5</td>
+<td>与原基线持平，无灾难遗忘</td>
+</tr>
+<tr>
+<td>机器人迁移</td>
+<td>LIBERO 成功率</td>
+<td>+8.6 %</td>
+<td>零机器人预训练，2.5 K 步即显著提升</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4. 结论与意义</p>
+<ul>
+<li><strong>首次证明</strong>：无需额外 3D 编码器，仅通过大规模感知-推理数据与渐进式训练，即可让通用 VLM 获得 SOTA 空间智能。</li>
+<li><strong>即插即用</strong>：同一套权重可直接微调为 Vision-Language-Action 模型，显著提升真实机器人操纵成功率。</li>
+<li><strong>开源开放</strong>：数据、代码、模型全部公开，为后续“物理 AI”研究提供可扩展基线。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Visual%20Spatial%20Tuning，链接是https://arxiv.org/pdf/2511.05491，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.05491。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Rui Yang,Ziyu Zhu,Yanwei Li,Jingjia Huang,Shen Yan,Siyuan Zhou,Zhe Liu,Xiangtai Li,Shuangye Li,Wenqian Wang,Yi Lin,Hengshuang Zhao</p>
+<p><strong>Categories</strong>: cs.CV</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.05491.pdf">https://arxiv.org/pdf/2511.05491.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.05491">https://arxiv.org/abs/2511.05491</a></p>
+<p><strong>Arxiv ID</strong>: 2511.05491</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.05491">https://papers.cool/arxiv/2511.05491</a></p>
+<p><strong>Published</strong>: 2025-11-07T18:59:16Z</p>
+<p><strong>Updated</strong>: 2025-11-07T18:59:16.000Z</p>
+<hr>
+<h3 id="4-VeriCoT-Neuro-symbolic-Chain-of-Thought-Validation-via-Logical-Consistency-Checks"><a href="#4-VeriCoT-Neuro-symbolic-Chain-of-Thought-Validation-via-Logical-Consistency-Checks" class="headerlink" title="4. VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.04662">VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks</a></h3><p>LLMs can perform multi-step reasoning through Chain-of-Thought (CoT), but they cannot reliably verify their own logic. Even when they reach correct answers, the underlying reasoning may be flawed, undermining trust in high-stakes scenarios. To mitigate this issue, we introduce VeriCoT, a neuro-symbolic method that extracts and verifies formal logical arguments from CoT reasoning. VeriCoT formalizes each CoT reasoning step into first-order logic and identifies premises that ground the argument in source context, commonsense knowledge, or prior reasoning steps. The symbolic representation enables automated solvers to verify logical validity while the NL premises allow humans and systems to identify ungrounded or fallacious reasoning steps. Experiments on the ProofWriter, LegalBench, and BioASQ datasets show VeriCoT effectively identifies flawed reasoning, and serves as a strong predictor of final answer correctness. We also leverage VeriCoT’s verification signal for (1) inference-time self-reflection, (2) supervised fine-tuning (SFT) on VeriCoT-distilled datasets and (3) preference fine-tuning (PFT) with direct preference optimization (DPO) using verification-based pairwise rewards, further improving reasoning validity and accuracy.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>大型语言模型（LLMs）可以通过链式思维（Chain-of-Thought，CoT）执行多步骤推理，但它们无法可靠地验证自身的逻辑。即使它们得出正确答案，其底层推理仍可能存在缺陷，从而在高风险场景中降低信任度。为缓解这一问题，我们提出了 VeriCoT，一种神经符号方法，它从 CoT 推理中提取并验证形式逻辑论证。VeriCoT 将每一步 CoT 推理形式化为一阶逻辑，并识别支撑论证的前提，这些前提可以来源于上下文、常识知识或先前的推理步骤。符号表示使自动推理工具能够验证逻辑有效性，而自然语言前提则使人类和系统能够识别缺乏根据或错误的推理步骤。在 ProofWriter、LegalBench 和 BioASQ 数据集上的实验表明，VeriCoT 能有效识别有缺陷的推理，并可作为最终答案正确性的强有力预测指标。我们还利用 VeriCoT 的验证信号进行（1）推理时的自我反思，（2）基于 VeriCoT 蒸馏数据集的监督微调（SFT），以及（3）使用基于验证的成对奖励进行直接偏好优化（DPO）的偏好微调（PFT），从而进一步提升推理的有效性和准确性。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在解决大语言模型（LLM）在 Chain-of-Thought（CoT）多步推理中“逻辑不可靠”的核心问题：<br>即便最终答案正确，中间推理步骤仍可能包含虚假、矛盾或缺乏依据的陈述，导致在高风险领域（法律、医学等）难以信任。</p>
+<p>为此，作者提出 <strong>VERICOT</strong>——一种神经-符号验证框架，能够将自然语言 CoT 每一步自动形式化为<strong>一阶逻辑公式</strong>，并通过 SMT 求解器检查其是否被<strong>显式前提</strong>（源自上下文、常识或前序步骤）逻辑蕴含。若无法通过验证，则给出具体错误类型（无依据、矛盾、不可形式化），并据此提供可解释的反馈信号，用于推理时自修正、监督微调与偏好优化，从而提升 CoT 的逻辑一致性与任务准确率。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<ul>
+<li><p><strong>Explanation-Refiner</strong>（Quan et al., 2024b）<br>迭代地将自然语言解释自动形式化，再用定理证明器验证与精化，但仅针对 NLI 任务，且不逐步 grounding 到上下文。</p>
+</li>
+<li><p><strong>Logic-LM</strong>（Pan et al., 2023）<br>将问题一次性翻译成逻辑后调用求解器，缺少逐步验证与上下文前提溯源。</p>
+</li>
+<li><p><strong>SATLM</strong>（Ye et al., 2023）<br>用 LLM 生成 SAT 约束再调用求解器，同样无逐步逻辑一致性检查。</p>
+</li>
+<li><p><strong>Deductive Verification of CoT</strong>（Ling et al., 2023）<br>仅用 LLM 自身判断每步是否矛盾，无外部符号求解器，验证客观性不足。</p>
+</li>
+<li><p><strong>LINC / Certified DR</strong>（Olausson et al., 2023；Poesia et al., 2024）<br>结合 LLM 与一阶逻辑证明器，但侧重代码或数学领域，依赖固定形式库，未面向开放领域 NL-CoT。</p>
+</li>
+<li><p><strong>Entailment Tree 系列</strong>（Dalvi et al., 2021；Tafjord et al., 2022；Weir et al., 2024）<br>用自然语言蕴含关系构建多步推理树，缺乏形式逻辑与自动求解器保障。</p>
+</li>
+<li><p><strong>Theorem Prover-as-a-Judge</strong>（Leang et al., 2025）<br>用定理证明反馈做强化学习，仅限 Lean/mathlib 数学环境；VERICOT 将证明器用于任意 NL 上下文。</p>
+</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文把“LLM 无法自证 CoT 逻辑有效性”这一难题拆成三步，并给出对应机制：</p>
+<ol>
+<li><p><strong>自动形式化</strong><br>用 LLM 将每步自然语言推理翻译成 SMT-LIB 一阶逻辑公式，若翻译失败则标记为 <em>untranslatable</em>。</p>
+</li>
+<li><p><strong>前提溯源与 entailment 检查</strong></p>
+</li>
+</ol>
+<ul>
+<li>若公式  F<em>i  已被前序知识  F</em>(i-1)  逻辑蕴含（ F_(i-1) models F_i ），直接通过。</li>
+<li>若  F<em>(i-1) models neg F_i ，标记 _contradiction</em>。</li>
+<li>否则调用 LLM 从<strong>上下文、源文档、常识</strong>三处抽取候选前提，经一致性筛选后得到新增前提集合  P<em>i ，再判  F</em>(i-1) land P<em>i models F_i ；仍不成立则标记 _ungrounded</em>。</li>
+</ul>
+<ol>
+<li><strong>利用验证信号反哺模型</strong></li>
+</ol>
+<ul>
+<li><strong>推理时自反思</strong>：把上述错误类型与形式化结果作为 prompt，让 LLM 当场重写 CoT，平均验证通过率相对提升 46%。</li>
+<li><strong>监督微调（SFT）</strong>：只保留“验证通过且 LLM-as-Judge 认为前提可接受”的 CoT 构建训练集，7 B 模型任务准确率提升 3%。</li>
+<li><strong>偏好微调（DPO）</strong>：以“通过验证 vs 未通过”构建 pairwise 奖励，进一步把验证通过率再提高 18%。</li>
+</ul>
+<p>通过“神经生成-符号验证-反馈再训练”的闭环，VERICOT 在 ProofWriter、LegalBench-SARA、BioASQ 上同时提高了 CoT 的逻辑一致性（验证通过率）与最终答案正确率。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>实验围绕 <strong>“VERICOT 能否可靠验证 CoT”</strong> 与 <strong>“验证信号能否提升模型”</strong> 两条主线展开，覆盖 3 个数据集、4 大指标、3 种应用方式。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>设置</th>
+<th>关键结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据集</td>
+<td>ProofWriter（逻辑规则推理）、LegalBench-SARA（税法条文）、BioASQ（生物医学 QA）</td>
+<td>跨域评估</td>
+</tr>
+<tr>
+<td>基线</td>
+<td>Explanation-Refiner、Direct-SMT、VERICOT-NoPrem（无主动前提生成）</td>
+</tr>
+<tr>
+<td>主指标</td>
+<td>验证通过率 ↑、验证器精度 ↑、Verified-Correct-Answer-Rate(VCAR) ↑、最终任务精度</td>
+</tr>
+<tr>
+<td>直接验证性能</td>
+<td>表 1</td>
+<td>VERICOT 在三数据集均取得最高通过率和 VCAR，精度始终高于原始任务准确率，证明“被验证”是更强的正确信号</td>
+</tr>
+<tr>
+<td>错误分析</td>
+<td>图 2 + 附录表 3-5</td>
+<td>未验证样本中 60-70 % 为 ungrounded；自反思后 valid 比例平均提升 46 %</td>
+</tr>
+<tr>
+<td>前提质量</td>
+<td>表 2</td>
+<td>LLM-as-Judge 评估：上下文前提可接受率 87-96 %，常识前提 83-93 %</td>
+</tr>
+<tr>
+<td>推理时自反思</td>
+<td>表 3</td>
+<td>相对基线，VCAR 平均再提升 41 %，最终任务准确率同步增长</td>
+</tr>
+<tr>
+<td>监督微调</td>
+<td>表 4</td>
+<td>用“验证通过”CoT 做 SFT，Qwen2.5-7 B 在 BioASQ/ProofWriter 上任务精度 +3 %，验证通过率 +1-2 %</td>
+</tr>
+<tr>
+<td>偏好微调（DPO）</td>
+<td>表 4</td>
+<td>在 SFT 基础上再用“验证通过 vs 失败”做 DPO，验证通过率相对再提升 18 %，VCAR 再提升 17 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>综上，实验既验证了 VERICOT 作为<strong>符号验证器</strong>的可靠性，也证明了其信号在<strong>推理-训练全链路</strong>中持续有效。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可继续推进，分为“验证器本身”与“验证信号利用”两大层面：</p>
+<ul>
+<li><p><strong>逻辑片段扩展</strong><br>目前仅用 SMT-LIB 的线性算术、未解释函数与量词。可引入<strong>模态逻辑、时序逻辑、概率逻辑</strong>以覆盖“可能”、“将来”、“大概率”等自然语言表述，降低 <em>untranslatable</em> 比例。</p>
+</li>
+<li><p><strong>前提可信度量化</strong><br>现用 LLM-as-Judge 做二值判断。可改为<strong>连续置信度</strong>或<strong>多源证据重叠度</strong>，并引入<strong>不确定性推理</strong>（如 Markov Logic Network），让“弱前提”也能参与 entailment 计算并给出置信区间。</p>
+</li>
+<li><p><strong>跨语言与多模态</strong><br>将 autoformalization 扩展到<strong>多语言 CoT</strong>与<strong>图文混合上下文</strong>（医疗影像 + 文本），验证视觉前提与文本结论之间的一致性。</p>
+</li>
+<li><p><strong>在线前提补全</strong><br>对 <em>ungrounded</em> 步骤，主动调用<strong>检索器</strong>或<strong>知识图谱</strong>获取缺失公理，再判 entailment，实现“验证-检索”闭环。</p>
+</li>
+<li><p><strong>更细粒度错误定位</strong><br>当前仅定位到单步。可借助**最小不可满足子句（MUS）**技术，精确定位“哪一条前提 + 哪一段文本”导致矛盾，生成更短、可解释的修正建议。</p>
+</li>
+<li><p><strong>验证信号用于强化学习</strong><br>把 VERICOT 的 0/1 验证信号作为<strong>稀疏奖励</strong>，结合 Monte-Carlo Tree Search 或 PPO，在更大规模通用任务上直接优化“可验证性”而非表面答案正确率。</p>
+</li>
+<li><p><strong>与形式化证明库对接</strong><br>对数学/代码子域，尝试将 VERICOT 抽出的前提自动映射到 Lean、Coq 的已有引理，实现<strong>自动补全形式证明</strong>而非仅做一致性检查。</p>
+</li>
+<li><p><strong>人机协同验证界面</strong><br>开发可视化界面，让领域专家<strong>实时编辑前提或规则</strong>，VERICOT 即时反馈 entailment 变化，用于<strong>法规审查、临床指南制定</strong>等高风险场景。</p>
+</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>VERICOT：神经-符号 CoT 验证与修复框架</strong></p>
+<ol>
+<li><p>问题<br>LLM 的 Chain-of-Thought 常含“中间步骤虚假/无依据”现象，即使答案正确也难以信任。</p>
+</li>
+<li><p>方法</p>
+</li>
+</ol>
+<ul>
+<li>逐句自动形式化为一阶逻辑（SMT-LIB）。</li>
+<li>用 Z3 检查是否被上下文、常识或前序步骤逻辑蕴含；无法通过则标记 <em>ungrounded / contradiction / untranslatable</em>。</li>
+<li>验证信号反哺：<br>– 推理时自反思 → 46 % 相对提升验证通过率；<br>– 监督微调 → 任务准确率 +3 %；<br>– 偏好优化（DPO）→ 验证通过率再 +18 %。</li>
+</ul>
+<ol>
+<li><p>实验<br>ProofWriter、LegalBench-SARA、BioASQ 三数据集上，VERICOT 的验证通过率、VCAR、精度均显著高于现有基线，且被验证的 CoT 精度持续高于原始任务准确率。</p>
+</li>
+<li><p>贡献</p>
+</li>
+</ol>
+<ul>
+<li>首个面向非数学/代码领域的逐步 CoT 符号验证器；</li>
+<li>提出“可验证性”作为可量化的训练与推理目标；</li>
+<li>验证信号可直接用于自反思、SFT、PFO，全链路提升逻辑一致性与最终答案正确率。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是VeriCoT%3A%20Neuro-symbolic%20Chain-of-Thought%20Validation%20via%20Logical%20Consistency%20Checks，链接是https://arxiv.org/pdf/2511.04662，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.04662。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Yu Feng,Nathaniel Weir,Kaj Bostrom,Sam Bayless,Darion Cassel,Sapana Chaudhary,Benjamin Kiesl-Reiter,Huzefa Rangwala</p>
+<p><strong>Categories</strong>: cs.AI,cs.CL</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.04662.pdf">https://arxiv.org/pdf/2511.04662.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.04662">https://arxiv.org/abs/2511.04662</a></p>
+<p><strong>Arxiv ID</strong>: 2511.04662</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.04662">https://papers.cool/arxiv/2511.04662</a></p>
+<p><strong>Published</strong>: 2025-11-06T18:50:08Z</p>
+<p><strong>Updated</strong>: 2025-11-06T18:50:08.000Z</p>
+<hr>
+<h3 id="5-Dense-Motion-Captioning"><a href="#5-Dense-Motion-Captioning" class="headerlink" title="5. Dense Motion Captioning"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.05369">Dense Motion Captioning</a></h3><p>Recent advances in 3D human motion and language integration have primarily focused on text-to-motion generation, leaving the task of motion understanding relatively unexplored. We introduce Dense Motion Captioning, a novel task that aims to temporally localize and caption actions within 3D human motion sequences. Current datasets fall short in providing detailed temporal annotations and predominantly consist of short sequences featuring few actions. To overcome these limitations, we present the Complex Motion Dataset (CompMo), the first large-scale dataset featuring richly annotated, complex motion sequences with precise temporal boundaries. Built through a carefully designed data generation pipeline, CompMo includes 60,000 motion sequences, each composed of multiple actions ranging from at least two to ten, accurately annotated with their temporal extents. We further present DEMO, a model that integrates a large language model with a simple motion adapter, trained to generate dense, temporally grounded captions. Our experiments show that DEMO substantially outperforms existing methods on CompMo as well as on adapted benchmarks, establishing a robust baseline for future research in 3D motion understanding and captioning.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>近年来，在3D人体运动与语言整合方面的最新进展主要集中在文本到运动的生成上，而运动理解任务仍相对未被深入研究。我们提出了“密集运动描述”（Dense Motion Captioning），这是一项旨在在3D人体运动序列中时间定位并描述动作的新任务。现有的数据集在提供详细时间标注方面存在不足，并且主要由包含少数动作的短序列组成。为克服这些限制，我们推出了复杂运动数据集（Complex Motion Dataset，CompMo），这是第一个包含丰富标注且具有精确时间边界的复杂运动序列的大规模数据集。通过精心设计的数据生成流程构建，CompMo包含60,000个运动序列，每个序列由多个动作组成，动作数量从至少两个到十个不等，并准确标注其时间范围。我们还提出了DEMO模型，该模型将大型语言模型与简单的运动适配器结合，训练目标是生成密集且具有时间定位的动作描述。实验结果表明，DEMO在CompMo以及改编基准测试上显著优于现有方法，为未来3D运动理解与描述研究建立了稳固的基线。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>该论文旨在解决<strong>三维人体运动序列的密集语义理解</strong>这一尚未被充分探索的问题。现有研究多聚焦于“文本→运动”生成，而忽视了反向的“运动→文本”理解，尤其缺少对<strong>长时、复杂、多动作连续运动</strong>的细粒度、带时间边界的自然语言描述。为此，作者提出：</p>
+<ul>
+<li><strong>新任务</strong>：Dense Motion Captioning（DMC），要求在给定的长时 3D 运动序列中，<strong>同时</strong>完成</li>
+</ul>
+<ol>
+<li>检测所有原子动作，</li>
+<li>为每个动作生成自然语言描述，</li>
+<li>精确给出其起止时间戳。</li>
+</ol>
+<ul>
+<li><strong>新数据集</strong>：CompMo，首个大规模、带<strong>密集时间戳</strong>的 3D 运动–语言数据集，平均每段 39.88 s，含 2–10 个原子动作，共 60 k 段。</li>
+<li><strong>新基线模型</strong>：DEMO，通过轻量级运动适配器将连续运动映射到大语言模型嵌入空间，两阶段训练（先对齐运动–语言，再密集字幕指令微调），在 DMC 上显著优于现有方法。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文在第 2 节系统回顾了相关研究，可归纳为三大主线：</p>
+<ol>
+<li>3D 运动–语言数据集</li>
+</ol>
+<ul>
+<li>早期：KIT-ML（Plappert et al. 2016）</li>
+<li>规模扩展：HumanML3D、BABEL、MotionX/MotionX++、FineMotion</li>
+<li>特点对比：</li>
+<li>仅整体句级描述（HumanML3D、MotionX）</li>
+<li>仅帧级标签或身体部件细粒度描述（BABEL、FineMotion）</li>
+<li>无精确时间戳或仅整体时长</li>
+<li>CompMo 首次提供“<strong>多动作+密集时间戳+自然语言</strong>”三元组，填补空白。</li>
+</ul>
+<ol>
+<li>Dense Video Captioning（DVC）</li>
+</ol>
+<ul>
+<li>任务定义：在未裁剪视频中同时定位多个事件并生成对应字幕。</li>
+<li>代表方法：DVC、Vid2Seq、SODA 评价指标。</li>
+<li>本文首次将“密集字幕+时间定位”范式迁移到<strong>纯 3D 运动域</strong>，提出 DMC。</li>
+</ul>
+<ol>
+<li>3D 运动理解模型</li>
+</ol>
+<ul>
+<li>运动-文本检索：TMR、TMR++</li>
+<li>单段运动字幕：TM2T、MotionGPT、AvatarGPT、MotionAgent</li>
+<li>帧级动作定位：BABEL-TAL、UniMotion（仅检索封闭标签，无自由文本）</li>
+<li>共性局限：</li>
+<li>面向短时、单动作片段；</li>
+<li>无细粒度时间边界；</li>
+<li>在长序列、多动作场景性能显著下降（图 2 实验验证）。</li>
+</ul>
+<p>综上，现有工作尚未同时解决“<strong>长时 3D 运动序列的密集动作检测+自由文本描述+精确时间戳</strong>”问题，本文任务、数据集与基线模型均在此空白上展开。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文将“长时 3D 运动序列的密集语义理解”拆解为<strong>数据</strong>与<strong>模型</strong>两条线，提出<strong>三位一体的解决方案</strong>：</p>
+<p>1. 任务形式化：Dense Motion Captioning（DMC）</p>
+<p>给定运动序列</p>
+<p>m∈R^(N× D),quad D=J× 3</p>
+<p>输出有序集合</p>
+<p>(t<em>i,c_i)</em>(i=1)^(M),quad t_i=(s_i,e_i)</p>
+<p>即<strong>同时完成时间定位+自然语言描述</strong>。</p>
+<p>2. 数据侧：构建 CompMo 数据集</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>关键设计</th>
+<th>解决痛点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 原子动作收集</td>
+<td>– 用 MDM-SMPL 从文本“从无到有生成”– TMR 相似度≥0.5 过滤– 不足动作用 HumanML3D 简单子集补齐</td>
+<td>保证文本-运动严格对齐</td>
+</tr>
+<tr>
+<td>② 文本时序组合</td>
+<td>– 随机采样 2–10 个原子描述– 按 HumanML3D 真实时长加小扰动– 格式“mm:ss:ms – 描述”</td>
+<td>生成带精确时间戳的长序列描述</td>
+</tr>
+<tr>
+<td>③ 运动序列生成</td>
+<td>– 采用 STMC + DiffCollage 做时域/肢体拼接– 0.5 s 过渡区间平滑</td>
+<td>消除简单拼接带来的动作跳变</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>最终得到 60 k 段、平均 39.88 s、每段 37.74 词密集字幕的数据集，<strong>规模与复杂度均超现有基准</strong>。</p>
+<p>3. 模型侧：DEMO 架构与两阶段训练</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>设计要点</th>
+<th>解决痛点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运动适配器 Φ_{γ,W}</td>
+<td>– 连续映射：MLP 提取特征→线性投影到 LLM 词嵌入空间– 滑窗重叠：W=16, S=8，长序列可扩展</td>
+<td>避免 VQ-VAE 离散化信息丢失与长度受限</td>
+</tr>
+<tr>
+<td>大语言模型 f_ϕ</td>
+<td>– 初始化 LLaMA-3.1-8B-Instruct– 仅训练 LoRA 低秩适配器</td>
+<td>利用预训练语义能力，小参数高效微调</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>训练阶段</th>
+<th>数据</th>
+<th>可训练参数</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stage 1 运动-语言对齐</td>
+<td>HumanML3D 整体描述</td>
+<td>Φ_{γ,W}</td>
+<td>让连续运动嵌入与词空间对齐</td>
+</tr>
+<tr>
+<td>Stage 2 密集字幕指令微调</td>
+<td>CompMo 带时间戳描述</td>
+<td>Φ_{γ,W} + LoRA</td>
+<td>学会输出“mm:ss:ms – 描述”格式，同时回归时间边界与生成文本</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4. 推理流程</p>
+<ol>
+<li>长运动序列→滑窗编码→运动 token 序列</li>
+<li>输入指令“Given a complex human motion … describe in ‘mm:ss:ms – text’ format”</li>
+<li>自回归生成<strong>带时间戳的密集字幕</strong>，一次性完成检测+描述。</li>
+</ol>
+<p>5. 实验验证</p>
+<ul>
+<li>在 CompMo 与 H3D ∩ BABEL 上，DEMO 相比唯一可比的 UniMotion<br>– 时间定位 tIoU <strong>+34.1 pp</strong><br>– 密集字幕 SODA <strong>+13.2 pp</strong></li>
+<li>消融显示：两阶段训练、混合去噪数据、连续运动表示<strong>缺一不可</strong>。</li>
+</ul>
+<p>综上，论文通过“<strong>新任务定义→新数据构建→新模型架构→两阶段训练策略</strong>”闭环，首次实现了对长时 3D 人体运动的<strong>密集、细粒度、时间精确</strong>的自然语言描述。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕 <strong>Dense Motion Captioning (DMC)</strong> 这一全新任务，在 <strong>两个数据集</strong> 上开展了 <strong>三类实验</strong>，共包含 <strong>定量对比、定性可视化、消融分析</strong> 与 <strong>附加基准测试</strong>。具体实验设置与结果如下（均以 markdown 列表呈现，避免表格与公式混排）：</p>
+<p>1 实验设置概览</p>
+<ul>
+<li><strong>数据集</strong></li>
+<li>CompMo（自提）：48 k / 12 k 训练/测试，平均 39.88 s，2–10 个原子动作</li>
+<li>H3D ∩ BABEL（沿用 UniMotion 划分）：7 k / 1.3 k 训练/测试，帧级标签</li>
+<li><strong>评价维度</strong></li>
+</ul>
+<ol>
+<li>密集字幕质量：CIDEr, METEOR, ROUGE-L, BLEU@1/4, SODA, SODA(B)</li>
+<li>时间定位精度：tIoU, F1</li>
+<li>运动-文本对齐：TMR 余弦相似度, CAR（时序打乱检索）</li>
+</ol>
+<p>2 主实验：DMC 定量对比</p>
+<ul>
+<li><strong>对比方法</strong></li>
+<li>UniMotion（唯一可适配的帧级检索基线）</li>
+<li><strong>结果（平均 IoU=0.5 匹配）</strong></li>
+<li><strong>CompMo</strong></li>
+<li>tIoU: DEMO 77.94% vs UniMotion 36.14% (↑34.1 pp)</li>
+<li>SODA: 17.85 vs 0.61 (↑13.2 pp)</li>
+<li><strong>H3D ∩ BABEL</strong></li>
+<li>tIoU: 51.56% vs 49.95% (↑1.6 pp)</li>
+<li>SODA: 7.92 vs 5.71 (↑2.2 pp)</li>
+<li>结论：动作词汇量越大、描述越长，DEMO 优势越显著。</li>
+</ul>
+<p>3 定性可视化</p>
+<ul>
+<li>随机抽取两段长序列（≈60 s，9 个动作）</li>
+<li>绘制 <strong>时间轴对比图</strong>：GT ↔ DEMO ↔ UniMotion</li>
+<li>观察</li>
+<li>DEMO 边界与人工标注基本重合，偶发漏检（少 1 段）</li>
+<li>UniMotion 出现大量 <strong>碎片帧级噪声</strong> 与 <strong>语义漂移</strong></li>
+<li>示例等价语义：GT“doing karate kicks”←→DEMO“kicks with their right leg 4 times …”</li>
+</ul>
+<p>4 消融实验（Ablation Study）</p>
+<p>4.1 数据生成策略</p>
+<ul>
+<li><strong>concat GT</strong>：直接拼接 HumanML3D 动作</li>
+<li><strong>smooth GT</strong>：拼接后 Slerp 10 帧过渡</li>
+<li><strong>denoise only from random</strong>：全部 MDM 生成</li>
+<li><strong>denoise only from GT</strong>：全部 HumanML3D 原子动作</li>
+<li><strong>full pipeline</strong>：混合生成 + 去噪拼接<br>→ 在 SODA 上分别提升 9.7 / 9.9 / 5.7 / 4.5 pp，验证 <strong>混合去噪策略最优</strong></li>
+</ul>
+<p>4.2 训练阶段</p>
+<ul>
+<li><strong>仅 Stage 2</strong>（随机初始化适配器）</li>
+<li>tIoU 49.45% vs 77.94%（–28.5 pp）</li>
+<li>SODA 1.65 vs 17.85（–16.2 pp）<br>→ 证明 <strong>预对齐阶段不可或缺</strong></li>
+</ul>
+<p>4.3 运动表示</p>
+<ul>
+<li>替换连续适配器为 VQ-VAE（MotionGPT 公开码本）</li>
+<li>序列长度受限 ≤200 帧，需滑窗拼接</li>
+<li>SODA 2.34 vs 17.85（–15.5 pp）<br>→ 离散化词汇瓶颈显著，<strong>连续映射更有效</strong></li>
+</ul>
+<p>5 附加基准：传统单段字幕任务</p>
+<ul>
+<li>在 <strong>HumanML3D</strong> 标准测试集（镜像增强）上执行 <strong>单句描述</strong> 任务</li>
+<li>指标：BLEU@1/4, ROUGE-L, CIDEr, BERTScore</li>
+<li>结果</li>
+<li>DEMO 55.28/16.28/42.67/33.80/36.86</li>
+<li>与最佳对比方法 MotionAgent 差距 ≤1 pp，<strong>证明模型不损失单段描述能力</strong></li>
+</ul>
+<p>6 效率与实现细节</p>
+<ul>
+<li>训练耗时：2×RTX 6000 Ada，Stage 1 约 0.8 h，Stage 2 约 2.7 h</li>
+<li>推理速度：≈0.04 s/帧（含滑窗重叠）</li>
+<li>参数量：LLaMA-8B 冻结，仅 LoRA 与 2 层 MLP 适配器可训，<strong>总可训参数 &lt; 0.4%</strong></li>
+</ul>
+<p>综上，实验从 <strong>定量指标、可视化、组件消融、附加任务</strong> 四个角度系统验证：</p>
+<ol>
+<li>DEMO 在 <strong>DMC 新任务</strong> 上显著优于现有唯一基线；</li>
+<li><strong>数据混合去噪 + 两阶段训练 + 连续运动映射</strong> 是性能关键；</li>
+<li>模型 <strong>兼顾</strong> 了传统单段字幕能力，具备 <strong>实用部署</strong> 潜力。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可视为对 Dense Motion Captioning（DMC）任务、数据集与模型的自然延伸，亦兼顾当前局限与未来应用需求：</p>
+<p>1 复杂时序逻辑与因果建模</p>
+<ul>
+<li>现有 CompMo 仅随机拼接原子动作，缺乏“<strong>因果合理</strong>”的过渡（如游泳→篮球瞬切）。</li>
+<li>可引入 <strong>动作图谱</strong> 或 <strong>大型语言模型常识推理</strong>，强制生成“<strong>前-后条件概率高</strong>”的子动作链，提升长序列物理与语义连贯性。</li>
+</ul>
+<p>2 时空联合密集描述</p>
+<ul>
+<li>当前仅关注<strong>时域</strong>分割与文本；可拓展到<strong>空域</strong>，即“<strong>谁</strong>（身体部位）在<strong>何时</strong>做了<strong>什么</strong>”。</li>
+<li>具体形式：输出 <code>(t_i, p_i, c_i)</code>，其中 <code>p_i</code> 为关节子集或 SMPL-X 部位掩码，实现<strong>细粒度部位级</strong>密集字幕。</li>
+</ul>
+<p>3 多人物交互场景</p>
+<ul>
+<li>CompMo 仅含<strong>单人</strong>运动。下一步构建 <strong>Multi-Human DMC</strong>：</li>
+<li>输入：多人关节序列 <code>m^(1),…,m^(K)</code></li>
+<li>输出：交互事件列表 <code>(t_i, c_i, {role_j})</code>，如“00:12:30 – A 传球给 B”。</li>
+<li>需解决<strong>角色跟踪</strong>与<strong>交互语义抽取</strong>两大子问题。</li>
+</ul>
+<p>4 跨模态自监督预训练</p>
+<ul>
+<li>目前 Stage 1 仅依赖 HumanML3D 文本对。可收集<strong>大规模无文本</strong> mocap，采用 <strong>MAE-style 运动重建</strong> 或 <strong>对比式掩码建模</strong>，先学通用运动表征，再微调 DMC，缓解对成对数据的依赖。</li>
+</ul>
+<p>5 在线流式密集字幕</p>
+<ul>
+<li>现有方法为<strong>离线整段</strong>输入。可探索<strong>滑动窗口+记忆机制</strong>，实现<strong>实时流式输出</strong>：</li>
+<li>检测到新动作即刻输出 <code>(t_i, c_i)</code>，延迟 &lt; 300 ms，服务直播解说、人机协作等场景。</li>
+</ul>
+<p>6 引入音频/场景多模态</p>
+<ul>
+<li>结合同步音频（ footsteps、球击声）与 3D 场景点云，生成<strong>环境感知</strong>描述，如“00:05:20 – 在木地板上做急停跳投，伴随球鞋摩擦声”。</li>
+<li>可构建 <strong>Audio-Scene-Motion DMC</strong> 基准，推动<strong>多模态语义对齐</strong>研究。</li>
+</ul>
+<p>7 可解释评估与人体一致性</p>
+<ul>
+<li>现有指标仅关注文本相似度。可引入：</li>
+<li><strong>物理合理性检查</strong>：脚穿地、关节速度突变自动扣分；</li>
+<li><strong>人体一致性评分</strong>：利用 SMPL 碰撞检测与平衡度量，对生成描述进行<strong>语义-物理一致性</strong>双重审核。</li>
+</ul>
+<p>8 低资源与领域迁移</p>
+<ul>
+<li>探索 <strong>zero-shot / few-shot DMC</strong>：</li>
+<li>仅给 1–5 段新领域（如芭蕾舞、手术动作）示范，借助 LLM 的<strong>指令泛化</strong>能力快速适应；</li>
+<li>结合 <strong>prompt tuning</strong> 或 <strong>adapter fusion</strong>，避免全量重训练。</li>
+</ul>
+<p>9 用户交互式修正</p>
+<ul>
+<li>允许人在回路<strong>即时反馈</strong>（语音或文本），模型<strong>增量修正</strong>已生成时段边界与描述，形成<strong>交互式 DMC</strong> 框架，服务于体育教练、康复分析等需要<strong>专家迭代</strong>的场景。</li>
+</ul>
+<p>10 伦理与隐私视角</p>
+<ul>
+<li>密集字幕可能泄露个人行为特征。可研究 <strong>motion anonymization</strong>：在保持动作语义前提下，通过<strong>风格迁移</strong>或<strong>差分隐私噪声</strong>，使得输出文本无法反向关联到原始身份，兼顾<strong>可用性与隐私</strong>。</li>
+</ul>
+<p>综上，DMC 方兴未艾，未来可在<strong>因果时序、多人交互、流式实时、多模态融合、可解释评估与伦理安全</strong>等多维度持续深耕。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<ul>
+<li><strong>任务</strong>：提出 Dense Motion Captioning（DMC），要求对长时 3D 人体运动序列同时完成<strong>原子动作检测、自然语言描述与精确时间定位</strong>。</li>
+<li><strong>数据</strong>：构建 CompMo，首个 60 k 段、平均 39.88 s、每段 2–10 个原子动作并带<strong>密集时间戳</strong>的大规模 3D 运动-语言数据集。</li>
+<li><strong>方法</strong>：设计 DEMO 模型，用<strong>轻量级连续运动适配器</strong>将 3D 关节序列映射到 LLM 词嵌入空间，两阶段训练（先对齐运动-语言，再密集字幕指令微调），可端到端生成“mm:ss:ms – 描述”序列。</li>
+<li><strong>实验</strong>：在 CompMo 与 H3D ∩ BABEL 上，DEMO 的<strong>时间定位 tIoU 提升 34.1 pp</strong>、<strong>密集字幕 SODA 提升 13.2 pp</strong>；消融验证混合去噪数据、两阶段训练与连续表示均关键；在 HumanML3D 单句描述任务仍保持 SOTA 竞争力。</li>
+<li><strong>意义</strong>：建立 DMC 新基准，推动 3D 运动理解从“整段概括”走向<strong>细粒度、时域精确</strong>的密集语义描述。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Dense%20Motion%20Captioning，链接是https://arxiv.org/pdf/2511.05369，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.05369。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Shiyao Xu,Benedetta Liberatori,Gül Varol,Paolo Rota</p>
+<p><strong>Categories</strong>: cs.CV,I.2.10; I.4.8; I.5.4</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.05369.pdf">https://arxiv.org/pdf/2511.05369.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.05369">https://arxiv.org/abs/2511.05369</a></p>
+<p><strong>Arxiv ID</strong>: 2511.05369</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.05369">https://papers.cool/arxiv/2511.05369</a></p>
+<p><strong>Published</strong>: 2025-11-07T15:55:10Z</p>
+<p><strong>Updated</strong>: 2025-11-07T15:55:10.000Z</p>
+<hr>
+<h3 id="6-Towards-Mitigating-Hallucinations-in-Large-Vision-Language-Models-by-Refining-Textual-Embeddings"><a href="#6-Towards-Mitigating-Hallucinations-in-Large-Vision-Language-Models-by-Refining-Textual-Embeddings" class="headerlink" title="6. Towards Mitigating Hallucinations in Large Vision-Language Models by Refining Textual Embeddings"></a>6. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.05017">Towards Mitigating Hallucinations in Large Vision-Language Models by Refining Textual Embeddings</a></h3><p>In this work, we identify an inherent bias in prevailing LVLM architectures toward the language modality, largely resulting from the common practice of simply appending visual embeddings to the input text sequence. To address this, we propose a simple yet effective method that refines textual embeddings by integrating average-pooled visual features. Our approach demonstrably improves visual grounding and significantly reduces hallucinations on established benchmarks. While average pooling offers a straightforward, robust, and efficient means of incorporating visual information, we believe that more sophisticated fusion methods could further enhance visual grounding and cross-modal alignment. Given that the primary focus of this work is to highlight the modality imbalance and its impact on hallucinations — and to show that refining textual embeddings with visual information mitigates this issue — we leave exploration of advanced fusion strategies for future work.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>在这项工作中，我们发现现有的大型视觉语言模型（LVLM）架构存在对语言模态的固有偏向，这在很大程度上是由于普遍做法仅仅是将视觉嵌入附加到输入文本序列中。为了解决这一问题，我们提出了一种简单但有效的方法，通过整合平均汇聚的视觉特征来优化文本嵌入。我们的方法在视觉定位任务上表现出显著提升，并显著减少了已建立基准上的幻觉现象。虽然平均汇聚提供了一种直接、稳健且高效的方式来融合视觉信息，但我们认为更复杂的融合方法可能进一步增强视觉定位和跨模态对齐。鉴于本工作的主要目的是强调模态不平衡及其对幻觉的影响——并展示通过视觉信息优化文本嵌入能够缓解此问题——我们将更高级融合策略的探索留作未来工作。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>该论文针对大型视觉-语言模型（LVLM）中普遍存在的“幻觉”现象——即生成与视觉输入不符、却语言流畅的输出——提出系统性的成因分析与改进方案。核心论点指出，幻觉的根本原因在于主流架构将视觉嵌入简单拼接到文本序列后，导致模型过度依赖文本先验、忽视视觉证据，形成模态注意力失衡。为此，作者提出 VisAlign 方法，通过将平均池化后的视觉语义注入文本嵌入，使文本 token 本身具备视觉感知能力，从而在训练阶段主动矫正注意力分布，显著降低幻觉并提升视觉 grounding 性能。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>以下工作与本研究密切相关，可从<strong>架构设计</strong>、<strong>幻觉评测</strong>、<strong>幻觉缓解</strong>三条主线归纳：</p>
+<p>1. 架构设计：视觉-语言融合策略</p>
+<ul>
+<li><strong>拼接式(token-level concatenation)</strong></li>
+<li>LLaVA、MiniGPT-4、Video-LLaVA、Video-ChatGPT、Bunny、Video-LLaMA</li>
+<li>优点：模块化、数据高效；缺点：LLM 文本先验强→视觉利用不足</li>
+<li><strong>交叉注意力式(cross-attention)</strong></li>
+<li>Flamingo、BLIP-2</li>
+<li>优点：动态融合；缺点：计算开销大、模块化程度低</li>
+<li><strong>其他注意力校准</strong></li>
+<li>CLOCK：训练阶段显式约束注意力权重</li>
+<li>PAINT：全局-局部注意力组装，抑制物体幻觉</li>
+</ul>
+<p>2. 幻觉评测基准</p>
+<ul>
+<li><strong>物体层幻觉</strong></li>
+<li>POPE / A-OKVQA：yes/no 问答探测虚假物体</li>
+<li>NOPE：负面物体存在评测</li>
+<li><strong>属性/关系/动作层</strong></li>
+<li>MERLIN：原子事实分解验证物体存在与属性</li>
+<li>HallusionBench：视觉依赖 VS 视觉补充双任务，含人工冲突图像</li>
+<li>MMVP-MLLM：CLIP-相似图像对，强制细粒度视觉区分</li>
+<li>Mementos：多帧序列中的时序物体与动作一致性</li>
+<li>AMBER：统一判别式与生成式幻觉评测</li>
+</ul>
+<p>3. 幻觉缓解方法</p>
+<ul>
+<li><strong>训练阶段</strong></li>
+<li>M-HalDetect：构建幻觉-真实配对数据训练判别器</li>
+<li>HaELM：基于幻觉标注的微调目标</li>
+<li>GAVIE：强化学习惩罚无根据生成</li>
+<li>ALOHa：用语言模型检测超出固定词汇表的幻觉物体</li>
+<li>RLHF 系列：Sun et al. 采用人类反馈进行多模态对齐</li>
+<li><strong>推理阶段</strong></li>
+<li>VCD(Visual Contrastive Decoding)：重排序候选，惩罚视觉不一致输出</li>
+<li>ICD(Instruction Contrastive Decoding)</li>
+<li>SID(Self-Introspective Decoding)：逐步自验证</li>
+<li>基于图像描述的 grounded decoding(Ghosh et al.)</li>
+</ul>
+<p>与上述方法不同，本文<strong>VisAlign</strong>在输入表示阶段将平均视觉语义注入文本嵌入，无需外部监督或推理重排序，即可主动平衡跨模态注意力，与训练/推理阶段各类技术呈互补关系。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文将幻觉归因于“视觉-语言模态注意力失衡”，并提出 <strong>VisAlign</strong> 在<strong>输入表示阶段</strong>一次性修正该失衡，具体做法分为三步：</p>
+<ol>
+<li>对投影后的视觉 token 做平均池化，得到全局视觉向量</li>
+</ol>
+<p>boldsymbolv = (1) / (N<em>v)∑</em>(i=1)^(N_v) v^(proj)_i ∈ R^(1× d_t)</p>
+<ol>
+<li>把该向量拼接到每个文本 token 之后，再经线性投影降维，使文本嵌入自带视觉语义</li>
+</ol>
+<p>T<em>(fuse) = [T parallel boldsymbolvotimes 1</em>(N<em>t)] ∈ R^(N_t× 2d_t), quad boldsymbolT = T</em>(fuse)W_d ∈ R^(N_t× d_t)</p>
+<ol>
+<li>按原始顺序将“已视觉增强的文本”与视觉 token 拼接后送入 LLM，端到端训练。<br>预训练阶段仅更新投影层与  W_d ；微调阶段全模型参与，使注意力分布被迫同时关注视觉与文本，从而抑制语言先验主导的幻觉。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文在<strong>6个幻觉基准</strong>与<strong>1个通用能力基准</strong>上系统评估VisAlign，实验设计覆盖<strong>物体、属性、动作、关系、时序</strong>等多类幻觉，并补充<strong>与SOTA方法正交性</strong>与<strong>跨模型迁移</strong>验证，主要结果如下：</p>
+<ul>
+<li><p><strong>MMVP-MLLM</strong>（细粒度视觉判别）<br>准确率相对提升 <strong>+9.33%</strong>（14→23.33），显著降低语言先验依赖。</p>
+</li>
+<li><p><strong>POPE-AOKVQA</strong>（对抗式物体存在问答）<br>准确率 <strong>+2.99%</strong>、精确率 <strong>+1.76%</strong>、F1 <strong>+1.18%</strong>，明显减少“虚假肯定”。</p>
+</li>
+<li><p><strong>MERLIN</strong>（对象存在/删除细粒度验证）<br>在 curated &amp; random 两种图像划分下，<strong>Pos/Neg 四项平均 +3.4%</strong>，提升视觉忠实度。</p>
+</li>
+<li><p><strong>Mementos</strong>（多帧时序幻觉）<br>Robotics 场景下物体幻觉 Acc <strong>+1.13%</strong>、动作幻觉 Acc <strong>+0.97%</strong>；其余领域持平或微增。</p>
+</li>
+<li><p><strong>HallusionBench-hard</strong>（人工冲突图像）<br>平均 <strong>+3%</strong>，其中 Map/OCR/Table 等 VS 任务最大增幅 <strong>14.81%</strong>，显示视觉 grounding 强化。</p>
+</li>
+<li><p><strong>与VCD联合实验</strong><br>VisAlign单独优于VCD；二者叠加后 POPE Acc 再提升至 <strong>58.8</strong>，F1 <strong>70.04</strong>，验证正交互补。</p>
+</li>
+<li><p><strong>通用能力MME</strong><br>Existence/Count/Color 等 grounding 敏感子项显著提升，最高 <strong>+20</strong> 分；部分依赖先验知识任务略降，总体仍优于VCD带来的普遍下降。</p>
+</li>
+<li><p><strong>跨模型验证</strong><br>将VisAlign接入LLaVA-1.5，POPE Acc <strong>69→71%</strong>、F1 <strong>76.02→77.01%</strong>，表明结构无关、可迁移。</p>
+</li>
+<li><p><strong>定性可视化</strong><br>注意力热图显示视觉-文本条纹更清晰，对角梯度连续；样例中成功抑制“不存在物体”“错误属性”“伪造动作”等幻觉，与量化结果一致。</p>
+</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<ul>
+<li><p><strong>更精细的视觉聚合</strong><br>当前使用平均池化获得单一全局向量，可探索多头注意力、可学习聚类或基于目标检测的区域加权，以保留空间-语义细节。</p>
+</li>
+<li><p><strong>动态融合权重</strong><br>引入模态置信度或不确定性估计，让模型自适应调整视觉-文本混合比例，缓解“过度视觉化”导致的先验知识丢失。</p>
+</li>
+<li><p><strong>层级注入策略</strong><br>仅在最底层一次性注入视觉语义；可研究逐层或跨块残差式注入，使不同抽象级别都能获得对应粒度的视觉信号。</p>
+</li>
+<li><p><strong>大规模预训练</strong><br>本文仅在公开指令调优数据上实验，若将 VisAlign 用于大规模图文对预训练，有望进一步放大视觉 grounding 收益并减少知识遗忘。</p>
+</li>
+<li><p><strong>多模态混合专家(MoE)</strong><br>为视觉、文本分别设置稀疏专家，通过路由机制实现“按需”调用，兼顾幻觉抑制与参数效率。</p>
+</li>
+<li><p><strong>与其他SOTA后处理协同</strong><br>除VCD外，可联合ICD、SID、RLHF等，系统研究训练-推理阶段多级联防控幻觉的极限性能。</p>
+</li>
+<li><p><strong>可解释诊断工具</strong><br>构建注意力/梯度可视化界面，实时定位幻觉产生的token与层，为安全关键场景提供可审计的“视觉证据链”。</p>
+</li>
+<li><p><strong>跨语言与跨文化鲁棒性</strong><br>验证VisAlign在低资源语言、文化特定场景下是否仍能保持视觉忠实度，避免语言先验差异带来的新幻觉模式。</p>
+</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>论文核心概要</strong></p>
+<ol>
+<li><p><strong>问题定位</strong><br>主流 LVLM 将冻结视觉 token 直接拼接到文本序列，导致 LLM 注意力严重偏向语言先验，视觉证据利用不足，引发物体、属性、动作、关系等多类幻觉。</p>
+</li>
+<li><p><strong>方法：VisAlign</strong><br>在不改架构的前提下，把平均池化后的视觉向量拼接到每个文本 token，再线性投影回 LLM 嵌入空间，使文本表示自带视觉语义；预训练阶段同步学习投影层与融合层，微调阶段端到端更新，迫使模型平衡关注视觉与文本。</p>
+</li>
+<li><p><strong>实验结果</strong></p>
+</li>
+</ol>
+<ul>
+<li>6 个幻觉基准（MMVP-MLLM、POPE、MERLIN、Mementos、HallusionBench-hard 等）一致提升，最高 +9.33% 准确率。</li>
+<li>与推理式 SOTA（VCD）正交，联合后再涨 +1.7% 准确率。</li>
+<li>通用能力基准 MME 的视觉敏感子项显著提升，验证方法不牺牲整体性能。</li>
+<li>迁移到 LLaVA-1.5 仍有效，证明模型无关。</li>
+</ul>
+<ol>
+<li><strong>贡献与意义</strong><br>首次系统量化了“模态注意力失衡→幻觉”链条，并提出极简输入层修正方案；为后续更精细融合、层级注入、多模态 MoE 等研究奠定基础。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Towards%20Mitigating%20Hallucinations%20in%20Large%20Vision-Language%20Models%20by%20Refining%20Textual%20Embeddings，链接是https://arxiv.org/pdf/2511.05017，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.05017。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Aakriti Agrawal,Gouthaman KV,Rohith Aralikatti,Gauri Jagatap,Jiaxin Yuan,Vijay Kamarshi,Andrea Fanelli,Furong Huang</p>
+<p><strong>Categories</strong>: cs.CV,cs.CL</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.05017.pdf">https://arxiv.org/pdf/2511.05017.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.05017">https://arxiv.org/abs/2511.05017</a></p>
+<p><strong>Arxiv ID</strong>: 2511.05017</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.05017">https://papers.cool/arxiv/2511.05017</a></p>
+<p><strong>Published</strong>: 2025-11-07T06:39:54Z</p>
+<p><strong>Updated</strong>: 2025-11-07T06:39:54.000Z</p>
+<hr>
+<h3 id="7-Real-Time-Reasoning-Agents-in-Evolving-Environments"><a href="#7-Real-Time-Reasoning-Agents-in-Evolving-Environments" class="headerlink" title="7. Real-Time Reasoning Agents in Evolving Environments"></a>7. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.04898">Real-Time Reasoning Agents in Evolving Environments</a></h3><p>Agents in the real world must make not only logical but also timely judgments. This requires continuous awareness of the dynamic environment: hazards emerge, opportunities arise, and other agents act, while the agent’s reasoning is still unfolding. Despite advances in language model reasoning, existing approaches fail to account for this dynamic nature. We introduce real-time reasoning as a new problem formulation for agents in evolving environments and build Real-Time Reasoning Gym to demonstrate it. We study two paradigms for deploying language models in agents: (1) reactive agents, which employ language models with bounded reasoning computation for rapid responses, and (2) planning agents, which allow extended reasoning computation for complex problems. Our experiments show that even state-of-the-art models struggle with making logical and timely judgments in either paradigm. To address this limitation, we propose AgileThinker, which simultaneously engages both reasoning paradigms. AgileThinker consistently outperforms agents engaging only one reasoning paradigm as the task difficulty and time pressure rise, effectively balancing reasoning depth and response latency. Our work establishes real-time reasoning as a critical testbed for developing practical agents and provides a foundation for research in temporally constrained AI systems, highlighting a path toward real-time capable agents.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>现实世界中的智能体不仅必须做出逻辑判断，还需要作出及时的决策。这要求智能体持续感知动态环境：危险出现，机会涌现，其他智能体在行动，而智能体自身的推理仍在进行中。尽管语言模型推理已有进展，但现有方法未能充分考虑这种动态特性。我们提出了“实时推理”作为在不断变化环境中智能体的新问题定义，并构建了实时推理训练平台（Real-Time Reasoning Gym）来进行演示。我们研究了两种在智能体中部署语言模型的范式：(1) 反应型智能体，利用具有有限推理计算的语言模型以实现快速响应；(2) 规划型智能体，允许进行较长时间的推理计算以解决复杂问题。实验结果表明，即便是最先进的模型，在这两种范式下也难以同时做出逻辑与及时的判断。为解决这一局限，我们提出了AgileThinker，它同时采用两种推理范式。随着任务难度和时间压力的增加，AgileThinker始终优于仅使用单一推理范式的智能体，有效地在推理深度与响应延迟之间取得平衡。我们的工作将实时推理确立为开发实用智能体的重要测试平台，并为受时间限制的人工智能系统研究提供基础，指出了通向实时能力智能体的研究路径。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在解决“实时推理（real-time reasoning）”这一核心问题：<br>在环境持续演变的真实场景中，智能体必须<strong>在逻辑正确性与响应时效性之间取得平衡</strong>。现有大模型智能体通常假设“环境等 Agent 推理完再变化”，忽略了世界动态性与计算并行性，导致在时延敏感任务中表现骤降甚至引发安全风险。为此，作者：</p>
+<ol>
+<li>提出<strong>实时推理问题新范式</strong>——环境按固定节奏更新，不因 Agent 计算而暂停；</li>
+<li>构建首个评测平台 <strong>Real-Time Reasoning Gym</strong>，通过 Freeway、Snake、Overcooked 三款游戏独立操控“认知负荷”与“时间压力”两个维度，系统评估 Agent 的时效-逻辑权衡能力；</li>
+<li>验证现有“纯反应”与“纯规划”单范式均无法在高压高负载场景下同时保证及时性与深度；</li>
+<li>设计双线程架构 <strong>AgileThinker</strong>，让规划线程持续深入推理并流式输出部分结论，反应线程在时限内引用最新观测与部分规划结果快速决策，实现<strong>反应-规划并行协同</strong>；</li>
+<li>通过大量实验（含真实 wall-clock 时间）证明 AgileThinker 在认知负荷与时间压力升高时，显著优于单一范式基线，为构建<strong>可部署的实时语言智能体</strong>提供方法论与评测基准。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>相关研究可归纳为三条主线：静态评测环境、预算控制与双系统架构。</p>
+<ul>
+<li><strong>静态评测环境</strong></li>
+<li>OpenAI Gym、WebArena、SWE-Agent 等主流平台默认“环境等 Agent 完”的回合制设定，忽略动态延迟。</li>
+<li>Delay-Aware MDP、sticky-action、异步交互式 MDP 等仅用于传统 RL，未面向 LLM Agent。</li>
+<li><strong>预算控制 / 测试时计算</strong></li>
+<li>早期截断、提示压缩、RL 式预算感知训练（s1、L1、Gemini-2.5）可在一定程度上缩短输出，但仍难在“极紧预算”与“充分推理”间平滑切换，无法同时满足实时反应与深度规划。</li>
+<li><strong>双系统（System 1/2）Agent</strong></li>
+<li>Talker-Reasoner、Hierarchical Language Agent、Dual-Process VLA 等把“快模型”与“慢模型”串行或独立并行，但快端无法在中途读取慢端的<strong>部分推理轨迹</strong>，因而难以在毫秒级时限内吸收深度洞察。</li>
+</ul>
+<p>本文首次将“实时推理”形式化为 LLM Agent 的新问题，提出硬件无关的“token-as-time”评测协议，并给出可流式引用部分思考的双线程架构，与上述研究形成互补。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文将“实时推理”形式化为<strong>环境持续演进、Agent 必须在时限内输出动作</strong>的决策问题，并从<strong>环境-算法-评测</strong>三个层面给出系统解决方案。</p>
+<ol>
+<li>构建可复现的动态评测平台</li>
+</ol>
+<ul>
+<li>Real-Time Reasoning Gym 用 token 数作为硬件无关的“时间通货”，每  N_(TE)  个 token 强制环境前进一步，超时未输出动作则执行默认动作。</li>
+<li>三款游戏分别对应** hazards、opportunities、partners** 三种动态因素，并独立调节“认知负荷”与“时间压力”两维难度，实现可控、可重复的梯度评测。</li>
+</ul>
+<ol>
+<li>提出双线程并行架构 AgileThinker</li>
+</ol>
+<ul>
+<li><strong>规划线程 P</strong>：运行“思考模型”，持续生成多步计划或代码策略，推理过程以流式 <code>&lt;think&gt;</code> 标签公开。</li>
+<li><strong>反应线程 R</strong>：运行“非思考模型”或截断思考模型，在每步最后  T_R  token 时限内，根据<strong>最新观测</strong>+<strong>P 的局部推理痕迹</strong>快速决策。</li>
+<li>两线程按“时间片”共享同一 LLM 推理预算，R 只读 P 的增量输出，无需等待 P 完成，实现“深度”与“时效”解耦。</li>
+</ul>
+<ol>
+<li>系统实验验证</li>
+</ol>
+<ul>
+<li>在梯度变化的认知负荷与时间压力下，纯反应或纯规划范式均出现<strong>性能悬崖</strong>；AgileThinker 在同等预算下显著延缓性能衰减。</li>
+<li>Wall-clock 实验（DeepSeek 官方 API）表明 token-时间线性相关  R^2=0.999 ，AgileThinker 的真实延迟优势与 token 模拟一致，证明方案可落地。</li>
+</ul>
+<p>通过“动态环境+双线程协同+token-时间抽象”，论文首次让大模型智能体在<strong>逻辑正确性</strong>与<strong>响应及时性</strong>之间实现可量化、可扩展的平衡。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>实验围绕 <strong>RQ1 环境因素影响、RQ2 资源分配、RQ3 仿真-真实时间一致性</strong> 展开，共 4 组核心测试与 3 组补充验证。</p>
+<ol>
+<li>单因子应力测试（RQ1）</li>
+</ol>
+<ul>
+<li>固定时间压力 8 k tokens/step，逐级提升认知负荷（Easy→Medium→Hard），对比 5 类 Agent：<br>– Reactive(V3)、Reactive(R1+budget)、Planning(R1)、Planning(R1+code)、AgileThinker。</li>
+<li>固定认知负荷 Medium，逐级提升时间压力 4 k→32 k tokens/step。<br>结果：纯反应或纯规划在单一应力升高时均出现<strong>性能悬崖</strong>；AgileThinker 下降斜率显著更缓（p&lt;0.05）。</li>
+</ul>
+<ol>
+<li>反应预算细粒度消融（RQ2）</li>
+</ol>
+<ul>
+<li>在 8 k tokens/step 环境下，单独扫描 AgileThinker 的  N_(TR) （0.5 k–8 k）。</li>
+<li>记录 R 线程自然长度 CDF，发现性能峰值与 CDF 90% 分位对齐，验证“<strong>给足但不过量</strong>”原则。</li>
+</ul>
+<ol>
+<li>真实 wall-clock 验证（RQ3）</li>
+</ol>
+<ul>
+<li>用 DeepSeek 官方 API 跑 Freeway/Snake/Overcooked，环境步长 6 min（≈8 k tokens）。</li>
+<li>测得线性模型  T=0.0473 N+334.55 （ R^2=0.999 ），AgileThinker 相对 Reactive/Planning 平均提升 <strong>0.40–0.89</strong> 绝对分数，确认 token-时间抽象有效。</li>
+</ul>
+<ol>
+<li>统计显著性与泛化</li>
+</ol>
+<ul>
+<li>配对 t-test：AgileThinker 优势随负荷/压力升高而显著（p&lt;0.05 区域扩大）。</li>
+<li>跨模型测试：DeepSeek-V3.2、Gemini-2.5-Flash 上复现相同趋势；即便 Gemini 无法流式读取中间思考，仅让 Reactive 引用 Planning 最终输出也能<strong>持续优于</strong>单范式。</li>
+</ul>
+<ol>
+<li>补充实验</li>
+</ol>
+<ul>
+<li>Code-as-Policy 定性分析：LLM 在 Freeway 可写 BFS，在 Snake/Overcooked 则因搜索空间或协作复杂度失效。</li>
+<li>并发资源限制：把并行双线程改为<strong>交替单线程</strong>（吞吐量相同），AgileThinker 仍显著领先，证明优势主要来自<strong>认知分工</strong>而非算力叠加。</li>
+</ul>
+<p>以上实验从仿真到真实时间、从单因子到系统联合，验证了 AgileThinker 在<strong>高认知负荷+高时间压力</strong>场景下的持续优势。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<ul>
+<li><strong>更复杂的真实场景</strong></li>
+<li>将 Real-Time Reasoning Gym 扩展到部分可观、噪声传感、连续控制或多人博弈环境，检验 AgileThinker 在更高维度观测/动作空间下的可扩展性。</li>
+<li>引入<strong>异构时间尺度</strong>（传感器快、执行器慢、通信延迟可变），测试双线程架构对多节奏动态的适应性。</li>
+<li><strong>线程协同机制升级</strong></li>
+<li>设计<strong>可学习的协调策略</strong>：用元网络或强化学习动态调节  T_R 、决定何时中断/重启规划线程，而非固定预算。</li>
+<li>让规划线程输出<strong>不确定性或置信度</strong>，反应线程据此选择“跟随规划”或“紧急避险”，实现更细粒度的风险-效率权衡。</li>
+<li><strong>训练阶段融入实时约束</strong></li>
+<li>构建** urgency-aware 预训练或后训练**数据：在生成式强化学习中加入“token 预算”作为可微惩罚，鼓励模型在限定长度内输出高质量思考前缀。</li>
+<li>探索<strong>早停/压缩式推理</strong>：训练模型在任意位置生成“提前出口”标记，供反应线程按需截断，进一步降低尾部延迟。</li>
+<li><strong>多模型异构与资源调度</strong></li>
+<li>采用<strong>大小模型组合</strong>（小模型跑 R 线程，大模型跑 P 线程），研究在总吞吐量受限时的最优模型配比与动态卸载策略。</li>
+<li>在边缘设备上验证<strong>并发 vs 交替</strong>推理的能耗-延迟 Pareto 前沿，为低功耗机器人或车载终端提供部署指南。</li>
+<li><strong>理论分析与可解释性</strong></li>
+<li>建立<strong>实时推理复杂度模型</strong>：将环境演化速率、观测熵、动作空间与推理深度形式化，给出性能上界与预算下界。</li>
+<li>可视化“部分思考痕迹”对反应决策的贡献度，量化不同中间表示的<strong>时效价值密度</strong>，指导未来表征学习。</li>
+<li><strong>安全与对齐</strong></li>
+<li>研究高压场景下 AgileThinker 是否会出现<strong>线程间策略冲突</strong>或<strong>过度乐观规划</strong>，引入安全屏蔽器与一致性检查。</li>
+<li>在真实世界闭环控制（自动驾驶、服务机器人）中做<strong>红队测试</strong>，验证当规划线程出现错误时，反应线程能否及时纠错并给出可解释的安全回退。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>论文核心内容速览</strong></p>
+<ol>
+<li>问题提出</li>
+</ol>
+<ul>
+<li>真实场景下环境<strong>持续演变</strong>，而 LLM 智能体仍默认“世界等我推理完”，导致<strong>逻辑正确但响应过时</strong>或<strong>及时但缺乏远见</strong>的失效模式。</li>
+</ul>
+<ol>
+<li>平台构建</li>
+</ol>
+<ul>
+<li>发布首个动态评测环境 <strong>Real-Time Reasoning Gym</strong>（Freeway / Snake / Overcooked），用<strong>token 数</strong>作为硬件无关时间单位，每  N_(TE)  个 token 强制环境前进一步，超时未输出动作则执行默认动作。</li>
+</ul>
+<ol>
+<li>单范式缺陷</li>
+</ol>
+<ul>
+<li><strong>纯反应</strong>：受预算限制，认知负荷升高时性能悬崖（0.89→0.15）。</li>
+<li><strong>纯规划</strong>：时间压力升高时计划过时，分数骤降（0.92→0.05）。</li>
+</ul>
+<ol>
+<li>方法设计</li>
+</ol>
+<ul>
+<li><strong>AgileThinker</strong>：双线程并行<br>– 规划线程 P 持续生成多步计划并流式暴露 <code>&lt;think&gt;</code> 痕迹；<br>– 反应线程 R 在<strong>每步最后  T_R  token</strong> 内，结合最新观测与 P 的<strong>局部推理</strong>快速决策。</li>
+<li>实现“深度”与“时效”解耦，无需等待完整规划即可吸收长期洞察。</li>
+</ul>
+<ol>
+<li>实验结果</li>
+</ol>
+<ul>
+<li>在梯度变化的认知负荷与时间压力下，AgileThinker 下降斜率显著更缓；wall-clock 实验（DeepSeek API）验证 token-时间线性相关 ( R^2=0.999 )，真实延迟场景仍平均领先 <strong>0.40–0.89</strong> 绝对分数。</li>
+<li>显著性检验与跨模型（V3.2、Gemini-2.5）复现一致优势；并发资源受限时仍优于单范式，证明收益主要来自<strong>认知分工</strong>而非额外算力。</li>
+</ul>
+<ol>
+<li>结论与影响</li>
+</ol>
+<ul>
+<li>首次形式化“实时推理”问题，提供可复现评测基准与双线程架构，为后续<strong>时敏 AI 系统</strong>研究奠定方法论与实验基础。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Real-Time%20Reasoning%20Agents%20in%20Evolving%20Environments，链接是https://arxiv.org/pdf/2511.04898，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.04898。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Yule Wen,Yixin Ye,Yanzhe Zhang,Diyi Yang,Hao Zhu</p>
+<p><strong>Categories</strong>: cs.AI</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.04898.pdf">https://arxiv.org/pdf/2511.04898.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.04898">https://arxiv.org/abs/2511.04898</a></p>
+<p><strong>Arxiv ID</strong>: 2511.04898</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.04898">https://papers.cool/arxiv/2511.04898</a></p>
+<p><strong>Published</strong>: 2025-11-07T00:51:02Z</p>
+<p><strong>Updated</strong>: 2025-11-07T00:51:02.000Z</p>
+<hr>
+<h3 id="8-Jailbreaking-in-the-Haystack"><a href="#8-Jailbreaking-in-the-Haystack" class="headerlink" title="8. Jailbreaking in the Haystack"></a>8. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.04707">Jailbreaking in the Haystack</a></h3><p>Recent advances in long-context language models (LMs) have enabled million-token inputs, expanding their capabilities across complex tasks like computer-use agents. Yet, the safety implications of these extended contexts remain unclear. To bridge this gap, we introduce NINJA (short for Needle-in-haystack jailbreak attack), a method that jailbreaks aligned LMs by appending benign, model-generated content to harmful user goals. Critical to our method is the observation that the position of harmful goals play an important role in safety. Experiments on standard safety benchmark, HarmBench, show that NINJA significantly increases attack success rates across state-of-the-art open and proprietary models, including LLaMA, Qwen, Mistral, and Gemini. Unlike prior jailbreaking methods, our approach is low-resource, transferable, and less detectable. Moreover, we show that NINJA is compute-optimal — under a fixed compute budget, increasing context length can outperform increasing the number of trials in best-of-N jailbreak. These findings reveal that even benign long contexts — when crafted with careful goal positioning — introduce fundamental vulnerabilities in modern LMs.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>近期在长上下文语言模型（LMs）方面的进展使得处理百万级标记输入成为可能，从而扩展了它们在复杂任务（如计算机使用代理）中的能力。然而，这些扩展上下文的安全隐患仍不清楚。为弥补这一空白，我们提出了 NINJA（意为“干草堆里找针”的越狱攻击方法），其通过在有害用户目标后附加无害的模型生成内容来对对齐的语言模型进行越狱。我们方法的关键在于观察到有害目标的位置在安全性中起着重要作用。基于标准安全基准 HarmBench 的实验表明，NINJA 显著提高了在最先进的开放和专有模型（包括 LLaMA、Qwen、Mistral 和 Gemini）中的攻击成功率。与以往的越狱方法不同，我们的方法资源消耗低、可迁移且更难被检测。此外，我们还展示了 NINJA 是计算最优的——在固定计算预算下，增加上下文长度的效果优于在 “best-of-N” 越狱中增加尝试次数。这些发现表明，即便是无害的长上下文——在经过精心设计的目标位置情况下——也会为现代语言模型引入根本性的脆弱性。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>该论文旨在揭示并量化“长上下文能力”与“安全对齐”之间新出现的张力，核心研究问题可以概括为：</p>
+<ul>
+<li><strong>长上下文本身是否构成独立的安全威胁向量？</strong><br>先前工作观察到当模型以“智能体”身份运行（上下文包含冗长的工具定义、对话历史等）时更容易被越狱，但未能厘清这种脆弱性究竟源于“上下文变长”还是“智能体身份”带来的分布偏移。本文首次将变量隔离，证明<strong>仅增加上下文长度、即使内容完全良性</strong>，也会显著削弱对齐模型的安全防御。</li>
+</ul>
+<p>-<strong>如何利用这一发现设计实用、隐蔽且计算最优的越狱方法？</strong><br>为此提出 Ninja（Needle-in-Haystack Jailbreak）攻击：</p>
+<ol>
+<li>将恶意目标嵌入在<strong>开头位置</strong>；</li>
+<li>在其后追加大量<strong>主题相关、模型自动生成且完全无害</strong>的文本；</li>
+<li>无需梯度优化或显式有害示例，即可在 HarmBench 上将多款 SOTA 模型的攻击成功率（ASR）提升约 1.5–2.5 倍。</li>
+</ol>
+<ul>
+<li><strong>攻击的隐蔽性与计算效率如何？</strong></li>
+<li>上下文全部 benign，难以被传统内容过滤器识别；</li>
+<li>生成上下文可用小模型离线完成，攻击者端仅承担一次前向推理成本；</li>
+<li>在固定算力预算下，**“加长上下文 + 少次采样”**优于传统 best-of-N 多次采样，给出明确的算力-最优上下文长度帕累托前沿。</li>
+<li><strong>对真实系统（如多轮智能体）的启示？</strong><br>实验扩展至浏览器智能体评测套件 BrowserART 与多轮任务平台 SHADE-Arena，发现<strong>把恶意子任务插入对话中段</strong>同样能绕过安全护栏，说明长交互历史会逐步侵蚀对齐，揭示下一代自主 Agent 的未充分防护面。</li>
+</ul>
+<p>综上，论文不仅提出一种高迁移、低资源、难检测的越狱方法，更系统论证了**“上下文长度与目标位置”是决定模型安全的关键结构因素**，呼吁未来在扩展上下文能力的同时必须并行开发“上下文感知”的安全机制。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文将自身置于“越狱攻击”与“长上下文脆弱性”两大研究脉络的交汇点，相关文献可归纳为以下四条主线：</p>
+<ol>
+<li>显式对抗式越狱</li>
+</ol>
+<ul>
+<li>梯度/优化搜索：GCG (Zou et al., 2023) 、PAIR (Chao et al., 2023) 、TAP (Mehrotra et al., 2023) 、AutoDAN (Liu et al., 2024b)</li>
+<li>多轮渐进：Crescendo (Russinovich et al., 2024)</li>
+<li>海量有害示例：Many-shot Jailbreaking (Anil et al., 2024a,b)<br>共同特征：直接在提示中植入可识别的恶意或优化后的对抗 token，易被内容过滤器拦截。</li>
+</ul>
+<ol>
+<li>隐蔽式“上下文操控”攻击</li>
+</ol>
+<ul>
+<li>Cognitive Overload (Upadhayay et al., 2024) —— 用复杂任务分散模型注意力，再把有害问题置于尾部；</li>
+<li>Ninja 与之区别：<br>– 无需“分散注意力”，而是利用<strong>主题相关</strong>长上下文；<br>– <strong>有害目标必须前置</strong>而非后置，才能最大化成功率；<br>– 上下文完全 benign，检测难度更高。</li>
+</ul>
+<ol>
+<li>长上下文与位置偏差</li>
+</ol>
+<ul>
+<li>“Lost-in-the-Middle” (Liu et al., 2024a) 、后续位置偏差量化 (Wu et al., 2025) 揭示 U 形注意力曲线；</li>
+<li>本文首次将此类<strong>能力型缺陷</strong>明确映射到<strong>安全失效</strong>，证明“首因效应”可直接被利用为越狱向量。</li>
+</ul>
+<ol>
+<li>评测基准与防御</li>
+</ol>
+<ul>
+<li>统一越狱评测：HarmBench (Mazeika et al., 2024a,b) 、PandaGuard (Shen et al., 2025) 、FuzzLLM (Yao et al., 2024) ；</li>
+<li>智能体红队：SHADE-Arena (Gao et al., 2024) 、BrowserART (Kumar et al., 2024) ；</li>
+<li>防御思路：self-reminder (Xie et al., 2023) 、goal prioritization (Zhang et al., 2024) 、鲁棒 prompt 优化 (Zhou et al., 2024) 、单遍检测器 (Candogan et al., 2025) 。<br>作者指出这些防御仍<strong>默认“内容即风险”</strong>，未覆盖 Ninja 暴露的<strong>结构/位置风险</strong>，因此攻击在强基线防御下依然有效。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文并未提出“防御”方案，而是<strong>系统性地暴露并验证</strong>长上下文带来的结构型安全漏洞，进而给出一条低成本、高迁移、可量化的攻击路径，以推动社区正视并解决该问题。具体“解决”的是“如何证明并最大化利用这一漏洞”，可概括为三步：</p>
+<ol>
+<li><p>构建可复现的攻击管道 Ninja</p>
+</li>
+<li><p>关键词抽取：对任意有害目标  g  做 POS tagging，提取 ≤5 个名词/形容词/动词作为主题锚点  k_i 。</p>
+</li>
+<li>迭代式 benign 上下文合成：</li>
+</ol>
+<ul>
+<li>采用轻量级模板（如“Write an educational passage about {keyword}”）循环调用任意小 LM，生成与  k_i  相关且<strong>不含具体危害指令</strong>的段落  c_i ；</li>
+<li>持续追加直到总长度达到预设  L （1 k–15 k tokens）。</li>
+</ul>
+<ol>
+<li>位置敏感拼接：</li>
+</ol>
+<ul>
+<li>最高效格式：<code>“Based on the following long context, {g} {C}”</code>（g 紧贴 prompt 开头）；</li>
+<li>用正则截断不完整句子，保证语法完整性。<br>该管道零梯度、零有害样本，仅需一次离线生成，即可在多模型间迁移。</li>
+</ul>
+<ol>
+<li>量化“上下文长度 × 目标位置”对安全边界的削弱</li>
+</ol>
+<ul>
+<li>在 HarmBench 80 条行为上，对 4 款模型（LLaMA-3.1-8B、Qwen2.5-7B、Mistral-7B、Gemini-2.0-Flash）逐例统计</li>
+<li>Non-Refusal Rate（NRR）：模型是否未显式拒绝；</li>
+<li>Attack Success Rate（ASR）：经预训练分类器判定是否给出可执行危害内容。</li>
+<li>固定目标置首，逐点增加  L ：</li>
+<li>Llama-3.1 ASR 从 23.7 % → 58.8 %，Qwen2.5 23.7 % → 42.5 %，Gemini 23 % → 29 %；</li>
+<li>NRR 普遍高于 ASR，表明<strong>安全过滤器先于能力失效</strong>。</li>
+<li>固定  L ≈20 k，滑动目标位置：</li>
+<li>置首 ASR 最高，置末 ASR 最低；</li>
+<li>Qwen2.5 在 0.25–0.5 区间出现“needle-in-the-middle”现象——能力受限意外带来安全收益，佐证位置偏差是双刃剑。</li>
+</ul>
+<ol>
+<li>给出计算最优的越狱缩放律<br>设总推理 token 预算  B  固定，尝试次数  N = B/(P+L) ，其中  P ≈100 为 prompt 固定长度。</li>
+</ol>
+<ul>
+<li>对每条样本估计单轮成功概率  p_(example) ，计算 Best-of-N 期望</li>
+</ul>
+<p>BoN-ASR(L) = (1) / (|mathcalD)|∑_(i∈D) [1-(1-p_i)^(B/(P+L))].</p>
+<ul>
+<li>实验结果：</li>
+<li>任何  B  下，最优  L^* &gt; 0 ，即“加长上下文+少采样”严格优于传统 best-of-N；</li>
+<li>随着  B  增大， L^*  从 1 k 单调升至 10 k，形成明确帕累托前沿（图 6）。<br>该结论直接指导攻击者在有限 GPU 时长内选择最佳上下文长度，也为防御方提供量化依据：若无法限制上下文，就必须在相同长度下重新强化对齐。</li>
+</ul>
+<p>通过上述三方面的“解决”，论文不仅把长上下文从“能力特征”重新定义为<strong>独立攻击面</strong>，而且给出了可复现、可度量、可最优化的利用方法，从而迫使后续研究必须针对<strong>结构/位置维度</strong>设计新的上下文感知安全机制，而非仅关注内容过滤。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕“长上下文+目标位置”这一核心变量，设计了四类实验，覆盖静态提示、智能体环境、上下文语义与计算预算四个维度，全部在公开基准或红队套件上完成，可复现。</p>
+<ol>
+<li>主实验：Ninja 攻击在 HarmBench 上的长度-安全性曲线</li>
+</ol>
+<ul>
+<li>模型：LLaMA-3.1-8B-Instruct、Qwen2.5-7B-Instruct、Mistral-7B-v0.3、Gemini-2.0-Flash</li>
+<li>变量： benign 上下文长度 L ∈ {0, 3k, 6k, 9k, 12k, 15k} tokens（目标固定置首）</li>
+<li>指标：<br>– Non-Refusal Rate（NRR）<br>– Attack Success Rate（ASR，由 HarmBench 官方分类器判定）</li>
+<li>结果：<br>– 三家模型 ASR 随 L 单调上升，绝对提升 18–35 %；Mistral 因能力退化出现 ASR 轻微下降，但仍保持 54.5 %。<br>– NRR 普遍高于 ASR，揭示安全过滤器先于能力崩溃。</li>
+</ul>
+<ol>
+<li>消融实验：目标位置扫描</li>
+</ol>
+<ul>
+<li>固定 L≈20k，仅移动 harmful goal 到前、中、后 5 个等距位置（0 %、25 %、50 %、75 %、100 %）。</li>
+<li>观察：<br>– 置首 ASR 最高，置末最低；<br>– Qwen2.5 在 25–50 % 处出现“lost-in-the-middle”——NRR 高但 ASR 最低，验证注意力盲区可意外带来安全收益；<br>– Llama-3.1 呈单调递减，显示模型间位置偏差差异。</li>
+</ul>
+<ol>
+<li>语义相关性对比</li>
+</ol>
+<ul>
+<li>对照组：用随机 HTML 代码（与目标零语义重叠）代替主题相关段落，其余设置相同。</li>
+<li>结果：<br>– 随机上下文几乎不提升 ASR；<br>– 相关上下文在 15 k 处将 Llama-3.1 ASR 提高 30 %，NRR 提高 25 %，证明“主题相关”是触发注意力分散、绕过安全的关键。</li>
+</ul>
+<ol>
+<li>计算最优缩放律（Compute-Optimal Jailbreak）</li>
+</ol>
+<ul>
+<li>设定总推理 token 预算 B ∈ {1k, 2k, 5k, 10k, 20k, 50k}。</li>
+<li>对每条样本独立估计单轮成功概率 p，计算 Best-of-N 期望 ASR：</li>
+</ul>
+<p>BoN-ASR(L)=(1) / (|mathcalD)|∑_(i)[1-(1-p_i)^(B/(P+L))], quad P=100.</p>
+<ul>
+<li>绘制 ASR-L 曲线并连接帕累托前沿：<br>– 任何预算下最优 L*&gt;0；<br>– 预算越大，最优上下文长度越长（1 k→10 k），给出攻击者明确的算力分配策略。</li>
+</ul>
+<ol>
+<li>智能体/多轮环境验证</li>
+</ol>
+<ul>
+<li>BrowserART（GPT-4o 驱动浏览器代理）<br>– 保持提示其余字段不变，仅交换 goal 字段到指令段首或尾部；<br>– 四种基线攻击（Direct、GCG、Human-rewrite、Prefix）均显示“置首”ASR 平均提升 15–25 %。</li>
+<li>SHADE-Arena（多轮 side-task 套件，o3 模型）<br>– 同一恶意子任务分别放在首轮用户消息与第 3-4 轮工具调用之后；<br>– 前置 100 % 被拒绝；中置被模型继续执行并生成符合格式的恶意输出，验证长交互历史会逐步侵蚀对齐。</li>
+</ul>
+<ol>
+<li>横向对比基线</li>
+</ol>
+<ul>
+<li>与 PAIR、Many-shot 在 HarmBench 上的 80 条行为直接比较 ASR：<br>– Ninja 在 Llama-3.1、Qwen2.5、Mistral 上均列第一，Gemini 上略低于 Many-shot，但无需注入任何显式有害样本。</li>
+</ul>
+<p>以上实验共同构成一条完整证据链：<br>“长上下文本身即可破坏安全 → 目标置首效果最强 → 主题相关才有效 → 加长上下文比多采样更划算 → 漏洞在真实多轮 Agent 中依旧成立”。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可在此基础上继续推进，分为“攻击深化”“防御机制”“理论解析”与“评测体系”四大类，均直接对应论文尚未回答或仅初步触及的问题。</p>
+<p>攻击深化</p>
+<ol>
+<li><p><strong>跨模态长上下文</strong><br>将 Ninja 思路扩展到图文/视频多模态模型： benign 图像序列或长视频帧是否同样能稀释对文本恶意指令的安全注意力？</p>
+</li>
+<li><p><strong>动态上下文增长策略</strong><br>目前一次性追加固定长度。可探索“渐进式膨胀”——每轮对话自动追加少量相关段落，观察安全边界随轮次平滑下降的规律，模拟真实 Agent 的无限长窗口。</p>
+</li>
+<li><p><strong>自动主题漂移（Topic Drift）攻击</strong><br>让 benign 内容在后续段落逐渐偏离原主题，测试模型对“初始恶意声明”的记忆保持与抑制能力，进一步降低被检测的语义相关性。</p>
+</li>
+<li><p><strong>多目标嵌入</strong><br>同一长上下文在<strong>不同位置</strong>分别放置多条异类恶意指令，检验模型能否同时泄露多类有害信息，验证安全过滤器的“局部失效”是否可叠加。</p>
+</li>
+</ol>
+<p>防御机制</p>
+<ol>
+<li><p><strong>位置感知的对齐再训练</strong><br>构造带有“恶意目标置首 + 长 benign 正文”样本，进行拒绝式微调，使模型对“开头即危害”分布产生鲁棒性；量化所需数据量与灾难性遗忘权衡。</p>
+</li>
+<li><p><strong>滚动安全窗口/压缩摘要</strong><br>在推理端引入“滑动安全摘要”模块：每 k tokens 用轻量模型生成去噪摘要，再与安全策略对比，动态提醒主模型忽略早期可疑指令。</p>
+</li>
+<li><p><strong>注意力重加权（Attention Re-weighting）</strong><br>在线干预 Attention Map，对位于上下文前 10 % 的指令 token 施加额外损失或强化安全前缀，抵消首因效应。</p>
+</li>
+<li><p><strong>上下文长度作为风险输入</strong><br>把“当前已消耗 token 数”显式编码为模型输入特征，让策略网络在长上下文场景自动提升拒绝阈值，实现长度-风险单调映射。</p>
+</li>
+</ol>
+<p>理论解析</p>
+<ol>
+<li><strong>位置偏差与安全失配的定量模型</strong><br>借鉴“recency-primacy”曲线拟合，建立</li>
+</ol>
+<p>ASR(p)=α e^(-β p)+γ,quad p∈[0,1] 为相对位置</p>
+<p>用跨模型参数 α,β,γ 反推安全训练数据的位置分布先验，揭示对齐失败的信息论根源。</p>
+<ol>
+<li><strong>上下文长度 vs. 安全容量的缩放律</strong><br>类似“能力-参数”幂律，提出“安全容量”随长度 L 的衰减律</li>
+</ol>
+<p>S(L)=S_0 L^(-δ)</p>
+<p>跨模型拟合 δ，检验是否与模型规模、注意力头数、训练 token 量呈可预测关系。</p>
+<ol>
+<li><strong>注意力熵与攻击成功率的因果链</strong><br>计算 benign 段落加入前后，恶意 token 的平均注意力熵增量 ΔH；验证 ΔH 是否是与 ASR 因果相关的充分统计量，为后续防御提供可观测指标。</li>
+</ol>
+<p>评测体系</p>
+<ol>
+<li><p><strong>长上下文安全基准（Long-SafeBench）</strong><br>扩展 HarmBench，每条危害行为配套 0–50 k 五个长度等级与 5 个位置等级，形成 400 组测试，推动社区统一报告“长度-位置-ASR”三维指标。</p>
+</li>
+<li><p><strong>Agent 级持久化评测</strong><br>在 SHADE-Arena 基础上引入“寿命”维度：任务轨迹可持续数百轮，定期插入恶意子任务，度量安全衰减半衰期（即 ASR 升至 50 % 所需轮数）。</p>
+</li>
+<li><p><strong>黑盒检测器对抗性评估</strong><br>将 Ninja prompt 输入现有输入过滤器（如 Candogan et al. 2025 的单遍检测器），系统测量检测召回下降幅度，推动新一代“结构+内容”联合检测器。</p>
+</li>
+</ol>
+<p>工具与数据</p>
+<ol>
+<li><p><strong>轻量级上下文生成器开源</strong><br>发布基于 1 B 模型的“Ninja-Gen”脚本，支持 30 秒内离线生成 15 k 主题相关、去重、语法完整的 benign 段落，降低研究门槛。</p>
+</li>
+<li><p><strong>可验证的加密日志</strong><br>为 Agent 环境设计带时间戳的“安全事件日志链”，当长上下文导致越狱时，可回溯具体 token 区间，便于后续精确对齐或法律取证。</p>
+</li>
+</ol>
+<p>上述方向既可以帮助红队持续挖掘更隐蔽的上下文利用方式，也能促使防御方从“内容检测”走向“结构-位置-长度”三维联合防护，最终建立可随上下文规模同步扩展的安全机制。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>论文核心内容可概括为“一个发现、一种攻击、三项实证、一条律则、一声警示”：</p>
+<ol>
+<li><p><strong>关键发现</strong><br>仅增加** benign 且主题相关的长上下文**本身——无需任何显式有害 token——就能显著削弱对齐模型的安全过滤，而模型通用能力几乎不受影响；<strong>目标在上下文中的位置</strong>是决定性变量，置首最易越狱。</p>
+</li>
+<li><p><strong>Ninja 攻击</strong></p>
+</li>
+</ol>
+<ul>
+<li>离线用小模型生成万级 benign 段落 → 把有害目标放在开头 → 一次性输入</li>
+<li>零梯度、零有害示例、可跨模型迁移，检测难度低</li>
+</ul>
+<ol>
+<li><strong>实证结果</strong></li>
+</ol>
+<ul>
+<li>HarmBench 上 4 款 SOTA 模型 ASR 提升 18–35 %；Mistral 因能力退化例外但仍达 54.5 %</li>
+<li>目标置首 ASR 最高，置末最低；中间位置出现“needle-in-the-middle”能力盲区</li>
+<li>随机无关上下文几乎无效，验证“主题相关”是必要触发条件</li>
+<li>浏览器 Agent（BrowserART）与多轮侧任务（SHADE-Arena）同样受位置效应支配，说明漏洞已延伸至真实智能体场景</li>
+</ul>
+<ol>
+<li><p><strong>计算最优律</strong><br>在固定推理 token 预算下，**“加长上下文 + 少次采样”**严格优于传统 best-of-N；预算越大，最优上下文长度越长，给出明确的算力-攻击效率帕累托前沿</p>
+</li>
+<li><p><strong>警示与结论</strong><br>长上下文能力与安全对齐存在结构性张力；未来若只扩展窗口而不引入“位置-长度感知”的安全机制，百万 token 级别的模型将成为更易利用的攻击面。</p>
+</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Jailbreaking%20in%20the%20Haystack，链接是https://arxiv.org/pdf/2511.04707，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.04707。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Rishi Rajesh Shah,Chen Henry Wu,Shashwat Saxena,Ziqian Zhong,Alexander Robey,Aditi Raghunathan</p>
+<p><strong>Categories</strong>: cs.CR,cs.AI,cs.CL,cs.LG</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.04707.pdf">https://arxiv.org/pdf/2511.04707.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.04707">https://arxiv.org/abs/2511.04707</a></p>
+<p><strong>Arxiv ID</strong>: 2511.04707</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.04707">https://papers.cool/arxiv/2511.04707</a></p>
+<p><strong>Published</strong>: 2025-11-05T01:12:50Z</p>
+<p><strong>Updated</strong>: 2025-11-05T01:12:50.000Z</p>
+<hr>
+<h3 id="9-HAFixAgent-History-Aware-Automated-Program-Repair-Agent"><a href="#9-HAFixAgent-History-Aware-Automated-Program-Repair-Agent" class="headerlink" title="9. HAFixAgent: History-Aware Automated Program Repair Agent"></a>9. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2511.01047">HAFixAgent: History-Aware Automated Program Repair Agent</a></h3><p>Automated program repair (APR) has recently shifted toward large language models and agent-based systems, yet most systems rely on local snapshot context, overlooking repository history. Prior work shows that repository history helps repair single-line bugs, since the last commit touching the buggy line is often the bug-introducing one. In this paper, we investigate whether repository history can also improve agentic APR systems at scale, especially for complex multi-hunk bugs. We present HAFixAgent, a History-Aware Bug-Fixing Agent that injects blame-derived repository heuristics into its repair loop. A preliminary study of all 854 real-world bugs from Defects4J motivates our design, showing that bug-relevant history is both widely available and highly concentrated. Empirical comparison of HAFixAgent with two state-of-the-art baselines shows: (1) Effectiveness: HAFixAgent significantly improves over the agent-based baseline (by 212.3%) and the multi-hunk baseline (by 29.9%). (2) Efficiency: history does not significantly increase agent steps and keeps token costs comparable, with notably lower median costs for complex multi-file-multi-hunk bugs. (3) Practicality: combining different historical heuristics repairs more bugs, offering a clear cost-benefit trade-off. HAFixAgent offers a practical recipe for history-aware agentic APR: ground the agent in version control history, prioritize diff-based historical context, and integrate complementary heuristics when needed.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>自动化程序修复（APR）最近已经转向大语言模型和基于代理的系统，但大多数系统仍依赖于局部快照上下文，而忽略了代码仓库历史。先前的工作表明，仓库历史有助于修复单行错误，因为最后一次修改出错行的提交很可能是引入错误的提交。在本文中，我们探讨了仓库历史是否也能在大规模上提升基于代理的APR系统的性能，尤其是对于复杂的多块（multi-hunk）错误。我们提出了HAFixAgent，一种历史感知的Bug修复代理，它将基于责任（blame）的仓库启发式信息注入其修复循环中。对Defects4J中854个真实世界错误的初步研究支撑了我们的设计，显示与错误相关的历史信息既广泛可用，又高度集中。对HAFixAgent与两种最先进基线模型的实证比较结果表明：（1）有效性：HAFixAgent相比基于代理的基线显著提升（提高212.3%），相比多块基线提升29.9%。（2）效率：利用历史信息不会显著增加代理步骤，且令牌成本保持可比，对复杂多文件多块错误的中位成本显著更低。（3）实用性：结合不同历史启发式信息可修复更多错误，提供了明确的成本效益权衡。HAFixAgent为历史感知的基于代理的APR提供了实用方案：将代理基于版本控制历史，优先考虑基于差异的历史上下文，并在需要时整合互补的启发式信息。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文旨在解决<strong>大规模、复杂多行（multi-hunk）缺陷的自动程序修复（APR）</strong>中，现有智能体系统普遍<strong>仅依赖当前代码快照而忽视版本库历史信息</strong>的问题。具体而言：</p>
+<ul>
+<li>传统 agent-based APR 如 RepairAgent 仅利用局部静态上下文与即时测试反馈，缺乏对代码演化过程的感知；</li>
+<li>先前工作（HAFix）已证明<strong>单行缺陷</strong>可从 <code>git blame</code> 定位的最后一次修改提交中获得显著修复增益，但尚未扩展到<strong>需要跨文件、跨 hunk 协调修改的复杂缺陷</strong>；</li>
+<li>因此，作者提出疑问：<strong>能否将版本库历史以轻量级、可扩展的方式注入 agent 循环，使智能体在修复复杂缺陷时获得“历史经验”指导，从而提升修复率与效率？</strong></li>
+</ul>
+<p>总结：论文核心问题是</p>
+<blockquote>
+<p>如何设计一种<strong>历史感知的智能体修复框架</strong>，在保持低成本、低步骤开销的前提下，把 <code>git blame</code> 等历史信号系统性地嵌入 agent 的观察-行动-验证循环，以显著改善对 Defects4J 中 854 个真实 Java 缺陷（尤其是 multi-hunk 类型）的修复效果。</p>
+</blockquote>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文将相关研究划分为三大主线，并在第 9 节给出系统综述。以下按主题归纳关键文献及其与 HAFixAgent 的关联：</p>
+<ol>
+<li>传统自动程序修复（APR）</li>
+</ol>
+<ul>
+<li>搜索/演化：GenProg、RSRepair、AE 等利用遗传编程在抽象语法树上搜索通过测试的补丁。</li>
+<li>约束/语义：SemFix、Angelix、S3、Nopol 通过符号执行或 SMT 合成条件表达式修复。</li>
+<li>模板/模式：TBar、AVATAR、Elixir 从过往人工补丁中挖掘模板并实例化。</li>
+<li>代码成分复用：ssFix、CAPGen 在同一项目内检索语法相似片段作为“原料”。 → 共同点：依赖手工定义操作符或模板，难以泛化到多 hunk、跨文件缺陷；HAFixAgent 用 LLM+历史上下文替代人工操作符。</li>
+</ul>
+<ol>
+<li>LLM 与 Agent-based APR</li>
+</ol>
+<ul>
+<li>直接提示：SequenceR、CURE、CoCoNuT 将缺陷代码→修复代码视为神经机器翻译。</li>
+<li>对话式/反馈式：ChatRepair、ThinkRepair 通过多轮测试反馈迭代精炼补丁。</li>
+<li>模板引导：Huang et al. 用静态分析模板约束 LLM 解码。</li>
+<li>智能体框架：SWE-agent、OpenHands、RepairAgent、AutoCodeRover 赋予 LLM bash/IDE 工具，在沙箱内执行搜索-编辑-测试循环。</li>
+<li>经验驱动：SWE-Exp、EXPEREPAIR 建立“双记忆”或轨迹库，让 agent 从历史 issue-修复对中学习。 → HAFixAgent 差异：不依赖过往“相似缺陷”或 issue 文本，而是<strong>即时用 git blame 抽取最相关的一次提交</strong>，以 diff/函数快照/共演化函数名为信号，轻量级注入 prompt，避免维护大规模外部数据库。</li>
+</ul>
+<ol>
+<li>面向 APR 的上下文工程（In-context Learning）</li>
+</ol>
+<ul>
+<li>局部上下文：Prenner &amp; Robbes 证明“过多上下文”反而降低神经修复效果。</li>
+<li>执行痕迹：NL2Fix、Katana 引入堆栈轨迹或动态切片帮助定位。</li>
+<li>分层知识：Ehsani et al. 将项目文档、API 说明、导入关系分层注入 prompt。</li>
+<li>历史上下文：HAFix（作者前期 work）首次验证<strong>单行缺陷</strong>下 git blame 提交 diff 可显著提升 LLM 修复率。 → HAFixAgent 在此基础上把“历史上下文”从<strong>一次性提示</strong>升级为<strong>agent 循环内的常驻信号</strong>，并解决多 hunk、 blameless 场景的可扩展性与Fallback 问题。</li>
+</ul>
+<p>综上，HAFixAgent 与既往工作的主要区别在于：</p>
+<ul>
+<li>不增加重型工具 API，仅通过 bash+历史 diff/函数快照实现“历史感知”；</li>
+<li>不依赖外部相似缺陷库，直接利用版本库原生元数据；</li>
+<li>首次在 854 个真实多 hunk 缺陷上证明<strong>单一 blame 提交</strong>即可带来 212% 相对增益，且成本与步骤无显著增加。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过“三步走”策略把版本库历史轻量级、系统化地嵌入 agent 修复循环，从而解决“复杂 multi-hunk 缺陷缺乏历史上下文”的问题。具体方案对应论文第 4 节架构，可概括为：</p>
+<ol>
+<li>历史可用性验证（RQ0）<br>对 Defects4J 854 条缺陷执行 <code>git blame</code> 统计：</li>
+</ol>
+<ul>
+<li>71.1% 的缺陷至少有一条可 blame 行；</li>
+<li>70.7% 的缺陷全部 blame 行指向<strong>唯一一次提交</strong>。<br>结论：即使跨 hunk/跨文件，历史信号依然<strong>高度集中</strong>，为“单提交启发式”奠定可行性。</li>
+</ul>
+<ol>
+<li>历史感知 agent 设计（HAFixAgent）<br>2.1 Context Builder</li>
+</ol>
+<ul>
+<li>History Extractor：<br>– 可 blame 行 → 取唯一提交；<br>– 无 blame 行（add-only）→ 向上找 5 行内最近可执行代码行做 fallback。</li>
+<li>三种互补启发式（来自 HAFix 最优配置）：<br>– <code>fn_all</code>：该提交所有共修改文件的函数名集合；<br>– <code>fn_pair</code>： buggy 函数在该提交前后的完整代码快照；<br>– <code>fl_diff</code>：该提交产生的跨文件 diff（超长自动截断）。<br>三者仅选其一注入 prompt，避免上下文爆炸。</li>
+</ul>
+<p>2.2 Agent Execution Loop</p>
+<ul>
+<li>采用 ReAct 范式：观察（代码+历史+测试失败信息）→ 行动（bash 命令）→ 反馈（stdout/stderr+测试结果）。</li>
+<li>工具集极简：grep、sed、find、head/tail、defects4j compile/test、echo 完成信号，保证性能差异主要归因于历史上下文而非复杂 API。</li>
+</ul>
+<p>2.3 终止与成本保护</p>
+<ul>
+<li>50 步 / 1 USD / 1 h 三重上限；</li>
+<li>成功即输出 <code>echo COMPLETE_REPAIR_SIGNAL</code> 自终止。</li>
+</ul>
+<ol>
+<li>大规模对照实验（RQs）</li>
+</ol>
+<ul>
+<li>与两条 SOTA 基线对比：<br>– RepairAgent（829 条共享缺陷）：最佳配置 +218.9% 正确修复；<br>– BIRCH-feedback（371 条 multi-hunk）：平均 +29.9%。</li>
+<li>内部消融：历史三种启发式比无历史多修复 194 条独有缺陷，且步骤/成本无显著增加；组合 2-3 种启发式即可达到性价比最优，继续叠加收益递减。</li>
+</ul>
+<p>通过以上设计，论文把“历史信息”从静态提示升级为<strong>随 agent 迭代动态存在的演化线索</strong>，在保持轻量级开销的同时，显著提升了复杂缺陷的修复率与成本效率。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕 <strong>HAFixAgent 的历史感知修复能力</strong> 与 <strong>成本-效率权衡</strong> 展开系统实验，全部在 Defects4J v3.0.1 的 854 条真实 Java 缺陷上完成。实验分为 <strong>两条主线、六个具体对比维度</strong>，可概括为：</p>
+<p>1. 有效性实验（RQ1）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实验目的</th>
+<th>对比对象</th>
+<th>覆盖缺陷数</th>
+<th>关键指标</th>
+<th>结果摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a) 与 SOTA Agent 对比</td>
+<td>RepairAgent（GPT-3.5）</td>
+<td>829</td>
+<td>Plausible@1（通过全部测试）</td>
+<td>HAFixAgent 最佳配置 +218.9%（523 vs 164 正确补丁）</td>
+</tr>
+<tr>
+<td>b) 与 SOTA 多-hunk 方法对比</td>
+<td>BIRCH-feedback（o4-mini）</td>
+<td>371 条多 hunk</td>
+<td>#Pass</td>
+<td>HAFixAgent 平均 +29.9%（175 vs 133）</td>
+</tr>
+<tr>
+<td>c) 历史上下文消融</td>
+<td>4 种 prompt 配置：无历史 / fn_all / fn_pair / fl_diff</td>
+<td>854</td>
+<td>#Pass、#Unique Pass</td>
+<td>三种历史配置共 194 条独有修复，无历史仅 32 条；fl_diff 总体最强，fn_pair 在单 hunk 领先</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2. 效率与成本实验（RQ2）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实验目的</th>
+<th>对比维度</th>
+<th>统计方法</th>
+<th>结果摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a) 步骤开销</td>
+<td>成功/失败分别统计 agent 步数</td>
+<td>Friedman + Wilcoxon 配对检验</td>
+<td>成功用例中位 12–32 步，历史配置与无历史 无显著差异；失败大多撞 50 步上限</td>
+</tr>
+<tr>
+<td>b) 美元成本</td>
+<td>按 DeepSeek-V3.2-Exp 官方单价折算</td>
+<td>同上</td>
+<td>成功中位  0.005– 0.029；历史配置在 SL 略贵（p&lt;0.0167），其余类别 成本无显著增加；失败成本约为成功 3–8 倍</td>
+</tr>
+<tr>
+<td>c) 组合策略性价比</td>
+<td>1–4 种历史配置取并集</td>
+<td>成功率 vs 平均单缺陷成本</td>
+<td>2–3 种配置组合即可达 90% 以上最大增益，四配置联合仅边际提升却成本翻倍，呈现明显 收益递减</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>3. 历史可用性预实验（RQ0）</p>
+<ul>
+<li>对 854 条缺陷执行 <code>git blame</code>：</li>
+<li>71.1% 至少有一条可 blame 行；</li>
+<li>70.7% 全部 blame 行指向 <strong>唯一一次提交</strong>；</li>
+<li>仅 0.4% 需要多提交聚合。<br>→ 为后续“单提交启发式”提供数据支撑。</li>
+</ul>
+<p>综上，论文通过 <strong>SOTA 对比、内部消融、成本-收益权衡</strong> 三层实验，系统验证了：</p>
+<ol>
+<li>历史上下文可显著放大 agent 修复效果；</li>
+<li>额外开销极小，且可通过“2-3 种启发式组合”实现最优性价比；</li>
+<li>即使对复杂 multi-hunk 缺陷，单一 blame 提交仍足以提供高价值信号。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>可进一步探索的方向（按短期→长期、单点→系统排序）：</p>
+<ol>
+<li>历史信号精炼</li>
+</ol>
+<ul>
+<li>相关性过滤：用相似度或轻量模型对 diff/函数快照打分，抑制与当前缺陷无关的 hunks，降低“上下文稀释”风险。</li>
+<li>多提交窗口：超越单一 blame 提交，引入 blame 前驱/后继、重构提交、共演化簇，构建“时序切片”供 agent 动态检索。</li>
+</ul>
+<ol>
+<li>Blameless 场景增强</li>
+</ol>
+<ul>
+<li>语义邻居：以抽象语法树距离或数据流依赖取代“物理最近 5 行”，寻找真正相关的历史修改。</li>
+<li>跨文件模板检索：对新增空指针检查、参数校验等常见插入模式，在项目内搜索同类新增提交，作为“如何写”示例。</li>
+</ul>
+<ol>
+<li>运行时历史选择</li>
+</ol>
+<ul>
+<li>自适应启发式：agent 在首轮尝试失败后，自动切换或叠加其他历史配置（fn_pair→fl_diff），实现 prompt 级“回溯”。</li>
+<li>LLM-as-a-ranker：用同一模型对多候选历史片段排序，选取 Top-k 注入后续轮次，避免一次性堆入全部上下文。</li>
+</ul>
+<ol>
+<li>质量与可维护性评估</li>
+</ol>
+<ul>
+<li>引入语义等价+代码风格指标（如 Cyclomatic、命名一致性、与项目惯例的 BLEU）对比历史感知 vs 纯快照补丁。</li>
+<li>人工代码审查实验：让开发者对历史引导补丁与无历史补丁打分，验证历史是否带来更“地道”的修复。</li>
+</ul>
+<ol>
+<li>跨语言与跨数据集验证</li>
+</ol>
+<ul>
+<li>Python、JS、Go 等缺乏 Defects4J 同等规模基准，可构建或复用 QuixBugs、ManyBugs、CodeFlaws 等数据集，检验历史启发式通用性。</li>
+<li>商业/工业仓库（高频 squash、rebase）会重写历史，需测试历史信号在“线性化丢失”情况下的鲁棒性。</li>
+</ul>
+<ol>
+<li>与噪声故障定位（FL）结合</li>
+</ol>
+<ul>
+<li>逐步 FL：agent 每轮根据最新测试失败重新排名可疑语句，再动态执行 blame→历史注入，形成“定位-历史-修复”闭环。</li>
+<li>多模态 FL：把堆栈轨迹、覆盖信息、历史 commit 消息联合嵌入，共同决定 blame 候选权重。</li>
+</ul>
+<ol>
+<li>多智能体协作</li>
+</ol>
+<ul>
+<li>历史专家 agent：专职挖掘/总结版本演化，输出“变更意图摘要”给修复 agent；</li>
+<li>评审 agent：对照历史风格检查补丁一致性，形成 PR 式对话，减少回归风险。</li>
+</ul>
+<ol>
+<li>历史上下文在其他 SE 任务的迁移</li>
+</ol>
+<ul>
+<li>代码补全：当新增 API 调用时，优先推荐历史上与该 API 同期修改的配套方法。</li>
+<li>重构建议：检测历史上“同改”函数，提示开发者抽取公共接口或消除重复。</li>
+<li>测试生成：利用历史修复中新增的测试模式，引导 LLM 生成更可能捕获回归的测试用例。</li>
+</ul>
+<ol>
+<li>训练-微调层面</li>
+</ol>
+<ul>
+<li>构造“历史-缺陷-修复”三元组大规模语料，对开源模型做持续预训练或 LoRA 微调，使模型内部形成“历史感知”表示，减少对外部 diff 的显式依赖。</li>
+<li>对比学习：让模型区分“真正引入缺陷的提交”与“无关提交”，提升历史信号判别能力。</li>
+</ul>
+<ol>
+<li>成本-收益自动调优</li>
+</ol>
+<ul>
+<li>将步骤、token、成功率建模为多目标优化，用轻量强化学习动态决定“何时停止”“是否再尝试另一种历史配置”，实现预算自适应修复。</li>
+</ul>
+<p>这些方向可单独或组合展开，逐步把“历史感知”从单一 APR 任务扩展到整个 Agentic Software Engineering 生命周期。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>论文核心速览</p>
+<p>1. 问题</p>
+<ul>
+<li>现有 LLM-Agent APR 仅盯当前代码快照，忽视版本库历史，对跨行/跨文件 multi-hunk 缺陷修复率有限。</li>
+<li>单行缺陷工作（HAFix）已证明 <code>git blame</code> 提交有效，但未扩展到复杂缺陷，也未融入 agent 循环。</li>
+</ul>
+<p>2. 洞察（RQ0）</p>
+<ul>
+<li>Defects4J 854 缺陷中 71.1% 可 blame，且 70.7% 全部 blame 行指向<strong>唯一一次提交</strong> → 历史信号既广又集中，agent 可用“单提交”启发式。</li>
+</ul>
+<p>3. 方法（HAFixAgent）</p>
+<ul>
+<li>极简 ReAct 循环 + bash 工具（grep/sed/compile/test）。</li>
+<li>Context Builder：</li>
+<li>可 blame → 取唯一提交；</li>
+<li>无 blame → 向上 5 行 fallback。</li>
+<li>三选一注入 prompt：① 共改函数名集合 fn_all，② 函数前后快照 fn_pair，③ 文件级 diff fl_diff。</li>
+<li>50 步 / 1 USD / 1 h 三重上限，成功自报 <code>echo COMPLETE_REPAIR_SIGNAL</code>。</li>
+</ul>
+<p>4. 实验结果</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>数据</th>
+<th>主要结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vs RepairAgent</td>
+<td>829 缺陷</td>
+<td>+218.9% 正确补丁（523 vs 164）</td>
+</tr>
+<tr>
+<td>vs BIRCH-feedback</td>
+<td>371 multi-hunk</td>
+<td>+31.6% 通过（175 vs 133）</td>
+</tr>
+<tr>
+<td>内部消融</td>
+<td>854 缺陷</td>
+<td>历史配置独有 194 修复，无历史仅 32；fl_diff 总体最强</td>
+</tr>
+<tr>
+<td>成本/步骤</td>
+<td>同上</td>
+<td>成功用例中位 12–32 步、 0.005– 0.029，历史 vs 无历史无显著增加；2-3 种启发式组合性价比最高</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>5. 贡献</p>
+<ul>
+<li>首次将 blame 衍生历史系统嵌入 agent 循环，验证对 multi-hunk 缺陷依然有效且低成本。</li>
+<li>提供开箱即用脚本与数据，开源可复制。</li>
+</ul>
+<p>6. 局限 &amp; 展望</p>
+<ul>
+<li>假设完美故障定位；仅 Java/Defects4J；单模型单循环。</li>
+<li>未来：多提交窗口、blameless 语义邻居、多 agent 协作、跨语言验证、历史信号自动选择。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是HAFixAgent%3A%20History-Aware%20Automated%20Program%20Repair%20Agent，链接是https://arxiv.org/pdf/2511.01047，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2511.01047。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Yu Shi,Hao Li,Bram Adams,Ahmed E. Hassan</p>
+<p><strong>Categories</strong>: cs.SE,cs.AI</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.01047.pdf">https://arxiv.org/pdf/2511.01047.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.01047">https://arxiv.org/abs/2511.01047</a></p>
+<p><strong>Arxiv ID</strong>: 2511.01047</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2511.01047">https://papers.cool/arxiv/2511.01047</a></p>
+<p><strong>Published</strong>: 2025-11-02T18:45:34Z</p>
+<p><strong>Updated</strong>: 2025-11-02T18:45:34.000Z</p>
+<hr>
+<h3 id="10-CritiCal-Can-Critique-Help-LLM-Uncertainty-or-Confidence-Calibration"><a href="#10-CritiCal-Can-Critique-Help-LLM-Uncertainty-or-Confidence-Calibration" class="headerlink" title="10. CritiCal: Can Critique Help LLM Uncertainty or Confidence Calibration?"></a>10. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2510.24505">CritiCal: Can Critique Help LLM Uncertainty or Confidence Calibration?</a></h3><p>Accurate confidence calibration in Large Language Models (LLMs) is critical for safe use in high-stakes domains, where clear verbalized confidence enhances user trust. Traditional methods that mimic reference confidence expressions often fail to capture the reasoning needed for accurate confidence assessment. We propose natural language critiques as a solution, ideally suited for confidence calibration, as precise gold confidence labels are hard to obtain and often require multiple generations. This paper studies how natural language critiques can enhance verbalized confidence, addressing: (1) What to critique: uncertainty (question-focused) or confidence (answer-specific)? Analysis shows confidence suits multiple-choice tasks, while uncertainty excels in open-ended scenarios. (2) How to critique: self-critique or critique calibration training? We propose Self-Critique, enabling LLMs to critique and optimize their confidence beyond mere accuracy, and CritiCal, a novel Critique Calibration training method that leverages natural language critiques to improve confidence calibration, moving beyond direct numerical optimization. Experiments show that CritiCal significantly outperforms Self-Critique and other competitive baselines, even surpassing its teacher model, GPT-4o, in complex reasoning tasks. CritiCal also shows robust generalization in out-of-distribution settings, advancing LLM’s reliability.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>在高风险领域中，准确的置信度校准对于大型语言模型（LLMs）的安全使用至关重要，因为清晰的语言化置信度能够增强用户信任。传统模仿参考置信度表达的方法往往难以捕捉进行准确置信度评估所需的推理过程。我们提出使用自然语言批评作为解决方案，这种方法特别适合置信度校准，因为精确的金标准置信度标签难以获取，且通常需要多次生成。本文研究了自然语言批评如何增强语言化置信度，具体探讨如下问题：（1）评判内容：不确定性（以问题为中心）还是置信度（以答案为中心）？分析表明，置信度适用于多选任务，而不确定性在开放式场景中表现更优。（2）评判方式：自我批评还是批评校准训练？我们提出了自我批评（Self-Critique），使大型语言模型能够超越单纯的准确性，批评并优化自身置信度；以及CritiCal，一种新型的批评校准训练方法，利用自然语言批评来提升置信度校准，超越了直接数值优化。实验表明，CritiCal显著优于自我批评及其他竞争基线模型，在复杂推理任务中甚至超越了其教师模型GPT-4o。CritiCal在分布外场景中也展现了强大的泛化能力，提升了大型语言模型的可靠性。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>论文核心关注的问题是：<br><strong>如何让大语言模型（LLM）在给出答案的同时，用自然语言准确表达“置信度”或“不确定性”，从而在高风险场景中提升可信度和安全性。</strong></p>
+<p>具体而言，作者指出两大痛点：</p>
+<ol>
+<li>传统方法依赖“模仿”参考置信度数值，无法让模型真正理解答案为何对或错，导致校准失真。</li>
+<li>精确的金标置信度标签极难获得，而“用语言指出置信度是否过高/过低”却相对容易。</li>
+</ol>
+<p>为此，论文提出用**自然语言批评（critique）**作为训练信号，研究：</p>
+<ul>
+<li><strong>“批评什么”</strong>：对“不确定性”（问题层面）还是“置信度”（答案层面）进行批评？</li>
+<li><strong>“怎么批评”</strong>：仅靠模型自己反思（Self-Critique）还是引入教师模型的批评进行监督微调（CritiCal）？</li>
+</ul>
+<p>最终目标是在不依赖额外数值标注的前提下，让 LLM 的<strong>口头置信度</strong>与<strong>真实正确率</strong>对齐，实现可迁移、可解释的置信校准。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文将相关研究划分为两条主线，并在第 2 节系统回顾。以下按主题归纳，均给出首次出现的原文引用编号，方便对照。</p>
+<ol>
+<li>置信校准（Confidence Calibration）<br>1.1 白盒方法</li>
+</ol>
+<ul>
+<li>利用内部状态：注意力权重  A （Lin et al., 2024a）、隐藏层表示  h （Azaria &amp; Mitchell, 2023）、token 概率  p_θ(y|x) （Malinin &amp; Gales, 2021; Zong et al., 2025）。<br>1.2 黑盒方法</li>
+<li>一致性法：多次采样，度量输出集合的相似度，以一致性高低作为置信信号（Lin et al., 2024b; Huang et al., 2025a; Wang et al., 2024b; Su et al., 2024）。</li>
+<li>言语化法：直接让模型说出“我的置信度是 80 %”等自然语言数字或认知标记（Li et al., 2025; Liu et al., 2025a; Zhang et al., 2024）。</li>
+<li>反思法：SaySelf（Xu et al., 2024）用教师模型观察多条推理链的不一致处，再生成反思理由与置信分数，但仍停留在“模仿”教师表达，未引入批评信号。</li>
+</ul>
+<ol>
+<li>批评学习（Critique Learning）<br>2.1 自批评 / 自纠正</li>
+</ol>
+<ul>
+<li>Self-Refine（Madaan et al., 2023）、Self-Correct（Welleck et al., 2023）用模型自身反馈迭代改答案；后续研究指出对推理任务可靠性有限（Huang et al., 2024; Valmeekam et al., 2023）。<br>2.2 外部批评</li>
+<li>结果奖励模型：仅看答案对错（Zhang et al., 2025; Yang et al., 2024b）。</li>
+<li>过程奖励模型：逐步打分（Wang et al., 2024a; Lightman et al., 2024a）。</li>
+<li>自然语言批评：Damani et al. (2025) 用数值不确定性反馈；Wang et al. (2025b) 首次把“自然语言批评”作为训练目标，但聚焦提升准确率而非校准。</li>
+</ul>
+<p>本文首次把“自然语言批评”用于<strong>置信校准</strong>任务，并系统比较“批评什么”与“怎么批评”，填补了上述两条研究路线的空白。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文将“用批评提升 LLM 置信校准”拆解为两个子问题，并分别给出对应解法。</p>
+<p>1. 批评什么（What to critique）</p>
+<p><strong>发现</strong>：</p>
+<ul>
+<li>开放式任务（open-ended）→ 模型对“问题整体”更敏感，<strong>不确定性</strong>校准更好。</li>
+<li>选择题任务（multiple-choice）→ 模型对“具体选项”更敏感，<strong>置信度</strong>校准更好。</li>
+</ul>
+<p><strong>做法</strong>：<br>在 prompt 里显式区分</p>
+<ul>
+<li>不确定性： p_unc(q)  衡量“问题  q  本身有多模糊”；</li>
+<li>置信度： p_conf(a|q)  衡量“对答案  a  的正确性有多确信”。</li>
+</ul>
+<p>实验阶段按任务类型选择指标，后续训练数据也按该原则标注。</p>
+<p>2. 怎么批评（How to critique）</p>
+<p>两条技术路线并行验证，最终收敛到一种监督微调框架。</p>
+<p>2.1 零训练方案：Self-Critique</p>
+<ul>
+<li>输入：问题 + 模型自身历史多轮回答与置信值。</li>
+<li>提示模板：要求模型重新检查“推理链是否存在逻辑缺口”，并输出<strong>新答案</strong>与<strong>新置信值</strong>。</li>
+<li>结论：多轮后校准提升有限，事实类任务甚至变差→ 仅靠自身反思不足。</li>
+</ul>
+<p>2.2 训练方案：CritiCal（Critique Calibration）</p>
+<p><strong>数据构造</strong></p>
+<ol>
+<li>用学生模型在 2 k 样本上生成〈问题，答案，自报置信〉三元组。</li>
+<li>用教师模型（GPT-4o）对比参考答案，生成<strong>自然语言批评</strong>：</li>
+</ol>
+<ul>
+<li>指出置信值相对推理质量“过高/过低”；</li>
+<li>给出解释并建议更合理区间；</li>
+<li>用特殊 token <code>&lt;/think&gt;</code> 把解释与结论隔开，方便学习。</li>
+</ul>
+<p><strong>训练目标</strong></p>
+<ul>
+<li>基础版：直接监督微调（SFT），输入=〈问题，学生答案，学生置信〉，输出=教师批评。</li>
+<li>进阶版：DPO 偏好优化，以教师批评为“chosen”，学生 Self-Critique 为“rejected”。</li>
+</ul>
+<p><strong>推断阶段</strong><br>模型先产生答案与初始置信，再自回归生成<strong>对自己置信的批评</strong>，最后输出修正后的置信值，实现<strong>采样无关</strong>的校准。</p>
+<p>3. 效果验证</p>
+<ul>
+<li>分布内：CritiCal 在 StrategyQA、MATH-Perturb 等推理任务上，ECE ↓ 30 %–50 %，AUROC ↑ 10 %–20 %，<strong>学生模型校准误差低于教师 GPT-4o</strong>。</li>
+<li>分布外：用 StrategyQA 训练 → MATH-Perturb 测试，CritiCal 仍持续降低 ECE，而传统 SFT 出现负迁移。</li>
+<li>训练方式：SFT 与 DPO 差距极小，选用计算量更小的 SFT 即可。</li>
+</ul>
+<p>综上，论文通过“任务敏感的选择指标 + 教师自然语言批评监督微调”，让 LLM 在<strong>不依赖额外数值标注</strong>的前提下，学会把口头置信值与真实正确率对齐，从而解决置信校准难题。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕“批评能否提升 LLM 置信校准”共设计 4 组实验，覆盖 7 个数据集、5 类模型、3 类任务，并在分布内/外双重场景下验证。实验流程与结论如下（均按原文编号对应）。</p>
+<p>1. 实验总览</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实验</th>
+<th>目的</th>
+<th>关键指标</th>
+<th>基准/模型</th>
+<th>结论摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exp-1 §4.2</td>
+<td>该批评“不确定性”还是“置信度”</td>
+<td>ECE ↓、AUROC ↑</td>
+<td>5 模型 × 6 数据集</td>
+<td>开放式任务用 uncertainty 更好；选择题任务用 confidence 更好</td>
+</tr>
+<tr>
+<td>Exp-2 §4.3</td>
+<td>零训练 Self-Critique 是否够用</td>
+<td>同上 + 准确率</td>
+<td>4 模型 × 6 数据集，6 轮迭代</td>
+<td>数学推理略提升，事实类任务校准变差→ 不足</td>
+</tr>
+<tr>
+<td>Exp-3 §4.4</td>
+<td>CritiCal 监督微调效果</td>
+<td>同上</td>
+<td>Qwen、DeepSeek-Distill-Qwen，分布内 &amp; 外</td>
+<td>显著优于 Self-Critique 与传统 SFT，学生校准误差低于教师 GPT-4o</td>
+</tr>
+<tr>
+<td>Exp-4 §4.4.3</td>
+<td>SFT vs DPO 训练方式对比</td>
+<td>同上</td>
+<td>StrategyQA、ComparisonQA</td>
+<td>两者差距极小，SFT 足够且高效</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2. 数据集与任务划分</p>
+<ul>
+<li><strong>单跳事实</strong>（1-hop）：TriviaQA、ComparisonQA</li>
+<li><strong>多跳事实</strong>（multi-hop）：StrategyQA、HotpotQA</li>
+<li><strong>数学推理</strong>：MATH、MATH-500、MATH-Perturb</li>
+</ul>
+<p>MATH 仅用于训练，MATH-Perturb 专做分布外测试以避免数据泄漏。</p>
+<p>3. 评测指标</p>
+<ul>
+<li><strong>Accuracy</strong>：Exact-Match 判断答案对错</li>
+<li><strong>ECE</strong>（Expected Calibration Error）： (1) / (M)∑_(m=1)^M |P_m - A_m| ，越低越好</li>
+<li><strong>AUROC</strong>：用置信值区分正误答案的能力，越高越好</li>
+</ul>
+<p>4. 主要结果（数值均为原文表/图摘录）</p>
+<p>4.1 分布内表现（表 1 节选）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>方法</th>
+<th>StrategyQA ECE ↓</th>
+<th>MATH-Perturb ECE ↓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeepSeek-Distill-Qwen-7B</td>
+<td>Vanilla</td>
+<td>0.261</td>
+<td>0.480</td>
+</tr>
+<tr>
+<td>Self-Critique</td>
+<td>0.278</td>
+<td>0.516</td>
+</tr>
+<tr>
+<td>SFT_Soft</td>
+<td>0.235</td>
+<td>0.467</td>
+</tr>
+<tr>
+<td>CritiCal</td>
+<td>0.176</td>
+<td>0.432</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4.2 分布外表现（表 2 节选）</p>
+<p>训练集：StrategyQA → 测试集：MATH-Perturb</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>方法</th>
+<th>ECE ↓</th>
+<th>AUROC ↑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen-2.5-7B</td>
+<td>SFT_Soft</td>
+<td>0.625</td>
+<td>0.543</td>
+</tr>
+<tr>
+<td>CritiCal</td>
+<td>0.571</td>
+<td>0.593</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4.3 训练方式对比（表 3）</p>
+<p>StrategyQA 上 SFT(CFT) 与 DPO(CPO) 的 ECE 差距 &lt; 0.003，验证 SFT 已足够。</p>
+<p>5. 辅助分析</p>
+<ul>
+<li><strong>多轮 Self-Critique 稳定性</strong>：图 4-6 显示 LRM 标准差显著低于 LLM，但平均校准提升微弱。</li>
+<li><strong>置信值漂移</strong>：Llama 越反思越保守（置信↓），Qwen 越反思越乐观（置信↑），说明模型性格差异会被自反思放大。</li>
+</ul>
+<p>综上，实验从“指标选择→零训练→监督训练→训练策略”四阶段完整闭环，证明<strong>CritiCal 在分布内外均显著降低校准误差，且学生模型可超越教师 GPT-4o</strong>。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>以下方向可在此基础上继续深入，分为“数据与场景”“方法”“评测”“理论”四大类，均给出可验证的具体问题或指标。</p>
+<p>1. 数据与场景拓展</p>
+<ul>
+<li><strong>多模态置信</strong>：当输入含图像、音频时，如何用语义一致的批评同时校准跨模态置信？</li>
+<li>可构建 VL-Perturb 数据集，度量 ECE 是否随模态扰动线性增长。</li>
+<li><strong>创意生成任务</strong>：故事、诗歌、广告文案等“无唯一答案”场景，批评信号需从<strong>一致性/风格/新颖性</strong>出发。</li>
+<li>可设计“人类偏好→批评→微调”三元组，验证 AUROC 能否仍高于 0.7。</li>
+<li><strong>长文档推理</strong>：输入长度 &gt; 32 k 时，教师模型批评的 position bias 如何影响校准？</li>
+<li>对比批评放在开头/中间/末尾三种位置下的 ECE 差异。</li>
+</ul>
+<p>2. 方法改进</p>
+<ul>
+<li><strong>在线主动批评</strong>：<br>用 UCB 或 Thompson Sampling 动态选择“最可能校准失误”的样本，实时生成批评并微调，目标是把 2 k 静态数据降至 500 而 ECE 不升。</li>
+<li><strong>多教师集成批评</strong>：<br>用 GPT-4o、Claude、Gemini 各自生成批评，再投票或加权，检验能否把学生模型 ECE 再降 10 %。</li>
+<li><strong>数值+语言混合批评</strong>：<br>在批评文本中显式给出“目标置信区间”$<br>p<em>(min), p</em>(max)<br>$，用区间回归损失+语言建模损失联合训练，考察区间覆盖率（PICP）是否 ≥ 0.9。</li>
+<li><strong>反向批评</strong>：<br>让学生先批评教师输出的置信，再自校正，验证“教学相长”能否把教师 ECE 也降低。</li>
+</ul>
+<p>3. 评测与可靠性</p>
+<ul>
+<li><strong>对抗校准鲁棒性</strong>：<br>对输入加入语义保留的对抗扰动（如 SynonymReplace），测量 ECE 上升斜率，理想情况应 ≤ 0.01/每百词。</li>
+<li><strong>置信度-正确性因果检验</strong>：<br>用干预法（do-intervention）强制把置信值调高 20 %，观察准确率是否显著变化，验证模型是否真正“知其所知”而非仅相关。</li>
+<li><strong>人机协同决策</strong>：<br>在医疗诊断模拟中，让人类专家先看到模型置信，再给出最终决策，测量“人类-模型联合准确率”是否单调随置信升高而升高；若出现倒置，说明校准仍不足。</li>
+</ul>
+<p>4. 理论与可解释性</p>
+<ul>
+<li><strong>批评最小充分子集</strong>：<br>用输入掩码法寻找“最少token集合”，使得保留该集合时批评内容不变，从而量化“批评到底在关注哪些推理步骤”。</li>
+<li><strong>校准误差分解</strong>：<br>把 ECE 拆分为  |confidence - accuracy| = Bias + Variance + Noise ，检验 CritiCal 主要降低的是哪一项，可指导后续算法设计。</li>
+<li>** scaling law for critique data**：<br>拟合公式  ECE(N) = a N^(-b) + c ，其中  N  为批评样本数，观察  b  是否显著大于 0.5；若成立，可预估达到目标 ECE 所需的最小数据量。</li>
+</ul>
+<p>5. 伦理与社会影响</p>
+<ul>
+<li><strong>过度依赖风险</strong>：<br>设计用户实验，对比“显示置信度”与“不显示置信度”两种界面下的决策失误率，量化用户是否因高置信而盲目采纳。</li>
+<li><strong>公平性校准</strong>：<br>检查不同人口属性（性别、地域）问题子集上 ECE 是否一致，防止模型对某类问题“过度自信”而带来歧视性后果。</li>
+</ul>
+<p>以上任何一点均可直接在原文代码库基础上扩展，形成新的消融实验或公开基准。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p><strong>CritiCal：用自然语言批评提升大语言模型置信校准</strong></p>
+<p>1. 问题</p>
+<ul>
+<li>高风险场景需要 LLM 给出<strong>可解释的口头置信度</strong>（如“我的置信是 80 %”）。</li>
+<li>传统方法靠模仿参考数值，缺乏推理支撑，校准误差大；精确金标置信又难以获得。</li>
+</ul>
+<p>2. 核心思路</p>
+<p>用<strong>自然语言批评</strong>代替数值标签，让模型学会“为什么置信太高/太低”，从而自动修正。</p>
+<p>3. 关键发现</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>批评什么</td>
+<td>开放式任务→批评不确定性；选择题任务→批评置信度。</td>
+</tr>
+<tr>
+<td>怎么批评</td>
+<td>纯自反思（Self-Critique）提升有限；用教师模型写批评再微调（CritiCal）显著改善。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4. 方法框架</p>
+<ol>
+<li><strong>Self-Critique</strong>：零训练，多轮提示模型自省→校准提升微弱。</li>
+<li><strong>CritiCal</strong>：</li>
+</ol>
+<ul>
+<li>学生模型生成〈答案，自报置信〉；</li>
+<li>教师模型（GPT-4o）对比参考答案，输出<strong>自然语言批评</strong>；</li>
+<li>用此批评数据做监督微调（SFT）或直接偏好优化（DPO）。</li>
+</ul>
+<p>5. 实验结果</p>
+<ul>
+<li><strong>分布内</strong>：CritiCal 在 StrategyQA、MATH-Perturb 上 ECE 降低 30 %–50 %，<strong>学生校准误差低于教师 GPT-4o</strong>。</li>
+<li><strong>分布外</strong>：用 StrategyQA 训练→MATH-Perturb 测试，CritiCal 仍持续降 ECE，传统 SFT 反而恶化。</li>
+<li><strong>训练方式</strong>：SFT 与 DPO 差距 &lt; 0.003，选用更高效的 SFT 即可。</li>
+</ul>
+<p>6. 贡献一句话</p>
+<p>首次证明“自然语言批评”可让 LLM 的<strong>口头置信度</strong>在分布内外都实现<strong>超越教师的校准精度</strong>，为可信 AI 提供简单可扩展的新范式。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是CritiCal%3A%20Can%20Critique%20Help%20LLM%20Uncertainty%20or%20Confidence%20Calibration%3F，链接是https://arxiv.org/pdf/2510.24505，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2510.24505。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Qing Zong,Jiayu Liu,Tianshi Zheng,Chunyang Li,Baixuan Xu,Haochen Shi,Weiqi Wang,Zhaowei Wang,Chunkit Chan,Yangqiu Song</p>
+<p><strong>Categories</strong>: cs.CL</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2510.24505.pdf">https://arxiv.org/pdf/2510.24505.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.24505">https://arxiv.org/abs/2510.24505</a></p>
+<p><strong>Arxiv ID</strong>: 2510.24505</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2510.24505">https://papers.cool/arxiv/2510.24505</a></p>
+<p><strong>Published</strong>: 2025-10-28T15:16:06Z</p>
+<p><strong>Updated</strong>: 2025-10-28T15:16:06.000Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202511/2025-11-11/">https://wdndev.github.io/daily/hf/202511/2025-11-11/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202507/2025-07-15/" title="HuggingFace Papers 2025-07-15"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-15</div></div></a></div><div><a href="/daily/hf/202507/2025-07-16/" title="HuggingFace Papers 2025-07-16"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-16</div></div></a></div><div><a href="/daily/hf/202507/2025-07-14/" title="HuggingFace Papers 2025-07-14"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2025-07-14</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Too-Good-to-be-Bad-On-the-Failure-of-LLMs-to-Role-Play-Villains"><span class="toc-text">1. Too Good to be Bad: On the Failure of LLMs to Role-Play Villains</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DeepEyesV2-Toward-Agentic-Multimodal-Model"><span class="toc-text">2. DeepEyesV2: Toward Agentic Multimodal Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Visual-Spatial-Tuning"><span class="toc-text">3. Visual Spatial Tuning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-VeriCoT-Neuro-symbolic-Chain-of-Thought-Validation-via-Logical-Consistency-Checks"><span class="toc-text">4. VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Dense-Motion-Captioning"><span class="toc-text">5. Dense Motion Captioning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Towards-Mitigating-Hallucinations-in-Large-Vision-Language-Models-by-Refining-Textual-Embeddings"><span class="toc-text">6. Towards Mitigating Hallucinations in Large Vision-Language Models by Refining Textual Embeddings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Real-Time-Reasoning-Agents-in-Evolving-Environments"><span class="toc-text">7. Real-Time Reasoning Agents in Evolving Environments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Jailbreaking-in-the-Haystack"><span class="toc-text">8. Jailbreaking in the Haystack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-HAFixAgent-History-Aware-Automated-Program-Repair-Agent"><span class="toc-text">9. HAFixAgent: History-Aware Automated Program Repair Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-CritiCal-Can-Critique-Help-LLM-Uncertainty-or-Confidence-Calibration"><span class="toc-text">10. CritiCal: Can Critique Help LLM Uncertainty or Confidence Calibration?</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
