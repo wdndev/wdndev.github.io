@@ -1,0 +1,655 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-06-10 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. What Should Agents Say? Action-state Communication for Efficient Multi-Agent SystemsAbstract:Multi-agent systems (MAS) built on large language models are typi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-06-10">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202606/2026-06-10/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. What Should Agents Say? Action-state Communication for Efficient Multi-Agent SystemsAbstract:Multi-agent systems (MAS) built on large language models are typi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-15T02:03:13.223Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202606/2026-06-10/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-06-10',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-15 10:03:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">685</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-06-10</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-06-15T02:03:13.223Z" title="Updated 2026-06-15 10:03:13">2026-06-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>23min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-06-10"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-What-Should-Agents-Say-Action-state-Communication-for-Efficient-Multi-Agent-Systems"><a href="#1-What-Should-Agents-Say-Action-state-Communication-for-Efficient-Multi-Agent-Systems" class="headerlink" title="1. What Should Agents Say? Action-state Communication for Efficient Multi-Agent Systems"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.05304">What Should Agents Say? Action-state Communication for Efficient Multi-Agent Systems</a></h3><p>Abstract:Multi-agent systems (MAS) built on large language models are typically organized around roles, pipelines, and turn schedules, while the content that agents pass to one another is often left as unconstrained natural language. However, this free-form communication can rapidly inflate token usage, consume the shared context window, and ultimately affect both system performance and inference cost. We analyze five common inter-agent communication strategies across two MAS topologies, finding that no fixed strategy is universally optimal. Instead, effective inter-agent messages consistently preserve action-centered information needed by downstream agents. Building on this, we propose the PACT (Protocolized Action-state Communication and Transmission), which treats inter-agent communication as a public state-update problem and projects each raw agent output into a compact action-state record before it enters shared history. Across different MAS topologies, PACT consistently improves the performance-cost trade-off, achieving comparable or stronger task performance with substantially fewer tokens. The gains extend to production coding harnesses: PACT lifts OpenHands’ resolve rate at -10% tokens-per-resolved, and is resolve-neutral on SWE-agent while halving input tokens. Our code is publicly available at this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：基于大型语言模型的多智能体系统（MAS）通常围绕角色、流程和回合调度进行组织，而智能体之间传递的内容往往是无限制的自然语言。然而，这种自由形式的通信会快速增加令牌使用量，消耗共享上下文窗口，并最终影响系统性能和推理成本。我们分析了两种 MAS 拓扑结构中的五种常见智能体间通信策略，发现没有固定策略是普遍最优的。相反，有效的智能体间消息始终保留下游智能体所需的以动作为中心的信息。在此基础上，我们提出了 PACT（协议化动作状态通信与传输），将智能体间通信视为公共状态更新问题，并在每个原始智能体输出进入共享历史之前，将其投影为紧凑的动作状态记录。在不同的 MAS 拓扑结构中，PACT 持续改善性能与成本的权衡，实现了可比或更强的任务性能，同时使用的令牌显著减少。这些收益也扩展到生产编码应用：PACT 提升了 OpenHands 的解决率，同时令牌使用量降低了 10%，在 SWE-agent 上则保持解决率不变，并将输入令牌量减半。我们的代码在此 https URL 公共提供。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文试图解决<strong>多智能体系统（MAS）中智能体间通信内容的优化问题</strong>，具体而言：</p>
+<p>核心问题</p>
+<p>在基于大语言模型的多智能体系统中，智能体之间的消息传递通常采用<strong>无约束的自然语言形式</strong>。这种自由形式的通信会导致以下问题：</p>
+<ul>
+<li><strong>Token成本激增</strong>： verbose或带有内部推理痕迹的消息会被下游智能体反复处理，导致token使用量在轮次间累积式增长</li>
+<li><strong>上下文窗口压力</strong>：共享历史中的冗余内容迅速膨胀，可能在任务完成前耗尽上下文窗口</li>
+<li><strong>性能与成本的权衡失衡</strong>：现有研究主要关注角色设计、轮次调度和工具分配，却忽视了<strong>智能体应该传递什么内容</strong>这一关键设计维度</li>
+</ul>
+<p>具体挑战</p>
+<p>论文通过诊断分析发现，常见的五种通信策略（完整内容、简洁生成、仅结论、简短摘要、仅工件）均存在局限性：</p>
+<ul>
+<li><strong>完整内容</strong>：昂贵且冗余，包含大量下游智能体不需要的推理痕迹</li>
+<li><strong>仅结论</strong>：在接收方缺乏周围状态信息时过于信息丢失严重</li>
+<li><strong>通用缩短策略</strong>：可能移除下游智能体所需的任务相关信息</li>
+</ul>
+<p>解决思路</p>
+<p>论文提出将智能体间通信重新定义为<strong>公共状态更新问题</strong>：消息不应总结发送方的私有推理，而应以最小的动作相关信息更新共享状态，使下游智能体能够继续任务。基于此，论文提出了<strong>PACT</strong>（Protocolized Action-state Communication and Transmission）协议，将每个智能体的原始输出投影为紧凑的<strong>动作-状态记录</strong>（包含动作、状态、结果三个字段），从而在显著降低token消耗的同时保持或提升任务性能。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>该论文的相关研究主要集中在以下三个领域：</p>
+<p>多智能体系统（Multi-agent systems）</p>
+<p>现有研究主要关注**“谁说话以及何时说话”**的协调机制，包括：</p>
+<ul>
+<li><strong>角色专业化与自我协作</strong>（Wang et al., 2024c; Li et al., 2023）：通过分配不同角色或利用多角色自我协作来增强任务解决能力</li>
+<li><strong>同伴辩论与批判</strong>（Du et al., 2024; Liang et al., 2023）：多个智能体通过辩论和相互批判来提高事实性和推理能力</li>
+<li><strong>多智能体对话框架</strong>（Wu et al., 2024; Chen et al., 2024）：提供通用的多智能体协作架构</li>
+<li><strong>并行输出聚合</strong>（Wang et al., 2024a）：通过聚合多个智能体的并行输出来提升性能</li>
+</ul>
+<p><strong>关键缺口</strong>：这些设计在角色分工和编排方式上各不相同，但<strong>普遍将智能体间消息的内容留给无约束的自然语言处理</strong>。</p>
+<p>多智能体系统中的Token消耗</p>
+<p>该领域的研究关注<strong>重复上下文重用</strong>带来的成本问题：</p>
+<ul>
+<li><strong>上下文累积效应</strong>：一个智能体的输出成为另一个智能体的输入，后续智能体必须重新处理早期消息（Zeng et al., 2025）</li>
+<li><strong>思维链（Chain-of-thought）的重复处理</strong>：当智能体转发推理内容时，相同的推理痕迹被下游智能体反复读取，导致成本激增</li>
+<li><strong>通信内容的结构化研究</strong>（Zou et al., 2025; Chen et al., 2025; Yu et al., 2026）：研究表明有纪律的通信会影响准确性和成本</li>
+</ul>
+<p><strong>关键缺口</strong>：现有研究主要关注**“智能体应该与谁通信”<strong>（Zhang et al., 2025; Shen et al., 2025），而</strong>“应该通信什么内容”**在很大程度上被忽视。</p>
+<p>面向真实任务的智能体框架（Agentic harnesses）</p>
+<p>研究逐渐从学术脚手架转向解决真实世界的复杂问题，特别是在<strong>软件工程</strong>领域：</p>
+<ul>
+<li><strong>SWEbench</strong>（Jimenez et al., 2024）：评估智能体解决真实GitHub问题的基准测试</li>
+<li><strong>OpenHands</strong>（Wang et al., 2025）和<strong>SWE-agent</strong>（Yang et al., 2024）：广泛使用的智能体循环，在长轨迹中交织推理、工具调用和环境反馈</li>
+</ul>
+<p><strong>关键挑战</strong>：由于这些框架积累了较长的工具增强历史记录，每轮消息和共享历史预算很容易规模膨胀。现有工作尚未充分探讨如何通过精简通信内容来降低这些生产级系统的成本。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过提出 <strong>PACT（Protocolized Action-state Communication and Transmission）</strong> 协议来解决多智能体系统中通信内容冗余与成本高昂的问题。该解决方案包含以下核心机制：</p>
+<p>1. 问题重构：公共状态更新视角</p>
+<p>论文将智能体间通信重新定义为<strong>公共状态更新问题</strong>，而非传统的自由形式消息传递。关键洞察在于：</p>
+<ul>
+<li>消息不应总结发送方的<strong>私有推理过程</strong>（如内部的  <think>  痕迹、反复推敲的中间步骤）</li>
+<li>消息应更新<strong>共享状态</strong>，仅保留下游智能体继续任务所需的<strong>动作相关信息</strong></li>
+</ul>
+<p>2. 动作-状态消息空间（Action-state Message Space）</p>
+<p>PACT 将每个公共智能体间消息严格限定为包含三个字段的<strong>动作-状态记录</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>功能</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACTION</td>
+<td>明确交接意图</td>
+<td>发送方已执行的动作，或要求接收方执行的下一步动作</td>
+</tr>
+<tr>
+<td>STATE</td>
+<td>提供 grounding 证据</td>
+<td>支撑该动作的证据、观察、环境反馈或工具结果</td>
+</tr>
+<tr>
+<td>RESULT</td>
+<td>传递可复用工件</td>
+<td>动作的直接产出（如检索到的事实、精炼后的方案、工具调用结果）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这三个字段共同定义了允许进入共享智能体间信道的信息边界。</p>
+<p>3. 形式化协议机制</p>
+<p>设多智能体系统在轮次  t  具有共享历史  H_t 。具有角色或动作  r_t  的智能体接收局部观察  o_t  和共享历史  H_t ，生成原始输出  y_t 。</p>
+<p>标准 MAS 的更新规则为：<br>H_(t+1)^(std) = H_t^(std) oplus y_t</p>
+<p>其中  oplus  表示追加消息，这使得  y_t  的所有内容（包括推理痕迹、重复陈述、最终工件）都成为公共历史的一部分。</p>
+<p>PACT 通过<strong>发送方投影</strong>  Pi<em>(PACT)  替换原始消息：<br>H</em>(t+1)^(PACT) = H<em>t^(PACT) oplus Pi</em>(PACT)(y_t, o_t, r_t)</p>
+<p>投影函数  Pi_(PACT)  将原始输出映射到紧凑的公共消息空间，仅保留动作-状态记录所需的三个字段，排除中间过程级内容。</p>
+<p>4. 协议的关键属性</p>
+<p>PACT 作为通信协议具有以下设计特性：</p>
+<ul>
+<li><strong>私有计算与公共通信分离</strong>：智能体仍可按原有方式执行内部推理、自我检查或探索替代方案；PACT 仅控制生成输出的哪一部分被保留为公共通信。这不同于抑制推理或改变智能体内部解决过程的方法，保留了智能体的固有能力。</li>
+<li><p><strong>与标准 MAS 设计正交</strong>：PACT 不引入新智能体、不改变轮次调度、不训练压缩器、不假设特定角色结构。同一动作-状态接口可在不同设置中以不同方式序列化：</p>
+</li>
+<li><p>在<strong>分证据交互</strong>中：显式写入动作、状态和结果</p>
+</li>
+<li>在<strong>角色专业化流水线</strong>中：部分动作通过角色调度隐式编码，保留更紧凑的角色工件</li>
+</ul>
+<p>5. 实际实现：代理钩子（Proxy Hook）</p>
+<p>在生产级智能体编码框架（如 OpenHands 和 SWE-agent）中，PACT 被实现为<strong>轻量级代理钩子</strong>，在飞行中更新智能体轮次间的公共消息：</p>
+<ol>
+<li><strong>输出生成</strong>：每轮在工具调用前，智能体必须生成结构化的  <summary>  块，包含：</li>
+</ol>
+<ul>
+<li>Action Required（所需动作）</li>
+<li>Observed State（观察到的状态）</li>
+<li>Planned Effect（计划效果）——即 ACTION、STATE、RESULT 的编码语义</li>
+</ul>
+<ol>
+<li><strong>历史重写</strong>：在每轮开始前，代理重写先前的助手消息，仅保留  <summary>  块和工具调用，移除中间过程和自由形式散文；工具结果保持完整。</li>
+</ol>
+<p>这样，智能体间信道被缩减为仅包含动作-状态摘要、工具调用和工具结果的信息，显著降低了累积上下文长度。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文进行了<strong>四个层次的实验验证</strong>，涵盖诊断分析、主实验对比、消融研究和真实世界应用：</p>
+<p>1. 诊断分析实验（§3）</p>
+<p><strong>目的</strong>：分析五种常见通信策略在两种不同MAS拓扑结构中的表现，验证”无单一策略 universally optimal”的假设。</p>
+<p><strong>实验设置</strong>：</p>
+<ul>
+<li><strong>模型</strong>：Qwen3-8B、Qwen3-14B、Qwen3-32B</li>
+<li><p><strong>Setting A — 分证据交互</strong>（Split-Evidence Interaction）：</p>
+</li>
+<li><p>对称双智能体设置，证据被分割，需多轮交换才能回答问题</p>
+</li>
+<li>数据集：HotpotQA、2WikiMultiHopQA</li>
+<li>每问题10个段落（2个黄金支撑段+8个干扰段），智能体间5-5分割</li>
+<li>最多8轮，早停机制</li>
+<li><strong>Setting B — 顺序流水线</strong>（Sequential Pipeline）：</li>
+<li>四智能体固定顺序：Planner → Critic → Refiner → Solver</li>
+<li>数据集：AIME2024、AIME2025（数学推理）、GPQA-Diamond（科学推理）、OpenBookQA（常识问答）</li>
+</ul>
+<p><strong>五种对比策略</strong>：</p>
+<ul>
+<li><strong>Full Content</strong>：转发完整自由形式输出（含推理痕迹）</li>
+<li><strong>Concise Generation</strong>：使用模型原生非思考模式生成简短回复</li>
+<li><strong>Conclusion Only</strong>：仅传递最终结论/答案部分</li>
+<li><strong>Brief Summary</strong>：显式要求生成短摘要</li>
+<li><strong>Artifact Only</strong>：仅传递角色工件（如计划或批评），无动作描述或支撑证据</li>
+</ul>
+<p><strong>关键发现</strong>（见图2、图3）：</p>
+<ul>
+<li>Full Content 成本最高且性能并非最优</li>
+<li>Concise Generation 在交互设置表现好，但在流水线设置弱（中间智能体需产生有用计划/批评）</li>
+<li>Conclusion Only 在流水线中尚可（固定角色顺序提供上下文），但在交互设置中表现差（需证据交换）</li>
+<li>Artifact Only 在交互设置准确率高但token成本极高（因抑制前言导致智能体运行更多轮次）</li>
+</ul>
+<p>2. PACT主实验（§5）</p>
+<p><strong>目的</strong>：验证PACT在性能-成本权衡上优于现有MAS通信范式。</p>
+<p><strong>对比基线</strong>：</p>
+<ul>
+<li><strong>Chain of Agents (CoA)</strong>：智能体链式顺序工作，每个仅读取最近一条同伴消息（非完整历史）</li>
+<li><strong>Text-based MAS (TextMAS)</strong>：角色专业化智能体通过无约束自然语言协作，保留完整消息历史</li>
+<li><strong>Multi-Agent Debate</strong>：4个智能体独立提出初始答案，辩论3轮，多数投票决定最终答案</li>
+</ul>
+<p><strong>结果</strong>（表1、表2）：</p>
+<p>Setting A（分证据交互）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>最佳对比方法</th>
+<th>PACT F1</th>
+<th>Token节省</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3-8B</td>
+<td>Multi-Agent Debate (69.6)</td>
+<td>69.9</td>
+<td>比Debates少~50% tokens</td>
+</tr>
+<tr>
+<td>Qwen3-14B</td>
+<td>CoA (54.8)</td>
+<td>56.8</td>
+<td>比CoA少~11.6% tokens</td>
+</tr>
+<tr>
+<td>Qwen3-32B</td>
+<td>Multi-Agent Debate (60.3)</td>
+<td>61.5</td>
+<td>比Debates少~60% tokens</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Setting B（顺序流水线）</p>
+<ul>
+<li><strong>准确率</strong>：PACT在12个基准-模型组合中的9个达到最高或次高准确率</li>
+<li><strong>Token效率</strong>：平均token使用量比Multi-Agent Debate减少<strong>81%</strong>（仅使用19-23%的tokens）</li>
+<li><strong>规模趋势</strong>：从Qwen3-8B到32B，PACT的token使用量减少21.1%，同时准确率提升4.2点，表明更强模型更能利用紧凑通信</li>
+</ul>
+<p>3. 消融实验（§5.3）</p>
+<p><strong>目的</strong>：验证PACT三个字段（Action、State、Result）的必要性。</p>
+<p><strong>设置</strong>：HotpotQA数据集，Qwen3-8B模型</p>
+<p><strong>结果</strong>（表3）：</p>
+<ul>
+<li><strong>完整PACT (A+S+R)</strong>：F1=69.9，Tok=6,704</li>
+<li><strong>移除Action (S+R)</strong>：F1降至64.9 (-5.0)，Token微增1.8%</li>
+<li>接收方缺乏明确信号了解信息用途或需求</li>
+<li><strong>移除State (A+R)</strong>：F1降至65.2 (-4.7)，Token微增0.6%</li>
+<li>动作结果缺乏证据支撑，可靠性下降</li>
+<li><strong>仅保留Result (R)</strong>：F1降至64.3 (-5.6)，Token激增12.9%</li>
+<li>无支撑结果导致接收方歧义，需更多轮次澄清</li>
+</ul>
+<p><strong>结论</strong>：三个字段共同构成完整的动作-状态交接，缺一不可。</p>
+<p>4. 真实世界编码框架实验（§6）</p>
+<p><strong>目的</strong>：验证PACT作为轻量级代理钩子，在未设计的生产级智能体框架中的可移植性。</p>
+<p><strong>实现方式</strong>：</p>
+<ul>
+<li>作为<strong>LiteLLM代理钩子</strong>，在飞行中重写提示和解析响应</li>
+<li>每轮要求智能体在工具调用前生成结构化<code>&lt;summary&gt;</code>块（包含Action Required、Observed State、Planned Effect）</li>
+<li>重写历史：仅保留<code>&lt;summary&gt;</code>块和工具调用，移除中间过程和自由形式散文</li>
+</ul>
+<p><strong>测试平台</strong>：</p>
+<ul>
+<li><strong>OpenHands (CodeActAgent)</strong> 和 <strong>SWE-agent</strong> 在 <strong>SWE-bench Verified</strong>（真实GitHub问题）上测试</li>
+<li>模型：Qwen3-14B</li>
+</ul>
+<p><strong>结果</strong>（表4）：</p>
+<p>OpenHands</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>基线</th>
+<th>PACT</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解决率</td>
+<td>19.40%</td>
+<td>23.00%</td>
+<td>+3.6 pp (+18个实例)</td>
+</tr>
+<tr>
+<td>每解决实例Token数</td>
+<td>3.82M</td>
+<td>3.43M</td>
+<td>-10.3%</td>
+</tr>
+<tr>
+<td>平均完成Token/调用</td>
+<td>870.6</td>
+<td>824.2</td>
+<td>-5.3%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>SWE-agent</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>基线</th>
+<th>PACT</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解决率</td>
+<td>25.6%</td>
+<td>24.2%</td>
+<td>-1.4 pp (近似中性)</td>
+</tr>
+<tr>
+<td>输入Token</td>
+<td>314.6M</td>
+<td>156.0M</td>
+<td>-50.4%</td>
+</tr>
+<tr>
+<td>每解决实例Token数</td>
+<td>2.46M</td>
+<td>1.30M</td>
+<td>-47%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>意义</strong>：PACT在OpenHands上同时提升性能和效率，在SWE-agent上保持解决率近似中性的同时将成本减半，证明其作为<strong>推理时通信协议</strong>的实用价值。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文的局限性与实验设计，以下方向值得进一步探索：</p>
+<p>1. 更广泛的系统架构与交互模式</p>
+<p>论文的Limitations部分明确指出，当前验证存在两个覆盖缺口：</p>
+<ul>
+<li><strong>短交互与非历史累积架构</strong>：PACT针对共享对话历史是主要token成本来源的场景设计，其在短交互或<strong>不重复暴露先前智能体输出</strong>的架构（如单次调用、独立并行处理）中的效益尚未充分探索。</li>
+<li><strong>动态与开放式协作拓扑</strong>：实验未覆盖<strong>开放式辩论</strong>（open-ended debate）、<strong>工具密集型规划</strong>（tool-heavy planning）或<strong>动态路由智能体网络</strong>（dynamically routed agent networks）。在这些场景中，通信内容可能需要自适应调整，而非固定的三字段结构。</li>
+</ul>
+<p>2. 自动化协议学习与优化</p>
+<p>当前PACT采用<strong>手工设计的结构化模板</strong>（Action-State-Result）。未来可探索：</p>
+<ul>
+<li><strong>端到端学习通信协议</strong>：利用可微分训练或强化学习，让智能体自动发现最优的公共消息投影函数  Pi_(PACT) ，而非预设字段。</li>
+<li><strong>任务自适应压缩</strong>：根据任务复杂度动态调整STATE字段的详细程度，例如在多跳推理中自动保留关键证据链，在简单问答中压缩为极简摘要。</li>
+</ul>
+<p>3. 跨模态与异构通信</p>
+<p>论文聚焦于文本模态的自然语言通信。扩展方向包括：</p>
+<ul>
+<li><strong>多模态动作-状态记录</strong>：在涉及代码、图像、表格或API返回值的场景中，如何结构化非文本内容（如代码diff、图像特征）进入统一的action-state空间。</li>
+<li><strong>异构智能体间通信</strong>：当系统中包含不同基础模型（如LLM与视觉-语言模型、或不同规模的模型混合）时，如何设计适配各方能力的公共消息格式。</li>
+</ul>
+<p>4. 安全性与隐私边界的形式化</p>
+<p>虽然PACT区分了私有计算与公共通信，但STATE字段仍可能包含敏感信息：</p>
+<ul>
+<li><strong>隐私泄漏量化</strong>：形式化分析STATE字段在提供必要grounding的同时，如何最小化暴露原始输入中的隐私信息（如代码中的密钥、个人身份信息）。</li>
+<li><strong>对抗鲁棒性</strong>：研究恶意智能体如何通过构造特定的Action或State字段诱导下游智能体产生错误行为，以及相应的防御机制。</li>
+</ul>
+<p>5. 与先进模型架构的协同</p>
+<ul>
+<li><strong>长上下文与推理模型</strong>：随着模型上下文窗口扩展和推理能力增强（如Claude 3.7 Sonnet、o3类模型），需重新评估”紧凑通信”与”充分利用模型长程推理能力”之间的权衡。</li>
+<li><strong>混合专家（MoE）系统</strong>：探索PACT原则是否适用于智能体级别的MoE架构，其中每个专家可视为一个智能体，通信协议影响路由决策效率。</li>
+</ul>
+<p>6. 理论分析与最优性边界</p>
+<ul>
+<li><strong>信息论视角</strong>：从信息瓶颈（Information Bottleneck）角度分析，在给定任务性能约束下，公共历史  H_t  的理论最小描述长度是多少。</li>
+<li><strong>通信复杂度下界</strong>：针对特定多智能体任务（如共识达成、分布式推理），证明PACT-style的通信策略接近理论最优的通信复杂度下界。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>这篇论文研究了<strong>多智能体系统（MAS）中智能体间通信内容的优化问题</strong>，提出通过结构化协议降低通信成本并提升任务效率。</p>
+<p>核心问题</p>
+<p>基于大语言模型的多智能体系统通常采用<strong>无约束的自然语言</strong>进行智能体间通信，导致：</p>
+<ul>
+<li><strong>Token成本激增</strong>：冗长的推理痕迹和冗余内容被下游智能体反复处理，在共享历史中累积</li>
+<li><strong>上下文窗口压力</strong>：自由形式消息迅速膨胀，可能在任务完成前耗尽上下文窗口</li>
+<li><strong>性能与成本失衡</strong>：现有研究关注角色设计和调度，却忽视了”智能体应该传递什么内容”这一关键维度</li>
+</ul>
+<p>关键发现</p>
+<p>通过对五种常见通信策略（完整内容、简洁生成、仅结论、简短摘要、仅工件）在两种MAS拓扑（分证据交互、顺序流水线）上的诊断分析，论文发现：</p>
+<ul>
+<li><strong>无单一策略普遍最优</strong>：不同拓扑结构下最优策略各异</li>
+<li><strong>动作中心性</strong>：有效的智能体间消息始终保留<strong>动作相关信息</strong>（action-centered information），即接收方继续任务所需的最小公共状态更新</li>
+</ul>
+<p>方法：PACT协议</p>
+<p>基于上述发现，论文提出 <strong>PACT（Protocolized Action-state Communication and Transmission）</strong>，一种无需训练、与框架无关的通信协议：</p>
+<p><strong>核心机制</strong>：将每个智能体的原始输出投影为紧凑的<strong>动作-状态记录</strong>，仅包含三个字段：</p>
+<ul>
+<li><strong>ACTION</strong>：已执行或需执行的下一步动作</li>
+<li><strong>STATE</strong>：支撑动作的证据、观察或环境反馈</li>
+<li><strong>RESULT</strong>：传递给下游的工件或结果</li>
+</ul>
+<p>该协议严格区分<strong>私有计算</strong>（内部推理过程）与<strong>公共通信</strong>（进入共享历史的内容），排除中间 deliberation 痕迹。</p>
+<p>实验验证</p>
+<p><strong>受控MAS设置</strong>（Qwen3 8B/14B/32B）：</p>
+<ul>
+<li>在分证据交互和四智能体顺序流水线上，PACT相比基线（Chain of Agents、Text-based MAS、Multi-Agent Debate）平均减少**38.7%**的token使用，同时保持或提升任务准确率</li>
+<li>消融实验证实三个字段缺一不可：移除任一字段均导致性能下降或token消耗增加</li>
+</ul>
+<p><strong>真实世界编码框架</strong>：</p>
+<ul>
+<li><strong>OpenHands</strong>：解决率从19.4%提升至23.0%，每解决实例token成本降低10.3%</li>
+<li><strong>SWE-agent</strong>：在保持解决率近似中性的情况下，输入token减少50.4%，每解决实例token成本降低47%</li>
+</ul>
+<p>主要贡献</p>
+<ol>
+<li><strong>系统性分析</strong>：首次系统分析智能体间通信策略，证明通信内容是影响MAS性能与成本的核心设计维度</li>
+<li><strong>协议设计</strong>：提出PACT协议，定义私有计算与公共通信的边界，实现紧凑的动作-状态交接</li>
+<li><strong>实用验证</strong>：在从学术基准到生产级编码框架的多种场景中，验证PACT能显著改善性能-成本权衡，展示其作为通用推理时通信协议的实用价值</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是What%20Should%20Agents%20Say%3F%20Action-state%20Communication%20for%20Efficient%20Multi-Agent%20Systems，链接是https://arxiv.org/pdf/2606.05304，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.05304。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Chen Huang,Yuhao Wu,Wenxuan Zhang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.05304.pdf">https://arxiv.org/pdf/2606.05304.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.05304">https://arxiv.org/abs/2606.05304</a></p>
+<p><strong>Arxiv ID</strong>: 2606.05304</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.05304">https://papers.cool/arxiv/2606.05304</a></p>
+<p><strong>Published</strong>: 2026-06-10T01:51:22.040Z</p>
+<p><strong>Updated</strong>: 2026-06-10T01:51:22.040Z</p>
+<hr>
+<h3 id="2-BenSyc-Benchmarking-Conversational-Sycophancy-and-Human-Alignment-in-LLMs-for-Bengali-Contexts"><a href="#2-BenSyc-Benchmarking-Conversational-Sycophancy-and-Human-Alignment-in-LLMs-for-Bengali-Contexts" class="headerlink" title="2. BenSyc: Benchmarking Conversational Sycophancy and Human Alignment in LLMs for Bengali Contexts"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.10061">BenSyc: Benchmarking Conversational Sycophancy and Human Alignment in LLMs for Bengali Contexts</a></h3><p>Abstract:Large language models (LLMs) increasingly participate in emotionally sensitive social conversations, where responses may shift from balanced support toward excessive validation or escalatory alignment. Existing sycophancy research primarily focuses on factual agreement and instruction-following settings, leaving culturally grounded conversational sycophancy underexplored. We introduce BenSyc, the first benchmark for studying conversational sycophancy in Bengali social contexts. Starting from 11,840 Reddit posts and 170k comments collected from communities across Bangladesh and West Bengal, we construct a human-validated benchmark with binary labels and a fine-grained five-level taxonomy spanning Invalidation, Neutral, Support, Validation, and Escalation. We evaluate more than 15 open and proprietary LLMs on conversational alignment classification and response generation tasks. Results show that distinguishing empathetic support from reinforcement-oriented validation remains challenging even for frontier instruction-tuned models: the best system achieves only 61.8 Macro-F1 on binary detection and 61.7 Macro-F1 on five-class classification. In generation settings, several models frequently produce strongly validating or escalatory responses in emotionally charged situations. Our findings highlight substantial variation across model families and conversational behaviors, underscoring the importance of culturally grounded multilingual benchmarks for evaluating socially aligned conversational AI systems.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：大型语言模型（LLMs）越来越多地参与情感敏感的社交对话，其中的回应可能从平衡的支持转向过度的认可或升级式的认同。现有的阿谀研究主要集中在事实一致性和指令跟随场景，而对富有文化背景的对话阿谀研究仍然不足。我们提出了BenSyc，这是首个用于研究孟加拉社交语境中对话阿谀的基准。基于从孟加拉国和西孟加拉的社区收集的11,840条Reddit帖子和17万条评论，我们构建了一个经过人工验证的基准，包括二元标签以及跨越“无效”、“中性”、“支持”、“认可”和“升级”的细粒度五级分类。在对话对齐分类和回应生成任务上，我们评估了超过15个开放和专有的LLM模型。结果显示，即使是前沿的指令微调模型，在区分共情支持与强化导向的认可方面仍具有挑战性：最佳系统在二元检测上仅达61.8的Macro-F1，在五类分类上为61.7的Macro-F1。在生成任务中，一些模型在情感高度敏感的情境下经常产生强烈认可或升级式回应。我们的研究结果显示模型家族和对话行为之间存在显著差异，强调了基于文化的多语言基准对于评估社会对齐的对话AI系统的重要性。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文致力于解决<strong>大语言模型（LLMs）在孟加拉语社交语境中的对话性谄媚（conversational sycophancy）评估缺失</strong>的问题。具体而言，该研究针对以下核心挑战：</p>
+<p>1. 文化特定对话对齐的评估空白</p>
+<p>现有谄媚研究主要集中在<strong>事实性同意</strong>（factual agreement）和<strong>指令遵循</strong>（instruction-following）场景（如模型是否迎合用户的错误事实认知），但忽视了<strong>情感敏感的社交对话</strong>中更为微妙的人际对齐行为。在孟加拉语等低资源语言的社交语境中，模型回应可能从平衡支持滑向过度验证（validation）或冲突升级（escalation），而现有基准缺乏对此类文化特定对话模式的系统评估框架。</p>
+<p>2. 区分共情支持与强化验证的难题</p>
+<p>论文指出，<strong>支持性共情</strong>（supportive empathy）与<strong>强化导向的验证</strong>（reinforcement-oriented validation）在表面上难以区分——两者都承认用户情绪，但前者提供安慰而不强化用户的解释框架，后者则放大用户的归因、确定性或情绪反应。现有二元分类（赞成/反对）无法捕捉这一光谱，需要细粒度的对话对齐分类法。</p>
+<p>3. 多语言、非西方语境下的基准缺失</p>
+<p>现有对齐与安全评估高度以英语为中心，缺乏对<strong>孟加拉语（Bangla）</strong>、<strong>孟加拉英语（Banglish）</strong>及<strong>代码转换</strong>（code-switching）等自然非正式在线话语的覆盖。论文强调，多语言能力不等于文化对齐，需要专门评估模型在孟加拉文化背景下的社交强化行为。</p>
+<p>4. 模型生成中的风险行为检测</p>
+<p>通过构建包含<strong>无效化（Invalidation）→中性（Neutral）→支持（Support）→验证（Validation）→升级（Escalation）</strong>五级分类法的基准，论文试图解决如何自动检测模型在生成回应时可能出现的<strong>隐性升级行为</strong>（如强化敌意、归咎或极端情绪），这些行为往往表面流畅且具文化合理性，但可能加剧用户的负面情绪或认知偏差。</p>
+<p>简言之，BenSyc 旨在建立首个针对<strong>孟加拉语社交对话中谄媚行为</strong>的文化根植性评估基准，解决当前 LLM 评估中缺乏对非西方文化语境下细微对话对齐行为（特别是情感验证与冲突升级）进行系统量化的关键缺陷。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>该论文在第2节“Related Work”中系统梳理了以下五个相关研究方向：</p>
+<p>2.1 谄媚与过度对齐（Sycophancy</p>
+</div></details>
+<p><strong>Authors</strong>: Kazi Noshin,Sajib Acharjee Dip,Ranat Das Prangon,Fardin Hassan Tamim,Syed Ishtiaque Ahmed,Liqing Zhang,Sharifa Sultana</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.10061.pdf">https://arxiv.org/pdf/2606.10061.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.10061">https://arxiv.org/abs/2606.10061</a></p>
+<p><strong>Arxiv ID</strong>: 2606.10061</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.10061">https://papers.cool/arxiv/2606.10061</a></p>
+<p><strong>Published</strong>: 2026-06-10T01:51:31.418Z</p>
+<p><strong>Updated</strong>: 2026-06-10T01:51:31.418Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202606/2026-06-10/">https://wdndev.github.io/daily/hf/202606/2026-06-10/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202601/2026-01-01/" title="HuggingFace Papers 2026-01-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-01</div></div></a></div><div><a href="/daily/hf/202601/2026-01-02/" title="HuggingFace Papers 2026-01-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-02</div></div></a></div><div><a href="/daily/hf/202601/2026-01-03/" title="HuggingFace Papers 2026-01-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-What-Should-Agents-Say-Action-state-Communication-for-Efficient-Multi-Agent-Systems"><span class="toc-text">1. What Should Agents Say? Action-state Communication for Efficient Multi-Agent Systems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-BenSyc-Benchmarking-Conversational-Sycophancy-and-Human-Alignment-in-LLMs-for-Bengali-Contexts"><span class="toc-text">2. BenSyc: Benchmarking Conversational Sycophancy and Human Alignment in LLMs for Bengali Contexts</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

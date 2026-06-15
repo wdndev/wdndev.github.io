@@ -1,0 +1,1575 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-06-04 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Eliciting Complex Spatial Reasoning in MLLMs through Wide-Baseline MatchingAbstract:Wide-baseline matching (WBM) requires integrating geometric understanding,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-06-04">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202606/2026-06-04/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Eliciting Complex Spatial Reasoning in MLLMs through Wide-Baseline MatchingAbstract:Wide-baseline matching (WBM) requires integrating geometric understanding,">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-15T02:03:13.216Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202606/2026-06-04/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-06-04',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-15 10:03:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">685</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-06-04</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-06-15T02:03:13.216Z" title="Updated 2026-06-15 10:03:13">2026-06-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">26.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>94min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-06-04"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Eliciting-Complex-Spatial-Reasoning-in-MLLMs-through-Wide-Baseline-Matching"><a href="#1-Eliciting-Complex-Spatial-Reasoning-in-MLLMs-through-Wide-Baseline-Matching" class="headerlink" title="1. Eliciting Complex Spatial Reasoning in MLLMs through Wide-Baseline Matching"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.03577">Eliciting Complex Spatial Reasoning in MLLMs through Wide-Baseline Matching</a></h3><p>Abstract:Wide-baseline matching (WBM) requires integrating geometric understanding, viewpoint changes, fine-grained perception, and occlusion reasoning, making it a challenging testbed for spatial reasoning in multimodal large language models (MLLMs) deployed in physical environments. However, current MLLMs lack systematic evaluation and training frameworks for these capabilities. We introduce ReasonMatch-Bench, a benchmark stratified by viewpoint displacement and matching granularity across indoor, outdoor, and object-centric scenarios, and show that current MLLMs still struggle with fine-grained wide-baseline correspondence: on a difficult 90-sample subset, human annotators achieve 84.0 F1, while the best existing baseline reaches 37.2. To bridge this gap, we build a scalable data-generation pipeline that automatically extracts wide-baseline view pairs from large-scale video-3D corpora, including RGB-D videos and SfM reconstructions, yielding diverse and verifiable supervision. We further propose Dynamic Correspondence Reinforcement Learning (DCRL), which combines Image-Level Viewpoint Progression and Point-Level Correspondence Curriculum to improve WBM training through verifiable rewards without explicit CoT supervision. Extensive experiments show that DCRL substantially improves ReasonMatch-Bench and transfers to related spatial benchmarks, while maintaining general visual understanding performance with modest gains on several benchmarks.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：宽基线匹配（WBM）需要整合几何理解、视角变化、细粒度感知和遮挡推理，使其成为多模态大型语言模型（MLLMs）中空间推理的挑战性测试平台，应用于物理环境中。然而，当前的MLLM缺乏系统化的评估和培训框架。我们介绍了ReasonMatch-Bench，这是一个按视点位移和匹配粒度在室内、室外及以对象为中心场景进行分层的基准测试，并显示当前MLLM在细粒度宽基线对应方面仍存在困难：在90个样本的复杂子集上，人工注释者达到84.0 F1，而最佳基线为37.2。为弥合这一差距，我们构建了一个可扩展的数据生成流水线，能够自动从大型视频-三维语料库（包括RGB-D视频和SfM重建）中提取宽基线视图对，实现多样化且可验证的监督。我们还提出了动态对应强化学习（DCRL），结合图像级视角进展和点级对应课程，通过可验证的奖励提升WBM培训，无需明确的CoT监督。大量实验表明，DCRL显著提升了ReasonMatch-Bench，并可迁移到相关的空间基准测试，同时保持了整体的视觉理解性能，并在多个基准测试上略有提升。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>该论文试图解决<strong>多模态大语言模型（MLLMs）在复杂空间推理能力上的不足</strong>，特别是针对**宽基线匹配（Wide-Baseline Matching, WBM）**这一具有挑战性的任务。具体而言，论文聚焦于以下核心问题：</p>
+<p>1. 现有MLLMs在空间推理任务上的性能瓶颈</p>
+<p>当前MLLMs在物理环境部署时，需要具备跨不同视角的空间推理能力，包括几何理解、视角想象、细粒度感知（如分割和检测）、遮挡与拓扑推理，以及尺度或深度估计。然而，现有模型在宽基线匹配任务上表现显著不足：在包含90个高难度样本的子集上，人类标注者能达到 84.0 的F1分数，而现有最佳基线模型仅达到 37.2 ，显示出巨大的性能差距。</p>
+<p>2. 缺乏系统性的评估与训练框架</p>
+<ul>
+<li><strong>评估缺失</strong>：现有基准测试（如OmniSpatial、VSI-Bench）通常仅探测孤立的能力（如相对位置或视角预测），而非要求整合几何、语义和上下文的综合推理。</li>
+<li><strong>数据瓶颈</strong>：策划能够真正激发空间推理的监督数据既昂贵又脆弱，人工标注难以捕捉几何、语义和上下文的全貌，而合成设置往往难以匹配真实世界的多样性和可验证性。</li>
+<li><strong>训练局限</strong>：现有方法（如监督微调）可能不足以激发更深层的空间推理能力，且容易在特定对应模式上过拟合。</li>
+</ul>
+<p>3. 如何有效利用大规模视频-3D数据</p>
+<p>论文探索如何利用现有的RGB-D视频和Structure-from-Motion（SfM）重建等大规模视频-3D语料库，以<strong>可扩展且可验证</strong>的方式自动提取宽基线视图对，从而为MLLMs提供多样化且可验证的监督信号。</p>
+<p>4. 通过强化学习提升空间推理</p>
+<p>鉴于WBM任务具有可验证的奖励特性（匹配正确性可通过几何约束验证），论文提出<strong>动态对应关系强化学习（DCRL）</strong>，结合：</p>
+<ul>
+<li><strong>图像级视角递进（Image-Level Viewpoint Progression）</strong>：逐步增加几何变换复杂度；</li>
+<li><strong>点级对应关系课程（Point-Level Correspondence Curriculum）</strong>：动态调整可匹配点和干扰点的数量与空间分布。</li>
+</ul>
+<p>该方法旨在使MLLMs能够通过可验证奖励自主探索和发展复杂的空间推理策略，而无需显式的思维链（CoT）监督。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>该论文的相关研究主要集中在以下两个领域：</p>
+<p>1. 多模态大语言模型（MLLMs）中的空间推理</p>
+<p>现有基准测试</p>
+<ul>
+<li><strong>OmniSpatial</strong><br>23<br>和 <strong>VSI-Bench</strong><br>55<br>：评估视觉语言模型的各种空间理解能力，但这些基准通常探测孤立的能力（如相对定位或视角预测），而非要求整合几何、语义和上下文的综合推理。</li>
+</ul>
+<p>现有训练方法</p>
+<ul>
+<li><strong>SAT</strong><br>38<br>（Dynamic Spatial Aptitude Training）、<strong>RoboSpatial</strong><br>44<br>、<strong>RoboRefer</strong><br>62<br>：主要关注视觉基础或简单的关系推理，主要依赖文本推理和多项选择评估。</li>
+<li><strong>Multi-Spatial-MLLM</strong><br>54<br>：探索对应匹配任务，但局限于<strong>小视角变化</strong>、受限的任务格式（如多项选择）以及仅使用监督微调（SFT），这可能不足以激发更深层的空间推理能力。</li>
+</ul>
+<p>与本文的区别</p>
+<p>本文从**宽基线匹配（WBM）**这一基础且具有挑战性的视觉任务出发，利用强化学习（受DeepSeek-R1<br>18<br>启发）和可验证奖励（RLVR），使MLLMs能够自主探索超越监督注释的推理策略。</p>
+<p>2. 宽基线视图匹配（Wide Baseline View Matching）</p>
+<p>传统方法</p>
+<ul>
+<li><strong>手工设计特征</strong>：SIFT<br>31<br>、SURF<br>6<br>、ORB<br>41<br>等局部特征描述符。</li>
+<li><strong>几何验证</strong>：RANSAC<br>16<br>等鲁棒估计器用于寻找极线几何（Epipolar Geometry）。</li>
+<li><strong>后续改进</strong>：</li>
+<li><p>学习描述符（Learning-based descriptors）<br>33, 46</p>
+</li>
+<li><p>端到端特征网络（如 <strong>SuperPoint</strong><br>13<br>、<strong>D2-Net</strong><br>15<br>、<strong>R2D2</strong><br>40<br>）</p>
+</li>
+<li>高级鲁棒估计器（如 <strong>Graph-cut RANSAC</strong><br>4<br>、<strong>MAGSAC</strong><br>5<br>）</li>
+</ul>
+<p>局限性</p>
+<p>这些以特征为中心的方法在<strong>极端情况</strong>下（大基线距离、强透视和外观变化、重复结构、光照变化、语义遮挡）经常失败，因为它们缺乏对几何、语义和上下文的鲁棒推理能力。</p>
+<p>与本文的区别</p>
+<p>本文将MLLM作为<strong>推理引擎</strong>，通过文本媒介进行符号关联（而非连续特征匹配），使其能够整合几何、语义和上下文线索进行复杂的跨视角空间推理。</p>
+<p>3. 强化学习与可验证奖励</p>
+<ul>
+<li><strong>DeepSeek-R1</strong><br>18<br>和 <strong>RLVR</strong>（Reinforcement Learning with Verifiable Rewards）<br>51, 61<br>：展示了通过可验证奖励进行强化学习可以激励LLMs产生正确推理。本文将这一范式应用于空间推理任务，利用宽基线匹配的几何可验证性（匹配正确性可通过极线约束验证）来训练模型，而无需显式的思维链（CoT）监督。</li>
+</ul>
+<p><strong>总结</strong>：现有研究要么专注于孤立的空间推理能力评估，要么依赖传统的特征匹配方法在极端视角变化下表现不佳。本文首次系统性地将宽基线匹配作为评估和训练MLLMs复杂空间推理能力的统一框架，并通过课程化的强化学习方法显著提升了模型性能。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>该论文通过<strong>三阶段系统性方案</strong>解决MLLMs的复杂空间推理问题：构建评估基准、建立可扩展数据管道、设计课程化强化学习框架。</p>
+<p>1. 构建分层评估基准：ReasonMatch-Bench</p>
+<p>论文创建了首个专门针对MLLMs宽基线匹配能力的综合基准，其特点包括：</p>
+<ul>
+<li><strong>分层难度设计</strong>：按视角位移幅度（viewpoint divergence）和匹配粒度（matching granularity）分层，涵盖室内（Indoor）、室外（Outdoor）和以物体为中心（Object-centric）三种场景</li>
+<li><strong>三级任务难度</strong>：</li>
+<li><strong>L1（明确匹配）</strong>：一对一对应，无干扰项</li>
+<li><strong>L2（选择性匹配）</strong>：存在干扰候选，需从多选项中选择</li>
+<li><strong>L3（部分匹配）</strong>：双向遮挡，需显式推理可见性</li>
+</ul>
+<p>该基准包含2,810个验证图像对，平衡了数据来源（ScanNet、uCO3D、DL3DV、RealEstate10k）和难度分布。</p>
+<p>2. 可扩展的数据生成管道</p>
+<p>为解决空间推理数据稀缺问题，论文设计了从大规模视频-3D语料库自动提取宽基线对的管道：</p>
+<p>数据源</p>
+<ul>
+<li><strong>RGB-D视频</strong>（CO3D、uCO3D、ScanNet）：通过几何重投影获取对应关系，利用深度一致性和光度一致性验证</li>
+<li><strong>SfM重建</strong>（RealEstate10k、DL3DV）：从COLMAP重建中提取共享的3D地标作为对应关系</li>
+</ul>
+<p>难度量化</p>
+<p>定义视角重叠分数 $ω ∈<br>0,1<br>$：</p>
+<ul>
+<li>对RGB-D数据： ω = (|M|) / (H × W) （成功匹配像素比例）</li>
+<li>对SfM数据： ω = (|L_1 ∩ L_2|) / (min(|L_1|,|L_2|)) （共享3D地标比例）</li>
+</ul>
+<p>视角变化幅度定义为  Delta v = 1 - ω ，用于分层采样。</p>
+<p>对应关系池构建</p>
+<p>通过基于聚类的空间过滤（DBSCAN聚类+贪心最大间距选择），将密集匹配子采样为空间分布良好的验证池  P （通常每对图像10-50个对应点），确保视觉提示的可区分性。</p>
+<p>3. 动态对应关系强化学习（DCRL）</p>
+<p>核心创新在于利用WBM的几何可验证性，通过**可验证奖励强化学习（RLVR）**训练模型，无需显式思维链（CoT）监督。</p>
+<p>3.1 任务形式化</p>
+<p>将WBM建模为<strong>文本介导的部分二分匹配</strong>：</p>
+<ul>
+<li>输入：两幅图像  I<em>1, I_2  及标记点集  X = x_i</em>(i=1)^n ,  Y = y<em>j</em>(j=1)^m </li>
+<li>输出：文本映射  f: 1,dots,n to 1,dots,m ∪ ∅ ，其中  ∅  表示无匹配（遮挡或出界）</li>
+</ul>
+<p>3.2 整体匹配奖励（Holistic Matching Reward）</p>
+<p>传统方法仅评估已匹配对，而DCRL显式评估<strong>所有查询区域</strong>（包括无对应点的区域）：</p>
+<p>r<em>(match) = (1) / (n) ∑</em>(i=1)^n 1[f(i) = f^*(i)]</p>
+<p>该奖励鼓励模型对遮挡区域正确预测”无匹配”，强制其进行全面的视角依赖性可见性推理。</p>
+<p>总奖励结合格式合规性： r = w<em>f · r</em>(format) + w<em>m · r</em>(match) </p>
+<p>3.3 双层级自适应课程</p>
+<p>图像级视角递进（Image-Level Viewpoint Progression）</p>
+<ul>
+<li>按重叠分数  ω  将数据集划分为10个区间（bins）</li>
+<li>训练从<strong>高重叠（小视角变化）</strong>开始，逐步过渡到<strong>低重叠（大视角变化）</strong></li>
+<li>当当前区间的滑动窗口平均奖励超过阈值（0.8）时，自动进入下一难度区间</li>
+</ul>
+<p>点级对应关系课程（Point-Level Correspondence Curriculum）</p>
+<p>在每一视角阶段内，动态调整任务复杂度：</p>
+<p><strong>维度A：基数适应（Cardinality Adaptation）</strong></p>
+<ul>
+<li><strong>L1（无歧义）</strong>： |X<em>(match)| = |Y</em>(match)| ，无干扰项，学习基础几何变换</li>
+<li><strong>L2（选择性）</strong>： |Y_(dist)| &gt; 0 ，需从干扰项中识别正确匹配，学习几何一致性判别</li>
+<li><strong>L3（部分）</strong>：双向干扰项，需显式推理可见性边界</li>
+</ul>
+<p>课程根据性能动态升降级：若性能下降（ r &lt; 0.2  持续10步），则回退到前一阶段。</p>
+<p><strong>维度B：空间分布细化（Spatial Distribution Refinement）</strong> 逐步消除空间线索以强制细粒度推理：</p>
+<ul>
+<li><strong>阶段1（最大化稀疏）</strong>：大聚类半径，每簇一个代表点，需物体级推理</li>
+<li><strong>阶段2（适度聚类）</strong>：减小聚类半径，允许区域级多点，引入空间结构</li>
+<li><strong>阶段3（密集采样）</strong>：随机采样，最小间距约束，需细粒度几何关系推理</li>
+</ul>
+<p>4. 实验验证与性能提升</p>
+<p>该方法在Qwen3-VL-8B上实现显著性能跃升：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>基线模型</th>
+<th>DCRL</th>
+<th>提升</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReasonMatch-Bench F1</td>
+<td>27.5%</td>
+<td>70.5%</td>
+<td>+43.0</td>
+</tr>
+<tr>
+<td>OmniSpatial</td>
+<td>43.6%</td>
+<td>48.9%</td>
+<td>+5.3</td>
+</tr>
+<tr>
+<td>MindCube</td>
+<td>40.0%</td>
+<td>43.5%</td>
+<td>+3.5</td>
+</tr>
+<tr>
+<td>SAT</td>
+<td>70.0%</td>
+<td>75.3%</td>
+<td>+5.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在困难子集（90个最大视角差异样本）上，DCRL达到52.0% F1，超越GPT-5-mini（37.2%）和Gemini-2.5-Pro（29.5%），但仍低于人类水平（84.0%），表明该任务仍具挑战性。</p>
+<p>关键优势：</p>
+<ul>
+<li><strong>避免灾难性遗忘</strong>：在MMStar、RealWorldQA等通用视觉基准上保持稳定或小幅提升（如MMStar从59.8%提升至62.5%）</li>
+<li><strong>超越SFT</strong>：相比监督微调（SFT），DCRL在ReasonMatch上提升19.5个百分点，在SAT上提升34.0个百分点，证明RLVR在发展空间推理能力上的优越性</li>
+<li><strong>可解释性</strong>：模型生成显式的空间推理链（Chain-of-Thought），描述3D空间关系和视角变换，而非仅输出匹配结果</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文进行了系统性的实验验证，涵盖<strong>主基准评估</strong>、<strong>跨基准泛化</strong>、<strong>人类水平对比</strong>及<strong>消融研究</strong>四个维度，具体如下：</p>
+<p>1. 主基准性能评估（ReasonMatch-Bench）</p>
+<p>1.1 与SOTA模型对比</p>
+<p>在包含2,810个样本的ReasonMatch-Bench上，与多类SOTA模型对比：</p>
+<ul>
+<li><strong>闭源商业模型</strong>：GPT-5-mini、GPT-5-Chat、GPT-4o、Gemini-2.5-Pro、Claude-4.5-Sonnet、Claude-4.1-Opus、Claude-4-Sonnet</li>
+<li><strong>开源大模型</strong>：Qwen3-VL-235B、Qwen3-VL-8B-Instruct</li>
+<li><strong>本文方法</strong>：Qwen3-VL-8B + DCRL</li>
+</ul>
+<p><strong>关键结果</strong>：DCRL在8B参数规模下达到<strong>70.5% F1</strong>，超越所有对比模型，包括GPT-5-mini（57.9%）和Gemini-2.5-Pro（42.8%）。在最难的L3级别，提升尤为显著（如室内场景从25.5%提升至84.6%）。</p>
+<p>1.2 场景与难度细分分析</p>
+<p>按三类场景（室内、室外、以物体为中心）和三级难度（L1-L3）细分评估，揭示：</p>
+<ul>
+<li><strong>室外场景</strong>对所有模型相对容易（DCRL达90.9% F1）</li>
+<li><strong>以物体为中心</strong>场景最具挑战性（DCRL仅33.7% F1，但远超基线的11.5%）</li>
+<li>性能随难度递增（L1→L3） consistently 下降，验证难度分层有效性</li>
+</ul>
+<p>2. 人类水平对比研究</p>
+<p>在90个最大视角差异（high-divergence）样本的子集上，进行非专业人类标注者与模型的对比：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>总体F1</th>
+<th>DL3DV</th>
+<th>RE10K</th>
+<th>uCO3D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人类</td>
+<td>84.0%</td>
+<td>93.5%</td>
+<td>94.7%</td>
+<td>62.1%</td>
+</tr>
+<tr>
+<td>DCRL</td>
+<td>52.0%</td>
+<td>57.7%</td>
+<td>70.6%</td>
+<td>27.8%</td>
+</tr>
+<tr>
+<td>GPT-5-mini</td>
+<td>37.2%</td>
+<td>35.9%</td>
+<td>49.7%</td>
+<td>25.8%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>发现</strong>：人类在结构化环境（室内/室外）接近完美，但在物体中心场景也显著下降（62.1%）。模型与人类仍有<strong>32个百分点的差距</strong>（84.0% vs 52.0%）。</p>
+<p>3. 跨基准泛化能力验证</p>
+<p>验证DCRL训练是否迁移到相关空间智能任务，同时保持通用视觉理解：</p>
+<p>3.1 空间智能基准</p>
+<ul>
+<li><strong>OmniSpatial</strong><br>23<br>：整体提升+5.27%，其中”动态推理”（+9.6%）和”复杂逻辑”（+8.38%）提升最大</li>
+<li><strong>MindCube</strong><br>57<br>：整体提升+3.51%，其中”旋转”子任务提升最显著（+6.0%）</li>
+<li><strong>SAT</strong><br>38<br>（Real子集）：从70.0%提升至75.3%（+5.3%）</li>
+</ul>
+<p>3.2 通用视觉理解基准</p>
+<p>使用lmms-eval验证无灾难性遗忘：</p>
+<ul>
+<li><strong>MME-RealWorld</strong>：62.8% → 63.8%</li>
+<li><strong>MMStar</strong>：59.8% → 62.5%</li>
+<li><strong>RealWorldQA</strong>：69.5% → 70.5%</li>
+<li><strong>V*Bench</strong>：84.8% → 85.9%</li>
+</ul>
+<p><strong>结论</strong>：空间专项训练未损害通用视觉能力，反而在部分基准上有 modest 提升。</p>
+<p>4. 训练范式与课程设计消融研究</p>
+<p>4.1 强化学习 vs. 监督微调（SFT）</p>
+<p>在相同数据上对比DCRL（RLVR）与SFT：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>ReasonMatch</th>
+<th>SAT</th>
+<th>OmniSpatial</th>
+<th>MindCube</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base Model</td>
+<td>27.5%</td>
+<td>70.0%</td>
+<td>43.6%</td>
+<td>40.0%</td>
+</tr>
+<tr>
+<td>SFT</td>
+<td>51.0%</td>
+<td>41.3%</td>
+<td>42.6%</td>
+<td>45.1%</td>
+</tr>
+<tr>
+<td>DCRL</td>
+<td>70.5%</td>
+<td>75.3%</td>
+<td>48.9%</td>
+<td>43.5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键发现</strong>：SFT在ReasonMatch上提升（+23.5%），但在SAT上严重退化（-28.7%，可能因过拟合特定匹配模式）；而DCRL在所有空间基准上均提升，证明RLVR发展出更可迁移的空间推理能力。</p>
+<p>4.2 课程学习消融</p>
+<p>对比不同训练策略：</p>
+<ul>
+<li><strong>无课程（均匀采样）</strong>：65.3% F1</li>
+<li><strong>仅简单样本（最小Δv的1/4）</strong>：59.9% F1</li>
+<li><strong>仅困难样本（最大Δv的1/4）</strong>：62.3% F1</li>
+<li><strong>动态课程（本文）</strong>：<strong>70.5% F1</strong></li>
+</ul>
+<p><strong>结论</strong>：动态课程比均匀采样提升+5.2%，比单一难度训练提升+8.2%~+10.6%，验证渐进难度调整的有效性。</p>
+<p>4.3 细粒度错误分析</p>
+<p>使用Qwen3-VL-235B作为盲评估器，在五个维度上量化模型错误模式：</p>
+<ul>
+<li><strong>F1（局部线索依赖）</strong>：能否将正确局部观察整合为全局一致匹配</li>
+<li><strong>F2（全局布局错位）</strong>：是否出现左右颠倒、层级错误等几何失误</li>
+<li><strong>F4（推理-答案不匹配）</strong>：思维链正确但JSON输出错误的情况</li>
+<li><strong>F5（过度使用”None”）</strong>：对存在对应关系的区域错误地预测无匹配</li>
+<li><strong>推理连贯性</strong>：思维链的逻辑一致性和自我矛盾程度</li>
+</ul>
+<p>该分析揭示了不同模型的特异性失效模式（如Gemini-2.5-Pro擅长局部描述但缺乏全局特异性，Qwen3-VL存在视觉标签误识别等）。</p>
+<p>5. 定性分析实验</p>
+<ul>
+<li><strong>可视化案例</strong>：展示模型在成功匹配时的完整思维链（Chain-of-Thought），包括视角变换分析（如”相机顺时针旋转90°”）、遮挡推理和3D空间关系描述</li>
+<li><strong>失败模式分析</strong>：如在ScanNet场景中，模型能识别正确簇但混淆左右顺序（F2错误），揭示 viewpoint-consistent 布局维护的局限性</li>
+</ul>
+<p>这些实验共同验证了：<strong>宽基线匹配是评估和提升MLLM空间推理能力的有效测试平台，而DCRL通过可验证奖励和课程学习，显著缩小了模型与人类的空间推理差距，同时保持了通用视觉能力。</strong></p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文第10节”Limitations and Future Work”及全文分析，未来研究可从以下维度深入探索：</p>
+<p>1. 缩小与人类水平的空间推理差距</p>
+<p>当前最佳模型（ 52.0%  F1）与未经训练的人类（ 84.0%  F1）仍存在显著差距，尤其在<strong>以物体为中心的场景</strong>（ 27.8%  vs  62.1% ）。未来可探索：</p>
+<ul>
+<li><strong>自监督预训练策略</strong>：利用更大规模的未标注视频-3D数据学习视角不变特征</li>
+<li><strong>人类认知机制模仿</strong>：研究人类如何利用物理常识和结构先验解决遮挡和极端视角变化，并将其形式化为模型的归纳偏置</li>
+</ul>
+<p>2. 从成对匹配到多视图联合推理</p>
+<p>当前工作聚焦于**成对（pairwise）**交叉视图匹配，但全面的空间智能需要：</p>
+<ul>
+<li><strong>多视图同时推理</strong>：整合 N ≥ 3 个视图的信息，构建一致的3D场景表示，而非仅处理图像对  (I_1, I_2) </li>
+<li><strong>时空动态融合</strong>：结合视频序列的时间动态与几何对应关系，处理动态场景中的空间推理</li>
+<li><strong>语义-几何联合建模</strong>：将对应关系推理与3D场景理解、物体级语义知识深度耦合，而非将其视为独立的匹配任务</li>
+</ul>
+<p>3. 架构与表示学习创新</p>
+<p>现有MLLM架构在<strong>细粒度几何推理</strong>上的固有限制：</p>
+<ul>
+<li><strong>显式3D表征集成</strong>：探索将点云、体素或神经辐射场（NeRF）等3D表示与LLM的潜在空间对齐，而非仅依赖2D图像令牌</li>
+<li><strong>几何注意力机制</strong>：设计专门的注意力机制来建模极线约束（epipolar constraints）和投影几何，替代通用的视觉注意力</li>
+<li><strong>分层空间推理</strong>：构建显式的层次化场景图（scene graph），分别编码物体级、部件级和像素级的空间关系</li>
+</ul>
+<p>4. 课程学习与训练范式优化</p>
+<p>DCRL的课程框架可进一步扩展：</p>
+<ul>
+<li><strong>自适应难度度量</strong>：超越基于视角重叠 ω 的启发式分层，开发基于模型不确定性的动态难度度量</li>
+<li><strong>跨任务课程迁移</strong>：将WBM中学到的空间推理能力通过课程学习迁移到更复杂的机器人操作或导航任务</li>
+<li><strong>多智能体协作训练</strong>：利用多个模型分别专注于局部匹配与全局布局验证，通过协作强化学习提升整体性能</li>
+</ul>
+<p>5. 极端场景与鲁棒性</p>
+<ul>
+<li><strong>非刚性变形处理</strong>：当前方法假设场景刚性，未来需处理可变形物体（如衣物、液体）的宽基线对应</li>
+<li><strong>光照与天气极端变化</strong>：探索在昼夜交替、季节变化或恶劣天气条件下的视角不变性学习</li>
+<li><strong>开放世界泛化</strong>：评估并提升模型在训练数据分布外（out-of-distribution）场景（如非常规建筑结构、外星地形）的零样本推理能力</li>
+</ul>
+<p>6. 可解释性与验证机制</p>
+<ul>
+<li><strong>思维链验证</strong>：开发自动验证模型生成的空间推理链（Chain-of-Thought）几何正确性的机制，而仅验证最终匹配结果</li>
+<li><strong>不确定性量化</strong>：为每个对应关系预测置信度分数，使模型能够主动请求额外视角或信息以解决歧义</li>
+</ul>
+<p>这些方向共同推动MLLMs从当前的<strong>模式匹配</strong>阶段向真正的<strong>空间智能体</strong>演进，使其能够在复杂物理环境中进行 robust 的几何推理与决策。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>该论文旨在解决<strong>多模态大语言模型（MLLMs）在复杂空间推理任务上的不足</strong>，特别是**宽基线匹配（Wide-Baseline Matching, WBM）**这一需要整合几何理解、视角想象、细粒度感知和遮挡推理的挑战性任务。</p>
+<p>核心贡献</p>
+<p>1. 分层评估基准：ReasonMatch-Bench</p>
+<ul>
+<li>构建包含2,810个样本的综合性基准，覆盖<strong>室内、室外和以物体为中心</strong>三类场景</li>
+<li>按视角位移幅度和匹配粒度划分为<strong>三级难度</strong>（L1明确匹配、L2选择性匹配、L3部分匹配）</li>
+<li>揭示现有MLLMs的性能瓶颈：在90个高难度样本上，人类可达 84.0%  F1，而最佳基线模型仅 37.2% </li>
+</ul>
+<p>2. 可扩展数据生成管道</p>
+<ul>
+<li>从大规模RGB-D视频（CO3D、ScanNet）和SfM重建（RealEstate10k、DL3DV）中<strong>自动提取</strong>宽基线视图对</li>
+<li>利用几何重投影和深度/光度一致性验证，生成多样化且<strong>几何可验证</strong>的对应关系监督</li>
+</ul>
+<p>3. 动态对应关系强化学习（DCRL）</p>
+<p>提出基于**可验证奖励强化学习（RLVR）**的训练框架，无需显式思维链监督：</p>
+<ul>
+<li><p><strong>整体匹配奖励</strong>：评估所有查询区域（包括无匹配区域），鼓励全面的视角依赖性可见性推理<br>r<em>(match) = (1) / (n)∑</em>(i=1)^n 1[f(i) = f^*(i)]</p>
+</li>
+<li><p><strong>双层级自适应课程</strong>：</p>
+</li>
+<li><strong>图像级视角递进</strong>：按视角重叠分数 ω 逐步增加几何变换复杂度（从相似视角到极端视角）</li>
+<li><strong>点级对应课程</strong>：动态调整匹配点数量（1对1→多选1→双向遮挡）和空间分布（聚类→稀疏→密集），逐步消除空间线索以强制细粒度推理</li>
+</ul>
+<p>主要实验结果</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>评估维度</th>
+<th>关键结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReasonMatch-Bench</td>
+<td>DCRL在8B模型上达到70.5% F1，相比基线（27.5%）提升 +43.0 ，超越GPT-5-mini（57.9%）和Gemini-2.5-Pro（42.8%）</td>
+</tr>
+<tr>
+<td>人类水平对比</td>
+<td>在90个最大视角差异样本上，DCRL（52.0%）显著优于SOTA模型，但仍远低于人类（84.0%），尤其在物体中心场景（27.8% vs 62.1%）</td>
+</tr>
+<tr>
+<td>跨基准泛化</td>
+<td>迁移至OmniSpatial（+5.27%）、MindCube（+3.51%）、SAT（+5.3%）等空间推理任务</td>
+</tr>
+<tr>
+<td>通用能力保持</td>
+<td>在MMStar、RealWorldQA等通用视觉基准上无退化，部分指标 modest 提升</td>
+</tr>
+<tr>
+<td>消融验证</td>
+<td>相比监督微调（SFT），DCRL在ReasonMatch上提升 +19.5 ，在SAT上提升 +34.0 ；动态课程比均匀采样提升 +5.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>结论与展望</p>
+<p>论文证明了宽基线匹配是评估和提升MLLMs空间推理能力的有效测试平台。DCRL通过<strong>可验证的几何奖励</strong>和<strong>渐进式课程学习</strong>，使模型能够自主发展复杂的空间推理策略。然而，模型与人类水平仍存在显著差距（ 52.0%  vs  84.0% ），未来研究需向<strong>多视图联合推理</strong>、<strong>显式3D表征集成</strong>和<strong>人类认知机制模仿</strong>方向推进，以实现真正的空间智能。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Eliciting%20Complex%20Spatial%20Reasoning%20in%20MLLMs%20through%20Wide-Baseline%20Matching，链接是https://arxiv.org/pdf/2606.03577，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.03577。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Hao Zhong,Muzhi Zhu,Shenyan Zeng,Anzhou Li,Cong Chen,Hua Geng,Duochao Shi,Wentao Ye,Tao Lin,Hao Chen,Chunhua Shen</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.03577.pdf">https://arxiv.org/pdf/2606.03577.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.03577">https://arxiv.org/abs/2606.03577</a></p>
+<p><strong>Arxiv ID</strong>: 2606.03577</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.03577">https://papers.cool/arxiv/2606.03577</a></p>
+<p><strong>Published</strong>: 2026-06-04T02:10:33.598Z</p>
+<p><strong>Updated</strong>: 2026-06-04T02:10:33.598Z</p>
+<hr>
+<h3 id="2-BenchEvolver-Frontier-Task-Synthesis-via-Solution-Centric-Evolution"><a href="#2-BenchEvolver-Frontier-Task-Synthesis-via-Solution-Centric-Evolution" class="headerlink" title="2. BenchEvolver: Frontier Task Synthesis via Solution-Centric Evolution"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.01286">BenchEvolver: Frontier Task Synthesis via Solution-Centric Evolution</a></h3><p>Abstract:The rapid progress of frontier large language models has led to widespread benchmark saturation, limiting the ability of existing datasets to differentiate model capabilities or provide useful training signal. For instance, on LiveCodeBench, frontier models achieve over 99% Pass@1 on easy splits and exceed 90% Pass@1 on average across difficulty levels. Constructing new, challenging datasets typically requires substantial human effort, creating a bottleneck for progress. We introduce BenchEvolver, a solution-centric evolutionary framework that automatically transforms existing coding problems into harder variants. Rather than generating problems from scratch, BenchEvolver evolves reference solutions through structured transformations and derives corresponding statements and tests from the evolved solutions. This design grounds generation in executable semantics, enabling scalable construction of high-quality, diverse, and difficult tasks with verifiable correctness. Applying BenchEvolver to LiveCodeBench and SciCode, we obtain evolved tasks that are substantially harder while maintaining validity, reference correctness, and diversity. We further curate LiveCodeBench-Plus, a 91-problem benchmark combining evolved and difficult original LCB-v6 tasks, where frontier-model Pass@1 ranges from 27.5% to 62.6%, restoring clear discrimination among strong coding models. Importantly, evolved tasks remain challenging even for the model that generates them, enabling self-improvement. We further show that RL on evolved LCB tasks improves held-out coding performance: for gpt-oss-20b, seed+evolved training achieves +8.7 and +8.3 Pass@1 gains on LCB v6 Hard and LCB-Pro Easy, exceeding seed-only gains by 70.7% and 34.8%, respectively. Our results show that BenchEvolver can convert saturated benchmarks into frontier-level evaluation suites and reusable training signal.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：前沿大型语言模型的快速发展导致基准测试普遍饱和，限制了现有数据集区分模型能力或提供有用训练信号的能力。例如，在LiveCodeBench上，Frontier模型在简单分段中达到了超过99%的Pass@1，平均在不同难度等级中Pass@1超过90%。构建新的、具有挑战性的数据集通常需要大量人力劳动，这为进展制造瓶颈。我们介绍了BenchEvolver，一个以解决方案为中心的进化框架，能够自动将现有编码问题转化为更难的变体。BenchEvolver 不是从零生成问题，而是通过结构化变换演进参考解，并从演化后的解中推导出相应的语句和测试。该设计将生成建立在可执行语义之上，使得高质量、多样化且复杂且可验证的任务能够实现可扩展的构建。将BenchEvolver应用于LiveCodeBench和SciCode，我们获得了更复杂的演化任务，同时保持了有效性、引用正确性和多样性。我们还进一步策划了LiveCodeBench-Plus，这是一个包含91个问题的基准测试，结合了进化且困难的原始LCB-v6任务，前沿模型Pass@1范围为27.5%至62.6%，恢复了强编码模型之间的明显区分。重要的是，演化任务即使对生成它们的模型来说也依然具有挑战性，从而促进自我提升。我们还进一步证明，在进化型LCB任务上的强化学习提升了长期编码表现：对于GPT-OSS-20b，种子+进化训练在LCB v6 Hard和LCB-Pro Easy中分别实现了+8.7和+8.Pass@1 3的单纯种子提升，分别高出70.7%和34.8%。我们的结果表明，BenchEvolver 能够将饱和基准转换为前沿级评估套件和可重复使用的训练信号。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文旨在解决**基准测试饱和（benchmark saturation）**带来的评估与训练瓶颈问题。具体而言，随着前沿大语言模型（LLMs）能力的快速提升，现有编程评测基准（如LiveCodeBench）已难以有效区分模型性能或提供有意义的训练信号——例如，当前前沿模型在LiveCodeBench easy split上的Pass@1已超过99%，在平均难度上也超过90%。</p>
+<p>与此同时，人工构建新的、足够具有挑战性的基准数据集成本高昂且难以规模化，这进一步限制了模型的持续改进。</p>
+<p>为应对这一挑战，论文提出了<strong>BenchEvolver</strong>框架，其核心解决思路包括：</p>
+<ul>
+<li><strong>自动化难度提升</strong>：通过以解决方案为中心的进化机制，将现有已饱和的编程任务自动转换为计算结构更复杂、算法要求更高的变体，而非从零生成新问题；</li>
+<li><strong>自我挑战（Self-Challenging）</strong>：使模型能够生成对自身而言仍具挑战性的任务，从而支持闭环自我改进，而非依赖更强的”教师”模型进行数据蒸馏；</li>
+<li><strong>可验证性与可用性</strong>：确保生成的任务在可执行语义上保持有效（包含正确的参考解决方案和测试用例），既可作为高区分度的评测基准（如LIVECODEBENCH-PLUS），也可作为强化学习的训练信号。</li>
+</ul>
+<p>简言之，该工作试图将静态的、易饱和的基准测试转化为可动态进化的、与前沿模型能力同步成长的评测与训练资源。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>该论文的相关研究主要集中在<strong>合成数据生成</strong>、<strong>自我博弈与自我改进</strong>、以及<strong>基于进化算法的智能体优化</strong>三个方向。具体而言：</p>
+<p>1. 合成编码任务（Synthetic Coding Tasks）</p>
+<p>早期工作侧重于合成指令跟随数据或推理轨迹，以扩展训练数据的规模与多样性：</p>
+<ul>
+<li><strong>指令进化方法</strong>：如WizardCoder<br>10<br>与WizardLM<br>11<br>通过Evol-Instruct策略将种子指令进化为更复杂的变体；SelfCodeAlign<br>13<br>则通过自对齐生成代码指令数据。</li>
+<li><strong>可执行任务合成</strong>：近期工作转向生成完整的可执行编程任务。AutoCode<br>17<br>与X-Coder<br>18<br>利用大语言模型作为出题者，生成包含题面、参考解与测试用例的竞赛编程题目。然而，这些方法多采用”教师-学生”范式，即由较强模型为较弱模型生成数据，并未要求生成的任务必须对生成者自身构成挑战。</li>
+</ul>
+<p>2. 自我博弈与自我引导改进（Self-Play and Self-Guided Improvement）</p>
+<p>该方向研究模型如何通过生成针对自身当前弱点的任务来实现自我提升：</p>
+<ul>
+<li><strong>自我挑战智能体</strong>：Self-Challenging Agents<br>19<br>为工具使用场景生成可验证任务，并通过强化学习反馈训练执行器；Self-Guided Self-Play<br>20<br>在形式化定理证明中引入”引导者”角色，避免生成退化或无意义的猜想。</li>
+<li><strong>零数据自我进化</strong>：Absolute Zero<br>32<br>训练单一模型提出并求解自生成的代码推理任务，利用执行反馈构建有效任务并验证解答；R-Zero<br>33<br>则通过共同进化”挑战者”（Challenger）与”求解者”（Solver）模型，在无需外部数据的情况下生成接近求解者能力边界的数学问题。</li>
+<li><strong>代码领域的对抗与协同进化</strong>：CodeEvo<br>21<br>通过Coder-Reviewer反馈迭代合成代码中心数据；Code-A1<br>23<br>则利用强化学习实现代码生成模型与测试生成模型之间的对抗性协同进化。</li>
+</ul>
+<p>与上述工作不同，BenchEvolver针对的是<strong>完整基准项的进化</strong>——它从现有真实任务的参考解出发，通过变异生成新的可执行题面与测试，并要求接受的任务必须对包括进化者在内的目标模型面板 empirical 地更难。</p>
+<p>3. 基于进化算法的LLM智能体（Self-Evolving Algorithms for LLM Agents）</p>
+<p>进化算法已被广泛应用于利用大语言模型进行可验证的优化问题求解：</p>
+<ul>
+<li><strong>提示与上下文优化</strong>：如Promptbreeder<br>24<br>、EvoPrompt<br>25<br>与GEPA<br>26<br>利用进化策略自动优化提示词与上下文。</li>
+<li><strong>程序与算法发现</strong>：AlphaEvolve<br>28<br>与FunSearch<br>27<br>结合大语言模型与进化搜索进行科学算法发现；ShinkaEvolve<br>37<br>、DeltaEvolve<br>38<br>、PaceEvolve<br>39<br>等则专注于多样性驱动、动量加速或长程进度感知的程序进化。</li>
+<li><strong>自动化智能体设计</strong>：Hu等人<br>29<br>与Evolver<br>30<br>研究自动化智能体系统的进化与生命周期管理。</li>
+</ul>
+<p>BenchEvolver与此类工作的核心差异在于<strong>进化对象</strong>的差异：前述方法进化的是针对固定目标的解决方案（如更优的提示、程序或智能体），而BenchEvolver进化的是<strong>目标本身</strong>——即通过推断时的搜索生成更难、可验证的编程任务，从而将搜索过程转化为可复用的基准数据与训练信号，支持闭环自我改进。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过提出 <strong>BenchEvolver</strong> 框架，采用<strong>以解决方案为中心的进化范式</strong>（solution-centric evolution）系统性解决基准测试饱和问题。该方法不依赖人工重建数据集，而是通过以下机制将现有已饱和任务自动转换为计算结构更复杂、算法要求更高的可验证变体：</p>
+<p>1. 解决方案为中心的生成管道（Solution-Centric Pipeline）</p>
+<p>与传统”先题面后解法”的生成方式不同，BenchEvolver 采用逆向构造流程：<br>C arrow C’ arrow I’ = (S’, C’, T’, E)</p>
+<ul>
+<li><strong>先变异解法</strong>：以父任务参考解  C  为起点，通过结构化变异生成 evolved solution  C’ ，强制引入<strong>主导算法提升</strong>（dominant algorithmic lift）——如更强渐近策略、更复杂的数据结构或数学重构，确保父任务算法失效；</li>
+<li><strong>后推导题面与测试</strong>：基于  C’  的可执行语义，反向生成自然语言题面  S’ 、公开样例及隐藏测试  T’ ，所有测试输出通过执行  C’  实例化，确保任务在固定执行 harness  E  下的语义一致性。</li>
+</ul>
+<p>2. 提案者-评估者架构（Proposer-Evaluator Architecture）</p>
+<p>框架通过解耦生成与验证确保任务质量与难度：</p>
+<ul>
+<li><strong>提案者（Proposer）</strong>：负责执行解法变异与题面重构，其决策受<strong>记忆模块</strong>指导，避免重复历史失败并针对目标模型弱点定向进化；</li>
+<li><strong>评估者（Evaluator）</strong>：执行独立一致性校验与实证难度筛选：</li>
+<li><strong>验证层</strong>：采用基准专属验证栈（如 LiveCodeBench 的三方盲解交叉验证、SciCode 的陈述忠实度检验）确保  S’ 、 C’ 、 T’  语义一致，支持有界修复（bounded repair）；</li>
+<li><strong>难度层</strong>：通过目标模型面板（target panel）的多轮尝试计算实证通过率（empirical pass rate），仅接受显著降低通过率且无非人工难度（如歧义表述、误导性 I/O）的任务。</li>
+</ul>
+<p>3. 记忆引导的进化搜索（Memory-Guided Evolution）</p>
+<p>为将独立采样转化为自适应搜索，系统维护双重记忆：</p>
+<ul>
+<li><strong>本地记忆（Local Memory）</strong>：记录单条种子任务的进化谱系（接受/拒绝的变异类型、修复历史、目标模型错误模式），用于指导后续迭代避免重复失效；</li>
+<li><strong>全局记忆（Global Memory）</strong>：跨种子共享已接受的算法提升类型，通过多样性约束强制不同谱系探索异质算法方向，防止表面形式重复。</li>
+</ul>
+<p>4. 闭环自我改进（Closed-Loop Self-Improvement）</p>
+<p>生成的 evolved tasks 不仅作为评测基准（如 LIVECODEBENCH-PLUS），更构成强化学习训练信号：</p>
+<ul>
+<li>模型利用推断时计算（inference-time computation）发现自身失效边界；</li>
+<li>通过可执行奖励（测试通过与否）将自我生成的挑战 amortized 到模型参数中；</li>
+<li>实验表明，在种子数据上叠加 evolved tasks 进行 RL 训练，相比仅用种子数据可获得**70.7%<strong>和</strong>34.8%**的额外性能提升（分别于 LCB v6 Hard 与 LCB-Pro Easy），实现”生成-训练-再进化”的闭环。</li>
+</ul>
+<p>综上，BenchEvolver 通过将基准构建从静态数据集维护转变为动态、可执行语义 grounding 的进化过程，解决了传统基准随模型能力增长而迅速失效的瓶颈。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文围绕<strong>任务进化有效性</strong>、<strong>基准构建</strong>与<strong>自我改进闭环</strong>三个维度开展了系统性实验，具体如下：</p>
+<p>1. 跨可执行编码领域的任务进化评估（Section 4.1）</p>
+<p>实验旨在验证 BenchEvolver 能否在竞技编程与科学编码两类场景中生成有效、多样且实证更难的任务。</p>
+<ul>
+<li><strong>领域与数据</strong>：</li>
+<li><strong>竞技编程</strong>：LiveCodeBench-v6，随机采样 65 个种子问题（覆盖 Easy/Medium/Hard），分别针对轻量级（GPT-5.4-mini、Gemini-3-Flash、Claude-Sonnet-4.6）与前沿级（Gemini-3.1-Pro）目标模型进行进化。</li>
+<li><strong>科学编码</strong>：SciCode 验证集，选取 30 个自包含子问题（27 个对轻量级饱和，28 个对前沿级饱和）。</li>
+<li><strong>评估指标</strong>：</li>
+<li><strong>产出率（Yield）</strong>：成功进化的种子比例（生成至少一个被接受的进化任务）。</li>
+<li><strong>有效性（Validity）</strong>：经独立一致性校验（LiveCodeBench 采用三方盲解交叉验证，SciCode 采用陈述忠实度检验）后任务的可执行正确率。</li>
+<li><strong>难度变化</strong>：目标模型在进化任务 vs. 原始种子上的 Pass@1 对比（ k=4  次尝试）。</li>
+<li><strong>算法多样性</strong>：通过 6 位竞技编程专家（Codeforces Grandmaster/IOI/ICPC 级别）对 100 个进化谱系进行盲评，统计所需算法与数据结构类别分布。</li>
+<li><strong>关键结果</strong>：</li>
+<li>如 <strong>Table 1</strong> 所示，BenchEvolver 在 LiveCodeBench 上实现 60.0%–90.0% 的进化产出率，有效性达 89.9%–97.7%，显著优于 Problem-Centric 基线（47.8%–54.5% 产出率）与 Memory-Free 消融（45.0%–65.2% 产出率）。</li>
+<li><strong>Figure 2</strong> 显示，进化任务对所有目标模型（包括进化器自身）均造成一致的通过率下降（平均  Delta  达  -0.265  至  -0.580 ），证明任务难度提升具有实证性而非表面性。</li>
+<li><strong>Figure 3</strong> 与 <strong>Appendix F</strong> 的人类评估表明，进化任务将算法覆盖从 19 类扩展至 30 类，95.6% 的谱系引入至少一类种子中未出现的新算法（如 Heavy-Light Decomposition、AC 自动机、多项式/矩阵方法），而种子问题集中于 Search/Simulation（32.7%）。</li>
+</ul>
+<p>2. LIVECODEBENCH-PLUS 基准构建（Section 4.2）</p>
+<p>实验将进化流程应用于构建高区分度的前沿模型评测基准。</p>
+<ul>
+<li><strong>构建流程</strong>：</li>
+<li>对 LiveCodeBench-v6 Medium 的 31 个饱和种子（轻量级目标）与 Hard 的 57 个饱和种子（前沿级目标）进行进化，分别使用 Gemini-3-Flash 与 Gemini-3.1-Pro 作为进化器。</li>
+<li>经质量筛选（人工评分  ≥ 3/5 ）与难度筛选（综合通过率  0.05 – 0.75 ），保留 20 个 Medium 与 44 个 Hard 进化任务，并补充 27 个原始困难任务，形成包含 91 个问题的 <strong>LIVECODEBENCH-PLUS</strong>。</li>
+<li><strong>模型评估</strong>：</li>
+<li>在 8 个前沿模型（GPT-5.5、GPT-5.4、Gemini-3.1-Pro、DeepSeek-V4-Pro 等）上评估 Pass@1（ k=4 ）。</li>
+<li><strong>关键结果</strong>（<strong>Table 3</strong>）：</li>
+<li>Hard 级别平均通过率从原始种子的 87.0% 降至进化任务的 45.7%（绝对下降 41.3 点）；Medium 级别从 96.5% 降至 69.6%（下降 26.8 点）。</li>
+<li>在完整 91 题基准上，各模型 Pass@1 分布于 27.5%（DeepSeek-V4-Pro）至 62.6%（GPT-5.5）之间，恢复了清晰的模型区分度。</li>
+</ul>
+<p>3. 强化学习自我改进（Section 4.3）</p>
+<p>实验验证进化任务能否作为训练信号，支持生成模型自身的闭环改进。</p>
+<ul>
+<li><strong>实验设置</strong>：</li>
+<li><strong>模型</strong>：gpt-oss-20b（同时作为进化器与目标模型）。</li>
+<li><strong>数据</strong>：880 个 LiveCodeBench v1–v5 种子问题（模型已饱和，5 次尝试均通过）；经进化获得 586 个有效进化任务。</li>
+<li><strong>训练配置</strong>：三种数据混合——仅种子（880）、仅进化（586）、种子+进化（1,466）；使用 GRPO 算法与 Tinker RL 服务，LoRA rank 32，组大小 16，批次 64 组。</li>
+<li><strong>评估集</strong>：LCB v6 Hard（80 题）、LCB-Pro Easy（96 题），以及独立构建的 LCB-EVOLVED Medium（35 题，由 Gemini-3-Flash 进化，未参与训练）。</li>
+<li><strong>关键结果</strong>：</li>
+<li><strong>Figure 5</strong> 与 <strong>Figure 6</strong> 显示，在 LCB v6 Hard 上，基线模型 Pass@1 为 40.0%；种子数据 RL 提升至 45.1%，进化数据提升至 47.6%，种子+进化混合达到 <strong>48.7%</strong>（较种子-only 提升 70.7% 的额外增益）。</li>
+<li>在 LCB-Pro Easy 上，基线 64.6%；种子数据提升至 70.8%，进化数据 71.8%，混合达到 <strong>72.9%</strong>（额外增益 34.8%）。</li>
+<li>在独立构建的 LCB-EVOLVED Medium 上，进化-only 训练表现最佳（38.2% vs. 种子-only 33.7%），证明自我生成的进化任务对异源进化任务具有迁移性。</li>
+</ul>
+<p>4. 消融与机制分析</p>
+<ul>
+<li><strong>Problem-Centric 基线</strong>：先变异题面再推导解法，产出率与有效性显著低于 BenchEvolver（<strong>Table 1</strong>），验证了解决方案优先设计的必要性。</li>
+<li><strong>Memory-Free 消融</strong>：移除本地与全局记忆后，进化成功率下降，表明记忆引导对避免重复失败与维持多样性至关重要。</li>
+<li><strong>训练动态分析</strong>（<strong>Figure 7</strong>）：进化任务初始奖励较低（任务更难），但在训练过程中持续提供梯度信号，而种子数据快速饱和，解释了混合策略的优越性。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>根据论文第 5.2 节及相关讨论，可进一步探索的方向主要包括以下两个方面：</p>
+<p>1. 扩展闭环强化学习自我改进（Scaling Closed-Loop RL Self-Improvement）</p>
+<p>当前实验仅实现了单轮自我改进循环（模型进化任务→训练→性能提升）。未来可探索<strong>多轮迭代机制</strong>，其中每一轮改进后的模型成为下一轮的任务进化器，持续生成更难的挑战。关键研究问题包括：</p>
+<ul>
+<li><strong>稳定性与课程设计</strong>：若选择过于狭窄，系统可能过拟合到重复出现的失效模式；若选择过于激进，可能生成难以学习、信息增益低的任务。需开发原则化的难度控制机制，平衡任务挑战性与其作为训练信号的有效性。</li>
+<li><strong>多样性保持</strong>：在长期进化中防止算法多样性 collapse，需设计机制动态调整原始任务、已进化任务与新生成任务的混合比例，确保模型能力边界持续扩展而非在局部最优徘徊。</li>
+<li><strong>遗忘与巩固</strong>：在多轮循环中如何避免灾难性遗忘先前学到的能力，同时有效整合新进化出的复杂技能。</li>
+</ul>
+<p>2. 迈向动态基准（Toward Living Benchmarks）</p>
+<p>论文提出基准测试应从静态数据集转向<strong>可复现的进化管道</strong>（reproducible evolution pipeline），具体探索点包括：</p>
+<ul>
+<li><strong>自适应评估系统</strong>：建立定期针对当前前沿模型生成、验证、审计和校准新任务的自动化流程，使评估能力与模型进展同步进化，避免周期性饱和。</li>
+<li><strong>版本控制与透明度</strong>：通过版本化发布、保留测试集（held-out tests）和文档化验证协议，确保动态基准的透明性与可比性，防止数据污染与评估标准漂移。</li>
+<li><strong>评估-训练对齐</strong>：构建统一的任务生成-验证-训练基础设施，使揭示模型当前弱点的评测任务能直接转化为改进模型的训练环境，缩小评估信号与训练信号之间的鸿沟。</li>
+</ul>
+<p>3. 跨领域泛化与方法细化</p>
+<ul>
+<li><strong>领域迁移</strong>：将解决方案为中心的进化原则扩展至其他可执行领域（如形式化定理证明、科学计算、机器人任务规划），验证其在不同验证机制（如证明器、仿真器、物理执行）下的适用性。</li>
+<li><strong>细粒度难度控制</strong>：开发更精细的难度度量与调控机制，实现对任务复杂度的连续调节（而不仅是离散难度级别），支持更平滑的能力增长曲线。</li>
+<li><strong>人机协同进化</strong>：探索 BenchEvolver 与人类专家（如竞技编程教练、领域科学家）的协作模式，结合人类直觉引导进化方向与自动化的规模优势，加速高质量基准的构建。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>该论文针对<strong>基准测试饱和</strong>（benchmark saturation）问题——即前沿大语言模型在现有编程评测基准（如 LiveCodeBench）上已达超 90% Pass@1，难以区分模型能力或提供有效训练信号——提出了 <strong>BenchEvolver</strong>，一种以解决方案为中心的进化框架，用于自动将已饱和的编程任务转换为计算结构更复杂、算法要求更高的可验证变体。</p>
+<p>核心方法</p>
+<p>BenchEvolver 采用<strong>逆向生成范式</strong>（solution-centric pipeline）：<br>C arrow C’ arrow I’ = (S’, C’, T’, E)<br> 不同于传统的”先题面后解法”路径，该框架<strong>先变异参考解法</strong>（ C arrow C’ ），强制引入”主导算法提升”（如更强渐近复杂度、新数据结构或数学重构），使父任务算法失效；<strong>再基于可执行语义推导题面</strong>  S’  <strong>与测试</strong>  T’ ，确保任务在固定执行 harness  E  下的内在一致性。</p>
+<p>框架包含三个关键组件：</p>
+<ul>
+<li><strong>提案者（Proposer）</strong>：执行解法变异与题面重构，受记忆模块指导以针对目标模型弱点；</li>
+<li><strong>评估者（Evaluator）</strong>：通过独立一致性校验（如三方盲解交叉验证、陈述忠实度检验）与实证难度筛选（目标模型面板 Pass@1），仅接受有效且显著更难的任务；</li>
+<li><strong>记忆模块（Memory）</strong>：维护本地（单种子谱系）与全局（跨种子）进化历史，避免重复失败并强制算法多样性。</li>
+</ul>
+<p>实验验证</p>
+<p><strong>跨领域有效性</strong>：在 LiveCodeBench（竞技编程）与 SciCode（科学编码）上，BenchEvolver 以 60%–90% 的产出率生成有效进化任务，使目标模型（包括进化器自身）Pass@1 显著下降（平均  Delta  达  -0.16  至  -0.58 ）。人类专家评估显示，算法类别覆盖从 19 类扩展至 30 类，95.6% 的谱系引入新算法（如重链剖分、AC 自动机）。</p>
+<p><strong>基准构建</strong>：基于进化任务构建 <strong>LIVECODEBENCH-PLUS</strong>（91 题），前沿模型 Pass@1 分布于 27.5%–62.6%，恢复了对 GPT-5.5、DeepSeek-V4-Pro 等模型的清晰区分度。</p>
+<p><strong>闭环自我改进</strong>：以 gpt-oss-20b 进行强化学习实验，证明在种子数据上叠加进化任务训练，相比仅用种子数据，在 LCB v6 Hard 与 LCB-Pro Easy 上分别获得 <strong>70.7%</strong> 与 <strong>34.8%</strong> 的额外性能提升，且对独立构建的进化评测集（LCB-EVOLVED Medium）具有迁移性，实现了”生成难题→训练改进”的自我挑战闭环。</p>
+<p>结论与展望</p>
+<p>该工作表明，通过将基准构建从静态数据集维护转变为基于可执行语义的动态进化过程，模型可利用推断时计算发现自身弱点，将其转化为可验证的训练环境，从而支持持续的能力提升。未来方向包括扩展多轮自我改进循环，以及构建与模型能力同步成长的”动态基准”（living benchmarks）。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是BenchEvolver%3A%20Frontier%20Task%20Synthesis%20via%20Solution-Centric%20Evolution，链接是https://arxiv.org/pdf/2606.01286，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.01286。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Yangzhen Wu,Aaron J. Li,Wenjie Ma,Li Cao,Ziheng Zhou,Mert Cemri,Shu Liu,Yuran Xiu,Chenxiao Yan,Haikun Zhao,Bin Yu,Ion Stoica,Dawn Song</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.01286.pdf">https://arxiv.org/pdf/2606.01286.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.01286">https://arxiv.org/abs/2606.01286</a></p>
+<p><strong>Arxiv ID</strong>: 2606.01286</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.01286">https://papers.cool/arxiv/2606.01286</a></p>
+<p><strong>Published</strong>: 2026-06-04T02:10:45.983Z</p>
+<p><strong>Updated</strong>: 2026-06-04T02:10:45.983Z</p>
+<hr>
+<h3 id="3-MemTrain-Self-Supervised-Context-Memory-Training"><a href="#3-MemTrain-Self-Supervised-Context-Memory-Training" class="headerlink" title="3. MemTrain: Self-Supervised Context Memory Training"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.03197">MemTrain: Self-Supervised Context Memory Training</a></h3><p>Abstract:Memory is an indispensable capability for long-horizon LLM agents, enabling them to preserve and utilize information accumulated across extended interactions. Existing memory-agent approaches are typically trained end-to-end with reinforcement learning on downstream tasks. However, collecting high-quality annotated problems for memory-intensive scenarios is costly, and the resulting training data often lack sufficient diversity to cover general memory behaviors. In this work, we propose MemTrain, a self-supervised training framework for generally enhancing the context-memory capability of LLM agents for more effective downstream post-training. MemTrain introduces two coupled proxy tasks over unlabeled Wikipedia corpora: (1) an end-to-end masked reconstruction objective, which requires the model to recover masked entities after multiple rounds of memory updates, thereby encouraging memory maintenance from the final outcome perspective; and (2) an intermediate memory recall objective, which requires the model to reconstruct masked historical information using intermediate memory states, encouraging faithful compression and memory completeness throughout the interaction process. The two objectives are jointly optimized using GRPO. Extensive experiments on long-text QA and search-based QA benchmarks demonstrate that MemTrain consistently improves downstream memory-intensive reasoning performance across different models, achieving gains of up to 17.67 points over direct task-specific post-training.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：记忆是长远视角的大型语言模型（LLM）代理不可或缺的能力，使其能够在长期交互中保存和利用积累的信息。现有的记忆代理方法通常通过强化学习在下游任务上进行端到端训练。然而，为记忆密集型场景收集高质量标注问题成本高昂，而且所得训练数据往往缺乏足够的多样性，难以覆盖一般的记忆行为。在本研究中，我们提出了 MemTrain，一种自监督训练框架，用于普遍提升 LLM 代理的上下文记忆能力，从而更有效地进行下游后训练。MemTrain 在未标注的维基百科语料上引入了两个耦合的代理任务：(1) 端到端的掩码重构目标，需要模型在多轮记忆更新后恢复被掩盖的实体，从最终结果的角度鼓励记忆维护；(2) 中间记忆回忆目标，需要模型使用中间记忆状态重建被掩盖的历史信息，从整个交互过程角度鼓励忠实压缩和记忆完整性。这两个目标通过 GRPO 进行联合优化。在长文本问答和基于搜索的问答基准上的大量实验证明，MemTrain 在不同模型中一致提升了下游记忆密集型推理性能，相比直接的任务特定后训练可实现最多 17.67 点的提升。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>该研究旨在解决<strong>长程LLM智能体（long-horizon LLM agents）的上下文记忆能力（context-memory capability）训练问题</strong>，具体针对现有方法在数据依赖性和泛化性方面的局限性。</p>
+<p>核心问题</p>
+<p>现有记忆增强型智能体方法通常依赖下游任务的端到端强化学习训练，这导致两个关键瓶颈：</p>
+<ul>
+<li><strong>标注成本高昂</strong>：收集高质量的记忆密集型场景标注问题需要大量人工投入</li>
+<li><strong>数据多样性不足</strong>：基于特定任务构建的训练数据难以涵盖广泛的通用记忆行为（如信息筛选、压缩、保持与召回）</li>
+<li><strong>泛化能力受限</strong>： resulting记忆能力往往特定于训练领域，难以迁移到新的下游任务</li>
+</ul>
+<p>技术挑战</p>
+<p>记忆学习面临与推理学习不同的独特困难：</p>
+<ul>
+<li><strong>目标隐式性</strong>：记忆目标是潜在且过程依赖的（latent and process-dependent），模型必须在多轮交互中持续决策应保留、压缩和召回哪些信息</li>
+<li><strong>过程监督缺失</strong>：仅依赖最终结果（end-to-end）的奖励信号往往过于粗糙，无法充分约束中间记忆状态的质量，可能导致模型偶然保留最终预测所需信息而丢弃其他重要细节</li>
+<li><strong>误差累积</strong>：在多步交互中，基于最终结果的优化可能提供微弱且不稳定的学习信号</li>
+</ul>
+<p>解决方案概述</p>
+<p>为应对上述挑战，本文提出<strong>MemTrain</strong>框架，其核心创新包括：</p>
+<ul>
+<li><strong>自监督训练范式</strong>：利用无标注的Wikipedia语料库，无需昂贵的任务特定标注即可训练</li>
+<li><strong>双耦合代理任务</strong>：</li>
+</ul>
+<ol>
+<li><strong>端到端掩码重建（End-to-End Masked Reconstruction）</strong>：要求模型在多轮记忆更新后恢复被掩码的实体，从最终结果视角鼓励记忆维护</li>
+<li><strong>中间记忆召回（Intermediate Memory Recall）</strong>：要求模型利用中间记忆状态重建历史信息，鼓励交互过程中的忠实压缩和记忆完整性</li>
+</ol>
+<ul>
+<li><strong>联合优化</strong>：使用GRPO（Group Relative Policy Optimization）联合优化两个目标，同时提供结果级和过程级监督信号</li>
+</ul>
+<p>通过这种方式，MemTrain旨在为下游记忆密集型任务（如长文本问答和搜索式问答）提供更通用、可迁移的记忆能力初始化。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>该论文的相关研究主要涵盖以下两个领域：</p>
+<p>1. 长程LLM智能体的记忆机制</p>
+<p>现有记忆管理策略可分为三类：</p>
+<ul>
+<li><strong>上下文追加策略</strong>：将环境观察与模型响应持续追加至上下文窗口（Yao et al., 2023）。该方法受限于LLM有限的上下文长度，难以处理无限增长的长程交互历史。</li>
+<li><p><strong>外部记忆系统</strong>：将交互记录压缩或摘要后存储至外部存储器（Yoon et al., 2024; Li et al., 2023; Chhikara et al., 2025; Xu et al., 2025）。此类方法通过外部模块实现无界记忆，但往往忽视记忆与推理的内在协同，且增加系统复杂度。近期研究进一步引入多智能体框架以支持更复杂的记忆管理（Qian et al., 2026; Xu et al., 2025; Chen et al., 2026）。</p>
+</li>
+<li><p><strong>端到端上下文记忆智能体</strong>：近期研究将记忆构建与利用直接整合至智能体推理过程，实现端到端优化（Zhou et al., 2025b; Yu et al., 2025b; Wu et al., 2026; Ye et al., 2025; Yuan et al., 2026）。这类方法通常基于可验证奖励的强化学习（RLVR）在下游任务上训练，但依赖昂贵的任务特定标注，导致训练数据多样性不足，限制了记忆行为的泛化能力。</p>
+</li>
+</ul>
+<p>2. LLM预训练中的强化学习</p>
+<p>近期研究探索了基于大规模互联网文本的强化预训练范式，以突破后训练方法对策划问答数据集的依赖：</p>
+<ul>
+<li><strong>Quiet-STaR</strong>（Zelikman et al., 2024; Huang et al., 2025）：在每个token位置生成潜在推理（rationales）以更好预测未来文本。</li>
+<li><strong>RPT</strong>（Dong et al., 2025）：引入下一token推理的RLVR目标，首次展示可扩展的强化学习预训练。</li>
+<li><strong>RLPT</strong>（Li et al., 2025）：采用与RPT类似的公式，但引入生成式奖励模型。</li>
+<li><strong>RLP</strong>（Hatamizadeh et al., 2025）：用对比奖励替代下一token预测，显式诱导推理能力。</li>
+<li><strong>PretrainZero</strong>（Xing et al., 2025）：提出主动预训练框架，合成更具信息量和价值的训练样本。</li>
+</ul>
+<p>然而，现有RL-based预训练方法主要关注单轮推理能力的提升，对于多轮交互中的记忆维护与有效利用问题尚未充分探索。相比之下，本文提出的MemTrain首次针对上下文记忆能力设计自监督训练框架，通过无标注语料库训练通用记忆行为，以支持有效的下游后训练。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>该研究提出 <strong>MemTrain</strong> 框架，通过自监督代理任务与联合优化策略解决上下文记忆能力的训练难题。具体解决方案包含以下核心组件：</p>
+<p>1. 问题形式化与记忆机制</p>
+<p>基于 MemAgent（Yu et al., 2025b）的上下文记忆框架，模型在交互步骤  t  接收输入三元组  (m<em>(t-1), a</em>(t-1), i<em>t) ，其中  m</em>(t-1)  为固定长度的记忆状态， a_(t-1)  为上一步动作， i_t  为环境反馈。模型输出更新后的记忆  m_t  与当前动作  a_t 。与不断追加完整交互历史的传统范式不同，该机制保持恒定的上下文长度，支持超越模型原生上下文限制的长程交互。</p>
+<p>2. 双耦合代理任务设计</p>
+<p>MemTrain 基于无标注 Wikipedia 语料构建两个互补的代理任务，分别提供结果级与过程级监督信号：</p>
+<p>(1) 端到端掩码重建（End-to-End Masked Reconstruction）</p>
+<p><strong>数据构建</strong>：从 Wikipedia 中随机选取一篇作为中心段落，检索  n_1  篇语义相关段落与  N-n_1-1  篇随机段落，随机排列后构成长文档。从中心段落中随机选取实体  y （如数字、地点），将文档中所有该实体出现处替换为 <code>[MASK]</code> 标记，并将文档分割为固定长度块  c_1, c_2, …, c_T 。</p>
+<p><strong>任务目标</strong>：模型按顺序处理文本块，在第  t  步基于  (q^E, o^E<em>(i,t-1), c_t)  生成输出  o^E</em>(i,t) ，其中  q^E  为重建提示。对于  t &lt; T ，输出作为下一步的记忆状态；最终基于记忆状态  o^E<em>(i,T-1)  生成答案预测  o^E</em>(i,T) 。由于实体  y  被全局掩码，模型必须通过跨多轮记忆更新的长程信息聚合推断被掩码实体，而非简单复制局部上下文。</p>
+<p><strong>奖励函数</strong>：采用精确匹配奖励<br>R^E<em>i = I[y^E_i = y] + λ (1) / (G_2)∑</em>(j=1)^(G<em>2) R^I</em>(i,j)</p>
+<p>其中  λ  为平衡系数，第二项整合中间记忆召回任务的奖励。</p>
+<p>(2) 中间记忆召回（Intermediate Memory Recall, IMR）</p>
+<p><strong>动机</strong>：端到端奖励往往过于粗糙，无法约束中间记忆质量。模型可能偶然保留最终预测所需信息而丢弃其他关键细节，且多步交互中的误差累积会导致优化信号微弱。</p>
+<p><strong>任务设计</strong>：在生成完整轨迹  o^E<em>i  后，随机选择中间步骤  k ，提取对应记忆状态  o^E</em>(i,k)  与随机历史块  c<em>l （ l &lt; k ）。模型需在单步交互中基于  (q^I, o^E</em>(i,k) oplus c_l)  恢复  c_l  中被掩码的实体  y_i ，其中  q^I  为 IMR 提示。</p>
+<p><strong>奖励函数</strong>：<br>R^I<em>(i,j) = I[y^I</em>(i,j) = y_i]</p>
+<p>该目标显式鼓励模型在当前记忆状态中保留充分的历史信息，使记忆表示既信息丰富又可直接用于下游推理检索。</p>
+<p>3. 联合 GRPO 优化</p>
+<p>采用 GRPO（Group Relative Policy Optimization）作为强化学习算法，对两个任务进行联合优化：</p>
+<p><strong>采样策略</strong>：</p>
+<ul>
+<li>对每个训练样本  (p<em>(1:N), y) ，首先采样  G_1  条端到端轨迹  o^E_i</em>(i=1)^(G_1) </li>
+<li>对每条端到端轨迹  o^E<em>i ，构建一个 IMR 提示，并进一步采样  G_2  条 IMR 轨迹  o^I</em>(i,j)_(j=1)^(G_2) </li>
+</ul>
+<p><strong>优势估计</strong>：遵循 Dr. GRPO，采用非归一化优势形式<br>A<em>(i,j,k) = R_i - R_i</em>(i=1)^(G)</p>
+<p>其中轨迹最终奖励广播至所有交互步骤。</p>
+<p><strong>优化目标</strong>：<br>J(θ) = E<em>((p,y)simD) E</em>({o^E<em>i)simπ</em>θ(·|c), o^I<em>(i,j)simπ</em>θ(·|x<em>i)} [ (1) / (∑</em>(i=1)^(G<em>1)|o^E_i| + G_1G_2) ∑</em>(i=1)^(G<em>1+G_2) ∑</em>(j=1)^(|o<em>i|) ∑</em>(k=1)^(|o<em>(i,j)|) C</em>(i,j,k) ]</p>
+<p>其中  C<em>(i,j,k)  为裁剪后的目标函数与 KL 散度惩罚项：<br>C</em>(i,j,k) = min( r<em>(i,j,k)(θ)A</em>(i,j,k), clip(r<em>(i,j,k)(θ), 1-ε</em>(low), 1+ε<em>(high))A</em>(i,j,k) ) - D<em>(KL)(π</em>θ | π_(ref))</p>
+<p>重要性采样比率  r_(i,j,k)(θ)  根据轨迹类型（端到端或 IMR）采用相应的条件概率比。</p>
+<p>4. 训练数据与实现细节</p>
+<p><strong>语料处理</strong>：使用 Wikipedia 作为无监督语料，利用 spaCy 的 NER 系统识别实体。每篇中心段落搭配 29 篇语义相关段落与 120 篇随机段落，生成 30k 篇长度在 24k 至 40k token 的训练文档。</p>
+<p><strong>超参数配置</strong>：上下文长度限制为 8192 token（含 1024 token 指令、5120 token 输入块、1024 token 记忆、1024 token 响应）。批次大小为 32， G_1=8 ， G_2=8 ，IMR 系数  λ=0.5 ，训练 300 步，学习率  1× 10^(-6) ，KL 正则系数  1× 10^(-3) 。</p>
+<p>通过上述设计，MemTrain 利用无标注语料库中的自监督信号，同时优化记忆的<strong>完整性</strong>（通过 IMR 确保历史信息被忠实压缩与保留）与<strong>效用性</strong>（通过端到端重建确保记忆支持最终推理），从而为下游记忆密集型任务提供通用且可迁移的初始化能力。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>该论文在两个代表性下游任务上评估了 MemTrain 的有效性：<strong>长文本多跳问答</strong>（Long-Text Multi-Hop QA）和<strong>带搜索工具的多跳问答</strong>（Multi-Hop QA With Search Tool）。所有实验均在两种不同规模的基座模型上进行：Qwen3-4B-Instruct-2507 和 Qwen2.5-7B-Instruct。</p>
+<p>1. 记忆训练设置（Memory Training Setup）</p>
+<ul>
+<li><strong>数据集</strong>：使用 Wikipedia 作为无监督语料，通过 spaCy NER 识别实体。每篇中心段落搭配 29 篇语义相关段落和 120 篇随机段落，构建 30k 篇长度在 24k–40k tokens 的训练文档。</li>
+<li><strong>训练框架</strong>：基于 veRL 实现，采用 GRPO 算法，KL 正则系数为  1× 10^(-3) 。</li>
+<li><strong>超参数</strong>：上下文长度限制 8192 tokens（含 1024 指令 + 5120 输入块 + 1024 记忆 + 1024 响应），批次大小 32， G_1=8 （端到端轨迹数）， G_2=8 （IMR 轨迹数），IMR 系数  λ=0.5 ，学习率  1× 10^(-6) ，训练 300 步。</li>
+</ul>
+<p>2. 长文本多跳问答（Long-Text Multi-Hop QA）</p>
+<ul>
+<li><strong>后训练算法</strong>：采用 MemAgent（Yu et al., 2025b），训练 500 步，学习率  1× 10^(-6) 。</li>
+<li><strong>评估基准</strong>：长上下文 HotpotQA，输入长度覆盖 7k 至 896k tokens，共 8 个长度级别。</li>
+<li><strong>实验设置</strong>：</li>
+<li>原始基座模型（直接全上下文评估）</li>
+<li>MemTrain 单独训练（自监督预训练）</li>
+<li>MemAgent 直接后训练</li>
+<li><strong>MemTrain + MemAgent</strong>（先 MemTrain 预训练，再 MemAgent 后训练）</li>
+</ul>
+<p><strong>主要结果</strong>（Table 1）：</p>
+<ul>
+<li>MemTrain 显著提升下游性能：在 Qwen3-4B 上平均提升 <strong>5.17</strong> 个点（65.14% → 70.31%），在 Qwen2.5-7B 上提升 <strong>17.67</strong> 个点（55.86% → 73.53%）。</li>
+<li><strong>长度泛化能力</strong>：尽管训练长度仅为 32k–40k，MemTrain 的增益有效迁移至更短（7k, 14k）和更长（448k, 896k）的上下文。例如，Qwen2.5-7B 在 28k 到 896k 长度下，MemAgent 性能下降 21.09 个点，而 MemTrain+MemAgent 仅下降 8.59 个点。</li>
+<li>MemTrain 单独训练已具备相当的多轮问答能力（Qwen3-4B: 21.97% → 56.15%），尽管完全无标注监督。</li>
+</ul>
+<p>3. 带搜索工具的多跳问答（Multi-Hop QA With Search Tool）</p>
+<ul>
+<li><strong>后训练算法</strong>：采用 MEM1（Zhou et al., 2025b），在 2-objective HotpotQA 和 Natural Questions 上训练 200 步，最多 6 轮搜索。</li>
+<li><strong>评估基准</strong>：7 个挑战性多跳 QA 数据集，包括 2WikiMultiHopQA、Bamboogle、HotpotQA、TriviaQA、Natural Questions (NQ)、PopQA 和 MusiQUE。</li>
+<li><strong>实验设置</strong>：对比原始模型、MEM1 直接后训练、以及 MemTrain+MEM1。</li>
+</ul>
+<p><strong>主要结果</strong>（Table 2）：</p>
+<ul>
+<li>尽管存在明显的分布偏移（从记忆训练到搜索环境），MemTrain 仍表现出良好的泛化性。</li>
+<li><strong>性能提升</strong>：在 Qwen3-4B 上平均提升 <strong>10.58</strong> 个点（21.50% → 32.08%），在 Qwen2.5-7B 上提升 <strong>8.50</strong> 个点（23.94% → 32.44%）。</li>
+<li><strong>难任务上的增益</strong>：在需要维护更多中间证据的困难任务（如 PopQA、NQ、2Wiki）上提升尤为显著。例如，在 MusiQUE 上，MEM1 仅比基座提升 2.53 个点，而结合 MemTrain 后提升达 6.21 个点。</li>
+</ul>
+<p>4. 分析实验（Analysis）</p>
+<p>4.1 消融研究（Ablation Study）</p>
+<p>在 HotpotQA 上对比三种配置（Figure 3）：</p>
+<ul>
+<li><strong>End-to-End</strong>：移除 IMR 分支，仅保留端到端目标。平均得分从 70.31% 降至 63.28%，表明单一结果级监督不足以支持超长交互历史中的关键信息识别与保留。</li>
+<li><strong>Decoupled</strong>：端到端奖励与 IMR 解耦（不将 IMR 奖励纳入端到端轨迹的奖励计算）。在较短上下文（≤56k）表现尚可，但在长上下文（&gt;56k）显著恶化，表明解耦目标无法有效指导高质量记忆生成，导致长程幻觉问题加剧。</li>
+<li><strong>Full（MemTrain）</strong>：联合优化始终最优，验证了两个耦合任务的互补性。</li>
+</ul>
+<p>4.2 记忆训练 vs 后训练缩放（Memory Training V.S. Post-Training Scaling）</p>
+<p>在 Qwen3-4B 上，从 MemAgent 第 500 步检查点继续训练 300 步（Figure 4）：</p>
+<ul>
+<li>后训练在 500 步后已接近饱和，继续训练仅带来边际改善甚至性能下降。</li>
+<li>即使最佳检查点（约 700 步），MemTrain 初始化模型仍保持 <strong>2.64</strong> 个百分点的优势，表明记忆训练以单纯增加后训练步数无法复制的方式提升了性能上限。</li>
+</ul>
+<p>4.3 案例研究（Case Study）</p>
+<p>通过具体样例（Table 3）展示 MemTrain 对记忆质量的影响：</p>
+<ul>
+<li><strong>MemAgent</strong>：在处理第二段文本时未能保留第一段中的关键信息（导演所在城市），导致无法回答。</li>
+<li><strong>MemTrain+MemAgent</strong>：成功在记忆更新步骤中保留关键实体信息（”Greenwich Village”），从而在后续步骤中正确推导出答案。</li>
+</ul>
+<p>这些实验表明，MemTrain 通过自监督预训练有效增强了模型的上下文记忆能力，显著且持续地提升了下游长程任务的性能天花板。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文的局限性与潜在扩展空间，以下几个方向值得进一步探索：</p>
+<p>1. 多样化语料与多模态扩展</p>
+<p>当前 MemTrain 仅基于 Wikipedia 文本语料进行训练，未来可探索：</p>
+<ul>
+<li><strong>领域泛化</strong>：在代码仓库、学术文献、对话记录等更具结构性的数据上进行记忆训练，验证其在软件开发、科研辅助等场景中的迁移能力</li>
+<li><strong>多模态记忆</strong>：将框架扩展至视觉-语言模型（VLM），设计针对图像序列、视频帧的自监督代理任务，使智能体能够维护跨模态的长期记忆（如视觉导航任务中的空间记忆）</li>
+</ul>
+<p>2. 记忆架构的精细化设计</p>
+<p>论文采用固定长度的上下文记忆状态  m_t ，可探索更复杂的记忆拓扑：</p>
+<ul>
+<li><strong>分层记忆结构</strong>：引入工作记忆（working memory）与长期记忆（long-term memory）的双层架构，模仿人类认知系统，支持信息的渐进式固化与遗忘机制</li>
+<li><strong>稀疏记忆激活</strong>：探索基于键-值检索的稀疏记忆访问机制，而非密集的全上下文压缩，以降低记忆更新时的信息冲突</li>
+<li><strong>可学习的记忆容量</strong>：动态调整记忆槽位分配，根据输入复杂度自适应决定记忆压缩率，而非固定的 1024 tokens 限制</li>
+</ul>
+<p>3. 理论基础与可解释性分析</p>
+<ul>
+<li><strong>信息论视角</strong>：量化分析记忆状态  m<em>t  保留的互信息  I(m_t; c</em>(1:t)) ，建立记忆压缩率与下游任务性能的理论权衡关系</li>
+<li><strong>记忆内容可视化</strong>：通过探测分类器（probing classifiers）分析中间记忆状态实际编码的语义信息，验证 IMR 任务是否确实促进了关键事实的保留而非表面模式的记忆</li>
+</ul>
+<p>4. 训练效率与算法优化</p>
+<ul>
+<li><strong>课程学习策略</strong>：设计基于难度的课程，从短文档（少轮次交互）逐步过渡到长文档，而非直接训练 40k tokens 的长序列，可能提升样本效率</li>
+<li><strong>离线强化学习</strong>：当前采用在线 GRPO 采样，探索基于预先生成记忆缓冲区的离线 RL 方法（如直接偏好优化 DPO 的变体），以降低训练计算成本</li>
+<li><strong>参数高效微调</strong>：将 MemTrain 应用于 LoRA 等参数高效微调设置，验证是否仅需训练少量记忆相关参数即可实现性能提升</li>
+</ul>
+<p>5. 复杂智能体环境的验证</p>
+<p>当前评估集中于问答任务，需验证在更复杂决策场景中的有效性：</p>
+<ul>
+<li><strong>工具使用链</strong>：在需要调用多个 API 并维护跨工具调用状态的场景（如旅行规划、数据分析工作流）中测试记忆保持能力</li>
+<li><strong>对抗性环境</strong>：引入误导性信息或干扰性观察，测试记忆机制对噪声的鲁棒性及错误信息的遗忘能力</li>
+<li><strong>多智能体协作</strong>：扩展至多智能体场景，研究 MemTrain 训练的记忆状态是否支持有效的跨智能体通信历史维护</li>
+</ul>
+<p>6. 自适应记忆机制</p>
+<ul>
+<li><strong>元认知控制</strong>：训练模型自主决定是否更新记忆（selective memory update），而非每轮强制更新，减少冗余信息写入</li>
+<li><strong>记忆反思（Memory Reflection）</strong>：引入显式的记忆整理步骤，允许智能体定期重构、去重或摘要历史记忆，类似人类的记忆巩固过程</li>
+</ul>
+<p>7. 跨语言与跨能力迁移</p>
+<ul>
+<li><strong>多语言记忆</strong>：验证在英文 Wikipedia 上训练的记忆能力能否零样本迁移至中文、德文等其他语言的下游任务</li>
+<li><strong>跨任务迁移</strong>：研究 MemTrain 学习到的记忆策略（如实体追踪、时间线维护）是否可迁移至摘要生成、对话系统等非 QA 类任务</li>
+</ul>
+<p>这些方向的探索将有助于构建更通用、高效且可解释的上下文记忆系统，进一步突破长程智能体的能力边界。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>本文提出 <strong>MemTrain</strong>，首个针对大型语言模型（LLM）智能体通用上下文记忆能力的自监督训练框架，旨在解决现有方法依赖昂贵标注数据且泛化性受限的问题。</p>
+<p>1. 研究背景与核心挑战</p>
+<p>长程LLM智能体需在多轮交互中维护固定大小的记忆状态  m_t  以替代无限增长的上下文窗口。现有端到端强化学习方法面临两大瓶颈：</p>
+<ul>
+<li><strong>数据瓶颈</strong>：高质量标注数据收集成本高昂，难以覆盖多样化的记忆行为（信息筛选、压缩、召回）</li>
+<li><strong>优化挑战</strong>：记忆目标是隐式且过程依赖的，单一最终结果奖励无法有效约束中间记忆质量，易导致误差累积</li>
+</ul>
+<p>2. 方法：双耦合代理任务</p>
+<p>MemTrain 基于无标注 Wikipedia 语料，构建两个互补的自监督代理任务，通过 GRPO 联合优化：</p>
+<p>(1) 端到端掩码重建（End-to-End Masked Reconstruction）</p>
+<p>将长文档分块处理，随机掩码其中的关键实体  y 。模型通过多轮交互顺序读取文本块，更新记忆状态，最终基于累积记忆恢复被掩码实体。该任务提供<strong>结果级监督</strong>，要求模型：<br>o^E<em>(i,t) sim π</em>θ(·|q^E, o^E<em>(i,t-1), c_t)<br> 奖励函数包含最终预测准确率及关联的 IMR 奖励：<br>R^E_i = I[y^E_i = y] + λ (1) / (G_2)∑</em>(j=1)^(G<em>2) R^I</em>(i,j)</p>
+<p>(2) 中间记忆召回（Intermediate Memory Recall, IMR）</p>
+<p>在端到端轨迹中随机采样中间记忆状态  o^E<em>(i,k) ，要求模型基于该状态恢复更早历史块  c_l （ l&lt;k ）中的被掩码实体  y_i 。该任务提供<strong>过程级监督</strong>，确保记忆状态的完整性与可直接检索性：<br>R^I</em>(i,j) = I[y^I_(i,j) = y_i]</p>
+<p>联合优化</p>
+<p>采用非归一化优势估计：<br>A<em>(i,j,k) = R_i - R_i</em>(i=1)^(G)<br> 通过 GRPO 目标函数同时优化端到端轨迹与 IMR 轨迹，平衡记忆生成与利用能力。</p>
+<p>3. 实验验证</p>
+<p>在两个代表性下游任务上评估：</p>
+<p><strong>长文本多跳问答（HotpotQA）</strong></p>
+<ul>
+<li><strong>性能提升</strong>：在 7k 至 896k tokens 的广泛长度范围内，MemTrain 预训练后接 MemAgent 后训练，相比直接后训练在 Qwen3-4B 上平均提升 <strong>5.17</strong> 点，在 Qwen2.5-7B 上提升 <strong>17.67</strong> 点</li>
+<li><strong>长度泛化</strong>：尽管训练长度仅为 32k–40k，模型在 896k tokens 超长上下文下性能衰减显著减缓（从 21.09% 降至 8.59%）</li>
+</ul>
+<p><strong>搜索式多跳问答（7 个基准）</strong></p>
+<ul>
+<li>在存在分布偏移的工具使用场景中，MemTrain 仍带来一致增益：Qwen3-4B 提升 <strong>10.58</strong> 点，Qwen2.5-7B 提升 <strong>8.50</strong> 点，在 MusiQUE 等困难任务上提升尤为显著</li>
+</ul>
+<p><strong>消融与机制验证</strong></p>
+<ul>
+<li>移除 IMR 导致性能下降 7 点，验证过程级监督的必要性</li>
+<li>相比单纯延长后训练步数，MemTrain 能突破性能天花板（保持 2.64 点优势）</li>
+<li>案例分析表明 MemTrain 有效保留了关键实体信息，避免了记忆丢失导致的失败</li>
+</ul>
+<p>4. 核心贡献</p>
+<ul>
+<li><strong>范式创新</strong>：首次提出针对上下文记忆能力的通用自监督训练框架，摆脱对昂贵任务标注的依赖</li>
+<li><strong>训练机制</strong>：设计结果级与过程级监督相结合的耦合代理任务，同时优化记忆维护的完整性与利用的有效性</li>
+<li><strong>实证验证</strong>：在 4B 与 7B 模型上验证了对长文本 QA 和搜索式 QA 的一致性能提升，展现出优异的跨长度泛化能力</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是MemTrain%3A%20Self-Supervised%20Context%20Memory%20Training，链接是https://arxiv.org/pdf/2606.03197，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.03197。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Ziheng Li,Xingrun Xing,Haoqing Wang,Zhi-Hong Deng,Yehui Tang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.03197.pdf">https://arxiv.org/pdf/2606.03197.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.03197">https://arxiv.org/abs/2606.03197</a></p>
+<p><strong>Arxiv ID</strong>: 2606.03197</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.03197">https://papers.cool/arxiv/2606.03197</a></p>
+<p><strong>Published</strong>: 2026-06-04T02:10:57.778Z</p>
+<p><strong>Updated</strong>: 2026-06-04T02:10:57.778Z</p>
+<hr>
+<h3 id="4-Self-Distilled-Policy-Gradient"><a href="#4-Self-Distilled-Policy-Gradient" class="headerlink" title="4. Self-Distilled Policy Gradient"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.04036">Self-Distilled Policy Gradient</a></h3><p>Abstract:On-policy self-distillation, where a language model conditions on privileged context to supervise its own generations, is a promising source of dense supervision for sparse-reward reinforcement learning. Actually, it can be instantiated as an auxiliary full-vocabulary student-to-teacher reverse Kullback-Leibler divergence loss. We therefore propose SDPG, a self-distilled policy-gradient framework that combines group-relative verifier advantages with normalized standard deviation, exact full-vocabulary on-policy self-distillation, as well as reference-policy KL regularization. Empirically, SDPG improves stability and performance over RLVR and self-distillation baselines. The code is available at this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：在策略自蒸馏中，语言模型利用特权上下文来监督自身的生成，这是一种对稀疏奖励强化学习进行密集监督的有前景的方法。实际上，它可以被实例化为一个辅助的全词汇学生到教师的反向Kullback-Leibler散度损失。因此，我们提出了SDPG，一种自蒸馏策略梯度框架，它结合了相对组验证器优势与归一化标准差、精确全词汇的策略自蒸馏，以及参考策略的KL正则化。在实证上，SDPG在稳定性和性能上优于RLVR和自蒸馏基线。代码可通过此HTTPS URL获得。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Navigation timeout of 10000 ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Yifeng Liu,Shiyuan Zhang,Yifan Zhang,Quanquan Gu</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.04036.pdf">https://arxiv.org/pdf/2606.04036.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.04036">https://arxiv.org/abs/2606.04036</a></p>
+<p><strong>Arxiv ID</strong>: 2606.04036</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.04036">https://papers.cool/arxiv/2606.04036</a></p>
+<p><strong>Published</strong>: 2026-06-04T02:11:07.577Z</p>
+<p><strong>Updated</strong>: 2026-06-04T02:11:07.577Z</p>
+<hr>
+<h3 id="5-Cosmos-3-Omnimodal-World-Models-for-Physical-AI"><a href="#5-Cosmos-3-Omnimodal-World-Models-for-Physical-AI" class="headerlink" title="5. Cosmos 3: Omnimodal World Models for Physical AI"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.02800">Cosmos 3: Omnimodal World Models for Physical AI</a></h3><p>Abstract:We introduce Cosmos 3, a family of omnimodal world models designed to jointly process and generate language, image, video, audio, and action sequences within a unified mixture-of-transformers architecture. By supporting highly flexible input-output configurations, Cosmos 3 seamlessly unifies critical modalities for Physical AI — effectively subsuming vision-language models, video generators, world simulators, and world-action models into a single framework. Our evaluation demonstrates that Cosmos 3 establishes a new state-of-the-art across a diverse suite of understanding and generation tasks, demonstrating omnimodal world models as scalable, general-purpose backbones for embodied agents. Our post-trained Cosmos 3 models were ranked as the best open-source Text-to-Image and Image-to-Video models by Artificial Analysis, and the best policy model by RoboArena at the time the technical report was written. To accelerate open research and deployment in Physical AI, we make our code, model checkpoints, curated synthetic datasets, and evaluation benchmark available under the Linux Foundation’s OpenMDW-1.1 this https URL License at this https URL}{this http URL and this https URL . The project website is available at this https URL .</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：我们介绍了 Cosmos 3，这是一个全模态世界模型家族，旨在在统一的混合变换器架构中联合处理和生成语言、图像、视频、音频和动作序列。通过支持高度灵活的输入输出配置，Cosmos 3 无缝整合了物理人工智能的关键模态——有效地将视觉-语言模型、视频生成器、世界模拟器和世界动作模型纳入单一框架。我们的评估表明，Cosmos 3 在多种理解和生成任务中建立了新的最先进水平，展示了全模态世界模型作为具身智能体的可扩展通用骨干的潜力。我们的后训练 Cosmos 3 模型在技术报告撰写时，被 Artificial Analysis 评为最佳开源文本到图像和图像到视频模型，并被 RoboArena 评为最佳策略模型。为了加速物理人工智能的开放研究和部署，我们在 Linux 基金会的 OpenMDW-1.1 许可下提供代码、模型检查点、精选合成数据集和评估基准测试，其网址为此 https URL}{此 http URL 和此 https URL。项目网站可在此 https URL 访问。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文旨在解决<strong>物理人工智能（Physical AI）智能体开发中的核心瓶颈：现有范式将感知推理、世界模拟与动作生成分离，导致训练效率低下、架构碎片化，且难以在真实世界中安全扩展</strong>。</p>
+<p>具体而言，论文针对以下关键问题提出了解决方案：</p>
+<ol>
+<li><p><strong>现实世界训练的效率与安全问题</strong><br>物理AI智能体直接在真实环境中训练存在过程缓慢、成本高昂且潜在危险等局限。论文指出需要构建安全的模拟环境来加速学习，但现有方法缺乏能够同时支持理解与生成的高保真世界模型。</p>
+</li>
+<li><p><strong>理解与生成的范式分离</strong><br>先前工作将”理解”（如视觉-语言模型VLMs）与”生成”（如视频生成模型、前向动力学模型）以及”动作预测”（如视觉-语言-动作模型VLAs）割裂开来。论文论证这种分离是本质上的局限：理解需要推理世界的未来演化及动作后果，而生成依赖于对世界和智能体行为的紧凑结构化表示，二者应当统一而非孤立。</p>
+</li>
+<li><p><strong>多模态能力的碎片化架构</strong><br>处理语言、图像、视频、音频和动作等不同模态通常需要独立的模型和流水线，导致计算冗余且难以实现跨模态的联合推理与生成。</p>
+</li>
+</ol>
+<p>针对上述问题，论文提出<strong>Cosmos 3</strong>——一种<strong>全模态世界模型（Omnimodal World Model）</strong>，通过统一的Mixture-of-Transformers架构，将语言、视觉、音频和动作统一在单一框架内，同时支持理解（Reasoner）与生成（Generator）任务。该模型能够根据输入-输出配置灵活切换为视觉-语言模型、图像/视频生成器、世界模拟器或世界-动作模型，从而为物理AI智能体提供可扩展的通用基础架构，支持从合成数据生成到闭环策略学习的全流程训练。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>根据论文第7节（Related Work），Cosmos 3的相关研究可归纳为以下六个主要领域：</p>
+<p>1. 物理AI的世界模型（World Models for Physical AI）</p>
+<p><strong>预测性潜在世界模型</strong>（Predictive Latent World Models）：</p>
+<ul>
+<li>早期工作如 <strong>World Models</strong> (Ha &amp; Schmidhuber, 2018)、<strong>Embed-to-Control</strong> (Watter et al., 2015)、<strong>PlaNet</strong> (Hafner et al., 2019) 和 <strong>Dreamer</strong> (Hafner et al., 2020) 展示了紧凑预测状态如何支持基于像素的控制与规划</li>
+<li>近期 <strong>JEPA</strong> 系列 (LeCun, 2022; Assran et al., 2023, 2025) 将预测从像素转移到更适合感知、预测和规划的潜在抽象</li>
+</ul>
+<p><strong>生成式世界模型</strong>（Generative World Models）：</p>
+<ul>
+<li><strong>Sora</strong> (OpenAI, 2024) 推动了视频生成作为隐式世界模拟的前沿</li>
+<li><strong>Cosmos</strong> 系列 (NVIDIA, 2025a,b,c,d) 直接面向物理AI开发世界模型</li>
+<li>领域特定系统如 <strong>GAIA-1</strong> (Hu et al., 2023)、<strong>DriveDreamer</strong> (Wang et al., 2024b; Zhao et al., 2025) 和 <strong>DreamGen</strong> (Jang et al., 2025) 探索驾驶与机器人场景</li>
+</ul>
+<p>2. 多模态理解与具身推理（Multimodal Understanding and Embodied Reasoning）</p>
+<p><strong>视觉-语言模型</strong>（Vision-Language Models）：</p>
+<ul>
+<li><strong>Flamingo</strong> (Alayrac et al., 2022) 和 <strong>BLIP-2</strong> (Li et al., 2023b) 建立了大语言模型与视觉输入耦合的现代范式</li>
+<li><strong>LLaVA</strong> (Liu et al., 2023b; Li et al., 2024a) 推动了指令调优的视觉语言助手发展</li>
+<li>近期模型如 <strong>Qwen3-VL</strong> (Bai et al., 2025b)、<strong>LLaVA-OneVision</strong> (Li et al., 2024a) 和 <strong>InternVL</strong> (Chen et al., 2024c) 提升了规模、定位、时序推理与OCR能力</li>
+<li>前沿系统 <strong>GPT-4o</strong> (OpenAI, 2024) 和 <strong>Gemini</strong> (Google DeepMind, 2024a, 2025a) 向全模态交互演进</li>
+</ul>
+<p><strong>物理AI专用推理</strong>：</p>
+<ul>
+<li><strong>Cosmos-Reason1</strong> (NVIDIA, 2025) 针对物理常识与具身链式思维推理</li>
+<li>空间定位与具身规划工作 (Sermanet et al., 2024; Song et al., 2025; Zhou et al., 2025b)</li>
+</ul>
+<p>3. 视频生成与视觉世界模拟（Video Generation and Visual World Simulation）</p>
+<p><strong>基础模型发展</strong>：</p>
+<ul>
+<li>早期扩散与Transformer系统：<strong>Imagen Video</strong> (Ho et al., 2022a)、<strong>Video LDM</strong> (Blattmann et al., 2023)、<strong>Make-A-Video</strong> (Singer et al., 2023)</li>
+<li>近期工业级系统：<strong>Sora</strong> (OpenAI, 2024, 2025)、<strong>Movie Gen</strong> (Polyak et al., 2024)、<strong>Veo 3</strong> (DeepMind, 2025)、<strong>Kling</strong> (Kuaishou, 2024, 2025)、<strong>HunyuanVideo</strong> (Kong et al., 2024)</li>
+</ul>
+<p><strong>物理一致性评估</strong>：</p>
+<ul>
+<li><strong>VideoPhy</strong> (Bansal et al., 2025a) 和 <strong>T2VPhysBench</strong> (Guo et al., 2025) 等基准测试评估生成视频的物理合理性</li>
+</ul>
+<p>4. 动作建模、VLAs与世界-动作模型（Action Modeling, VLAs, and World-Action Models）</p>
+<p><strong>前向动力学</strong>（Forward Dynamics）：</p>
+<ul>
+<li>驾驶场景：<strong>GAIA-1</strong>、<strong>DriveDreamer</strong>、<strong>Cosmos-Drive-Dreams</strong> (Ren et al., 2025a)</li>
+<li>机器人与相机控制生成：<strong>DreamGen</strong>、<strong>Ctrl-World</strong> (Guo et al., 2026)、<strong>Genie</strong> (Bruce et al., 2024)</li>
+</ul>
+<p><strong>逆动力学与模仿学习</strong>（Inverse Dynamics）：</p>
+<ul>
+<li><strong>VPT</strong> (Baker et al., 2022) 从视频中学习动作标记</li>
+<li>从观察中模仿学习的工作 (Zhang et al., 2022; Torabi et al., 2018; Ye et al., 2025)</li>
+</ul>
+<p><strong>策略模型</strong>（Policy Models）：</p>
+<ul>
+<li><strong>RT-1/RT-2</strong> (Brohan et al., 2023b,a)、<strong>PaLM-E</strong> (Driess et al., 2023)、<strong>OpenVLA</strong> (Kim et al., 2024)</li>
+<li>近期通才模型：<strong>π0</strong> (Black et al., 2025)、<strong>Gemini Robotics</strong> (Gemini Robotics Team et al., 2025)、<strong>GR00T N1</strong> (Bjorck et al., 2025)</li>
+</ul>
+<p><strong>世界-动作模型</strong>（World-Action Models）：</p>
+<ul>
+<li><strong>RynnVLA</strong> (Cen et al., 2025)、<strong>World Action Models</strong> (Wang et al., 2026b)、<strong>ACWM-Phys</strong> (Xue et al., 2026)</li>
+</ul>
+<p>5. 音频与视听生成（Audio and Audio-Visual Generation）</p>
+<p><strong>音频生成</strong>：</p>
+<ul>
+<li><strong>AudioLDM 2</strong> (Liu et al., 2024b)、<strong>AudioCraft</strong> (Meta AI, 2023)、<strong>MusicGen</strong> (Copet et al., 2023)</li>
+<li>近期扩展：<strong>ETTA</strong> (Lee et al., 2025b)、<strong>Stable Audio</strong> (Stability AI, 2024)</li>
+</ul>
+<p><strong>视听同步与视频到音频</strong>：</p>
+<ul>
+<li><strong>Diff-Foley</strong> (Luo et al., 2023)、<strong>SyncFusion</strong> (Comunita et al., 2024)</li>
+<li>联合生成系统：<strong>Movie Gen</strong>、<strong>Veo 3</strong>、<strong>VASA-1</strong> (Microsoft Research, 2024)、<strong>OmniHuman-1</strong> (Wang et al., 2025a)</li>
+</ul>
+<p>6. 理解与生成的全模态模型（Omnimodels for Understanding and Generation）</p>
+<p><strong>统一架构</strong>：</p>
+<ul>
+<li><strong>Unified-IO 2</strong> (Lu et al., 2024)、<strong>Chameleon</strong> (Chameleon Team, 2024)、<strong>GPT-4o</strong>、<strong>Gemini</strong></li>
+<li><strong>Qwen-Omni</strong> (Xu et al., 2025; Qwen Team, 2026a)</li>
+</ul>
+<p><strong>Mixture-of-Transformers (MoT) 架构</strong>：</p>
+<ul>
+<li><strong>Transfusion</strong> (Zhou et al., 2025a)：结合文本next-token预测与图像扩散</li>
+<li><strong>Mixture-of-Transformers</strong> (Liang et al., 2025)：显式多模态专业化</li>
+<li><strong>BAGEL</strong> (Deng et al., 2025)：统一多模态理解与生成</li>
+<li>具身扩展：<strong>Motus</strong> (Bi et al., 2025)、<strong>HALO</strong> (Shou et al., 2026)、<strong>MotuBrain</strong> (MotuBrain Team et al., 2026)</li>
+</ul>
+<p>这些研究方向共同构成了Cosmos 3的技术背景，论文通过统一的语言、图像、视频、音频和动作建模，将上述分散的能力整合到单一的全模态世界模型框架中。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过提出 <strong>Cosmos 3</strong>——一种<strong>全模态世界模型（Omnimodal World Model）</strong>——来解决物理AI开发中的碎片化与效率瓶颈。具体解决方案包括以下核心设计：</p>
+<p>1. 统一架构：Mixture-of-Transformers (MoT)</p>
+<p>不同于为不同任务（理解 vs. 生成，语言 vs. 视觉）分别设计模型，Cosmos 3 采用单一的 <strong>MoT 架构</strong>统一处理所有模态和任务：</p>
+<ul>
+<li><strong>双塔结构（Dual-Tower）</strong>：每个Transformer层包含两组参数：</li>
+<li><strong>Reasoner塔</strong>：处理自回归（AR）序列，负责语言生成、视觉理解和推理</li>
+<li><strong>Generator塔</strong>：处理扩散（DM）序列，负责图像、视频、音频和动作的生成</li>
+<li><strong>双流联合注意力（Dual-Stream Joint Attention）</strong>：允许生成路径中的token双向关注推理路径的上下文，确保生成内容以理解为基础，同时保持推理路径的因果完整性</li>
+</ul>
+<p>2. 全模态统一表示</p>
+<p>将异构模态映射到共享的表示空间，实现无缝跨模态交互：</p>
+<ul>
+<li><strong>语言</strong>：标准文本token</li>
+<li><strong>视觉</strong>：使用ViT编码器（理解）和VAE编码器（生成）处理图像/视频</li>
+<li><strong>音频</strong>：基于VAE的音频token（48kHz采样，25 token/秒）</li>
+<li><strong>动作</strong>：设计<strong>统一动作表示接口</strong>，将不同具身（机器人、自动驾驶车辆、相机运动、人类动作）映射到标准几何组件（9D位姿+ grasp状态），通过域特定投影层适配不同控制空间</li>
+</ul>
+<p>3. 灵活的输入-输出配置（Token Arrangement）</p>
+<p>通过统一的token排列协议，同一模型可执行多种任务而无需架构修改：</p>
+<ul>
+<li><strong>理解模式</strong>：纯AR序列（如VLM问答）</li>
+<li><strong>生成模式</strong>：AR前缀（条件）+ DM序列（生成目标），支持：</li>
+<li>文生图（T2I）、文生视频（T2V）</li>
+<li>图生视频（I2V）、视频续写（V2V）</li>
+<li>视频迁移（Video Transfer，如边缘/深度图生成视频）</li>
+<li><strong>动作生成</strong>：前向动力学、逆动力学、策略（Policy）模式</li>
+</ul>
+<p>4. 分阶段训练策略</p>
+<p>针对物理AI需求设计渐进式训练流程：</p>
+<ul>
+<li><strong>阶段1：Reasoner训练</strong></li>
+<li>预训练：2200万样本的多模态语料（图像-文本、视频-文本）</li>
+<li>SFT：220万样本的物理AI专用数据（机器人、自动驾驶、智能基础设施），包含空间/时间推理、3D定位、物理常识判断</li>
+<li><strong>阶段2：Generator训练</strong>（继承Reasoner权重）</li>
+<li>预训练：7.67亿图像+3.48亿视频，多分辨率（256p/480p/720p）联合训练</li>
+<li>中训练（Mid-training）：引入动作数据和视频迁移数据，建立世界-动作关联</li>
+<li>后训练（Post-training）：针对特定任务（如T2I、I2V、机器人策略）微调，生成专用变体（如Cosmos3-Nano-Policy-DROID）</li>
+</ul>
+<p>5. 物理AI专用的合成数据引擎</p>
+<p>为解决真实世界数据稀缺问题，构建<strong>大规模合成数据集（SDG）</strong>：</p>
+<ul>
+<li><strong>SDG-PhyxSim</strong>：物理交互场景（刚体碰撞、流体动力学）</li>
+<li><strong>SDG-RobotSim</strong>：机器人操作与运动（覆盖6-8种机器人形态）</li>
+<li><strong>SDG-DriveSim</strong>：自动驾驶长尾场景（紧急车辆、切入、天气退化）</li>
+<li><strong>SDG-SynHuman</strong>：数字人类与相机运动</li>
+<li><strong>SDG-Warehouse</strong>：工业安全场景（叉车-人类交互）</li>
+</ul>
+<p>这些数据提供精确的物理标注（深度、分割、物理状态、相机参数），弥补真实数据的标注稀疏问题。</p>
+<p>6. 3D多模态位置编码（3D MRoPE）</p>
+<p>解决不同模态时序对齐问题：</p>
+<ul>
+<li>为视频、音频、动作token分配统一的**(t, h, w)**坐标</li>
+<li><strong>绝对时间调制（Absolute Temporal Modulation）</strong>：根据实际帧率（FPS）调整时间轴步长，使不同采样率的模态（如24 FPS视频 vs. 25 TPS音频）在物理时间轴上对齐</li>
+</ul>
+<p>7. 推理与生成协同（Reasoner as Prompt Upsampler）</p>
+<p>利用Reasoner的物理常识能力增强生成质量：</p>
+<ul>
+<li>将用户简短提示扩展为结构化的JSON场景描述（包含物体属性、空间关系、物理动态、相机运动、音频描述）</li>
+<li>该描述作为Generator的输入，提升生成内容的物理一致性和细节丰富度</li>
+</ul>
+<p>通过这些设计，Cosmos 3 实现了<strong>单一模型支撑物理AI全生命周期</strong>：从通过合成数据预训练获得世界先验，到作为策略模型进行闭环控制，再到作为世界模型进行未来状态模拟，消除了传统方案中多个独立模型拼接带来的效率损失和误差累积。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>根据论文第6节（Results）及附录中的消融实验，Cosmos 3的实验评估涵盖<strong>理解能力</strong>与<strong>生成能力</strong>两大维度，共涉及超过50个基准测试。以下是详细实验分类：</p>
+<p>1. Reasoner（理解能力）评估</p>
+<p>在<strong>48个基准测试</strong>上评估，分为4大领域：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>基准示例</th>
+<th>主要对比基线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通用多模态 (19个)</td>
+<td>MMBench、RealWorldQA、CVBench、VideoPhy2、CausalVQA、DocVQA、OCRBench-v2、LogicVista、MMMU-Pro</td>
+<td>Gemini 3.1 Pro、Qwen3-VL、Gemma-4、Cosmos-Reason2</td>
+</tr>
+<tr>
+<td>机器人与具身智能 (17个)</td>
+<td>Cosmos-ER、Cosmos-CS、RefSpatial、VSI-Bench、SparBench、RynnBrain系列、ERQA、RoboSpatialHome、Where2Place</td>
+<td>RynnBrain、MiMo-Embodied</td>
+</tr>
+<tr>
+<td>智能基础设施 (9个)</td>
+<td>VANTAGE-Bench (2D定位、指向、事件验证等)、TARBench</td>
+<td>-</td>
+</tr>
+<tr>
+<td>自动驾驶 (3个)</td>
+<td>LingoQA、AVSpecialCollision、AVSpecialStopBehavior</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键结果</strong>：</p>
+<ul>
+<li><strong>Cosmos3-Super</strong> 在通用基准平均得分<strong>73.7</strong>，在机器人(57.8)、智能基础设施(62.6)和驾驶(79.3)领域超越所有开源模型及多数闭源模型（如Gemma-4）</li>
+<li>在物理常识推理（VideoPhy2）和具身问答（Robotics benchmarks）上显著优于Qwen3-VL和Gemma-4</li>
+</ul>
+<p>2. Generator（生成能力）评估</p>
+<p>2.1 图像生成（Text-to-Image）</p>
+<ul>
+<li><strong>基准</strong>：</li>
+<li><strong>UniGenBench</strong>：600个通用提示+570个物理AI专用提示（涵盖机器人、自动驾驶、流体动力学等）</li>
+<li><strong>CVTG</strong>：复杂场景文本渲染能力（GNED/PNED指标）</li>
+<li><strong>HPSv3</strong>：人类偏好对齐</li>
+<li><strong>LAION Aesthetic</strong>：视觉美学质量</li>
+<li><strong>对比模型</strong>：Gemini 3 Pro Image、FLUX.2-dev、Qwen-Image-2512、Hunyuan 3.0</li>
+<li><strong>结果</strong>：</li>
+<li><strong>Cosmos3-Super-Text2Image</strong> 在UniGenBench全量基准达<strong>91.36</strong>（物理AI子集89.54），超越所有开源模型</li>
+<li>在Artificial Analysis文本到图像排行榜上位列开源模型第一</li>
+</ul>
+<p>2.2 视频生成</p>
+<ul>
+<li><strong>任务</strong>：T2V（文生视频）、I2V（图生视频）、V2V（视频续写）</li>
+<li><strong>基准</strong>：</li>
+<li><strong>PAIBench-G</strong>：物理AI视频生成综合基准（含物理常识、几何推理等子维度）</li>
+<li><strong>Cosmos-HUE (HumanEval)</strong>：人工评估（语义对齐、物理定律、几何推理、视觉完整性）</li>
+<li><strong>VBench</strong>：视频质量与条件一致性</li>
+<li><strong>FVD/FID</strong>：分布距离指标</li>
+<li><strong>对比模型</strong>：Veo-3.1、Wan2.2-A14B、HunyuanVideo-1.5、Seedance-1.5-Pro</li>
+<li><strong>结果</strong>：</li>
+<li><strong>Cosmos3-Super</strong> 在PAIBench-G T2V达<strong>80.0</strong>，I2V达<strong>82.8</strong></li>
+<li>在Cosmos-HUE人工评估中，T2V达<strong>89.3%</strong>，I2V达<strong>89.6%</strong>，在物理AI相关维度（Physics、AV）超越所有对比模型</li>
+</ul>
+<p>2.3 音频生成</p>
+<ul>
+<li><strong>任务</strong>：视频到音频生成（Video-to-Audio）</li>
+<li><strong>基准</strong>：</li>
+<li><strong>FoleyBench</strong>：声音效果质量</li>
+<li><strong>SyncNet</strong>：音画同步性</li>
+<li><strong>CLAP Score</strong>：文本-音频对齐</li>
+<li><strong>结果</strong>：在FoleyBench子集（Music、Speech、Sound Effects）上取得有竞争力的同步性和音质</li>
+</ul>
+<p>2.4 迁移生成（Video Transfer）</p>
+<ul>
+<li><strong>任务</strong>：边缘/深度/分割图/世界场景图到视频的生成</li>
+<li><strong>基准</strong>：PAIBench-G的Transfer子集</li>
+<li><strong>结果</strong>：在驾驶场景的世界场景图（World-Scenario-Map）迁移上表现优异</li>
+</ul>
+<p>2.5 动作生成与策略学习</p>
+<ul>
+<li><strong>前向动力学（Forward Dynamics）</strong>：</li>
+<li>数据集：DROID</li>
+<li>指标：PSNR（预测视频质量）</li>
+<li>结果：在DROID上PSNR达<strong>26.0 dB</strong></li>
+<li><strong>逆动力学（Inverse Dynamics）</strong>：</li>
+<li>指标：动作预测MSE</li>
+<li>结果：在测试集上MSE达<strong>3.09×10⁻⁴</strong></li>
+<li><strong>机器人策略（Policy）</strong>：</li>
+<li><strong>RoboLab</strong>：高保真仿真基准，测试任务泛化</li>
+<li><strong>RoboArena</strong>：真实机器人评估（Franka Panda）</li>
+<li><strong>结果</strong>：</li>
+<li><strong>Cosmos3-Nano-Policy-DROID</strong> 在RoboLab成功率<strong>25.5%</strong>，RoboArena成功率<strong>39.7%</strong></li>
+<li>在两项基准上均排名<strong>第一</strong>，超越π0.5和Ctrl-World等专用策略模型</li>
+<li><strong>视频-动作一致性</strong>：预测视频与真实执行视频的PSNR达23.19 dB（第三人称视角），验证动作与视觉预测的一致性</li>
+</ul>
+<p>3. 消融实验（Appendix E）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实验</th>
+<th>设计</th>
+<th>关键发现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reasoner对Generator的增益</td>
+<td>对比使用Qwen3-VL vs Cosmos3 Reasoner作为理解塔</td>
+<td>使用Cosmos3 Reasoner在Physical AI域（Robot、Physics、AV）的生成质量显著提升（Robot域+4.8分）</td>
+</tr>
+<tr>
+<td>FPS控制机制</td>
+<td>对比Text Control、MRoPE FPS Modulation及其组合</td>
+<td>两者结合最佳（Composite Score 9.81），MRoPE单独优于纯文本控制</td>
+</tr>
+<tr>
+<td>音频预训练影响</td>
+<td>对比预训练中加入/不加入音频数据</td>
+<td>加入音频数据在视频生成指标上略有提升（T2V: 79.1 vs 78.6），不影响视频质量</td>
+</tr>
+<tr>
+<td>动作模式协同</td>
+<td>对比FD/ID/Policy单独训练 vs 联合训练</td>
+<td>联合训练使逆动力学MSE降低72%（1.11×10⁻³ → 3.09×10⁻⁴），策略覆盖率提升3.2%</td>
+</tr>
+<tr>
+<td>视频-动作一致性</td>
+<td>评估预测视频与模拟器执行视频的一致性</td>
+<td>左视角PSNR 23.19 dB，腕部视角17.33 dB，显示强一致性</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4. 合成数据（SDG）影响分析（Appendix C.7）</p>
+<ul>
+<li>实验：分别用单一SDG数据集（SDG-DriveSim、SDG-RobotSim等）微调预训练模型</li>
+<li>发现：</li>
+<li><strong>SDG-SynHuman</strong> 在Common Sense域提升最大（+0.66）</li>
+<li><strong>SDG-PhyxSim</strong> 在Industry域提升最大（+0.85）</li>
+<li><strong>SDG-DriveSim</strong> 在Robot域提升最大（+0.89）</li>
+<li>混合所有SDG（SDG-All）实现最均衡的全面提升，但Human域存在模拟-真实差距（sim-to-real gap）</li>
+</ul>
+<p>这些实验系统性地验证了Cosmos 3作为统一全模态世界模型在物理AI各环节的先进性与实用性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文内容与物理AI领域的前沿趋势，以下是值得进一步探索的研究方向：</p>
+<p>1. 缩小模拟-现实差距（Sim-to-Real Gap）</p>
+<p>论文在合成数据消融研究（附录C.7）中发现，即使使用专门的人类合成数据（SDG-SynHuman），模型在<strong>Human域</strong>的评估中仍出现性能下降（-0.38），表明当前模拟器难以完全捕捉真实人类外观与动作的细微差别。未来可探索：</p>
+<ul>
+<li><strong>高保真数字人渲染</strong>：结合神经辐射场（NeRF）或高斯溅射（Gaussian Splatting）提升合成人类视频的真实感</li>
+<li><strong>域随机化与自适应</strong>：开发针对物理AI的域适应技术，使模型能更好地从合成数据迁移到真实世界数据</li>
+<li><strong>混合现实数据引擎</strong>：将真实视频与合成元素融合，而非完全依赖仿真</li>
+</ul>
+<p>2. 长程规划与视频生成（Long-horizon Generation）</p>
+<p>当前模型支持最长400帧（约16秒@24FPS）的视频生成，但复杂机器人任务（如装配、家务）需要分钟级的连贯模拟。可探索：</p>
+<ul>
+<li><strong>分层世界模型</strong>：高层规划器（Planner）生成长程任务大纲，Cosmos 3作为低层模拟器生成具体观测帧</li>
+<li><strong>记忆增强架构</strong>：引入外部记忆库或循环机制，支持超长序列的因果一致性</li>
+<li><strong>关键帧插值与细节生成</strong>：先生成稀疏关键帧，再通过扩散模型填充中间过渡，平衡长程连贯性与计算成本</li>
+</ul>
+<p>3. 实时推理与边缘部署（Real-time Deployment）</p>
+<p>尽管论文优化了推理速度（如Cache-DiT、CFG并行），但物理AI的闭环控制（如机器人操作）通常要求<strong>毫秒级延迟</strong>。可探索：</p>
+<ul>
+<li><strong>模型蒸馏</strong>：将Cosmos3-Super的知识蒸馏到Cosmos3-Edge甚至更小规模的专用策略网络</li>
+<li><strong>稀疏注意力机制</strong>：在保持MoT架构优势的同时，采用动态稀疏注意力减少长序列的计算复杂度</li>
+<li><strong>神经架构搜索（NAS）</strong>：针对特定物理AI任务（如自动驾驶）自动搜索最优的Reasoner-Generator平衡结构</li>
+</ul>
+<p>4. 显式物理约束的神经-符号融合（Explicit Physics Integration）</p>
+<p>Cosmos 3通过隐式学习获得物理一致性，但在极端或罕见物理现象（如复杂流体、可变形物体）上可能失效。可探索：</p>
+<ul>
+<li><strong>混合世界模型</strong>：将可微分物理引擎（如DiffTaichi、NVIDIA Warp）与神经网络结合，对刚体动力学等硬约束进行显式求解，对视觉细节进行神经渲染</li>
+<li><strong>物理约束层</strong>：在扩散过程中引入基于物理的引导（Physics-Guided Diffusion），确保生成视频满足能量守恒、刚体碰撞等硬性约束</li>
+</ul>
+<p>5. 多智能体交互与社会智能（Multi-agent Interaction）</p>
+<p>论文主要关注单智能体与环境的交互。未来可扩展至：</p>
+<ul>
+<li><strong>多车交互场景</strong>：在自动驾驶中，模拟其他车辆对自车行为的动态反应（博弈论建模）</li>
+<li><strong>人机协作（HRI）</strong>：生成包含人类协作伙伴的交互视频，要求模型理解人类意图与社会规范</li>
+<li><strong>群体行为模拟</strong>：如仓库中多机器人协调、密集人群中的导航</li>
+</ul>
+<p>6. 安全性、对齐与红队测试（Safety and Alignment）</p>
+<p>物理AI系统在现实世界部署需严格的安全保证。论文未深入探讨：</p>
+<ul>
+<li><strong>对抗鲁棒性</strong>：测试模型对感知攻击（adversarial perturbations）的鲁棒性，确保在噪声传感器输入下仍能生成物理合理的未来预测</li>
+<li><strong>价值对齐</strong>：如何确保生成的动作序列不仅可行，而且符合人类安全偏好（如避免危险操作）</li>
+<li><strong>不确定性量化</strong>：生成模型应能表达预测的不确定性（如多模态未来分布），供决策模块使用</li>
+</ul>
+<p>7. 持续学习与快速适应（Continual Adaptation）</p>
+<p>当前模型采用预训练+后训练范式，权重固定。物理AI需要在线适应新环境：</p>
+<ul>
+<li><strong>元学习（Meta-Learning）</strong>：使Cosmos 3能快速适应新的机器人形态或未知物体动力学（few-shot adaptation）</li>
+<li><strong>非平稳世界建模</strong>：处理随时间变化的环境（如季节变化、设备磨损），避免灾难性遗忘</li>
+</ul>
+<p>8. 可解释性与因果推理（Interpretability and Causality）</p>
+<ul>
+<li><strong>反事实生成</strong>：不仅预测”会发生什么”，还能生成”如果采取不同动作会怎样”（counterfactual worlds），支持因果决策</li>
+<li><strong>注意力可视化</strong>：分析Reasoner与Generator之间的跨模态注意力流，理解模型如何将语言指令映射到物理动作</li>
+<li><strong>结构化链式思维</strong>：在生成视频/动作时显式输出物理推理过程（如”物体A因重力下落，因此物体B会…”)</li>
+</ul>
+<p>9. 跨模态因果一致性（Cross-modal Causality）</p>
+<p>虽然论文支持音视频联合生成，但更深层的因果关联（如”声音延迟对物理交互的影响”、”触觉反馈如何修正视觉预测”）尚未充分探索：</p>
+<ul>
+<li><strong>触觉-视觉-动作融合</strong>：将触觉传感器数据纳入统一表示，学习接触力的因果效应</li>
+<li><strong>异步多模态对齐</strong>：处理传感器采样率差异极大时的因果推理（如高频力控 vs 低频视觉）</li>
+</ul>
+<p>10. 数据引擎的自动化与进化（Automated Data Curation）</p>
+<p>论文依赖手工设计的合成数据生成流程。未来可探索：</p>
+<ul>
+<li><strong>AI驱动的数据生成</strong>：使用Cosmos 3自身生成”困难案例”（hard negatives），通过对抗方式持续扩展训练数据</li>
+<li><strong>自动物理标注</strong>：利用模型自身推理能力自动标注真实世界视频的物理属性（质量、摩擦系数等），反哺物理引擎参数校准</li>
+</ul>
+<p>这些方向共同推动Cosmos 3从”世界模型”向”物理AI通用操作系统”演进，实现从模拟到现实、从短期反应到长期规划、从单智能体到多智能体协同的跨越。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>这篇论文介绍了 <strong>Cosmos 3</strong>，一种面向物理人工智能（Physical AI）的统一全模态世界模型，旨在解决当前物理AI开发中理解与生成任务分离、架构碎片化、以及真实世界训练效率低下等核心瓶颈。</p>
+<p>核心问题</p>
+<p>物理AI智能体需要同时具备<strong>理解</strong>（从观测中推理世界状态）和<strong>生成</strong>（模拟未来状态与动作后果）能力。现有范式将二者割裂：使用视觉-语言模型（VLMs）进行感知推理，使用视频生成模型进行世界模拟，使用视觉-语言-动作模型（VLAs）进行控制，导致系统复杂、误差累积且难以扩展。</p>
+<p>主要贡献</p>
+<p>1. 统一架构：Mixture-of-Transformers (MoT)</p>
+<p>Cosmos 3 采用<strong>单一模型</strong>处理所有模态和任务，其核心是双塔Transformer结构：</p>
+<ul>
+<li><strong>Reasoner塔</strong>：处理自回归序列，负责语言理解、视觉问答与物理常识推理</li>
+<li><strong>Generator塔</strong>：处理扩散序列，负责图像、视频、音频与动作的生成</li>
+<li><strong>双流联合注意力</strong>：允许生成路径双向关注推理路径的上下文，确保生成内容以理解为条件，同时保持推理的因果完整性</li>
+</ul>
+<p>2. 全模态统一表示</p>
+<p>将语言、图像、视频、音频与<strong>动作</strong>统一在共享的表示空间中：</p>
+<ul>
+<li><strong>统一动作接口</strong>：将机器人、自动驾驶车辆、相机运动、人类动作等不同具身控制映射到标准几何组件（9D位姿+抓取状态），通过域特定投影层适配异构动作空间</li>
+<li><strong>3D多模态位置编码（3D MRoPE）</strong>：引入绝对时间调制，使视频、音频、动作等不同采样率的模态在物理时间轴上对齐</li>
+</ul>
+<p>3. 渐进式训练策略</p>
+<ul>
+<li><strong>Reasoner训练</strong>：先进行大规模视觉-语言预训练，再通过监督微调（SFT）注入物理AI领域知识（机器人、自动驾驶、智能基础设施）</li>
+<li><strong>Generator训练</strong>：继承Reasoner权重，分三阶段进行——大规模图像/视频/音频预训练、中训练（引入动作与视频迁移数据）、后训练（针对T2I、I2V、机器人策略等任务特化）</li>
+<li><strong>合成数据引擎</strong>：构建五大类合成数据集（SDG-PhyxSim、SDG-RobotSim、SDG-DriveSim、SDG-SynHuman、SDG-Warehouse），提供精确的物理标注，弥补真实世界数据稀缺问题</li>
+</ul>
+<p>4. 灵活的输入-输出配置</p>
+<p>通过统一的token排列协议，同一模型可无缝切换为：</p>
+<ul>
+<li>视觉-语言模型（VLM）</li>
+<li>文本到图像/视频生成器（T2I/T2V）</li>
+<li>图像到视频/视频续写（I2V/V2V）</li>
+<li>世界-动作模型（前向动力学、逆动力学、策略生成）</li>
+</ul>
+<p>实验验证</p>
+<p>论文在<strong>48个理解基准</strong>和<strong>多个生成基准</strong>上进行了全面评估：</p>
+<ul>
+<li><strong>理解能力</strong>：Cosmos3-Super 在机器人、智能基础设施与自动驾驶领域超越所有开源模型及多数闭源模型（如Gemma-4），在物理常识推理（VideoPhy2）上表现突出</li>
+<li><strong>生成质量</strong>：</li>
+<li>图像生成：Cosmos3-Super-Text2Image 在UniGenBench上达91.36分，位列开源模型第一</li>
+<li>视频生成：在PAIBench-G和人工评估（Cosmos-HUE）中，T2V达80.0分，I2V达82.8分，在物理一致性与几何推理维度领先</li>
+<li><strong>机器人策略</strong>：Cosmos3-Nano-Policy-DROID 在RoboLab和RoboArena真实机器人评估中排名第一，成功率分别达25.5%和39.7%</li>
+</ul>
+<p>基础设施与开源</p>
+<p>论文配套发布了完整的技术栈：</p>
+<ul>
+<li><strong>SILA</strong>：可扩展的多模态数据处理基础设施，支持十亿级样本的语义去重、AI裁判质量筛选与向量化检索</li>
+<li><strong>训练与推理框架</strong>：基于PyTorch的高效分布式训练（HSDP+Context Parallelism）及vLLM-Omni服务框架</li>
+<li><strong>开源资源</strong>：模型权重（Cosmos3-Nano/Super）、代码、合成数据集及评估基准（Cosmos-HUE）均在OpenMDW-1.1许可证下发布</li>
+</ul>
+<p>意义与影响</p>
+<p>Cosmos 3 证明了统一的世界模型架构能够同时支持物理AI的感知、模拟与控制需求，为构建通用物理AI智能体提供了可扩展的基础。通过释放强大的合成数据生成能力与任务特化潜力，该模型有望加速从自动驾驶到家庭机器人等物理AI应用的开发。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Cosmos%203%3A%20Omnimodal%20World%20Models%20for%20Physical%20AI，链接是https://arxiv.org/pdf/2606.02800，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.02800。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Aditi,Niket Agarwal,Arslan Ali,Jon Allen,Martin Antolini,Adeline Aubame,Alisson Azzolini,Junjie Bai,Maciej Bala,Yogesh Balaji,Josh Bapst,Aarti Basant,Mukesh Beladiya,Mohammad Qazim Bhat,Zaid Pervaiz Bhat,Dan Blick,Vanni Brighella,Han Cai,Tiffany Cai,Eric Cameracci,Jiaxin Cao,Yulong Cao,Mark Carlson,Carlos Casanova,Ting-Yun Chang,Yan Chang,Yu-Wei Chao,Prithvijit Chattopadhyay,Roshan Chaudhari,Chieh-Yun Chen,Junyu Chen,Ke Chen,Qizhi Chen,Wenkai Chen,Xiaotong Chen,Yu Chen,An-Chieh Cheng,Click Cheng,Xiu Chia,Jeana Choi,Chaeyeon Chung,Wenyan Cong,Yin Cui,Magdalena Dadela,Nalin Dadhich,Wenliang Dai,Joyjit Daw,Alperen Degirmenci,Rodrigo Vieira Del Monte,Robert Denomme,Sameer Dharur,Marco Di Lucca,Ke Ding,Wenhao Ding,Yifan Ding,Yuzhu Dong,Nicole Drumheller,Yilun Du,Aigul Dzhumamuratova,Aleksandr Efitorov,Hamid Eghbalzadeh,Naomi Eigbe,Imad El Hanafi,Hassan Eslami,Benedikt Falk,Jiaojiao Fan,Jim Fan,Amol Fasale,Sergiy Fefilatyev,Liang Feng,Francesco Ferroni,Sanja Fidler,Xiao Fu,Vikram Fugro,Prashant Gaikwad,TJ Galda,Katelyn Gao,Yihuai Gao,Wenhang Ge,Sreyan Ghosh,Arushi Goel,Vivek Goel,Akash Gokul,Rama Govindaraju,Jinwei Gu,Miguel Guerrero,Elfie Guo,Aryaman Gupta,Siddharth Gururani,Hugo Hadfield,Song Han,Ankur Handa,Zekun Hao,Mohammad Harrim,Ali Hassani,Nathan Hayes-Roth,Yufan He,Chris Helvig,Cyrus Hogg,Madison Huang,Michael Huang,Sophia Huang,Yufan Huang,Jacob Huffman,DeLesley Hutchins,Suneel Indupuru,Boris Ivanovic,Arihant Jain,Joel Jang,Ryan Ji,Yanan Jian,Dongfu Jiang,Jingyi Jin,Atharva Joshi,Nikhilesh Joshi,Pranjali Joshi,Jaehun Jung,Weiwei Kang,Scott Kassekert,Jan Kautz,Ashna Khetan,Julia Kiczka,Slawek Kierat,Gwanghyun Kim,Kuno Kim,Sunny Kim,Kezhi Kong,Xin Kong,Zhifeng Kong,Tomasz Kornuta,Egor Krivov,Hui Kuang,Saurav Kumar,Chia-Wen Kuo,George Kurian,Wojciech Kutak,JF Lafleche,Himangshu Lahkar,Omar Laymoun,Jayjun Lee,Sanggil Lee,Gabriele Leone,Boyi Li,Freya Li,Jiajun Li,Jinfeng Li,Ling Li,Pengcheng Li,Shangru Li,Tingle Li,Xiaolong Li,Xuan Li,Zhaoshuo Li,Zhiqi Li,Hao Liang,Maosheng Liao,Chen-Hsuan Lin,Tsung-Yi Lin,Ming-Yu Liu,Sifei Liu,Zihan Liu,Hai Loc Lu,Xiangyu Lu,Alice Luo,Ruipu Luo,Wenjie Luo,Jiangran Lyu,Martin Ding Ma,Nic Ma,Qianli Ma,Dawid Majchrowski,Louis Marcoux,Miguel Martin,Qing Miao,Ashkan Mirzaei,Shreyas Misra,Kaichun Mo,Durra Mohsin,Hyejin Moon,Pawel Morkisz,Saeid Motiian,Kirill Motkov,Seungjun Nah,Yashraj Narang,Deepak Narayanan,Thabang Ngazimbi,Julian Ouyang,David Page,Yatian Pang,Sehwi Park,Mahesh Patekar,Mostofa Patwary,Marco Pavone,Trung Pham,Wei Ping,Soha Pouya,Shrimai Prabhumoye,Varun Praveen,Delin Qu,Hesam Rabeti,Morteza Ramezanali,Marilyn Reeb,Xuanchi Ren,Kristen Rumley,Wojciech Rymer,Jun Saito,Yeongho Seol,John Shao,Piyush Shekdar,Tianwei Shen,Humphrey Shi,Min Shi,Stella Shi,Kevin Shih,Mohammad Shoeybi,Mateusz Sieniawski,Shuran Song,Alexander Sotelo,Amir Sotoodeh,Sunil Srinivasa,Vignesh Srinivasakumar,Bartosz Stefaniak,Rahul Heinrich Steiger,Shangkun Sun,Jiaxiang Tang,Shitao Tang,Yangyang Tang,Yue Tang,Tolou Tavakkoli,Kayley Ting,Krzysztof Tomala,Wei-Cheng Tseng,Jibin Varghese,Sergei Vasilev,Thomas Volk,Raju Wagwani,Roger Waleffe,Andrew Z. Wang,Boxiang Wang,Haoxiang Wang,Qiao Wang,Shihao Wang,Shijie Wang,Ting-Chun Wang,Yan Wang,Yu Wang,David Wehr,Fangyin Wei,Xinshuo Weng,Jay Zhangjie Wu,Kedi Wu,Hongchi Xia,Summer Xiao,Tianjun Xiao,Kevin Xie,Daguang Xu,Jiashu Xu,Mengyao Xu,Ruqing Xu,Xingqian Xu,Yao Xu,Dinghao Yang,Dong Yang,Hans Yang,Xiaodong Yang,Xuning Yang,Yichu Yang,Yurong You,Zhiding Yu,Hao Yuan,Simon Yuen,Xiaohui Zeng,Pengcuo Zeren,Cindy Zha,Haotian Zhang,Jenny Zhang,Jing Zhang,Liangkai Zhang,Paris Zhang,Shun Zhang,Xuanmeng Zhang,Zhizheng Zhang,Ann Zhao,Yilin Zhao,Yuliya Zhautouskaya,Charles Zhou,Fengzhe Zhou,Shilin Zhu,Yuke Zhu,Dima Zhylko,Artur Zolkowski,et al. (191 additional authors not shown)</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.02800.pdf">https://arxiv.org/pdf/2606.02800.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.02800">https://arxiv.org/abs/2606.02800</a></p>
+<p><strong>Arxiv ID</strong>: 2606.02800</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.02800">https://papers.cool/arxiv/2606.02800</a></p>
+<p><strong>Published</strong>: 2026-06-04T02:11:44.411Z</p>
+<p><strong>Updated</strong>: 2026-06-04T02:11:44.411Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202606/2026-06-04/">https://wdndev.github.io/daily/hf/202606/2026-06-04/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202601/2026-01-01/" title="HuggingFace Papers 2026-01-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-01</div></div></a></div><div><a href="/daily/hf/202601/2026-01-02/" title="HuggingFace Papers 2026-01-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-02</div></div></a></div><div><a href="/daily/hf/202601/2026-01-03/" title="HuggingFace Papers 2026-01-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Eliciting-Complex-Spatial-Reasoning-in-MLLMs-through-Wide-Baseline-Matching"><span class="toc-text">1. Eliciting Complex Spatial Reasoning in MLLMs through Wide-Baseline Matching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-BenchEvolver-Frontier-Task-Synthesis-via-Solution-Centric-Evolution"><span class="toc-text">2. BenchEvolver: Frontier Task Synthesis via Solution-Centric Evolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-MemTrain-Self-Supervised-Context-Memory-Training"><span class="toc-text">3. MemTrain: Self-Supervised Context Memory Training</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Self-Distilled-Policy-Gradient"><span class="toc-text">4. Self-Distilled Policy Gradient</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Cosmos-3-Omnimodal-World-Models-for-Physical-AI"><span class="toc-text">5. Cosmos 3: Omnimodal World Models for Physical AI</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

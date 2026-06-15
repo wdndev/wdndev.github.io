@@ -1,0 +1,679 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-05-28 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. ResearchMath-14K: Scaling Research-Level Mathematics via AgentsAbstract:The frontier of mathematics is defined by problems whose solutions are not yet known,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-05-28">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202605/2026-05-28/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. ResearchMath-14K: Scaling Research-Level Mathematics via AgentsAbstract:The frontier of mathematics is defined by problems whose solutions are not yet known,">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-15T02:03:13.208Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202605/2026-05-28/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-05-28',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-15 10:03:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">685</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-05-28</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-06-15T02:03:13.208Z" title="Updated 2026-06-15 10:03:13">2026-06-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">10k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>35min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-05-28"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-ResearchMath-14K-Scaling-Research-Level-Mathematics-via-Agents"><a href="#1-ResearchMath-14K-Scaling-Research-Level-Mathematics-via-Agents" class="headerlink" title="1. ResearchMath-14K: Scaling Research-Level Mathematics via Agents"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2605.28003">ResearchMath-14K: Scaling Research-Level Mathematics via Agents</a></h3><p>Abstract:The frontier of mathematics is defined by problems whose solutions are not yet known, yet it remains unclear whether language models can meaningfully engage with such problems without human intervention. A major obstacle is the lack of large-scale research-level math datasets. To this end, we introduce ResearchMath-14k, a set of $14{,}056$ problems curated from academic sources via a multi-agent pipeline, making it the largest collection of research-level mathematical problems to date. We further generate ResearchMath-Reasoning, $220$K teacher trajectories from two open models, where we observe recurring avoidance behaviors such as non-attempts and fabricated references. Interestingly, across eight open-weight models, newer generations produce $5.6\times$ more references and $5.0\times$ more fake references per trace. After agentic filtering of ResearchMath-Reasoning, fine-tuning Qwen3 models from 4B to 30B parameters improves over base models by $9.2$ points on average. This shows that filtered open-problem attempts can provide useful supervision even without fully correct reasoning traces. We make ResearchMath-14k publicly available for future works on research-level mathematical reasoning.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：数学的前沿由那些尚未有已知解答的问题定义，但目前仍不清楚语言模型在没有人类干预的情况下能否有意义地处理这些问题。一个主要障碍是缺乏大规模的研究级数学数据集。为此，我们引入了 ResearchMath-14k，这是通过多代理流水线从学术资料中精心挑选的 14,056 个问题，使其成为迄今为止最大的研究级数学问题集合。我们进一步生成了 ResearchMath-Reasoning，这是来自两个开源模型的 220K 个教师轨迹，在这些轨迹中我们观察到重复出现的回避行为，如不尝试和伪造引用。有趣的是，在八个开源权重模型中，新一代模型每条轨迹产生的引用数量增加了 5.6 倍，伪造引用数量增加了 5.0 倍。在对 ResearchMath-Reasoning 进行代理过滤后，将 Qwen3 模型从 4B 微调到 30B 参数，平均在基础模型上提高了 9.2 个积分。这表明，即使没有完全正确的推理轨迹，经过过滤的开放问题尝试也可以提供有用的监督。我们公开了 ResearchMath-14k，以供未来研究级数学推理的相关工作使用。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Navigation timeout of 10000 ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Guijin Son,Seungyeop Yi,Minju Gwak,Hyunwoo Ko,Wongi Jang,Youngjae Yu</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.28003.pdf">https://arxiv.org/pdf/2605.28003.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.28003">https://arxiv.org/abs/2605.28003</a></p>
+<p><strong>Arxiv ID</strong>: 2605.28003</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2605.28003">https://papers.cool/arxiv/2605.28003</a></p>
+<p><strong>Published</strong>: 2026-05-28T02:19:08.280Z</p>
+<p><strong>Updated</strong>: 2026-05-28T02:19:08.280Z</p>
+<hr>
+<h3 id="2-From-Pixels-to-Words-—-Towards-Native-One-Vision-Models-at-Scale"><a href="#2-From-Pixels-to-Words-—-Towards-Native-One-Vision-Models-at-Scale" class="headerlink" title="2. From Pixels to Words — Towards Native One-Vision Models at Scale"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2605.28820">From Pixels to Words — Towards Native One-Vision Models at Scale</a></h3><p>Abstract:Current vision-language models (VLMs) typically stitch together separate image encoders and language decoders via multi-stage alignment, a modular framework that inevitably fragments pixel-level signals across frames and scatters early pixel-word interactions. In parallel, native VLMs, despite impressive performance on single images, remain largely unexplored in multi-image, video understanding, and spatial intelligence. Hence, we introduce NEO-ov, a native foundation model that learns cross-frame and pixel-word correspondence end-to-end, without any external encoders, auxiliary adapters, or post-hoc fusion. By eliminating module boundaries entirely, NEO-ov enables fine-grained and unified spatiotemporal modeling to emerge natively inside the model. Notably, NEO-ov largely narrows the gap to modular counterparts while excelling at fine-grained visual perception, validating that native “one-vision” architectures are not only feasible but competitive at scale. Beyond empirical performance, we unveil systematic architectural analyses and detailed training recipes to facilitate subsequent native multimodal modeling. Our code and models are publicly available at: this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：当前的视觉-语言模型（VLMs）通常通过多阶段对齐将独立的图像编码器和语言解码器拼接在一起，这种模块化框架不可避免地在帧之间分散像素级信号，并分散早期的像素-词交互。同时，原生VLMs尽管在单张图像上表现出色，但在多图像、视频理解和空间智能方面仍很少被探索。因此，我们提出了NEO-ov，一种原生基础模型，可以端到端地学习跨帧和像素-词对应关系，无需任何外部编码器、辅助适配器或后期融合。通过完全消除模块边界，NEO-ov使细粒度和统一的时空建模能在模型内部自然形成。值得注意的是，NEO-ov在缩小与模块化模型的差距的同时，在细粒度视觉感知上表现优异，验证了原生的“一视觉”架构不仅可行，而且在大规模应用中具有竞争力。除了经验性能外，我们还揭示了系统的架构分析和详细的训练方案，以促进后续原生多模态建模。我们的代码和模型可在以下网址公开获取：this https URL。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Navigation timeout of 10000 ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Haiwen Diao,Jiahao Wang,Penghao Wu,Yuhao Dong,Yuwei Niu,Yue Zhu,Zhongang Cai,Weichen Fan,Linjun Dai,Silei Wu,Xuanyu Zheng,Mingxuan Li,Yuanhan Zhang,Bo Li,Hanming Deng,Huchuan Lu,Quan Wang,Lei Yang,Lewei Lu,Dahua Lin,Ziwei Liu</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.28820.pdf">https://arxiv.org/pdf/2605.28820.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.28820">https://arxiv.org/abs/2605.28820</a></p>
+<p><strong>Arxiv ID</strong>: 2605.28820</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2605.28820">https://papers.cool/arxiv/2605.28820</a></p>
+<p><strong>Published</strong>: 2026-05-28T02:19:43.822Z</p>
+<p><strong>Updated</strong>: 2026-05-28T02:19:43.822Z</p>
+<hr>
+<h3 id="3-Chartographer-Counterfactual-Chart-Generation-for-Evaluating-Vision-Language-Models"><a href="#3-Chartographer-Counterfactual-Chart-Generation-for-Evaluating-Vision-Language-Models" class="headerlink" title="3. Chartographer: Counterfactual Chart Generation for Evaluating Vision-Language Models"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2605.27311">Chartographer: Counterfactual Chart Generation for Evaluating Vision-Language Models</a></h3><p>Abstract:Chart question-answering (QA) benchmarks aim to pose questions that require visual reasoning to correctly answer, but models can often reach solutions through shortcuts or prior familiarity with a chart based on their own background knowledge. To strictly evaluate visual reasoning, we propose counterfactual charts where the chart-question task remains fixed, but underlying chart and the corresponding answer are varied. We introduce Chartographer, a framework to reverse engineer charts into executable code, validate reconstruction fidelity, generate seed-controlled counterfactual variants, and derive new answers from executable QA logic. We apply this framework to existing chart QA datasets and evaluate proprietary and open-source vision-language models (VLMs), measuring variation sensitivity and generalizability. Counterfactual charts reveal failures hidden by single-chart performance: VLMs often fail to generalize after answering the original chart correctly. We find failures are most prevalent when updated charts require novel visual reasoning pathways.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：图表问答（QA）基准旨在通过提问需要视觉推理能力的问题来正确作答，但模型常常可以通过捷径或基于自身背景知识对图表的熟悉度来获得答案。为了严格评估视觉推理能力，我们提出了反事实图表，其中图表问题任务保持不变，但底层图表和对应答案会有所变化。我们引入了Chartographer，这是一个将图表逆向工程为可执行代码的框架，可验证重建的准确性、生成受种子控制的反事实变体，并从可执行的QA逻辑中推导出新答案。我们将该框架应用于现有的图表QA数据集，并对专有和开源的视觉-语言模型（VLMs）进行评估，测量其对变化的敏感性和泛化能力。反事实图表揭示了单图表性能掩盖的失败情况：VLMs往往在正确回答原始图表后无法泛化。我们发现，当更新后的图表需要新的视觉推理路径时，失败情况最为普遍。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文试图解决<strong>图表问答（Chart QA）基准测试中对视觉推理能力评估不够严格</strong>的问题，具体表现为：</p>
+<p>1. 现有基准测试的局限性</p>
+<p>当前的Chart QA基准测试主要依赖<strong>固定的图表-问题-答案三元组</strong>（fixed chart-question-answer triples）。这种评估方式存在以下缺陷：</p>
+<ul>
+<li><strong>捷径学习（Shortcut Learning）</strong>：模型可能通过利用问题中的语言规律、统计偏差或答案分布模式来”猜测”正确答案，而无需真正理解图表内容</li>
+<li><strong>参数知识依赖（Parametric Knowledge）</strong>：模型可能依赖预训练期间记忆的相关知识或见过的类似图表，而非基于当前呈现的图表进行推理</li>
+<li><strong>无法测试泛化性</strong>：现有方法无法验证模型在图表数据变化时，是否仍能基于视觉证据进行正确推理</li>
+</ul>
+<p>2. 核心研究问题</p>
+<p>论文提出了一个关键的评估盲区：<strong>当底层数据改变时，模型是否仍能保持正确的推理能力？</strong></p>
+<p>现有基准无法回答：</p>
+<ul>
+<li>模型在回答原始图表正确后，面对相同问题但数据不同的图表时，能否相应调整答案？</li>
+<li>模型的成功是基于真正的视觉推理，还是基于对特定图表的记忆？</li>
+</ul>
+<p>3. 提出的解决方向</p>
+<p>为严格评估视觉推理能力，论文引入了**反事实图表（Counterfactual Charts）**的评估框架：</p>
+<ul>
+<li>保持图表-问题任务不变，但<strong>改变底层数据</strong>并重新计算答案</li>
+<li>通过对比模型在原始图表和反事实变体上的表现，<strong>分离真正的视觉推理能力与记忆/捷径依赖</strong></li>
+<li>构建包含原始图表、重建图表和多个反事实变体的<strong>图表-问题家族（Chart-Question Families）</strong>，测试模型在视觉证据改变时的表现稳定性</li>
+</ul>
+<p>简而言之，该论文试图建立一个更严格的评估标准，确保模型在图表理解任务中展现的是<strong>基于视觉证据的鲁棒推理能力</strong>，而非对训练数据的记忆或统计捷径的利用。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>该论文在**第2节（Related Work）**中系统梳理了三个主要研究方向的相关文献：</p>
+<p>1. 图表问答基准测试（Chart QA Benchmarks）</p>
+<p>早期研究通过<strong>受控生成</strong>隔离基础视觉推理操作：</p>
+<ul>
+<li><strong>DVQA</strong>（Kafle et al., 2018）与 <strong>FigureQA</strong>（Kahou et al., 2018）：使用合成图表或图形生成，测试基础视觉推理能力</li>
+<li><strong>PlotQA</strong>（Methani et al., 2020）：专注于科学图表的推理</li>
+</ul>
+<p>近期研究转向<strong>真实世界数据源</strong>：</p>
+<ul>
+<li><strong>ChartQA</strong>（Masry et al., 2022）：结合网络来源图表与需要复杂视觉和逻辑推理的人工编写问题</li>
+<li><strong>CharXiv</strong>（Wang et al., 2024）：面向真实科学图表，评估视觉、文本和多模态理解</li>
+<li><strong>ChartMuseum</strong>（Tang et al., 2025）：包含人工设计的可视化，测试多样化的视觉推理能力</li>
+</ul>
+<p><strong>与本文的关系</strong>：现有基准均以<strong>固定三元组</strong>（图表-问题-答案）为评估单元，本文则将这些基准转换为<strong>反事实图表-问题家族</strong>，以隔离真正的视觉推理能力。</p>
+<p>2. 视觉语言模型中的图表理解（Chart Understanding with VLMs）</p>
+<p><strong>基础架构</strong>：</p>
+<ul>
+<li><strong>Flamingo</strong>（Alayrac et al., 2022）：将视觉编码器与大语言模型结合，实现视觉-文本对齐</li>
+</ul>
+<p><strong>增强图表推理的中间表示方法</strong>：</p>
+<ul>
+<li><strong>Pix2Struct</strong>（Lee et al., 2023）：通过截图解析为HTML进行预训练</li>
+<li><strong>DePlot</strong>（Liu et al., 2023a）与 <strong>MatCha</strong>（Liu et al., 2023b）：图表到表格的逆向渲染（derendering）</li>
+<li><strong>ChartPoint</strong>（Xu et al., 2025）：基于 grounding 和 reflection 的引导方法</li>
+<li><strong>Distillation方法</strong>（He et al., 2025）：从LLM向MLLM蒸馏视觉图表推理能力</li>
+</ul>
+<p><strong>与本文的关系</strong>：上述工作专注于<strong>提升模型能力</strong>，而本文专注于<strong>严格评估</strong>这些能力是否真正基于视觉证据而非捷径。</p>
+<p>3. 捷径学习与反事实评估（Shortcuts and Counterfactual Evaluation）</p>
+<p><strong>自然语言处理领域</strong>：</p>
+<ul>
+<li><strong>Gururangan et al. (2018)</strong>：发现自然语言推理（NLI）数据中的<strong>注释伪影</strong>（annotation artifacts）可使标签在无需访问问题的情况下被部分预测</li>
+</ul>
+<p><strong>多模态评估领域</strong>：</p>
+<ul>
+<li><strong>Hou et al. (2025)</strong>、<strong>Chi et al. (2025)</strong>、<strong>Xia et al. (2025)</strong>：记录视觉推理基准中奖励捷径行为而非视觉逻辑应用的现象，包括对参数知识的依赖和表面语言规律</li>
+</ul>
+<p><strong>图表领域的反事实方法</strong>：</p>
+<ul>
+<li><strong>Chart-HQA</strong>（Chen et al., 2025）：引入对图表问题的<strong>假设性假设</strong>（hypothetical assumptions），探测对图表内容的反事实推理</li>
+<li><strong>CharXiv的替代评估</strong>（Wang et al., 2024）：使用视觉复杂度相似但带有新标注问题的图表，替代模板化问题</li>
+</ul>
+<p><strong>与本文的关系</strong>：现有工作通过<strong>文本假设</strong>或<strong>替换图表</strong>进行反事实评估，而本文通过<strong>重新生成图表本身并改变数据</strong>（保留任务但改变视觉证据），要求模型基于改变后的视觉证据进行推理，从而更严格地测试视觉 grounding 能力。</p>
+<p>总结</p>
+<p>本文定位在现有研究的交叉点：<strong>继承</strong>了Chart QA基准的评估传统，<strong>采用</strong>了VLM图表理解的技术背景，但<strong>创新性地扩展</strong>了反事实评估方法，通过代码逆向工程和可控数据变异，实现了对视觉推理能力更严格的隔离测试。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过引入 <strong>CHARTOGRAPHER</strong> 框架解决该问题，该框架将单一图表-问题-答案三元组扩展为<strong>反事实图表-问题家族（Counterfactual Chart-Question Families）</strong>，从而严格测试模型在视觉证据变化时的推理泛化能力。具体解决方案包含以下四个核心环节：</p>
+<p>1. 图表重建（Chart Reconstruction）</p>
+<p>通过<strong>逆向工程</strong>将静态图表转换为可执行代码，为可控变异奠定基础：</p>
+<ul>
+<li><strong>图表到代码的转换</strong>：利用VLM从图表图像中提取<strong>语义数据</strong>（实体、类别、数值、标签）和<strong>渲染代码</strong>（视觉编码、布局逻辑），分离数据与样式，使得数据可独立修改而图表主题保持不变</li>
+<li><strong>自改进循环（Self-Refinement）</strong>：通过迭代诊断-修订流程提升重建保真度。VLM对比原始图表与重建渲染结果，诊断差异（如标签错位、比例失真），生成改进计划并执行，最多迭代5次直至无显著缺陷</li>
+<li><strong>人工验证（Human-in-the-Loop）</strong>：对模糊标签、不可读数值或无法从像素恢复的编码等困难案例，人工审核重建是否保留回答问题所需的关键视觉证据，确保重建质量足以支持后续反事实生成</li>
+</ul>
+<p>2. 反事实图表生成（Counterfactual Chart Generation）</p>
+<p>基于重建的图表模式，生成<strong>种子控制</strong>的数据变体：</p>
+<ul>
+<li><strong>参数化数据生成器</strong>：为每个接受的重建创建 Python 函数  generate_data(data_template, seed) ，保持图表模式、渲染约束和领域假设，但系统性地改变数值、排名、组成或趋势</li>
+<li><strong>多种子变异</strong>：使用随机种子  0  到  9  生成  10  个反事实变体，每个变体在保持视觉外观相似性的同时，确保底层数据发生有意义的变化（如改变极值点、交叉顺序、阈值关系等）</li>
+</ul>
+<p>3. QA再生（QA Regeneration）</p>
+<p>确保问题与答案随数据更新而保持有效：</p>
+<ul>
+<li><strong>问题适配</strong>：创建  adapt_question(data)  模块，仅在必要时（如原问题涉及特定不再存在的实体）对原问题进行最小化修改，保持问题语义一致性</li>
+<li><strong>可执行答案逻辑</strong>：构建  generate_answer(data)  模块，<strong>直接从底层数据计算答案</strong>而非依赖视觉观察。该模块基于数据对象中的字段计算黄金答案，支持重排序元素和数值变化，实现大规模自动标注</li>
+</ul>
+<p>4. 反事实家族评估框架（Counterfactual Family Evaluation）</p>
+<p>建立多维度指标体系，分离原始性能与泛化能力：</p>
+<p><strong>核心指标定义</strong>（设  F_d  为数据集  d  中的家族集合， V_i  为种子变体集合）：</p>
+<ul>
+<li><p><strong>原始准确率（OA）</strong>：模型在原始基准图表上的准确率<br>OA<em>(m,d) = (1) / (|F_d|) ∑</em>(i ∈ F<em>d) 1[y^o</em>(m,i) equiv y^o_i]</p>
+</li>
+<li><p><strong>重建准确率（RA）</strong>：模型在逆向工程重建图表（数据未变）上的准确率，验证任务在重建过程中是否得以保留</p>
+</li>
+<li><p><strong>变体准确率（VA）</strong>：模型在  10  个反事实变体上的平均准确率<br>VA<em>(m,d) = ∑</em>(i ∈ F<em>d) ∑</em>(j ∈ V<em>i) 1[haty^v</em>(m,ij) equiv y^v_(ij)]|F_d||V_i|</p>
+</li>
+<li><p><strong>相对变体变化（RVC）</strong>：衡量对变体图表的敏感度<br>RVC<em>(m,d) = 100 · VA</em>(m,d) - OA<em>(m,d)OA</em>(m,d)</p>
+</li>
+<li><p><strong>条件变体准确率（CVA）</strong>：<strong>核心诊断指标</strong>，仅统计模型在原始图表回答正确的家族中的变体表现<br>CVA<em>(m,d) = ∑</em>(i ∈ S<em>m,d) ∑</em>(j ∈ V<em>i) 1[y^v</em>(m,ij) equiv y^v<em>(ij)]|S</em>(m,d)||V<em>i|<br>其中  S</em>(m,d) = i ∈ F<em>d : y^o</em>(m,i) equiv y^o_i </p>
+</li>
+</ul>
+<p><strong>失败模式诊断</strong>： 在原始回答正确的条件下，将变体预测分为三类：</p>
+<ul>
+<li><strong>正确更新（CU）</strong>：模型根据新视觉证据正确调整答案</li>
+<li><strong>陈旧预测（SP）</strong>：模型重复原始答案（在新数据下错误），表明依赖记忆而非视觉重新推理</li>
+<li><strong>噪声更新（NU）</strong>：模型改变答案但新答案仍错误，表明尝试更新但未能正确基于视觉证据</li>
+</ul>
+<p>关键创新点</p>
+<p>该方法的核心优势在于：</p>
+<ol>
+<li><strong>分离记忆与推理</strong>：通过保持问题不变但改变底层数据，强制模型必须基于当前视觉证据重新计算，而非依赖预训练记忆</li>
+<li><strong>控制变量设计</strong>：重建图表作为对照组（RA vs OA），排除因图像质量、分辨率或渲染差异导致的性能变化，将性能下降归因于<strong>数据变化本身</strong></li>
+<li><strong>任务保持性</strong>：确保反事实变体与原始图表在视觉复杂度、推理类型和任务难度上等价，仅改变需要视觉 grounding 的具体数值关系</li>
+</ol>
+<p>通过该框架，论文揭示了现有单图表评估无法发现的失效模式：模型可能在原始图表上表现完美（高OA），但在数据改变后无法泛化（低CVA），暴露出其依赖参数知识或统计捷径而非真正视觉推理的缺陷。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>该论文开展了系统的实证研究，评估了多种视觉语言模型（VLMs）在反事实图表家族上的泛化能力。实验设计如下：</p>
+<p>1. 数据集与样本选择</p>
+<p><strong>源数据集</strong>：</p>
+<ul>
+<li><strong>ChartQA</strong>（验证集）：传统网络来源图表，含人工编写问题</li>
+<li><strong>CharXiv</strong>（验证集）：真实科学论文图表，侧重复杂视觉推理</li>
+<li><strong>ChartMuseum</strong>（开发集）：人工设计的多样化可视化，标注有推理类型</li>
+</ul>
+<p><strong>样本筛选</strong>：</p>
+<ul>
+<li>从三个数据集中随机抽取 <strong>462</strong> 个图表问答任务</li>
+<li>排除标签模糊、数值被遮挡、视觉编码无法可靠逆向工程的案例</li>
+<li>最终保留 <strong>440</strong> 个有效的图表-问题家族（ChartQA: 150, CharXiv: 148, ChartMuseum: 142），每个家族扩展为1个原始图表+1个重建图表+10个反事实变体</li>
+</ul>
+<p>2. 评估模型</p>
+<p><strong>专有模型（Proprietary）</strong>：</p>
+<ul>
+<li><strong>Claude 家族</strong>：Haiku 4.5、Sonnet 4.6</li>
+<li><strong>Gemini 家族</strong>：2.5 Flash、2.5 Pro</li>
+<li><strong>GPT 家族</strong>：GPT-4o、GPT-4.1、GPT-4.1 mini、GPT-5.4、GPT-5.4 mini</li>
+</ul>
+<p><strong>开源模型（Open-source）</strong>：</p>
+<ul>
+<li>Gemma 4 E4B IT</li>
+<li>InternVL3-8B</li>
+<li>LLaVA-OneVision-Qwen2-7B</li>
+<li>Pixtral-12B</li>
+<li>Qwen2.5-VL-7B-Instruct、Qwen3-VL-8B-Instruct</li>
+</ul>
+<p>所有模型使用统一提示模板，仅接收图表图像和问题，通过 <code>&lt;answer&gt;</code> 标签提取最终答案，并由 GPT-4.1-mini 作为评判器判定答案等价性。</p>
+<p>3. 核心实验结果</p>
+<p>实验围绕四个关键指标展开，主要发现如下：</p>
+<p>(1) 重建控制实验（RA vs OA）</p>
+<ul>
+<li><strong>目的</strong>：验证逆向工程过程是否引入无关噪声</li>
+<li><strong>发现</strong>：重建准确率（RA）与原始准确率（OA）接近或略高（尤其在 CharXiv 上），表明重建图表因分辨率高、视觉干扰少，反而可能更易于解析，确认任务在重建过程中得以保留</li>
+</ul>
+<p>(2) 变体敏感性分析（VA 与 RVC）</p>
+<ul>
+<li><strong>发现</strong>：</li>
+<li><strong>ChartQA</strong>：VA 保持较高水平，RVC 轻微负向（约 -3.3%），模型对数据变化相对稳健</li>
+<li><strong>CharXiv</strong>：平均 RVC 略微正向（+3.7%），但掩盖了个体差异——原始错误案例的增益抵消了原始正确案例的损失</li>
+<li><strong>ChartMuseum</strong>：<strong>显著下降</strong>，平均 RVC 为 -20.6%，多数模型出现统计显著的负向变化（如 GPT-5.4 的 -21.3%，Claude Sonnet 4.6 的 -21.6%），表明 VLMs 在数据改变后难以维持正确回答</li>
+</ul>
+<p>(3) 条件变体准确率（CVA）——核心实验</p>
+<ul>
+<li><strong>目的</strong>：测量模型在”已证明能解决的原始图表”上，面对数据变化时的泛化能力</li>
+<li><strong>关键发现</strong>：</li>
+<li><strong>ChartQA</strong>：CVA 较高（平均 0.93），表明传统图表问答任务泛化良好</li>
+<li><strong>CharXiv</strong>：CVA 降至 0.73（专有）和 0.47（开源），暴露大量<strong>隐藏失效</strong>：模型虽答对原始图表，但面对反事实变体时失败</li>
+<li><strong>ChartMuseum</strong>：CVA 进一步降至 0.58（专有）和 0.41（开源），证实<strong>数据变化后成功无法泛化</strong></li>
+</ul>
+<p>(4) 失效模式诊断（CU/NU/SP 分析）</p>
+<p>在原始回答正确的条件下，分析变体预测的三类结果：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>正确更新(CU)</th>
+<th>噪声更新(NU)</th>
+<th>陈旧预测(SP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChartQA</td>
+<td>0.93</td>
+<td>0.07</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>CharXiv</td>
+<td>0.73</td>
+<td>0.21</td>
+<td>0.06</td>
+</tr>
+<tr>
+<td>ChartMuseum</td>
+<td>0.58</td>
+<td>0.33</td>
+<td>0.09</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>陈旧预测（SP）</strong>：模型重复原始答案（在新数据下错误），表明依赖记忆或参数知识而非视觉重新推理</li>
+<li><strong>噪声更新（NU）</strong>：模型改变答案但新答案错误，表明尝试更新但未能正确基于视觉证据（最常见失效模式）</li>
+<li><strong>开源模型</strong>的 NU 和 SP 率显著高于专有模型，显示更严重的泛化缺陷</li>
+</ul>
+<p>4. 细粒度分析实验</p>
+<p>推理类型敏感性（ChartMuseum）</p>
+<p>按 ChartMuseum 的推理类型分类分析 CVA：</p>
+<ul>
+<li><strong>Text（纯文本）</strong>：CVA 最高（0.79），模型可依赖显式文本线索</li>
+<li><strong>Visual/Text（混合）</strong>：CVA 中等（0.62）</li>
+<li><strong>Synthesis（综合）</strong>：CVA 较低（0.48）</li>
+<li><strong>Visual（纯视觉）</strong>：CVA 最低（0.46）</li>
+</ul>
+<p><strong>结论</strong>：当问题真正依赖视觉 grounding（如空间比较、轨迹追踪）而非文本线索时，泛化能力最弱。</p>
+<p>失效案例研究</p>
+<p>通过定性分析识别关键瓶颈：</p>
+<ul>
+<li><strong>轨迹追踪与判断</strong>：模型难以准确追踪多曲线在特定区间的局部变化（如判断哪条线在  c=0.35  处下降最大）</li>
+<li><strong>空间视觉比较</strong>：在需要精确视觉定位的任务中（如计算阶梯图中两点间步数），易受视觉近似和锚定效应影响</li>
+<li><strong>符号-视觉绑定失败</strong>：难以正确将图例标签与视觉标记对应，尤其在颜色重复或标记密集时</li>
+<li><strong>阈值判断</strong>：在数值接近阈值（如 0.25）时，计数错误率高</li>
+</ul>
+<p>5. 关键实验结论</p>
+<ol>
+<li><strong>单图表性能具有误导性</strong>：模型可能在原始基准上表现良好（高 OA），但反事实变体暴露其依赖记忆或统计捷径（低 CVA）</li>
+<li><strong>视觉推理的脆弱性</strong>：当数据变化要求模型重新进行视觉定位、比较或追踪时，失败率显著上升</li>
+<li><strong>数据污染风险</strong>：陈旧预测（SP）的存在表明，模型可能依赖预训练中对特定图表或问答对的记忆，而非实时视觉推理</li>
+<li><strong>基准难度差异</strong>：ChartMuseum 和 CharXiv 比 ChartQA 更能揭示模型的视觉推理缺陷，尤其是需要复杂视觉操作的任务</li>
+</ol>
+<p>这些实验共同证明了反事实评估框架的必要性——传统单点评估无法区分真正的视觉推理能力与参数记忆/捷径学习。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文的实验发现与局限性讨论，以下几个方向值得进一步探索：</p>
+<p>1. 扩展反事实变异的维度（方法扩展）</p>
+<p>当前框架主要改变<strong>底层数据值</strong>而保持图表类型和问题不变，未来可探索：</p>
+<ul>
+<li><strong>图表类型迁移（Chart Type Transfer）</strong>：将同一数据集转换为不同视觉编码（如将柱状图转为折线图或饼图），测试模型对数据关系本质的理解是否独立于视觉呈现形式</li>
+<li><strong>视觉设计扰动（Visual Design Variation）</strong>：系统性地改变颜色方案、字体、布局密度、图例位置等视觉属性，量化模型对非任务相关视觉特征的鲁棒性</li>
+<li><strong>问题重构（Question Paraphrasing）</strong>：在保持答案逻辑不变的情况下，改变问题表述方式（如将”最大值”改为”顶峰”），测试语言理解对视觉 grounding 的干扰</li>
+</ul>
+<p>2. 模型机制与失效分析（诊断深化）</p>
+<p>论文识别了**陈旧预测（SP）<strong>和</strong>噪声更新（NU）**两种失效模式，但其深层机制尚待厘清：</p>
+<ul>
+<li><strong>记忆 vs. 推理的分离</strong>：开发更精细的探测方法，区分模型失败是由于：</li>
+<li>对训练数据的确切记忆（data contamination）</li>
+<li>对特定视觉模式的过度泛化（如总是选择最左侧的柱子）</li>
+<li>或纯粹的视觉感知错误（如数值读取偏差）</li>
+<li><strong>注意力机制分析</strong>：通过可视化模型在处理原始图表与反事实变体时的注意力分布，识别模型是否关注到了数据变化的关键视觉区域，还是固着于无关特征</li>
+<li><strong>推理链验证（Chain-of-Thought Verification）</strong>：论文提到模型常提供推理过程，未来可评估这些推理文本是否与视觉证据一致，或存在”幻觉式”推理（如案例中错误地描述原始图表特征）</li>
+</ul>
+<p>3. 提升视觉推理泛化能力（模型改进）</p>
+<p>针对实验发现的<strong>视觉 grounding 脆弱性</strong>，可探索训练或微调策略：</p>
+<ul>
+<li><strong>反事实训练（Counterfactual Training）</strong>：在预训练或微调阶段引入反事实图表对，强制模型学习”数据变化→答案变化”的映射关系，减少对参数知识的依赖</li>
+<li><strong>视觉-语言对齐强化</strong>：针对图表特定的视觉元素（如坐标轴、图例、数据标记）设计专门的对比学习目标，增强模型对图表结构的理解</li>
+<li><strong>显式计算模块（Explicit Calculation Modules）</strong>：结合论文提到的可执行QA逻辑，开发能生成并执行代码的视觉-语言模型，将感知与计算分离，提高数值推理的准确性</li>
+</ul>
+<p>4. 跨领域与复杂场景扩展（应用拓展）</p>
+<ul>
+<li><strong>科学图表的深度理解</strong>：当前CharXiv已涉及科学图表，但可进一步探索：</li>
+<li>多图表联合推理（跨图表反事实：若图A的数据改变，如何影响图B的结论？）</li>
+<li>时序图表的因果推断（改变时间序列中的某个节点，预测后续趋势变化）</li>
+<li><strong>交互式图表与动态可视化</strong>：将框架扩展到支持交互（如可缩放、筛选的仪表盘）的动态图表，测试模型在多状态视觉证据下的推理一致性</li>
+<li><strong>低资源与噪声场景</strong>：论文排除了模糊或低质量图表，未来可研究：</li>
+<li>在部分遮挡、低分辨率或手绘草图条件下的反事实推理</li>
+<li>结合OCR纠错机制处理真实世界中的噪声图表</li>
+</ul>
+<p>5. 评估指标与基准建设（工具开发）</p>
+<ul>
+<li><strong>细粒度能力图谱</strong>：基于ChartMuseum的推理类型分类，构建更细粒度的评估矩阵，映射特定视觉推理能力（如”对数坐标理解”、”误差棒比较”）与模型失效模式的关系</li>
+<li><strong>人类-模型对比研究</strong>：测量人类受试者在相同反事实图表上的表现，识别模型失效是属于”人类也会犯的合理错误”还是”独特的算法缺陷”</li>
+<li><strong>自动化反事实生成</strong>：当前依赖人工验证，未来可开发全自动的质量控制流程，通过程序化验证确保反事实变体的有效性和难度一致性，实现大规模基准扩展</li>
+</ul>
+<p>这些方向既回应了论文明确提及的局限性（对”可逆向工程”图表的依赖、任务固定性），也基于实验发现（视觉推理的脆弱性、记忆依赖）提出了系统性改进路径。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>这篇论文针对图表问答（Chart QA）基准测试中存在的<strong>捷径学习</strong>与<strong>记忆依赖</strong>问题，提出了基于反事实图表的严格评估框架。以下是主要内容总结：</p>
+<p>1. 研究背景与核心问题</p>
+<p>现有Chart QA基准主要依赖<strong>固定的图表-问题-答案三元组</strong>，导致评估存在盲区：</p>
+<ul>
+<li>模型可能通过<strong>参数知识</strong>（训练记忆）或<strong>统计捷径</strong>（问题文本规律）答题，而非基于视觉证据推理</li>
+<li>无法验证当<strong>底层数据改变</strong>时，模型是否能相应调整答案</li>
+<li>单点准确率（OA）可能高估真正的视觉推理能力</li>
+</ul>
+<p>核心问题：模型在回答原始图表正确后，面对<strong>相同问题但数据不同的图表</strong>时，能否保持答案与视觉证据的一致性？</p>
+<p>2. CHARTOGRAPHER框架</p>
+<p>论文提出端到端的反事实图表生成与评估框架，将单一QA实例扩展为<strong>图表-问题家族</strong>：</p>
+<p><strong>（1）图表重建（Reconstruction）</strong></p>
+<ul>
+<li>使用VLM将静态图表逆向工程为<strong>可执行代码</strong>与<strong>语义数据</strong>的分离表示：</li>
+<li>语义数据：实体、数值、类别等可变内容</li>
+<li>渲染代码：视觉编码、布局等固定结构</li>
+<li>通过自改进循环（最多5轮）与人工验证，确保重建保真度</li>
+</ul>
+<p><strong>（2）反事实生成（Counterfactual Generation）</strong></p>
+<ul>
+<li>为每个重建图表创建<strong>种子控制的数据生成器</strong>  generate_data(template, seed) </li>
+<li>使用种子  0  至  9  生成<strong>10个变体</strong>，系统性地改变数值、排名、趋势等，同时保持图表类型与视觉复杂度</li>
+</ul>
+<p><strong>（3）QA再生（QA Regeneration）</strong></p>
+<ul>
+<li>构建<strong>可执行答案逻辑</strong>  generate_answer(data) ，直接从底层数据（而非视觉）计算黄金答案</li>
+<li>问题仅在必要时进行最小化修改，确保语义一致性</li>
+</ul>
+<p>3. 评估指标与诊断体系</p>
+<p>论文建立多维度指标，分离原始性能与泛化能力：</p>
+<p><strong>核心指标</strong></p>
+<ul>
+<li><strong>原始准确率（OA）</strong>：在原始图表上的准确率</li>
+<li><strong>重建准确率（RA）</strong>：在数据未变的重建图表上的准确率（控制组）</li>
+<li><strong>变体准确率（VA）</strong>：在10个反事实变体上的平均准确率</li>
+<li><strong>相对变体变化（RVC）</strong>：<br>RVC = 100 · (VA - OA) / (OA)<br>，衡量对数据变化的敏感度</li>
+<li><strong>条件变体准确率（CVA）</strong>：<br>CVA = ∑<em>(i ∈ S) ∑</em>(j ∈ V<em>i) 1[haty^v</em>(ij) equiv y^v_(ij)]|S||V_i|<br>，其中  S  为原始回答正确的家族集合。<strong>这是诊断泛化能力的关键指标</strong></li>
+</ul>
+<p><strong>失效模式诊断</strong> 在原始回答正确的条件下，将变体预测分为：</p>
+<ul>
+<li><strong>正确更新（CU）</strong>：根据新视觉证据正确调整答案</li>
+<li><strong>陈旧预测（SP）</strong>：重复原始答案（在新数据下错误），指示记忆依赖或数据污染</li>
+<li><strong>噪声更新（NU）</strong>：改变答案但新答案错误，指示视觉 grounding 失败</li>
+</ul>
+<p>4. 主要实验发现</p>
+<p>在ChartQA、CharXiv、ChartMuseum三个数据集上对10个专有模型与6个开源模型的评估显示：</p>
+<p><strong>（1）单图表性能具有误导性</strong></p>
+<ul>
+<li>虽然重建准确率（RA）与原始准确率（OA）接近，但<strong>条件变体准确率（CVA）显著下降</strong>：</li>
+<li>ChartQA：CVA 保持较高（约0.93）</li>
+<li>CharXiv：CVA 降至0.73（专有）/ 0.47（开源）</li>
+<li>ChartMuseum：CVA 进一步降至0.58（专有）/ 0.41（开源）</li>
+</ul>
+<p><strong>（2）视觉推理泛化脆弱</strong></p>
+<ul>
+<li>按推理类型分析（ChartMuseum）：</li>
+<li>**纯文本（Text）**任务CVA最高（0.79）</li>
+<li>**纯视觉（Visual）<strong>与</strong>综合（Synthesis）**任务CVA最低（约0.46-0.48）</li>
+<li>模型在需要<strong>轨迹追踪</strong>、<strong>空间比较</strong>、<strong>符号-视觉绑定</strong>的任务上失败率最高</li>
+</ul>
+<p><strong>（3）失效模式分布</strong></p>
+<ul>
+<li>**噪声更新（NU）**是最常见失效（ChartMuseum达33%），表明模型尝试更新但未能正确基于视觉证据</li>
+<li>**陈旧预测（SP）**在复杂数据集上显著（ChartMuseum达9%），证实模型依赖参数记忆而非实时推理</li>
+<li>开源模型的NU与SP率普遍高于专有模型</li>
+</ul>
+<p><strong>（4）案例研究证据</strong></p>
+<ul>
+<li>定性分析显示，模型常在变体上复用描述原始图表的”事实”（如”Watching TV从幼儿期开始”），即使变体中该描述已不成立，这是<strong>记忆依赖</strong>的明确证据</li>
+</ul>
+<p>5. 研究结论与意义</p>
+<p><strong>核心结论</strong></p>
+<ul>
+<li>现有单图表基准<strong>无法区分</strong>真正的视觉推理能力与记忆/捷径学习</li>
+<li><strong>反事实图表家族</strong>能暴露隐藏失效：模型可能答对原始图表，但在数据改变后无法泛化</li>
+<li>失败集中于需要<strong>新颖视觉推理路径</strong>的更新图表，表明当前VLMs的视觉 grounding 能力有限</li>
+</ul>
+<p><strong>贡献</strong></p>
+<ul>
+<li>提出首个系统性的图表反事实评估框架，实现从”固定答案恢复”到”证据敏感推理”的评估范式转变</li>
+<li>构建可扩展的自动化流水线（逆向工程→变异生成→答案再生），支持大规模基准构建</li>
+<li>揭示视觉语言模型在科学图表（CharXiv）和复杂可视化（ChartMuseum）上的<strong>泛化鸿沟</strong></li>
+</ul>
+<p><strong>局限性</strong></p>
+<ul>
+<li>仅适用于可逆向工程为代码的图表（排除极度模糊或手绘图表）</li>
+<li>保持任务固定，未测试图表类型或问题风格的更广泛变化</li>
+</ul>
+<p>该研究为严格评估多模态推理能力提供了新工具，强调评估应关注模型预测是否<strong>随视觉证据变化而相应调整</strong>，而非仅追求单点准确率。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Chartographer%3A%20Counterfactual%20Chart%20Generation%20for%20Evaluating%20Vision-Language%20Models，链接是https://arxiv.org/pdf/2605.27311，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2605.27311。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Yifan Jiang,Dae Yon Hwang,Jesse C. Cresswell,Freda Shi</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.27311.pdf">https://arxiv.org/pdf/2605.27311.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.27311">https://arxiv.org/abs/2605.27311</a></p>
+<p><strong>Arxiv ID</strong>: 2605.27311</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2605.27311">https://papers.cool/arxiv/2605.27311</a></p>
+<p><strong>Published</strong>: 2026-05-28T02:20:22.706Z</p>
+<p><strong>Updated</strong>: 2026-05-28T02:20:22.706Z</p>
+<hr>
+<h3 id="4-OSP-Next-Efficient-High-Quality-Video-Generation-with-Sparse-Sequence-Parallelism-HiF8-Quantization-and-Reinforcement-Learning"><a href="#4-OSP-Next-Efficient-High-Quality-Video-Generation-with-Sparse-Sequence-Parallelism-HiF8-Quantization-and-Reinforcement-Learning" class="headerlink" title="4. OSP-Next: Efficient High-Quality Video Generation with Sparse Sequence Parallelism, HiF8 Quantization, and Reinforcement Learning"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2605.28691">OSP-Next: Efficient High-Quality Video Generation with Sparse Sequence Parallelism, HiF8 Quantization, and Reinforcement Learning</a></h3><p>Abstract:Diffusion Transformers achieve strong video generation quality, but the quadratic cost of full attention limits efficiency. We introduce OSP-Next, an efficient text-to-video generation model that integrates sparse attention, parallelism, quantization, and reinforcement learning. OSP-Next uses a hybrid full-sparse attention architecture, where the sparse component is implemented with Skiparse-2D Attention. This fixed-pattern mechanism applies token-wise and group-wise sparse attention along spatial dimensions, leveraging locality while maintaining native compatibility with FlashAttention kernels. Based on the local equivalence of rearrangement in Skiparse-2D Attention, we further propose Sparse Sequence Parallelism (SSP), which partitions subsequences across ranks and switches sparse patterns through a single All-to-All communication. Compared with Ulysses Sequence Parallelism (SP), SSP provides a native parallel strategy for sparse attention and reduces communication volume by 75%. OSP-Next also incorporates HiF8 quantization to enable stable joint training with 8-bit quantization and sparse fine-tuning, and applies Mix-GRPO post-training to improve the performance of the sparse model. Experiments show that OSP-Next achieves a VBench total score of 83.73%, surpassing the Wan2.1 baseline. Under the 5-second 720P and 5-second 768P settings, OSP-Next achieves up to 1.64$\times$ single-GPU speedup and over 1.52$\times$ eight-GPU speedup on NVIDIA H200 GPUs. In addition, with only a 0.4% drop in VBench total score, OSP-Next-HiF8 achieves 1.69$\times$ and 2.27$\times$ speedups under the two settings on a single Ascend 950PR, demonstrating the efficiency and performance of OSP-Next across hardware platforms.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：扩散变换器在视频生成质量方面表现出色，但全注意力的二次计算成本限制了效率。我们提出了 OSP-Next，这是一种高效的文本生成视频模型，结合了稀疏注意力、并行性、量化和强化学习。OSP-Next 使用混合全-稀疏注意力架构，其中稀疏部分通过 Skiparse-2D 注意力实现。这种固定模式机制沿空间维度应用逐令牌和逐组稀疏注意力，利用局部性，同时保持与 FlashAttention 内核的原生兼容性。基于 Skiparse-2D 注意力重排的局部等价性，我们进一步提出了稀疏序列并行（Sparse Sequence Parallelism，SSP），它将子序列跨不同等级分区，并通过一次全到全（All-to-All）通信切换稀疏模式。相比 Ulysses 序列并行（SP），SSP 为稀疏注意力提供了原生的并行策略，并将通信量减少了 75%。OSP-Next 还采用 HiF8 量化实现 8 位量化与稀疏微调的稳定联合训练，并应用 Mix-GRPO 后训练方法提升稀疏模型的性能。实验表明，OSP-Next 在 VBench 总分上达到 83.73%，超过了 Wan2.1 基线。在 5 秒 720P 和 5 秒 768P 设置下，OSP-Next 在 NVIDIA H200 GPU 上分别实现了高达 1.64 倍单 GPU 加速和超过 1.52 倍八 GPU 加速。此外，OSP-Next-HiF8 在 VBench 总分仅下降 0.4% 的情况下，在单块 Ascend 950PR 上的两种设置下分别实现了 1.69 倍和 2.27 倍加速，展示了 OSP-Next 在不同硬件平台上的效率与性能。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Navigation timeout of 10000 ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Yunyang Ge,Xianyi He,Zezhong Zhang,Bin Lin,Bin Zhu,Xinhua Cheng,Li Yuan</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.28691.pdf">https://arxiv.org/pdf/2605.28691.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.28691">https://arxiv.org/abs/2605.28691</a></p>
+<p><strong>Arxiv ID</strong>: 2605.28691</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2605.28691">https://papers.cool/arxiv/2605.28691</a></p>
+<p><strong>Published</strong>: 2026-05-28T02:20:31.960Z</p>
+<p><strong>Updated</strong>: 2026-05-28T02:20:31.960Z</p>
+<hr>
+<h3 id="5-Less-is-More-Early-Stopping-Rollout-for-On-Policy-Distillation"><a href="#5-Less-is-More-Early-Stopping-Rollout-for-On-Policy-Distillation" class="headerlink" title="5. Less is More: Early Stopping Rollout for On-Policy Distillation"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2605.27028">Less is More: Early Stopping Rollout for On-Policy Distillation</a></h3><p>Abstract:On-policy distillation has recently emerged as a promising alternative to standard sequence-level imitation, training a student by scoring its own rollouts with a teacher model. However, we observe ``Off-policy Teacher Decay’’ problem in this paradigm: for the later tokens, with student’s earlier trajectory as context that is off-policy to the teacher, the teacher’s ability to produce a corrective score would decay, and may fall back to token-completion behavior learned in the pre-training stage. We empirically verify this problem, and we propose Early Stopping Rollout (ESR) to fix it: a simple yet effective distillation strategy that simply restricts the rollout generation to the first response tokens. We show that ESR both surpasses the full rollout OPD performance across model size, family, tasks and training regime, and exhibit much higher GPU efficiency and training stability, especially under cross model family scenarios. We further investigate the mechanism behind this surprising performance and discovered “Cascading Alignment” and “Sub-mode Commitment” effect of ESR that may explain why it works effectively and even sometimes exceeding the teacher model performance. Besides, we show that this position-based token selection strategy cannot be fully explainable by KL divergence and entropy signals.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：策略内蒸馏（On-policy distillation）近年来已成为标准序列级模仿学习的一种有前景的替代方法，通过教师模型对学生模型自身生成的轨迹进行评分来训练学生模型。然而，我们在该范式下观察到“策略外教师衰减”（Off-policy Teacher Decay）问题：对于后续的令牌，由于学生模型的先前轨迹作为上下文，而该轨迹对教师模型而言是策略外的，教师模型产生纠正性评分的能力会衰减，并可能退回到预训练阶段学到的令牌补全行为。我们通过实验证实了这一问题，并提出了早停生成（Early Stopping Rollout，ESR）来解决它：这是一种简单但有效的蒸馏策略，仅限制生成过程在初始响应令牌。在实验中，我们展示了ESR在模型规模、模型家族、任务类型和训练模式上均超过了完整生成的OPD性能，并表现出更高的GPU效率和训练稳定性，尤其是在跨模型家族的场景下。我们进一步探讨了这一惊人成果背后的机制，并发现了ESR的“级联对齐”（Cascading Alignment）和“子模式固化”（Sub-mode Commitment）效应，这可能解释了它为什么能够有效工作，甚至在某些情况下超过教师模型的性能。此外，我们表明，这种基于位置的令牌选择策略不能完全通过KL散度和熵信号来解释。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Navigation timeout of 10000 ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Zhou Ziheng,Jiaqi Li,Huacong Tang,Ying Nian Wu,Demetri Terzopoulos</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.27028.pdf">https://arxiv.org/pdf/2605.27028.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.27028">https://arxiv.org/abs/2605.27028</a></p>
+<p><strong>Arxiv ID</strong>: 2605.27028</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2605.27028">https://papers.cool/arxiv/2605.27028</a></p>
+<p><strong>Published</strong>: 2026-05-28T02:21:06.860Z</p>
+<p><strong>Updated</strong>: 2026-05-28T02:21:06.860Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202605/2026-05-28/">https://wdndev.github.io/daily/hf/202605/2026-05-28/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202601/2026-01-01/" title="HuggingFace Papers 2026-01-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-01</div></div></a></div><div><a href="/daily/hf/202601/2026-01-02/" title="HuggingFace Papers 2026-01-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-02</div></div></a></div><div><a href="/daily/hf/202601/2026-01-03/" title="HuggingFace Papers 2026-01-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-01-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ResearchMath-14K-Scaling-Research-Level-Mathematics-via-Agents"><span class="toc-text">1. ResearchMath-14K: Scaling Research-Level Mathematics via Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-From-Pixels-to-Words-%E2%80%94-Towards-Native-One-Vision-Models-at-Scale"><span class="toc-text">2. From Pixels to Words — Towards Native One-Vision Models at Scale</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Chartographer-Counterfactual-Chart-Generation-for-Evaluating-Vision-Language-Models"><span class="toc-text">3. Chartographer: Counterfactual Chart Generation for Evaluating Vision-Language Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-OSP-Next-Efficient-High-Quality-Video-Generation-with-Sparse-Sequence-Parallelism-HiF8-Quantization-and-Reinforcement-Learning"><span class="toc-text">4. OSP-Next: Efficient High-Quality Video Generation with Sparse Sequence Parallelism, HiF8 Quantization, and Reinforcement Learning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Less-is-More-Early-Stopping-Rollout-for-On-Policy-Distillation"><span class="toc-text">5. Less is More: Early Stopping Rollout for On-Policy Distillation</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
