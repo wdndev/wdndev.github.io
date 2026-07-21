@@ -1,0 +1,557 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-06-15 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. When is Your LLM Steerable?Abstract:Activation steering offers a lightweight approach to control language models’ behavior at inference time, but whether it s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-06-15">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202606/2026-06-15/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. When is Your LLM Steerable?Abstract:Activation steering offers a lightweight approach to control language models’ behavior at inference time, but whether it s">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-21T01:04:37.513Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202606/2026-06-15/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-06-15',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-07-21 09:04:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">266</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-06-15</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-07-21T01:04:37.513Z" title="Updated 2026-07-21 09:04:37">2026-07-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">7.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>27min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-06-15"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-When-is-Your-LLM-Steerable"><a href="#1-When-is-Your-LLM-Steerable" class="headerlink" title="1. When is Your LLM Steerable?"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.11599">When is Your LLM Steerable?</a></h3><p>Abstract:Activation steering offers a lightweight approach to control language models’ behavior at inference time, but whether it succeeds or fails heavily depends on the prompt, concept, model, and steering configuration. Finding the regime and boundaries of successful steering typically requires expensive grid searches and post-hoc evaluation of full autoregressive rollouts. In this work, we investigate whether steerability can be predicted from the model’s internal states at the beginning of the generation process, e.g., after generating the first few tokens, and how to leverage such a predictor to improve steering success rate. To this end, we first introduce ASTEER, a testbed including 1.4M steered generations, spanning 150 concepts with each steering success/failure labeled. Leveraging this testbed, we analyze the model’s early decoding dynamics by extracting features that compare hidden states before and after steering across layers and initial decoding steps. These features help us understand how steering’s effects propagate along layers and token positions, which provide key information for steerability prediction. We then train a Gradient Boosting Decision Trees (GBDT) classifier on these features to predict whether an intervention will under-steer, succeed, or over-steer without requiring full rollout. Our predictor achieves around 0.7 macro-F1 score on unseen concepts, demonstrating that early hidden states encode substantial, structured information about eventual steering efficacy. We further leverage this steerability predictor as guidance for steering strength searching, achieving near-optimal performance with a small fraction of decoding cost.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：激活引导提供了一种轻量级的方法来在推理时控制语言模型的行为，但其成功与否在很大程度上取决于提示、概念、模型和引导配置。找到成功引导的范围和边界通常需要昂贵的网格搜索和对完整自回归展开的事后评估。在本文中，我们研究是否可以从生成过程开始时模型的内部状态预测可引导性，例如，在生成前几个标记后，以及如何利用这样的预测器提高引导成功率。为此，我们首先引入了ASTEER，这是一个包含140万次引导生成的测试平台，涵盖150个概念，并对每次引导的成功/失败进行了标注。利用该测试平台，我们通过提取跨层和初始解码步骤在引导前后比较隐藏状态的特征，分析了模型的早期解码动态。这些特征帮助我们理解引导的效果如何沿层和标记位置传播，从而提供了预测可引导性的关键信息。然后，我们在这些特征上训练了梯度提升决策树（GBDT）分类器，以预测干预是否会欠引导、成功或过度引导，而无需完整展开。我们的预测器在未见过的概念上实现了约0.7的宏F1分数，表明早期隐藏状态编码了关于最终引导效果的大量结构化信息。我们进一步利用这个可引导性预测器作为引导强度搜索的指导，在极小的解码成本下实现了接近最优的性能。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文试图解决<strong>激活转向（Activation Steering）可控性预测与优化</strong>的问题，具体包括以下核心挑战：</p>
+<p>1. 转向效果的不可预测性与高昂评估成本</p>
+<p>当前激活转向技术虽然能通过在隐藏状态注入方向向量来轻量级地控制语言模型行为，但其成功与否高度依赖于提示（prompt）、目标概念（concept）、模型架构及转向强度（steering strength）的复杂组合。现有实践通常需要：</p>
+<ul>
+<li>昂贵的网格搜索（grid search）遍历大量转向系数  α ∈ A </li>
+<li>完整的自回归输出（full autoregressive rollouts）和LLM评判（judge）来验证转向效果</li>
+</ul>
+<p>这带来了巨大的计算开销，且缺乏对”何时转向会成功或失败”的系统性理解。</p>
+<p>2. 早期可控性预测问题</p>
+<p>论文核心假设是：转向的有效性可能编码在模型生成初始阶段的内部状态中。因此需要解决：</p>
+<ul>
+<li><strong>预测问题</strong>：给定提示  p 、概念  c  和转向配置（强度  α 、转向向量  v<em>c ），能否在仅解码前  k  个token的隐藏状态后，预测转向结果（ Lambda = UNDERSTEER, SUCCSTEER, OVERSTEER ），而无需生成完整响应  y</em>(p,c,α) ？</li>
+</ul>
+<p>数学上，即构建预测器  f  使得：<br>f(h<em>t^((l))</em>(t ∈ [k], l ∈ L)) to Lambda<br> 其中  h_t^((l))  表示第  t  个token在第  l  层的转向后隐藏状态。</p>
+<p>3. 高效转向强度搜索</p>
+<p>基于上述预测能力，进一步解决如何利用早期隐藏状态特征来：</p>
+<ul>
+<li>替代完整的网格搜索，快速识别有效的转向强度  α </li>
+<li>在保证高成功率的前提下，将解码成本降低至传统方法的一小部分（实验显示仅需约11%的解码token即可达到接近最优的性能）</li>
+</ul>
+<p>关键难点</p>
+<ul>
+<li><strong>异质性</strong>：不同概念、提示和模型对转向强度  α  的敏感窗口差异巨大（如图3所示的”倒U型”曲线位置各异）</li>
+<li><strong>分布外泛化</strong>：预测器需要在未见过的新概念（OOD concepts）上保持有效性（macro-F1约0.7）</li>
+<li><strong>特征提取</strong>：需从多层、多token位置的隐藏状态差异中提取可解释的几何与动态特征（如  cos(h_t^((l)) - h_t^((l)), v_c)  等）来表征转向信号的传播模式</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+</div></details>
+<p><strong>Authors</strong>: Chenrui Fan,Yize Cheng,Ming Li,Soheil Feizi,Tianyi Zhou</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.11599.pdf">https://arxiv.org/pdf/2606.11599.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.11599">https://arxiv.org/abs/2606.11599</a></p>
+<p><strong>Arxiv ID</strong>: 2606.11599</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.11599">https://papers.cool/arxiv/2606.11599</a></p>
+<p><strong>Published</strong>: 2026-06-15T02:03:50.276Z</p>
+<p><strong>Updated</strong>: 2026-06-15T02:03:50.276Z</p>
+<hr>
+<h3 id="2-VISTA-View-Consistent-Self-Verified-Training-for-GUI-Grounding"><a href="#2-VISTA-View-Consistent-Self-Verified-Training-for-GUI-Grounding" class="headerlink" title="2. VISTA: View-Consistent Self-Verified Training for GUI Grounding"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.14579">VISTA: View-Consistent Self-Verified Training for GUI Grounding</a></h3><p>Abstract:When applying Group Relative Policy Optimization (GRPO) for GUI Grounding, rollouts are sampled from a single screenshot view; groups often become either all failures on difficult instances or all successes on easy ones, yielding no useful relative advantage. We propose VISTA (View-Consistent Self-Verified Training), a GRPO-based training framework that constructs each comparison group from multiple target-preserving views of the same GUI this http URL view is generated by a crop that keeps the target element visible and remaps its box exactly, so model rollouts are compared across semantically equivalent but geometrically different inputs. To stabilize short coordinate generation without turning reinforcement learning into unconditional imitation, VISTA further adds a self-verified cross-view anchor: an oracle answer optimized with an advantage-weighted loss, excluded from the group baseline and activated only when the model has produced a maximum-reward rollout. Across five GUI-grounding benchmarks and multiple Qwen backbones, VISTA consistently improves grounding this http URL ScreenSpot-Pro, it raises Qwen3-VL 4B/8B/30B-A3B from 55.5/52.7/53.7 to 63.4/65.8/67.0. Robustness analyses further show higher worst-view accuracy and lower prediction flip rates.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：在将群组相对策略优化（GRPO）应用于 GUI 定位时，rollouts 是从单一截图视图中采样的；在困难实例上，组通常全部失败，而在简单实例上，组通常全部成功，从而无法产生有用的相对优势。我们提出了 VISTA（视图一致自验证训练），一种基于 GRPO 的训练框架，它通过同一 GUI 的多个保持目标元素的视图构建每个比较组。该视图由一个裁剪生成，该裁剪保持目标元素可见并精确重新映射其框，因此模型 rollouts 是在语义等价但几何不同的输入之间进行比较的。为了稳定短坐标生成而不将强化学习变成无条件模仿，VISTA 进一步增加了一个自验证的跨视图锚点：一个使用优势加权损失优化的 oracle 答案，被排除在组基线之外，并仅在模型产生最大奖励 rollout 时激活。在五个 GUI 定位基准测试和多个 Qwen 骨干网络上，VISTA 一直提高了定位性能。在 ScreenSpot-Pro 基准上，它将 Qwen3-VL 4B/8B/30B-A3B 从 55.5/52.7/53.7 提升至 63.4/65.8/67.0。鲁棒性分析进一步显示了更高的最差视图准确率和更低的预测翻转率。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文针对将 <strong>Group Relative Policy Optimization (GRPO)</strong> 应用于 <strong>GUI Grounding</strong> 任务时出现的<strong>奖励退化（Reward Degeneracy）</strong>与<strong>视图鲁棒性不足</strong>问题，提出了相应的训练框架。</p>
+<p>具体而言，论文试图解决以下两个核心问题：</p>
+<p>1. GRPO 中的组内奖励同质化（Group Homogeneity）</p>
+<p>在标准 GRPO 训练流程中，模型从<strong>单一固定视图</strong>（fixed screenshot）采样多个 rollout 构成对比组。这导致两种退化情形：</p>
+<ul>
+<li><strong>全失败（All-fail）</strong>：在困难样本上，所有 rollout 均无法命中目标元素，奖励全为 0，相对优势  A_i = 0 ；</li>
+<li><strong>全成功（All-one）</strong>：在简单样本上，所有 rollout 均正确命中，奖励全为 1，相对优势同样为 0。</li>
+</ul>
+<p>这两种情况均导致<strong>组内方差  σ_G = 0 </strong>，使得策略梯度更新失去学习信号。论文指出，在 GUI Grounding 中，由于坐标输出与图像几何紧密耦合，这种退化尤为严重， informative groups（既非全 0 也非全 1 的组）占比不足 5%。</p>
+<p>2. 视图变化下的坐标预测不稳定</p>
+<p>GUI Grounding 要求模型将自然语言指令映射到屏幕坐标。然而，即使对同一目标元素进行<strong>目标保留裁剪（target-preserving crop）</strong>（即保持目标可见但改变视口几何），模型在不同视图下的预测可能出现显著偏移。标准 GRPO 仅在固定视图上训练，无法强制模型学习<strong>跨视图的几何一致性</strong>，导致模型对输入截图的微小变化过于敏感，泛化能力差。</p>
+<p>解决方案概述</p>
+<p>为应对上述问题，论文提出 <strong>VISTA (View-Consistent Self-Verified Training)</strong>，其核心机制包括：</p>
+<ul>
+<li><strong>视图一致组构建（View-Consistent Group Rollout）</strong>：将 GRPO 组从同一 GUI 实例的<strong>多个目标保留视图</strong>中采样，确保组内样本语义等价但几何不同，从而恢复有效的相对优势信号；</li>
+<li><strong>自验证跨视图锚点（Self-Verified Cross-View Anchoring）</strong>：仅在当前策略已产生最大奖励 rollout（自验证条件）时，才引入 oracle 坐标作为锚点，防止无条件模仿学习，同时稳定短坐标序列的生成。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>根据论文第2节及引言部分，相关研究主要围绕以下两个方向展开：</p>
+<p>1. GUI Grounding</p>
+<p>该领域的研究可分为**监督微调（SFT）<strong>与</strong>强化学习（RL）**两条技术路线：</p>
+<p><strong>基于SFT的早期工作</strong><br>通过在大规模GUI数据集上进行监督微调，建立将自然语言指令映射到屏幕坐标的基线能力。代表性工作包括针对移动设备、网页和桌面界面的专门化训练，如 SeeClick (Cheng et al., 2024)、ShowUI-web (Lin et al., 2024)、OmniAct (Kapoor et al., 2024) 等，这些方法证明了在特定领域数据上微调的有效性。</p>
+<p><strong>基于RL的近期进展</strong><br>近年来，研究者开始采用<strong>基于可验证奖励的强化学习</strong>（如点击正确性判断）来超越SFT基线。这类方法利用规则化的点在框内（point-in-box）奖励进行训练，代表工作包括：</p>
+<ul>
+<li>使用GRPO进行GUI定位的框架 (Yang et al., 2025; Luo et al., 2025; Tang et al., 2025a)</li>
+<li>针对GUI代理的R1风格训练 (Zhou et al., 2025b; Gu et al., 2025a)</li>
+<li>高分辨率专业软件界面的定位优化 (Li et al., 2025)</li>
+</ul>
+<p>然而，现有RL方法在训练后期常面临<strong>效果递减</strong>的问题，即随着优化进行，学习信号逐渐减弱。</p>
+<p>2. GRPO中的Oracle Guidance</p>
+<p>GRPO（Group Relative Policy Optimization）虽被广泛用于大语言模型的后训练，但存在<strong>奖励退化</strong>问题：当组内rollout全部正确或全部错误时，相对优势（relative advantage） collapse to zero，导致学习信号消失。针对此问题，近期在数学与推理领域的研究尝试引入Oracle指导：</p>
+<p><strong>LUFFY</strong> (Yan et al., 2026)<br>通过将来自更强教师的off-policy轨迹混合到组中，利用正则化重要性采样（regularized importance sampling）平衡模仿学习与on-policy探索。</p>
+<p><strong>BREAD</strong> (Zhang et al., 2026)<br>采用自适应策略，在on-policy rollout失败时插入部分专家前缀（expert prefixes），确保每次更新至少包含一条成功轨迹。</p>
+<p>与上述方法不同，本文提出的VISTA通过<strong>视图一致的组构建</strong>而非直接注入Oracle轨迹来解决退化问题，并通过<strong>自验证门控机制</strong>避免无条件模仿学习。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文提出 <strong>VISTA (View-Consistent Self-Verified Training)</strong> 框架，通过以下两个核心机制解决 GRPO 在 GUI Grounding 中的奖励退化与视图敏感性问题：</p>
+<p>1. 视图一致组构建（View-Consistent Group Rollout）</p>
+<p>该方法将 GRPO 的对比组从<strong>单一固定视图</strong>的重复采样，转变为<strong>同一 GUI 实例的多个目标保留视图</strong>的交叉采样。</p>
+<p>目标保留视图生成</p>
+<p>对于原始截图  I  及其目标框  B=(x<em>1,y_1,x_2,y_2) ，通过随机裁剪生成  K  个视图  V_k</em>(k=1)^K ，满足：</p>
+<ul>
+<li><strong>目标可见性约束</strong>：裁剪窗口  C<em>k=(l_k,t_k,w_k,h_k)  必须完全包含目标框  B</em>(px) （像素坐标）</li>
+<li><strong>几何多样性</strong>：每个视图的左上角坐标  (l_k,t_k)  从可行区间均匀采样：<br>l_k sim U(max(0,x_2-w_k), min(x_1,W-w_k))</li>
+</ul>
+<p>t_k sim U(max(0,y_2-h_k), min(y_1,H-h_k))</p>
+<p>精确坐标重映射</p>
+<p>每个裁剪视图  V_k  对应重映射后的目标框  B_k ：<br>B_k = ( (1000(x_1-l_k)) / (w_k), (1000(y_1-t_k)) / (h_k), (1000(x_2-l_k)) / (w_k), (1000(y_2-t_k)) / (h_k) )<br> 确保同一语义目标在不同视图下具有<strong>几何一致但数值不同</strong>的监督坐标。</p>
+<p>模型独占的组统计</p>
+<p>从  K  个视图中各采样  n=G/K  个 rollout，构成总大小为  G  的组。组统计量仅基于<strong>模型生成的样本</strong>计算：<br>μ<em>m = (1) / (G)∑</em>(k=1)^K∑<em>(j=1)^n r</em>(k,j), quad σ<em>m = √(1) / (G)∑</em>(k=1)^K∑<em>(j=1)^n (r</em>(k,j)-μ<em>m)^2<br> 对应优势值为：<br>A</em>(k,j) = r_(k,j) - μ_mσ_m + ε</p>
+<p>此设计确保：</p>
+<ul>
+<li>困难样本中，不同视图的几何差异增加组内方差  σ_m ，避免全零退化；</li>
+<li>简单样本中，跨视图坐标变化防止全一同质化，暴露预测不稳定性。</li>
+</ul>
+<p>2. 自验证跨视图锚点（Self-Verified Cross-View Anchor）</p>
+<p>为避免多视图训练导致的短坐标序列生成不稳定，VISTA 引入<strong>条件化的 Oracle 监督</strong>，但严格控制其激活条件。</p>
+<p>自验证门控机制</p>
+<p>定义最大奖励集合  P = (k,j): r<em>(k,j)=R</em>(max) ，其中  R<em>(max)=1  为点在框内的最大奖励。锚点的激活由指示函数控制：<br>g = I[max</em>(k,j) r<em>(k,j) = R</em>(max)]<br> 仅当模型在当前组中<strong>已自主产生至少一个满分 rollout</strong>（即组被”自验证”）时， g=1 ，Oracle 锚点才会被激活。</p>
+<p>锚点构造与优势计算</p>
+<p>从模型未成功的视图中优先选择锚点视图  V_(k^+) ，构造 Oracle 坐标（目标框中心）：<br>y^+ = [ lfloor(x_1+x_2) / (2)rfloor, lfloor(y_1+y_2) / (2)rfloor ]</p>
+<p>该锚点的优势值计算为：<br>A^+ = g · R_(max) - μ_mσ_m + ε</p>
+<p><strong>关键设计</strong>：Oracle 序列<strong>被排除在组统计量  (μ_m, σ_m)  之外</strong>。这确保：</p>
+<ul>
+<li>若模型全部失败（ g=0 ），锚点优势为 0，避免无条件模仿学习；</li>
+<li>若模型部分成功，锚点提供<strong>基于模型基线的正则化信号</strong>，而非改变比较基准。</li>
+</ul>
+<p>3. 训练目标</p>
+<p>最终优化目标结合 GRPO 的 clipped 损失与条件化的锚点监督：</p>
+<p>L<em>(VISTA) = -(1) / (G+1)( ∑</em>(k=1)^K∑<em>(j=1)^n ell</em>(clip)(y<em>(k,j), A</em>(k,j)) + λ<em>a ell</em>(anchor)(y^+, A^+) ) + βL_(KL)</p>
+<p>其中：</p>
+<ul>
+<li><p>ell<em>(clip)  为标准 GRPO 的裁剪策略梯度损失：<br>ell</em>(clip)(y<em>(k,j), A</em>(k,j)) = ∑<em>t min( rho</em>(k,j,t)A<em>(k,j), rho</em>(k,j,t)A<em>(k,j) )<br>rho</em>(k,j,t)  为新旧策略的比率， rho  为裁剪后的比率。</p>
+</li>
+<li><p>ell<em>(anchor)  为<strong>优势加权的监督损失</strong>（仅激活时有效）：<br>ell</em>(anchor)(y^+, A^+) = sg(A^+) ∑<em>t log π</em>θ(y^+<em>t | V</em>(k^+), q, y^+_(&lt;t))<br>sg(·)  表示停止梯度，确保锚点不反向传播影响优势估计。</p>
+</li>
+<li><p>λ_a  控制锚点强度（默认设为 1）， β  为 KL 散度系数。</p>
+</li>
+</ul>
+<p>通过上述机制，VISTA 在不改变 GRPO 相对优势比较本质的前提下，通过<strong>视图多样性</strong>恢复学习信号，通过<strong>自验证锚点</strong>稳定坐标生成，最终提升 GUI Grounding 的精度与跨视图鲁棒性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文在第4节及附录中开展了系统性实验验证，涵盖<strong>主实验对比</strong>、<strong>跨架构泛化</strong>、<strong>组件消融</strong>及<strong>鲁棒性诊断</strong>四个维度：</p>
+<p>1. 主实验对比（Main Results）</p>
+<p><strong>基准测试</strong>：在五个GUI Grounding基准上评估，包括 ScreenSpot-Pro（高分辨率专业软件界面）、ScreenSpot-V2、MMBench-GUI L2、OSWorld-G-R 和 OSWorld-G。</p>
+<p><strong>核心结果</strong>（表1）：</p>
+<ul>
+<li>基于 Qwen3-VL 4B/8B/30B-A3B 训练 VISTA，平均准确率分别从 71.1/69.0/73.6 提升至 75.5/76.3/77.6。</li>
+<li>在最具挑战性的 ScreenSpot-Pro 上提升最为显著：4B 模型从 55.5 提升至 63.4（+7.9），8B 从 52.7 提升至 65.8（+13.1），30B-A3B 从 53.7 提升至 67.0（+13.3）。</li>
+<li>与推理时多视图聚合（MVP）正交互补，结合后 30B-A3B 模型在 ScreenSpot-Pro 上达到 74.1。</li>
+</ul>
+<p><strong>训练动态分析</strong>（图3）：</p>
+<ul>
+<li>监测了训练过程中的内容奖励、格式奖励、全零/全一退化组比例及信息组比例。</li>
+<li>证实标准 GRPO 的信息组比例不足 5%，而 VISTA 提升至约 20%；同时多视图 rollout 单独使用时格式奖励不稳定，结合自验证锚点后趋于稳定。</li>
+</ul>
+<p>2. 跨架构泛化（Cross-Backbone Generalization）</p>
+<p>验证 VISTA 是否依赖特定初始化（表2）：</p>
+<ul>
+<li>在 Qwen3.5-4B/9B/35B-A3B 上，VISTA 相比标准 GRPO 在 ScreenSpot-Pro 上分别提升 +2.0、+0.9、+1.2 个百分点。</li>
+<li>在 OSWorld-G-R 等基准上亦保持优势，证明方法可迁移至不同模型家族。</li>
+</ul>
+<p>3. 组件消融研究（Ablation Studies）</p>
+<p><strong>核心组件分离</strong>（表3）：</p>
+<ul>
+<li>固定视图 GRPO 在 ScreenSpot-Pro 上为 63.4；</li>
+<li>仅增加动态裁剪（无锚点）提升至 64.3；</li>
+<li>仅增加自适应锚点（无动态裁剪）提升至 64.8；</li>
+<li>两者结合（完整 VISTA）达到 65.8，证实视图构建与自验证锚点解决互补的失败模式。</li>
+</ul>
+<p><strong>锚点监督策略</strong>（表4）：</p>
+<ul>
+<li>无门控的归一化锚点（始终激活）导致性能暴跌至 57.8（优势爆炸问题）；</li>
+<li>恒定 SFT 混合（无条件模仿）仅提升至 63.9；</li>
+<li>自验证门控机制（仅当组内存在满分 rollout 时激活）达到最优 65.8。</li>
+</ul>
+<p><strong>超参数敏感性</strong>（附录 A.3）：</p>
+<ul>
+<li><strong>锚点数量</strong>（表7）：单锚点（65.8）优于双锚点（65.0）和四锚点（64.0），过多锚点削弱探索信号。</li>
+<li><strong>锚点位置</strong>（表8）：目标框中心点（65.8）略优于框内随机点（64.8），确定性中心点减少噪声。</li>
+<li><strong>视图数量</strong>（表9）： K=8  时 ScreenSpot-Pro 达到 65.8，优于  K=1 （64.8）和  K=4 （64.4）。</li>
+<li><strong>裁剪概率</strong>（表11）： p_(crop)=0.8  时最优（65.8），全裁剪（1.0）降至 64.6，保留 20% 全屏视图有助于稳定训练。</li>
+<li><strong>裁剪策略</strong>（表10）：动态目标保留裁剪（65.8）优于固定偏移裁剪（65.0）和无裁剪（64.8）。</li>
+</ul>
+<p>4. 视图鲁棒性诊断（Crop Perturbation Diagnostic）</p>
+<p><strong>跨视图稳定性</strong>（表5）：</p>
+<ul>
+<li>在 250 个训练样本上评估原始视图与 8 个随机裁剪视图的一致性。</li>
+<li>相比标准 GRPO，VISTA 将：</li>
+<li>裁剪视图平均准确率从 93.00% 提升至 96.25%；</li>
+<li>最坏视图准确率（worst-view）从 87.63% 提升至 92.42%；</li>
+<li>视图一致率（VCR，所有视图预测一致的比例）从 88.38% 提升至 90.40%；</li>
+<li>预测翻转率（prediction flip rate，跨视图预测结果变化的比例）从 8.31% 降至 5.80%。</li>
+</ul>
+<p><strong>调整大小 vs. 裁剪</strong>（附录图4 及分析）：</p>
+<ul>
+<li>对比实验显示，仅对全图进行多尺度调整大小（不改变目标相对坐标）会导致训练崩溃（ScreenSpot-Pro 从 60.34 降至 51.99），而目标保留裁剪通过强制坐标变换学习，避免此问题。</li>
+</ul>
+<p>5. 细粒度分析（Detailed Breakdown）</p>
+<p><strong>ScreenSpot-Pro 分类别结果</strong>（表12）：</p>
+<ul>
+<li>在 CAD、Dev、Creative、Scientific、Office、OS 六类任务中，VISTA 在 Icon 类任务上提升尤为显著（如 8B 模型在 Creative Icon 上从 39.3 提升至 45.9）。</li>
+<li>结合 MVP 后，在 OS Icon（71.7）和 Creative Icon（58.2）等困难类别上达到 SOTA。</li>
+</ul>
+<p>综上，实验验证了 VISTA 在<strong>准确率</strong>、<strong>跨架构泛化</strong>、<strong>训练稳定性</strong>及<strong>视图鲁棒性</strong>上的全面提升，并证实各设计组件的必要性与最优配置。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文的 Limitations 章节及实验发现，以下方向值得进一步探索：</p>
+<p>1. 混合动作/拒绝样本的精细路由机制</p>
+<p>论文指出，VISTA 的锚点机制假设所有样本均为可验证的坐标定位任务。对于包含<strong>拒绝回答</strong>（如”无法完成”）或<strong>非动作指令</strong>的混合数据集，当前的门控机制可能失效。</p>
+<ul>
+<li><strong>探索点</strong>：设计任务类型感知的门控函数，使模型能自动区分需要坐标锚点的动作样本与需要文本风格损失的拒绝样本，避免错误地将坐标监督注入到拒绝类样本中。</li>
+</ul>
+<p>2. 自适应视图采样与裁剪调度策略</p>
+<p>当前实现使用固定的裁剪概率  p<em>(crop)=0.8  和固定的视图数量  K=8 。论文观察到过度裁剪（ p</em>(crop)=1.0 ）会降低性能。</p>
+<ul>
+<li><strong>探索点</strong>：</li>
+<li><strong>动态裁剪概率</strong>：根据训练阶段（早期保留更多全屏视图，后期增加裁剪比例）或样本难度（对困难样本增加视图多样性）自适应调整  p_(crop) 。</li>
+<li><strong>智能视图选择</strong>：不仅随机裁剪，而是基于注意力图或不确定性估计选择最具信息量的视图（如故意遮挡部分上下文以测试鲁棒性）。</li>
+</ul>
+<p>3. 细粒度奖励塑形（Reward Shaping）</p>
+<p>当前使用稀疏的二元奖励 $R(y,B) = I<br>p ∈ B<br>$，仅判断点击是否在框内。</p>
+<ul>
+<li><strong>探索点</strong>：引入连续奖励函数，如基于预测点与目标框中心的<strong>归一化距离</strong>、与最近边界的距离，或考虑 UI 元素的可点击区域先验（如按钮中心比边缘更优）。这可能进一步加速困难样本的学习。</li>
+</ul>
+<p>4. 跨领域泛化：从 GUI 到通用视觉定位</p>
+<p>VISTA 的核心思想（视图一致比较 + 自验证锚点）可能适用于其他需要精确坐标输出的视觉任务。</p>
+<ul>
+<li><strong>探索点</strong>：</li>
+<li><strong>机器人操作</strong>：将”目标保留裁剪”扩展为”目标保留视角变换”，处理机械臂视角变化下的抓取点定位。</li>
+<li><strong>医学图像分析</strong>：在病灶定位中应用跨切片（cross-slice）或跨尺度视图一致训练，解决不同扫描视角下的定位漂移问题。</li>
+<li><strong>自动驾驶</strong>：在 BEV（鸟瞰图）与透视图之间构建视图一致组，提升关键目标定位的鲁棒性。</li>
+</ul>
+<p>5. 推理时策略的深度融合</p>
+<p>论文显示 VISTA 与 MVP（测试时多视图聚合）正交互补。</p>
+<ul>
+<li><strong>探索点</strong>：探索更复杂的推理时优化，如：</li>
+<li><strong>视图一致性投票</strong>：不仅聚合坐标，还检查跨视图预测的几何一致性（如通过单应性变换验证）。</li>
+<li><strong>自举式细化（Bootstrapped Refinement）</strong>：利用 VISTA 训练的模型生成伪标签，迭代优化困难视图。</li>
+</ul>
+<p>6. 理论分析：视图多样性的最优界限</p>
+<p>实验显示  K=8  优于  K=4 ，但过多的锚点（如 4 个）反而有害。</p>
+<ul>
+<li><strong>探索点</strong>：</li>
+<li>建立<strong>视图多样性</strong>与<strong>策略梯度方差</strong>之间的理论关系，推导给定任务复杂度下的最优视图数量  K^* 。</li>
+<li>分析几何变换（裁剪、缩放、旋转）对坐标预测误差上界的影响，为数据增强策略提供理论指导。</li>
+</ul>
+<p>7. 计算效率优化</p>
+<p>多视图 rollout 增加了约 25% 的训练时间。</p>
+<ul>
+<li><strong>探索点</strong>：</li>
+<li><strong>共享视觉编码</strong>：探索在不同视图间共享视觉特征（若裁剪区域有重叠），减少重复计算。</li>
+<li><strong>蒸馏与压缩</strong>：将 VISTA 训练的大模型知识蒸馏到单视图推理的小模型，在保持鲁棒性的同时降低推理成本。</li>
+</ul>
+<p>8. 失败模式与长尾分析</p>
+<p>论文在 ScreenSpot-Pro 的分类别结果（表12）中显示，Icon 类任务的提升空间大，但仍有提升空间。</p>
+<ul>
+<li><strong>探索点</strong>：</li>
+<li>深入分析<strong>小目标</strong>（&lt;20px）、<strong>密集排列元素</strong>、<strong>透明/重叠 UI 组件</strong>等极端情况下的失败案例。</li>
+<li>引入<strong>难例挖掘（Hard Negative Mining）</strong>，在视图构建时故意生成使模型容易混淆的裁剪（如包含相似干扰元素的视图）。</li>
+</ul>
+<p>9. 格式奖励与内容奖励的解耦优化</p>
+<p>图3显示多视图训练可能导致格式奖励（有效坐标格式）的暂时不稳定。</p>
+<ul>
+<li><strong>探索点</strong>：设计双阶段训练或辅助损失，先稳定坐标格式生成（如通过 SFT 预热），再优化定位精度，或引入格式感知的优势权重。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>该论文针对 <strong>Group Relative Policy Optimization (GRPO)</strong> 在 <strong>GUI Grounding</strong> 任务中的应用缺陷，提出 <strong>VISTA (View-Consistent Self-Verified Training)</strong> 训练框架，显著提升了模型在多样化视觉界面下的定位精度与鲁棒性。</p>
+<p>1. 核心问题</p>
+<p>将标准 GRPO 直接应用于 GUI Grounding 时，存在<strong>奖励退化（Reward Degeneracy）</strong>与<strong>视图敏感</strong>两大瓶颈：</p>
+<ul>
+<li><strong>组内奖励同质化</strong>：传统 GRPO 从<strong>单一固定截图</strong>采样  G  个 rollouts 构成对比组。在困难样本上，所有 rollout 可能均失败（奖励全为 0）；在简单样本上，可能全部成功（奖励全为 1）。这两种情况均导致组内方差  σ_G = 0 ，相对优势  A_i = 0 ，策略梯度失去学习信号。实验表明，固定视图下 informative groups（既非全 0 也非全 1）占比不足 5%。</li>
+<li><strong>几何敏感性</strong>：GUI Grounding 要求将指令映射到屏幕坐标  (x, y) 。即使对同一目标进行<strong>目标保留裁剪</strong>（保持目标可见但改变视口），模型预测也可能发生偏移，而固定视图训练无法强制学习跨视图的几何一致性。</li>
+</ul>
+<p>2. 方法：VISTA 框架</p>
+<p>VISTA 通过两个互补机制解决上述问题：</p>
+<p>2.1 视图一致组构建（View-Consistent Group Rollout）</p>
+<p>将 GRPO 组从<strong>同一 GUI 实例的多个目标保留视图</strong>中采样，而非重复采样单一截图。</p>
+<ul>
+<li><strong>视图生成</strong>：对原始截图  I  和目标框  B=(x_1,y_1,x_2,y_2) ，生成  K  个裁剪视图  V_k ，确保裁剪窗口  C_k  完全包含  B ，且左上角坐标  (l_k,t_k)  从可行区间均匀采样：<br>l_k sim U(max(0,x_2-w_k), min(x_1,W-w_k))</li>
+</ul>
+<p>t_k sim U(max(0,y_2-h_k), min(y_1,H-h_k))</p>
+<ul>
+<li><p><strong>精确坐标重映射</strong>：每个视图  V_k  对应归一化坐标系下的新目标框：<br>B_k = ( (1000(x_1-l_k)) / (w_k), (1000(y_1-t_k)) / (h_k), (1000(x_2-l_k)) / (w_k), (1000(y_2-t_k)) / (h_k) )</p>
+</li>
+<li><p><strong>模型独占统计</strong>：组统计量  (μ<em>m, σ_m)  仅基于模型生成的 rollouts 计算，不包含 oracle 答案：<br>μ_m = (1) / (G)∑</em>(k,j) r<em>(k,j), quad σ_m = √(1) / (G)∑</em>(k,j) (r<em>(k,j)-μ_m)^2<br>优势值为  A</em>(k,j) = (r_(k,j) - μ_m)/(σ_m + ε) 。</p>
+</li>
+</ul>
+<p>该设计确保组内样本<strong>语义等价但几何不同</strong>，从而恢复有效的相对优势信号。</p>
+<p>2.2 自验证跨视图锚点（Self-Verified Cross-View Anchor）</p>
+<p>为避免多视图训练导致的短坐标序列生成不稳定，引入<strong>条件化 oracle 监督</strong>：</p>
+<ul>
+<li><p><strong>自验证门控</strong>：仅当模型在当前组中已自主产生至少一个满分 rollout（ R<em>(max)=1 ）时，才激活锚点：<br>g = I[max</em>(k,j) r<em>(k,j) = R</em>(max)]</p>
+</li>
+<li><p><strong>锚点构造</strong>：从模型未成功的视图中优先选择锚点视图，构造目标框中心坐标  y^+  作为 oracle 序列。</p>
+</li>
+<li><strong>优势计算</strong>：锚点优势  A^+ = g · (R_(max) - μ_m)/(σ_m + ε) ，且 oracle 序列<strong>被排除在组统计量之外</strong>。</li>
+</ul>
+<p>此机制防止在模型尚未成功时进行无条件模仿学习（避免退化为 SFT），同时为已验证的组提供稳定化信号。</p>
+<p>3. 实验结果</p>
+<p>在五个 GUI Grounding 基准（ScreenSpot-Pro、ScreenSpot-V2、MMBench-GUI L2、OSWorld-G-R、OSWorld-G）上的验证表明：</p>
+<ul>
+<li><strong>主实验</strong>：基于 Qwen3-VL 的 VISTA-4B/8B/30B-A3B 在 ScreenSpot-Pro 上分别取得 63.4/65.8/67.0 的准确率，相比基线提升 +7.9/+13.1/+13.3 个百分点。结合推理时多视图聚合（MVP）后，30B-A3B 模型可达 74.1。</li>
+<li><p><strong>跨架构泛化</strong>：在 Qwen3.5-4B/9B/35B-A3B 上，VISTA 相比标准 GRPO 在 ScreenSpot-Pro 上分别提升 +2.0/+0.9/+1.2 个百分点，证明方法不依赖特定初始化。</p>
+</li>
+<li><p><strong>消融研究</strong>：</p>
+</li>
+<li>动态裁剪单独使用提升至 64.3，自适应锚点单独使用提升至 64.8，两者结合达 65.8（Qwen3-VL-8B），证实组件互补。</li>
+<li>无门控的锚点（始终激活）导致性能暴跌至 57.8，验证自验证机制的必要性。</li>
+<li><strong>鲁棒性诊断</strong>：VISTA 将视图一致率（VCR）从 88.38% 提升至 90.40%，预测翻转率从 8.31% 降至 5.80%，最坏视图准确率从 87.63% 提升至 92.42%。</li>
+</ul>
+<p>4. 关键贡献</p>
+<ul>
+<li>提出<strong>视图一致组构建</strong>，通过目标保留裁剪与精确坐标重映射，将 GRPO 的固定视图采样转变为跨几何视图的比较学习，有效缓解奖励退化。</li>
+<li>引入<strong>自验证跨视图锚点</strong>，以门控机制条件化地注入 oracle 监督，在避免无条件模仿的同时稳定坐标生成。</li>
+<li>在 GUI Grounding 的困难基准（尤其是高分辨率专业软件界面 ScreenSpot-Pro）上实现显著提升，并展现出跨模型架构与尺度的泛化能力。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是VISTA%3A%20View-Consistent%20Self-Verified%20Training%20for%20GUI%20Grounding，链接是https://arxiv.org/pdf/2606.14579，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.14579。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Xinyu Qiu,Yunzhu Zhang,Heng Jia,Shuheng Shen,Changhua Meng,Linchao Zhu</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.14579.pdf">https://arxiv.org/pdf/2606.14579.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.14579">https://arxiv.org/abs/2606.14579</a></p>
+<p><strong>Arxiv ID</strong>: 2606.14579</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.14579">https://papers.cool/arxiv/2606.14579</a></p>
+<p><strong>Published</strong>: 2026-06-15T02:04:32.341Z</p>
+<p><strong>Updated</strong>: 2026-06-15T02:04:32.341Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202606/2026-06-15/">https://wdndev.github.io/daily/hf/202606/2026-06-15/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202606/2026-06-01/" title="HuggingFace Papers 2026-06-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-01</div></div></a></div><div><a href="/daily/hf/202606/2026-06-02/" title="HuggingFace Papers 2026-06-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-02</div></div></a></div><div><a href="/daily/hf/202606/2026-06-04/" title="HuggingFace Papers 2026-06-04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-04</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-When-is-Your-LLM-Steerable"><span class="toc-text">1. When is Your LLM Steerable?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-VISTA-View-Consistent-Self-Verified-Training-for-GUI-Grounding"><span class="toc-text">2. VISTA: View-Consistent Self-Verified Training for GUI Grounding</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

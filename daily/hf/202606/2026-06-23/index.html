@@ -1,0 +1,2503 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-06-23 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. PerceptionDLM: Parallel Region Perception with Multimodal Diffusion Language ModelsAbstract:Multimodal large language models (MLLMs) have achieved remarkable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-06-23">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202606/2026-06-23/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. PerceptionDLM: Parallel Region Perception with Multimodal Diffusion Language ModelsAbstract:Multimodal large language models (MLLMs) have achieved remarkable">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-21T01:04:37.529Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202606/2026-06-23/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-06-23',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-07-21 09:04:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">266</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-06-23</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-07-21T01:04:37.529Z" title="Updated 2026-07-21 09:04:37">2026-07-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">43.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>151min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-06-23"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-PerceptionDLM-Parallel-Region-Perception-with-Multimodal-Diffusion-Language-Models"><a href="#1-PerceptionDLM-Parallel-Region-Perception-with-Multimodal-Diffusion-Language-Models" class="headerlink" title="1. PerceptionDLM: Parallel Region Perception with Multimodal Diffusion Language Models"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19534">PerceptionDLM: Parallel Region Perception with Multimodal Diffusion Language Models</a></h3><p>Abstract:Multimodal large language models (MLLMs) have achieved remarkable progress in visual understanding tasks. However, most existing MLLMs rely on autoregressive generation, which limits their efficiency for perception tasks that require captioning multiple regions. In this work, we propose PerceptionDLM, a multimodal diffusion language model optimized for efficient parallel region perception. Built upon PerceptionDLM-Base, a strong foundational baseline that achieves state-of-the-art performance among open-source diffusion MLLMs, our architecture fully leverages the parallel decoding nature of DLMs. Specifically, we introduce efficient prompting and structured attention masking to enable simultaneous perception of multiple masked regions, allowing the model to generate region descriptions in parallel at both the sequence and token levels. This design significantly improves inference efficiency compared with existing approaches that process regions sequentially. To systematically evaluate the parallelism property of visual perception capability for DLMs, we construct a new Parallel Detailed Localized Captioning Benchmark (ParaDLC-Bench) by scaling the DLC-Bench to include multiple region masks per image, enabling joint evaluation of both caption quality and inference efficiency. Experiments demonstrate that PerceptionDLM maintains competitive performance in region captioning while achieving substantial speed improvements for multi-region perception tasks. Our results highlight the potential of multimodal diffusion language models for efficient, parallel visual perception. To the best of our knowledge, we are the first to achieve parallel region caption and perception by leveraging the advantages of diffusion language models. Code, models, and datasets are released.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：多模态大型语言模型（MLLMs）在视觉理解任务中取得了显著进展。然而，大多数现有的MLLMs依赖自回归生成，这限制了它们在需要对多个区域进行描述的感知任务中的效率。在本工作中，我们提出了PerceptionDLM，一种针对高效并行区域感知优化的多模态扩散语言模型。基于PerceptionDLM-Base——一个在开源扩散MLLMs中实现了最先进性能的强大基础模型——我们的架构充分利用了DLMs的并行解码特性。具体而言，我们引入了高效的提示方法和结构化注意力掩码，使模型能够同时感知多个被掩盖的区域，从而在序列级和令牌级并行生成区域描述。这种设计相比逐区域处理的现有方法显著提高了推理效率。为了系统评估DLMs在视觉感知能力方面的并行性，我们构建了一个新的并行详细局部描述基准（ParaDLC-Bench），通过扩展DLC-Bench，使每张图像包含多个区域掩码，从而能够联合评估描述质量和推理效率。实验表明，PerceptionDLM在区域描述任务中保持了竞争性的性能，同时在多区域感知任务中实现了显著的速度提升。我们的结果突显了多模态扩散语言模型在高效并行视觉感知中的潜力。据我们所知，我们是首个利用扩散语言模型的优势实现区域描述和感知并行的工作。代码、模型和数据集已发布。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文旨在解决<strong>多模态大语言模型（MLLMs）在细粒度区域感知任务中的效率瓶颈问题</strong>，特别是针对需要同时描述图像中多个区域的场景。具体而言，论文试图解决以下核心问题：</p>
+<p>1. 自回归解码在多区域感知中的效率局限</p>
+<p>现有主流的MLLMs主要依赖<strong>自回归（Autoregressive, AR）生成范式</strong>，在处理区域级感知任务时存在根本性缺陷：</p>
+<ul>
+<li><strong>线性增长的推理成本</strong>：传统AR模型需要逐个区域顺序生成描述（sequential per-region generation），且每个描述需逐令牌（token-by-token）生成</li>
+<li><strong>扩展性瓶颈</strong>：随着查询区域数量增加，推理延迟和计算成本迅速上升，导致密集区域感知（dense-region perception）难以在实际应用中扩展</li>
+</ul>
+<p>2. 扩散语言模型在区域感知中的能力缺失</p>
+<p>虽然扩散语言模型（Diffusion Language Models, DLMs）通过掩码去噪范式提供了<strong>令牌级并行生成</strong>的潜力，但现有工作存在明显不足：</p>
+<ul>
+<li>现有的多模态扩散模型（如LLaDA-V、SDAR-VL等）缺乏强大的细粒度感知能力</li>
+<li>尚未有效探索利用DLMs的并行特性实现<strong>并发多区域感知</strong>（concurrent multi-region perception）</li>
+<li>直接将基于扩散的视觉语言模型扩展到细粒度局部感知存在非平凡的技术挑战</li>
+</ul>
+<p>3. 区域间干扰与描述混淆</p>
+<p>在多区域并行生成场景下，模型面临<strong>区域间特征纠缠</strong>（inter-region feature entanglement）的挑战：</p>
+<ul>
+<li>需要防止不同区域的视觉特征和文本描述在并行解码过程中相互干扰</li>
+<li>需要确保模型能够严格区分并独立描述多个空间相邻或语义相似的区域</li>
+</ul>
+<p>解决方案概述</p>
+<p>为此，论文提出了<strong>PerceptionDLM</strong>，一个基于扩散的多模态框架，通过以下方式解决上述问题：</p>
+<ul>
+<li>利用DLMs固有的<strong>并行解码特性</strong>，在单次去噪过程中联合生成多个区域的描述</li>
+<li>引入**区域提示（Region Prompting）<strong>和</strong>结构化注意力掩码（Structured Attention Masking）**机制，实现区域间的解耦与独立感知</li>
+<li>构建专门的<strong>ParaDLC-Bench</strong>基准测试，系统评估并行区域感知的能力与效率</li>
+</ul>
+<p>该方法在保持与AR模型相当描述质量的同时，实现了高达<strong>3.5倍的吞吐量提升</strong>，显著降低了多区域感知的推理延迟。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>根据论文内容，相关研究主要分布在以下三个领域：</p>
+<p>1. 扩散语言模型（Diffusion Language Models, DLMs）</p>
+<p><strong>基础扩散语言模型：</strong></p>
+<ul>
+<li><strong>LLaDA</strong><br>33<br>：首个将掩码扩散语言模型扩展到8B参数的工作，证明扩散模型可在多项下游任务上接近LLaMA3-8B等强自回归模型的性能</li>
+<li><strong>LLaDA 2.0</strong><br>4<br>：进一步将模型规模扩展至100B参数，采用混合专家（MoE）架构并增强推理能力</li>
+<li><strong>Dream-VL</strong><br>49<br>：7B参数的扩散大语言模型</li>
+</ul>
+<p><strong>多模态扩散模型：</strong></p>
+<ul>
+<li><strong>LLaDA-V</strong><br>50<br>：将视觉指令调优范式适配到掩码扩散语言模型，支持视觉理解任务</li>
+<li><strong>MMaDA</strong><br>48<br>：扩展DLMs至生成与理解双重任务</li>
+<li><strong>SDAR-VL</strong><br>9<br>：探索自回归与扩散的协同范式（Diffusion-Autoregression Paradigm），利用预训练AR知识</li>
+<li><strong>LaViDa</strong> 与 <strong>Dream-VL</strong><br>49<br>：其他多模态扩散模型变体</li>
+</ul>
+<p>2. 图像描述与区域级多模态理解</p>
+<p><strong>区域描述与密集描述：</strong></p>
+<ul>
+<li><strong>DAM</strong><br>23<br>（Describe Anything）：详细的局部化图像和视频描述，采用自回归顺序生成</li>
+<li><strong>GAR</strong><br>41<br>（Grasp Any Region）：基于自回归的精确、上下文感知的像素级理解模型，支持区域特定描述</li>
+<li><strong>DenseWorld-1M</strong><br>22<br>：面向详细密集 grounded 描述的数据集与基准</li>
+</ul>
+<p><strong>区域表示方法（Region-of-Interest Representation）：</strong> 现有工作主要采用三种策略表示图像区域：</p>
+<ul>
+<li><p><strong>视觉标记（Visual Markers）</strong>：如Set-of-Mark prompting<br>47</p>
+</li>
+<li><p><strong>边界框（Bounding Boxes）</strong>：Shikra<br>6<br>、GPT4ROI<br>57<br>、OMG-LLaVA<br>58<br>等通过坐标框定位区域</p>
+</li>
+<li><strong>分割掩码（Segmentation Masks）</strong>：SAM2 with LLaVA<br>51<br>、Pixel-SAIL<br>59<br>、PixelRefer<br>53<br>、GLaMM<br>36<br>等利用精确掩码实现像素级 ground truth</li>
+</ul>
+<p>3. 自回归多模态大语言模型（Autoregressive MLLMs）</p>
+<p>作为性能对比基线的主要方法：</p>
+<ul>
+<li><p><strong>LLaVA系列</strong><br>21, 25<br>：视觉指令调优的代表性工作，包括LLaVA-OneVision<br>1</p>
+</li>
+<li><p><strong>Qwen2.5-VL</strong><br>3<br>：先进的自回归视觉语言模型，支持细粒度感知</p>
+</li>
+<li><strong>InternVL3</strong><br>62<br>：开源多模态模型的先进训练与测试时优化方案</li>
+<li><strong>PixelRefer</strong><br>53<br>：统一的时空对象引用框架，支持任意粒度</li>
+</ul>
+<p><strong>关键区别</strong>：现有区域理解模型几乎都采用自回归（AR）LLM作为推理骨干，限制了对多区域的并发处理能力。相比之下，PerceptionDLM首次利用扩散模型的固有并行性，实现了<strong>序列级（多区域）和令牌级（多令牌）的双重并行生成</strong>。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过提出 <strong>PerceptionDLM</strong> 框架，从基线构建、架构设计、训练数据和评估基准四个维度系统性地解决了多区域感知中的效率与质量问题。具体解决方案如下：</p>
+<p>1. 构建强大的扩散多模态基线（PerceptionDLM-Base）</p>
+<p>首先建立高性能的离散扩散视觉语言模型基线，为后续并行感知奠定基础：</p>
+<ul>
+<li><strong>架构组成</strong>：采用预训练的 SigLIP-2 作为视觉编码器，通过两层MLP投影器连接至扩散语言模型骨干（LLaDA-8B）</li>
+<li><p><strong>扩散目标函数</strong>：在视觉指令调优框架下，仅对目标响应序列  X<em>a  应用扩散前向过程，视觉特征  H_v  和指令  X_q  保持完整作为条件：<br>L</em>(PerceptionDLMBase) = -E<em>((X_v,X_q,X_a),t,x_t)[(1) / (t)∑</em>(i∈ M<em>a)log p</em>θ(x_0^i|x_t, H_v, X_q)]</p>
+</li>
+<li><p><strong>动态分辨率策略</strong>：支持基于图像长宽比的动态瓦片（tile）分区处理（ 512×512  像素/瓦片），适配高分辨率输入</p>
+</li>
+<li><strong>四阶段训练</strong>：从视觉-语言对齐到高质量指令微调的渐进式训练（含冻结/微调视觉编码器的对比策略）</li>
+</ul>
+<p>2. 并行区域感知架构设计</p>
+<p>核心创新在于利用扩散模型的<strong>非自回归特性</strong>，将区域感知从序列处理转变为并行生成：</p>
+<p><strong>区域提示机制（Region Prompting）</strong></p>
+<p>为每个区域  R_i  关联可学习的连续嵌入  e_i ，作为区域特定的视觉提示。这些嵌入与对应掩码区域的视觉令牌融合，使模型能够在并行生成时严格区分不同目标。</p>
+<p><strong>RoI对齐特征重放（RoI-aligned Feature Replay）</strong></p>
+<p>继承自AR基线（GAR）但适配扩散框架：</p>
+<ul>
+<li>从视觉编码器直接提取每个掩码区域的局部化特征</li>
+<li>通过RoI-Align操作池化为固定大小的特征图（默认  4×4 ）</li>
+<li>投影为语言嵌入空间中的占位令牌，为对应区域提供细粒度视觉线索</li>
+</ul>
+<p><strong>结构化注意力掩码（Structured Attention Masking）</strong></p>
+<p>关键设计以防止并行生成时的区域间干扰。对于属于区域  R_i  的令牌，注意力被限制在：</p>
+<ol>
+<li>全局视觉令牌（共享上下文）</li>
+<li>共享文本提示令牌</li>
+<li>与  R_i  关联的RoI特征令牌</li>
+<li>同一区域描述跨度内的其他令牌</li>
+</ol>
+<p><strong>掩蔽策略</strong>：屏蔽对其他区域的RoI特征和描述令牌的注意力，形成<strong>块级注意力模式</strong>（block-wise attention），强制实现区域级独立性。</p>
+<p>3. 大规模并行描述数据引擎（ParaCaption-5.7M）</p>
+<p>为训练并行区域描述能力，构建专门的单图多掩码数据集：</p>
+<ul>
+<li><strong>数据来源</strong>：</li>
+<li><strong>COCONut</strong><br>10<br>：33.4万张图像，340万个掩码，利用现有掩码和类别标注</li>
+<li><strong>SA-1B</strong><br>18<br>：8.3万张图像，230万个掩码，经SAM3<br>5<br>重预测掩码并过滤遮挡/部件级区域</li>
+<li><strong>质量控制流程</strong>：</li>
+</ul>
+<ol>
+<li>使用GAR-8B生成初始描述</li>
+<li>利用Qwen3-8B验证描述与类别标注的语义匹配</li>
+<li>统一后处理：长度限制与反重复（幻觉）过滤</li>
+</ol>
+<p>最终获得<strong>570万个并行区域-描述对</strong>，支持最多每图6个区域的训练配置。</p>
+<p>4. 专门的多区域评估基准（ParaDLC-Bench）</p>
+<p>针对并行感知特性设计评估协议，扩展自DLC-Bench<br>23<br>：</p>
+<ul>
+<li><strong>核心评估维度</strong>：</li>
+<li><strong>正例问题</strong>：验证区域特有属性的准确包含（颜色、形状、纹理等）</li>
+<li><strong>负例与干扰问题</strong>：创新性地检测<strong>跨区域幻觉</strong>（cross-region hallucination），即模型是否将其他并发掩码的特征错误归因到当前目标</li>
+<li><strong>质量控制</strong>：</li>
+<li>专家人工标注者进行多轮交叉验证</li>
+<li>使用GPT-5.2作为评判模型（相比DLC-Bench的Llama-3.1-8B具有更强推理能力）</li>
+<li>验证不同评判模型（Qwen3.5-27B、Gemini-3.1-Pro）下排名稳定性</li>
+</ul>
+<p>该基准包含<strong>2,345个经过人工验证的多选问题</strong>，覆盖2-8个掩码的复杂交互场景，专门测试模型在密集、空间相邻或语义相似区域下的抗干扰能力。</p>
+<p>5. 推理效率优化</p>
+<p>在实现并行生成的基础上，进一步优化实际部署效率：</p>
+<ul>
+<li><strong>默认配置</strong>：32步去噪，每掩码32个生成令牌</li>
+<li><strong>吞吐量扩展</strong>：通过调整每轮处理的掩码数量（并行度），在恒定工作负载（4掩码/图）下实现<strong>3.44倍吞吐量提升</strong>，单图延迟从10.04秒降至2.92秒</li>
+<li><strong>稳定延迟</strong>：与AR模型的线性延迟增长不同，PerceptionDLM保持每图约2.9秒的稳定延迟，吞吐量随区域数量近线性增长</li>
+</ul>
+<p>通过上述设计，PerceptionDLM在单次去噪过程中完成多区域描述的联合生成，避免了AR模型的顺序处理开销，同时通过结构化注意力机制保证了区域间描述的独立性和准确性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文进行了系统的实验验证，涵盖<strong>基线性能评估</strong>、<strong>区域描述能力测试</strong>、<strong>效率分析</strong>以及<strong>详细的消融研究</strong>。主要实验内容如下：</p>
+<p>1. PerceptionDLM-Base 的多模态基准评估（表1）</p>
+<p>在<strong>16个多模态基准</strong>上评估基线模型的通用理解能力，包括：</p>
+<ul>
+<li><strong>通用VQA</strong>：MMStar、SeedBench、MMBench</li>
+<li><strong>推理能力</strong>：MMMU、MathVista、MathVerse-Vision_Only</li>
+<li><strong>OCR与文档理解</strong>：AI2D、ChartQA、DocVQA、InfoVQA</li>
+<li><strong>细粒度感知</strong>：MMVP、BLINK、RealWorldQA、CV-Bench-2D</li>
+<li><strong>幻觉鲁棒性</strong>：HallusionBench、V*</li>
+</ul>
+<p><strong>对比基线</strong>：LLaDA-V、MMaDA、LaViDa、SDAR-VL、Dream-VL（同类扩散模型），以及Qwen2.5-VL、InternVL3（先进自回归模型）。</p>
+<p>2. 区域描述基准评估（表2）</p>
+<p>在**ParaDLC-Bench（多区域）<strong>和</strong>DLC-Bench（单区域）**上测试并行区域描述能力：</p>
+<ul>
+<li><strong>通用模型</strong>：GPT-5.2、Gemini-2.5-Pro、Gemini-3.1-Pro</li>
+<li><strong>AR区域专用模型</strong>：PixelRefer、DAM、GAR</li>
+<li><strong>扩散基线</strong>：LLaDA-V、SDAR-VL、Dream-VL</li>
+</ul>
+<p><strong>评估指标</strong>：正例准确率（Pos）、负例准确率（Neg）、平均准确率（Avg）、每轮前向传播令牌数（TPF）、总推理时间（Time）。</p>
+<p>3. 效率与吞吐量分析（图1）</p>
+<ul>
+<li><strong>吞吐量随区域数量扩展</strong>（图1b）：对比PerceptionDLM与GAR-8B，测试1-5个掩码时的TPS（Tokens/second）增长</li>
+<li><strong>恒定工作负载下的并行度扩展</strong>（图1c）：固定每图4个掩码，测试不同并行度（1-4 masks/pass）的吞吐量和延迟</li>
+</ul>
+<p>4. 消融实验（Appendix B）</p>
+<p>架构与训练策略消融</p>
+<ul>
+<li><strong>视觉编码器训练策略</strong>（表4、表6）：对比”完全微调”与”冻结”视觉编码器在通用基准和区域描述任务上的性能</li>
+<li><strong>数据规模扩展</strong>（表5）：验证训练数据从DAM → DAM+COCONut → DAM+COCONut+SA-1B的逐步增益</li>
+<li><strong>核心模块消融</strong>（表7）：</li>
+<li>移除区域提示（Region Prompting）</li>
+<li>移除RoI对齐特征重放（RoI-aligned Feature Replay）</li>
+<li>替换为标准全注意力（Full Attention vs. Structured Attention）</li>
+</ul>
+<p>推理与评估消融</p>
+<ul>
+<li><strong>评判模型敏感性</strong>（表8）：使用GPT-5.2、Gemini-3.1-Pro、Qwen3.5-27B作为评判模型，验证排名稳定性</li>
+<li><strong>去噪步数权衡</strong>（表9）：测试16/32/48/64步在准确率与延迟间的平衡</li>
+<li><strong>视觉提示容量溢出测试</strong>（表10）：评估当测试时掩码数量超过训练时的6个提示时的性能衰减</li>
+<li><strong>描述长度扩展</strong>（表11）：对比每掩码32令牌与64令牌的生成效果</li>
+<li><strong>单区域训练对照</strong>（表12）：验证并行训练是否导致单区域性能退化</li>
+</ul>
+<p>零样本性能验证</p>
+<ul>
+<li><strong>PerceptionDLM-Base零样本测试</strong>：在未使用ParaCaption-5.7M数据微调前，直接在ParaDLC-Bench上测试，证明架构本身的优势（53.0% vs SDAR-VL的31.3%）。</li>
+</ul>
+<p>5. 定性分析（Appendix E &amp; F）</p>
+<ul>
+<li><strong>并行生成可视化</strong>（图5）：展示单次推理中多区域并行描述的实际输出</li>
+<li><strong>与基线对比</strong>（图6）：与LLaDA-V、GAR-8B、Gemini-3.1-Pro的定性比较，标注正确描述（绿色）与幻觉错误（红色）</li>
+<li><strong>失败案例分析</strong>（图7）：分类展示四种典型失败模式：</li>
+<li>跨区域属性纠缠</li>
+<li>微小或严重遮挡区域</li>
+<li>典型但缺失的属性幻觉</li>
+<li>细粒度文本（OCR）错误</li>
+</ul>
+<p>这些实验系统验证了PerceptionDLM在保持竞争力的描述质量的同时，实现了显著的推理效率提升，并深入分析了各设计组件的贡献。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>根据论文**第5节（Conclusion）<strong>及</strong>附录F（Limitations and Future Works）**的讨论，以下是可以进一步探索的关键方向：</p>
+<p>1. 推理速度优化：步数蒸馏与加速</p>
+<p>虽然PerceptionDLM通过并行生成避免了AR模型的线性延迟增长，但其推理速度仍受限于扩散模型固有的<strong>多步去噪过程</strong>（默认32步）。</p>
+<ul>
+<li><strong>探索方向</strong>：采用**伪轨迹蒸馏（Pseudo-Trajectory Distillation）**等技术，将生成过程压缩至更少的去噪步骤（如4-8步），在保持质量的同时显著降低延迟。</li>
+<li><strong>相关引用</strong>：论文提及可借鉴D3LLM<br>35<br>的加速策略。</li>
+</ul>
+<p>2. 增强抗干扰能力：解决属性纠缠</p>
+<p>在<strong>极端密集或语义高度相似</strong>的区域（如市场摊位上相邻的同类物体），模型仍会出现<strong>跨区域属性纠缠</strong>（cross-region attribute entanglement）。</p>
+<ul>
+<li><strong>探索方向</strong>：</li>
+<li>引入<strong>显式区域对比损失（Explicit Region Contrastive Loss）</strong>，强制不同区域的表征在特征空间中保持更大间隔。</li>
+<li>设计<strong>更细粒度的注意力掩码机制</strong>，例如动态调整注意力范围或引入层次化的区域关系建模。</li>
+</ul>
+<p>3. 解锁复杂推理能力：强化学习（RL）增强</p>
+<p>PerceptionDLM-Base在数学推理等复杂任务（如MMMU、MathVista）上仍落后于先进的自回归模型。</p>
+<ul>
+<li><strong>根本瓶颈</strong>：扩散语言模型的<strong>任意顺序并行解码</strong>（arbitrary-order parallel decoding）从根本上限制了推理链的构建<br>32<br>。</li>
+<li><strong>探索方向</strong>：借鉴DeepSeek-R1<br>16<br>等工作的成功经验，将**强化学习（RL）**应用于扩散语言模型，通过后训练优化（post-training）显式激发多步推理能力，弥补并行生成在逻辑连贯性上的不足。</li>
+</ul>
+<p>4. 扩展到超密集感知场景</p>
+<p>当前模型训练时最多支持每图6个区域提示，虽可通过分块处理（chunking）扩展，但存在性能衰减。</p>
+<ul>
+<li><strong>探索方向</strong>：在训练阶段<strong>扩展视觉提示容量</strong>（visual prompt capacity），使模型原生支持同时处理数十个甚至上百个掩码，满足自动驾驶、医学影像分析等超密集感知应用需求。</li>
+</ul>
+<p>5. 长序列生成的稳定性</p>
+<p>当生成较长描述（如每区域64个令牌）时，固定去噪步数会导致<strong>错误累积</strong>和语义漂移（semantic drifting）。</p>
+<ul>
+<li><strong>探索方向</strong>：</li>
+<li>开发<strong>自适应步数调度</strong>（adaptive step scheduling），根据生成长度动态调整去噪迭代次数。</li>
+<li>研究<strong>层次化生成策略</strong>，先并行生成关键属性摘要，再并行扩展细节描述。</li>
+</ul>
+<p>6. 结合自回归与扩散的混合范式</p>
+<p>论文提及SDAR-VL<br>9<br> 等工作探索了扩散-自回归协同范式。</p>
+<ul>
+<li><strong>探索方向</strong>：设计<strong>混合架构</strong>，在需要并行感知的局部描述任务中使用扩散解码，在需要复杂逻辑的全局推理中切换至自回归模式，实现效率与推理能力的最佳平衡。</li>
+</ul>
+<p>这些方向既针对当前的技术局限（如推理步数、属性纠缠），也指向扩散多模态模型的长期挑战（如复杂推理），为后续研究提供了明确路径。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>该论文提出 <strong>PerceptionDLM</strong>，一种面向并行区域感知的多模态扩散语言模型，旨在解决现有自回归（AR）模型在多区域视觉理解任务中的效率瓶颈问题。</p>
+<p>核心问题</p>
+<p>现有主流多模态大语言模型（MLLMs）依赖<strong>自回归生成范式</strong>，在处理细粒度区域描述任务时存在根本性局限：</p>
+<ul>
+<li><strong>推理成本线性增长</strong>：必须逐个区域、逐令牌（token-by-token）顺序生成描述，随着查询区域数量增加，延迟和计算成本急剧上升</li>
+<li><strong>扩散模型潜力未发掘</strong>：虽然扩散语言模型（DLMs）具备固有的令牌级并行解码能力，但现有工作缺乏细粒度区域感知能力，且未探索并发多区域生成</li>
+</ul>
+<p>主要贡献与方案</p>
+<p>1. PerceptionDLM-Base：强化的扩散VLM基线</p>
+<p>构建了一个高性能的离散扩散多模态基线模型，通过视觉指令调优将预训练视觉编码器（SigLIP-2）与扩散语言模型骨干（LLaDA-8B）结合，采用动态分辨率策略处理高分辨率图像。在16个多模态基准测试中，该基线在15项上优于现有开源扩散模型LLaDA-V。</p>
+<p>2. 并行区域感知架构</p>
+<p>基于扩散模型的非自回归特性，提出三项关键设计，实现单次去噪过程中多区域描述的联合生成：</p>
+<ul>
+<li><strong>区域提示（Region Prompting）</strong>：为每个区域分配可学习的连续嵌入，实现区域身份编码与空间绑定</li>
+<li><strong>RoI对齐特征重放（RoI-aligned Feature Replay）</strong>：从视觉编码器提取局部化区域特征并投影至语言空间</li>
+<li><strong>结构化注意力掩码（Structured Attention Masking）</strong>：限制各区域令牌仅关注全局视觉上下文、共享文本提示、自身RoI特征及同区域描述令牌，屏蔽其他区域干扰，实现块级注意力隔离</li>
+</ul>
+<p>3. ParaDLC-Bench：多区域评估基准</p>
+<p>扩展自DLC-Bench，构建包含2,345个验证问题的并行详细局部描述基准：</p>
+<ul>
+<li>支持每图2-8个掩码的并发评估</li>
+<li>创新性地引入<strong>跨区域幻觉检测</strong>（cross-region hallucination），评估模型避免将其他区域特征错误归因到当前目标的能力</li>
+<li>采用GPT-5.2作为评判模型，确保复杂多目标场景下的评估可靠性</li>
+</ul>
+<p>4. ParaCaption-5.7M：大规模并行训练数据</p>
+<p>通过自动数据引擎构建包含570万个区域-描述对的训练集，融合COCONut（340万掩码）与SA-1B（230万掩码）数据，经GAR-8B生成与Qwen3-8B验证，支持模型学习多目标并行描述。</p>
+<p>关键实验结果</p>
+<ul>
+<li><strong>区域描述质量</strong>：在ParaDLC-Bench上达到**62.4%**平均准确率，显著优于现有扩散模型（LLaDA-V为35.2%，SDAR-VL为31.3%），接近AR专用模型（GAR为69.5%）</li>
+<li><strong>推理效率</strong>：在5个掩码/图像的密集场景下，实现<strong>3.5倍吞吐量提升</strong>（TPS）和稳定的每图延迟（约2.9秒），而AR模型延迟随区域数线性增长</li>
+<li><strong>并行扩展性</strong>：在恒定工作负载（4掩码/图）下，通过增加并行度实现<strong>3.44倍加速</strong>，单图延迟从10.04秒降至2.92秒</li>
+</ul>
+<p>局限与未来方向</p>
+<p>论文指出当前工作受限于扩散模型的多步去噪开销、极端密集场景下的属性纠缠，以及并行解码在复杂推理任务中的固有局限。未来可探索步数蒸馏、显式区域对比损失及强化学习（RL）增强推理能力等方向。</p>
+<p>简言之，该工作首次实现了基于扩散语言模型的并行区域描述生成，在保持竞争性的描述质量同时，显著提升了多区域视觉感知的推理效率。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是PerceptionDLM%3A%20Parallel%20Region%20Perception%20with%20Multimodal%20Diffusion%20Language%20Models，链接是https://arxiv.org/pdf/2606.19534，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.19534。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Yueyi Sun,Yuhao Wang,Jason Li,Ye Tian,Tao Zhang,Jacky Mai,Yihan Wang,Haochen Wang,Jinbin Bai,Ling Yang,Yunhai Tong</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19534.pdf">https://arxiv.org/pdf/2606.19534.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19534">https://arxiv.org/abs/2606.19534</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19534</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19534">https://papers.cool/arxiv/2606.19534</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:33:51.232Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:33:51.232Z</p>
+<hr>
+<h3 id="2-MemSlides-A-Hierarchical-Memory-Driven-Agent-Framework-for-Personalized-Slide-Generation-with-Multi-turn-Local-Revision"><a href="#2-MemSlides-A-Hierarchical-Memory-Driven-Agent-Framework-for-Personalized-Slide-Generation-with-Multi-turn-Local-Revision" class="headerlink" title="2. MemSlides: A Hierarchical Memory Driven Agent Framework for Personalized Slide Generation with Multi-turn Local Revision"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.17162">MemSlides: A Hierarchical Memory Driven Agent Framework for Personalized Slide Generation with Multi-turn Local Revision</a></h3><p>Abstract:Personalized presentation generation requires more than conditioning on a current prompt or template: agents must preserve stable user preferences across tasks, retain newly introduced preferences and constraints during multi-turn revision, and carry out local edits reliably. We propose MemSlides, a hierarchical memory framework for personalized presentation agents that separates long-term memory from working memory and further divides long-term memory into user profile memory and tool memory. User profile memory stores intent-conditioned profiles for round-0 personalization, working memory carries active preferences and session constraints across revision rounds, and tool memory stores reusable execution experience for reliable localized editing. MemSlides pairs this memory design with scoped slide-local revision, so targeted updates act on the smallest affected region instead of repeatedly regenerating the full deck. In controlled experiments, user profile memory improves persona-alignment judgments on a multi-persona, multi-intent profile bank, tool-memory injection improves closed-loop modify behavior in diagnostic matched-pair settings, and qualitative cases illustrate working memory’s ability to carryover preferences. Taken together, these results suggest that effective personalization in presentation authoring depends on separating persistent user profiles, session-level working memory, and reusable execution experience across generation and localized revision.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：个性化演示生成不仅仅依赖于当前提示或模板：代理必须在多个任务中保持稳定的用户偏好，在多轮修改过程中保留新引入的偏好和约束，并可靠地执行局部编辑。我们提出了 MemSlides，一种适用于个性化演示代理的分层记忆框架，它将长期记忆与工作记忆分开，并进一步将长期记忆分为用户画像记忆和工具记忆。用户画像记忆存储面向意图的轮0个性化画像，工作记忆在修改轮次中承载活跃的偏好和会话约束，工具记忆存储可重用的执行经验以实现可靠的局部编辑。MemSlides 将该记忆设计与作用域限定的幻灯片本地修改相结合，使得定向更新在最小受影响区域上进行，而不是反复重新生成整个幻灯片组。在受控实验中，用户画像记忆提高了多角色、多意图画像库的人格一致性判断，工具记忆注入改善了诊断性匹配对设置下的闭环修改行为，而定性案例展示了工作记忆在偏好延续方面的能力。综合来看，这些结果表明，演示文稿创作中有效的个性化依赖于将持久用户画像、会话级工作记忆以及可重用执行经验在生成和局部修改过程中分开处理。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>该论文旨在解决<strong>个性化演示文稿生成</strong>中的三个核心问题，这些问题阻碍了现有系统提供真正符合用户长期需求的交互体验：</p>
+<p>1. 缺乏跨任务的持久化个性化记忆</p>
+<p>现有系统主要依赖当前提示或模板进行生成，无法积累和保持稳定的用户偏好。用户不得不在每次交互中重复指定其领域、目的、风格和演示习惯等偏好。论文指出，有效的个性化框架需要构建和维护跨不同意图（如学术演讲与商业演讲）持续存在的用户画像，而非将个性化仅作为当前任务的输入条件。</p>
+<p>2. 多轮修订中的局部编辑不可靠</p>
+<p>现有代理系统在处理用户反馈时，通常通过<strong>重新生成整个文稿</strong>或重新上下文化大部分内容来实现微小修改。这种做法导致：</p>
+<ul>
+<li>小的修改必须与文稿状态和反馈历史竞争有限的上下文窗口</li>
+<li>已对齐的内容容易被意外覆盖，引入不必要的”漂移”（drift）</li>
+<li>多轮局部修改变得脆弱且效率低下</li>
+</ul>
+<p>3. 记忆机制设计缺失</p>
+<p>当前系统将个性化视为提示工程（prompting）的隐式副产品，而非通过显式记忆架构实现的服务。缺乏对以下信号的区分：</p>
+<ul>
+<li><strong>长期用户画像</strong>（跨任务的稳定偏好）</li>
+<li><strong>会话级工作记忆</strong>（当前任务中的临时约束和偏好）</li>
+<li><strong>工具执行记忆</strong>（可复用的编辑经验）</li>
+</ul>
+<p>为解决上述问题，论文提出 <strong>MemSlides</strong> 框架，引入<strong>分层记忆架构</strong>（长期记忆+工作记忆）和<strong>局部化修订策略</strong>（仅操作最小受影响区域），以支持基于持久记忆的多轮个性化生成与可靠局部编辑。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>根据论文第2节（Related Work），相关研究可分为以下三个主要方向：</p>
+<p>1. 幻灯片生成（Slide Generation）</p>
+<p>该领域经历了从<strong>文档压缩与结构化摘要</strong>到<strong>基于LLM的生成系统</strong>的演进，近期工作强调受众适应、可编辑性、任务时偏好推断和视觉优化。</p>
+<ul>
+<li><p><strong>早期工作</strong>：D2S<br>40<br>提出基于查询的文本摘要方法；后续研究拓展至结构化摘要<br>25, 26</p>
+</li>
+<li><p><strong>LLM-based系统</strong>：</p>
+</li>
+<li><strong>PPTAgent</strong><br>58<br>：超越文本到幻灯片转换，结合演示特定的评估机制</li>
+<li><strong>DeepPresenter</strong><br>59<br>：引入基于环境锚定的反思机制进行智能体演示生成</li>
+<li><strong>SlideTailor</strong><br>55<br>：基于参考幻灯片和任务时模板进行科学幻灯片个性化生成</li>
+<li><strong>布局与设计生成</strong>：包括类代码布局表示<br>41<br>、上下文布局提示<br>22<br>、分层/扩散布局建模<br>9, 56<br>和视觉偏好建模<br>34</li>
+</ul>
+<p><strong>与MemSlides的区别</strong>：现有工作主要改进生成质量、可编辑性和视觉组合，但将个性化作为<strong>当前任务的输入</strong>而非<strong>跨任务积累的持久记忆</strong>。</p>
+<p>2. 记忆与工具使用代理（Memory and Tool-Using Agents）</p>
+<p>记忆机制</p>
+<ul>
+<li><strong>检索增强与外部记忆</strong>：REALM<br>7<br>、Atlas<br>10<br>、RAG<br>16<br>等证明存储上下文可支持生成</li>
+<li><strong>智能体记忆架构</strong>：</li>
+<li><p><strong>长期/短期记忆管理</strong>：MemoryBank<br>61<br>、MemGPT<br>31<br>、Generative Agents<br>32</p>
+</li>
+<li><p><strong>结构化更新与反思</strong>：Self-Refine<br>24<br>、Reflexion<br>39<br>、A-MEM<br>50<br>、Agentic Memory<br>54</p>
+</li>
+<li><p><strong>持久化与生产级记忆</strong>：Mem0<br>4<br>、Mirix<br>45</p>
+</li>
+</ul>
+<p>工具使用代理</p>
+<ul>
+<li><p><strong>推理与行动交错</strong>：ReAct<br>53<br>、MRKL<br>13<br>、Toolformer<br>38</p>
+</li>
+<li><p><strong>API与模块化工具</strong>：Gorilla<br>33<br>、ToolLLM<br>36<br>、API-bank<br>18<br>、AutoGen<br>46</p>
+</li>
+<li><p><strong>开放环境与学习</strong>：Voyager<br>42<br>、WebGPT<br>28</p>
+</li>
+</ul>
+<p><strong>与MemSlides的区别</strong>：现有记忆工作侧重于通用对话或任务历史，而MemSlides针对<strong>演示文稿创作</strong>的特定需求，将记忆明确区分为<strong>用户偏好记忆</strong>与<strong>工具执行记忆</strong>，并在多轮修订中保持<strong>局部编辑范围</strong>。</p>
+<p>3. 个性化生成与评估</p>
+<p>个性化生成</p>
+<ul>
+<li><p><strong>显式人格条件</strong>：Persona-based Neural Conversation Model<br>17</p>
+</li>
+<li><p><strong>基于画像和历史的生成</strong>：PEARL<br>27<br>、LaMP<br>37<br>、Know Me, Respond to Me<br>11</p>
+</li>
+<li><p><strong>检索感知的个性化</strong>：近期综述<br>57, 20<br>将个性化表征为智能体、检索感知和偏好敏感的问题</p>
+</li>
+<li><strong>视觉领域个性化</strong>：DesignPref<br>34<br>、Personalized Visualization Recommendation<br>35</li>
+</ul>
+<p>评估方法</p>
+<ul>
+<li><p><strong>LLM-as-Judge</strong>：G-Eval<br>23<br>、MT-bench<br>60<br>、Prometheus<br>15<br>、JudgeLM<br>62</p>
+</li>
+<li><p><strong>控制实验设计</strong>：Arena-hard<br>19</p>
+</li>
+</ul>
+<p><strong>与MemSlides的区别</strong>：现有PPT生成中的个性化（如Persona-Aware-D2S、SlideTailor）依赖<strong>当前任务提供的受众规范、示例或模板</strong>，而MemSlides研究<strong>跨任务积累的偏好</strong>以及<strong>多轮修订中保留的约束</strong>。</p>
+<p>总结关系图</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>研究方向</th>
+<th>代表性工作</th>
+<th>MemSlides的差异化贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>幻灯片生成</td>
+<td>PPTAgent [58], DeepPresenter [59], SlideTailor [55]</td>
+<td>引入持久化用户画像记忆和局部修订机制，而非仅依赖当前任务输入</td>
+</tr>
+<tr>
+<td>记忆架构</td>
+<td>MemGPT [31], MemoryBank [61], 检索增强模型 [16, 7]</td>
+<td>针对PPT创作设计分层记忆（长期画像+工具经验+工作记忆），支持局部编辑可靠性</td>
+</tr>
+<tr>
+<td>个性化</td>
+<td>LaMP [37], PEARL [27], DesignPref [34]</td>
+<td>将个性化从单任务条件扩展为跨任务记忆积累和多轮会话状态保持</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过提出 <strong>MemSlides</strong> 框架解决上述问题，核心方案包括<strong>分层记忆架构</strong>与<strong>局部化修订策略</strong>两大支柱，具体实现如下：</p>
+<p>1. 分层记忆架构（Hierarchical Memory）</p>
+<p>将记忆明确划分为不同生命周期和功能的层级，替代传统的统一对话缓冲区：</p>
+<p>1.1 长期记忆（Long-Term Memory）</p>
+<p>跨任务持久化存储，分为两种类型：</p>
+<ul>
+<li><p><strong>用户画像记忆（User Profile Memory）</strong><br>存储意图相关的用户偏好，按主题（Theme）、视觉（Visual）、布局（Layout）、内容（Content）、模板（Template）和通用（General）等维度组织。支持多轮对话中的偏好积累和跨任务复用。</p>
+</li>
+<li><p><strong>工具记忆（Tool Memory）</strong><br>存储可复用的执行经验，包括：</p>
+</li>
+<li><p><strong>任务级经验（Task Experience）</strong>：跨修订轮次的执行策略</p>
+</li>
+<li><strong>工具链经验（Tool Chain Experience）</strong>：细粒度的推理-工具调用-观察链片段，用于未来类似操作的快速检索</li>
+</ul>
+<p>1.2 工作记忆（Working Memory）</p>
+<p>会话级别的临时状态层，维护：</p>
+<ul>
+<li>当前激活的临时偏好（ A_t ）</li>
+<li>跨修订轮次的延续指令（Carryover Instructions）</li>
+<li>当前编辑状态（如已解析目标、覆盖状态、快照绑定提示）</li>
+</ul>
+<p><strong>记忆生命周期</strong>：在任务开始时，用户画像记忆经意图匹配和冲突消解后<strong>注入</strong>工作记忆；任务结束后，稳定信号经**整合（Consolidation）**写回长期记忆，避免临时请求污染持久画像。</p>
+<p>2. 局部化修订执行（Localized Modify Execution）</p>
+<p>针对多轮编辑中”微小修改导致全文重生成”的问题，设计<strong>有范围的幻灯片局部修订</strong>机制：</p>
+<p>2.1 问题形式化</p>
+<p>将生成定义为一个状态化多轮过程：</p>
+<ul>
+<li>初始生成： S<em>0 = G</em>(init)(x, P_u, τ) </li>
+<li>第  t  轮修订： z<em>t = U(z</em>(t-1), f<em>t; S</em>(t-1)) ， S<em>t = G</em>(edit)(S_(t-1), x, P_u, τ, z_t) </li>
+</ul>
+<p>其中  z_t  为会话状态，明确分离了三种信号的生命周期：长期画像  P_u 、任务模板  τ 、临时会话约束  z_t 。</p>
+<p>2.2 Plan-Act-Guard 流程</p>
+<p>每轮修订通过三阶段实现局部化：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>功能</th>
+<th>局部化机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plan（规划）</td>
+<td>将修订请求转化为显式执行合约</td>
+<td>自动推断最小影响范围（Scope Decision）：绑定到特定幻灯片、记录目标选择器和活动规则ID，避免范围扩张</td>
+</tr>
+<tr>
+<td>Act（执行）</td>
+<td>根据合约选择编辑工具</td>
+<td>优先使用最小有效编辑：批量CSS更新、语义批处理样式、基于快照的局部补丁（Snapshot-bound Local Patch），禁止非必要的全页重写</td>
+</tr>
+<tr>
+<td>Guard（验证）</td>
+<td>将完成视为受控状态而非模型自停止</td>
+<td>补丁调用绑定内容哈希，过时快照触发重新绑定提示；要求覆盖验证（Coverage Gate），阻止过早结束，确保仅目标区域被修改</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键约束</strong>：局部请求必须绑定到单一幻灯片；仅允许对显式选择器或暴露规则进行补丁写入；非目标区域的内容被<strong>保护</strong>而非重写。</p>
+<p>3. 协同工作机制</p>
+<p>整个流程通过记忆注入和状态更新实现闭环：</p>
+<ol>
+<li><strong>任务开始</strong>：长期记忆（用户画像+工具经验）经路由（Route）和冲突消解后注入工作记忆</li>
+<li><strong>修订轮次</strong>：工作记忆提供当前激活的偏好和约束，Plan-Act-Guard 流程确保局部编辑仅影响最小区域</li>
+<li><strong>任务结束</strong>：工作记忆中的稳定信号（如反复出现的偏好模式、成功的工具执行模式）经整合更新回长期记忆</li>
+</ol>
+<p>通过这种设计，MemSlides 实现了：</p>
+<ul>
+<li><strong>个性化持久化</strong>：用户画像跨任务累积，避免重复指定</li>
+<li><strong>局部编辑可靠性</strong>：通过范围决策和快照绑定，防止已对齐内容的意外漂移</li>
+<li><strong>执行效率</strong>：工具记忆减少重复试错，局部修订降低上下文压力</li>
+</ul>
+<p>如图1所示，该架构通过分离”用户希望什么”（画像记忆）、”如何执行”（工具记忆）和”当前正在做什么”（工作记忆），支持从初始生成到多轮局部修订的完整个性化创作流程。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文开展了多维度受控实验，验证分层记忆框架在个性化对齐、通用生成质量及局部化修订可靠性方面的效果。主要实验包括：</p>
+<p>1. 个性化对齐评估（Persona-Alignment Judgments）</p>
+<p><strong>实验设计</strong>：</p>
+<ul>
+<li>构建<strong>多画像、多意图用户画像库</strong>：涵盖10种职业画像（如高校教师、软件开发者、管理分析师等），每种含3个角色意图，共30个画像-意图条目（附录表6）</li>
+<li>对比框架：MemSlides vs. DeepPresenter vs. SlideTailor</li>
+<li>基础模型：GPT-5、GLM-5、Gemini 3.1 Pro</li>
+<li>评估协议：盲评（隐藏提示、意图、系统身份），每个维度3轮独立投票</li>
+</ul>
+<p><strong>评估指标</strong>（0–10分制）：</p>
+<ul>
+<li><strong>Content</strong>：内容选择、证据类型、强调重点与措辞是否符合目标画像</li>
+<li><strong>Structure</strong>：页面顺序与版式是否符合画像特定的文稿组织逻辑（排除模板匹配准确性）</li>
+<li><strong>Visual</strong>：信息密度、留白、图表风格、视觉层次与整体视觉调性</li>
+<li><strong>Specificity</strong>：使用干扰画像测试，检验生成文稿是否可识别为特定目标画像而非通用专业演示</li>
+</ul>
+<p><strong>关键结果</strong>（表1）：</p>
+<ul>
+<li>GLM-5与Gemini 3.1 Pro上，MemSlides在所有四个维度均优于两个基线</li>
+<li>GPT-5上，MemSlides在Content、Visual、Specificity领先，DeepPresenter在Structure略高</li>
+<li>平均而言，MemSlides较DeepPresenter提升：Content (+1.37)、Structure (+0.53)、Visual (+1.66)、Specificity (+1.19)；较SlideTailor提升更为显著（各维度+2.7至+3.1分）</li>
+</ul>
+<p>2. 通用质量兼容性检验（General-Quality Evaluation）</p>
+<p><strong>实验设计</strong>：</p>
+<ul>
+<li>采用DeepPresenter风格的评估协议，检验个性化增益是否以牺牲通用质量为代价</li>
+<li>评估维度：Constraint（硬性约束遵守）、Content（内容清晰度）、Style（视觉吸引力）、Diversity（视觉多样性，基于DINOv2-Vendi分数）</li>
+</ul>
+<p><strong>关键结果</strong>（表2）：</p>
+<ul>
+<li>MemSlides在GPT-5上获得最高的Avg.（4.17），在GLM-5上保持竞争力</li>
+<li>Gemini 3.1 Pro上Style与Diversity表现最佳，但Constraint分数较低</li>
+<li>结论：个性化对齐的提升<strong>并非</strong>以牺牲通用演示质量为代价，两者兼容</li>
+</ul>
+<p>3. 工具记忆消融实验（Tool-Memory Ablation）</p>
+<p><strong>实验设计</strong>：</p>
+<ul>
+<li><strong>诊断性匹配对设置（Diagnostic Matched-Pair）</strong>：固定源文稿、模型、画像和修改请求，仅改变”是否注入工具记忆”这一条件，共9组匹配对</li>
+<li>场景：聚焦局部化修改（如更改特定文本、调整样式），涵盖不同难度（简单修改与复杂修改）</li>
+<li>追踪指标：基于执行日志的过程性指标，排除检查与格式转换工具，仅关注核心编辑工具</li>
+</ul>
+<p><strong>评估指标</strong>：</p>
+<ul>
+<li><strong>Closed-Loop Completion ↑</strong>：是否成功完成局部编辑、验证结果并最终定稿</li>
+<li><strong>Strict Verify ↑</strong>：成功修改后是否在短窗口内进行本地验证（奖励”编辑-检查”行为）</li>
+<li><strong>First Correct Edit (s) ↳</strong>：从修改任务开始到首次正确编辑的墙钟时间</li>
+<li><strong>Core Tool Time Ratio ↳</strong>：工具记忆组与无记忆组的核心工具时间几何均值比（无记忆组归一化为1.0×）</li>
+</ul>
+<p><strong>关键结果</strong>（表3）：</p>
+<ul>
+<li>工具记忆注入使Closed-Loop Completion从0.815提升至0.963，Strict Verify从0.310提升至0.534</li>
+<li>首次正确编辑时间从609.5秒降至242.5秒，核心工具时间比降至0.327×（即减少约67%的非检查类工具调用）</li>
+<li>配对稳健性检验（符号检验）显示Strict Verify与Core Tool Time Ratio具有显著配对证据（ p=0.0195 ）</li>
+</ul>
+<p>4. 工作记忆与画像整合定性分析</p>
+<p><strong>局部修订行为验证</strong>（图5、图8）：</p>
+<ul>
+<li>对比DeepPresenter（整页重写导致非目标区域被意外修改）与MemSlides（仅对目标元素应用补丁，保留已对齐内容）</li>
+<li>展示Plan-Act-Guard流程如何约束编辑范围，防止”范围扩张”（Scope Over-expansion）</li>
+</ul>
+<p><strong>跨任务画像整合</strong>（图6）：</p>
+<ul>
+<li>追踪6个重复任务中局部反馈线索如何泛化为可复用的画像偏好（如”证据边界防护栏”、”问题所有者-时间线表格”、”模块-输入-输出-责任视图”）</li>
+<li>证明长期记忆通过任务结束后的整合机制，将临时偏好转化为跨任务的默认组织模式</li>
+</ul>
+<p><strong>延迟偏好携带</strong>（图9、附录A.9）：</p>
+<ul>
+<li>验证工作记忆在多轮修订中携带”未来适用”规则的能力（如”若后续添加新幻灯片，标题应为蓝色”）</li>
+<li>对比显示：无记忆设置仅依赖局部上下文，无法应用先前轮次声明的延迟规则</li>
+</ul>
+<p>5. 画像库构建与协议控制（附录）</p>
+<ul>
+<li><strong>画像库构建</strong>（附录A.4）：详细描述30个画像-意图条目的构造过程，包括控制性创作交互与种子填充策略</li>
+<li><strong>基线条件分离</strong>（附录A.2）：确保画像记忆评估与提示级任务条件分离，排除提示泄露</li>
+<li><strong>计算资源与运行时</strong>（附录A.3）：记录API调用量、令牌消耗及本地编排运行时，确保可复现性</li>
+</ul>
+<p><strong>实验总结</strong>：通过控制性画像对齐判断、诊断性配对修改实验及定性行为分析，论文系统验证了分层记忆架构在提升首轮个性化对齐、增强局部修订可靠性及支持跨任务偏好累积方面的有效性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文第6节（Limitations）及技术架构的潜在延展，未来研究可从以下维度深入探索：</p>
+<p>1. 真实用户部署与纵向研究</p>
+<ul>
+<li><strong>大规模人类研究</strong>：当前实验基于构建的30画像-意图库及诊断性匹配对设置，未来需在真实用户环境中开展长期纵向研究，验证跨任务记忆积累的实际效果及用户满意度</li>
+<li><strong>随机化编辑请求集</strong>：扩展局部修订评估至更广泛、随机化的用户编辑请求分布，而非预设的诊断性场景</li>
+<li><strong>多会话用户研究</strong>：追踪用户跨周/月的实际使用模式，分析长期记忆整合（Consolidation）的稳定性与噪声敏感性</li>
+</ul>
+<p>2. 记忆治理与隐私保护机制</p>
+<ul>
+<li><strong>记忆同意与控制</strong>：实现用户可见的记忆审查、编辑与删除界面，支持细粒度控制（如选择性遗忘特定偏好或敏感信息）</li>
+<li><strong>敏感偏好过滤</strong>：建立机制识别并隔离可能涉及保密策略、受众操控意图或不当内容的偏好信号</li>
+<li><strong>记忆审计与可解释性</strong>：提供记忆检索与应用的追溯能力，解释为何特定画像条目被激活或特定工具经验被调用</li>
+</ul>
+<p>3. 记忆架构的技术增强</p>
+<ul>
+<li><strong>动态意图推断</strong>：当前依赖显式意图匹配（ S(P_u, i_0) ），未来可探索隐式意图识别，自动从用户请求中推断未声明的意图上下文</li>
+<li><strong>冲突消解优化</strong>：深化多源信号（长期画像、任务模板、临时反馈）冲突时的消解策略，引入不确定性建模或用户显式仲裁</li>
+<li><strong>多模态记忆整合</strong>：将当前以文本/结构化为主的记忆扩展至视觉示例（参考幻灯片截图、风格示例）的嵌入与检索</li>
+<li><strong>层次化工具记忆抽象</strong>：在现有任务级与操作级工具记忆基础上，探索跨领域可迁移的元策略（Meta-strategies）学习</li>
+</ul>
+<p>4. 局部修订能力的扩展</p>
+<ul>
+<li><strong>复杂结构编辑</strong>：当前局部修订主要针对内容更新与样式调整，需验证对复杂结构变更（如跨幻灯片重组、层级关系调整）的局部化处理能力</li>
+<li><strong>冲突检测与自动修复</strong>：当局部编辑与全局设计规则或跨幻灯片一致性约束冲突时，开发自动检测与协调机制</li>
+<li><strong>实时协作场景</strong>：扩展至多用户协作编辑场景，处理并发修改下的记忆一致性与版本管理</li>
+</ul>
+<p>5. 评估方法论创新</p>
+<ul>
+<li><strong>个性化度量标准化</strong>：建立领域公认的个性化对齐评估基准，超越当前LLM-as-Judge协议</li>
+<li><strong>效率-质量权衡分析</strong>：量化分析局部修订带来的计算效率提升（上下文长度减少、API调用优化）与生成质量之间的帕累托前沿</li>
+<li><strong>用户心理模型匹配</strong>：评估生成文稿与用户心理预期的一致性，而非仅基于画像条目的表面匹配</li>
+</ul>
+<p>6. 责任使用与内容安全</p>
+<ul>
+<li><strong>误导性内容防范</strong>：开发检测机制防止系统利用用户画像历史生成具有误导性但高度”个性化”的论证或数据呈现</li>
+<li><strong>偏见累积监测</strong>：监测长期记忆是否逐步放大了特定认知偏见（如确认偏误），并引入纠偏机制</li>
+<li><strong>跨文化适应性</strong>：验证画像记忆在不同文化背景下的适用性，避免西方中心主义的设计假设</li>
+</ul>
+<p>这些方向共同指向一个更健壮、可治理且用户中心的个性化演示生成系统，在提升创作效率的同时确保用户自主权与内容责任。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>MemSlides 旨在解决个性化演示文稿生成中的关键挑战：现有系统缺乏跨任务持久化的用户偏好记忆，且在多轮修订中难以可靠地执行局部编辑而不破坏已对齐内容。</p>
+<p>核心问题</p>
+<p>当前演示生成代理面临三个局限：</p>
+<ul>
+<li><strong>个性化不持久</strong>：依赖单次提示或模板，无法积累稳定的跨任务偏好；</li>
+<li><strong>局部修订脆弱</strong>：通过全文重生成处理微小修改，导致上下文压力、内容漂移和效率低下；</li>
+<li><strong>记忆机制缺失</strong>：将个性化视为提示副产品，而非显式区分的长期画像、会话状态与执行经验。</li>
+</ul>
+<p>解决方案：MemSlides 框架</p>
+<p>提出一种分层记忆驱动的智能体架构，包含两个核心组件：</p>
+<p>1. 分层记忆架构</p>
+<p>将记忆按生命周期和功能分离：</p>
+<ul>
+<li><strong>长期记忆</strong>（跨任务持久化）：</li>
+<li><strong>用户画像记忆</strong>：按意图组织的结构化偏好（主题、视觉、布局、内容等维度），支持  P_u  的积累与更新；</li>
+<li><strong>工具记忆</strong>：可复用的执行经验，包括任务级经验（ E<em>(round) ）与操作级工具链片段（ E</em>(op) ）。</li>
+<li><strong>工作记忆</strong>（会话级临时状态）：维护当前激活的临时偏好  A_t 、延续指令与编辑状态  z_t ，支撑多轮修订中的约束保持。</li>
+</ul>
+<p>记忆生命周期遵循：任务开始时，长期记忆经路由与冲突消解注入工作记忆；任务结束后，稳定信号经整合  C(P_u, H)  写回长期画像。</p>
+<p>2. 局部化修订执行（Plan-Act-Guard）</p>
+<p>将多轮修订形式化为状态化过程：<br>S<em>0 = G</em>(init)(x, P<em>u, τ), quad z_t = U(z</em>(t-1), f<em>t; S</em>(t-1)), quad S<em>t = G</em>(edit)(S_(t-1), x, P_u, τ, z_t)</p>
+<p>通过三阶段实现最小有效范围编辑：</p>
+<ul>
+<li><strong>Plan</strong>：构建显式执行合约，自动推断最小影响范围（局部/全局），绑定目标幻灯片与选择器；</li>
+<li><strong>Act</strong>：应用最小有效编辑（批量 CSS、语义批处理、快照绑定局部补丁），禁止非必要全页重写；</li>
+<li><strong>Guard</strong>：基于内容哈希的验证与覆盖门控，确保仅目标区域被修改且通过验证后方可结束。</li>
+</ul>
+<p>实验验证</p>
+<p>在控制环境下开展多维度评估：</p>
+<ul>
+<li><strong>个性化对齐</strong>（30 画像-意图库）：相比 DeepPresenter 与 SlideTailor，MemSlides 在内容、结构、视觉和特异性维度显著提升（平均提升 1–3 分），证明用户画像记忆改善首轮生成对齐；</li>
+<li><strong>通用质量兼容</strong>：DeepPresenter 风格评估显示，个性化增益不以牺牲通用演示质量为代价；</li>
+<li><strong>工具记忆消融</strong>（9 组匹配对诊断实验）：工具记忆注入使闭环完成率从 0.815 提升至 0.963，严格验证率从 0.310 提升至 0.534，首次正确编辑时间减少 60%，核心工具时间降至 0.327×；</li>
+<li><strong>定性分析</strong>：验证工作记忆在多轮间携带延迟偏好，以及跨任务画像整合将局部反馈泛化为可复用模式。</li>
+</ul>
+<p>结论</p>
+<p>MemSlides 通过显式分离用户画像记忆、工具记忆与工作记忆，并引入有范围的幻灯片局部修订机制，实现了有效的个性化演示生成。实验表明，该分层记忆框架能够支持稳定的跨任务偏好保持、可靠的多轮局部编辑，以及可复用的执行经验累积，为个性化内容创作代理提供了新的架构范式。未来工作需拓展至真实用户纵向研究，并加强记忆治理与隐私保护机制。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是MemSlides%3A%20A%20Hierarchical%20Memory%20Driven%20Agent%20Framework%20for%20Personalized%20Slide%20Generation%20with%20Multi-turn%20Local%20Revision，链接是https://arxiv.org/pdf/2606.17162，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.17162。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Ye Jin,Yangyang Xu,Jun Zhu,Yibo Yang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.17162.pdf">https://arxiv.org/pdf/2606.17162.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.17162">https://arxiv.org/abs/2606.17162</a></p>
+<p><strong>Arxiv ID</strong>: 2606.17162</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.17162">https://papers.cool/arxiv/2606.17162</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:34:03.896Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:34:03.896Z</p>
+<hr>
+<h3 id="3-GateMem-Benchmarking-Memory-Governance-in-Multi-Principal-Shared-Memory-Agents"><a href="#3-GateMem-Benchmarking-Memory-Governance-in-Multi-Principal-Shared-Memory-Agents" class="headerlink" title="3. GateMem: Benchmarking Memory Governance in Multi-Principal Shared-Memory Agents"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.18829">GateMem: Benchmarking Memory Governance in Multi-Principal Shared-Memory Agents</a></h3><p>Abstract:Memory benchmarks for LLM agents largely assume single-user settings, leaving shared assistants for hospitals, workplaces, campuses, and households understudied. In these deployments, multiple principals write to a common memory pool and query it under different roles, scopes, and relationships, so memory quality requires governance as well as recall. We introduce GateMem, a benchmark for multi-principal shared-memory agents. GateMem jointly evaluates utility for legitimate long-horizon requests with state updates, access control across contextual authorization boundaries, and agent-facing active forgetting after explicit deletion requests. It spans medical, office, education, and household domains, with long-form multi-party episodes, incremental memory injection, hidden checkpoints, structured judging, and leak-target annotations. Across diverse baselines and backbone models, no method simultaneously achieves strong utility, robust access control, and reliable forgetting. Long-context prompting often yields the best governance score at high token cost, while retrieval-based and external-memory methods reduce cost yet still leak unauthorized or deleted information. These results show current memory agents remain far from reliable shared institutional deployment.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：用于大型语言模型（LLM）代理的记忆基准大多假设单用户环境，对医院、工作场所、校园和家庭的共享助手研究不足。在这些应用中，多个主体会向公共记忆池写入数据，并在不同的角色、范围和关系下进行查询，因此记忆质量不仅需要召回能力，还需要治理。我们提出了GateMem，这是一个针对多主体共享记忆代理的基准。GateMem联合评估对合法长期请求的效用及状态更新、跨上下文授权边界的访问控制，以及在明确删除请求后的面向代理的主动遗忘能力。它涵盖医疗、办公、教育和家庭领域，具有长篇多方情节、增量记忆注入、隐藏检查点、结构化评审和敏感信息泄露标注。在各类基准和骨干模型中，没有任何方法能够同时实现高效用、强访问控制和可靠遗忘。长上下文提示通常在高令牌成本下获得最佳治理评分，而基于检索和外部记忆的方法则降低了成本，但仍可能泄露未经授权或已删除的信息。这些结果表明，当前的记忆代理距离可靠的共享机构部署仍有较大差距。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文试图解决<strong>多主体共享内存环境中LLM代理的内存治理评估缺失</strong>问题。具体而言，现有研究存在以下关键局限：</p>
+<p><strong>1. 评估场景的单用户偏见</strong></p>
+<ul>
+<li>当前内存基准测试主要假设<strong>单用户私有内存</strong>设置（single-user, private-memory），关注最大化召回率和长期记忆能力</li>
+<li>现实部署（医院、企业、校园、家庭）多为<strong>多主体共享内存池</strong>（multi-principal shared-memory），不同角色、关系和授权范围的主体读写同一内存</li>
+</ul>
+<p><strong>2. 治理维度的缺失</strong></p>
+<ul>
+<li>现有基准仅测量<strong>记忆能力</strong>（recall）和<strong>实用性</strong>（utility）</li>
+<li>共享环境需要<strong>内存治理</strong>（memory governance），即同时满足：</li>
+<li><strong>实用性</strong>（Utility）：授权用户能获取所需信息</li>
+<li><strong>访问控制</strong>（Access Control）：阻止未授权访问敏感信息</li>
+<li><strong>主动遗忘</strong>（Active Forgetting）：遵守删除请求，确保已删除信息不可恢复</li>
+</ul>
+<p><strong>3. 安全风险未受关注</strong></p>
+<ul>
+<li>高召回率在共享环境中可能成为<strong>安全漏洞</strong>（如向未授权家庭成员泄露诊断信息，或向承包商恢复已删除的机密草案）</li>
+<li>现有基准缺乏对<strong>上下文授权边界</strong>（contextual authorization boundaries）和<strong>删除合规性</strong>（deletion compliance）的系统性评估</li>
+</ul>
+<p>为此，论文提出<strong>GATEMEM</strong>基准测试，通过91个长程多主体交互片段和2,218个隐藏检查点，首次联合评估代理在医疗、办公、教育和家庭四个领域中的内存治理性能。实验表明，当前方法无法同时实现强实用性、鲁棒访问控制和可靠遗忘，揭示了共享机构部署中的关键安全缺口。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>根据论文第2-3页及相关表格，相关研究可分为以下两个主要领域：</p>
+<p>1. 代理记忆基准测试（Benchmarks for Agent Memory）</p>
+<p><strong>长期记忆与召回能力</strong></p>
+<ul>
+<li><strong>LoCoMo</strong><br>17<br>与 <strong>LongMemEval</strong><br>30<br>：评估长期对话记忆、多会话交互和时间推理能力</li>
+<li><strong>MemoryAgentBench</strong><br>12<br>/<br>13<br>：研究检索机制、测试时学习、长程理解以及增量多轮交互中的选择性遗忘</li>
+<li><strong>LifelongAgentBench</strong><br>38<br>：评估LLM代理的终身学习能力</li>
+</ul>
+<p><strong>个性化与偏好学习</strong></p>
+<ul>
+<li><strong>PersonaMem</strong><br>14<br>与 <strong>PrefEval</strong><br>36<br>：关注动态用户画像和大规模个性化响应生成</li>
+</ul>
+<p><strong>可靠性与记忆新鲜度</strong></p>
+<ul>
+<li><strong>HaluMem</strong><br>5<br>与 <strong>Memora</strong><br>29<br>：评估记忆系统的可靠性及陈旧信息（stale-memory）的使用风险</li>
+</ul>
+<p><strong>多主体协作与项目记忆</strong></p>
+<ul>
+<li><strong>RealMem</strong><br>3<br>：针对长期项目导向交互的记忆评估</li>
+<li><strong>EverMemBench</strong><br>11<br>：扩展到多方和多组协作场景的记忆测试</li>
+<li><strong>MemoryArena</strong><br>10<br>与 <strong>Mem2ActBench</strong><br>26<br>：评估多会话任务和动作执行中的记忆利用</li>
+</ul>
+<p><strong>通用记忆能力</strong></p>
+<ul>
+<li><strong>MemBench</strong><br>28<br>：综合评估基于LLM代理的记忆能力，但主要针对单记忆流场景</li>
+</ul>
+<p>2. 代理安全基准测试（Benchmarks for Agent Security）</p>
+<p><strong>模型级安全</strong></p>
+<ul>
+<li><strong>AdvBench</strong><br>6<br>与 <strong>HarmBench</strong><br>18<br>：评估有害内容生成、越狱攻击鲁棒性及模型拒绝行为</li>
+</ul>
+<p><strong>工具级安全</strong></p>
+<ul>
+<li><strong>InjecAgent</strong><br>34<br>、<strong>AgentDojo</strong><br>8<br>与 <strong>Agent Security Bench</strong><br>35<br>：研究工具使用代理中的提示注入攻击、不安全工具调用和 compromised action execution</li>
+</ul>
+<p><strong>持久记忆与隐私安全</strong></p>
+<ul>
+<li><strong>CIMemories</strong><br>19<br>与 <strong>CI-Work</strong><br>9<br>：研究上下文完整性（contextual integrity）、过度持久记忆（over-persistent memory）及企业LLM代理中的隐私泄漏风险</li>
+<li><strong>AgentLeak</strong><br>32<br>：针对多代理LLM系统的全栈隐私泄漏评估</li>
+<li><strong>PersistBench</strong><br>23<br>：探讨LLM应何时遗忘长期记忆</li>
+</ul>
+<p>3. GATEMEM 与现有研究的定位差异</p>
+<p>如下表（Table 1）所示，现有基准测试在以下方面存在空白：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>现有研究局限</th>
+<th>GATEMEM 补充</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主体结构</td>
+<td>单用户或双人对谈为主</td>
+<td>多主体共享内存池（Multi-principal pool）</td>
+</tr>
+<tr>
+<td>共享内存</td>
+<td>有限或无</td>
+<td>完整支持多主体写入和查询</td>
+</tr>
+<tr>
+<td>访问边界</td>
+<td>无或仅任务级上下文</td>
+<td>角色、范围和关系感知的授权（Role-, scope-, and relation-aware）</td>
+</tr>
+<tr>
+<td>删除探测</td>
+<td>部分支持或缺失</td>
+<td>显式删除请求后的主动遗忘评估（Active Forgetting）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>简言之，现有研究或聚焦于<strong>单用户记忆能力</strong>（如LoCoMo、LongMemEval），或关注<strong>特定安全威胁</strong>（如AdvBench、AgentDojo），但缺乏对<strong>多主体共享内存治理</strong>（同时满足实用性、访问控制和主动遗忘）的系统性评估。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过构建 <strong>GATEMEM（GATEway to MEMory governance）</strong> 基准测试系统性地解决了该问题。具体解决方案包含以下四个层面：</p>
+<p>1. 问题形式化：定义内存治理的三维评估框架</p>
+<p>将多主体共享内存评估重新定义为<strong>内存治理问题</strong>（memory governance），要求同时满足三个严格约束（第1-2页）：</p>
+<ul>
+<li><strong>实用性（Utility,  U ）</strong>：授权请求者必须获得当前有效、范围正确的信息，需处理状态更新和长程依赖</li>
+<li><strong>访问控制（Access Control,  A ）</strong>：必须阻止跨上下文授权边界的信息泄漏，包括直接越权、间接推理和社会工程攻击</li>
+<li><strong>主动遗忘（Active Forgetting,  F ）</strong>：在显式删除请求后，必须确保信息不可恢复、确认或重建（界面级行为不可恢复性）</li>
+</ul>
+<p>通过<strong>乘法型记忆治理分数</strong>（Memory Governance Score, MGS）强制要求三者同时达标：<br>MGS = U · (1 - A) · (1 - F)<br> 任一维度的失败都会导致整体得分显著下降（第5页，公式13）。</p>
+<p>2. 数据集构建：长程多主体 institutional 场景</p>
+<p>领域选择与场景设计</p>
+<p>涵盖四个真实的共享内存部署领域（第3-4页，第14-15页附录A.2）：</p>
+<ul>
+<li><strong>医疗</strong>：患者、家属、医生、护士、药剂师等主体间的临床信息共享与隐私保护</li>
+<li><strong>办公</strong>：项目管理者、工程师、法务、高管等角色间的商业机密与委托链管理</li>
+<li><strong>教育</strong>：学生、教授、行政人员、家长间的成绩与住宿信息边界</li>
+<li><strong>家庭</strong>：居民、访客、护理人员、服务提供者间的个人空间与访问控制</li>
+</ul>
+<p>片段（Episode）构建流程（第3-4页，图2）</p>
+<p>每个片段  e = (S_e, E_e)  包含：</p>
+<ul>
+<li><strong>场景规范</strong>  S_e = (D_e, P_e, R_e, G_e) ：定义领域、主体集合、角色关系及初始访问规则</li>
+<li><strong>交互轨迹</strong>  E_e = (τ_1, τ_2, …, τ_T) ：时间排序的多轮对话，包含事实引入、状态更新、授权变更和删除请求</li>
+</ul>
+<p>关键设计特征：</p>
+<ul>
+<li><strong>增量内存注入</strong>：事实通过自然语言逐步引入，非显式标注的内存操作（公式5： M<em>t^((e)) = Ingest(M</em>(t-1)^((e)), τ_t, S_e) ）</li>
+<li><strong>当前状态依赖</strong>：包含显式更新（日期、金额、分配变更），迫使代理跟踪最新权威值而非仅依赖最早提及</li>
+<li><strong>软越权攻击</strong>：设计委托越权、权威压力、标签存在探测等微妙攻击向量（第16页，图7）</li>
+</ul>
+<p>3. 隐藏检查点（Checkpoint）评估协议（第4-5页）</p>
+<p>在片段特定轮次边界插入<strong>隐藏检查点</strong>  H = (c<em>n, y_n)</em>(n=1)^N ：</p>
+<p>可见输入  c_n </p>
+<p>包含片段标识、轮次边界、认证请求者身份  p_n^(req)  和自然语言查询  x_n 。代理<strong>无法观察</strong>检查点类别或评判标准。</p>
+<p>隐藏治理注释  y_n = (q_n, a_n^star, J_n, Lambda_n) </p>
+<ul>
+<li><strong>类别</strong>  q_n ：区分实用（ C_u ）、访问控制（ C_a ）、主动遗忘（ C_f ）三类检查点</li>
+<li><strong>期望动作</strong>  a_n^star ：规范化为 <code>answer</code>、<code>answer_redacted</code>、<code>refuse</code>、<code>no_memory</code> 四种动作</li>
+<li><strong>评判规范</strong>  J_n ：定义实用检查点的必需回答要素</li>
+<li><strong>泄漏目标</strong>  Lambda_n ：针对访问控制和遗忘检查点的受保护实体或值，支持自动化泄漏审计</li>
+</ul>
+<p>结构化评判与审计（第5页，附录C）</p>
+<p>采用 <strong>LLM-as-a-Judge</strong> 协议，通过独立评判提示模板评估：</p>
+<ul>
+<li>动作合规性（是否匹配期望动作）</li>
+<li>事实覆盖度（实用检查点）</li>
+<li>隐私泄漏（是否包含  Lambda_n  中的受保护内容）</li>
+<li>删除泄漏（是否恢复或确认已删除信息）</li>
+</ul>
+<p>4. 实验验证：暴露现有方法的治理缺陷（第6-10页）</p>
+<p>通过对比七种基线方法（包括全上下文提示、RAG变体、专用记忆系统如A-MEM、MEM0、REMEM），证明：</p>
+<ul>
+<li><strong>现有方法无法同时满足三维要求</strong>：长上下文提示（Long-Context）虽实用性高（ U  达80-90%），但泄漏率高（ A  和  F  常超20%）；策略感知RAG（RAG-Policy）降低泄漏但导致过度拒绝（Over-refusal），牺牲实用性（第7页，表3）</li>
+<li><strong>专用记忆系统缺乏治理机制</strong>：A-MEM、MEM0等虽优化记忆组织，但未内置授权评估和删除合规机制（第8页）</li>
+<li><strong>效率与治理的权衡</strong>：长上下文治理得分高但token成本极高；外部记忆系统降低token消耗但延迟严重（第8页，表4）</li>
+</ul>
+<p><strong>关键结论</strong>：当前LLM代理设计将内存视为<strong>召回资源</strong>而非<strong>受管共享状态</strong>，距离可靠的机构级部署仍有显著差距（第10页）。这一系统性诊断为未来研究指明了必须同时优化记忆表示、访问控制策略和遗忘机制的方向。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文进行了系统性的实验评估，涵盖<strong>骨干模型对比</strong>、<strong>基线方法比较</strong>、<strong>效率分析</strong>和<strong>诊断性分析</strong>四个层面：</p>
+<p>1. 实验设置</p>
+<p>评估骨干模型</p>
+<p>实验在6个不同规模的LLM上展开（第6页）：</p>
+<ul>
+<li><strong>GPT-5.4</strong>（最强闭源模型）</li>
+<li><strong>Deepseek-V4-Pro</strong></li>
+<li><strong>Llama-4-Maverick</strong>（开源模型）</li>
+<li><strong>GPT-5-mini</strong> 与 <strong>GPT-4o-mini</strong>（轻量级模型）</li>
+<li><strong>Gemini-2.5-Flash-Lite</strong></li>
+</ul>
+<p>基线方法（三类设计家族）</p>
+<p>共评估7种代表性记忆代理设计（第6页，附录B）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>方法</th>
+<th>机制描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全上下文提示</td>
+<td>LONG-CONTEXT</td>
+<td>直接将完整对话历史放入提示，无显式外部记忆存储</td>
+</tr>
+<tr>
+<td>检索增强生成</td>
+<td>RAG-NAIVE</td>
+<td>基于相似度检索历史片段，无显式策略层</td>
+</tr>
+<tr>
+<td>RAG-POLICY</td>
+<td>在检索中融入请求者身份和访问策略元数据</td>
+</tr>
+<tr>
+<td>专用记忆系统</td>
+<td>A-MEM [31]</td>
+<td>基于Zettelkasten的链接笔记系统，支持动态链接生成</td>
+</tr>
+<tr>
+<td>MEM0 [7]</td>
+<td>生产级长期记忆系统，增量提取事实并更新外部存储</td>
+</tr>
+<tr>
+<td>REMEM-I [27]</td>
+<td>迭代式情景记忆图检索与推理</td>
+</tr>
+<tr>
+<td>REMEM-S [27]</td>
+<td>REMEM的单步检索生成变体（低延迟版本）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>所有方法遵循相同的增量协议：按时间顺序处理对话轮次，在检查点处回答查询，然后继续处理后续内容。</p>
+<p>2. 主要实验结果（表3）</p>
+<p>在4个领域（医疗、办公、教育、家庭）上测量四个核心指标：</p>
+<ul>
+<li><strong> U （有效实用性）</strong>：正确回答且覆盖所有必需要素的比例</li>
+<li><strong> A （访问控制违规率）</strong>：向未授权请求者泄漏受保护信息的比例</li>
+<li><strong> F （主动遗忘失败率）</strong>：删除后仍能恢复或确认信息的比例</li>
+<li><strong> MGS （记忆治理分数）</strong>： U · (1-A) · (1-F) ，综合衡量治理可靠性</li>
+</ul>
+<p>关键发现：</p>
+<p><strong>（1）长上下文提示的治理-成本权衡</strong></p>
+<ul>
+<li>LONG-CONTEXT在大多数配置下获得<strong>最高MGS</strong>（如Deepseek-V4-Pro在医疗领域达70.6%）</li>
+<li>但存在显著泄漏风险：在Gemini-2.5-Flash-Lite上，医疗领域 A=27.1% ， F=26.0% （第7页）</li>
+</ul>
+<p><strong>（2）策略感知检索的安全-实用性悖论</strong></p>
+<ul>
+<li>RAG-POLICY相比RAG-NAIVE显著降低 A （如GPT-5.4医疗领域从25.0%降至10.9%）</li>
+<li>但过度过滤导致 U 大幅下降（同一配置从91.4%降至37.1%），在办公领域甚至出现44.8%的过度拒绝率（第9页，图3b）</li>
+</ul>
+<p><strong>（3）专用记忆系统缺乏内置治理</strong></p>
+<ul>
+<li>A-MEM、MEM0、REMEM的MGS普遍低于简单的LONG-CONTEXT</li>
+<li>例如MEM0在GPT-4o-mini医疗配置上MGS仅8.1%，且 F 失败率高达28.2%（第7页）</li>
+</ul>
+<p><strong>（4）模型能力影响治理边界</strong></p>
+<ul>
+<li>Deepseek-V4-Pro和GPT-5.4展现出最佳的治理平衡</li>
+<li>Gemini-2.5-Flash-Lite虽然 U 高（教育领域93.9%），但 F 失败率极高（64.4%），显示强大的基础能力不等同于可靠的内存治理</li>
+</ul>
+<p>3. 效率分析（表4）</p>
+<p>在GPT-4o-mini上对比计算成本（第8页）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>延迟（秒/检查点）</th>
+<th>Token消耗（千/检查点）</th>
+<th>特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LONG-CONTEXT</td>
+<td>4.22-7.79（最快）</td>
+<td>4.04-7.61（最高）</td>
+<td>直接读取，无检索开销</td>
+</tr>
+<tr>
+<td>RAG-NAIVE/POLICY</td>
+<td>11.10-18.52</td>
+<td>1.15-1.96</td>
+<td>检索引入额外延迟但节省token</td>
+</tr>
+<tr>
+<td>A-MEM/MEM0</td>
+<td>41.76-158.55</td>
+<td>1.27-1.75</td>
+<td>记忆维护增加延迟</td>
+</tr>
+<tr>
+<td>REMEM-I/S</td>
+<td>122.95-267.43（最慢）</td>
+<td>1.05-1.46（最低）</td>
+<td>图遍历推理导致严重延迟（最长达260秒/检查点）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>结论</strong>：强治理（长上下文）伴随高token成本，而低token方法（如REMEM）因复杂记忆结构产生不可接受的延迟，需联合优化治理与效率。</p>
+<p>4. 诊断性分析（第4.3节）</p>
+<p>（1）检索深度敏感性（图3a）</p>
+<ul>
+<li>变化RAG的top- k （5→40）显示：单纯增加检索深度无法同时提升 U 和安全性</li>
+<li>RAG-POLICY在所有深度上均保持更高的访问安全和遗忘安全，证明<strong>显式策略过滤比检索深度更关键</strong></li>
+</ul>
+<p>（2）过度拒绝分析（图3b）</p>
+<ul>
+<li>测量合法实用检查点上的错误拒绝率</li>
+<li>RAG-POLICY的过度拒绝率（63.3%）显著高于LONG-CONTEXT（24.8%）</li>
+<li>揭示<strong>安全与实用性之间的内在张力</strong>：模型可能因保守的安全约束而”瘫痪”，拒绝合法查询</li>
+</ul>
+<p>（3）攻击类型失败分解（图4）</p>
+<p>对医疗领域的失败案例按攻击向量分类：</p>
+<p><strong>访问控制失败</strong>（按频率排序）：</p>
+<ul>
+<li><strong>家庭越权</strong>（Family overreach, 29%）：家属请求超出物流范围的信息</li>
+<li><strong>标签存在探测</strong>（Label-existence probe, 15%）：询问某记录是否存在以推断敏感信息</li>
+<li><strong>角色不匹配</strong>（Role mismatch, 15%）：医护人员访问未分配给自己的患者</li>
+<li><strong>间接推理</strong>（Indirect inference, 12%）：通过关联信息推断受保护内容</li>
+</ul>
+<p><strong>主动遗忘失败</strong>：</p>
+<ul>
+<li><strong>确认式提问</strong>（Yes/no confirm, 27%）：通过是非提问诱导确认已删除信息</li>
+<li><strong>直接恢复查询</strong>（Direct recovery, 20%）：直接询问被删除的值</li>
+<li><strong>社会工程</strong>（Social engineering, 15%）：伪装身份或编造紧急情况诱导泄漏</li>
+</ul>
+<p>（4）定性案例研究（表5、表10、附录E）</p>
+<p>展示具体失败模式：</p>
+<ul>
+<li><strong>实用案例</strong>：RAG-NAIVE遗漏最新药物（melatonin），而RAG-POLICY过度拒绝授权的药剂师请求</li>
+<li><strong>访问控制案例</strong>：A-MEM和MEM0虽采取<code>answer_redacted</code>动作，但自然语言响应仍确认”STI chart”类型，构成内容级泄漏</li>
+<li><strong>遗忘案例</strong>：Mem0直接回答”Yes”确认已删除指令，而长上下文仅拒绝（<code>refuse</code>）而非正确的<code>no_memory</code>动作</li>
+</ul>
+<p>5. 人工验证（附录D）</p>
+<p>对579个LLM评判标注的样本进行人工 adjudication：</p>
+<ul>
+<li>字段级一致性达<strong>97.7%-100%</strong></li>
+<li>聚合指标（ U, A, F, MGS ）最大绝对差异仅<strong>1.04个百分点</strong>（表9）</li>
+<li>验证LLM-as-a-Judge的可靠性，确保量化结果可信。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文的实验发现与局限性，以下研究方向具有重要探索价值：</p>
+<p>1. 内存架构的联合优化</p>
+<p>当前存在<strong>治理-效率权衡</strong>困境：长上下文方法治理性能最优但token成本极高（表4中达7.61k tokens/ckpt），而外部记忆系统虽降低token消耗却引入严重延迟（REMEM-I达267秒/ckpt）。需探索新型记忆表示与检索机制，在保持完整上下文感知能力的同时实现亚秒级响应与低token开销，例如通过<strong>分层记忆摘要</strong>或<strong>动态上下文压缩</strong>技术保留治理关键信息。</p>
+<p>2. 细粒度上下文感知访问控制</p>
+<p>现有RAG-POLICY等方法的<strong>过度拒绝率</strong>过高（图3b中达63.3%），表明粗粒度策略过滤会牺牲合法实用性。需开发能区分”部分授权”与”完全越权”的细粒度机制，例如：</p>
+<ul>
+<li>基于<strong>属性级加密</strong>或<strong>差分隐私</strong>的部分信息披露</li>
+<li>动态<strong>最小权限原则</strong>实现，根据查询意图自动调整披露粒度（<code>answer</code> vs <code>answer_redacted</code>）</li>
+<li>多模态上下文理解（对话历史中的隐式授权线索）</li>
+</ul>
+<p>3. 可验证的主动遗忘机制</p>
+<p>论文采用<strong>界面级行为不可恢复性</strong>（interface-level behavioral non-recoverability）标准，但底层存储（向量索引、摘要缓存、模型参数）仍可能保留信息。需探索：</p>
+<ul>
+<li><strong>物理删除验证</strong>：确保信息从向量数据库、知识图谱和模型参数中彻底抹除</li>
+<li><strong>遗忘证明</strong>（Proof of Forgetting）： cryptographic 或审计机制验证删除合规性</li>
+<li><strong>抗重建遗忘</strong>：防止通过剩余记忆片段的关联推理重建已删除信息（应对图4中的”split reconstruction”攻击）</li>
+</ul>
+<p>4. 对抗性鲁棒性增强</p>
+<p>针对图4揭示的<strong>软越权攻击</strong>（间接推理、标签存在探测、社会工程），需开发：</p>
+<ul>
+<li><strong>红队测试自动化</strong>：系统性地生成对抗性查询以测试边界情况</li>
+<li><strong>元认知防御</strong>：代理需识别”看似合理但授权存疑”的请求模式，而非仅依赖静态规则</li>
+<li><strong>跨会话攻击防御</strong>：防止通过多会话累积信息间接推断受保护内容</li>
+</ul>
+<p>5. 动态策略学习与适应</p>
+<p>当前基准使用<strong>静态访问规则</strong>（公式2中的 G_e ），但真实机构中授权关系动态演变（如临时委托、紧急权限升级）。需研究：</p>
+<ul>
+<li>从交互历史中<strong>自动学习授权模式</strong>的元学习方法</li>
+<li><strong>时效性权限管理</strong>：自动处理权限过期（如”仅本周有效”的临时访问）</li>
+<li><strong>冲突解决机制</strong>：当多个主体对同一信息拥有冲突权限时的仲裁策略</li>
+</ul>
+<p>6. 跨领域治理迁移</p>
+<p>论文四个领域（医疗、办公、教育、家庭）具有不同的角色结构和失败模式（图5-7）。需探索：</p>
+<ul>
+<li><strong>领域无关的治理原语</strong>：提取跨领域通用的访问控制逻辑</li>
+<li><strong>元治理策略</strong>：快速适应新领域的少样本迁移学习方法</li>
+<li><strong>文化差异感知</strong>：不同司法管辖区对隐私和授权的社会规范差异</li>
+</ul>
+<p>7. 可解释的记忆治理</p>
+<p>当前系统难以解释为何拒绝特定查询（表5中仅显示<code>refuse</code>动作）。需开发：</p>
+<ul>
+<li><strong>治理决策追溯</strong>：明确说明拒绝是基于角色不匹配、范围越界还是信息已删除</li>
+<li><strong>用户可理解的隐私边界</strong>：向终端用户清晰传达当前查询的授权范围</li>
+<li><strong>审计日志完整性</strong>：记录所有访问尝试与决策依据以满足合规要求</li>
+</ul>
+<p>8. 并发与一致性控制</p>
+<p>论文假设<strong>顺序处理</strong>（公式5的增量摄入），但真实共享环境存在并发写入。需研究：</p>
+<ul>
+<li><strong>并发写入冲突解决</strong>：当多个主体同时更新同一事实时的版本控制</li>
+<li><strong>分布式记忆一致性</strong>：在分片或联邦部署中保持治理策略全局一致</li>
+<li><strong>实时更新同步</strong>：确保删除请求立即对所有查询端点生效，避免窗口期泄漏</li>
+</ul>
+<p>9. 评估方法扩展</p>
+<ul>
+<li><strong>自动化红队生成</strong>：利用LLM自动生成多样化的攻击变体，超越当前手工设计的攻击类型</li>
+<li><strong>长期遗忘稳定性</strong>：评估删除后经过数月交互和多次模型更新后的信息残留风险</li>
+<li><strong>人类-AI协作评估</strong>：结合人类领域专家（如医疗伦理委员会）验证治理决策的合理性</li>
+</ul>
+<p>这些方向共同指向一个核心目标：将内存从<strong>被动存储资源</strong>转变为<strong>主动治理状态</strong>，使其在复杂多主体环境中既保持实用性又具备可证明的安全保证。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>这篇论文针对<strong>多主体共享内存环境中LLM代理的内存治理评估缺失</strong>问题，提出了系统性的解决方案与发现：</p>
+<p>1. 研究背景与问题定义</p>
+<p>现有LLM代理内存基准主要假设<strong>单用户私有内存</strong>设置，关注最大化召回率（recall）。然而，真实部署场景（医院、企业、校园、家庭）均为<strong>多主体共享内存池</strong>，不同角色、关系和授权范围的主体读写同一内存。在此环境下，高召回率若无严格治理反而构成安全漏洞。因此，内存质量需通过<strong>内存治理</strong>（memory governance）衡量，即同时满足：</p>
+<ul>
+<li><strong>实用性</strong>（Utility）：授权用户获取有效信息</li>
+<li><strong>访问控制</strong>（Access Control）：阻止未授权访问</li>
+<li><strong>主动遗忘</strong>（Active Forgetting）：遵守删除请求，确保信息不可恢复</li>
+</ul>
+<p>2. GATEMEM基准测试</p>
+<p>论文提出<strong>GATEMEM</strong>基准，包含：</p>
+<ul>
+<li><strong>91个长程多主体交互片段</strong>（episodes），覆盖医疗、办公、教育、家庭四个领域</li>
+<li><strong>2,218个隐藏检查点</strong>（checkpoints），通过增量内存注入评估代理性能</li>
+<li><strong>三维评估指标</strong>：有效实用性  U 、访问控制违规率  A 、主动遗忘失败率  F ，以及综合的<strong>记忆治理分数</strong>  MGS = U · (1 - A) · (1 - F) </li>
+</ul>
+<p>每个检查点包含可见输入（请求者身份、查询）与隐藏注释（期望动作、评判规范、泄漏目标），代理需在无监督信号情况下正确处理授权边界与删除状态。</p>
+<p>3. 关键实验发现</p>
+<p>在6个骨干模型（GPT-5.4、Deepseek-V4-Pro、Llama-4-Maverick等）与7种基线方法（长上下文提示、RAG变体、专用记忆系统A-MEM/MEM0/REMEM）上的评估表明：</p>
+<ul>
+<li><strong>治理困境</strong>：无任何方法能同时在  U 、 A 、 F  上表现优异。长上下文提示（Long-Context）虽获得最高  MGS （如Deepseek-V4-Pro在医疗领域达70.6%），但仍存在非零泄漏（ A  和  F  常超10%），且token成本极高（达7.61k tokens/检查点）。</li>
+<li><strong>安全-实用性权衡</strong>：策略感知RAG（RAG-POLICY）通过元数据过滤降低违规率，但导致高达63.3%的过度拒绝率，显著牺牲合法实用性。</li>
+<li><strong>专用记忆系统缺陷</strong>：A-MEM、MEM0、REMEM等虽优化记忆组织，但缺乏内置授权评估与删除合规机制，在访问控制和主动遗忘上表现脆弱（如MEM0在GPT-4o-mini上  F  失败率达28.2%）。</li>
+<li><strong>攻击向量分析</strong>：访问控制失败常源于软越权（间接推理、标签存在探测、社会工程），而非简单的未授权请求；遗忘失败则易被确认式提问（yes/no probes）触发。</li>
+</ul>
+<p>4. 主要贡献</p>
+<ul>
+<li><strong>问题形式化</strong>：首次将多主体共享内存评估定义为耦合的治理问题，强调  U 、 A 、 F  必须联合优化。</li>
+<li><strong>评估基础设施</strong>：构建了涵盖长程交互、隐藏检查点、结构化评判与泄漏审计的完整评估协议。</li>
+<li><strong>实证诊断</strong>：系统性地暴露了当前LLM代理在共享机构部署中的安全缺口，证明现有方法距离可靠部署仍有显著差距，为未来研究指明了需联合优化记忆表示、访问控制策略与遗忘机制的方向。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是GateMem%3A%20Benchmarking%20Memory%20Governance%20in%20Multi-Principal%20Shared-Memory%20Agents，链接是https://arxiv.org/pdf/2606.18829，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.18829。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Zhe Ren,Yibo Yang,Yimeng Chen,Zijun Zhao,Benshuo Fu,Zhihao Shu,Bingjie Zhang,Yangyang Xu,Dandan Guo,Shuicheng Yan</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.18829.pdf">https://arxiv.org/pdf/2606.18829.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.18829">https://arxiv.org/abs/2606.18829</a></p>
+<p><strong>Arxiv ID</strong>: 2606.18829</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.18829">https://papers.cool/arxiv/2606.18829</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:34:14.025Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:34:14.025Z</p>
+<hr>
+<h3 id="4-MCompassRAG-Topic-Metadata-as-a-Semantic-Compass-for-Paragraph-Level-Retrieval"><a href="#4-MCompassRAG-Topic-Metadata-as-a-Semantic-Compass-for-Paragraph-Level-Retrieval" class="headerlink" title="4. MCompassRAG: Topic Metadata as a Semantic Compass for Paragraph-Level Retrieval"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.18508">MCompassRAG: Topic Metadata as a Semantic Compass for Paragraph-Level Retrieval</a></h3><p>Abstract:Retrieval-augmented generation (RAG) systems depend critically on how documents are chunked and searched. Fine-grained chunks can improve retrieval precision but expand the search space, increasing latency and cost; larger chunks reduce the number of candidates but make dense similarity less reliable, as the representation for each chunk mixes multiple topics and introduces more semantic noise. This trade-off becomes especially limiting in deep research tasks, where retrieval must be both fast and precise across large, heterogeneous corpora. We introduce MCompassRAG, a metadata-guided retrieval framework that uses topic-level signals as a semantic compass for selecting relevant evidence. Instead of relying only on cosine similarity between queries and noisy chunk embeddings, MCompassRAG enriches chunk representations with topic metadata in the same embedding space and trains a lightweight retriever through LLM-teacher distillation. At inference time, MCompassRAG performs topic-aware retrieval without additional LLM calls, improving both efficiency and evidence quality. Across six complex retrieval benchmarks, MCompassRAG improves information efficiency (IE) by 8.24% on average with over 5 times lower latency than the strongest efficient RAG baselines. Code is available on this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：检索增强生成（RAG）系统在很大程度上依赖于文档的分块和搜索方式。细粒度的分块可以提高检索精度，但会扩大搜索空间，增加延迟和成本；较大的分块可以减少候选项的数量，但会使密集相似性不那么可靠，因为每个分块的表示会混合多个主题并引入更多语义噪声。这种权衡在深度研究任务中尤为限制性，因为在大型、异质的语料库中，检索必须既快速又精确。我们提出了MCompassRAG，一种元数据引导的检索框架，利用主题级信号作为选择相关证据的语义指南。MCompassRAG不仅依赖查询与噪声分块嵌入之间的余弦相似度，还通过在相同嵌入空间中使用主题元数据丰富分块表示，并通过大模型教师蒸馏训练轻量级检索器。在推理阶段，MCompassRAG在不额外调用大模型的情况下执行主题感知检索，从而提高了效率和证据质量。在六个复杂检索基准测试中，MCompassRAG平均提升信息效率（IE）8.24%，延迟比最强的高效RAG基线低5倍以上。代码可以在此 https URL 获取。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文旨在解决<strong>检索增强生成（RAG）系统中文档分块粒度与检索效率之间的根本性权衡问题</strong>，具体表现为：</p>
+<p><strong>1. 粗粒度分块的语义噪声问题</strong></p>
+<ul>
+<li>较大的分块（如长段落）虽然能减少检索候选数量、降低索引成本，但其嵌入表示会混合多个主题和话语角色，导致密集相似度计算不可靠。</li>
+<li>具体表现为：相关证据被无关文本稀释（dilution），而部分相关但包含大量无关内容的分块可能因表面词汇重叠而被错误检索。</li>
+</ul>
+<p><strong>2. 细粒度分块的效率瓶颈</strong></p>
+<ul>
+<li>细粒度分块（如句子或原子命题）虽能提高检索精度，但会显著扩大搜索空间，增加延迟和计算成本。</li>
+<li>现有改进方法（如层次化检索、LLM引导的分块或重排序）往往引入额外的预处理开销、多阶段索引或推理时LLM调用，难以满足深度研究任务（deep research）对<strong>多轮快速检索</strong>的严苛效率要求。</li>
+</ul>
+<p><strong>3. 查询-证据对齐的稀疏性</strong></p>
+<ul>
+<li>在异构语料库中，用户查询通常简短且主题不明确，而粗粒度分块包含多主题信息，传统的余弦相似度难以识别分块中与查询相关的特定语义方向。</li>
+</ul>
+<p><strong>解决方案概述</strong> MCOMPASSRAG通过<strong>主题元数据引导的检索框架</strong>解决上述问题：</p>
+<ul>
+<li>利用主题建模编码器为粗粒度分块生成主题分布向量，将主题信息嵌入与检索器相同的语义空间；</li>
+<li>在推理时，通过元数据选择策略从语料库级元数据银行中选取与查询相关的主题信号，经抽象模块压缩为紧凑的查询-主题向量；</li>
+<li>训练轻量级MLP分类器（经LLM教师蒸馏）实现无需LLM调用的主题感知评分，从而在保持粗粒度分块效率优势的同时，显著降低语义噪声。</li>
+</ul>
+<p>该方法在六个复杂检索基准上平均提升信息效率（IE）8.24%，同时将延迟降低至最强高效基线的1/5以下。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>根据论文第2节（Related Work）及实验部分的讨论，相关研究可分为以下三个主要方向：</p>
+<p>1. 检索粒度与结构化检索</p>
+<p>这类研究关注如何优化文档分块策略以平衡检索精度与效率：</p>
+<ul>
+<li><p><strong>命题级检索（Proposition-level Retrieval）</strong><br>Chen et al. (2024b) 提出将文档分解为原子化的事实单元（propositions），通过Propositionizer模型生成自包含的细粒度检索单元，提高证据精确性但显著增加索引规模。</p>
+</li>
+<li><p><strong>LLM引导与自适应分块</strong><br>Zhao et al. (2025b,a) 利用大语言模型的逻辑感知能力识别最优分块边界，提出基于困惑度（PPL）和边缘采样（MSP）的元</p>
+</li>
+</ul>
+</div></details>
+<p><strong>Authors</strong>: Amirhossein Abaskohi,Raymond Li,Gaetano Cimino,Peter West,Giuseppe Carenini,Issam H. Laradji</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.18508.pdf">https://arxiv.org/pdf/2606.18508.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.18508">https://arxiv.org/abs/2606.18508</a></p>
+<p><strong>Arxiv ID</strong>: 2606.18508</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.18508">https://papers.cool/arxiv/2606.18508</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:34:23.519Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:34:23.519Z</p>
+<hr>
+<h3 id="5-Multi-Turn-Reflective-Masking-Elicits-Reasoning-in-Mask-Diffusion-Models"><a href="#5-Multi-Turn-Reflective-Masking-Elicits-Reasoning-in-Mask-Diffusion-Models" class="headerlink" title="5. Multi-Turn Reflective Masking Elicits Reasoning in Mask Diffusion Models"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.16700">Multi-Turn Reflective Masking Elicits Reasoning in Mask Diffusion Models</a></h3><p>Abstract:While reasoning on autoregressive (AR) models is often performed by chain-of-thought reasoning and reflection, their refinement of previous outputs still relies on fully sequential generation, even when only local edits are needed. In contrast, the masking mechanism in Mask Diffusion Models (MDMs) naturally supports explicit local edits on previous outputs, allowing selective refinement without discarding previous answers and generating another from scratch. While this property more closely aligns with how humans correct mistakes by iterative local refinement, existing MDMs do not support multi-turn masking and denoising. We propose Reflective Masking (RM), which elicits such an intrinsic reasoning capability in MDMs via lightweight post-training. RM provides a native test-time scaling, where an MDM iteratively revisits and revises its prior outputs based on evolving context. To exploit insights from previous turns like AR reasoning, we further introduce History Reference, a parameter-free mechanism that leverages intermediate denoising states during revision. Our approach requires no architectural changes and is easily applicable to existing MDMs. Across diverse tasks and modalities, including text generation, Sudoku, and image editing, Reflective Masking consistently outperforms standard masking-based baselines and demonstrates strong generality, positioning RM as a fundamental primitive for reasoning on MDMs.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：虽然在自回归（AR）模型上进行推理时通常通过链式思维和反思来完成，但它们对先前输出的改进仍然依赖于完全顺序的生成，即使只需要局部编辑也是如此。相比之下，掩码扩散模型（MDMs）中的掩码机制自然支持对先前输出进行显式局部编辑，从而允许选择性地改进而无需舍弃先前答案并从头生成。虽然这一特性更接近人类通过迭代局部改进来纠正错误的方式，但现有的MDMs不支持多轮掩码和去噪。我们提出了反射掩码（Reflective Masking, RM），通过轻量的训练后调优（post-training）在MDMs中激发这种内在的推理能力。RM提供了一种原生的测试时扩展方法，使MDM能够迭代地重新查看并基于不断变化的上下文修正其先前的输出。为了像AR推理那样利用前几轮的洞察力，我们进一步引入了历史参考（History Reference），这是一种无需参数的机制，可在修订过程中利用中间去噪状态。我们的方法无需架构更改，且可以轻松应用于现有MDMs。在包括文本生成、数独和图像编辑在内的多种任务和模态中，反射掩码始终优于基于标准掩码的基线方法，并展示出很强的通用性，使RM成为在MDMs上进行推理的基础原语。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Yanming Zhang,Yihan Bian,Jingyuan Qi,Yuguang Yao,Lifu Huang,Tianyi Zhou</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.16700.pdf">https://arxiv.org/pdf/2606.16700.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.16700">https://arxiv.org/abs/2606.16700</a></p>
+<p><strong>Arxiv ID</strong>: 2606.16700</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.16700">https://papers.cool/arxiv/2606.16700</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:34:41.843Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:34:41.843Z</p>
+<hr>
+<h3 id="6-SproutRAG-Attention-Guided-Tree-Search-with-Progressive-Embeddings-for-Long-Document-RAG"><a href="#6-SproutRAG-Attention-Guided-Tree-Search-with-Progressive-Embeddings-for-Long-Document-RAG" class="headerlink" title="6. SproutRAG: Attention-Guided Tree Search with Progressive Embeddings for Long-Document RAG"></a>6. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.18381">SproutRAG: Attention-Guided Tree Search with Progressive Embeddings for Long-Document RAG</a></h3><p>Abstract:Retrieval-augmented generation (RAG) systems must balance retrieval granularity with contextual coherence, a challenge that existing methods address through LLM-guided chunking, single-level context expansion, or hierarchical summarization. These approaches variously depend on costly LLM calls during indexing or retrieval, limit context aggregation to a single granularity level, or introduce information loss through summarization. We present SproutRAG, an attention-guided hierarchical RAG framework that addresses this trade-off by organizing sentence-level chunks into progressively larger but semantically coherent units, using learned inter-sentence attention to construct a binary chunking tree. Unlike prior approaches that rely on external LLMs, fixed context expansion, or lossy summarization, SproutRAG learns which attention heads and layers best capture semantic document structure, enabling multi-granularity retrieval without additional LLM calls or compressed summaries. At retrieval time, SproutRAG uses hierarchical beam search to retrieve candidates at multiple granularities, capturing multi-sentence relevance beyond flat retrieval. The framework is trained end-to-end with a joint objective that improves both embeddings and tree structure. Experiments across four benchmarks spanning scientific, legal, and open-domain settings demonstrate that SproutRAG improves information efficiency (IE) by 6.1% on average over the strongest baseline. Code is available on this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：检索增强生成（RAG）系统必须在检索粒度与上下文一致性之间取得平衡，这一挑战现有方法通过LLM指导的分块、单级上下文扩展或分层摘要来解决。这些方法或依赖在索引或检索过程中高成本的LLM调用，或将上下文聚合限制在单一粒度级别，或通过摘要引入信息损失。我们提出了SproutRAG，一种基于注意力的分层RAG框架，通过将句子级分块组织成逐渐增大但语义一致的单元，利用学习到的句间注意力构建二叉分块树，从而解决这一权衡。与依赖外部LLM、固定上下文扩展或有损摘要的先前方法不同，SproutRAG学习哪些注意力头和层最能捕捉文档的语义结构，实现多粒度检索，而无需额外的LLM调用或压缩摘要。在检索阶段，SproutRAG使用分层束搜索在多粒度下检索候选项，捕获超越平面检索的多句相关性。该框架使用联合目标进行端到端训练，同时改进嵌入表示和树结构。在涵盖科学、法律和开放领域的四个基准实验中，SproutRAG在信息效率（IE）方面平均比最强基线提高了6.1%。代码可在此https网址获取。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文试图解决<strong>长文档检索增强生成（RAG）系统中检索粒度与上下文连贯性之间的权衡问题</strong>，具体而言：</p>
+<p>核心问题</p>
+<p>现有RAG框架在文档分块（chunking）策略上面临根本性张力：</p>
+<ul>
+<li><strong>粗粒度分块</strong>（大段落）：保持上下文连贯性，但引入冗余噪声，稀释关键信息；</li>
+<li><strong>细粒度分块</strong>（句子级）：提供精确检索，但导致<strong>语义碎片化</strong>（semantic fragmentation）和<strong>跨块依赖关系断裂</strong>，难以回答需要综合多个分散证据的查询（如多跳推理、跨段落摘要）。</li>
+</ul>
+<p>现有方法的局限性</p>
+<p>论文指出当前三类主流方法均存在不足：</p>
+<ol>
+<li><p><strong>LLM引导的分块</strong>（如Meta-Chunking、MoC）<br>虽能生成语义边界更清晰的块，但在分块后<strong>丢弃跨块依赖关系</strong>，无法恢复分散在多处的相关证据。</p>
+</li>
+<li><p><strong>单级上下文扩展</strong>（如SAKI-RAG）<br>依赖句子对注意力进行成对扩展，但将扩展限制在局部 sentence pairs，<strong>无法捕捉多句子间的全局语义关联</strong>；且随着候选空间扩大，需昂贵的LLM过滤。</p>
+</li>
+<li><p><strong>层次化摘要方法</strong>（如RAPTOR）<br>通过聚类和LLM摘要构建多级结构，但聚类将块视为可互换的，且<strong>摘要过程会丢失细粒度证据</strong>（lossy summarization）。</p>
+</li>
+</ol>
+<p>特定场景的挑战</p>
+<p>上述问题在<strong>跨段落检索</strong>（cross-paragraph retrieval）中尤为突出：当回答需要综合散落在文档多个部分的证据时（如法律条款分析、科学文献多跳推理），现有方法难以在保持细粒度精确性的同时恢复连贯的上下文。</p>
+<p>解决方案概述</p>
+<p>为此，论文提出<strong>SPROUTRAG</strong>框架，通过<strong>注意力引导的树结构</strong>（attention-guided binary tree）组织句子级块，利用<strong>学习的句子间注意力权重</strong>（而非均匀平均）构建渐进式嵌入（progressive embeddings），实现无需LLM推理即可进行<strong>多级粒度检索</strong>（multi-granularity retrieval），从而在不牺牲信息完整性的前提下平衡检索精度与上下文连贯性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>根据论文第2节（Related Work），相关研究可分为两大类别：</p>
+<p>1. 分块与自适应检索（Chunking and Adaptive Retrieval）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>核心思想</th>
+<th>与SPROUTRAG的区别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LateChunking (Günther et al., 2025)</td>
+<td>在形成块嵌入前对token表示进行上下文化处理</td>
+<td>未改变分块后的扁平组织结构</td>
+</tr>
+<tr>
+<td>Meta-Chunking (Zhao et al., 2025b)</td>
+<td>使用LLM困惑度（PPL）或边界信号检测语义边界</td>
+<td>分块后丢弃跨块依赖关系</td>
+</tr>
+<tr>
+<td>MoC (Zhao et al., 2025a)</td>
+<td>动态路由文本至不同分块策略</td>
+<td>仅在分块构造阶段操作，未构建检索时层次结构</td>
+</tr>
+<tr>
+<td>Dense X Retrieval (Chen et al., 2024)</td>
+<td>将文档分解为原子命题（atomic propositions）</td>
+<td>提高精度但削弱 broader contextual continuity</td>
+</tr>
+<tr>
+<td>ReflectiveRAG (Verma et al., 2026)</td>
+<td>引入自反性检索循环，评估证据充分性并重构查询</td>
+<td>不改变底层检索单元的扁平组织</td>
+</tr>
+<tr>
+<td>SAKI-RAG (Tao et al., 2025)</td>
+<td>使用SLLM估计句子间注意力，通过成对扩展（pairwise expansion）合并相关句子</td>
+<td>扩展限于句子对，候选空间随扩展急剧增大，需昂贵的LLM过滤；SPROUTRAG通过全局树结构避免此问题</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2. 结构化与层次化检索（Structured and Hierarchical Retrieval）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>核心思想</th>
+<th>局限性/与SPROUTRAG的差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAPTOR (Sarthi et al., 2024)</td>
+<td>递归聚类块并用LLM摘要成树，支持多级检索</td>
+<td>基于嵌入空间聚类（将块视为可互换），依赖LLM生成摘要导致信息丢失（lossy summarization）</td>
+</tr>
+<tr>
+<td>GraphRAG (Edge et al., 2025) / LightRAG (Guo et al., 2025)</td>
+<td>构建实体-关系图，支持基于遍历的检索</td>
+<td>依赖成功的实体提取和关系构建，对包含稀疏实体信息的细粒度块效果较差</td>
+</tr>
+<tr>
+<td>PropRAG (Wang and Han, 2025)</td>
+<td>用命题替换实体三元组，执行无LLM的束搜索遍历命题路径</td>
+<td>基于命题图而非句子层次结构；SPROUTRAG通过注意力引导的句子层次结构捕获多句子组合</td>
+</tr>
+<tr>
+<td>Beam Retrieval (Zhang et al., 2024)</td>
+<td>维护多个检索假设进行多跳段落检索</td>
+<td>未涉及文档结构的层次化构建</td>
+</tr>
+<tr>
+<td>PageIndex (Zhang et al., 2025a)</td>
+<td>基于推理的、无向量的文档树结构检索</td>
+<td>依赖文档级结构组织（如标题、章节），而非学习的句子级注意力</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>总结</strong>：现有方法或依赖推理时的LLM调用（如SAKI-RAG、GraphRAG），或受限于单一级别的上下文聚合（如Meta-Chunking），或通过摘要引入信息损失（如RAPTOR）。SPROUTRAG通过<strong>学习的句子间注意力构建二叉树</strong>，在无LLM推理的情况下实现多粒度检索，弥补了上述局限。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>SPROUTRAG通过<strong>注意力引导的层次化结构</strong>解决检索粒度与上下文连贯性的权衡问题，具体技术路径分为离线索引构建、在线检索策略和联合训练机制三个层面：</p>
+<p>1. 注意力引导的索引构建（Offline Indexing）</p>
+<p>1.1 句子级编码与注意力提取</p>
+<p>将文档  D  分割为句子级块  S = s_1, …, s_n ，使用Sentence-Level Language Model (SLLM)编码获取：</p>
+<ul>
+<li>上下文句子嵌入  e(s<em>i)</em>(i=1)^n </li>
+<li>所有层  l  和头  h  的注意力矩阵  Attn^((l,h)) ∈ R^(n × n) </li>
+</ul>
+<p>1.2 学习的注意力聚合（解决邻近性偏置）</p>
+<p>传统方法对所有头和层进行均匀平均会<strong>过度强调局部句子邻近性</strong>（proximity bias），因部分注意力头主要捕获序列模式而非语义关联。SPROUTRAG引入可学习的标量权重  α_(l,h)  进行加权聚合：</p>
+<p>A<em>(ij) = ∑</em>(l=1)^(L) ∑<em>(h=1)^(H) w</em>(l,h) · Attn_(ij)^((l,h))</p>
+<p>其中权重通过softmax归一化：</p>
+<p>w<em>(l,h) = exp(α</em>(l,h))∑<em>(l’=1)^(L) ∑</em>(h’=1)^(H) exp(α_(l’,h’))</p>
+<p>通过对称化得到互注意力分数：</p>
+<p>M<em>(ij) = A</em>(ij) + A_(ji)2</p>
+<p>该机制使模型自动发现最能反映语义共相关性的注意力头类型，而非依赖固定的邻近性假设。</p>
+<p>1.3 自底向上的二叉树构建</p>
+<p>基于互注意力分数  M_(ij)  贪婪地自底向上构建二叉树：</p>
+<ul>
+<li><strong>初始化</strong>：每个句子作为叶子节点</li>
+<li><strong>合并规则</strong>：每次选择具有最高互注意力分数的节点对  (u,v)  合并为父节点  p </li>
+<li><strong>渐进式嵌入（Progressive Embeddings）</strong>：父节点嵌入通过子节点嵌入均值计算：</li>
+</ul>
+<p>e(p) = (e(u) + e(v)) / (2)</p>
+<ul>
+<li><strong>单链接更新（Single-linkage Update）</strong>：父节点继承与子树外节点的最大关联强度：</li>
+</ul>
+<p>M<em>(pr) = max(M</em>(ur), M_(vr))</p>
+<p>此过程生成注意力树  T ，其中叶子保留细粒度精度，内部节点代表更大粒度的语义单元。</p>
+<p>2. 层次化检索（Online Retrieval）</p>
+<p>2.1 查询编码与相似度计算</p>
+<p>查询  q  经相同SLLM编码为  e(q) ，节点  v  的相关性通过余弦相似度计算：</p>
+<p>sim(q, v) = (e(q)^top e(v)) / (|e(q)| |e(v)|)</p>
+<p>2.2 层次化束搜索（Hierarchical Beam Search）</p>
+<p>从根节点开始执行束搜索，在深度  t  维护活跃束  B<em>t （ B_0 = v</em>(root) ）：</p>
+<p>B<em>(t+1) = Top_b ( ∪</em>(v ∈ B_t) Child(v), sim(q, ·) )</p>
+<p>其中  b  为束宽。该策略聚焦于最有希望的分支，同时允许多个语义相关区域的并行探索。</p>
+<p>2.3 多粒度候选收集</p>
+<p>在遍历过程中收集所有访问过的节点构成候选集：</p>
+<p>V<em>(visit) = ∪_t ∪</em>(v ∈ B_t) Child(v)</p>
+<p>保留相似度超过阈值  δ  的节点作为最终候选：</p>
+<p>C = v ∈ V_(visit) : sim(q, v) ≥ δ</p>
+<p>候选集  C  包含从句子级叶子到子树级内部节点的多粒度证据，使系统能根据查询需求检索精确事实或 broader multi-sentence context。</p>
+<p>3. 联合训练机制（Joint Training）</p>
+<p>通过端到端训练优化嵌入空间和树结构，无需外部LLM调用：</p>
+<p>3.1 检索目标（Retrieval Objective）</p>
+<p>使用对比学习对齐查询与段落表示。对查询  q 、正例段落  p^+  和难负例  p_j^- ，优化：</p>
+<p>L_(ret) = -log exp(sim(q, p^+)/τ)∑_j exp(sim(q, p_j)/τ)</p>
+<p>其中段落表示通过其句子嵌入均值池化获得， τ  为温度参数。</p>
+<p>3.2 结构目标（Structure Objective）</p>
+<p>直接塑造注意力矩阵以鼓励共相关句子对获得高互注意力。令  G  为正例段落内共同支持查询的句子对集合：</p>
+<p>L<em>(attn) = -(1) / (|G|) ∑</em>((s<em>i,s_j) ∈ G) log ( A</em>(ij) + A_(ji)2 )</p>
+<p>该正则项确保学习的头-层聚合权重能够构建将语义相关证据分组到连贯子树的层次结构。</p>
+<p>3.3 最终目标函数</p>
+<p>L = L<em>(ret) + λ L</em>(attn)</p>
+<p>其中  λ  控制结构正则化强度。训练后，学习的聚合权重用于离线索引，检索时仅需查询编码、树遍历和重排序，实现<strong>零LLM推理开销</strong>的多粒度检索。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文在<strong>四个检索基准</strong>和<strong>三个端到端生成基准</strong>上进行了系统评估，涵盖检索质量、最终任务性能、计算效率及消融分析。具体实验内容如下：</p>
+<p>1. 实验设置</p>
+<p>基准数据集</p>
+<ul>
+<li><strong>检索评估</strong>：SCI-DOCS（科学文献）、LegalBench-RAG（法律合同）、Dragonball（多领域长文档）、MS MARCO（开放域网页检索）</li>
+<li><strong>端到端生成评估</strong>：HotpotQA（多跳问答）、WebQuestions（事实问答）、Dragonball（多领域RAG生成）</li>
+</ul>
+<p>对比基线</p>
+<ul>
+<li><strong>分块/自适应方法</strong>：Dense X Retrieval、Meta-Chunking（PPL/MSP）、MoC</li>
+<li><strong>结构化/层次化方法</strong>：RAPTOR、LightRAG、PropRAG、SAKI-RAG</li>
+<li><strong>系统级RAG方法</strong>（仅用于端到端比较）：GraphRAG、ReflectiveRAG、PageIndex、REFRAG</li>
+</ul>
+<p>评估指标</p>
+<ul>
+<li><strong>检索指标</strong>：Recall、Precision、Information Efficiency ( IE = Recall × Precision )，计算cutoff  k ∈ 1,3,5 的平均值</li>
+<li><strong>生成指标</strong>：F1（HotpotQA/WebQuestions）、ROUGE-L、METEOR、BERTScore（Dragonball）</li>
+<li><strong>效率指标</strong>：Tok/Q（每查询在线模型输入token数）、Latency（在线延迟，毫秒）</li>
+</ul>
+<p>2. 检索质量实验（Retrieval Quality）</p>
+<p>在四个检索基准上对比SPROUTRAG与基线：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>关键结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dragonball</td>
+<td>IE达39.05，相比最强基线SAKI-RAG（28.95）提升8.06点，Precision达85.34（显著高于SAKI-RAG的78.61）</td>
+</tr>
+<tr>
+<td>SCI-DOCS</td>
+<td>IE达97.66，相比最强基线MoC（93.01）提升4.65点，Recall与Precision均达98%+</td>
+</tr>
+<tr>
+<td>LegalBench-RAG</td>
+<td>IE达19.74，相比最强基线MoC（14.84）提升4.90点</td>
+</tr>
+<tr>
+<td>MS MARCO</td>
+<td>IE达55.53，相比最强基线SAKI-RAG（48.70）提升6.83点</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>结论</strong>：SPROUTRAG在所有基准上均取得最高IE，且Precision和Recall同时最优，证明层次化结构能在保持细粒度精度的同时提升上下文覆盖。</p>
+<p>3. 端到端性能与效率实验</p>
+<p>在三个生成任务上对比系统级RAG方法：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>HotpotQA F1</th>
+<th>WebQuestions F1</th>
+<th>Dragonball ROUGE-L</th>
+<th>Tok/Q ↓</th>
+<th>Latency (ms) ↓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PageIndex</td>
+<td>79.36</td>
+<td>70.81</td>
+<td>0.389</td>
+<td>24,620</td>
+<td>2,847</td>
+</tr>
+<tr>
+<td>GraphRAG</td>
+<td>72.18</td>
+<td>64.73</td>
+<td>0.346</td>
+<td>16,238</td>
+<td>2,317</td>
+</tr>
+<tr>
+<td>ReflectiveRAG</td>
+<td>70.64</td>
+<td>63.29</td>
+<td>0.334</td>
+<td>11,274</td>
+<td>1,186</td>
+</tr>
+<tr>
+<td>REFRAG</td>
+<td>73.42</td>
+<td>65.38</td>
+<td>0.351</td>
+<td>5,436</td>
+<td>492</td>
+</tr>
+<tr>
+<td>SPROUTRAG</td>
+<td>76.47</td>
+<td>68.12</td>
+<td>0.372</td>
+<td>4,382</td>
+<td>193</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键发现</strong>：</p>
+<ul>
+<li>SPROUTRAG在最终答案质量上优于GraphRAG、ReflectiveRAG和REFRAG，仅次于PageIndex（但PageIndex需24K+ tokens/查询）</li>
+<li>在线推理仅需<strong>4.38K tokens/查询</strong>和<strong>193ms延迟</strong>，显著低于其他系统级方法，实现最佳<strong>性能-效率权衡</strong></li>
+</ul>
+<p>4. 消融实验（Ablation Study）</p>
+<p>4.1 训练目标消融</p>
+<p>验证联合训练的必要性：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>变体</th>
+<th>核心发现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Not trained</td>
+<td>IE平均下降约30%，预训练SLLM不足以支持检索导向的树构建</td>
+</tr>
+<tr>
+<td>w/o  L_(ret)</td>
+<td>IE显著下降（如Dragonball从39.05降至27.67），查询-证据嵌入对齐缺失</td>
+</tr>
+<tr>
+<td>w/o  L_(attn)</td>
+<td>IE适度下降（Dragonball降至32.39），树结构质量受损但仍优于无训练版本</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4.2 树结构与检索策略消融</p>
+<p>验证关键设计选择：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>变体</th>
+<th>设计变更</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uniform attention</td>
+<td>均匀平均所有头/层注意力</td>
+<td>IE下降约20%，证实邻近性偏置损害树质量</td>
+</tr>
+<tr>
+<td>Embedding-similarity tree</td>
+<td>用嵌入相似度代替注意力构建树</td>
+<td>IE下降，SLLM注意力编码超越嵌入的结构信息</td>
+</tr>
+<tr>
+<td>Leaf-only retrieval</td>
+<td>仅检索叶子节点</td>
+<td>Precision保持但Recall下降，丢失多句子上下文</td>
+</tr>
+<tr>
+<td>Greedy search</td>
+<td>贪心搜索代替束搜索</td>
+<td>IE下降，早期路径承诺导致次优解</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>4.3 超参数敏感性</p>
+<ul>
+<li><strong>Beam width  b </strong>： b=3 时IE略降（探索不足）， b=10 时Recall升但Precision降， b=5 最优</li>
+<li><strong>结构权重  λ </strong>： λ=0.1 （默认）优于0.05（结构指导不足）和0.20（过度强调注意力损害精度）</li>
+</ul>
+<p>5. 不同截断点的详细分析（Appendix B）</p>
+<p>提供 k=1,3,5 的详细分解表，显示SPROUTRAG在所有截断点均保持优势：</p>
+<ul>
+<li>在 k=1 （最严格设置）下，Dragonball的IE（29.68）显著高于SAKI-RAG（19.62）</li>
+<li>在 k=5 下，SCI-DOCS达到100% Recall且Precision保持100%</li>
+</ul>
+<p>6. 定性分析（Appendix C）</p>
+<p>通过法律合同中的<strong>限制责任条款</strong>案例，可视化展示：</p>
+<ul>
+<li><strong>MoC</strong>：检索到仅包含责任上限的局部块，遗漏例外条款</li>
+<li><strong>SAKI-RAG</strong>：通过成对扩展检索到”损害排除+责任上限”，但仍遗漏”例外情形”（如保密违约、重大过失等）</li>
+<li><strong>SPROUTRAG</strong>：检索到包含4个句子的内部节点（ v_(1:4) ），同时覆盖损害排除、责任上限、法律理论范围及例外条款，支持完整法律答案生成</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>根据论文第5节（Conclusion and Future Work）及Limitations部分，可进一步探索的研究方向包括：</p>
+<p>1. 更丰富的节点组合机制</p>
+<p>当前采用均值池化（mean pooling）计算父节点嵌入  e(p) = (e(u) + e(v)) / (2) 。未来可探索：</p>
+<ul>
+<li><strong>门控组合函数</strong>（gated composition）：根据子节点语义重要性动态加权</li>
+<li><strong>注意力组合</strong>（attention-based composition）：通过注意力机制聚合子树表示，替代简单的均值操作</li>
+<li>这类改进可能更好地捕获子树内复杂的多句子交互关系</li>
+</ul>
+<p>2. 动态树结构与查询自适应遍历</p>
+<p>当前树结构在离线构建后固定不变，检索时采用统一策略。可探索：</p>
+<ul>
+<li><strong>查询依赖的树自适应</strong>（query-dependent tree adaptation）：根据查询特征动态调整树结构或节点权重</li>
+<li><strong>多跳检索的动态遍历策略</strong>：针对复杂多跳推理任务，设计能够根据中间结果动态调整搜索路径的遍历机制</li>
+<li><strong>在线树重构</strong>：在检索阶段根据查询特定相关性重组证据，而非依赖固定的层次结构</li>
+</ul>
+<p>3. 多分支树结构（Multi-branch Trees）</p>
+<p>当前采用二叉树（binary tree）限制每次仅合并两个节点，当多个句子应<strong>同时</strong>构成连贯语义单元时可能存在局限。可探索：</p>
+<ul>
+<li><strong>多叉树</strong>（n-ary trees）：允许在一次合并中整合多个相关句子，更好地建模 many-to-many 的语义依赖</li>
+<li><strong>超图结构</strong>（hypergraph）：突破树结构的父子关系限制，建模句子间更复杂的非层次化关联</li>
+</ul>
+<p>4. 降低训练成本与提升适应性</p>
+<p>当前框架需要一次性训练SLLM和注意力聚合权重（30K示例）。可探索：</p>
+<ul>
+<li><strong>零样本或少样本适应</strong>：开发无需大规模监督训练的树构建方法</li>
+<li><strong>增量式树更新</strong>：支持文档增量更新而无需重建整棵树</li>
+<li><strong>跨领域迁移优化</strong>：进一步提升预训练模型在全新领域（无需领域特定训练）的泛化能力</li>
+</ul>
+<p>5. 与其他检索范式的融合</p>
+<ul>
+<li>结合<strong>实体图</strong>（如GraphRAG）与注意力树的优势，在稀疏实体场景使用树结构，密集关系场景使用图遍历</li>
+<li>探索与<strong>解码时上下文压缩</strong>（如REFRAG）的协同，在检索后进一步优化证据呈现给生成器的形式</li>
+</ul>
+<p>这些方向旨在进一步提升多粒度检索的灵活性、降低部署成本，并增强对复杂多跳查询的适应能力。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>该论文针对<strong>长文档检索增强生成（RAG）中检索粒度与上下文连贯性的权衡问题</strong>，提出了一种名为 <strong>SPROUTRAG</strong> 的注意力引导层次化框架。以下是论文的主要内容概括：</p>
+<p>1. 研究背景与问题</p>
+<p>现有RAG系统面临<strong>语义碎片化</strong>与<strong>上下文连贯性</strong>之间的矛盾：</p>
+<ul>
+<li><strong>粗粒度分块</strong>（大段落）：保留上下文但引入冗余噪声，稀释关键信息；</li>
+<li><strong>细粒度分块</strong>（句子级）：检索精确但破坏跨句依赖，难以回答需综合多分散证据的查询（如多跳推理、法律条款分析）。</li>
+</ul>
+<p>现有方法存在明显局限：LLM引导分块（如Meta-Chunking）丢弃跨块依赖；成对扩展方法（如SAKI-RAG）候选空间爆炸且需昂贵LLM过滤；层次化摘要方法（如RAPTOR）因聚类和摘要导致信息损失。</p>
+<p>2. 方法：SPROUTRAG框架</p>
+<p>SPROUTRAG通过构建<strong>注意力引导的二叉树</strong>组织句子级块，实现无LLM推理的多粒度检索：</p>
+<ul>
+<li><p><strong>学习的注意力聚合</strong>：<br>为避免均匀平均注意力引入的<strong>邻近性偏置</strong>（proximity bias），模型学习可训练权重  α<em>(l,h)  聚合不同层  l  和头  h  的注意力：<br>A</em>(ij) = ∑<em>(l=1)^(L) ∑</em>(h=1)^(H) w<em>(l,h) · Attn</em>(ij)^((l,h)), quad w<em>(l,h) = exp(α</em>(l,h))∑<em>(l’,h’) exp(α</em>(l’,h’))<br>通过对称化  M<em>(ij) = (A</em>(ij) + A_(ji))/2  获得句子间互注意力分数。</p>
+</li>
+<li><p><strong>自底向上的树构建</strong>：<br>基于  M_(ij)  贪婪合并节点，父节点嵌入通过<strong>渐进式嵌入</strong>（progressive embedding）计算：<br>e(p) = (e(u) + e(v)) / (2)<br>内部节点代表更大粒度的语义单元，保留跨句依赖。</p>
+</li>
+<li><p><strong>层次化束搜索检索</strong>：<br>给定查询  q ，从根节点执行宽度为  b  的束搜索：<br>B<em>(t+1) = Top_b ( ∪</em>(v ∈ B_t) Child(v), sim(q, ·) )<br>收集跨越叶子（句子级）和内部节点（子树级）的多粒度候选，通过余弦相似度  sim(q, v) = (e(q)^top e(v)) / (|e(q)| |e(v)|)  排序。</p>
+</li>
+<li><p><strong>联合训练目标</strong>：<br>同时优化检索质量和树结构：<br>L = -log frac{exp(sim(q, p^+)/τ)∑<em>j exp(sim(q, p_j)/τ)}</em>(L)<em>(ret) + λ (-(1) / (|G|) ∑</em>((s<em>i,s_j)∈ G) log M</em>(ij))<em>(L)</em>(attn)<br>其中  L<em>(ret)  为对比学习损失（对齐查询与段落）， L</em>(attn)  鼓励共相关句子对获得高注意力。</p>
+</li>
+</ul>
+<p>3. 实验结果</p>
+<p>在<strong>四个检索基准</strong>（SCI-DOCS、LegalBench-RAG、Dragonball、MS MARCO）和<strong>三个端到端任务</strong>（HotpotQA、WebQuestions、Dragonball）上验证：</p>
+<ul>
+<li><strong>检索性能</strong>：相比最强基线，平均<strong>信息效率（IE = Recall × Precision）提升6.1%</strong>，在Dragonball上提升达8.06点，且同时在Recall和Precision上取得最优；</li>
+<li><strong>端到端性能</strong>：最终答案质量（F1、ROUGE-L等）优于GraphRAG、ReflectiveRAG等系统级方法，接近LLM-heavy的PageIndex；</li>
+<li><strong>效率</strong>：在线推理仅需 <strong>4.38K tokens/查询</strong> 和 <strong>193ms延迟</strong>，显著低于依赖LLM推理的基线（如PageIndex需24K+ tokens）。</li>
+</ul>
+<p>消融实验证实：学习的注意力聚合（相对于均匀平均）至关重要；仅检索叶子节点会损失 recall；束搜索优于贪心搜索。</p>
+<p>4. 主要贡献</p>
+<ol>
+<li>提出SPROUTRAG，首个通过<strong>学习的句子间注意力</strong>构建二叉树的RAG框架，支持多粒度检索且<strong>无需推理时LLM调用</strong>；</li>
+<li>识别并解决均匀注意力平均导致的邻近性偏置，通过可学习权重自动发现最能反映语义文档结构的注意力头；</li>
+<li>引入<strong>联合训练目标</strong>，同步优化嵌入空间与树结构，消除对外部LLM过滤或损失性摘要的依赖。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是SproutRAG%3A%20Attention-Guided%20Tree%20Search%20with%20Progressive%20Embeddings%20for%20Long-Document%20RAG，链接是https://arxiv.org/pdf/2606.18381，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.18381。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Amirhossein Abaskohi,Issam H. Laradji,Peter West,Giuseppe Carenini</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.18381.pdf">https://arxiv.org/pdf/2606.18381.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.18381">https://arxiv.org/abs/2606.18381</a></p>
+<p><strong>Arxiv ID</strong>: 2606.18381</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.18381">https://papers.cool/arxiv/2606.18381</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:36:26.313Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:36:26.313Z</p>
+<hr>
+<h3 id="7-BrainG3N-A-Dual-Purpose-Tokenizer-for-Controllable-3D-Brain-MRI-Generation"><a href="#7-BrainG3N-A-Dual-Purpose-Tokenizer-for-Controllable-3D-Brain-MRI-Generation" class="headerlink" title="7. BrainG3N: A Dual-Purpose Tokenizer for Controllable 3D Brain MRI Generation"></a>7. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19651">BrainG3N: A Dual-Purpose Tokenizer for Controllable 3D Brain MRI Generation</a></h3><p>Abstract:Three-dimensional (3D) brain MRI is central to clinical neurology and neuro-oncology, where generative models could augment under-represented cohorts, simulate disease trajectories, and support privacy-preserving data sharing. Latent diffusion has been the go-to solution for modeling imaging data, but it places two competing demands on the tokenizer: encoder embeddings must retain the clinical information that downstream tasks act on, and the decoder must reconstruct anatomically faithful volumes. Existing reconstruction-driven tokenizers achieve the second at the expense of the first. To address this, we introduce a fully volumetric masked-autoencoder (MAE) based tokenizer for 3D brain MRI latent diffusion, decoupling encoder and decoder: a frozen 3D MAE encoder produces clinically informative embeddings, while a dedicated CNN decoder reconstructs voxels from a linear projection of those embeddings. We pretrain the encoder on 35,309 volumes from 18 public cohorts spanning four modalities, ten disease categories, and 200+ acquisition sites, and demonstrate its dual utility in two settings. First, on a 23-task linear-probing benchmark, the encoder outperforms or matches SOTA models (i.e., BrainIAC, BrainSegFounder, and MedicalNet) on 21 of 23 tasks. Second, a conditional diffusion transformer (DiT) trained on these clinically informative embeddings supports both conditional generation across six variables and patient-specific longitudinal forecasting. Together these results establish a single 3D brain-MRI embedding space capable of both downstream clinical tasks and controllable generation.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：三维（3D）脑MRI在临床神经学和神经肿瘤学中至关重要，生成模型可以增强代表性不足的队列，模拟疾病轨迹，并支持隐私保护的数据共享。潜在扩散一直是建模影像数据的首选方案，但它对分词器提出了两个相互竞争的要求：编码器嵌入必须保留下游任务所作用的临床信息，解码器则必须重建解剖学上忠实的体积。现有的重建驱动代币化器以牺牲前者为代价实现了后者。为此，我们引入了一种基于全体积掩蔽自编码器（MAE）的分名器，用于3D脑MRI潜在扩散、解耦编码器和解码器：冻结的3D MAE编码器产生临床上有用的嵌入，而专用的CNN解码器则通过这些嵌入的线性投影重建体素。我们对来自18个公开队列的35,309卷预训练编码器，涵盖四种模态、十个疾病类别和200+采集位点，并展示了其在两种环境中的双重效用。首先，在23项任务的线性探测基准测试中，编码器在23项任务中有21项表现优于或匹敌SOTA模型（即BrainIAC、BrainSegFounder和MedicalNet）。其次，基于这些临床信息嵌入训练的条件扩散变换器（DiT）支持跨六变量的条件生成和针对患者的纵向预测。这些结果共同建立了一个单一的3D脑-MRI嵌入空间，既能执行下游临床任务，也能实现可控生成。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Max Van Puyvelde,Ibrahim Gulluk,Wim Van Criekinge,Olivier Gevaert</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19651.pdf">https://arxiv.org/pdf/2606.19651.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19651">https://arxiv.org/abs/2606.19651</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19651</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19651">https://papers.cool/arxiv/2606.19651</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:36:36.548Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:36:36.548Z</p>
+<hr>
+<h3 id="8-WorldLines-Benchmarking-and-Modeling-Long-Horizon-Stateful-Embodied-Agents"><a href="#8-WorldLines-Benchmarking-and-Modeling-Long-Horizon-Stateful-Embodied-Agents" class="headerlink" title="8. WorldLines: Benchmarking and Modeling Long-Horizon Stateful Embodied Agents"></a>8. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.18847">WorldLines: Benchmarking and Modeling Long-Horizon Stateful Embodied Agents</a></h3><p>Abstract:To assist humans over extended periods in real homes, embodied agents must remember user routines, world states, and past interactions. Existing long-term memory benchmarks mainly evaluate language-centric retrieval and question answering, while embodied benchmarks often focus on short-horizon task execution without testing long-term memory use in dynamic environments. We introduce WorldLines, a project-driven benchmark for long-horizon embodied household assistance. It constructs temporally extended household traces with dialogues, actions, execution feedback, object and device state changes, and converts them into evidence-linked samples for Memory QA and Embodied Task Planning. We further propose ObsMem, an observer-grounded memory framework that maintains visibility-aware memories and action-native state trails for state-aware decisions. Experiments reveal persistent challenges in partial observability, overwritten world states, and translating long-term memory into embodied plans, while ObsMem offers a stronger reference architecture for this setting.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：为了在真实家庭环境中长时间协助人类，具身代理必须记住用户的日常习惯、世界状态和过去的交互记录。现有的长期记忆基准主要评估以语言为中心的检索和问答，而具身基准通常关注短时任务执行，并未测试在动态环境中使用长期记忆。我们引入了WorldLines，这是一个面向长期具身家庭助理的项目驱动基准。它构建了包含对话、动作、执行反馈、物体和设备状态变化的时间延长的家庭轨迹，并将其转换为与证据关联的样本，用于记忆问答和具身任务规划。我们进一步提出了ObsMem，一种观察者基础的记忆框架，能够维护可视性感知的记忆和动作原生的状态轨迹，以实现状态感知的决策。实验显示，在部分可观测性、被覆盖的世界状态以及将长期记忆转化为具身计划方面仍存在持续挑战，而ObsMem为此类场景提供了更强的参考架构。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Yehang Zhang,Jianchong Su,Haojian Huang,Yifan Chang,Tianhao Zhou,Xinli Xu,Yingjie Xu,Yinchuan Li,Zexi Li,Ying-Cong Chen</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.18847.pdf">https://arxiv.org/pdf/2606.18847.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.18847">https://arxiv.org/abs/2606.18847</a></p>
+<p><strong>Arxiv ID</strong>: 2606.18847</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.18847">https://papers.cool/arxiv/2606.18847</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:38:22.150Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:38:22.150Z</p>
+<hr>
+<h3 id="9-GeneralVLA-2-Geometry-Aware-Reconstruction-and-Governed-Memory-for-Robot-Planning"><a href="#9-GeneralVLA-2-Geometry-Aware-Reconstruction-and-Governed-Memory-for-Robot-Planning" class="headerlink" title="9. GeneralVLA-2: Geometry-Aware Reconstruction and Governed Memory for Robot Planning"></a>9. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.17480">GeneralVLA-2: Geometry-Aware Reconstruction and Governed Memory for Robot Planning</a></h3><p>Abstract:Generalist vision-language-action systems need object-centric 3D evidence and reusable manipulation experience to plan reliable robot trajectories. GeneralVLA provides a hierarchical interface for converting language and RGB-D observations into 3D end-effector paths, but two bottlenecks remain. First, monocular SAM3D-style object reconstruction can hallucinate pose and unseen geometry, while manipulation benefits from stable object shape when calibrated multi-view observations are available. Second, the original KnowledgeBank mainly retrieves semantically similar snippets and appends new knowledge, which makes it difficult to control memory quality, conflicts, confidence, and geometric relevance. To address the first challenge, we introduce GeoFuse-MV3D, a geometry-prior-guided MV-SAM3D reconstruction branch that verifies external geometry cues with input-view masks, applies soft visual-hull support, performs axis-wise refinement, and fuses only geometry while preserving appearance. To address the second challenge, we upgrade KnowledgeBank into a governed long-term memory system with explicit quality, confidence, lifecycle, verifier, and conflict metadata, together with precision-oriented retrieval. Finally, we evaluate the reconstruction branch on GSO-30 and the memory module on Terminal-Bench 2.0 and SWE-Bench Verified; GeoFuse-MV3D improves over the MV-SAM3D baseline by reducing CD and LPIPS by 2.20% and 2.02% while increasing PSNR and SSIM by 2.36% and 1.03%, and KnowledgeBank improves over ReasoningBank by 4.53% on Terminal-Bench SR and 3.73% on SWE-Bench resolve rate, while reducing AS by 4.95% and 5.65%, respectively. Code: this https URL. Website: this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：通用视觉-语言-行动系统需要以对象为中心的三维证据和可复用的操作经验，以规划可靠的机器人轨迹。GeneralVLA提供了一个分层接口，用于将语言和RGB-D观测转换为三维端执行器路径，但仍存在两个瓶颈。首先，单眼SAM3D式物体重建可能产生姿态和未见几何的幻觉，而当有校准的多视角观测时，操作则受益于物体形状的稳定。其次，原始知识库主要检索语义相似的片段并附加新知识，这使得控制记忆质量、冲突、信心度和几何相关性变得困难。为应对第一个挑战，我们引入了GeoFuse-MV3D，这是一个几何事先引导的MV-SAM3D重建分支，能够通过输入视图遮罩验证外部几何线索，应用软的视觉外壳支持，执行轴向细化，并且仅融合几何体且保持外观。为应对第二个挑战，我们将KnowledgeBank升级为一个具显性质量、信心度、生命周期、验证者和冲突元数据的受控长期记忆系统，同时具备以精确度为导向的检索功能。最后，我们评估了GSO-30上的重建分支以及Terminal-Bench 2.0和SWE-Bench Verified上的内存模块;GeoFuse-MV3D相较MV-SAM3D基线有所提升，分别减少了2.20%和2.02%的CD（和LPIPS），同时提高了PSNR和SSIM分别提升了2.36%和1.03%;KnowledgeBank在终端工作台SR上比ReasoningBank提升了4.53%，SWE-Bench解析率提升了3.73%，同时AS分别降低了4.95%和5.65%。代码：这个 https URL。网站：这个 https URL。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Haoyu Wang,Guoqing Ma,Zeyu Zhang,Yandong Guo,Boxin Shi,Hao Tang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.17480.pdf">https://arxiv.org/pdf/2606.17480.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.17480">https://arxiv.org/abs/2606.17480</a></p>
+<p><strong>Arxiv ID</strong>: 2606.17480</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.17480">https://papers.cool/arxiv/2606.17480</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:40:05.107Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:40:05.107Z</p>
+<hr>
+<h3 id="10-SpatialAvatar-0-High-Quality-4D-Head-Avatar-with-Multi-Stage-Reconstruction"><a href="#10-SpatialAvatar-0-High-Quality-4D-Head-Avatar-with-Multi-Stage-Reconstruction" class="headerlink" title="10. SpatialAvatar-0: High-Quality 4D Head Avatar with Multi-Stage Reconstruction"></a>10. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.15659">SpatialAvatar-0: High-Quality 4D Head Avatar with Multi-Stage Reconstruction</a></h3><p>Abstract:High-quality 4D head avatars from one or a few source portraits are central to telepresence, AR/VR, and digital-human interaction. 3D Gaussian Splatting (3DGS) has emerged as the dominant representation, with two complementary regimes (generalizable feed-forward predictors and per-subject refiners) maturing in parallel. However, existing feed-forward predictors are trained on a single dataset family with a hard-coded source count, inheriting the corresponding domain bias. Per-subject refiners require 300K—600K iterations and rely on adaptive densification that destroys upstream Gaussian layouts, preventing the two regimes from sharing a representation end-to-end. To bridge both regimes we propose SpatialAvatar-0 on a shared FLAME-mesh-bound Gaussian representation: a feed-forward generator with a parameter-free K-source mean-pool and a monocular-temporal to multi-view-spatial two-phase schedule that anchors against identity-prior collapse onto the smaller multi-view set. We further introduce a 10K-iter layout-preserving per-subject refinement loop that freezes the FLAME-binding and Gaussian count and replaces densification with a three-component anti-spike regularization. On VFHQ/HDTF cross-domain zero-shot we surpass the in-domain leader GAGAvatar by +1.5 dB PSNR despite never training on either test domain, and on the SplattingAvatar monocular benchmark we lead every reported metric, surpassing the 300K-iter GeoAvatar by +1.3 dB PSNR at up to 60x shorter per-subject schedule than common SOTA baselines. Website: this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：从一个或少量源肖像生成高质量的4D头部虚拟形象，对于远程呈现、AR/VR和数字人交互具有核心作用。三维高斯溅射（3DGS）已成为主要的表示方式，并且两种互补的方案（可泛化的前馈预测器和每个对象的微调器）正在并行成熟。然而，现有的前馈预测器仅在单一数据集族上训练，并具有硬编码的源数量，从而继承了相应的领域偏差。每个对象的微调器需要30万到60万次迭代，并依赖自适应加密技术，这会破坏上游高斯布局，阻止两种方案共享端到端表示。为了桥接这两种方案，我们提出了基于共享FLAME网格绑定高斯表示的SpatialAvatar-0：一个带参数无关的K源平均池（mean-pool）的前馈生成器，以及一个从单目-时间到多视角-空间的两阶段调度方案，用于抵抗在较小多视角集合上的身份先验塌陷。我们进一步引入了一个1万次迭代的布局保持型每对象微调循环，该循环冻结FLAME绑定和高斯数量，并用由三部分组成的反尖峰正则化替代加密。在VFHQ/HDTF跨域零样本测试中，我们在未在任意测试域训练的情况下，超越了域内领先的GAGAvatar，PSNR提升+1.5 dB；在SplattingAvatar单目基准上，我们在所有报告指标中领先，超越了需要30万次迭代的GeoAvatar，PSNR提升+1.3 dB，并且每对象调度时间比常见的SOTA基线短最多60倍。网站：此 https URL。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Yiran Wang,Zeyu Zhang,Yuanming Li,Ziming Wang,Yang Zhao</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.15659.pdf">https://arxiv.org/pdf/2606.15659.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.15659">https://arxiv.org/abs/2606.15659</a></p>
+<p><strong>Arxiv ID</strong>: 2606.15659</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.15659">https://papers.cool/arxiv/2606.15659</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:41:50.583Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:41:50.583Z</p>
+<hr>
+<h3 id="11-Distilling-Examples-into-Task-Instructions-Enhanced-In-Context-Learning-for-Real-World-B2B-Conversations"><a href="#11-Distilling-Examples-into-Task-Instructions-Enhanced-In-Context-Learning-for-Real-World-B2B-Conversations" class="headerlink" title="11. Distilling Examples into Task Instructions: Enhanced In-Context Learning for Real-World B2B Conversations"></a>11. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.15641">Distilling Examples into Task Instructions: Enhanced In-Context Learning for Real-World B2B Conversations</a></h3><p>Abstract:In-context learning (ICL) is the standard method for low-resource classification, yet its efficacy in specialized domains remains largely unexplored. We address the challenge of classifying semantically complex, multi-party B2B conversations, where traditional ICL encounters significant limitations, especially as context length increases due to the concatenation of multiple few-shot examples. We introduce the \texttt{Call Playbook} dataset, featuring five classification tasks derived from real-world B2B conversations targeting core sales concepts. To bridge the gap between performance and practical utility, we propose novel knowledge extraction methods that distill verbose examples into compact, interpretable representations of structured classification criteria and precise task descriptions. Our approach achieves a 99\% reduction in token usage and improves macro-averaged AUC by up to 7\% over traditional ICL. Notably, it remains robust as context grows, unlike advanced token compression baselines which degrade by over 9 F1 points. Importantly, our framework enables direct refinement of classification logic, addressing critical needs for transparency, efficiency, and user interaction in real-world NLP applications.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：上下文学习（ICL）是低资源分类的标准方法，但其在专业领域的有效性仍 largely 未被探索。我们解决了对语义复杂、多方参与的B2B对话进行分类的挑战，在这些场景中，传统ICL面临显著局限性，尤其是随着通过连接多个少样本示例而增加的上下文长度。我们引入了\texttt{Call Playbook}数据集，包含五个源自真实B2B对话的分类任务，针对核心销售概念。为了弥合性能与实际应用之间的差距，我们提出了新颖的知识提取方法，将冗长的示例提炼为紧凑、可解释的结构化分类标准和精确任务描述的表示。我们的方法在令牌使用量上实现了99%的减少，并将宏平均AUC比传统ICL提高了最多7%。值得注意的是，它在上下文增长时仍保持稳健，而先进的令牌压缩基线则下降超过9个F1点。重要的是，我们的框架支持直接优化分类逻辑，满足现实NLP应用中对透明性、效率和用户交互的重要需求。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Guy Rotman,Adi Kopilov,Danit Berger Zalmanson,Omri Allouche</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.15641.pdf">https://arxiv.org/pdf/2606.15641.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.15641">https://arxiv.org/abs/2606.15641</a></p>
+<p><strong>Arxiv ID</strong>: 2606.15641</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.15641">https://papers.cool/arxiv/2606.15641</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:43:34.449Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:43:34.449Z</p>
+<hr>
+<h3 id="12-StylisticBias-A-Few-Human-Visual-Cues-Drive-Most-Social-Biases-in-MLLMs"><a href="#12-StylisticBias-A-Few-Human-Visual-Cues-Drive-Most-Social-Biases-in-MLLMs" class="headerlink" title="12. StylisticBias: A Few Human Visual Cues Drive Most Social Biases in MLLMs"></a>12. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.20527">StylisticBias: A Few Human Visual Cues Drive Most Social Biases in MLLMs</a></h3><p>Abstract:Multimodal large language models (MLLMs) are increasingly deployed in personally and societally consequential settings, yet the visual cues that shape how these models judge people remain poorly understood. Prior work often compares different (groups of) individuals, making it difficult to separate appearance effects from identity differences. We introduce StylisticBias, a controlled benchmark for evaluating attribute-level social bias in MLLMs. We generate 500 photorealistic base faces and create about 50 single-attribute variations per face, producing about 25K images. This design keeps identity fixed and changes one visual attribute at a time. It lets us measure how specific cues shift model judgments. We evaluate six MLLMs across 25 binary social judgment scenarios. We find that age and body type dominate identity-level effects, while fashion style and other visual cues drive the largest attribute-level shifts. We further find that about 15 attributes account for nearly 80\% of the total variation, showing that bias is concentrated in a small set of visual cues. Sensitivity is strongest in judgments that are semantically aligned with appearance, especially socioeconomic and style-related judgments. We release StylisticBias as a benchmark for fine-grained bias evaluation in multimodal models. Code and dataset: this https URL and this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：多模态大型语言模型（MLLM）正越来越多地被部署在对个人和社会具有重要影响的场景中，但影响这些模型如何评判人的视觉线索仍然了解不足。之前的研究通常比较不同的（群体）个体，这使得难以将外貌效应与身份差异区分开。我们提出了StylisticBias，一个用于评估MLLM属性级社会偏差的受控基准。我们生成了500个逼真的基础面孔，并为每个面孔创建约50个单一属性的变体，总共生成约2.5万张图像。这种设计保持身份固定，每次只改变一个视觉属性。它让我们能够衡量特定线索如何改变模型的判断。我们在25种二元社会判断情境下评估了六个MLLM。我们发现，年龄和身体类型主导身份层面的效应，而时尚风格和其他视觉线索驱动最大属性层面的变化。我们进一步发现，大约15个属性占总变化的近80%，显示偏差集中在少数视觉线索上。对于与外貌语义相关的判断，尤其是社会经济和风格相关的判断，敏感性最强。我们发布了StylisticBias，作为多模态模型精细偏差评估的基准。代码和数据集：此https链接和此https链接。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文旨在解决多模态大语言模型（MLLMs）在人物社会判断中存在的**属性级视觉偏见（attribute-level visual bias）**归因问题。具体而言，其核心关切与贡献可归纳为以下几个方面：</p>
+<p>1. 核心研究空白：视觉线索的归因不确定性</p>
+<p>现有研究虽已证实MLLMs会从训练数据中继承并放大社会偏见，且视觉信号（如吸引力）会系统性影响模型输出，但<strong>具体哪些视觉属性（visual attributes）驱动了这些社会判断</strong>仍缺乏系统性理解。先前工作多通过比较不同个体或人口统计群体来检测偏见，这种设计难以将**外观效应（appearance effects）<strong>与</strong>身份差异（identity differences）**分离开来。</p>
+<p>2. 方法论局限：身份与属性的混淆</p>
+<p>传统评估范式通常比较不同人物图像，导致无法确定观察到的判断差异究竟是源于：</p>
+<ul>
+<li>人物身份（identity）本身的固有特征，还是</li>
+<li>特定的视觉属性（如服装风格、发型、妆容等可独立变化的自我呈现线索）</li>
+</ul>
+<p>论文指出，这种混淆使得难以精确测量单一视觉属性对模型判断的因果影响。</p>
+<p>3. 研究目标体系</p>
+<p>为填补上述空白，论文通过引入控制基准 <strong>StylisticBias</strong> 探索三个研究问题（RQs）：</p>
+<ul>
+<li><strong>RQ1</strong>：MLLMs的社会感知如何跨特定视觉维度变化？</li>
+<li><strong>RQ2</strong>：哪些视觉属性对判断的影响最强？</li>
+<li><strong>RQ3</strong>：这些效应在不同模型和社会判断场景（如人格特质、社会经济地位推断）间如何变化？</li>
+</ul>
+<p>4. 实践价值：精细化偏见评估工具</p>
+<p>通过生成25,000张合成图像（500张基础人脸 × ~50种单属性变体），在保持身份固定的前提下独立操控视觉属性，论文提供了：</p>
+<ul>
+<li>一种隔离<strong>身份层级效应</strong>（如年龄、体型）与<strong>属性层级效应</strong>（如时尚风格、配饰）的评估框架</li>
+<li>发现约15个属性即可解释近80%的总体偏见变异，揭示偏见集中于少数视觉线索（尤其是与自我呈现相关的时尚风格、妆容等）</li>
+<li>验证模型在<strong>语义对齐</strong>（semantically aligned）的判断场景（如”时尚vs.不时尚”、”富有vs.贫穷”）中对视觉线索过度敏感，而在道德/人格特质判断中相对稳定</li>
+</ul>
+<p>简言之，该工作将偏见评估从粗粒度的人口统计群体比较，推进到<strong>细粒度的、属性可控的视觉归因分析</strong>，为理解MLLMs如何”以貌取人”提供了系统性证据与标准化基准。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文在第2节”Related Work”中系统梳理了三个相关研究领域：</p>
+<p>1. 多模态与生成模型中的偏见（Biases in Multimodal and Generative Models）</p>
+<p>该领域关注偏见在跨模态系统中的表现形式：</p>
+<ul>
+<li><strong>文本到图像模型的表征偏见</strong>：如人口统计偏见和表征失衡（D’Incà et al., 2024; Luccioni et al., 2023）</li>
+<li><strong>视觉识别系统的群体差异</strong>：如商业性别分类中的交叉准确性差异（Buolamwini &amp; Gebru, 2018; Guimard et al., 2025）</li>
+<li><strong>结构化评估框架</strong>：开发用于量化视觉-语言模态中刻板印象关联的工具（Jiang et al., 2024; Jeoung et al., 2023; Smith et al., 2023）</li>
+<li><strong>高风险应用中的下游风险</strong>：如招聘支持系统中的偏见（Wang et al., 2024）</li>
+<li><strong>与本文最接近的研究</strong>：Gulati et al. (2025) 发现MLLMs普遍存在”吸引力偏见”（attractiveness bias），即美化面孔与更积极特质的关联；Chen et al. (2026) 提出基于真实照片的人脸反事实编辑以隔离人口统计效应；Raj et al. (2026) 评估MLLMs在社会情境VQA任务中的潜在特质推断；Zhao &amp; Yamasaki (2025) 通过单属性视觉偏移探测闭源模型的决策边界。</li>
+</ul>
+<p>2. LLM中的认知与推理偏见（Cognitive and Reasoning Biases in LLMs）</p>
+<p>该领域探讨LLM中类似人类的认知偏差模式：</p>
+<ul>
+<li><strong>认知启发式与偏差</strong>：包括锚定效应、框架效应和确认偏误（Nguyen, 2024; Robinson &amp; Burden, 2025; de Jong et al., 2025）</li>
+<li><strong>MLLM作为评估者的可靠性</strong>：在社会情境任务（如图像-标题对齐、视觉问答）中表现出的不一致性与公平性关切（Chen et al., 2024; Sahili et al., 2025; Pi et al., 2025）</li>
+<li><strong>位置偏见与提示敏感性</strong>：表明MLLM输出对表面框架变化高度敏感（Shi et al., 2025; Lu &amp; Yin, 2021）</li>
+</ul>
+<p><strong>关键区分</strong>：上述研究多比较不同图像或个体间的判断差异，难以将差异归因于特定视觉属性而非身份层级变异。</p>
+<p>3. 视觉外观与社会判断（Visual Appearance and Social Judgment）</p>
+<p>该领域基于社会心理学中关于人际知觉的经典理论：</p>
+<ul>
+<li>** warmth-competence 框架**：Fiske (2018) 与 Oosterhof &amp; Todorov (2008) 提出人类沿”热情”与”能力”两个基本维度形成快速社会判断</li>
+<li><strong>面部特征与特质推断</strong>：研究表明面部特征可塑造从可信度到社会经济地位的印象（Paunonen et al., 1999; Zebrowitz &amp; Montepare, 2008; Willis &amp; Todorov, 2006）</li>
+<li><strong>可感知的选择性线索</strong>：被视为自主选择的外观线索（如服装、修饰、纹身）对社会判断的影响不亚于生物给定特征（Cassidy et al., 2012; Howlett et al., 2013; Adotey et al., 2016; Swami et al., 2012; Paek, 1986）</li>
+<li><strong>计算研究证据</strong>：Rosenbusch et al. (2020) 表明人类与模型可从服装中推断人格特质，且准确性相当</li>
+</ul>
+<p><strong>研究缺口</strong>：尽管上述心理学证据充分，此前多模态偏见研究未在控制条件下系统检验不同类别视觉属性对模型判断的相对贡献。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过构建<strong>StylisticBias</strong>控制基准，采用**身份锚定（identity-anchored）**的实验设计，将视觉属性对模型判断的因果效应从身份差异中分离出来。具体解决方案包括以下四个层面：</p>
+<p>1. 核心方法论：单属性控制变体（Single-Attribute Counterfactuals）</p>
+<p>传统研究比较不同个体（如不同性别或种族的人），导致无法区分”谁被判断”（身份）与”如何被呈现”（属性）。本研究通过以下设计解决此问题：</p>
+<ul>
+<li><strong>基础人脸（Base Faces）</strong>：使用Imagen 4生成500张合成基础人脸，涵盖3×2×5×3=90种人口统计配置（年龄×性别×种族×体型），作为固定”身份锚点”</li>
+<li><strong>控制变体（Controlled Variations）</strong>：对每张基础人脸，使用Nano Banana生成约50个单属性变体，每次仅修改一个视觉属性（如仅改变发型、仅添加眼镜、仅更换服装风格），保持身份、姿态、光照、背景完全一致</li>
+<li><strong>总体规模</strong>：共生成约25,000张图像（500基础 × 50变体），经筛选后保留15,726张用于评估</li>
+</ul>
+<p>2. 两阶段生成流水线（Two-Stage Generation Pipeline）</p>
+<p><strong>阶段一：基础人脸合成</strong></p>
+<ul>
+<li>采用标准化摄影棚设置（正面、中性表情、头肩构图、纯白背景、柔和光照）</li>
+<li>排除所有配饰、眼镜、头饰、妆容，确保这些线索仅在变体阶段引入</li>
+<li>指定”自然皮肤纹理”以避免过度理想化外观</li>
+</ul>
+<p><strong>阶段二：属性变体生成</strong></p>
+<ul>
+<li>覆盖12个属性类别：皮肤瑕疵、发色、发型、长度、面部毛发、妆容、唇妆、纹身、眼镜、穿孔、头饰、服装风格</li>
+<li><strong>服装子集特殊处理</strong>：因需全身视图，使用独立提示模板生成全身像，同时保持面部身份一致，以明确区分基于服装与基于面部的属性</li>
+</ul>
+<p>3. 精细化评估协议（Fine-Grained Evaluation Protocol）</p>
+<p><strong>二元强迫选择设计</strong>：针对25个社会判断场景（涵盖人格特质、人际感知、行为属性、社会经济推断），模型必须在两个对立描述符间选择（如”有能力vs.无能力”），基于仅可见的外观信息。</p>
+<p><strong>控制提示敏感性</strong>：</p>
+<ul>
+<li>每个（图像，场景）对使用 M=4 种选项顺序变体 ×  K=3 个随机种子 = 12次独立查询</li>
+<li>通过4种顺序/标签排列（如(a)选项A/(b)选项B vs. (b)选项B/(a)选项A等）消除位置偏见与标签效应</li>
+<li>计算经验偏好分数  φ<em>i(x) = (1) / (n_i(x))∑</em>(j=1)^(M)∑<em>(k=1)^(K) r</em>(i,j,k) ，其中 r_(i,j,k) ∈ 0,1 表示是否选择有利描述符</li>
+</ul>
+<p>4. 量化指标：从相关性到因果性</p>
+<p>论文提出专门指标将属性变化转化为可测量的偏见信号：</p>
+<p><strong>预测偏移（Prediction Shift）</strong>：<br>Delta_i(x_v) = φ_i(x_v) - φ_i(x_b)<br> 直接量化特定视觉属性变体 x_v 相对于基础人脸 x_b 在场景 i 中引起的判断变化，实现属性级因果推断。</p>
+<p><strong>变异强度（Variation Strength, VS）</strong>：<br>VS<em>(m,d) = (1) / (|S|)∑</em>(i ∈ S) std<em>g(φ</em>(i,g,m))<br> 测量模型 m 在人口统计维度 d （如年龄、体型）上的组间离散度，区分身份层级效应。</p>
+<p><strong>有符号偏见偏移（Signed Bias Shift, SBS）</strong>：<br>SBS(x<em>v) = (1) / (|P|)∑</em>((x_b,s_i) ∈ P) Delta_i(x_v)<br> 聚合所有基础人脸与场景对的偏移，识别系统性偏见方向（正向/负向）。</p>
+<p>5. 关键验证机制</p>
+<ul>
+<li><strong>人工验证</strong>：90%的生成图像经过人工审核，检查人口统计合理性、身份一致性与属性实现准确性，总体通过率98%</li>
+<li><strong>筛选策略</strong>：排除视觉上过于细微（如中性唇色）或语义不一致的组合（如特定男性发型），确保属性变化可被模型明确感知</li>
+</ul>
+<p>通过上述设计，论文实现了**“固定身份，独立操控属性”**的反事实框架，使得观察到的判断差异 Delta_i(x_v) 可明确归因于特定视觉线索（如”凌乱的头发”或”正式西装”），而非个体身份差异。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文通过<strong>StylisticBias</strong>基准实施了三组核心实验，对应三个研究问题（RQs），总计涉及<strong>6个MLLMs</strong>、<strong>25个二元社会判断场景</strong>、<strong>15,726张筛选后的图像</strong>，以及约<strong>2,830万次模型判断调用</strong>（每个模型约472万次）。</p>
+<p>1. 基准构建与评估协议实验</p>
+<p><strong>数据集生成</strong>：</p>
+<ul>
+<li>使用Imagen 4生成<strong>500张合成基础人脸</strong>（涵盖90种人口统计配置：3年龄×2性别×5种族×3体型）</li>
+<li>使用Nano Banana为每张基础人脸生成约<strong>50个单属性变体</strong>，覆盖12个属性类别（皮肤瑕疵、发色、发型、面部毛发、妆容、唇妆、纹身、眼镜、穿孔、头饰、服装风格等），总计约25,000张图像</li>
+<li>经人工验证（98%通过率）和筛选后，保留<strong>34个属性值</strong>用于评估，最终评估集为<strong>15,726张图像</strong></li>
+</ul>
+<p><strong>评估协议</strong>：</p>
+<ul>
+<li><strong>二元强迫选择</strong>：针对25个场景（如”有能力vs.无能力”、”时尚vs.不时尚”），模型必须基于仅可见的外观选择(a)或(b)</li>
+<li><strong>提示控制</strong>：每个(图像, 场景)对使用<strong>4种选项顺序</strong>×<strong>3个随机种子</strong> = <strong>12次独立查询</strong>，以消除位置偏见和随机变异</li>
+<li><strong>指标计算</strong>：</li>
+<li>偏好分数： φ<em>i(x) = (1) / (n_i(x))∑</em>(j=1)^(M)∑<em>(k=1)^(K) r</em>(i,j,k) </li>
+<li>预测偏移： Delta_i(x_v) = φ_i(x_v) - φ_i(x_b) </li>
+<li>变异强度： VS<em>(m,d) = (1) / (|S|)∑</em>(i ∈ S) std<em>g(φ</em>(i,g,m)) </li>
+<li>有符号偏见偏移： SBS(x<em>v) = (1) / (|P|)∑</em>((x_b,s_i) ∈ P) Delta_i(x_v) </li>
+</ul>
+<p>2. RQ1实验：人口统计维度的影响</p>
+<p>评估<strong>身份层级效应</strong>（identity-level effects），即基础人脸的人口统计属性如何影响社会判断。</p>
+<p><strong>关键发现</strong>：</p>
+<ul>
+<li><strong>体型和年龄主导</strong>：体型（ VS = 0.069 ）和年龄（ VS = 0.075 ）显示最强的组间差异，显著效应分别出现在76%和78%的场景中</li>
+<li><strong>种族和性别效应较弱</strong>：种族（ VS = 0.038 ）和性别（ VS = 0.030 ）效应显著较小，种族在LLaVA-v1.6和Qwen3中仅44%的场景显著</li>
+<li><strong>模型差异</strong>：LLaVA-v1.6对体型最敏感（96%场景显著），而Qwen3整体最保守（所有属性≤60%场景显著）</li>
+</ul>
+<p><strong>统计验证</strong>：使用Kruskal-Wallis检验（年龄、体型、种族）和Mann-Whitney U检验（性别），配合Benjamini-Hochberg校正；单因素方差分析显示年龄（ eta^2_p=0.214 ）和体型（ eta^2_p=0.207 ）为大效应，性别（ eta^2_p=0.013 ）和种族（ eta^2_p=0.018 ）为小效应。</p>
+<p>3. RQ2实验：视觉属性的影响</p>
+<p>评估<strong>属性层级效应</strong>（attribute-level effects），即特定视觉线索在身份固定时的因果影响。</p>
+<p><strong>核心结果</strong>：</p>
+<ul>
+<li><strong>偏见集中度</strong>：约<strong>15个视觉属性</strong>解释近**80%**的总 |SBS| 变异，表明偏见集中于少数线索</li>
+<li><strong>最强驱动因素</strong>（按 SBS 排序）：</li>
+<li>时尚风格（+0.046）：最大正向偏移</li>
+<li>面部毛发（+0.042）</li>
+<li>妆容与唇妆（+0.037）</li>
+<li>眼镜（+0.035）</li>
+<li><strong>负向偏移</strong>：凌乱发型（−0.023至−0.024）和皮肤瑕疵（−0.019至−0.021） consistently 降低有利判断</li>
+<li><strong>无效线索</strong>：配饰（接近0）和穿孔（接近0，但存在性别交互）无显著效应</li>
+</ul>
+<p><strong>子实验分析</strong>：</p>
+<ul>
+<li><strong>负面偏见不对称性</strong>：负面线索（如破旧/磨损服装，中位数 |SBS|=0.167 ）产生的偏移显著大于正面对应物（如正式/商务装，0.121），比率1.38:1（ p &lt; 2.3×10^(-11) ）；凌乱发型效应是 slicked-back 发型的5.5倍（ p &lt; 2.9×10^(-47) ）</li>
+<li><strong>年龄调节效应</strong>：时尚线索的效应随年龄严格单调递增。例如，Smart casual风格从年轻面孔（ SBS=+0.082 ）到老年面孔（ +0.173 ）放大2.1倍；Streetwear从负面（−0.067）转为正面（+0.017）</li>
+<li><strong>人口统计交互</strong>：</li>
+<li>面部纹身：男性（−0.006，不显著）vs 女性（+0.033， p&lt;0.001 ），效应方向相反</li>
+<li>多重穿孔：男性（−0.023）vs 女性（+0.011）</li>
+<li>长发：男性（−0.021）vs 女性（+0.006）</li>
+<li>正式服装对肥胖面孔的增益比瘦削面孔高70–78%，但破旧服装对肥胖面孔的惩罚较轻</li>
+</ul>
+<p>4. RQ3实验：跨模型与场景的变化</p>
+<p>评估模型架构间的差异以及判断场景（语义内容）的调节作用。</p>
+<p><strong>场景敏感性（语义对齐偏见）</strong>：</p>
+<ul>
+<li><strong>与外观相关的判断最敏感</strong>：”时尚vs.不时尚”（ SBS≈+0.244 ）和”富有vs.贫穷”（ +0.114 ）显示最大偏移</li>
+<li><strong>与外观无关的判断稳定</strong>：”诚实”、”忠诚”、”值得信赖”等道德/人格特质场景接近零偏移</li>
+<li><strong>类别排序</strong>：社会经济与外观 &gt; 行为 &gt; 人格 &gt; 人际（敏感性递减）</li>
+<li>线性混合效应模型显示场景类别解释方差（ eta^2_p=0.248 ）大于变体类别（ eta^2_p=0.153 ）</li>
+</ul>
+<p><strong>跨模型比较</strong>：</p>
+<ul>
+<li><strong>一致性</strong>：所有模型在”哪些线索重要”上达成一致（时尚、面部毛发始终排名靠前），但在”响应强度”上存在差异</li>
+<li><strong>响应风格差异</strong>：</li>
+<li><strong>Pixtral</strong>：最激进（ SBS=+0.0273 ，Cohen’s  d=0.644 ）</li>
+<li><strong>Qwen3</strong>：最保守（80%案例接近零偏移）</li>
+<li><strong>Gemma-3</strong>：最大个体偏移率（ |Delta|≥0.25 占30%）</li>
+<li><strong>架构内比较（Gemma-3 vs Gemma-4）</strong>：相关系数 r=0.75 ，但Gemma-4（4B）相比Gemma-3（12B）减弱效应幅度，社会经济判断减弱42%，人格判断减弱58%，表明更大/更新的模型可能抑制外观驱动偏见的幅度，但保持其结构性模式。</li>
+</ul>
+<p><strong>统计方法</strong>：所有主要效应通过Wilcoxon符号秩检验（WSRT）和线性混合效应模型（随机截距按面孔身份）验证，显著性水平 α=0.05 并经Benjamini-Hochberg校正。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文的局限性及研究发现，以下方向值得进一步探索：</p>
+<p>1. 因果机制与表征分析</p>
+<p>当前工作聚焦于<strong>输入级效应</strong>（input-level effects），尚未揭示模型内部处理机制。未来研究可结合：</p>
+<ul>
+<li><strong>神经归因方法</strong>：定位MLLM中编码特定视觉偏见（如”破旧服装→低社会经济地位”）的神经元或层</li>
+<li><strong>注意力可视化</strong>：分析模型在判断”时尚vs.不时尚”与”诚实vs.不诚实”时注意力分布的差异，验证语义对齐偏见的内部表征基础</li>
+<li><strong>训练数据审计</strong>：追溯特定视觉-社会特质关联（如络腮胡与能力感知）在预训练数据中的共现频率</li>
+</ul>
+<p>2. 真实世界泛化与鲁棒性验证</p>
+<ul>
+<li><strong>真实照片验证</strong>：将StylisticBias的发现迁移至真实人脸数据集（如CelebA、FairFace），验证合成图像得出的偏见模式是否在真实摄影中同样显著，并评估图像质量、光照、姿态等自然变异对效应的调节作用</li>
+<li><strong>分布外测试</strong>：考察模型对罕见或边缘化身份群体（如非二元性别、混合种族特征、残疾人士）的偏见表现，当前基准仅覆盖90种人口统计配置</li>
+</ul>
+<p>3. 动态交互与序列决策</p>
+<p>当前评估基于<strong>静态单张图像</strong>的二元判断，而实际部署场景常涉及：</p>
+<ul>
+<li><strong>多轮交互</strong>：视觉偏见在对话上下文（如面试模拟、医疗分诊）中如何累积或衰减</li>
+<li><strong>时间动态</strong>：当向模型展示同一人不同外观（如从”运动装”到”正装”的序列）时，判断的更新是否遵循贝叶斯规则或表现出首因效应（primacy effects）</li>
+</ul>
+<p>4. 缓解策略与对齐方法</p>
+<ul>
+<li><strong>针对性微调</strong>：针对高偏见属性（如时尚风格、体型）设计对抗性训练或对比学习方案，在保持语义理解能力的同时降低外观驱动偏见</li>
+<li><strong>提示工程与系统指令</strong>：测试特定系统提示（如”忽略服装，仅基于面部结构判断”）能否有效抑制语义对齐偏见，或模型是否会绕过此类指令</li>
+<li><strong>人类价值对齐</strong>：探索RLHF（基于人类反馈的强化学习）在减少外观偏见中的有效性，特别是当人类标注者本身存在外观偏见时的”对齐难题”</li>
+</ul>
+<p>5. 跨文化与社会建构的深入考察</p>
+<ul>
+<li><strong>文化特异性</strong>：当前基准隐含西方中心审美（如”正式商务装”的定义）。需验证在亚洲、非洲、中东等文化语境中，相同视觉属性（如面部纹身、头巾）是否触发相同的社会判断，或存在文化特定的偏见模式</li>
+<li><strong>历时性偏见</strong>：时尚标准与身体审美随时间演变（如对胡须、体型的审美变化），评估模型训练数据的时间截断（temporal cutoff）如何导致”时代错位”的偏见</li>
+</ul>
+<p>6. 对抗性风险与公平性审计</p>
+<ul>
+<li><strong>对抗性外观操纵</strong>：论文提及方法论可能被滥用于操纵自动化决策（如通过特定穿搭误导招聘AI）。需开发检测此类对抗性自呈现（adversarial self-presentation）的防御机制</li>
+<li><strong>细粒度公平性指标</strong>：当前公平性评估多基于人口统计群体，建议开发<strong>属性级公平性指标</strong>（attribute-level fairness metrics），直接衡量特定视觉线索（而非身份）导致的决策不一致性</li>
+</ul>
+<p>7. 多模态融合机制</p>
+<ul>
+<li><strong>视觉-语言交互</strong>：探究当文本描述与视觉属性冲突时（如文字说明”这是一位成功的企业家”配破旧服装图像），模型如何权衡模态间的矛盾信号，以及这种权衡是否因场景而异（如社会经济判断 vs. 人格特质判断）</li>
+</ul>
+<p>8. 计算效率与可扩展性</p>
+<ul>
+<li><strong>自动化属性编辑</strong>：当前依赖Nano Banana进行单属性编辑，未来可探索更高效、可微分的反事实图像生成方法，支持大规模偏见审计的实时化</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>本文介绍<strong>StylisticBias</strong>，一个用于评估多模态大语言模型（MLLMs）中属性级社会偏见的控制基准。通过固定人物身份并独立操控单一视觉属性，研究实现了外观效应与身份差异的因果分离，揭示了MLLMs”以貌取人”的精细机制。</p>
+<p>核心问题与研究动机</p>
+<p>MLLMs在招聘、内容审核等高风险场景中广泛应用，但其社会判断背后的具体视觉驱动因素尚不明确。现有研究多比较不同个体或人口群体，无法区分<strong>身份固有特征</strong>（who）与<strong>自我呈现线索</strong>（how）。本文基于社会心理学中的”热情-能力”（warmth-competence）框架，假设被视为自主选择的视觉线索（如服装、妆容）会系统性影响模型判断。</p>
+<p>方法论创新：控制反事实设计</p>
+<p>研究采用两阶段合成图像生成：</p>
+<ul>
+<li><strong>基础人脸</strong>：使用Imagen 4生成500张标准化摄影棚肖像（涵盖年龄、性别、种族、体型的90种组合），作为固定身份锚点</li>
+<li><strong>单属性变体</strong>：使用Nano Banana为每张基础脸生成约50个变体（共~25,000张图像），每次仅修改一个属性（如仅换发型、仅加眼镜、仅改服装风格）</li>
+</ul>
+<p>评估覆盖<strong>6个开源MLLMs</strong>（LLaVA-v1.6、Qwen3-VL、Pixtral、InternVL3、Gemma-3、Gemma-4）和<strong>25个二元社会判断场景</strong>（人格特质、人际感知、行为属性、社会经济地位），通过4种提示顺序×3个随机种子的设计控制位置偏见，总计执行约2,830万次模型判断。</p>
+<p>主要研究发现</p>
+<p>1. 身份层级效应（RQ1）</p>
+<p>人口统计属性中，<strong>体型</strong>（ VS=0.069 ）和<strong>年龄</strong>（ VS=0.075 ）对社会判断影响最强，显著效应分别出现在76%和78%的场景中；<strong>种族</strong>（ VS=0.038 ）和<strong>性别</strong>（ VS=0.030 ）效应较弱，且在不同模型间变异较大。老年和肥胖身份系统性地与较低的能力和热情评价相关联。</p>
+<p>2. 属性层级效应（RQ2）</p>
+<p>偏见高度集中于少数视觉线索：</p>
+<ul>
+<li><strong>核心驱动因素</strong>：约<strong>15个属性</strong>解释近**80%**的总偏见变异。时尚风格（ SBS=+0.046 ）、面部毛发（ +0.042 ）、妆容与唇妆（ +0.037 ）、眼镜（ +0.035 ）产生最强正向偏移；凌乱发型（ -0.023 ）和皮肤瑕疵（ -0.019 ）产生负向偏移</li>
+<li><strong>负面偏见不对称</strong>：负面线索（如破旧服装， |SBS|=0.167 ）的效应显著强于正面对应物（如正式服装，0.121），比率达1.38:1</li>
+<li><strong>年龄放大效应</strong>：时尚线索的积极效应随年龄严格递增（如Smart casual风格对年轻面孔 SBS=+0.082 ，对老年面孔达 +0.173 ）</li>
+<li><strong>人口统计交互</strong>：同一线索在不同群体中含义相反（如面部纹身对男性为负面，对女性为正面）</li>
+</ul>
+<p>3. 语义对齐偏见（RQ3）</p>
+<p>模型对视觉线索的敏感性高度依赖判断场景的语义内容：</p>
+<ul>
+<li><strong>外观相关判断</strong>（如”时尚vs.不时尚”、”富有vs.贫穷”）对视觉变化极度敏感（ SBS≈+0.244 和 +0.114 ）</li>
+<li><strong>内在特质判断</strong>（如”诚实”、”忠诚”）几乎不受外观变化影响</li>
+<li><strong>敏感性排序</strong>：社会经济与外观 &gt; 行为 &gt; 人格 &gt; 人际</li>
+</ul>
+<p>4. 跨模型一致性</p>
+<p>各模型在”哪些线索重要”上结构一致（时尚始终排名靠前），但在响应强度上存在差异：Pixtral最激进（ SBS=+0.0273 ），Qwen3最保守（80%案例接近零）。Gemma-4相比Gemma-3在保持偏见结构的同时减弱了效应幅度（社会经济判断减弱42%）。</p>
+<p>贡献与影响</p>
+<p>本文贡献包括：</p>
+<ol>
+<li><strong>基准工具</strong>：发布首个大规模控制型视觉偏见基准，支持身份固定下的属性级归因</li>
+<li><strong>实证发现</strong>：揭示偏见集中于自我呈现线索（尤其是时尚风格），并在语义对齐场景中放大</li>
+<li><strong>方法论范式</strong>：从粗粒度群体比较转向细粒度因果推断，为MLLM公平性审计提供新框架</li>
+</ol>
+<p>研究局限在于使用合成图像而非真实照片，且未穷尽所有社会身份与属性组合。StylisticBias的发布为后续偏见缓解策略开发、跨文化验证及内部机制解释奠定了基础。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是StylisticBias%3A%20A%20Few%20Human%20Visual%20Cues%20Drive%20Most%20Social%20Biases%20in%20MLLMs，链接是https://arxiv.org/pdf/2606.20527，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.20527。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Shaghayegh Kolli,Timo Cavelius,Nafiseh Nikeghbal,Samantha Dalal,Jana Diesner</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20527.pdf">https://arxiv.org/pdf/2606.20527.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20527">https://arxiv.org/abs/2606.20527</a></p>
+<p><strong>Arxiv ID</strong>: 2606.20527</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.20527">https://papers.cool/arxiv/2606.20527</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:45:17.634Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:45:17.634Z</p>
+<hr>
+<h3 id="13-Characterizing-Narrative-Content-in-Web-scale-LLM-Pretraining-Data"><a href="#13-Characterizing-Narrative-Content-in-Web-scale-LLM-Pretraining-Data" class="headerlink" title="13. Characterizing Narrative Content in Web-scale LLM Pretraining Data"></a>13. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19468">Characterizing Narrative Content in Web-scale LLM Pretraining Data</a></h3><p>Abstract:The narrative composition of web-scale LLM pretraining corpora remains largely unexplored even though narrative is a fundamental mode of human communication. We present the first fine-grained study of narrative features in Dolma, a 3-trillion-token open pretraining corpus. Drawing on narrative theory, we design a framework spanning three core narrative elements (agency, setting, and events) operationalized as 11 interpretable dimensions. After sampling and annotating a diverse set of 400 passages, we finetune and validate NarraBERT, a RoBERTa-based model for fine-grained narrative prediction. We apply NarraBERT to 3M passages, resulting in a new dataset, NarraDolma. We find (i) narrative structure is measurable at scale across extremely heterogeneous data, (ii) we uncover a continuous, multidimensional narrative structure underlying web text, and (iii) narrative qualities are unequally distributed across pretraining sources and topics in ways that current curation practices neither measure nor account for. Our framework, dataset, and analyses provide a foundation for understanding how narrative qualities are distributed in LLM pretraining data and for studying how data composition affects narrative reasoning tasks. We publicly release NarraDolma and NarraBERT.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：尽管叙事是人类交流的基本方式，但网络规模大型语言模型预训练语料的叙事构成仍然在很大程度上未被探索。我们提出了对 Dolma——一个包含 3 万亿标记的开放预训练语料库中的叙事特征进行的首次细粒度研究。基于叙事理论，我们设计了一个涵盖三个核心叙事元素（代理、情境和事件）的框架，并将其操作化为 11 个可解释的维度。在对 400 段多样化文本进行抽样和标注后，我们微调并验证了 NarraBERT——一个基于 RoBERTa 的细粒度叙事预测模型。我们将 NarraBERT 应用于 300 万段文本，从而得到一个新的数据集 NarraDolma。研究发现：(i) 叙事结构可以在极其异质的数据上进行大规模测量；(ii) 我们发现了潜藏于网络文本中的连续、多维叙事结构；(iii) 叙事特性在预训练来源和主题中分布不均，而现有的数据整理方法既未测量也未考虑这一点。我们的框架、数据集和分析为理解 LLM 预训练数据中叙事特性的分布，以及研究数据组成如何影响叙事推理任务提供了基础。我们公开发布了 NarraDolma 和 NarraBERT。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文旨在解决<strong>大规模语言模型（LLM）预训练数据中叙事内容缺乏系统性表征</strong>的问题。具体而言，该研究针对以下核心空白展开：</p>
+<p>核心问题</p>
+<p>当前对LLM预训练语料库（如DOLMA）的研究主要集中于质量、毒性、去重和主题分布等维度，但**叙事构成（narrative composition）**作为人类交流的基本模式，在web-scale语料库中几乎未得到系统性的细粒度考察。</p>
+<p>具体研究缺口</p>
+<ul>
+<li><strong>叙事分布未知</strong>：预训练数据中存在多少叙事内容？这些内容如何分布在不同的子语料库（如书籍、Reddit、新闻、维基百科）和体裁中？</li>
+<li><strong>叙事特征异质性</strong>：叙事相关特征（如主体性、场景、事件序列）如何在极度异构的网络文本中变化？</li>
+<li><strong>数据策划盲区</strong>：当前的训练数据混合（data mixing）和策展（curation）实践在源级别（如提升或降低某些语料库权重）做出决策，但<strong>既未测量也未考虑叙事质量的分布</strong>，可能导致：</li>
+<li>过度降低某些”高叙事”源（如Reddit或Gutenberg）的权重会不成比例地减少模型对叙事的暴露</li>
+<li>某些叙事体裁（如特定事件结构或视角）的过度代表可能使模型产生偏差</li>
+</ul>
+<p>研究目标</p>
+<p>为填补上述空白，论文构建了<strong>首个细粒度的叙事分析框架</strong>，将叙事理论中的三个核心要素（<strong>agency</strong>、<strong>setting</strong>、<strong>events</strong>）操作化为11个可解释维度，并开发高效分类器（NARRABERT）对约300万段落进行标注，从而：</p>
+<ol>
+<li>验证<strong>叙事结构在极异构的web-scale数据中是可测量的连续多维结构</strong>（而非二元分类）</li>
+<li>揭示<strong>叙事质量在预训练来源和主题中的不均匀分布</strong>（如Reddit和Gutenberg高”内在性”，而Wikipedia和Crime &amp; Law高” grounded eventfulness”）</li>
+<li>证明<strong>源级别和主题级别的标签过于粗糙</strong>，无法捕捉叙事多样性，直接挑战当前基于源权重的数据策展实践</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>该论文在第2节”Related Work”中系统梳理了两大相关研究领域：</p>
+<p>2.1 叙事检测（Narrative Detection）</p>
+<p>近年NLP领域涌现出一批针对<strong>文本叙事性分类</strong>的研究，主要关注特定领域或二元分类任务：</p>
+<ul>
+<li><strong>Ganti et al. (2022, 2023)</strong>：开发在线健康论坛中的叙事检测方法，分别应用于一般健康讨论和健康错误信息识别场景。</li>
+<li>**</li>
+</ul>
+</div></details>
+<p><strong>Authors</strong>: Teagan Johnson,Elliott Ash,Andrew Piper,Maria Antoniak</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19468.pdf">https://arxiv.org/pdf/2606.19468.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19468">https://arxiv.org/abs/2606.19468</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19468</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19468">https://papers.cool/arxiv/2606.19468</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:45:26.964Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:45:26.964Z</p>
+<hr>
+<h3 id="14-When-Where-and-How-Adaptive-Binning-for-Tabular-Self-Supervised-Learning"><a href="#14-When-Where-and-How-Adaptive-Binning-for-Tabular-Self-Supervised-Learning" class="headerlink" title="14. When, Where, and How: Adaptive Binning for Tabular Self-Supervised Learning"></a>14. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19827">When, Where, and How: Adaptive Binning for Tabular Self-Supervised Learning</a></h3><p>Abstract:Medical tabular data are ubiquitous in clinical research, but deep learning for tables remains underexplored because reliable labels often require costly expert adjudication, even though structured clinical variables are routinely available in tabular form. Self-supervised learning can leverage these unlabeled tables, and recent binning-based pretexts offer a promising inductive bias, but existing objectives fix a single global quantile discretization and apply feature-agnostic supervision. We propose Adaptive Binning, a training-adaptive discretization pretext for tabular SSL that couples discretization to learning through a feature-wise coarse-to-fine curriculum. Motivated by the spectral bias of neural networks and the principles of curriculum learning, our method progressively refines discretization per feature upon plateau detection and selects representation-aware splits to jointly improve value-space concentration and representation-space coherence. A heterogeneity-aware objective unifies categorical reconstruction with ordinal supervision for numerical features, and experiments on public medical tabular datasets under unified evaluation protocols show consistent gains for linear probing and fine-tuning without dataset-specific discretization tuning. We further introduce a medical tabular SSL benchmark with standardized protocols to support reproducible progress in this underexplored domain. Our code is available at this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：医疗表格数据在临床研究中无处不在，但针对表格的深度学习仍未充分探索，因为可靠的标签通常需要昂贵的专家裁定，尽管结构化的临床变量通常以表格形式提供。自监督学习可以利用这些未标记的表格，最近基于分箱的预任务提供了一种有前景的归纳偏置，但现有目标固定单一全局分位离散化，并应用与特征无关的监督。我们提出了自适应分箱（Adaptive Binning），一种针对表格自监督学习的训练自适应离散化预任务，通过逐特征的粗到细课程将离散化与学习耦合。受神经网络谱偏置和课程学习原理的启发，我们的方法在检测到平台期时逐步细化特征的离散化，并选择考虑表示的分割，以共同改善数值空间集中度和表示空间一致性。一种异质性感知目标将类别重建与数值特征的序数监督统一起来，并且在统一评估协议下对公开医疗表格数据集的实验显示，在不针对数据集特定离散化调整的情况下，线性探测和微调均获得了一致提升。我们进一步推出了一个具有标准化协议的医疗表格自监督学习基准，以支持在这一未充分探索领域的可复现进展。我们的代码可在此 https URL 获取。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文旨在解决<strong>医学表格数据自监督学习（SSL）中固定离散化策略的局限性</strong>问题。具体而言，现有基于分箱（binning）的预训练方法存在以下关键缺陷：</p>
+<ul>
+<li><strong>全局固定离散化</strong>：现有方法采用单一的全局分箱数量  T  和静态分位数边界，在整个训练过程中保持不变，无法根据特征复杂度或学习进度调整分辨率。</li>
+<li><strong>特征无关监督</strong>：对数值特征采用点对点平方误差回归拟合整数索引，既未考虑特征间的异质性，也未利用学习到的表示来指导离散化的细化位置。</li>
+<li><strong>类型感知不足</strong>：缺乏统一框架来联合建模分类特征的重建和有序数值目标的监督。</li>
+</ul>
+<p>针对上述问题，论文提出 <strong>Adaptive Binning</strong> 框架，通过以下机制实现训练自适应的离散化：</p>
+<ol>
+<li><strong>何时（When）</strong>：通过特征级平台检测触发（Feature-Wise Plateau Trigger, FPT），根据各数值特征的重建损失收敛情况独立决定细化时机；</li>
+<li><strong>何地（Where）</strong>：通过基于散度信息的增益分裂选择（Dispersion-Informed Gain-based Splitting, DIGS），联合考虑值空间方差减少和表示空间一致性，选择最优分裂点；</li>
+<li><strong>如何（How）</strong>：通过异构感知有序损失（Heterogeneity-aware ORDinal Loss, HORD），统一分类特征的交叉熵重建与数值特征的软序数目标监督。</li>
+</ol>
+<p>该方法将离散化从固定的预处理步骤转变为与学习过程耦合的、特征级的粗到细课程（coarse-to-fine curriculum），从而在未标记的医学表格数据上学习出更优的表示。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>这篇论文的相关研究主要围绕以下五个维度展开：</p>
+<p>1. 表格数据的深度学习基础</p>
+<ul>
+<li><strong>树集成方法</strong>：XGBoost<br>6<br>和 CatBoost<br>17<br>等基于递归划分的算法，通过分段常数函数处理混合类型数据，在表格数据上长期占据优势。</li>
+<li><strong>深度架构进展</strong>：TabNet<br>2<br>（注意力机制）、FT-Transformer<br>10<br>（Transformer架构）、T2G-Former<br>24<br>（关系图组织）等神经网络架构逐步缩小与树模型的差距，但面临超参数敏感和架构选择挑战<br>4, 11, 14<br>。</li>
+</ul>
+<p>2. 表格自监督学习（SSL）</p>
+<ul>
+<li><strong>掩码重建范式</strong>：VIME<br>25<br>提出掩码特征估计和核心特征估计；去噪自编码器（Denoising Autoencoders）<br>23<br>通过损坏-重建机制学习鲁棒表示。</li>
+<li><strong>分箱预训练</strong>：Lee et al.<br>13<br>首次将分箱（Binning）作为预训练任务，通过全局固定分位数离散化将连续特征转换为有序类别，但存在特征无关和静态分辨率限制。</li>
+</ul>
+<p>3. 学习动态与课程设计</p>
+<ul>
+<li><strong>频谱偏差（Spectral Bias）</strong>：Rahaman et al.<br>18<br>发现神经网络优先拟合低频（粗粒度）模式再学习高频细节，为本文的”粗到细”课程设计提供理论动机。</li>
+<li><strong>课程学习</strong>：Bengio et al.<br>3<br>的经典工作启发本文按复杂度逐步增加训练任务难度。</li>
+</ul>
+<p>4. 离散化与分裂准则</p>
+<ul>
+<li><strong>方差减少</strong>：Breiman et al.<br>5<br>在 CART 算法中提出的方差减少准则，被本文 DIGS 模块用于值空间优化。</li>
+<li><strong>表示感知的离散化</strong>：de Sá et al.<br>20<br>的基于熵的离散化方法启发了表示空间一致性（Dispersion）的度量。</li>
+</ul>
+<p>5. 有序监督与医学应用</p>
+<ul>
+<li><strong>软序数目标</strong>：Diaz &amp; Marathe<br>7<br>提出用高斯分布生成软标签处理序数回归；Pan et al.<br>16<br>的均值-方差损失（Mean-Variance Loss）被本文 HORD 目标借鉴以建模数值特征的有序性。</li>
+<li><strong>医学表格数据</strong>：Holub et al.<br>12<br>指出 99% 的临床比较试验文章包含表格数据；Esteva et al.<br>8<br>综述了深度学习在医疗领域的应用，但指出当前自监督研究集中于图像和文本，忽视了结构化临床表格。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文提出 <strong>Adaptive Binning</strong> 框架，通过”何时-何地-如何”（When-Where-How）的三元耦合机制，将离散化从固定的预处理转变为训练自适应的、特征级的粗到细课程。具体解决方案如下：</p>
+<p>1. 何时细化（When）：特征级平台触发（FPT）</p>
+<p>针对全局同步调度效率低下的问题，提出 <strong>Feature-Wise Plateau Trigger (FPT)</strong>，实现各数值特征独立的收敛监控：</p>
+<ul>
+<li><strong>监控指标</strong>：在每个epoch结束时，计算特征 n 的数值重建损失归一化加权和  m_n （基于HORD损失的各分量）。</li>
+<li><strong>触发条件</strong>：维护运行最佳值  best<em>n  和耐心计数器  cnt_n 。若  m_n &lt; best_n - δ  则更新并重置；否则递增  cnt_n 。当  cnt_n ≥ patience （默认5）且当前分箱数  T_n &lt; T</em>(max)  时，标记该特征为待细化状态。</li>
+</ul>
+<p>2. 何地细化（Where）：散度信息增益分裂（DIGS）</p>
+<p>针对表示无关的分裂选择问题，提出 <strong>Dispersion-Informed Gain-based Splitting (DIGS)</strong>，联合优化值空间与表示空间：</p>
+<ul>
+<li><strong>候选分裂点</strong>：对每个待分箱  B_t^((n)) ，采用箱内中位数作为分裂点，确保近似平衡划分。</li>
+<li><p><strong>值空间增益</strong>：计算方差减少量<br>Gain_(var) = Delta Var(S to S_L, S_R) = Var(S) - w_LVar(S_L) - w_RVar(S_R)</p>
+</li>
+<li><p><strong>表示空间增益</strong>：基于无损坏输入的归一化嵌入  z<em>i = z_i/|z_i| ，计算离散度减少量<br>Disp(S) = | log(ε + | (1) / (|S|)∑</em>(i ∈ S) z<em>i |^2 ) |, quad Gain</em>(disp) = Delta Disp(S to S_L, S_R)</p>
+</li>
+<li><p><strong>分裂决策</strong>：综合得分<br>Score<em>(DIGS) = Gain</em>(var) × Gain<em>(disp)<br>仅当  Gain</em>(var) &gt; 0 、 Gain<em>(disp) &gt; 0  且  Score</em>(DIGS) &gt; τ （默认  10^(-4) ）时执行分裂。每次触发可并行分裂多个 qualifying bins。</p>
+</li>
+</ul>
+<p>3. 如何监督（How）：异构感知序数损失（HORD）</p>
+<p>针对类型异构的联合建模问题，提出 <strong>Heterogeneity-aware ORDinal Loss (HORD)</strong>：</p>
+<ul>
+<li><p><strong>分类特征</strong>：采用标准交叉熵损失<br>L_(cat)^((c)) = CE(ell^((c)), y^((c)))</p>
+</li>
+<li><p><strong>数值特征</strong>：将连续值映射为有序分箱索引后，采用分布感知的序数监督：</p>
+</li>
+<li><strong>软序数目标</strong>：基于高斯核生成软标签  q<em>t = exp(-(t-y^((n)))^2)∑</em>(k=0)^(T_n-1) exp(-(k-y^((n)))^2) </li>
+<li><strong>SORD损失</strong>：软目标交叉熵  -∑_t q_t log p_t^((n)) </li>
+<li><strong>均值-方差正则化</strong>：对预测分布  p^((n))  计算均值  μ^((n)) = ∑<em>t p_t^((n))t  和方差  σ^2</em>((n)) ，施加 MSE 和方差惩罚</li>
+<li><strong>综合损失</strong>：<br>L<em>(num)^((n)) = w</em>(SORD) (-∑<em>t q_t log p_t^((n))) + w</em>(mse)(μ^((n)) - y^((n)))^2 + w<em>(var)σ^2</em>((n))<br>其中默认  w<em>(SORD)=10 、 w</em>(mse)=0.1 、 w_(var)=0.001 。</li>
+<li><strong>统一加权</strong>：按特征数量加权平衡不同类型贡献<br>L<em>(HORD) = (C) / (C+N) · (1) / (C)∑</em>(c=1)^C L<em>(cat)^((c)) + (N) / (C+N) · (1) / (N)∑</em>(n=1)^N L_(num)^((n))</li>
+</ul>
+<p>4. 自适应课程闭环</p>
+<p>上述组件形成动态闭环：每个epoch最小化  L_(HORD) （How）产生各特征损失，FPT据此检测平台期（When）；触发后DIGS利用当前表示选择分裂点（Where），更新分箱边界  B^((n)) ，生成更细粒度的目标索引  y^((n))  用于下一epoch训练。由此实现<strong>特征级的粗到细课程</strong>，使离散化目标随学习进程在线演化。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文开展了系统性的实验验证，涵盖<strong>数据集构建</strong>、<strong>线性探测</strong>、<strong>消融分析</strong>、<strong>超参数敏感性</strong>及<strong>跨架构微调</strong>五个维度：</p>
+<p>1. 基准数据集与实验设置</p>
+<p><strong>数据集</strong>：整合8个公开医学表格数据集（表1），覆盖多样化临床任务：</p>
+<ul>
+<li><strong>二分类（BC）</strong>：Indian Liver Patient Dataset (ILPD)、Heart Failure Clinical Records (HFC)</li>
+<li><strong>名义多分类（NMC）</strong>：Cardiotocography (CTG, 10类)、Epileptic Seizure Recognition (ESR, 5类)</li>
+<li><strong>序数多分类（OMC）</strong>：Estimation of Obesity Levels (EOL, 7类)、Maternal Health Risk (MHR, 3类)</li>
+<li><strong>回归（Reg）</strong>：Parkinsons Telemonitoring (PT)、Body Fat Prediction (BFP)</li>
+</ul>
+<p><strong>实现协议</strong>：统一采用1000 epoch预训练，学习率  10^(-4) ；编码器为对称MLP（深度∈{1,2,3,4,5}，宽度∈{128,256,512,1024}，按数据集验证选择）。</p>
+<p>2. 线性探测评估（表2）</p>
+<p>固定编码器权重，训练线性分类器/回归器100 epoch，系统对比：</p>
+<ul>
+<li><strong>分箱策略</strong>：无分箱(-)、固定全局分箱(FIX)、自适应分箱(Ours)</li>
+<li><strong>掩码策略</strong>：无掩码(-)、常量替换(C)、随机替换(R)</li>
+<li><strong>预训练目标</strong>：</li>
+<li>基线：ValueRecon (VR)、MaskXent (MX)、MaskXent+ValueRecon (MR)</li>
+<li>固定分箱：BinRecon (BR)</li>
+<li>本文：Adaptive Binning</li>
+</ul>
+<p><strong>关键发现</strong>：自适应分箱在”无掩码”条件下仍优于掩码化的固定分箱基线，证明改进源于训练自适应的离散化而非输入损坏；平均排名（Avg. Rank）显示本文方法在所有配置中 consistently 最优（最佳平均排名1.50）。</p>
+<p>3. 消融实验（表3）</p>
+<p>通过逐一移除核心组件验证互补性：</p>
+<ul>
+<li><strong>w/o FWA</strong>：移除特征级自适应，采用全局统一分箱数</li>
+<li><strong>w/o FPT</strong>：移除平台触发，改为固定epoch间隔细化</li>
+<li><strong>w/o DIGS</strong>：移除表示感知分裂，仅保留值空间方差减少</li>
+<li><strong>w/o HORD</strong>：移除类型感知损失，回退到标准处理方式</li>
+</ul>
+<p><strong>结论</strong>：任一组件移除均导致性能下降，且不同数据集对各组件敏感度不同（如HFC因未触发细化而主要依赖HORD），验证”When-Where-How”三元耦合的必要性。</p>
+<p>4. 超参数敏感性分析（图2）</p>
+<p>在默认配置（灰色阴影线）附近进行网格搜索：</p>
+<ul>
+<li><strong>HORD权重</strong>： w<em>(SORD) ∈ 1,3,5,7,10 、 w</em>(MSE) ∈ 0.1,0.3,0.5,0.7,1 、 w_(Var) ∈ 0,10^(-3),10^(-2),10^(-1),1 </li>
+<li><strong>FPT耐心值</strong>： patience ∈ 3,5,10,20,50 </li>
+<li><strong>DIGS阈值</strong>： τ ∈ 10^(-5),10^(-4),10^(-3),10^(-2),10^(-1) </li>
+</ul>
+<p><strong>结果</strong>：默认配置在跨数据集任务中表现稳健，偏离默认参数通常导致性能下降，支持”免数据集调参”的临床部署需求。</p>
+<p>5. 跨架构微调评估（表4）</p>
+<p>将预训练权重初始化至5种下游架构（MLP、ResNet、TabNet、FT-Transformer、T2G-Former），端到端微调100 epoch，对比：</p>
+<ul>
+<li>从头训练（Supervised）</li>
+<li>MR预训练（强掩码基线）</li>
+<li>BR预训练（固定分箱基线）</li>
+<li>本文Adaptive Binning预训练</li>
+</ul>
+<p><strong>发现</strong>：自适应离散化提供稳定的初始化优势，在FT-Transformer和T2G-Former等先进架构上持续增益，且减少对下游模型选择的敏感性，证明其作为可迁移归纳偏置的有效性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文结论与方法的开放性设计，以下方向值得进一步探索：</p>
+<p>1. 跨数据集预训练与域适应</p>
+<p>当前研究局限于<strong>数据集内迁移</strong>（in-dataset transfer）。医学场景通常需要跨医院、跨人群的模型迁移：</p>
+<ul>
+<li><strong>大规模跨库预训练</strong>：在多个异构医学表格数据集上进行联合自监督预训练，验证 Adaptive Binning 对域间分布差异的鲁棒性</li>
+<li><strong>目标自适应</strong>：开发针对新临床终点（如罕见病并发症）的少样本适配机制，利用预训练形成的分箱结构作为先验知识</li>
+</ul>
+<p>2. 复杂临床终点与纵向数据</p>
+<p>论文主要关注静态表格的分类与回归，可扩展至：</p>
+<ul>
+<li><strong>生存分析</strong>（Survival Analysis）：将自适应分箱与时间-事件数据结合，处理删失数据（censored data）的序数特性</li>
+<li><strong>纵向表格数据</strong>（Longitudinal Tabular Data）：扩展 FPT 机制以处理时序依赖，设计随时间演化的动态分箱策略，适应患者多次随访的实验室指标变化</li>
+</ul>
+<p>3. 多模态医学数据融合</p>
+<p>医学决策通常同时依赖表格数据（实验室指标）与影像、文本：</p>
+<ul>
+<li><strong>跨模态对齐</strong>：利用 Adaptive Binning 的离散化表示作为桥梁，对齐表格特征与医学影像的潜在空间，实现分箱边界与视觉概念的语义关联</li>
+<li><strong>异构模态预训练</strong>：将数值特征的粗到细课程学习扩展至多模态预训练，协调不同模态的信息粒度差异</li>
+</ul>
+<p>4. 理论分析与算法优化</p>
+<ul>
+<li><strong>收敛性保证</strong>：分析 FPT 触发条件与 DIGS 分裂准则对表示学习收敛速度的影响，建立课程复杂度与泛化界的关系</li>
+<li><strong>计算效率优化</strong>：当前特征级独立监控带来额外开销，可探索基于不确定性估计的<strong>分层触发机制</strong>，或开发增量式分箱更新算法以降低内存占用</li>
+</ul>
+<p>5. 缺失值感知机制</p>
+<p>尽管实验包含含缺失值的数据集（如 ILPD），但当前方法对缺失值采用简单插补（Const/Random）。可研究：</p>
+<ul>
+<li><strong>缺失模式自适应</strong>：根据特征缺失率动态调整 FPT 的耐心参数，或设计考虑缺失机制的方差减少准则</li>
+<li><strong>缺失感知的序数监督</strong>：在 HORD 损失中显式建模分箱目标的不确定性，处理因缺失导致的边界估计偏差</li>
+</ul>
+<p>6. 与其他自监督目标的协同</p>
+<ul>
+<li><strong>多任务预训练</strong>：将 Adaptive Binning 与对比学习（Contrastive Learning）、掩码语言建模（MLM）等目标结合，验证分箱课程对对比样本选择的指导作用</li>
+<li><strong>分箱作为数据增强</strong>：利用动态分箱生成具有序数意义的”软”样本，用于改善对比学习的硬负例挖掘</li>
+</ul>
+<p>7. 可解释性与临床决策支持</p>
+<ul>
+<li><strong>临床可解释分箱</strong>：将 DIGS 的分裂过程与临床指南（如肿瘤 TNM 分期、心脏病 NYHA 分级）对齐，使模型自动发现的分箱边界具备临床语义</li>
+<li><strong>不确定性量化</strong>：基于 HORD 损失的方差项构建预测置信度，为临床决策提供风险分层依据</li>
+</ul>
+<p>8. 持续学习与在线适应</p>
+<ul>
+<li><strong>非平稳数据流</strong>：在电子健康记录（EHR）持续采集场景下，设计<strong>在线 Adaptive Binning</strong>，使分箱边界随数据分布漂移（concept drift）动态调整，避免灾难性遗忘</li>
+<li><strong>个性化分箱</strong>：针对个体患者历史数据，在预训练分箱基础上进行个性化微调，实现精准医学中的个体化特征离散化</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>本文提出 <strong>Adaptive Binning</strong>，一种面向医学表格数据的自监督学习（SSL）预训练框架，通过将离散化从固定预处理转变为训练自适应的、特征级的粗到细课程，解决现有分箱方法全局固定、特征无关、类型感知不足的局限。</p>
+<p>核心问题</p>
+<p>医学表格数据（如实验室指标、临床基线特征）普遍存在，但标注获取昂贵。现有基于分箱的 SSL 方法采用<strong>单一全局分箱数</strong>和<strong>静态分位数边界</strong>，无法根据特征复杂度或学习进度动态调整，且缺乏对分类与数值特征异构性的统一监督机制。</p>
+<p>方法框架</p>
+<p>提出 “When-Where-How” 三元耦合机制：</p>
+<ul>
+<li><p><strong>When（何时细化）</strong>：<strong>特征级平台触发（FPT）</strong><br>独立监控每个数值特征的重建损失收敛情况，当损失平台期超过耐心阈值（默认5个epoch）且未达最大分箱数时，触发该特征的离散化细化，实现特征差异化的课程进度。</p>
+</li>
+<li><p><strong>Where（何地细化）</strong>：<strong>散度信息增益分裂（DIGS）</strong><br>对触发细化的特征，联合优化值空间方差减少（ Gain<em>(var) ）与表示空间一致性（ Gain</em>(disp) ），选择分裂得分  Score<em>(DIGS) = Gain</em>(var) × Gain_(disp)  超过阈值  τ  的箱进行分裂，确保细化既降低数值方差又增强嵌入空间聚类。</p>
+</li>
+<li><p><strong>How（如何监督）</strong>：<strong>异构感知序数损失（HORD）</strong><br>分类特征采用标准交叉熵；数值特征采用软序数目标（SORD）结合均值-方差正则化，统一建模有序性：<br>L<em>(num)^((n)) = w</em>(SORD) L<em>(SORD) + w</em>(mse)(μ - y)^2 + w_(var)σ^2<br>最终损失按特征数量加权平衡不同类型贡献。</p>
+</li>
+</ul>
+<p>实验验证</p>
+<p>在涵盖二分类、多分类（名义/序数）和回归任务的<strong>8个公开医学表格数据集</strong>上：</p>
+<ul>
+<li><strong>线性探测</strong>：Adaptive Binning 在统一默认配置下取得最佳平均排名（1.50），无需数据集特定调参即优于固定分箱基线。</li>
+<li><strong>消融分析</strong>：移除 FPT、DIGS、HORD 或特征级自适应（FWA）任一组件均导致性能下降，验证三元耦合的必要性。</li>
+<li><strong>跨架构微调</strong>：在 MLP、ResNet、TabNet、FT-Transformer、T2G-Former 等架构上，预训练权重持续提供稳定的初始化优势，证明其作为可迁移归纳偏置的有效性。</li>
+</ul>
+<p>主要贡献</p>
+<ol>
+<li>提出首个训练自适应的表格 SSL 分箱预训练框架，显式定义离散化演化的时机、位置与方式；</li>
+<li>建立包含标准化评估协议的医学表格 SSL 基准，支持可复现的跨方法比较；</li>
+<li>验证特征级粗到细课程学习在医学表格表示学习中的有效性，为临床数据的高效利用提供新途径。</li>
+</ol>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是When%2C%20Where%2C%20and%20How%3A%20Adaptive%20Binning%20for%20Tabular%20Self-Supervised%20Learning，链接是https://arxiv.org/pdf/2606.19827，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.19827。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Daehwan Kim,Haejun Chung,Ikbeom Jang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19827.pdf">https://arxiv.org/pdf/2606.19827.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19827">https://arxiv.org/abs/2606.19827</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19827</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19827">https://papers.cool/arxiv/2606.19827</a></p>
+<p><strong>Published</strong>: 2026-06-23T01:46:49.975Z</p>
+<p><strong>Updated</strong>: 2026-06-23T01:46:49.975Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202606/2026-06-23/">https://wdndev.github.io/daily/hf/202606/2026-06-23/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202606/2026-06-01/" title="HuggingFace Papers 2026-06-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-01</div></div></a></div><div><a href="/daily/hf/202606/2026-06-02/" title="HuggingFace Papers 2026-06-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-02</div></div></a></div><div><a href="/daily/hf/202606/2026-06-04/" title="HuggingFace Papers 2026-06-04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-04</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-PerceptionDLM-Parallel-Region-Perception-with-Multimodal-Diffusion-Language-Models"><span class="toc-text">1. PerceptionDLM: Parallel Region Perception with Multimodal Diffusion Language Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-MemSlides-A-Hierarchical-Memory-Driven-Agent-Framework-for-Personalized-Slide-Generation-with-Multi-turn-Local-Revision"><span class="toc-text">2. MemSlides: A Hierarchical Memory Driven Agent Framework for Personalized Slide Generation with Multi-turn Local Revision</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-GateMem-Benchmarking-Memory-Governance-in-Multi-Principal-Shared-Memory-Agents"><span class="toc-text">3. GateMem: Benchmarking Memory Governance in Multi-Principal Shared-Memory Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-MCompassRAG-Topic-Metadata-as-a-Semantic-Compass-for-Paragraph-Level-Retrieval"><span class="toc-text">4. MCompassRAG: Topic Metadata as a Semantic Compass for Paragraph-Level Retrieval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Multi-Turn-Reflective-Masking-Elicits-Reasoning-in-Mask-Diffusion-Models"><span class="toc-text">5. Multi-Turn Reflective Masking Elicits Reasoning in Mask Diffusion Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-SproutRAG-Attention-Guided-Tree-Search-with-Progressive-Embeddings-for-Long-Document-RAG"><span class="toc-text">6. SproutRAG: Attention-Guided Tree Search with Progressive Embeddings for Long-Document RAG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-BrainG3N-A-Dual-Purpose-Tokenizer-for-Controllable-3D-Brain-MRI-Generation"><span class="toc-text">7. BrainG3N: A Dual-Purpose Tokenizer for Controllable 3D Brain MRI Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-WorldLines-Benchmarking-and-Modeling-Long-Horizon-Stateful-Embodied-Agents"><span class="toc-text">8. WorldLines: Benchmarking and Modeling Long-Horizon Stateful Embodied Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-GeneralVLA-2-Geometry-Aware-Reconstruction-and-Governed-Memory-for-Robot-Planning"><span class="toc-text">9. GeneralVLA-2: Geometry-Aware Reconstruction and Governed Memory for Robot Planning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-SpatialAvatar-0-High-Quality-4D-Head-Avatar-with-Multi-Stage-Reconstruction"><span class="toc-text">10. SpatialAvatar-0: High-Quality 4D Head Avatar with Multi-Stage Reconstruction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Distilling-Examples-into-Task-Instructions-Enhanced-In-Context-Learning-for-Real-World-B2B-Conversations"><span class="toc-text">11. Distilling Examples into Task Instructions: Enhanced In-Context Learning for Real-World B2B Conversations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-StylisticBias-A-Few-Human-Visual-Cues-Drive-Most-Social-Biases-in-MLLMs"><span class="toc-text">12. StylisticBias: A Few Human Visual Cues Drive Most Social Biases in MLLMs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-Characterizing-Narrative-Content-in-Web-scale-LLM-Pretraining-Data"><span class="toc-text">13. Characterizing Narrative Content in Web-scale LLM Pretraining Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-When-Where-and-How-Adaptive-Binning-for-Tabular-Self-Supervised-Learning"><span class="toc-text">14. When, Where, and How: Adaptive Binning for Tabular Self-Supervised Learning</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

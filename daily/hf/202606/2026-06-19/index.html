@@ -1,0 +1,884 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-06-19 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Moebius: 0.2B Lightweight Image Inpainting Framework with 10B-Level PerformanceAbstract:While 10B-level industrial foundation models have pushed the boundarie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-06-19">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202606/2026-06-19/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Moebius: 0.2B Lightweight Image Inpainting Framework with 10B-Level PerformanceAbstract:While 10B-level industrial foundation models have pushed the boundarie">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-21T01:04:37.519Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202606/2026-06-19/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-06-19',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-07-21 09:04:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">266</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-06-19</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-07-21T01:04:37.519Z" title="Updated 2026-07-21 09:04:37">2026-07-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">19.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>74min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-06-19"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Moebius-0-2B-Lightweight-Image-Inpainting-Framework-with-10B-Level-Performance"><a href="#1-Moebius-0-2B-Lightweight-Image-Inpainting-Framework-with-10B-Level-Performance" class="headerlink" title="1. Moebius: 0.2B Lightweight Image Inpainting Framework with 10B-Level Performance"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19195">Moebius: 0.2B Lightweight Image Inpainting Framework with 10B-Level Performance</a></h3><p>Abstract:While 10B-level industrial foundation models have pushed the boundaries of image inpainting, their prohibitive computational costs severely hinder practical deployment. Constructing a highly optimized task-specific specialist offers a promising solution; however, extreme structural compression inevitably triggers a severe representation bottleneck. To conquer this, we propose Moebius, a highly efficient lightweight inpainting framework. We systematically reconstruct the diffusion backbone by introducing the Local-$\lambda$ Mix Interaction ($L\lambda MI$) block. Comprising Local-$\lambda$ and Interactive-$\lambda$ modules, it elegantly summarizes spatial contexts and global semantic priors into fixed-size linear matrices, preserving complex latent interactions while drastically shedding parameters. Furthermore, to unlock the full representational capacity of this highly compact architecture, we synergistically pair it with an adaptive multi-granularity distillation strategy. Operating strictly within the latent space to avoid expensive pixel-space decoding, this strategy dynamically balances multiple gradient-based losses to achieve high-fidelity alignment. Extensive experiments across natural and portrait benchmarks demonstrate that this optimal synergy enables Moebius to rival or even surpass the generation quality of the 10B-level industrial generalist FLUX.1-Fill-Dev. Remarkably, Moebius achieves this using less than 2\% of the parameters (0.22B vs. 11.9B) while delivering a $&gt;15\times$ acceleration in total inference time, setting a new efficiency standard for high-fidelity inpainting. Project page at this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：尽管10B级工业基础模型推动了图像修复的边界，但其高昂的计算成本严重阻碍了实际应用。构建高优化的特定任务专家模型提供了有前景的解决方案；然而，极端的结构压缩不可避免地导致严重的表征瓶颈。为了解决这一问题，我们提出了Moebius，一种高效轻量的图像修复框架。通过引入Local-$\lambda$混合交互（$L\lambda MI$）模块，我们系统地重构了扩散骨干网络。该模块由Local-$\lambda$和Interactive-$\lambda$子模块组成，能优雅地将空间上下文和全局语义先验总结到固定大小的线性矩阵中，同时保留复杂潜变量交互关系，并大幅减少参数。此外，为了充分释放这一高紧凑架构的表征能力，我们将其与自适应多粒度蒸馏策略协同使用。该策略严格在潜变量空间中运行，以避免高成本的像素空间解码，同时动态平衡多种基于梯度的损失，以实现高保真对齐。在自然图像和人像基准上的大量实验表明，这种最佳协同使Moebius能够匹敌甚至超越10B级工业通用模型FLUX.1-Fill-Dev的生成质量。值得注意的是，Moebius在使用不到2%的参数（0.22B对比11.9B）的情况下，实现了总推理时间超过15倍的加速，为高保真图像修复设定了新的效率标准。项目页面请见此https URL。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>该论文旨在解决<strong>图像修复（Image Inpainting）领域中大规模基础模型的高计算成本与轻量化部署需求之间的矛盾</strong>。具体而言，论文针对以下核心问题展开：</p>
+<p>1. 工业级模型的部署瓶颈</p>
+<p>现有10B级别（百亿参数）的工业通用基础模型（如FLUX.1-Fill-Dev和SD3.5 Large-Inpainting）虽在零样本生成质量上达到最先进水平，但其<strong>计算开销巨大、内存占用极高</strong>，严重阻碍了在资源受限设备（如边缘设备）或延迟敏感场景中的实际应用。论文指出，这类模型在特定修复任务上存在显著的计算冗余。</p>
+<p>2. 极端结构压缩的表征瓶颈</p>
+<p>直接对现有扩散架构进行朴素压缩（如简单替换为深度可分离卷积或线性注意力机制）会引发<strong>严重的表征瓶颈（representation bottleneck）</strong>。具体表现为：</p>
+<ul>
+<li>轻量级算子固有的表征容量受限，难以建模图像修复所需的复杂语义推理；</li>
+<li>现有高效算子（如Gated Linear Attention）缺乏跨注意力（cross-attention）的数学表述，无法有效整合外部语义先验（如Latent Categories Guidance）；</li>
+<li>这种压缩会导致生成质量灾难性下降（FID从32.75恶化至43.58以上）。</li>
+</ul>
+<p>3. 效率-质量权衡的极限挑战</p>
+<p>论文试图突破”低参数量、快速推理、高生成质量”的不可能三角，验证一个核心假设：<strong>通过极致的结构优化与知识蒸馏协同，任务特定专家模型能否以极低成本（&lt;2%参数）匹敌10B级通用模型的性能</strong>。</p>
+<p>为应对上述挑战，论文提出<strong>Moebius</strong>框架，通过引入Local-λ Mix Interaction (L λ MI)块解决轻量化架构的交互限制，并辅以自适应多粒度潜在空间蒸馏策略，最终在仅 0.22B 参数下实现了对 11.9B 级别工业模型的性能追赶，同时获得** &gt;15× 的推理加速**。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>根据论文第2节及相关内容，相关研究主要分为以下两个方向：</p>
+<p>2.1 高效轻量级架构设计</p>
+<p>该方向旨在降低计算复杂度和参数量，同时保持表征能力：</p>
+<ul>
+<li><strong>高效卷积算子</strong>：深度可分离卷积（DWConv）和组卷积（Group Convolutions）被广泛用于解耦空间与通道交互，实现高效的局部特征提取。</li>
+<li><strong>低秩FFN设计</strong>：采用低秩近似的前馈网络结构（如EfficientViT、MobileNetV2中的Inverted Residuals）以减少参数冗余。</li>
+<li><strong>线性注意力机制</strong>：如FlashAttention、Gated Linear Attention (GLA) 等，通过降低注意力计算的复杂度来提升Transformer架构的效率。</li>
+<li><strong>现有局限</strong>：这些方法在紧凑性与感知质量之间存在固有权衡，且GLA等算子缺乏跨注意力（cross-attention）的数学表述，无法有效整合外部语义先验（如LCG嵌入）。</li>
+</ul>
+<p>2.2 扩散模型的知识蒸馏</p>
+<p>该方向关注将大规模教师模型的知识迁移至轻量学生模型：</p>
+<ul>
+<li><strong>经典蒸馏范式</strong>：</li>
+<li><strong>软标签蒸馏</strong>（Soft Labels）：利用教师模型的概率分布作为监督信号。</li>
+<li><strong>特征图对齐</strong>（Feature Maps）：通过中间层特征匹配传递知识。</li>
+<li><strong>感知度量约束</strong>（Perceptual Metrics）：利用VGG等网络的深层特征保持感知一致性。</li>
+<li><strong>扩散模型特定方法</strong>：</li>
+<li>** timestep蒸馏**：如Progressive Distillation、Consistency Models，旨在减少采样步数以加速推理。</li>
+<li><strong>架构容量蒸馏</strong>：与上述方法不同，本工作聚焦于通过蒸馏补偿极端结构压缩导致的表征容量下降，而非单纯加速采样。</li>
+</ul>
+<p>2.3 图像修复的基准方法</p>
+<p>论文对比的方法涵盖不同范式：</p>
+<ul>
+<li><strong>工业级通用基础模型</strong>：FLUX.1-Fill-Dev（11.9B参数）、SD3.5 Large-Inpainting（8.05B参数），代表当前零样本生成的最先进水平。</li>
+<li><strong>学术专用修复模型</strong>：</li>
+<li><strong>教师模型</strong>：PixelHacker（862M参数），采用Latent Categories Guidance (LCG) 范式。</li>
+<li><strong>CNN-based</strong>：LaMa、MAT、MI-GAN、AOT-GAN、EdgeConnect。</li>
+<li><strong>扩散模型</strong>：HD-Painter、PowerPaint、RoRem、DDNM、Latent-C.I.。</li>
+<li><strong>基础框架</strong>：Latent Diffusion Model (LDM) 及其变体（Stable Diffusion XL等）。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过<strong>架构重构</strong>与<strong>优化策略</strong>的协同设计，系统性地解决了极端压缩下的表征瓶颈问题。具体解决方案分为以下两个核心部分：</p>
+<p>1. 架构革新：Local-λ Mix Interaction (L λ MI) 块</p>
+<p>针对朴素轻量化（如直接替换为DWConv和标准线性注意力）导致的表征崩溃，论文提出L λ MI块，通过**固定大小线性矩阵 λ **重构交互机制，在保持线性复杂度的同时恢复表征能力：</p>
+<p>(1) Local-λ 模块（自注意力等价）</p>
+<p>替代传统的二次复杂度自注意力，该模块将局部空间上下文压缩为固定大小的线性矩阵：</p>
+<ul>
+<li><strong>语义内容映射</strong>： λ_c^l = softmax(K_l)^top V_l </li>
+<li><strong>位置映射</strong>： λ<em>p^l = Conv</em>(pos)^(1× r × r)(V_l) ，其中 r 为局部感知窗口（设为15）</li>
+<li><strong>聚合输出</strong>： Y_l = Q_lλ_c^l + Q_lλ_p^l </li>
+</ul>
+<p>通过双路径聚合（语义内容+位置信息），在 O(N) 复杂度下实现局部空间连续性与语义内容的整合。</p>
+<p>(2) Interactive-λ 模块（跨注意力等价）</p>
+<p>解决现有线性注意力（如GLA）无法处理跨注意力的架构限制，实现外部语义先验（如LCG嵌入 E_(LCG) ）的高效注入：</p>
+<ul>
+<li>引入轻量级位置嵌入 E_(pos) 建立空间-语义对应</li>
+<li><strong>交互矩阵</strong>： λ<em>c^i = softmax(K_i)^top V_i ， λ_p^i = E</em>(pos)V_i </li>
+<li><strong>输出</strong>： Y_i = Q_iλ_c^i + Q_iλ_p^i </li>
+</ul>
+<p>该模块首次使线性复杂度算子具备跨注意力能力，避免了传统注意力的高内存开销。</p>
+<p>(3) 极致轻量化组件</p>
+<ul>
+<li><strong>深度可分离残差块（DW.Res）</strong>：替代标准卷积，实现空间特征提取的参数锐减</li>
+<li><strong>Mix-FFN</strong>：用深度可分离结构替代密集线性投影，进一步削减48M参数</li>
+</ul>
+<p><strong>L λ MI块的前向传播</strong>：<br>X<em>1 = Local-λ(LN(X</em>(in))) + X_(in)</p>
+<p>X<em>2 = Interactive-λ(LN(X_1), E</em>(LCG)) + X_1</p>
+<p>X_(out) = Mix-FFN(LN(X_2)) + X_2</p>
+<p>2. 训练策略：自适应多粒度潜在蒸馏</p>
+<p>针对极端压缩（0.22B参数）导致的绝对容量上限（表2中Exp 10显示仅使用任务损失时FID高达33.42），论文提出<strong>严格在潜在空间</strong>进行的多粒度知识蒸馏，避免像素空间解码的昂贵开销：</p>
+<p>(1) 多粒度对齐目标</p>
+<ul>
+<li><p><strong>粗粒度（16×16）</strong>：对齐教师与学生中间瓶颈特征，捕获高层语义结构<br>L_(C_KD) = |x_T^C - x_S^C|_2^2</p>
+</li>
+<li><p><strong>细粒度（64×64）</strong>：对齐最终输出，保留纹理细节<br>L_(F_KD) = |x_T - x_S|_2^2</p>
+</li>
+<li><p><strong>任务监督</strong>：标准噪声预测损失  L_(task) = |x_0 - x_S|_2^2 </p>
+</li>
+<li><strong>潜在感知约束</strong>：使用E-LatentLPIPS在潜在空间直接计算感知损失，无需VAE解码<br>L<em>(perceptual) = d</em>(E_LatentLPIPS)(x_0, x_S)</li>
+</ul>
+<p>(2) 自适应梯度平衡机制</p>
+<p>为解决多目标优化中梯度量级冲突（粗粒度与细粒度损失梯度差异显著），论文提出基于梯度范数的动态权重调整：</p>
+<p><strong>细粒度内平衡</strong>（基于最终输出层参数 θ<em>F ）：<br>W</em>(F<em>KD) = |G(L</em>(task), θ<em>F)|_2^2|G(L</em>(F<em>KD), θ_F)|_2^2, quad W</em>(perceptual) = |G(L<em>(task), θ_F)|_2^2|G(L</em>(perceptual), θ_F)|_2^2</p>
+<p><strong>跨粒度平衡</strong>（基于中间特征参数 θ<em>C ）：<br>W</em>(C<em>task) = |G(L</em>(C<em>KD), θ_C)|_2^2|G(L</em>(out), θ_C)|_2^2</p>
+<p><strong>总目标</strong>：<br>L<em>(total) = L</em>(C<em>KD) + W</em>(C<em>task) · (L</em>(task) + W<em>(F_KD)·L</em>(F<em>KD) + W</em>(perceptual)·L_(perceptual))</p>
+<p>3. 协同效应</p>
+<p>论文强调<strong>架构设计与蒸馏策略的最优协同</strong>是突破关键：</p>
+<ul>
+<li><strong>架构层面</strong>：L λ MI块提供了可微的、具备跨注意力能力的轻量基础，使极端压缩（226M参数，0.154 TFLOPs）成为可能</li>
+<li><strong>优化层面</strong>：多粒度潜在蒸馏补偿了压缩带来的容量损失（FID从33.42提升至26.43），使轻量模型继承教师模型（PixelHacker, 862M）的语义先验与纹理一致性</li>
+</ul>
+<p>通过这种”结构-优化”联合设计，Moebius在仅使用<strong>0.22B参数</strong>（不到FLUX.1-Fill-Dev的2%）的情况下，实现了**&gt;15×推理加速**（总推理时间0.52s vs 8.05s），同时在Places2、CelebA-HQ等基准上匹敌甚至超越10B级工业模型的生成质量。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文在第4节及补充材料中开展了系统性实验验证，涵盖<strong>效率分析、基准测试、人类偏好研究、消融实验及真实场景应用</strong>等多个维度：</p>
+<p>1. 实验设置与协议</p>
+<ul>
+<li><strong>实现细节</strong>：以PixelHacker（862M）为教师模型，采用SDXL VAE编码器，输入分辨率 512× 512 ；Local-λ模块感知窗口 r=15 ；使用Muon优化器（权重衰减0.1），BF16精度，总批次大小768，训练138K迭代；后续在Places2（1.8M图像）、CelebA-HQ（24K图像）、FFHQ（60K图像）上进行微调。</li>
+<li><strong>评估基准</strong>：</li>
+<li><strong>自然场景</strong>：Places2（Test subset 10K图像/Large 36.5K/Small 36.5K/256分辨率），mask比例40-50%</li>
+<li><strong>肖像场景</strong>：CelebA-HQ（512分辨率，3K图像，大mask）、FFHQ（256分辨率，10K图像，LaMa-style mask）</li>
+<li><strong>对比基线</strong>：涵盖学术专用模型（MAT、MI-GAN、LaMa、AOT-GAN、EdgeConnect等）与工业通用基础模型（FLUX.1-Fill-Dev 11.9B、SD3.5 Large-Inpainting 8.05B）。</li>
+<li><strong>效率分析</strong>：统一在单张L40S GPU、批次大小为1、 512× 512 分辨率下测量单步推理延迟。</li>
+</ul>
+<p>2. 主要结果：跨越规模鸿沟</p>
+<ul>
+<li><strong>极端架构效率</strong>（表1、表3）：Moebius以<strong>0.226B参数</strong>、<strong>0.154 TFLOPs</strong>和<strong>26.01 ms/step</strong>的延迟，相比10B级工业模型实现**&gt;15×总推理加速**（0.52s vs 8.05s），参数量不足2%。</li>
+<li><strong>自然场景性能</strong>（表3）：在Places2（Small）上取得<strong>0.92 FID</strong>和<strong>0.091 LPIPS</strong>，超越FLUX.1-Fill-Dev（0.94 FID/0.099 LPIPS）和SD3.5 Large-Inpainting（3.02 FID）；在Places2（Test）上取得9.48 FID，与FLUX（8.02）相当且显著优于SD3.5（37.33）。</li>
+<li><strong>肖像场景性能</strong>（表4）：在CelebA-HQ上取得<strong>5.39 FID</strong>和<strong>0.122 LPIPS</strong>，优于MAT（4.86/0.125）以外的所有对比方法，且远超工业模型（FLUX: 10.13/0.141；SD3.5: 11.80/0.134）；在FFHQ上取得8.15 FID，较工业模型提升37%-1243%。</li>
+</ul>
+<p>3. 人类偏好研究（User Study）</p>
+<ul>
+<li><strong>双盲强制选择测试</strong>：22名参与者（含专家与普通用户）在50个案例/场景（自然、肖像、真实世界）上进行评估，依据全局一致性与视觉保真度选择最优结果。</li>
+<li><strong>结果</strong>（图6）：Moebius平均偏好率<strong>31.76%</strong>，与教师模型PixelHacker（32.18%）相当，显著优于FLUX.1-Fill-Dev（23.70%）和SD3.5 Large-Inp.（12.36%）；在肖像场景中更以**32.27%**的偏好率领先，证明任务特定专家在精细结构建模上的优势。</li>
+</ul>
+<p>4. 消融实验</p>
+<ul>
+<li><strong>架构协同分析</strong>（表2）：通过15组对照实验验证：</li>
+<li>朴素轻量化（如GLA+标准CA+DWConv）导致FID恶化至43.58（对比基线32.75）</li>
+<li>仅替换为LλMI模块（无蒸馏）可将参数量降至485M并保持FID 33.21</li>
+<li><strong>完整架构+蒸馏</strong>（Lλ-Iλ-MixFFN+DWConv+KD）在226M参数下达到最优26.43 FID，证明组件协同必要性</li>
+<li><strong>蒸馏目标消融</strong>（表5）：逐步验证各损失贡献：</li>
+<li>仅粗粒度蒸馏（ L_(C_KD) ）：FID 74.20（表征严重不足）</li>
+<li>加入细粒度蒸馏（ L_(F_KD) ）：FID降至36.17</li>
+<li>加入任务损失（ L_(task) ）：FID降至32.59</li>
+<li><strong>加入潜在感知损失</strong>（ L_(perceptual) ）：最终FID <strong>26.43</strong>，确认多粒度潜在蒸馏对解锁压缩架构潜能的关键作用。</li>
+</ul>
+<p>5. 真实世界应用</p>
+<ul>
+<li><strong>物体移除任务</strong>（图7）：在复杂背景与用户手绘不规则mask场景下，Moebius相比工业模型展现出更强的全局上下文理解与背景一致性，避免了色彩差异、语义不一致与结构混乱等缺陷。</li>
+</ul>
+<p>6. 补充材料中的扩展实验</p>
+<ul>
+<li><strong>Classifier-Free Guidance (CFG) 尺度消融</strong>（表6）：在Places2上验证最优CFG为<strong>2.5</strong>，CelebA-HQ上为<strong>2.0</strong>，平衡生成质量与多样性。</li>
+<li><strong>分布外（OOD）泛化测试</strong>（表7）：</li>
+<li><strong>OOD自然场景</strong>：在LVIS数据集（10K图像）上取得17.81 FID/0.309 LPIPS，优于MAT（18.08/0.312）且接近PixelHacker（13.84/0.305）。</li>
+<li><strong>OOD肖像场景</strong>：在DeepFakeFace数据集（3K图像）上取得15.32 FID/0.173 LPIPS，与教师模型（15.50/0.172）相当，验证零样本泛化能力。</li>
+<li><strong>与商业系统对比</strong>（图10）：与Nano Banana、Qwen Image Edit等大规模商业编辑系统相比，Moebius在0.22B参数约束下实现了可比拟的视觉保真度。</li>
+<li><strong>失败案例分析</strong>（图11）：客观展示在极小背景区域且上下文极度受限时，Moebius可能产生较教师模型（PixelHacker）稍弱的细节，反映极端压缩的固有权衡。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文的技术路线与实验观察，以下方向值得进一步探索：</p>
+<p>1. 架构设计的理论深化与扩展</p>
+<ul>
+<li><strong>线性注意力机制的表征边界分析</strong>：当前LλMI块通过经验验证有效，但缺乏对固定大小线性矩阵 λ 表征容量的理论刻画。可探索<strong>不同上下文长度与 λ 矩阵维度的最优映射关系</strong>，建立压缩比与信息保留率的定量模型。</li>
+<li><strong>动态感知窗口机制</strong>：当前Local-λ采用固定窗口 r=15 ，可研究<strong>基于内容复杂度的自适应窗口调整</strong>（如 masked region 越大则扩展感受野），在保持计算效率的同时提升大孔洞修复能力。</li>
+<li><strong>跨模态轻量化交互</strong>：当前Interactive-λ主要针对LCG类别嵌入，可扩展至<strong>文本-图像对齐的轻量级跨注意力</strong>（如CLIP特征的高效注入），实现文本引导的轻量化修复而无需增加大量参数。</li>
+</ul>
+<p>2. 蒸馏策略的进阶优化</p>
+<ul>
+<li><strong>对抗性潜在蒸馏</strong>：当前采用 L_2 和感知损失，可引入<strong>潜在空间的对抗训练</strong>（判别器在 latent 空间区分教师/学生输出），可能进一步缓解极端压缩导致的细节损失（如补充材料中提到的微小背景区域退化）。</li>
+<li><strong>关系蒸馏与自蒸馏</strong>：除特征对齐外，可探索<strong>样本间关系一致性</strong>（保持教师模型中图像样本的相对距离关系）或<strong>无教师自蒸馏</strong>（利用模型自身深层监督浅层），降低对大规模教师模型的依赖。</li>
+<li><strong>Timestep-aware 动态蒸馏</strong>：当前蒸馏对所有timestep采用统一权重，可研究<strong>针对不同噪声水平动态调整蒸馏强度</strong>（如高噪声阶段侧重语义对齐，低噪声阶段侧重纹理细节）。</li>
+</ul>
+<p>3. 采样效率的极限突破</p>
+<ul>
+<li><strong>与一致性模型的协同</strong>：当前Moebius需20步采样，可探索<strong>将LλMI架构与Consistency Models或LCM（Latent Consistency Models）结合</strong>，目标在<strong>1-4步</strong>内实现实时修复，突破扩散模型固有的迭代瓶颈。</li>
+<li><strong>自适应步长策略</strong>：针对不同mask复杂度动态调整采样步数（简单区域1-5步，复杂区域20步），在平均推理时间上实现进一步优化。</li>
+</ul>
+<p>4. 硬件感知的极致部署优化</p>
+<ul>
+<li><strong>混合精度与量化策略</strong>：论文提及BF16训练，但未探索<strong>INT8/INT4权重量化</strong>或<strong>动态精度切换</strong>对0.22B参数模型的影响，以及量化后与LλMI线性注意力算子的兼容性。</li>
+<li><strong>专用硬件协同设计</strong>：针对LλMI中的深度可分离卷积和线性矩阵乘法，设计<strong>定制化的内存访问模式</strong>（如tile-based计算）或<strong>神经处理单元（NPU）专用算子</strong>，实现移动端真正的实时处理（&lt;10ms）。</li>
+<li><strong>模型切片与流式处理</strong>：针对超高分辨率图像（如4K/8K），研究<strong>patch-based流式处理机制</strong>，保持全局一致性同时降低峰值内存占用。</li>
+</ul>
+<p>5. 任务扩展与鲁棒性</p>
+<ul>
+<li><strong>视频修复的时序一致性</strong>：将LλMI扩展至<strong>时空维度</strong>（3D Local-λ），引入<strong>光流引导的跨帧交互模块</strong>，解决视频修复中的 flickering 问题，同时保持轻量级特性。</li>
+<li><strong>任意分辨率通用性</strong>：当前模型固定训练于 512× 512 ，可探索<strong>无位置编码或分层位置编码</strong>方案，使模型具备<strong>任意分辨率输入的零样本泛化能力</strong>（类似FlexiViT）。</li>
+<li><strong>极端mask场景鲁棒性</strong>：针对补充材料中提及的<strong>极小背景区域修复失败</strong>问题，可引入<strong>显式边缘感知模块</strong>或<strong>分层修复策略</strong>（先粗后细），提升极端情况下的细节保真度。</li>
+</ul>
+<p>6. 条件生成的灵活性增强</p>
+<ul>
+<li><strong>多条件轻量级融合</strong>：除LCG外，支持<strong>草图、边缘图、深度图</strong>等多种条件输入，研究<strong>统一的轻量级条件注入机制</strong>（如参数高效微调中的adapter机制），避免为每种条件训练独立模型。</li>
+<li><strong>零样本领域迁移</strong>：利用<strong>领域自适应技术</strong>（如 adversarial domain adaptation）在保持模型轻量的同时，提升对医疗图像、卫星图像等训练集外领域的泛化能力。</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>该论文提出了 <strong>Moebius</strong>，一种高效的轻量化图像修复框架，成功以 <strong>0.22B 参数</strong> 的规模达到了 <strong>10B 级别</strong> 工业基础模型的生成质量，实现了 <strong>&gt;15×</strong> 的推理加速。</p>
+<p>1. 研究背景与核心挑战</p>
+<p>当前图像修复领域的工业级基础模型（如 FLUX.1-Fill-Dev，11.9B 参数）虽具备顶尖的零样本生成能力，但其巨额计算开销与内存占用严重阻碍了在边缘设备上的部署。直接对现有扩散架构进行朴素压缩（如简单替换为深度可分离卷积或标准线性注意力）会触发<strong>严重的表征瓶颈（representation bottleneck）</strong>，导致生成质量灾难性下降（FID 从 32.75 恶化至 43+）。此外，现有高效算子（如 Gated Linear Attention）缺乏跨注意力（cross-attention）的数学表述，无法有效整合外部语义先验（如 Latent Categories Guidance）。</p>
+<p>2. 方法论：架构与优化的协同设计</p>
+<p>论文通过<strong>结构重构</strong>与<strong>知识蒸馏</strong>的严密协同，解决了极端压缩下的表征瓶颈：</p>
+<p>（1）Local-λ Mix Interaction (L λ MI) 块</p>
+<p>为突破轻量化算子的交互限制，论文提出 L λ MI 块，通过<strong>固定大小的线性矩阵  λ </strong> 在  O(N)  复杂度下重构注意力机制：</p>
+<ul>
+<li><strong>Local-λ 模块</strong>：替代自注意力，将局部空间上下文聚合为语义内容映射  λ_c^l = softmax(K_l)^top V_l  与位置映射  λ_p^l ，输出  Y_l = Q_lλ_c^l + Q_lλ_p^l 。</li>
+<li><strong>Interactive-λ 模块</strong>：首次使线性复杂度算子具备跨注意力能力，通过引入位置嵌入  E<em>(pos) ，将全局语义先验  E</em>(LCG)  压缩为交互矩阵  λ_c^i  与  λ_p^i ，实现外部条件的高效注入。</li>
+<li><strong>极致轻量化</strong>：结合深度可分离残差块（DW.Res）与 Mix-FFN，将参数量压缩至 <strong>0.226B</strong>，计算量降至 <strong>0.154 TFLOPs</strong>。</li>
+</ul>
+<p>（2）自适应多粒度潜在蒸馏</p>
+<p>为弥补极端压缩（&lt; 2% 参数）带来的容量损失，论文提出<strong>严格在潜在空间</strong>进行的多粒度蒸馏策略，避免昂贵的像素解码开销：</p>
+<ul>
+<li><strong>粗粒度对齐</strong>（16×16 特征）：约束中间层语义结构一致性  L_(C_KD) 。</li>
+<li><strong>细粒度对齐</strong>（64×64 特征）：对齐最终输出  L<em>(F_KD)  与任务损失  L</em>(task) 。</li>
+<li><strong>潜在感知约束</strong>：使用 E-LatentLPIPS 在潜在空间直接计算感知损失  L_(perceptual) 。</li>
+<li><strong>自适应梯度平衡</strong>：基于梯度范数动态调整各损失权重（ W<em>(F_KD) 、 W</em>(perceptual) 、 W_(C_task) ），解决多目标优化的量级冲突，无需繁琐的超参数调优。</li>
+</ul>
+<p>3. 实验验证与核心结果</p>
+<p>论文在自然场景（Places2）与肖像场景（CelebA-HQ、FFHQ）上进行了 extensive 评估：</p>
+<ul>
+<li><strong>效率突破</strong>：Moebius 单步推理延迟 <strong>26.01 ms</strong>，总推理时间 <strong>0.52 s</strong>（20 步），相比 FLUX.1-Fill-Dev（50 步，8.05 s）实现 <strong>&gt;15× 加速</strong>，参数量仅为其 <strong>1.9%</strong>。</li>
+<li><strong>质量匹敌</strong>：在 Places2（Small）上取得 <strong>0.92 FID</strong> 与 <strong>0.091 LPIPS</strong>，超越 FLUX.1-Fill-Dev（0.94/0.099）；在 CelebA-HQ 上取得 <strong>5.39 FID</strong>，优于 SD3.5 Large-Inpainting（11.80）及绝大多数学术方法。</li>
+<li><strong>人类偏好</strong>：双盲用户研究显示，Moebius 的感知质量与教师模型 PixelHacker 相当（31.76% vs 32.18%），显著优于 10B 级工业模型（FLUX: 23.70%），尤其在肖像任务中领先（32.27%）。</li>
+<li><strong>消融验证</strong>：表2与表5证明，仅依靠架构压缩（无蒸馏）FID 为 33.42，而完整策略可恢复至 <strong>26.43</strong>；组件分析证实了 Local-λ、Interactive-λ 与自适应蒸馏的协同必要性。</li>
+</ul>
+<p>4. 结论与意义</p>
+<p>Moebius 证明了通过<strong>极致的结构效率</strong>（L λ MI 块）与<strong>先进的优化策略</strong>（自适应潜在蒸馏）的协同，任务特定的轻量专家（0.22B）能够成功<strong>桥接与 10B 级通用基础模型的规模鸿沟</strong>。该工作为资源受限场景下的高保真图像修复设立了新的效率标准，验证了“高度优化的专家模型可在特定任务上替代大规模通用模型”的范式。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Moebius%3A%200.2B%20Lightweight%20Image%20Inpainting%20Framework%20with%2010B-Level%20Performance，链接是https://arxiv.org/pdf/2606.19195，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.19195。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Kangsheng Duan,Ziyang Xu,Wenyu Liu,Xiaohu Ruan,Xiaoxin Chen,Xinggang Wang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19195.pdf">https://arxiv.org/pdf/2606.19195.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19195">https://arxiv.org/abs/2606.19195</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19195</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19195">https://papers.cool/arxiv/2606.19195</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:21:38.310Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:21:38.310Z</p>
+<hr>
+<h3 id="2-Beyond-Static-Leaderboards-Predictive-Validity-for-the-Evaluation-of-LLM-Agents"><a href="#2-Beyond-Static-Leaderboards-Predictive-Validity-for-the-Evaluation-of-LLM-Agents" class="headerlink" title="2. Beyond Static Leaderboards: Predictive Validity for the Evaluation of LLM Agents"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19704">Beyond Static Leaderboards: Predictive Validity for the Evaluation of LLM Agents</a></h3><p>Abstract:Agent benchmarks are growing fast, but no single benchmark touches more than four or five of the dimensions that deployment exposes. This paper aggregates the largest coordinated deep-dive of one MCP-based industrial-agent benchmark to date: fourteen parallel implementation studies covering new asset classes (including a multi-modal visual extension), alternative orchestrations, retrieval strategies, reasoning modes, infrastructure optimizations, and evaluation-methodology probes. Consolidating those studies with seven prior agent benchmarks, we argue that aggregate-score leaderboards systematically underspecify deployed-agent evaluation. Rankings derived from aggregate scores do not transfer to out-of-distribution settings; recent public-to-hidden competition retrospectives provide direct empirical evidence of this rank instability. We propose ranking configurations by predictive validity, the correlation between in-sample and out-of-sample rank, rather than in-sample mean, and report a twelve-tier measurement apparatus that exposes the deployment-relevant dimensions HELM and its agent-era successors collapse. The position is operationalized through three falsifiable out-of-distribution criteria with explicit thresholds; existing evidence partly supports it but is too thin to confirm. We close with a pre-registered pilot design and a field-level vision for what the next generation of agentic benchmarks should report.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：代理基准正在快速增长，但没有任何单一基准能覆盖部署所暴露的四到五个维度以上。本文汇总了迄今为止最大规模的基于MCP的工业代理基准的协调深度研究：十四项并行的实现研究，涵盖了新资产类别（包括多模态视觉扩展）、替代编排、检索策略、推理模式、基础设施优化和评估方法探讨。将这些研究与七项先前的代理基准整合后，我们认为，综合得分排行榜系统性地未能充分定义已部署代理的评估。由综合得分得出的排名无法转移至分布外情境；近期的公开到隐藏竞赛回顾提供了这种排名不稳定的直接实证证据。我们提出按预测有效性对排名进行配置，即样本内和样本外排名之间的相关性，而非样本内平均值，并报告了一个包含十二层的测量体系，揭示了部署相关维度 HELM 及其代理时代的后继者所忽略的方面。该立场通过三个可证伪的分布外标准并附明确阈值进行操作化；现有证据部分支持该观点，但证据量过少以确认。最后，我们提出了一个预注册的试点设计及对下一代代理基准应报告内容的现场层面愿景。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文试图解决<strong>LLM智能体评估中静态聚合分数排行榜的系统性不足问题</strong>，具体表现为以下三个核心维度：</p>
+<p>1. 评估维度的坍缩与欠规范</p>
+<p>当前主流基准测试使用单一聚合分数（如Pass@1）对智能体进行排名，但这类分数<strong>系统性地掩盖了部署环境中暴露的多元正交维度</strong>。论文指出，现有基准测试最多覆盖4-5个评估维度，而实际部署场景需要关注约12个独立维度（包括工具调用卫生、规划质量、多轮对话、推理模式、知识增强、证据锚定等）。聚合分数将质性迥异的配置（如重推理高成本 vs. 富检索高延迟 vs. 工具卫生脆弱但工件复用高效）视为等价，导致排名无法反映部署时的真实表现差异。</p>
+<p>2. 分布外（OOD）排名不稳定性</p>
+<p>论文揭示<strong>样本内（in-sample）排名与样本外（out-of-sample）排名之间存在显著断裂</strong>。实证证据显示，在149支团队的智能体竞赛中，公开榜与隐藏评估集的Spearman相关系数在执行赛道仅为  rho = -0.13 （与零无显著差异），在规划赛道为  rho = 0.69 （仍低于可接受的泛化阈值）。这意味着基于公开基准的优化可能无法迁移到实际部署环境，排行榜的”最优”配置在分布偏移（如跨设备迁移、对抗性扰动、时间窗口变化）下可能发生剧烈重排。</p>
+<p>3. 评估方法的反身性与验证缺失</p>
+<p>现有 leaderboard 依赖 <strong>LLM-as-Judge</strong> 的评分机制存在反身性问题：评判模型自身的偏差、提示工程变化或模型迭代会系统性改变被测系统的排名，而缺乏独立于评判模型的验证锚点（如规则管道、DAG预言机）。论文指出，某些研究中LLM评判者间的Krippendorff  α  仅为0.61，低于人类专家间的0.74-0.82，导致 leaderboard 实际上在测量评判工具本身而非被测智能体。</p>
+<p>提出的解决方向</p>
+<p>针对上述问题，论文主张以**预测效度（Predictive Validity）**取代聚合分数作为排名准则，即通过样本内排名与样本外排名的相关性（而非样本内均值）来评估配置优劣，并建立十二层测量装置（Twelve-Tier Measurement Apparatus）来显式暴露被当前框架折叠的部署相关维度。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>该论文的相关研究可分为四个主要脉络，分别对应其论证的不同环节：</p>
+<p>1. 智能体基准测试（Agent Benchmarks</p>
+</div></details>
+<p><strong>Authors</strong>: Dhaval C. Patel,Kaoutar El Maghraoui,Shuxin Lin,Yusheng Li,Tianjun Feng,Chun-Yi Tsai,Yihan Sun,Wei Alexander Xin,Akshat Bhandari,Tanisha Rathod,Aaron Fan,Sanskruti Vijay Shejwal,Tomas Pasiecznik,Sagar Chethan Kumar,Tanmay Agarwal,Rohith Kanathur,Sam Colman,Amaan Sheikh,Dev Bahl,Ann Li,Krish Veera,Alimurtaza Mustafa Merchant,Shambhawi Baswaraj Bhure,Sajal Kumar Goyla,Chengrui Li,Kirthana Natarajan,Rui Li,Thomas Ajai,Rujing Li,Vivek G. Iyer,Sanjaii Vijayakumar,Yitong Bai,Ayal Yakobe,Darief Maes,Yassine Jebbouri,Tianyang Xu,Thai Quoc On,Vera Mazeeva,Winston Li,Yuval Shemla,Yeshitha Bhuvanesh,Rushin Bhatt,Siddharth Chethan Gowda,Alisha Vinod,Caroline Cahill,Shriya Aishani Rachakonda,Yunfeng Chen,Aryaman Agrawal,Aman Upganlawar,Mao Le Jonathan Ang,Yubin Sally Go,Madhav Rajkondawar,Yang-Jung Chen,Trisha Maturi,Ananya Kapoor,Andrew Li,Shrey Arora,Mana Abbaszadeh,Shen Li,Charles Xu,Byeolah Kwon</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19704.pdf">https://arxiv.org/pdf/2606.19704.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19704">https://arxiv.org/abs/2606.19704</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19704</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19704">https://papers.cool/arxiv/2606.19704</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:21:50.957Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:21:50.957Z</p>
+<hr>
+<h3 id="3-Thinking-with-Visual-Grounding"><a href="#3-Thinking-with-Visual-Grounding" class="headerlink" title="3. Thinking with Visual Grounding"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.16122">Thinking with Visual Grounding</a></h3><p>Abstract:Visual thinking should not only sound right; it should show its evidence. While recent vision-language models (VLMs) can produce natural-language reasoning traces, these traces often leave the supporting image regions implicit, making them hard to verify and difficult to supervise. We introduce visually grounded thinking, a reasoning process in which models interleave natural-language thoughts with explicit point or box groundings of the visual evidence used at each step. This lets the model express intermediate reasoning in language while grounding key objects in the image regions they refer to. To train this behavior, we construct a scalable synthesis pipeline that distills correct visual reasoning traces, extracts the visual objects required by the traces, grounds them with a SAM3-based agent, and derives aligned point and box supervision from the resulting masks. We further propose grounding-aware reinforcement learning, which combines answer correctness rewards with dense grounding rewards that score whether generated object references match the correct image evidence. Across two counting benchmarks and four spatial reasoning benchmarks, adding visually grounded thinking to Gemma3-4B-IT consistently improves performance over the original model and the non-grounded thinking baseline. On spatial reasoning, the visually grounded thinking 4B models match, and in some cases surpass, Gemma3-27B-IT from the same model family. Our analysis shows that point grounding is well suited to counting, while box grounding benefits most from explicit grounding rewards on spatial tasks. Overall, our results show that VLMs think better when their intermediate thoughts are tied to the image regions that make them true.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：视觉思维不仅应听起来合理，还应展示其证据。虽然最近的视觉-语言模型（VLMs）可以生成自然语言推理轨迹，但这些轨迹通常将支持的图像区域隐含起来，使其难以验证，也难以监督。我们引入了视觉基础思维，这是一种推理过程，模型在该过程中将自然语言思维与每一步所使用的视觉证据的显式点或框定位交替进行。这使模型能够以语言表达中间推理，同时将关键对象定位到其所指的图像区域。为了训练这一行为，我们构建了一个可扩展的合成流水线，该流水线提取正确的视觉推理轨迹，提取轨迹所需的视觉对象，通过基于SAM3的代理进行定位，并从生成的掩码中推导对齐的点和框监督。我们进一步提出了感知定位的强化学习，结合了答案正确性奖励和稠密定位奖励，以评分生成的对象引用是否与正确的图像证据匹配。在两个计数基准和四个空间推理基准上，将视觉基础思维添加到Gemma3-4B-IT中，相较于原模型和非定位思维基线，性能始终提升。在空间推理任务上，视觉基础思维4B模型与同一模型系列的Gemma3-27B-IT相当，有时甚至超越。我们的分析显示，点定位非常适合计数任务，而框定位在空间任务中最受显式定位奖励的益处。总体而言，我们的结果表明，当中间思维与使其成立的图像区域联系在一起时，VLMs的思维表现更佳。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？
+</p>
+
+<p>这篇论文试图解决<strong>视觉语言模型（VLMs）在生成推理轨迹时缺乏对视觉证据的显式引用</strong>的问题。</p>
+<p>具体而言，论文指出当前 VLMs 存在以下关键缺陷：</p>
+<ul>
+<li><strong>隐式视觉证据</strong>：尽管现有模型能够生成自然语言推理轨迹（如”红色的车在入口附近”或”有三个人拿着伞”），但这些轨迹往往<strong>将支持性的图像区域隐式化</strong>，未能明确指出哪些具体的图像区域支持这些断言。</li>
+<li><strong>难以验证与监督</strong>：由于推理步骤与视觉证据之间缺乏显式链接，导致思考过程难以验证和监督。模型可能在未真正理解图像的情况下产生看似连贯的推理，甚至在没有图像的情况下也能生成合理的答案（即”幻觉”问题）。</li>
+<li><strong>视觉与语言脱节</strong>：视觉思考不同于纯文本思考，因为解决视觉问题所需的证据位于图像中（无法完全用文字表达），而现有方法未能建立推理步骤与具体图像区域之间的明确联系。</li>
+</ul>
+<p>为解决上述问题，论文提出<strong>视觉 grounded 思考（visually grounded thinking）</strong>，要求模型在生成自然语言推理的同时，通过<strong>点（point）或边界框（box）坐标</strong>显式地 ground 每一步所依赖的视觉对象，从而使中间推理步骤与图像证据紧密绑定，实现可验证、可监督的视觉推理。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有哪些相关研究？
+</p>
+
+<p>论文在第2页”Related Work”部分梳理了视觉推理中 grounding 技术的发展脉络，主要分为三个阶段：</p>
+<p>1. 早期：基于区域选择的 grounding</p>
+<ul>
+<li><strong>Visual CoT</strong> (Shao et al., 2024a)：引入中间边界框来突出显示关键图像区域，作为推理的辅助。</li>
+<li><strong>UV-CoT</strong> (Zhao et al., 2025)：减少对人工框标注的依赖，通过学习模型生成区域的偏好来优化 grounding。</li>
+</ul>
+<p>2. 中期：将 grounding 与推理轨迹紧密耦合</p>
+<ul>
+<li><strong>GCoT</strong> (Wu et al., 2025)、<strong>Xia et al.</strong> (2025)、<strong>Argus</strong> (Man et al., 2025)：这些方法在生成推理步骤的同时输出 grounding 坐标，将坐标视为步骤级的视觉证据，旨在使推理更忠实于图像内容并便于人工检查。</li>
+</ul>
+<p>3. 近期：将 grounding 视为主动行为（Active Behavior）</p>
+<ul>
+<li><strong>GRIT</strong> (Fan et al., 2025) 与 <strong>ViGoRL</strong> (Sarch et al., 2025)：通过强化学习（RL）训练模型交错生成自然语言与视觉坐标，将 grounding 作为推理过程中的主动行为。</li>
+<li><strong>VGR</strong> (Wang et al., 2025)：在推理阶段利用预测区域进行视觉重放（visual replay）。</li>
+</ul>
+<p>与本文的关系</p>
+<p>本文延续了从”感兴趣区域选择”（region-of-interest selection）向”视觉 grounded 思考”（visually grounded thinking）的范式转变，并在此基础上<strong>引入显式的 grounding 奖励（grounding reward）</strong>，直接对思考过程中生成的视觉 grounding 质量进行评分和监督，从而在 RL 阶段同时优化答案正确性和视觉证据的准确性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文如何解决这个问题？
+</p>
+
+<p>论文通过提出**视觉 Grounded 思考（Visually Grounded Thinking）**框架解决该问题，核心是让模型在生成自然语言推理的同时，显式引用图像中的具体区域作为证据。具体实现包括三个关键环节：</p>
+<p>1. 定义 Visually Grounded Thinking 格式</p>
+<p>该框架要求模型在推理过程中交错使用自然语言与视觉坐标，通过特殊标签 <code>&lt;obj&gt; ... &lt;/obj&gt;</code> 显式标记关键视觉对象：</p>
+<ul>
+<li><strong>Box 模式</strong>：使用边界框坐标 $<br>x_1, y_1, x_2, y_2<br>$，提供对象的空间范围信息</li>
+<li><strong>Point 模式</strong>：使用单点坐标 $<br>x, y<br>$，定位对象实例位置</li>
+</ul>
+<p>例如，模型生成如下推理轨迹：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">There is a &lt;obj&gt; black laptop | [131, 138, 440, 502] &lt;/obj&gt; on the table</span><br><span class="line">and a &lt;obj&gt; white laptop | [0, 2, 204, 670] &lt;/obj&gt; behind it...</span><br></pre></td></tr></table></figure>
+<p>这种格式使语言描述（思考内容）与空间坐标（视觉证据）紧密结合，确保每个关键推理步骤都有可追溯的图像区域支持。</p>
+<p>2. 构建可扩展的数据合成流水线</p>
+<p>为训练该行为，论文设计了一个基于 <strong>SAM3</strong> 的自动化数据合成流程，从开源 VQA 数据集（TallyQA、Pixmo-Count、VSR 等）生成带标注的推理数据：</p>
+<p><strong>步骤一：推理轨迹蒸馏</strong><br>使用 Qwen3-VL-Plus 等先进 VLM 生成正确的推理轨迹，并过滤出答案正确的样本。</p>
+<p><strong>步骤二：视觉对象提取</strong><br>使用 LLM 从正确轨迹中识别必需的视觉对象，包括答案对象、空间锚点、计数实例等。每个对象表示为<strong>名称</strong>（如”red car”）加<strong>消歧上下文</strong>（如”near the entrance”），以区分相似实例。</p>
+<p><strong>步骤三：Agentic 视觉 Grounding</strong><br>构建以 SAM3 为核心的 grounding agent，通过迭代循环获取精确掩码：</p>
+<ul>
+<li><strong>提议</strong>：将对象描述转换为 SAM3 兼容的名词短语，生成候选掩码</li>
+<li><strong>验证</strong>：VLM 验证渲染的掩码是否与目标匹配（接受/拒绝）</li>
+<li><strong>修正</strong>：若验证失败或存在歧义，修订短语重新尝试</li>
+<li><strong>选择</strong>：最终确定掩码 ID，输出 RLE（Run-Length Encoding）格式掩码</li>
+</ul>
+<p><strong>步骤四：生成多模态监督</strong><br>从 RLE 掩码导出两种监督信号：</p>
+<ul>
+<li><strong>Box 模式</strong>：将掩码转换为归一化边界框 $<br>x_1, y_1, x_2, y_2<br>$</li>
+<li><strong>Point 模式</strong>：选择掩码内部距离边界最远的点，确保落在非凸对象内部</li>
+</ul>
+<p><strong>步骤五：数据对齐</strong><br>将坐标注入原始推理文本，生成并行的 SFT（监督微调）数据；同时保留 grounded objects 的结构化信息（名称、上下文、掩码），用于后续 RL 阶段的监督。</p>
+<p>3. 设计 Grounding-Aware 强化学习</p>
+<p>在 RL 阶段，论文提出<strong>显式 grounding 奖励</strong>，在优化答案正确性的同时，监督中间推理步骤的视觉引用质量：</p>
+<p><strong>Grounding 对象路由</strong><br>由于模型可能使用不同措辞指代同一对象，使用轻量级 VLM（Qwen3.5-4B）作为路由器，将模型生成的 grounding 对象与 ground-truth 对象进行匹配，基于名称和上下文消歧。</p>
+<p><strong>Box 模式奖励</strong><br>对匹配成功的目标，计算生成框与真实框的<strong>交并比（IoU）</strong>：<br>IoU_i = (I_i) / (U_i)<br> 其中  I_i  为交集面积， U_i  为并集面积。若未匹配到目标，则  IoU_i = 0 。最终得分为所有目标 IoU 的均值。</p>
+<p><strong>Point 模式奖励</strong><br>计算生成点与真实掩码匹配的 <strong>F1 分数</strong>：<br>F1_i = (2TP_i) / (2TP_i + FP_i + FN_i)<br> 其中  TP_i  为成功匹配到掩码的点数， FP_i  为落在掩码外的点数， FN_i  为未被点覆盖的掩码数。</p>
+<p><strong>最终奖励组合</strong><br>总奖励结合稀疏任务奖励与密集 grounding 奖励：<br>R<em>i = NB(R_i^(base)) + w</em>(ground) · NB(r<em>i^(ground))<br> 其中  R_i^(base)  包含答案正确性、格式奖励等， r_i^(ground)  为 grounding 质量分数， NB(·)  表示批次归一化， w</em>(ground)  为权重（设为 0.5）。</p>
+<p>4. 训练流程</p>
+<ul>
+<li><strong>冷启动（SFT）</strong>：使用合成数据对 Gemma3-4B-IT 进行监督微调，分别训练非 grounded、box grounded 和 point grounded 三种变体</li>
+<li><strong>强化学习（RL）</strong>：应用 GRPO（Group Relative Policy Optimization）算法，使用上述 grounding-aware 奖励函数进行优化，使模型同时学习生成正确答案和准确的视觉引用</li>
+</ul>
+<p>通过这一完整流程，模型学会在推理过程中主动指向图像中的具体证据区域，从而显著提升计数和空间推理等任务的性能与可验证性。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 论文做了哪些实验？
+</p>
+
+<p>论文在第5节”Experiments”中开展了一系列控制实验，系统评估了视觉 grounded 思考的有效性。具体实验内容如下：</p>
+<p>1. 实验设置</p>
+<p><strong>基准测试</strong><br>实验在<strong>2个计数基准</strong>和<strong>4个空间推理基准</strong>上进行：</p>
+<ul>
+<li><strong>计数</strong>：TallyBench、CountQA</li>
+<li><strong>空间推理</strong>：VSR-zeroshot、EmbSpatial、SpatialMQA、MultihopSpatial</li>
+</ul>
+<p><strong>对比模型</strong><br>以 <strong>Gemma3-4B-IT</strong> 为基础模型，训练了三种控制变体：</p>
+<ul>
+<li><strong>非 Grounded 思考（Non-grounded Thinking）</strong>：仅生成文本推理，无坐标标注</li>
+<li><strong>Box 模式 Grounded 思考</strong>：在推理中插入边界框坐标 $<br>x_1, y_1, x_2, y_2<br>$</li>
+<li><strong>Point 模式 Grounded 思考</strong>：在推理中插入点坐标 $<br>x, y<br>$</li>
+</ul>
+<p><strong>训练流程</strong></p>
+<ul>
+<li>先使用合成数据进行**监督微调（SFT）**冷启动</li>
+<li>再应用 <strong>GRPO</strong>（Group Relative Policy Optimization）进行强化学习</li>
+<li>推理温度设为 1.0，每个样本运行 4 次取平均准确率（ACC）和 pass@4 指标</li>
+</ul>
+<p>2. 主要结果（Main Results）</p>
+<p><strong>计数任务性能</strong>（Table 1）</p>
+<ul>
+<li>基础模型 Gemma3-4B-IT 在 TallyBench 上准确率为 33.33%，CountQA 上为 9.87%</li>
+<li><strong>Box Grounded 思考</strong>（带 reward）将 TallyBench 提升至 38.81%，CountQA 提升至 11.19%</li>
+<li><strong>Point Grounded 思考</strong>（带 reward）表现更优，TallyBench 达 39.31%，CountQA 达 11.65%</li>
+<li><strong>非 Grounded 思考</strong>表现显著更差（TallyBench 仅 21.73%），并在 RL 过程中出现<strong>长度崩溃</strong>（response length 线性下降，导致探索不足）</li>
+</ul>
+<p><strong>空间推理任务性能</strong>（Table 2）</p>
+<ul>
+<li>4B 参数的 Grounded 思考模型在多个基准上<strong>达到或超越</strong>同系列的 Gemma3-27B-IT：</li>
+<li><strong>VSR-zeroshot</strong>：Box 模式达 68.08%，介于 Gemma3-12B-IT（67.98%）与 27B-IT（69.25%）之间</li>
+<li><strong>EmbSpatial</strong>：Box 模式达 59.93%，Point 模式达 60.88%，接近 27B-IT 的 62.09%</li>
+<li><strong>SpatialMQA</strong> 与 <strong>MultihopSpatial</strong>：Grounded 模型（约 37-39%）<strong>超越</strong> 27B-IT（约 31-39%）</li>
+<li><strong>Pass@4 指标</strong>：所有 Grounded 模型均大幅超越 Gemma3-27B-IT，显示出更强的推理多样性</li>
+</ul>
+<p>3. Grounding 奖励的消融实验</p>
+<p>论文对比了<strong>有无 Grounding Reward</strong>的 RL 训练效果：</p>
+<p><strong>Box 模式</strong></p>
+<ul>
+<li>加入 Grounding Reward 在<strong>全部 6 个基准</strong>上均带来准确率提升</li>
+<li>提升幅度在计数任务中较温和（+1.5% 左右），在<strong>空间推理任务</strong>中更显著（如 MultihopSpatial 从 34.89% 提升至 37.68%）</li>
+<li>表明边界框奖励对需要精细几何关系（如左右、距离、重叠）的任务尤为关键</li>
+</ul>
+<p><strong>Point 模式</strong></p>
+<ul>
+<li>Grounding Reward 未带来一致的下游性能提升，不同基准上有升有降</li>
+<li>论文分析指出，Point 奖励是<strong>离散信号</strong>（点落在掩码内即得分，否则不得分），相比 Box 的连续 IoU 信号<strong>粒度较粗</strong>，优化难度更大</li>
+</ul>
+<p>4. Box vs. Point Grounding 对比分析</p>
+<p>论文系统比较了两种 Grounding 接口的适用场景：</p>
+<p><strong>计数任务</strong></p>
+<ul>
+<li><strong>Point Grounding 持续优于 Box Grounding</strong>（TallyBench：39.31% vs 38.81%；CountQA：11.65% vs 11.19%）</li>
+<li>原因：计数主要需要<strong>实例级定位</strong>，点坐标足以标识对象，且避免了为小型、遮挡或不规则形状对象生成紧致边界框的困难</li>
+</ul>
+<p><strong>空间推理任务</strong></p>
+<ul>
+<li>两者性能<strong>大致相当</strong>，差异较小</li>
+<li>Box Grounding 理论上提供更丰富的几何信息（对象范围、边界），但实际准确率优势不明显</li>
+<li>Point Grounding 仍能通过实例定位结合模型的视觉表征回答多数空间关系问题</li>
+</ul>
+<p><strong>关键观察</strong></p>
+<ul>
+<li>Box Grounding 在显式 Grounding Reward 的加持下，在空间任务上表现最佳</li>
+<li>Point Grounding 在计数任务上具有 intrinsic 优势，且无需复杂的区域匹配计算</li>
+</ul>
+<p>5. 训练稳定性观察</p>
+<p>实验中还观察到：</p>
+<ul>
+<li><strong>非 Grounded 思考基线</strong>在 RL 训练过程中出现<strong>长度崩溃</strong>（length collapse）：响应长度随训练线性下降，最终性能恶化</li>
+<li><strong>Grounded 思考变体</strong>（无论 Box 或 Point）训练更稳定，论文推测交错 Grounding 标签与格式奖励为生成过程提供了额外的局部结构，有助于稳定 RL 训练动态</li>
+</ul>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 有什么可以进一步探索的点？
+</p>
+
+<p>基于论文内容，以下是可以进一步探索的研究方向，分为方法改进、任务扩展、理论分析与系统优化四个维度：</p>
+<p>1. 方法改进（Methodology Enhancement）</p>
+<p><strong>优化 Point Grounding 的奖励信号</strong><br>论文指出 Point Reward 是离散信号（点在掩码内则得分，否则不得分），导致优化困难。未来可探索：</p>
+<ul>
+<li>基于<strong>距离衰减</strong>的连续奖励（如点到掩码边界的距离倒数）</li>
+<li>结合<strong>不确定性估计</strong>的奖励，允许模型在模糊边界区域获得部分信用</li>
+<li>多尺度 Point 监督（如同时监督中心点和多个边界验证点）</li>
+</ul>
+<p><strong>探索混合 Grounding 模态</strong><br>论文仅对比了 Point 与 Box 两种模式。可进一步探索：</p>
+<ul>
+<li><strong>Mask-level Grounding</strong>：要求模型输出粗略分割掩码（利用 SAM3 的 mask decoder 作为奖励计算基础）</li>
+<li><strong>自适应模态选择</strong>：根据任务类型动态选择 Point（适用于计数）或 Box（适用于空间关系），甚至混合使用（如 <code>&lt;obj&gt; car | point: [x,y]; box: [x1,y1,x2,y2] &lt;/obj&gt;</code>）</li>
+</ul>
+<p><strong>改进 Grounding Object Router</strong><br>当前使用轻量级 VLM 进行对象匹配，存在累积误差。可探索：</p>
+<ul>
+<li>基于<strong>对比学习</strong>的语义匹配器，替代自回归 VLM</li>
+<li><strong>端到端可微路由</strong>：将对象匹配过程纳入 RL 框架联合优化</li>
+</ul>
+<p>2. 任务与场景扩展（Task Extension）</p>
+<p><strong>复杂视觉推理任务</strong><br>当前 benchmark 集中于计数和空间关系，可扩展至：</p>
+<ul>
+<li><strong>视觉数学与图表理解</strong>（如 GeoQA、ChartQA）：需要 Grounding 几何图形、坐标轴、图例区域</li>
+<li><strong>医学影像分析</strong>：Grounding 病灶区域与解剖结构，验证诊断依据</li>
+<li><strong>视频时序 Grounding</strong>：将静态 Point/Box 扩展为时序管（temporal tubes），支持视频推理中的帧级证据引用</li>
+</ul>
+<p><strong>开放域与长尾对象</strong><br>当前数据合成依赖 SAM3 的 noun-phrase 分割能力，对抽象概念（如”阴影”、”反射”）或罕见对象效果有限。可研究：</p>
+<ul>
+<li><strong>描述性 Grounding</strong>：对难以命名的视觉模式（如特定纹理、布局结构）使用自然语言描述而非名词短语进行 Grounding</li>
+<li><strong>负面证据 Grounding</strong>：不仅 Grounding 存在的对象，还需显式标记”不存在”的区域（如”图像左侧<strong>没有</strong>停车标志”）</li>
+</ul>
+<p>3. 理论分析与评估（Analysis &amp; Evaluation）</p>
+<p><strong>失败模式与可解释性</strong><br>论文未深入分析错误案例。系统性分析应包括：</p>
+<ul>
+<li><strong>Grounding 错误类型学</strong>：区分”定位不准”（如框偏大）、”语义漂移”（如混淆相似对象）与”幻觉 Grounding”（指向无关区域）</li>
+<li><strong>错误传播分析</strong>：Grounding 错误在多大程度上导致最终答案错误？是否存在”Grounding 错误但答案正确”的侥幸案例？</li>
+</ul>
+<p><strong>人工验证与忠实度指标</strong><br>当前评估仅依赖自动指标（IoU、F1）。需建立：</p>
+<ul>
+<li><strong>人类 Grounding 质量评估</strong>：衡量模型 Grounding 是否符合人类注意力模式（参考 Visual7W 等眼动数据集）</li>
+<li><strong>忠实度（Faithfulness）诊断</strong>：设计”对抗性视觉问题”（如修改 Grounding 区域但保持文本不变），检验模型是否真正依赖视觉证据而非文本先验</li>
+</ul>
+<p><strong>Scaling Law 研究</strong><br>论文使用 4B 模型，可探索：</p>
+<ul>
+<li>模型规模（4B→27B→更大）与 Grounding 准确率的Scaling关系</li>
+<li>合成数据量（当前 ~20K 条）与性能饱和点</li>
+<li>Grounding 密度（每样本 Grounding 对象数）对推理质量的影响</li>
+</ul>
+<p>4. 系统与效率优化（System Optimization）</p>
+<p><strong>计算效率提升</strong><br>Grounding-aware RL 需额外计算 IoU/F1 和 VLM Router，开销显著。可探索：</p>
+<ul>
+<li><strong>延迟 Grounding</strong>：仅在关键推理步骤进行 Grounding，而非每个对象</li>
+<li><strong>分层奖励架构</strong>：先用轻量级 heuristics 快速筛选明显错误的 Grounding，再对候选进行精确计算</li>
+</ul>
+<p><strong>与外部视觉工具交互</strong><br>当前 Grounding 完全由模型自回归生成，可探索**工具使用（Tool Use）**范式：</p>
+<ul>
+<li>模型生成候选 Grounding 后，调用外部 Detector（如 DETR）或 Segmenter 验证并修正坐标</li>
+<li>构建<strong>Grounding 反思机制</strong>：模型检查自身 Grounding 的合理性（如”这个框是否包含 claimed 的对象？”），必要时进行修正</li>
+</ul>
+<p><strong>多智能体验证</strong><br>引入独立的”验证器”（Verifier）模型，专门评估主模型的 Grounding 质量，形成<strong>生成-验证对抗框架</strong>，而非仅依赖静态奖励函数。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 总结一下论文的主要内容
+</p>
+
+<p>这篇论文围绕<strong>视觉语言模型（VLMs）的推理可视化</strong>展开，提出并验证了一种让模型在思考过程中显式指向图像证据的新范式。以下是主要内容总结：</p>
+<p>1. 研究问题</p>
+<p>当前视觉语言模型虽能生成自然语言推理轨迹（Chain-of-Thought），但这些轨迹往往<strong>缺乏对图像区域的具体引用</strong>，导致：</p>
+<ul>
+<li>推理过程难以验证和监督（模型可能基于文本先验而非图像内容作答）</li>
+<li>视觉证据与语言推理脱节，存在”幻觉”风险</li>
+<li>纯文本思考无法充分利用视觉信息解决空间关系、计数等任务</li>
+</ul>
+<p>2. 核心方法：Visually Grounded Thinking</p>
+<p>论文提出<strong>视觉 grounded 思考</strong>，要求模型在生成推理轨迹时，通过特殊标签 <code>&lt;obj&gt; ... &lt;/obj&gt;</code> 显式标注关键视觉对象的坐标：</p>
+<ul>
+<li><strong>Box 模式</strong>：使用边界框 $<br>x_1, y_1, x_2, y_2<br>$ 标注对象范围</li>
+<li><strong>Point 模式</strong>：使用单点 $<br>x, y<br>$ 标注对象位置</li>
+</ul>
+<p>这种格式使自然语言推理与图像区域紧密绑定，实现”思考有据可查”。</p>
+<p>3. 数据合成与训练框架</p>
+<p><strong>自动化数据流水线</strong>（基于 SAM3）：</p>
+<ol>
+<li>从开源 VQA 数据集（TallyQA、VSR 等）蒸馏正确推理轨迹</li>
+<li>用 LLM 提取推理中的关键视觉对象（含消歧上下文）</li>
+<li>通过<strong>SAM3-based Agent</strong>迭代生成高质量掩码（RLE 格式），转换为 Box 或 Point 坐标</li>
+<li>生成对齐的 SFT 数据（19,909 条轨迹，107,613 个 grounding 标注）</li>
+</ol>
+<p><strong>Grounding-Aware 强化学习</strong>：</p>
+<ul>
+<li>设计<strong>显式 grounding 奖励</strong>：Box 模式使用 IoU（交并比），Point 模式使用 F1 分数（点是否在掩码内）</li>
+<li>结合答案正确性奖励与格式奖励，通过 GRPO 算法优化</li>
+<li>使用 VLM-based Router 解决模型生成对象与 Ground-truth 的匹配问题</li>
+</ul>
+<p>4. 实验发现</p>
+<p>在 2 个计数基准和 4 个空间推理基准上的结果表明：</p>
+<ul>
+<li><strong>性能显著提升</strong>：4B 参数的 grounded 模型在空间推理任务上<strong>达到或超越</strong>同系列 27B 模型（如在 SpatialMQA 和 MultihopSpatial 上超越 Gemma3-27B-IT）</li>
+<li>** grounding 奖励的有效性**：Box 模式在显式 grounding 奖励加持下，空间推理性能提升明显（VSR-zeroshot 从 66.82% 提升至 68.08%）</li>
+<li><strong>模态差异</strong>：Point 模式在<strong>计数任务</strong>上表现更优（实例定位足够），Box 模式在<strong>空间推理</strong>中略胜一筹（提供几何范围信息）</li>
+<li><strong>训练稳定性</strong>：相比非 grounded 基线，grounded 思考避免了 RL 训练中的”长度崩溃”问题</li>
+</ul>
+<p>5. 主要贡献</p>
+<ol>
+<li><strong>数据管道</strong>：构建了可扩展的 SAM3-based 合成流程，为 SFT 和 RL 提供高质量 grounding 监督</li>
+<li><strong>训练方法</strong>：设计了直接监督 grounding 质量的 RL 奖励函数，支持 Box 和 Point 两种模式</li>
+<li><strong>实证验证</strong>：证明视觉 grounded 思考能显著提升计数与空间推理能力，且轻量级模型（4B）通过显式视觉引用可匹敌大模型（27B）</li>
+</ol>
+<p>6. 结论</p>
+<p>论文主张<strong>视觉思考不应仅听起来合理，而应指向具体证据</strong>。通过将推理步骤与图像区域显式绑定，不仅提升了模型性能，还增强了推理过程的可验证性与可解释性，为下一代视觉语言模型的”可审计推理”奠定了基础。</p>
+<p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 想要进一步了解论文
+</p>
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Thinking%20with%20Visual%20Grounding，链接是https://arxiv.org/pdf/2606.16122，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2606.16122。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Junkai Zhang,Yihe Deng,Kai-Wei Chang,Wei Wang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.16122.pdf">https://arxiv.org/pdf/2606.16122.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.16122">https://arxiv.org/abs/2606.16122</a></p>
+<p><strong>Arxiv ID</strong>: 2606.16122</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.16122">https://papers.cool/arxiv/2606.16122</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:22:24.667Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:22:24.667Z</p>
+<hr>
+<h3 id="4-ENPIRE-Agentic-Robot-Policy-Self-Improvement-in-the-Real-World"><a href="#4-ENPIRE-Agentic-Robot-Policy-Self-Improvement-in-the-Real-World" class="headerlink" title="4. ENPIRE: Agentic Robot Policy Self-Improvement in the Real World"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19980">ENPIRE: Agentic Robot Policy Self-Improvement in the Real World</a></h3><p>Abstract:Achieving dexterous robotic manipulation in the real world heavily relies on human supervision and algorithm engineering, which becomes a central bottleneck in the pursuit of general physical intelligence. Although emerging coding agents can generate code to automate algorithm search, their successes remain largely confined in digital environments. We conjecture that the missing abstraction to automate robotics research is a repeatable feedback loop for real-world policy improvement: reset the scene, execute a policy, verify the outcome, and refine the next iteration. To bridge this gap, we introduce ENPIRE, a harness framework for coding agents that instantiates this physical feedback routine with four core modules: an Environment module (EN) for automatic reset and verification, a Policy Improvement module (PI) that launches policy refinement, a Rollout module (R) to evaluate policies with one or multiple physical robots operating in parallel, and an Evolution module (E) in which coding agents analyze logs, consult literature, improve training infrastructure and algorithm code to address failure modes. This closed-loop system transforms real-world manipulation learning into a controllable optimization procedure, minimizing human effort while allowing fair ablations across training recipe and agent variants. Powered by ENPIRE, frontier coding agents can autonomously train a policy to achieve a 99% success rate on challenging, dexterous manipulation tasks, such as organizing a pin box, fastening a zip tie, and tool use, a process that further accelerates when we dispatch an agent team on a robot fleet. Our results suggest a practical and scalable path toward deploying coding agents to autonomously advancing robotics in the physical world.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：在现实世界中实现灵巧的机器人操作在很大程度上依赖于人工监督和算法工程，这成为追求通用物理智能的核心瓶颈。尽管新兴的编码代理可以生成代码以自动化算法搜索，但它们的成功仍然主要局限于数字环境中。我们推测，缺失的自动化机器人研究抽象是一个可重复的反馈循环来改进现实世界策略：重置场景，执行策略，验证结果，并改进下一次迭代。为了弥合这一差距，我们引入了 ENPIRE，这是一种为编码代理设计的框架，通过四个核心模块实例化这一物理反馈流程：环境模块 (EN) 用于自动重置和验证，策略改进模块 (PI) 启动策略改进，滚动模块 (R) 用于评估策略，可让一个或多个物理机器人并行操作，以及演化模块 (E)，在该模块中编码代理分析日志、查阅文献、改进训练基础设施和算法代码以解决失败模式。该闭环系统将现实世界的操作学习转化为可控的优化过程，最大限度地减少人力投入，同时允许对训练程序和代理变体进行公平的消融实验。在 ENPIRE 的支持下，前沿的编码代理可以自主训练策略，在复杂的灵巧操作任务中实现 99% 的成功率，例如整理针盒、固定扎带和使用工具，当我们在机器人群上派遣代理团队时，这一过程会进一步加速。我们的结果表明，这为部署编码代理以在现实世界中自主推动机器人技术发展提供了一条实用且可扩展的路径。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Navigation timeout of 10000 ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Wenli Xiao,Jia Xie,Tonghe Zhang,Haotian Lin,Letian “Max” Fu,Haoru Xue,Jalen Lu,Yi Yang,Cunxi Dai,Zi Wang,Jimmy Wu,Guanzhi Wang,S. Shankar Sastry,Ken Goldberg,Linxi “Jim” Fan,Yuke Zhu,Guanya Shi</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19980.pdf">https://arxiv.org/pdf/2606.19980.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19980">https://arxiv.org/abs/2606.19980</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19980</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19980">https://papers.cool/arxiv/2606.19980</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:22:32.394Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:22:32.394Z</p>
+<hr>
+<h3 id="5-FreeStyle-Free-Control-of-Style-Content-Dual-Reference-Generation-from-Community-LoRA-Mining"><a href="#5-FreeStyle-Free-Control-of-Style-Content-Dual-Reference-Generation-from-Community-LoRA-Mining" class="headerlink" title="5. FreeStyle: Free Control of Style-Content Dual-Reference Generation from Community LoRA Mining"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.20506">FreeStyle: Free Control of Style-Content Dual-Reference Generation from Community LoRA Mining</a></h3><p>Abstract:Style-content dual-reference generation aims to synthesize an image that preserves the structure and semantics of a content reference while adopting the style of a separate style this http URL recent progress, this setting remains challenging because models must balance content fidelity, style alignment, and instruction following avoiding semantic leakage from the style reference.A key bottleneck is the lack of large-scale triplet data with clean content-style separation and broad long-tail style this http URL this work, we propose FreeStyle, a scalable dual-reference generation framework based on community LoRA this http URL treat community LoRAs as compositional anchors for style and content, and design a rigorous generation and filtering pipeline to construct large-scale Style-Reference and Content-Reference triplets across multiple base this http URL address content leakage, we adopt a two-stage curriculum with stage-specific disentanglement mechanisms: an attention-level enrichment constraint that suppresses style-reference leakage in the style-transfer stage, and a frequency-aware RoPE modulation strategy that targets positional-correspondence-based leakage in the harder dual-reference this http URL also introduce a benchmark covering both style-reference and dual-reference generation, with evaluations on style similarity, content preservation, aesthetics, instruction following, and leakage rejection. The benchmark incorporates a style-invariant Content Alignment Score (CAS) and introduces a calibrated VLM-based Rejection Score for evaluating generation reliability and leakage this http URL experiments show that our model achieves a strong balance among style alignment, content preservation, and leakage suppression.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：风格-内容双参考生成旨在合成一幅图像，在保留内容参考的结构和语义的同时，采用独立的风格参考的风格。目前的进展显示，该设置仍具有挑战性，因为模型必须在内容保真度、风格对齐和遵循指令之间取得平衡，同时避免风格参考中的语义泄漏。一个关键瓶颈是缺乏具有干净内容-风格分离和广泛长尾风格的大规模三元组数据。在本工作中，我们提出了 FreeStyle，一种基于社区 LoRA 的可扩展双参考生成框架，将社区 LoRA 视为风格和内容的组合锚点，并设计了严格的生成和筛选流水线，以构建跨多个基础的风格参考和内容参考三元组。为了解决内容泄漏问题，我们采用了两阶段课程学习，并配备阶段特定的解耦机制：在风格迁移阶段引入注意力级增强约束以抑制风格参考的泄漏，并使用频率感知的 RoPE 调制策略针对更困难的双参考阶段的基于位置对应的泄漏。此外，我们还引入了一个涵盖风格参考和双参考生成的基准，评估指标包括风格相似性、内容保留、美学、指令遵循和泄漏拒绝。该基准包含风格不变的内容对齐评分（CAS），并引入了校准的基于 VLM 的拒绝评分用于评估生成的可靠性和泄漏。实验结果表明，我们的模型在风格对齐、内容保留和泄漏抑制之间实现了强平衡。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Jinghong Lan,Wei Cheng,Yunuo Chen,Ziqi Ye,Peng Xing,Yixiao Fang,Rui Wang,Yufeng Yang,Xuanyang Zhang,Xianfang Zeng,Difan Zou,Gang Yu,Chi Zhang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20506.pdf">https://arxiv.org/pdf/2606.20506.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20506">https://arxiv.org/abs/2606.20506</a></p>
+<p><strong>Arxiv ID</strong>: 2606.20506</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.20506">https://papers.cool/arxiv/2606.20506</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:23:43.457Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:23:43.457Z</p>
+<hr>
+<h3 id="6-ImageWAM-Do-World-Action-Models-Really-Need-Video-Generation-or-Just-Image-Editing"><a href="#6-ImageWAM-Do-World-Action-Models-Really-Need-Video-Generation-or-Just-Image-Editing" class="headerlink" title="6. ImageWAM: Do World Action Models Really Need Video Generation, or Just Image Editing?"></a>6. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19531">ImageWAM: Do World Action Models Really Need Video Generation, or Just Image Editing?</a></h3><p>Abstract:World Action Models (WAMs) commonly rely on video generation to bridge visual world modeling and robot control. However, video-based WAMs face three coupled limitations: dense multi-frame future tokens make inference costly, full video prediction spends capacity on action-irrelevant temporal and appearance details, and long-horizon future imagination may introduce errors that mislead action prediction. These issues raise a simple question: Does world action model really need video generation? We propose ImageWAM, a simple WAM framework that repurposes pretrained image editing models for robot action prediction. In contrast to video generation, image editing provides a better-matched prior: it only needs to model a target-frame transformation, focuses on action-relevant current-to-target visual differences, and grounds task instructions to localized visual changes through edit pretraining. In practice, ImageWAM does not decode the target frame at inference time; instead, it conditions a flow-matching action expert on the KV caches produced by image-editing denoising, using them as a compact world-action context. ImageWAM outperforms standard VLA baselines and matching competitive WAMs without additional policy pretraining across different simulator and real-world experiments. It also reduces FLOPs to 1/6 and latency to 1/4 of video-based WAMs. Attention analysis further shows that editing caches focus on task-relevant change regions, supporting image editing as an effective alternative to video-based world-action modeling.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：世界动作模型（WAMs）通常依赖视频生成来桥接视觉世界建模与机器人控制。然而，基于视频的 WAMs 面临三个相互关联的限制：密集的多帧未来令牌使推理成本高昂、完整视频预测将容量浪费在与动作无关的时间和外观细节上，以及长时间的未来想象可能引入误差，从而误导动作预测。这些问题提出了一个简单的问题：世界动作模型真的需要视频生成吗？我们提出了 ImageWAM，一种简单的 WAM 框架，它将预训练的图像编辑模型重新用于机器人动作预测。与视频生成相比，图像编辑提供了更匹配的先验：它只需要建模目标帧的变换，关注与动作相关的当前到目标的视觉差异，并通过编辑预训练将任务指令与局部视觉变化相结合。在实践中，ImageWAM 在推理时并不解码目标帧；相反，它将流匹配动作专家以图像编辑去噪产生的 KV 缓存为条件，利用它们作为紧凑的世界动作上下文。ImageWAM 在不同的模拟器和真实世界实验中，在无需额外策略预训练的情况下，超越了标准 VLA 基线和具有竞争力的匹配 WAMs。它还将 FLOPs 降至视频 WAMs 的 1/6，延迟降至 1/4。注意力分析进一步表明，编辑缓存聚焦于任务相关的变化区域，支持图像编辑作为视频基础的世界动作建模的有效替代方案。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Yuyang Zhang,Wenyao Zhang,Zekun Qi,He Zhang,Haitao Lin,Jingbo Zhang,Yao Mu,Xiaokang Yang,Wenjun Zeng,Xin Jin</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19531.pdf">https://arxiv.org/pdf/2606.19531.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19531">https://arxiv.org/abs/2606.19531</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19531</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19531">https://papers.cool/arxiv/2606.19531</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:24:44.102Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:24:44.102Z</p>
+<hr>
+<h3 id="7-Holo-World-Unified-Camera-Object-and-Weather-Control-for-Video-World-Model"><a href="#7-Holo-World-Unified-Camera-Object-and-Weather-Control-for-Video-World-Model" class="headerlink" title="7. Holo-World: Unified Camera, Object and Weather Control for Video World Model"></a>7. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.20083">Holo-World: Unified Camera, Object and Weather Control for Video World Model</a></h3><p>Abstract:Video world models are moving toward preserving an observed world under controllable camera and object motion while allowing its environmental state to change. Yet these controls remain isolated, and weather generation typically relies on a source video or reconstructed scene that already specifies future structure. We study a first-frame-anchored source-to-state setting, where the model starts from a single image and follows explicit camera and object controls and an optional weather instruction, then generates a video that either preserves the source world or transfers it to a target weather state. To address these challenges, we first build HoloStateData, a state video dataset that turns diverse videos into unified control samples for camera, object, and weather supervision. Second, we introduce Holo-World, a unified controllable video world model that jointly controls scene from a single image. Its Unified Scene Adapter factorizes world preservation and weather transfer into distinct parameter subspaces, using rendered background, geometry buffers, and object controls to maintain controlled scene structure while modeling weather-dependent appearance and particle effects. Additionally, Scene-Weather Decomposed CFG guides scene and weather residuals separately, strengthening target weather effects without over-amplifying the full condition. Quantitative and qualitative experiments demonstrate that Holo-World maintains precise camera and object control with consistent scene structure while transferring scenes into diverse target weather state, outperforming video-to-video weather editing baselines on weather-state generation. Our project page is available at \url{this https URL}.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：视频世界模型正朝着在可控摄像机和物体运动下保持观察世界，同时允许其环境状态变化。然而，这些控制仍然是孤立的，天气生成通常依赖于源视频或重建的场景，这些场景已经指定了未来的结构。我们研究一种以第一帧为锚定的源到状态设置，模型从单张图像出发，遵循显式的摄像机和物体控制以及可选的天气指令，然后生成视频，要么保留源世界，要么将其转移到目标天气状态。为应对这些挑战，我们首先构建了HoloStateData，这是一个州级视频数据集，将多样化的视频转化为统一的控制样本，用于摄像头、物体和天气监控。其次，我们引入了Holo-World，一个统一的可控视频世界模型，能够从单一图像共同控制场景。其统一场景适配器将世界保存和天气传输分解到不同的参数子空间中，利用渲染的背景、几何缓冲区和对象控件，保持场景结构受控，同时建模天气相关的外观和粒子效果。此外，场景-天气分解CFG分别引导场景和天气残差，强化目标天气效果，同时不过度放大完整状态。定量和定性实验表明，Holo-World在将场景转换到多样化目标天气状态的同时，能够精确地控制摄像机和物体，并保持一致的场景结构，在生成天气状态方面优于视频对视频的天气编辑基线。我们的项目页面可通过 \url{this https URL} 访问。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Xiangchen Yin,Wenzhang Sun,Jiahui Yuan,Zijie Liu,Yinda Chen,Wei Li,Dachun Kai,Chunfeng Wang,Xiaoyan Sun</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20083.pdf">https://arxiv.org/pdf/2606.20083.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20083">https://arxiv.org/abs/2606.20083</a></p>
+<p><strong>Arxiv ID</strong>: 2606.20083</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.20083">https://papers.cool/arxiv/2606.20083</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:26:00.323Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:26:00.323Z</p>
+<hr>
+<h3 id="8-Current-World-Models-Lack-a-Persistent-State-Core"><a href="#8-Current-World-Models-Lack-a-Persistent-State-Core" class="headerlink" title="8. Current World Models Lack a Persistent State Core"></a>8. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.20545">Current World Models Lack a Persistent State Core</a></h3><p>Abstract:World models are increasingly regarded as a decisive step toward artificial general intelligence, yet modeling the physical world demands more than rendering convincing frames on demand: it requires an internal world state that keeps evolving over time, decoupled from observation, so that objects endure and events run to their conclusions whether or not a camera is watching, much as the moon holds to its orbit when no one is looking. This requirement is a blind spot of existing benchmarks, which reward surface properties such as fidelity, motion, and camera controllability while never asking whether a generated world keeps evolving once it is unobserved. We introduce \textbf{WRBench}, the first systematic diagnostic benchmark that treats camera motion as an intervention on observability and resolves evaluation into a human-calibrated chain that asks whether the camera executes the requested interaction, whether the scene stays continuous and identifiable while in view, and whether a returning target remains consistent with the event that was set in motion. Across 9{,}600 videos from 23 models spanning four control paradigms, one finding proves stubborn: current systems maintain the observed world as a tracking shot, resuming a returning target in the state at which it was abandoned rather than advancing the event while it went unseen. Because this failure recurs across control paradigms, model families, and increments of scale, robust world-state evolution does not follow from cleaner imagery, tighter control, richer geometric priors, or sheer parameter count We therefore argue that the stability of the physical state kernel and the consistency of worldlines under viewpoint intervention should become first-class objectives of world-model design, so that a world model captures how the world will unfold rather than how the next frame appears.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：世界模型越来越被视为迈向通用人工智能的关键一步，但对物理世界进行建模不仅仅是按需渲染逼真的画面：它需要一个随时间不断发展的内部世界状态，该状态与观察相脱离，使得物体持续存在，事件按其规律发展，无论摄像头是否在观察，就像月球在无人注视时仍保持轨道运行一样。这一要求是现有基准测试的盲点，这些基准测试奖励表面属性，如逼真度、运动和摄像机可控性，却从未检验生成的世界在无人观察时是否继续发展。我们提出了\textbf{WRBench}，这是第一个将摄像机运动视为可观测性干预的系统诊断基准，并将评估分解为一个经过人工校准的链条，询问摄像机是否执行了所请求的交互，场景在可视范围内是否保持连续和可识别，以及返回的目标是否与已启动的事件保持一致。在来自23个模型、跨越四种控制范式的9{,}600个视频中，有一个发现特别顽固：现有系统将观察到的世界维持为追踪镜头，在目标返回时恢复其被中断时的状态，而不是在无人观察时推进事件的发展。由于这一失败在控制范式、模型家族和规模增量中重复出现，稳健的世界状态演化并不能通过更清晰的图像、更紧密的控制、更丰富的几何先验或单纯的参数量来实现。因此，我们认为物理状态核心的稳定性以及在视角干预下世界线的一致性应成为世界模型设计的一级目标，以便世界模型捕捉世界将如何展开，而不仅仅是下一帧的呈现方式。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Jinpeng Lu,Dexu Zhu,Haoyuan Shi,Linghan Cai,Guo Tang,Yinda Chen,Jie Cao,Duyu Tang,Yi Zhang,Yong Dai,Xiaozhu Ju</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20545.pdf">https://arxiv.org/pdf/2606.20545.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20545">https://arxiv.org/abs/2606.20545</a></p>
+<p><strong>Arxiv ID</strong>: 2606.20545</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.20545">https://papers.cool/arxiv/2606.20545</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:27:43.515Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:27:43.515Z</p>
+<hr>
+<h3 id="9-JAMER-Project-Level-Code-Framework-Dataset-and-Benchmark-on-Professional-Game-Engines"><a href="#9-JAMER-Project-Level-Code-Framework-Dataset-and-Benchmark-on-Professional-Game-Engines" class="headerlink" title="9. JAMER: Project-Level Code Framework Dataset and Benchmark on Professional Game Engines"></a>9. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19830">JAMER: Project-Level Code Framework Dataset and Benchmark on Professional Game Engines</a></h3><p>Abstract:Current AI-driven game development has made substantial progress in asset generation, gameplay design, and web-based game coding, yet project-level code engineering on professional game engines remains largely unexplored due to the absence of large-scale datasets and deterministic evaluation methods. We present JamSet and JamBench, the first project-level game code framework dataset and benchmark built on a professional game engine. Our key insight is that Game Jam competitions, community events where developers build complete games under tight time constraints, yield thousands of open-source projects suitable for this purpose. Building on the Godot engine’s text-based format and headless execution mode, we design a deterministic verification pipeline from file integrity to runtime behavior collection, distilling 8,133 verified projects from over 240,000 repositories. Of these, 300 manually verified projects form JamBench; the rest constitute JamSet. JamBench defines theme-driven generation and code completion tasks, evaluated through a pipeline combining compilation pass rates, Structural Completeness Score (SCS), and Behavioral Alignment Score (BAS). Evaluation of 9 frontier models reveals a capability cliff as project scale increases, with runtime pass rates dropping from 80.4% on small projects to 5.7% on large ones (Task2a). Code Agents improve compilation rates yet yield no gains in runtime behavioral quality, indicating that the bottleneck lies in architectural design rather than syntactic correctness. Experiments validate JamSet as effective training data. All data and code are publicly available.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：当前由人工智能驱动的游戏开发在资源生成、玩法设计和基于网页的游戏编码方面取得了显著进展，但由于缺乏大规模数据集和确定性评估方法，基于专业游戏引擎的项目级代码工程仍 largely 未被探索。我们提出了 JamSet 和 JamBench，这是基于专业游戏引擎构建的首个项目级游戏代码框架数据集和基准。我们的核心洞察是，Game Jam 竞赛——开发者在严格时间限制下构建完整游戏的社区活动——产生了成千上万的开源项目，非常适合用于此目的。基于 Godot 引擎的文本格式和无头执行模式，我们设计了一个从文件完整性到运行时行为收集的确定性验证管道，从超过 240,000 个代码库中提取出 8,133 个经过验证的项目。其中，300 个人工验证的项目构成 JamBench，其余构成 JamSet。JamBench 定义了基于主题的生成和代码补全任务，通过结合编译通过率、结构完整性评分 (SCS) 和行为一致性评分 (BAS) 的管道进行评估。对九个前沿模型的评估显示，随着项目规模的增加，能力出现明显下降，运行时通过率从小型项目的 80.4% 降至大型项目的 5.7%（任务 2a）。代码代理提高了编译通过率，但在运行时行为质量上没有提升，表明瓶颈在于架构设计而非语法正确性。实验验证了 JamSet 作为有效训练数据的作用。所有数据和代码均已公开。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Jianwen Sun,Chuanhao Li,Zizhen Li,Yukang Feng,Fanrui Zhang,Yifei Huang,Yu Dai,Kaipeng Zhang</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19830.pdf">https://arxiv.org/pdf/2606.19830.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19830">https://arxiv.org/abs/2606.19830</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19830</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19830">https://papers.cool/arxiv/2606.19830</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:29:27.628Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:29:27.628Z</p>
+<hr>
+<h3 id="10-LooseControlVideo-Directorial-Video-Control-using-Spatial-Blocking"><a href="#10-LooseControlVideo-Directorial-Video-Control-using-Spatial-Blocking" class="headerlink" title="10. LooseControlVideo: Directorial Video Control using Spatial Blocking"></a>10. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.19495">LooseControlVideo: Directorial Video Control using Spatial Blocking</a></h3><p>Abstract:Precise 3D spatial orchestration in text-to-video generation remains a significant challenge, particularly for multi-object scenes where semantic layout and temporal dynamics are often entangled. While existing depth-conditioned models achieve good structural fidelity, they necessitate dense, frame-accurate guidance that is labor-intensive to author for dynamic events involving deformable objects. We present LooseControlVideo, a framework that enables intuitive and expressive control by using sparse, oriented 3D boxes as a “blocking” proxy. This allows users to author high-level layout and trajectory while leveraging a video generative model to generate realistic occlusions, dynamics and interactions. We achieve this by fine-tuning a Wan 2.2 backbone on a video dataset annotated with DNOCS, a novel encoding for 3D size, orientation and depth-ordered occlusions. Furthermore, our method allows for localized refinement, such as adjusting a jump trajectory or adding an interaction, with minimal disruption to the global scene context. Extensive evaluations on the nuScenes, HO-3D, and BEHAVE benchmarks demonstrate that LooseControlVideo significantly outperforms existing 2D-box and flow-based baselines. Our findings indicate a 1.2x to 3x improvement in Trajectory Error; 2x improvement in Rigid Motion Consistency; and a 1.5x to 2x increase in Occlusion Accuracy over current state-of-the-art layout-conditioned models, demonstrating that oriented 3D primitives provide good geometric prior for complex, multi-agent video authoring.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：在文本到视频生成中实现精确的三维空间编排仍然是一个重大挑战，尤其是在多对象场景中，语义布局和时间动态常常纠缠在一起。虽然现有的基于深度的模型在结构上具有良好的保真度，但它们需要密集且逐帧精确的指导，而对于涉及可变形对象的动态事件，这种指导的创作工作量很大。我们提出了 LooseControlVideo 框架，通过使用稀疏的、定向的三维盒作为“阻挡”代理，实现直观且富有表现力的控制。这使用户能够创作高层次的布局和轨迹，同时利用视频生成模型生成真实的遮挡、动态和交互。我们通过在带有 DNOCS 注释的视频数据集上微调 Wan 2.2 主干网络实现了这一目标，DNOCS 是一种用于三维尺寸、朝向和按深度排序遮挡的新型编码方法。此外，我们的方法允许局部精细调整，例如调整跳跃轨迹或添加交互，同时对全局场景上下文的干扰最小。对 nuScenes、HO-3D 和 BEHAVE 基准的广泛评估表明，LooseControlVideo 显著优于现有的基于二维盒和光流的方法。我们的研究结果显示，相比当前最先进的布局条件模型，轨迹误差提高了 1.2 倍到 3 倍；刚体运动一致性提高了 2 倍；遮挡准确率提高了 1.5 倍到 2 倍，表明定向三维原语为复杂多智能体视频创作提供了良好的几何先验。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Shariq Farooq Bhat,Niloy J. Mitra,Kalyan Sunkavalli</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.19495.pdf">https://arxiv.org/pdf/2606.19495.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.19495">https://arxiv.org/abs/2606.19495</a></p>
+<p><strong>Arxiv ID</strong>: 2606.19495</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.19495">https://papers.cool/arxiv/2606.19495</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:31:10.432Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:31:10.432Z</p>
+<hr>
+<h3 id="11-Adaptive-Volumetric-Mechanical-Property-Fields-Invariant-to-Resolution"><a href="#11-Adaptive-Volumetric-Mechanical-Property-Fields-Invariant-to-Resolution" class="headerlink" title="11. Adaptive Volumetric Mechanical Property Fields Invariant to Resolution"></a>11. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2606.18231">Adaptive Volumetric Mechanical Property Fields Invariant to Resolution</a></h3><p>Abstract:Accurate mechanical properties (or materials) Young’s modulus ($E$), Poisson’s ratio ($\nu$) and density ($\rho$) are essential for reliable physics simulation of digital worlds, but most 3D assets lack this information. We propose AdaVoMP, a method for predicting accurate dense spatially-varying ($E$, $\nu$, $\rho$) for input 3D objects across representations, improving the resolution, accuracy, and memory efficiency over the state-of-the-art. The foundation of our technique is a sparse and adaptive voxel structure SAV that efficiently represents both the input 3D shape and the material field output. We replace the fixed-voxel model of the most accurate prior method, VoMP, with a novel sparse transformer encoder-decoder model that learns to generate a unique SAV autoregressively for every input shape to represent its materials, achieving a resolution $16^3\times$ higher than prior art. Experiments show that AdaVoMP estimates more accurate volumetric properties, even with lesser test-time compute than all prior art. This allows us to convert high-resolution complex 3D objects into simulation-ready assets, resulting in realistic deformable simulations.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：准确的机械性能（或材料）杨氏模量（$E$）、泊松比（$\nu$）和密度（$\rho$）对于数字世界的可靠物理模拟至关重要，但大多数3D资产缺乏这些信息。我们提出了AdaVoMP，一种用于预测输入3D对象在各种表示下准确的密集空间变化（$E$、$\nu$、$\rho$）的方法，相比现有技术提高了分辨率、精度和内存效率。我们技术的基础是一种稀疏且自适应体素结构SAV，它高效地表示输入的3D形状及材料场输出。我们用一种新颖的稀疏变换器编码-解码模型替代了最精确的之前方法VoMP的固定体素模型，该模型学习为每个输入形状自回归地生成唯一的SAV，以表示其材料，实现了比现有技术高$16^3$倍的分辨率。实验表明，即使在测试时计算量较低的情况下，AdaVoMP也能估计更准确的体积属性。这使我们能够将高分辨率复杂3D对象转换为适合模拟的资产，从而实现逼真的可变形模拟。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: 抓取失败（已重试2次）: Waiting failed: 30000ms exceeded</p>
+</div></details>
+<p><strong>Authors</strong>: Rishit Dagli,Donglai Xiang,Vismay Modi,Xuning Yang,Gavriel State,David I.W. Levin,Maria Shugrina</p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.18231.pdf">https://arxiv.org/pdf/2606.18231.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.18231">https://arxiv.org/abs/2606.18231</a></p>
+<p><strong>Arxiv ID</strong>: 2606.18231</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2606.18231">https://papers.cool/arxiv/2606.18231</a></p>
+<p><strong>Published</strong>: 2026-06-19T02:32:54.482Z</p>
+<p><strong>Updated</strong>: 2026-06-19T02:32:54.482Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202606/2026-06-19/">https://wdndev.github.io/daily/hf/202606/2026-06-19/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202606/2026-06-01/" title="HuggingFace Papers 2026-06-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-01</div></div></a></div><div><a href="/daily/hf/202606/2026-06-02/" title="HuggingFace Papers 2026-06-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-02</div></div></a></div><div><a href="/daily/hf/202606/2026-06-04/" title="HuggingFace Papers 2026-06-04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-04</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Moebius-0-2B-Lightweight-Image-Inpainting-Framework-with-10B-Level-Performance"><span class="toc-text">1. Moebius: 0.2B Lightweight Image Inpainting Framework with 10B-Level Performance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Beyond-Static-Leaderboards-Predictive-Validity-for-the-Evaluation-of-LLM-Agents"><span class="toc-text">2. Beyond Static Leaderboards: Predictive Validity for the Evaluation of LLM Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Thinking-with-Visual-Grounding"><span class="toc-text">3. Thinking with Visual Grounding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ENPIRE-Agentic-Robot-Policy-Self-Improvement-in-the-Real-World"><span class="toc-text">4. ENPIRE: Agentic Robot Policy Self-Improvement in the Real World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-FreeStyle-Free-Control-of-Style-Content-Dual-Reference-Generation-from-Community-LoRA-Mining"><span class="toc-text">5. FreeStyle: Free Control of Style-Content Dual-Reference Generation from Community LoRA Mining</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-ImageWAM-Do-World-Action-Models-Really-Need-Video-Generation-or-Just-Image-Editing"><span class="toc-text">6. ImageWAM: Do World Action Models Really Need Video Generation, or Just Image Editing?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Holo-World-Unified-Camera-Object-and-Weather-Control-for-Video-World-Model"><span class="toc-text">7. Holo-World: Unified Camera, Object and Weather Control for Video World Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Current-World-Models-Lack-a-Persistent-State-Core"><span class="toc-text">8. Current World Models Lack a Persistent State Core</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-JAMER-Project-Level-Code-Framework-Dataset-and-Benchmark-on-Professional-Game-Engines"><span class="toc-text">9. JAMER: Project-Level Code Framework Dataset and Benchmark on Professional Game Engines</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-LooseControlVideo-Directorial-Video-Control-using-Spatial-Blocking"><span class="toc-text">10. LooseControlVideo: Directorial Video Control using Spatial Blocking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Adaptive-Volumetric-Mechanical-Property-Fields-Invariant-to-Resolution"><span class="toc-text">11. Adaptive Volumetric Mechanical Property Fields Invariant to Resolution</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
