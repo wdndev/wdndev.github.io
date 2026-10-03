@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-10-01 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Decompose Radicals, Then Reward: Fine-Grained Inspection for Accurate Chinese Text RenderingAbstract:Rendering accurate Chinese text remains challenging for t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-10-01">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202610/2026-10-01/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Decompose Radicals, Then Reward: Fine-Grained Inspection for Accurate Chinese Text RenderingAbstract:Rendering accurate Chinese text remains challenging for t">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-03T02:18:42.007Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202610/2026-10-01/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-10-01',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-03 10:18:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">317</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-10-01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-10-03T02:18:42.007Z" title="Updated 2026-10-03 10:18:42">2026-10-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">10.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>34min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-10-01"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Decompose-Radicals-Then-Reward-Fine-Grained-Inspection-for-Accurate-Chinese-Text-Rendering"><a href="#1-Decompose-Radicals-Then-Reward-Fine-Grained-Inspection-for-Accurate-Chinese-Text-Rendering" class="headerlink" title="1. Decompose Radicals, Then Reward: Fine-Grained Inspection for Accurate Chinese Text Rendering"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.37569">Decompose Radicals, Then Reward: Fine-Grained Inspection for Accurate Chinese Text Rendering</a></h3><p>Abstract:Rendering accurate Chinese text remains challenging for text-to-image models. Existing OCR-based reinforcement-learning rewards compare decoded transcripts with target strings. Such rewards overlook the compositional nature of Chinese writing: an ideograph consists of reusable components arranged through explicit spatial relations, yet OCR evaluates it as an atomic character. Consequently, visually different radical-level errors may receive equally coarse feedback, encouraging glyphs that merely resemble the target instead of faithfully reproducing its internal structure. We employ Ideographic Description Sequences (IDS), which comprise spatial operators and character components, and train an expert IDS recognizer to transcribe rendered Chinese text into this representation. Building on this recognizer, we introduce IDSpect, which deterministically decomposes the target text into IDS tokens and aligns crop-level visual IDS predictions with the target sequence. Globally unique token credit makes this comparison robust to the order of detected text regions. Combined with a whole-character semantic reward, IDSpect supplies fine-grained credit with component and spatial-relation without changing the image generator or adding inference-time cost. Experiments with GRPO post-training of Qwen-Image demonstrate that IDSpect achieves leading structural quality and semantic alignment on LongText and GenTextEval.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：渲染准确的中文文本对于文本生成图像模型仍然具有挑战性。现有基于 OCR 的强化学习奖励机制通过将解码后的文本与目标字符串进行比较来评估，但这些奖励忽略了中文书写的组合性质：一个汉字由可重复使用的组件通过明确的空间关系排列而成，而 OCR 将其作为单个原子字符进行评估。因此，视觉上不同的部首级错误可能会得到同样粗略的反馈，从而促使生成的字形只是类似于目标，而不是忠实再现其内部结构。我们使用表意文字描述序列（IDS），其由空间运算符和字符组件组成，并训练了一个 IDS 专家识别器，将渲染的中文文本转录为该表示形式。在此识别器的基础上，我们引入了 IDSpect，它可以确定性地将目标文本分解为 IDS 令牌，并将裁剪级视觉 IDS 预测与目标序列对齐。全局唯一令牌的奖励使这种比较对检测文本区域的顺序不敏感。结合整字语义奖励，IDSpect 在不改变图像生成器或增加推理时成本的情况下，提供了具有组件和空间关系的细粒度奖励。在对 Qwen-Image 进行 GRPO 后训练的实验中，IDSpect 在 LongText 和 GenTextEval 上实现了领先的结构质量和语义一致性。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2609.37569 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Yazhen Xie,Xingsong Ye,Zhineng Chen</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.37569.pdf">https://arxiv.org/pdf/2609.37569.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.37569">https://arxiv.org/abs/2609.37569</a></p>
+<p><strong>Arxiv ID</strong>: 2609.37569</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.37569">https://papers.cool/arxiv/2609.37569</a></p>
+<p><strong>Published</strong>: 2026-10-01T02:24:15.377Z</p>
+<p><strong>Updated</strong>: 2026-10-01T02:24:15.377Z</p>
+<hr>
+<h3 id="2-Imagine3D-LLM-Teaching-MLLMs-to-Imagine-3D-Scenes-Before-Answering"><a href="#2-Imagine3D-LLM-Teaching-MLLMs-to-Imagine-3D-Scenes-Before-Answering" class="headerlink" title="2. Imagine3D-LLM: Teaching MLLMs to Imagine 3D Scenes Before Answering"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.38177">Imagine3D-LLM: Teaching MLLMs to Imagine 3D Scenes Before Answering</a></h3><p>Abstract:Reasoning about the 3D world from multi-view images remains a fundamental challenge for Multimodal Large Language Models (MLLMs). While modern MLLMs handle single-image inputs effectively, they struggle to integrate evidence across viewpoints into a coherent 3D understanding. A growing body of work attempts to close this gap by injecting 3D awareness into MLLMs, either by boosting fine-grained pixel-level cross-view correspondence or by fusing features from 3D geometry foundation models, yet a substantial gap to human reasoning persists. In this work, we revisit human spatial reasoning, which suggests that rather than relying on fine-grained geometry cues, humans roughly identify common objects across views, infer the relative geometry between viewpoints, and assemble a coarse 3D layout of the scene. Inspired by this process, we introduce Imagine3D-LLM, an MLLM that learns to assemble a similar compact 3D representation of the scene and conditions its answer on this representation. Concretely, we append a small set of learnable summary tokens after the image tokens, decode them into a compact 3D Gaussian Splatting representation supervised by a photometric reconstruction loss, and train jointly with the standard next-token prediction objective. Notably, although only the summary tokens receive direct reconstruction supervision, this objective also induces stronger cross-frame correspondence within the LLM’s underlying image features, suggesting that learning to reconstruct propagates 3D-aware signals throughout the model. As a result, Imagine3D-LLM consistently outperforms prior approaches across multiple spatial reasoning and 3D understanding benchmarks, suggesting that imagining the scene can be more effective than being told its pixel-wise geometry.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：从多视角图像推理三维世界仍然是多模态大型语言模型（MLLM）的一项基本挑战。虽然现代MLLM能够有效处理单幅图像输入，但在整合不同视角的证据以形成连贯的三维理解方面仍存在困难。越来越多的研究尝试通过向MLLM注入三维意识来弥合这一差距，方法包括增强细粒度像素级跨视图对应关系，或融合来自三维几何基础模型的特征，但与人类推理相比仍存在显著差距。在本工作中，我们重新审视了人类空间推理，这表明人类并不依赖细粒度的几何线索，而是大致识别各视角间的常见物体，推断视点之间的相对几何关系，并组装出场景的粗略三维布局。受此启发，我们提出了Imagine3D-LLM，这是一种MLLM，可以学习组装场景的类似紧凑三维表示，并在回答时以该表示为条件。具体而言，我们在图像标记后附加一小组可学习的摘要标记，将其解码为受光度重建损失监督的紧凑三维高斯点表示，并与标准的下一个标记预测目标共同训练。值得注意的是，尽管只有摘要标记接受直接重建监督，该目标也会在LLM底层图像特征中引入更强的跨帧对应关系，这表明学习重建会将三维感知信号传播到整个模型。因此，Imagine3D-LLM在多个空间推理和三维理解基准测试中始终优于以往方法，这表明“想象”场景可能比直接获取其逐像素几何信息更有效。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2609.38177 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Jaewoo Jung,Hyeonseo Yu,Honggyu An,Jisang Han,Mungyeom Kim,Minkyeong Jeon,Heeseong Shin,Wonjun Moon,Federico Tombari,Daniel Barath,Marc Pollefeys,Seungryong Kim,Sunghwan Hong</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.38177.pdf">https://arxiv.org/pdf/2609.38177.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.38177">https://arxiv.org/abs/2609.38177</a></p>
+<p><strong>Arxiv ID</strong>: 2609.38177</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.38177">https://papers.cool/arxiv/2609.38177</a></p>
+<p><strong>Published</strong>: 2026-10-01T02:24:15.398Z</p>
+<p><strong>Updated</strong>: 2026-10-01T02:24:15.398Z</p>
+<hr>
+<h3 id="3-Almost-Human-Except-When-It-Matters-VoxParity-and-the-Decisions-a-Voice-Should-Change"><a href="#3-Almost-Human-Except-When-It-Matters-VoxParity-and-the-Decisions-a-Voice-Should-Change" class="headerlink" title="3. Almost Human, Except When It Matters: VoxParity and the Decisions a Voice Should Change"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.35922">Almost Human, Except When It Matters: VoxParity and the Decisions a Voice Should Change</a></h3><p>Abstract:A voice agent can handle almost every call on the words alone and still fail the few its sector’s rules were written for. Emergency-call standards, fraud guidance, radio phraseology and vulnerability rules recognise that how a caller sounds, or what else is audible, can change the right action. VoxParity tests whether agents act on it. In 183 scenarios from 14 sectors, one transcript stays fixed while the audio changes (a coaching voice, a medical monitor beeping, a mayday under a radio check, noise over a drug name, a child’s voice placing a bet, a frightened whisper), and with it the correct typed tool call. A words-only null test credits a system only if hearing the call moves its actions more than it moves a pipeline that only reads the words. Only 11 of the 23 systems that can also be run on the transcript pass. Descriptively, errors run toward the words: when the audio calls for protection, all 28 systems carry out the routine request more often than they over-react on clean calls (41% against 12% pooled; the words-only pipeline, 58% against 15%). Exploratory analyses place most of the leading systems’ misses on cues they heard; systems beat the null almost entirely on items that state the rule; the leading systems overrule heard resignation or confusion far more often than acute alarm; and, in the models tested, describing the voice and stating the rule each recover part of the shortfall, leaving a gap on emotion.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：语音代理几乎可以仅凭文字处理每一个通话，但仍可能在其行业规则针对的少数情况中失败。紧急呼叫标准、欺诈指导、无线电术语和脆弱性规则都承认，呼叫者的语音特征或其他可听信息可能改变正确的操作。VoxParity 测试代理是否会根据这些信息采取行动。在来自 14 个行业的 183 个场景中，一个文字记录保持不变，而音频会发生变化（例如教练的声音、医疗监测器的滴答声、无线电检查中的求救、药名上的噪音、孩子下注的声音、惊恐的耳语），并同时确定正确的文字工具调用。仅文字的空测试只会在听到呼叫确实使其行动比仅读取文字的流程更多时才认可系统。23 个也可以在文字记录上运行的系统中，仅有 11 个通过测试。从描述上看，错误倾向于文字：当音频呼叫需要保护时，所有 28 个系统执行常规请求的频率都高于它们在干净通话中反应过度的频率（合并后分别为 41% 对 12%；仅文字的流程为 58% 对 15%）。探索性分析显示，大多数领先系统的遗漏发生在它们听到的提示上；系统几乎完全在陈述规则的项目上超过了空测试；领先系统比起对急性警报，更常推翻听到的无奈或困惑；在测试的模型中，描述语音和陈述规则各自弥补了部分不足，但在情绪方面仍存在差距。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？ 这篇论文试图解决的核心问题是：\*\*语音代理（voice agents）是否真正根据声音中的副语言线索（paralinguistics）采取行动，还是仅仅依据文字转录内容做决策\*\*。 具体而言，论文围绕以下几个层面展开： ### 1. 识别行业规则与系统能力之间的脱节 多个行业（如紧急救援、金融防诈、航空管制、博彩监管、公用事业等）的规范明确要求：当呼叫者的声音状态或背景音频发生变化时，代理必须采取不同的行动。例如： - 背景中出现医疗监护仪的蜂鸣声 → 应暂停断水断电 - 第二个人在旁胁迫（coaching voice）→ 应标记安全顾虑 - 儿童声音下注 → 应暂停并验证年龄 - 恐慌或哽咽的求救 → 应启动紧急响应 然而，当前大多数语音代理实质上仍依赖文字转录（transcript）进行工具调用（tool calling），而语音识别系统（如Whisper）会过滤掉填充词、重复、情绪表达、背景事件和第二人声等关键音频线索。 ### 2. 建立可量化的评估基准 论文指出，现有评估存在关键缺口： - 情感识别或"情绪感知"只停留在感知层（perception），未测量到行动层（action） - 缺乏一个\*\*以执行的工具调用（executable typed tool calls）\*\*为评估对象、且能区分"听到"与"据此行动"的基准 为此，论文提出 \*\*VoxParity\*\* 基准测试，包含： - \*\*183个场景\*\*，覆盖14个行业 - \*\*固定文字脚本\*\*，仅通过音频变化（情绪、环境音、第二人声、说话者年龄等）改变正确的工具调用 - \*\*词语-only零假设检验（words-only null test）\*\*：将系统的音频表现与其自身在文字转录上的表现对比，再减去一个纯文字流水线的基准效应，从而精确衡量"听到声音"本身为决策带来的增量 ### 3. 揭示系统性偏差方向 论文发现，所有28个被测系统（来自11家厂商）在音频要求采取保护性行动时，都存在向文字内容靠拢的偏差： - \*\*保护性呼叫上的不安全执行率\*\*：41%（池化数据） - \*\*干净呼叫上的过度触发率\*\*：12% - 即使是最领先的四个系统，执行常规请求的频率（34%）仍显著高于在干净呼叫上的过度反应（18%） ### 4. 定位失效环节：从"听到"到"决定"的桥梁断裂 通过分解分析，论文发现： - 系统在"识别线索"（hearing）上表现尚可，但在"据此行动"（deciding）上存在显著缺口 - 情绪性线索（如困惑、 resignatio n、讽刺、哽咽）比事实性线索（如背景噪音、第二人声）更难被转化为行动 - 当规则明确陈述时，系统表现显著提升；当规则隐含时，即使听到了情绪线索，系统也几乎无法超越文字基准 ### 总结 论文试图将"语音代理是否根据声音行动"这一部署层面的关键问题，转化为一个\*\*无需人工评判、可重复、可对抗纯文字基线\*\*的严格测试，并首次在大规模、跨行业、可执行行动的场景下，量化了当前语音代理在副语言决策上的系统性失效。 Q2: 有哪些相关研究？ 论文在第8节"Related work"及全文中梳理了以下几条研究脉络： ### 1. 测量"行动"而非仅"感知" 现有直接考察生产级语音代理是否根据语音传递方式（delivery）采取行动的研究较为稀少： - \*\*Bartelds et al.
+</p>
+
+<p>5<br>** (“Hears but Does Not Listen”)：在3个场景中固定呼叫者开头语仅改变传递方式，发现4个实时代理依据文字而非声音行动；其中3个能可靠识别出痛苦、恐惧或讽刺，但在做决策时却忽略了这些线索。该研究没有统计分析、人类决策参考或词语基线。 - **RW-Voice-EQ<br>2<br>**：在变化的语音传递下评估响应质量，但不涉及工具调用（tool calls）的评分。 ### 2. “感知得到但不据此行动”的文献 多项研究指出音频模型能够感知线索，却未将其转化为决策： - **Hear2Act </p>
+<p>43<br>**：发现”音频 capable LLM 可以从语音中恢复信息，但没有可靠地将其带入行动，除非有显式的中间表征”；将音频加入转录仅将最优解率从  14.6%  提升到  15.3% 。 - **Koduru et al.<br>34<br>** (“Heard but Not Heeded”)：通过探测研究发现音频-语言模型”编码的信息多于其使用的信息”，即存在感知与使用之间的鸿沟。 - **Peng &amp; Nuchged<br>59<br>**：对韵律的低利用提出了因果解释。 - **Wang et al.<br>83<br>** (“Read-Best Is Not Steer-Best”)：发现全模态大语言模型中探测与引导层的解耦现象。 ### 3. 语音代理行为基准（动作层面） 现有动作基准通常保持任务逻辑对传递方式不变，或未建立词语基线： - **𝜏-Voice </p>
+<p>67<br>**、**VAmoS<br>46<br>**、**aiewf-eval<br>35<br>**、**PhoneBench<br>11<br>**、**Audio2Tool<br>53<br>**、**VoiceAgentBench<br>30<br>**、**Full-Duplex-Bench-v3<br>40<br>**：评估代理行为，但任务逻辑不随语音传递变化。 - **MTVA-Bench<br>49<br>**：仅在转录文本上评分工具调用，假设模型界面没有音频（这正是本文零假设所检验的前提）。 - **ProVoice-Bench<br>88<br>**：根据声学事件决定是否发出干预，但响应对被评判而非确定性匹配；VoxParity 则是在固定转录上翻转哪个打字动作是正确的。 - **MSI-Bench<br>87<br>**：在多说话人语音交互中测量背景事实是否被捕捉，但其动作的黄金标准从不取决于说话方式。 ### 4. 人类参考点 现有基准缺乏人类在”动作选择”或”工具调用”任务上的直接对比： - **MMAU </p>
+<p>69<br>**、**MMSU<br>80<br>**、**MMAU-Pro<br>36<br>**、**EmoSBench<br>81<br>**：人类基线仅用于标签验证、响应评分或自由回复质量评估。 - **MultiVox<br>72<br>**：对人类回复进行评分（4.35/5），但非动作选择。 - **MSI-Bench<br>87<br>**：让3名众包工作者在信噪比压力下重复子集，报告背景事实是否被捕获——这仍是一种感知测量，而非动作测量。 - **EchoMind<br>94<br>**、**VoxSafeBench<br>85<br>**：固定脚本变化传递，但评分的是标签或经评判的文本，而非可执行的工具调用。 ### 5. 其他相邻技术路线 - **ParaBridge </p>
+<p>86<br>**：通过向文本模型提供语音状态描述来提升安全性表现（从  14.6%  到  29.0% ，蒸馏后达  40.3% ），但未涉及固定转录下的动作翻转。 - **Hear2Act<br>43<br>**：将音频推断出的状态写入文本后，动作率可达  39.6% ；VoxParity 的发现与此平行——在提示中描述声音能部分恢复表现，但仍留情绪缺口。 - **CLASH<br>77<br>**、**VoxParadox<br>55<br>**、**ProSarc<br>75<br>**：关于讽刺和情绪检测中内容相对于声音的主导性研究。 - **VoxPrivacy<br>84<br>**、**MP-Bench<br>74<br>**、**AEGIS<br>38<br>**：关于说话人身份、多方对话和音频安全性的相关基准。 Q3: 论文如何解决这个问题？ 论文通过**构建可测量的诊断框架**来应对该问题，核心路径是：将“代理是否依据声音行动”从定性观察转化为可对抗纯文字基线的量化测试，并定位失效环节。具体方法如下： —- ### 1. 构建极简对比基准 VoxParity 为排除文字内容的干扰，论文设计了一个**固定文字、仅变声音**的对比集（contrast set）： - **183 个场景**，横跨 14 个行业（紧急救援、银行、医疗、航空、博彩等），每个场景只有**一段固定转录文本** - 同一段文本被渲染为**两个或以上音频变体**：例如一次是“平静说出”，一次是“边哭边说”，或加入背景医疗监护仪蜂鸣、第二人声胁迫等 - 不同变体的**正确可执行工具调用（gold tool call）不同**——这是关键：若代理只听文字，则会在不同变体上做出相同选择，从而至少在一个变体上犯错 这种设计确保任何得分差异只能归因于对**副语言线索（paralinguistics）**的利用。 —- ### 2. 提出“词语-only 零假设检验”（words-only null test） 为了严格衡量“听见声音本身”带来的决策增量，论文提出无需人工评判的统计检验： 设系统在某单元（cell）上的音频得分为  S<em>(audio) ，同一系统读取精确转录的得分为  S</em>(twin) ；同时，一个纯文字流水线（Whisper 转录 + 文本大模型，从不听音频）在相同单元上的得分为  S_(cascade) 。 检验统计量为差中之差： </p>
+<p>Delta = (S<em>(audio) - S</em>(twin)) - S_(cascade)</p>
+<ul>
+<li>若  Delta &gt; 0 ，说明该系统**因听见声音而改变了行动**，且改变幅度超过了纯文字转录所能解释的范围 - 该检验不需要人类标注员评判决策对错，仅靠确定性语法树匹配工具调用即可计算 —- ### 3. 用感知探针分解“听见”与“行动” 为区分失败源于**感知层**（没听见）还是**决策层**（听见了但没行动），论文要求系统在行动前回答一个强制选择的感知探针（perception probe），例如“这段音频中说话者状态如何”。 由此可将每个单元划分为： - **Heard**：系统探针答对 - **Missed**：系统探针答错 进而精确计算： -  P( mid heard) ：听见了却仍未正确行动的比例 -  P( mid missed) ：没听见时的基线正确率 论文发现，对于领先系统，完美感知仅能提升  0.04  的得分，而完美决策可提升  0.28 ，从而将瓶颈定位在**“从听见到决定”的桥梁断裂**。 —- ### 4. 通过控制变量定位失效模式 在相同单元上，论文进一步引入结构化对照，以定位失效的具体条件： | 对比维度 | 设计 | 发现 | |————-|———|———| | **事实 vs. 情绪** | 环境音/第二人声（改变事实） vs. 哭泣/讽刺（改变状态） | 系统对“事实类”线索行动率显著高于“情绪类” | | **规则显式 vs. 隐含** | 部分场景在提示中明确写出政策（“若 caller 哭泣，则转 hardship”），部分不写 | 仅在规则显式陈述时，系统才会依据情绪行动；规则隐含时，即使听见情绪，也与纯文字基线无异 | | **急性警报 vs. 安静状态** | 恐慌/喘气 vs. 困惑/ resignation / 讽刺 | 系统对安静的负面状态（如困惑、哽咽）的忽视率（52%）远高于急性警报（6%） | —- ### 5. 用“描述性提示”探测可恢复的上界 为测试缺口是否可通过**决策输入侧**的改进来弥补，论文在提示中注入两种人工构造的线索： - **Label note**：一个词标签（如“caller sounds sad”） - **Description note**：完整描述声音状态及强度（如“the caller speaks in a low, heavy, dejected voice close to tears, expressed strongly and unmistakably”） 实验发现： - 即使是从未听音频的**纯文本模型**，在获得 description note 后，其正确率（ 0.76 ）可超过所有未辅助的音频原生系统（最高  0.57 ） - Description note 几乎完全恢复了“事实类”线索的表现，但对**情绪类**仍有缺口 - 结合“显式规则”+“声音描述”，情绪类表现可从  0.40  提升至  0.83  这为架构设计提供了方向：代理需要先将听到的声音**校准为决策可用的状态描述**，并在政策中显式映射该状态到行动。 —- ### 6. 建立人类参考与稳健性检验 论文还让约 20 名志愿者在浏览器游戏中对相同音频做相同选择（但不给政策文本），作为人类参考点。所有统计比较均采用： - 按场景（item）聚类的自助法（percentile bootstrap） - Holm 校正的多重检验 - 留一法家族稳健性检验（leave-one-family-out） —- ### 总结 论文并未提出端到端的训练算法，而是通过**可控对比基准 + 零假设统计检验 + 感知-决策分解 + 提示注入上界**的方法，将“语音代理是否根据声音行动”这一问题从模糊的行业观察，转化为可审计、可定位瓶颈的工程测量，并指出：**当前的缺口主要在决策桥接（将听到的声音映射为工具调用），而非听觉感知本身**。 Q4: 论文做了哪些实验？ 论文围绕 **VoxParity** 基准开展了一系列实验，核心目标是检验语音代理是否真正依据声音（而非仅文字）执行正确的工具调用。实验可系统梳理为以下九个方面： —- ### 1. 基准构建与场景设计实验 论文首先构建了一个控制严格的对比基准，确保所有差异仅源于音频中的副语言线索： - **183 个场景**，来自 **14 个行业**（银行、医疗、紧急救援、航空、公用事业、博彩等），每个场景只有**一段固定转录文本**。 - 同一段文本被渲染为 **206 个带线索的音频变体** 和 **103 个干净对照变体**，通过 **7 种线索类型**改变正确行动： - 情绪传递（emotional delivery, 117 个单元） - 第二人声（second voice, 36 个单元） - 环境音（environmental sound, 13 个单元） - 说话者年龄（speaker age, 10 个单元） - 不流畅/沉默（disfluency/silence, 14 个单元） - 讽刺（sarcasm, 8 个单元） - 掩蔽词（masked word, 7 个单元） - 使用 **Gemini-TTS**（主引擎）、**Kokoro-82M** 和 **Qwen3-TTS**（第二引擎）合成语音，并由作者录制 **49 个人类语音变体**（26 个场景）作为稳健性检验。 —- ### 2. 大规模系统评测实验 对 **28 个音频原生系统**（来自 11 家厂商）进行统一评测，覆盖三种服务模式： - **文件模式（file-mode）**：13 个 API 模型，接收完整音频片段。 - **生产级实时代理（realtime）**：9 个通过厂商实时 API 运行的代理。 - **本地部署（local）**：6 个在 Apple Silicon Mac 上运行的开源权重模型。 其中 **23 个系统** 同时支持文本输入路径（transcript path），可用于核心差分分析；5 个系统（如 NemotronLabs VoiceChat 11B）仅支持音频输入，仅参与准确率对比。 —- ### 3. Words-only Null Test（核心实验） 这是论文提出的核心统计检验，衡量系统是否**因听到声音而改变了行动**，且改变幅度超过纯文字流水线所能解释的范围： - **Words-only cascade**：Whisper-large-v3-turbo 转录 + gpt-oss-120b 文本模型，作为从不听音频的基线。 - 对 23 个有文本路径的系统，计算差分差值： </li>
+</ul>
+<p>Delta = (S<em>(audio) - S</em>(twin)) - S_(cascade)</p>
+<ul>
+<li>**结果**：仅 **11/23** 个系统通过检验（ Delta &gt; 0  且经 Holm 校正）；OpenAI 的两个可测系统均未通过，7 个生产级实时代理中仅 **1 个**（Gemini 2.5 native-audio Live）通过。 —- ### 4. 错误方向与风险不对称性实验 论文系统分类了代理在保护性呼叫（protective calls）与干净呼叫（clean calls）上的错误模式： - **不安全执行（unsafe execution）**：在音频要求保护时仍执行常规请求。 - **过度触发（over-triggering）**：在干净呼叫上错误地采取保护行动。 **结果**： - 所有 **28 个系统** 在保护性呼叫上执行常规请求的频率（池化 **41%**）均高于在干净呼叫上的过度触发率（池化 **12%**）。 - 即使领先的四个系统，该比例仍为 **34% vs. 18%**。 - Words-only cascade 的比例为 **58% vs. 15%**，说明听见音频虽有改善，但未能逆转错误方向。 —- ### 5. 感知-决策分解实验 为定位失效环节，论文要求系统在行动前回答强制选择的**感知探针**（perception probe），将表现分解为： - **听见（Heard）**：探针正确识别线索。 - **未听见（Missed）**：探针未识别线索。 关键测量： -  P( mid heard) ：听见了却仍错误行动的概率。 - **Shapley 分解**：对领先系统，**完美听力**仅能增加 **0.04** 的得分，而**完美决策**可增加 **0.28**，表明瓶颈在“从感知到决策的桥梁”。 —- ### 6. 线索类型与规则显式性对比实验 在相同单元上，论文通过对比不同线索类型和提示条件，定位系统何时会依据声音行动： #### (a) 事实 vs. 情绪 - **事实线索**（环境音、第二人声、掩蔽词等）：改变请求的事实前提。 - **情绪线索**（哭泣、讽刺、困惑等）：不改变文字内容，但改变呼叫者状态。 **结果**：领先系统在情绪线索上击败 null test 的幅度（**+0.33**，规则显式时）显著低于事实线索；当规则隐式时，情绪线索上无显著增益（**+0.00**）。 #### (b) 显式规则 vs. 隐式规则 - 在 **79 个规则隐式**的场景中，用语言模型生成显式的双分支规则（“正常情况下做 X；若 caller 听起来 Y，则做 Z”）加入提示。 **结果**：显式规则使两个测试模型（gemini-3.7-flash 和 qwen3.5-omni-plus）在无规则项上的正确率均提升 **+0.17**。 #### (c) 急性警报 vs. 安静状态 将情绪进一步分为： - **急性警报**（恐慌、喘气、悲伤哭泣） - **安静状态**（困惑、resignation、讽刺、含糊不清） **结果**：领先系统在听见急性警报后仍执行文字默认动作的比例仅 **6%**；但对安静状态，该比例高达 **52%**。 —- ### 7. 提示注入与上界探测实验 为测试决策输入侧的可恢复性，论文在提示中注入人工构造的声音描述： | 条件 | 设计 | 关键发现 | |———|———|—————| | **Sham note** | 伪装的无关文本 | 无效果 | | **Label note** | 单标签（如“sad”） | 情绪单元正确率约 **0.59**；事实单元接近天花板（**0.97–1.00**） | | **Description note** | 完整描述+强度（如“低沉、沉重、 unmistakably 悲伤”） | 情绪单元提升至 **0.66**；结合显式规则可达 **0.83** | | **纯文本模型+Description** | gpt-oss-120b 等从不听音频的模型，获得 description note | 正确率 **0.76**，超过所有未辅助的音频原生系统（最高 **0.57**） | 该实验表明：一旦声音被**显式转写为校准的状态描述**，纯文本模型即可超越当前最好的音频系统；缺口在于音频系统未能自主完成这种“桥接”。 —- ### 8. 人类参考实验 约 **20 名志愿者**通过浏览器游戏参与相同任务： - 听取与系统完全相同的音频片段和工具菜单。 - **不看策略文本**，但被告知“是 caller 的声音告诉你正确动作”。 - 在锁定行动后回答感知问题。 **结果**： - 志愿者在保护性呼叫上的不安全执行率为 **18%**，显著低于 28 个系统的中位数（**38%**）。 - 志愿者的  P( mid heard)  约为 **0.70**，领先系统约为 **0.62**。 - 人类参考点位于“等错误率线”附近，而所有系统均位于该线上方（偏向文字）。 —- ### 9. 稳健性检验实验 论文对核心结论进行了多维度稳健性验证： - **不同文本模型作为 null floor**：使用 DeepSeek-V4-Pro 和 Claude Sonnet 5 替代 gpt-oss-120b 作为 cascade 的语言模型，通过 null test 的系统数量仍为 **10–11 个**，结论不变。 - **移除 legacy items**：排除 19 个早期草稿场景后，仍有 **11/23** 通过。 - **第二合成引擎**：gemini-3.7-flash 在 Kokoro-82M 和 Qwen3-TTS 上的效应与 Gemini-TTS 的差异不显著。 - **人类录音**：在 34 个人类录音的线索单元上，gemini-3.7-flash 仍显著超越 cascade（**+0.30**）。 - **两种 deliveries 都正确**的严格读数：仅当系统在某一场景的两个变体上均正确时才计数，结果与 null test 排名高度一致（Spearman  rho = 0.87 ）。 - **菜单与探针顺序打乱**：重新随机化探针选项或工具菜单顺序，不改变任何核心结论。 Q5: 有什么可以进一步探索的点？ 基于论文的发现与自陈局限，以下方向具有进一步探索的价值： —- ### 1. 从合成语音到真实世界语音的泛化 论文的情感结果几乎完全建立在 **Gemini-TTS** 单一合成声音与少量人类录音之上。自然语音中的情绪表达可能包含更复杂的副语言变异（如方言、口音、个体音质差异）。未来工作可： - 引入大规模、多说话人、跨性别与跨口音的真实录音库 - 检验系统在“非典型”或低资源口音下的表现是否一致 - 测试合成情感的“显著性效应”（salience effect）是否导致系统过度识别或易于 discount —- ### 2. 决策桥接机制的架构设计 论文提出一个架构假说：代理需要先将听觉输入**锚定为可校准的状态描述**（如“caller 表现出高度恐慌，呼吸急促”），再在显式策略下映射到行动。可探索： - 训练或微调一个显式的“副语言 → 文本描述”模块，作为音频大模型与工具策略之间的中间层 - 对比“端到端隐式编码”与“显式中间表征”在相同基准上的表现差异 - 研究该中间描述需携带何种粒度（类别标签、强度标量、还是自然语言句子）才能最大化行动转化率 —- ### 3. 基于对比对的训练方法 论文指出，**转录固定、音频变化、正确动作不同**的成对样本可直接构成对比学习或策略优化的信号： - 探索使用此类“delivery-counterfactual pairs”对工具调用策略进行直接微调或 RLHF - 检验专门在“安静状态”（quiet states，如困惑、resignation、讽刺）上采样训练，能否缩小当前系统对急性警报与安静状态之间的行动落差 - 验证在 VoxParity 的 held-out 集上进行训练是否能泛化到未见的场景与行业 —- ### 4. 规则自动显式化与策略生成 实验显示，当规则从隐式变为显式时，系统对情绪线索的行动率显著提升（ +0.17 ）。可进一步研究： - 自动从行业规范、法律条文或内部操作手册中提取/生成双分支规则（“正常情况下做 X；若 caller 处于 Y 状态，则做 Z”） - 评估自动生成的规则与人工撰写规则在 VoxParity 上的等效性 - 探索在部署环境中动态注入上下文相关规则（context-aware policy injection）对安全性的提升 —- ### 5. 实时（realtime）服务模式的系统性诊断 论文发现，在 **7 对同系列模型中，realtime 模式在 5 对中降低了线索承载得分**（Table A3），且探针准确率普遍下降。需深入： - 区分 latency、流式解码、turn-commitment 机制与工具调用延迟对决策质量的各自贡献 - 研究 realtime 系统中“未回答探针”（no-option answers）是听觉失败还是行为现象（如模型选择回复 caller 而非回答问题） - 设计针对全双工（full-duplex）场景的下一代 null test，以处理交叠语音与打断 —- ### 6. 扩大人类参考与校准玩家实验 当前人类参考依赖约 **20 名自选择志愿者**，且每人仅贡献约 1.7 个答案/单元： - 招募经过培训的专业人员（如接线员、护士、空中交通管制员）作为专家基线 - 引入有报酬、经过 headphone screen 与 catch trial 筛选的标准化众包流程 - 检验人类在拥有/不拥有显式策略文本时的表现差异，以剥离“规则知识”与“声音感知”的独立贡献 —- ### 7. 超越“必要检验”的安全充分性框架 Words-only null test 是**必要但非充分**的部署前检验： - 开发补充测试以覆盖论文未涉及的失败模式（如时间维度上的线索累积、多轮对话中的状态追踪） - 将 null test 与 severity-weighted risk 审计结合，建立面向监管合规的认证协议（如针对 NENA-STA-020.1、FCA FG21/1 等具体规范的符合性检查清单） - 探索对抗性音频扰动（adversarial perturbations）下，系统是否仍能保持对关键副语言线索的稳健行动 —- ### 8. 跨语言与多模态扩展 论文场景以英语为主，但副语言线索的编码具有文化特异性： - 构建非英语（如中文、西班牙语、阿拉伯语）的 VoxParity 变体，检验是否存在跨语言的“情绪-行动”缺口 - 引入视频或视觉线索（如视频客服中的面部表情）与音频的交互作用，测试多模态代理在模态冲突时的决策偏向 —- ### 9. 细粒度失效解剖：从“听见了”到“听见了但否认” 论文的 describe-then-act 实验显示，领先系统在自身描述中常**弱化或误标**所感知的情绪状态（如将“哭泣”描述为“stressed and weary”）。未来可： - 对隐藏层表示进行因果干预（causal intervention），检验哪些层级的表征携带了被下游决策忽略的情绪强度信息 - 对比系统在“自我报告”与“强制选择探针”之间的不一致性，量化“感知-报告-行动”链条中的逐级衰减 Q6: 总结一下论文的主要内容 这篇论文研究了**生产级语音代理是否真正依据声音中的副语言线索（paralinguistics）执行行动**，还是仅依赖文字转录内容做决策。以下是其主要内容： —- ### 1. 核心问题：声音改变规则，但代理是否随之改变行动？ 多个行业的规范（如紧急救援 `NENA-STA-020.1`、金融防诈 `FinCEN FIN-2022-A002`、航空管制 `FAA JO 7110.65`、博彩监管 `UKGC LCCP 3.2.11` 等）明确要求：当呼叫者的声音状态、背景音或说话人身份发生变化时，代理必须采取不同行动。然而，当前语音代理往往通过 ASR（如 Whisper）将音频转为文字后做决策，而转录过程会过滤掉填充词、情绪表达、背景事件、第二人声等关键线索。论文提出一个根本性质问：**当文字固定、仅声音改变时，代理的行动是否会按规则要求改变？** —- ### 2. VoxParity 基准与 Words-only Null Test 为回答上述问题，论文构建了 **VoxParity** 基准： - **183 个场景**，横跨 **14 个行业**（银行、医疗、紧急救援、航空、公用事业、博彩等）。 - 每个场景只有**一段固定的转录文本**，但被渲染为多个音频变体，仅通过声音差异（如哭泣、医疗监护仪蜂鸣、第二人声胁迫、儿童声音、讽刺、沉默等）改变**正确的可执行工具调用（gold tool call）**。 - 设计了 **206 个带线索单元** 和 **103 个干净对照单元**。 论文提出**无需人工评判**的 **words-only null test**： </li>
+</ul>
+<p>Delta = (S<em>(audio) - S</em>(twin)) - S<em>(cascade)<br> 其中  S</em>(audio)  为系统听音频的得分， S<em>(twin)  为该系统读精确转录的得分， S</em>(cascade)  为纯文字流水线（Whisper + 文本大模型，从不听音频）的得分。若  Delta &gt; 0 ，说明系统因“听见”而非仅“读到”改变了行动。 —- ### 3. 对 28 个系统的评测结果 论文测试了来自 11 家厂商的 **28 个音频原生系统**（含 9 个生产级实时代理），核心发现包括： - **所有系统都偏向文字**：在音频要求采取保护性行动时，28 个系统执行常规请求的频率（池化 **41%**）均高于在干净呼叫上的过度触发率（池化 **12%**）；words-only cascade 的比例为 **58% vs. 15%**。 - **通过 null test 者稀少**：在 23 个有文本路径的系统中，仅 **11 个**通过检验；7 个生产级实时代理中仅 **1 个**通过。 - **听见不等于行动**：系统对自身探针的线索识别率尚可（guess-corrected  π ≈ 0.77 ），但听见了仍不行动。对领先系统，**完美听力**仅能增加 **0.04** 的得分，而**完美决策**可增加 **0.28**，表明瓶颈在于**从感知到决策的桥接断裂**。 —- ### 4. 失效机制的分解 通过控制变量实验，论文定位了失效的具体模式： - **情绪线索 vs. 事实线索**：系统对“事实类”线索（如背景音、第二人声）的行动率显著高于“情绪类”线索（如哭泣、讽刺）。 - **显式规则 vs. 隐式规则**：当场景提示中**显式陈述**映射规则（“若 caller 哭泣，则转 hardship”）时，领先系统在情绪线索上击败 null test 的幅度为 **+0.33**；规则隐式时，增益为 **+0.00**（无显著差异）。 - **急性警报 vs. 安静状态**：在听见线索后，系统对急性警报（恐慌、喘气）仍执行文字默认动作的比例仅 **6%**；但对安静的负面状态（困惑、resignation、讽刺、含糊不清）该比例高达 **52%**。 —- ### 5. 提示注入与可恢复的上界 论文通过向提示中注入人工构造的声音描述，探测了决策侧的可恢复性： - **单标签**（如“sad”）：情绪单元正确率约 **0.59**，事实类接近天花板（**0.97–1.00**）。 - **完整描述**（含强度，如“低沉、沉重、 unmistakably 悲伤”）：情绪单元提升至 **0.66**。 - **描述 + 显式规则**：情绪单元可达 **0.83**。 - 即使是从未听音频的**纯文本模型**（如 gpt-oss-120b），在获得完整描述后正确率可达 **0.76**，超过所有未辅助的音频原生系统（最高 **0.57**）。 这表明：一旦声音被显式转写为**校准的、决策可用的状态描述**，纯文本模型即可超越当前最好的音频系统；缺口在于音频系统未能自主完成这种“桥接”。 —- ### 6. 结论与启示 - **诊断工具**：words-only null test 可作为部署前审计的标准化检验，无需人工评判即可检测代理是否依据声音行动。 - **架构方向**：应在系统中建立显式的“副语言 → 状态描述 → 策略映射”桥接，而非依赖端到端隐式编码。 - **训练建议**：应使用“delivery-counterfactual pairs”（同文字、不同声音、不同正确动作）直接训练工具调用策略，尤其针对当前系统严重忽视的“安静状态”。 论文的标题 “Almost Human, Except When It Matters” 精准概括了现状：这些语音代理在绝大多数常规呼叫中表现近乎人类，却恰恰在那些**行业规则为声音所撰写**的关键呼叫上失效。 Q7: 想要进一步了解论文 以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Almost%20Human%2C%20Except%20When%20It%20Matters%3A%20VoxParity%20and%20the%20Decisions%20a%20Voice%20Should%20Change，链接是https://arxiv.org/pdf/2609.35922，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2609.35922。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Bhavik Mangla</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.35922.pdf">https://arxiv.org/pdf/2609.35922.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35922">https://arxiv.org/abs/2609.35922</a></p>
+<p><strong>Arxiv ID</strong>: 2609.35922</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.35922">https://papers.cool/arxiv/2609.35922</a></p>
+<p><strong>Published</strong>: 2026-10-01T02:24:15.359Z</p>
+<p><strong>Updated</strong>: 2026-10-01T02:24:15.359Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202610/2026-10-01/">https://wdndev.github.io/daily/hf/202610/2026-10-01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202606/2026-06-01/" title="HuggingFace Papers 2026-06-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-01</div></div></a></div><div><a href="/daily/hf/202606/2026-06-02/" title="HuggingFace Papers 2026-06-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-02</div></div></a></div><div><a href="/daily/hf/202606/2026-06-04/" title="HuggingFace Papers 2026-06-04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-04</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Decompose-Radicals-Then-Reward-Fine-Grained-Inspection-for-Accurate-Chinese-Text-Rendering"><span class="toc-text">1. Decompose Radicals, Then Reward: Fine-Grained Inspection for Accurate Chinese Text Rendering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Imagine3D-LLM-Teaching-MLLMs-to-Imagine-3D-Scenes-Before-Answering"><span class="toc-text">2. Imagine3D-LLM: Teaching MLLMs to Imagine 3D Scenes Before Answering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Almost-Human-Except-When-It-Matters-VoxParity-and-the-Decisions-a-Voice-Should-Change"><span class="toc-text">3. Almost Human, Except When It Matters: VoxParity and the Decisions a Voice Should Change</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
