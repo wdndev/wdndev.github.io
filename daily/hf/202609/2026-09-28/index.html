@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-09-28 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. FuseReg: Regularizing Layer Fusion Mitigates the Reconstruction-Generation Gap in Representation AutoencodersAbstract:Representation autoencoders (RAEs) reuse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-09-28">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202609/2026-09-28/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. FuseReg: Regularizing Layer Fusion Mitigates the Reconstruction-Generation Gap in Representation AutoencodersAbstract:Representation autoencoders (RAEs) reuse">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-11T02:09:53.298Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202609/2026-09-28/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-09-28',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-11 10:09:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">349</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-09-28</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-10-11T02:09:53.298Z" title="Updated 2026-10-11 10:09:53">2026-10-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">7.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>27min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-09-28"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-FuseReg-Regularizing-Layer-Fusion-Mitigates-the-Reconstruction-Generation-Gap-in-Representation-Autoencoders"><a href="#1-FuseReg-Regularizing-Layer-Fusion-Mitigates-the-Reconstruction-Generation-Gap-in-Representation-Autoencoders" class="headerlink" title="1. FuseReg: Regularizing Layer Fusion Mitigates the Reconstruction-Generation Gap in Representation Autoencoders"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.31620">FuseReg: Regularizing Layer Fusion Mitigates the Reconstruction-Generation Gap in Representation Autoencoders</a></h3><p>Abstract:Representation autoencoders (RAEs) reuse features from a pretrained visual encoder as reconstruction and diffusion latents, integrating strong visual representations into image generation. However, RAEs still need to decide which encoder layers form the shared latent space for the generator and pixel decoder. This choice involves a trade-off. Shallower layers tend to preserve fine pixel details better, while deeper layers tend to yield better generation metrics. A fixed heuristic layer fusion therefore couples two stages that benefit from different information. We introduce FuseReg, which replaces heuristic feature selection with training over random subsets of encoder layers. We theoretically analyze the underlying mechanism: subset sampling explicitly penalizes sensitivity to cross-layer disagreement. On ImageNet-256 with DINOv3-L, a single FuseReg decoder reconstructs from full, sparse, and single-layer fusions without retraining, achieving higher PSNR than decoders specialized to fixed fusions. This flexibility also benefits generation: decoder replacement alone reduces unguided gFID by 27% with an unchanged RAEv2 DiT-XL generator. The same regularization principle extends to diffusion training, with joint regularization of both stages reducing unguided gFID by 29% on DiT-Base. These results show that training downstream models for layer-fusion robustness narrows the reconstruction-generation gap without modifying the pretrained encoder.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2609.31620</p>
+</div></details>
+<p><strong>Authors</strong>: Hongyang Du,Yunfei Xie,Junjie Ye,Jiawei Yang,Xiaoyan Cong,Haodong Zhang,Yongchao Huang,Haiyu Wu,Zongxia Li,Shihang Gui,Dawei Liu,Runhao Li,Jingcheng Ni,Chen Wei,Randall Balestriero,Yue Wang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.31620.pdf">https://arxiv.org/pdf/2609.31620.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.31620">https://arxiv.org/abs/2609.31620</a></p>
+<p><strong>Arxiv ID</strong>: 2609.31620</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.31620">https://papers.cool/arxiv/2609.31620</a></p>
+<p><strong>Published</strong>: 2026-09-28T01:58:38.693Z</p>
+<p><strong>Updated</strong>: 2026-09-28T01:58:38.693Z</p>
+<hr>
+<h3 id="2-Morphometric-Imitation-From-Morphology-and-Contact-Aware-Hand-Retargeting-to-Sim-to-Real-Visuomotor-Policy"><a href="#2-Morphometric-Imitation-From-Morphology-and-Contact-Aware-Hand-Retargeting-to-Sim-to-Real-Visuomotor-Policy" class="headerlink" title="2. Morphometric Imitation: From Morphology and Contact Aware Hand Retargeting to Sim-to-Real Visuomotor Policy"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.28660">Morphometric Imitation: From Morphology and Contact Aware Hand Retargeting to Sim-to-Real Visuomotor Policy</a></h3><p>Abstract:Human hand-object interactions (HOIs) provide a rich source of demonstrations for dexterous manipulation, but learning directly from them presents challenges in bridging morphology gaps, ensuring dynamical feasibility, and sim-to-real deployment. We present Morphometric Imitation, a three-stage framework that transforms reconstructed HOIs into zero-shot sim-to-real visuomotor policies. First, morphometric optimization (MMO) kinematically retargets human motion across hand morphologies while preserving demonstrated contacts. Second, residual reinforcement learning (RL) refines the kinematic reference using object pose and contact information from the human motion to produce dynamically feasible robot demonstrations. Third, these demonstrations are distilled into visuomotor policies. Across three robot hands and ten HOIs, MMO improves contact F1 over the strongest of five baselines by at least 8 points for every hand, while also improving the success rate of downstream dynamic retargeting by as much as 35 points. Ablations on the residual RL show complementary benefits from using object pose and contact information. Finally, the visuomotor policies achieve 89.3% zero-shot success in 300 real-world trials on 30 objects. Project page: $\href{this https URL}{\text{this https URL}}$</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？ 这篇论文旨在解决将人类手部-物体交互（Human Hand-Object Interactions, HOIs）数据作为机器人灵巧操作演示来源时面临的三个核心挑战： 1. \*\*形态与接触差异（Morphology Gap）\*\* 人类与机器人手部在骨骼结构、手指数量及尺寸比例上存在本质差异，导致传统的运动学重定向（kinematic retargeting）无法保持原始人类演示中的手-物接触语义与几何分布。现有方法往往丢失关键的接触区域信息，产生错误的抓取位置或穿透。 2. \*\*动态可行性与安全性（Dynamical Feasibility）\*\* 单纯的运动学重定向未考虑机器人-物体交互的物理动力学（如稳定接触动力学、力闭合与碰撞避免）。尤其是自然人类桌面动作中隐含的机器人-桌面碰撞风险，使得将人类动作转化为物理上可行且安全的机器人演示具有显著困难。 3. \*\*视觉运动策略的零样本仿真到真实迁移（Zero-Shot Sim-to-Real）\*\* 如何基于仿真中生成的动态可行演示，训练出能够直接部署到真实硬件的视觉运动策略（visuomotor policy），并在面对多样化物体几何、随机初始姿态及物理属性变化时保持鲁棒性，同时避免昂贵的真实世界微调或遥操作数据收集。 为应对上述挑战，论文提出了 \*\*Morphometric Imitation\*\* 三阶段框架：首先通过\*\*形态度量优化（MMO）\*\*在重定向中显式对齐手部形态并恢复接触；随后利用\*\*残差强化学习（Residual RL）\*\*结合物体姿态与接触信息生成动态可行的仿真轨迹；最终将轨迹蒸馏为可零样本迁移至真实机器人平台的视觉运动策略。 Q2: 有哪些相关研究？ 根据论文第 II 节（Related Work）及表 I 的梳理，相关研究主要分布于\*\*运动学重定向\*\*（Kinematic Retargeting）与\*\*动态重定向\*\*（Dynamic Retargeting）两大方向，具体如下： --- ### A. 运动学重定向（Kinematic Retargeting） 该方向旨在将人类手部运动映射到机器人本体，现有方法可大致分为以下几类： 1. \*\*基于关键点向量约束的方法\*\* - \*\*DexPilot\*\*
+</p>
+
+<p>3<br>：通过向量形式化方法对齐人类与机器人指尖相对位置，并附加指间约束。 - **AnyTeleop**<br>4<br>：将机器人指尖相对位置与人类指尖向量对齐，并按机器人/人手尺寸比例进行均匀缩放；其配套代码库还提供了一种离线位置重定向公式（论文中称为 **Position**）。 - 这类方法虽然被广泛使用，但未显式处理手-物接触保持问题。 2. **引入接触感知与形态适配的方法** - **Contact-Aware PyRoki**<br>5<br>：在 AnyTeleop 向量公式基础上增加了基于指尖-物体接近度的接触感知目标，并优化连杆比例以适配手部形态差异。 - **OmniRetarget**<br>6<br>：针对全身运动操作（locomanipulation），通过四面体网格匹配实现接触感知运动学重定向，被该领域广泛采用。 - **REGRIND**<br>8<br> 与 **TopoRetarget**<br>7<br>（同期工作）：在 OmniRetarget 基础上进一步引入交互网格（interaction mesh）到目标函数中；其中 TopoRetarget 报告了指标提升，但论文写作时未开源。 3. **数据驱动与可穿戴设备方法** - 部分早期研究依赖艺术家标注的接触对应关系、配对的人机数据<br>18<br>–<br>21<br>，或数据手套、VR 追踪器、动作捕捉等可穿戴设备<br>22<br>–<br>31<br> 进行重定向。 —- ### B. 动态重定向（Dynamic Retargeting） 该方向旨在将运动学参考转化为物理可行、可执行的机器人演示，各研究在**数据来源**与**利用运动学参考的方式**上存在差异： 1. **基于残差/强化学习的跟踪方法** - **Chen et al.** </p>
+<p>10<br>：在重定向后的手腕运动上学习残差策略，仅使用物体跟踪奖励，并将其蒸馏为零样本仿真到真实（sim-to-real）策略。 - **Human2Sim2Robot**<br>12<br>：利用重定向的指尖与指关节关键点初始化机器人预抓取位姿，训练具备物体跟踪奖励的 RL 策略，并部署视觉运动策略。 - **HOP**<br>11<br>：先以仿真内循环优化细化 AnyTeleop 轨迹，再训练 RL 策略跟踪手部关键点，最后在真实遥操作数据上微调。 2. **基于关键点跟踪或模型预测控制的方法** - **ManipTrans**<br>14<br>：直接跟踪重定向后的手部关键点。 - **DexMachina**<br>13<br>：同时跟踪 AnyTeleop 提供的关键点与关节角度。 - **SPIDER**<br>9<br>：以重定向结果热启动基于采样的模型预测控制（MPC）。 3. **同期工作** - **REGRIND**<br>8<br>：提出基于 RL 的方法鼓励物体轨迹跟踪。 - **DemoMimic**<br>15<br>：在鼓励物体跟踪的同时，对齐参考人类运动中的接触行为，针对铰接物体（articulated box）实现零样本 sim-to-real 部署（论文写作时代码未公开）。 —- ### C. 方法定位对比 表 I 总结了各方法在四个维度上的差异：运动学重定向、动态重定向、零样本仿真到真实视觉运动策略、以及是否仅使用自然人类运动（无遥操作、无收集约束）。 | 方法 | 运动学重定向 | 动态重定向 | 零样本 Sim-to-Real 视觉运动策略 | 仅自然人类运动 | |———|——————-|—————-|———————————————-|———————| | DexPilot </p>
+<p>3<br> | ✓ | × | × | — | | AnyTeleop<br>4<br> / Position<br>4<br> | ✓ | × | × | — | | Contact-Aware PyRoki<br>5<br> | ✓ | × | × | — | | OmniRetarget<br>6<br> | ✓ | ✓ | × | ✓ | | TopoRetarget<br>7<br> | ✓ | ✓ | × | ✓ | | REGRIND<br>8<br> | ✓ | ✓ | × | ✓ | | SPIDER<br>9<br> | × | ✓ | × | ✓ | | Chen et al.<br>10<br> | × | ✓ | ✓ | ✓ | | HOP<br>11<br> | × | ✓ | × | × | | Human2Sim2Robot<br>12<br> | × | ✓ | ✓ | × | | DexMachina<br>13<br> | × | ✓ | × | ✓ | | ManipTrans<br>14<br> | × | ✓ | × | ✓ | | DemoMimic<br>15<br> | × | ✓ | ✓ | ✓ | | **Morphometric Imitation (本文)** | **✓** | **✓** | **✓** | **✓** | 综上，与现有工作相比，本文提出的框架同时覆盖了**形态与接触感知运动学重定向**、**物体姿态与接触信息联合驱动的动态重定向**，以及**零样本 sim-to-real 视觉运动策略蒸馏**，并且全程仅依赖无约束的自然人类运动捕获数据。 Q3: 论文如何解决这个问题？ 该问题通过 **Morphometric Imitation** 这一三阶段框架加以解决，各阶段分别对应运动学对齐、物理可行性修正与视觉运动策略蒸馏。整体流程如下： —- ### 第一阶段：Morphometric Optimization (MMO) — 形态与接触感知的运动学重定向 该阶段旨在解决**形态差异**与**接触丢失**问题，将人类手部-物体交互轨迹转换为与目标机器人手部结构一致且保持原始接触语义的参考轨迹。MMO 包含三个递进步骤： 1. **形态匹配（Morphology Matching）** 构建 **Scaled MANO** 模型，通过独立缩放手掌与五根手指的比例，使其与目标机器人（Dex3、Allegro、Sharpa 等）的对应骨骼长度匹配。具体地，缩放向量  S ∈ R^6  先以手掌和各手指的机器人/人类长度比初始化，随后通过非线性最小二乘优化对齐对应关节与指尖位置： </p>
+<p>L<em>(align) = w_j · L_j + w_f · L_f<br>其中 L_j 与 L_f 分别为对应关节与指尖的欧氏距离损失。该步骤输出与机器人形态对齐的 MANO 手模型 M</em>(morph) 。 2. <strong>接触匹配（Contact Matching）</strong> 由于形态改变会改变原始手-物接触区域，该步骤在每一时间步重新优化 M<em>(morph) 的姿态，以恢复原始人类演示中的接触几何。通过检测参考手网格上与物体距离小于阈值 τ = 5,mm 的接触顶点集合 H_c ，将目标接触位置传递至形态对齐后的模型，并优化姿态参数 $Psi =<br>θ_g, t, θ_h<br>$，最小化：<br>L</em>(contact) = w<em>c · L_c + w_d · L_d + w</em>(table) · L<em>(table) + w_p · L_p<br> 各项分别对应：接触顶点对齐损失  L_c 、耦合手指相对距离保持损失  L_d （用于机器人手指少于人类的情况）、桌面穿透惩罚  L</em>(table)  以及相对参考姿态的正则化  L<em>p 。 3. **机器人姿态恢复（Robot Pose Recovery）** 提出 **Linear Blend Retargeting**，将 MANO 的骨骼变换通过热扩散法计算的混合权重传递至机器人骨架，生成密集的关节与指尖 6-DoF 目标位姿，随后通过逆运动学（IK）求解机器人关节配置  q 。相比仅恢复稀疏指尖位置的传统方法，该步骤能直接获得完整的腕部位姿目标，并显式加入机械手-桌面碰撞避免约束。 —- ### 第二阶段：Residual Reinforcement Learning — 动态重定向 该阶段旨在解决**动态可行性**与**安全性**问题，将 MMO 生成的运动学参考轨迹  q</em>(ref)  转化为在物理仿真中稳定、无碰撞、可执行的机器人演示。核心思想是训练一个残差策略  π ，在每一时间步输出关节级残差动作  Delta q_t ，指令关节位置为： </p>
+<p>q<em>(cmd) = q</em>(ref) + Delta q<em>t<br> **关键设计**包括： - **观察空间**：融合本体感受  q_t 、当前与未来参考关节配置、**观察到的物体位姿**  T</em>(obs),t  与**参考物体位姿**  T<em>(ref),t 、当前与未来**接触状态**（布尔值表示非零接触力）、机器人-桌面最小高度  z</em>(min)  及物体物理属性（各向异性缩放、质量、摩擦系数、质心）。 - **奖励函数**：同时利用**物体位姿**与**接触信息**两个互补来源：<br>r<em>t = r</em>(obj),t · r<em>(contact),t<br> 其中物体跟踪奖励基于 ADD（Average Distance Deviation）位姿误差：<br>D</em>(N<em>p,t) = (1) / (N_p) ∑</em>(k=1)^(N<em>p) | T</em>(ref),t · p<em>k - T</em>(obs),t · p<em>k |<br> 并取  r</em>(obj),t = e^(-α D<em>(N_p,t)) 。接触奖励则鼓励机器人接触手指数量  N</em>(obs),t  与目标数量  N<em>(goal),t = min(N</em>(H,t), N<em>(max))  一致：<br>r</em>(contact),t = 1 - |N<em>(goal),t - N</em>(obs),t|N_(max)</p>
+<ul>
+<li>**提前终止条件**：通过指数移动平均监控物体跟踪误差与接触失配，同时**立即终止**机器人-桌面碰撞或过大的手-物接触力，以强制学习安全行为。 - **域随机化**：对 PD 增益、摩擦系数、物体质量、质心、各向异性缩放及初始位姿进行广泛随机化，以增强后续策略的鲁棒性。 —- ### 第三阶段：Visuomotor Policy Distillation — 零样本 Sim-to-Real 该阶段旨在解决**视觉运动策略的仿真到真实迁移**问题，将第二阶段的特权教师策略（privileged teacher）蒸馏为仅依赖视觉与本体感受的学生策略，实现无需真实世界微调的零样本部署。 - **演示收集**：在域随机化条件下滚动教师策略，记录指令关节目标、本体感受及经 RANSAC 去除桌面的单视角深度点云（保留机器人与物体）。 - **学生架构**：采用 **ManiFlow** 框架，包括点云编码器、DiTX 动作生成器及基于流匹配（flow matching）与一致性训练的动作生成模块。学生策略以当前与历史点云  (p<em>t, p</em>(t-1)) 、当前本体感受  q<em>t  及上一时刻动作  a</em>(t-1)  为条件，预测未来关节目标块，并以  10,Hz  执行三个动作后重新规划。 - **点云增强**：训练期间对仿真点云进行额外随机化（模拟真实 LiDAR 的噪声与遮挡），以缩小学仿真视觉差距。实验表明，该策略可直接部署于真实 KUKA iiwa14 + Sharpa Wave 平台，在  300  次物理试验中取得  89.3%  的零样本成功率。 —- 综上，该论文通过**形态与接触联合优化**保持交互语义，通过**物体-接触双驱动的残差 RL** 生成物理可行且安全的演示，再通过**点云策略蒸馏**实现真实机器人上的零样本视觉运动控制，从而系统性地解决了从人类 HOI 数据到机器人灵巧操作的迁移难题。 Q4: 论文做了哪些实验？ 论文在 **Section VII (Experiments)** 中系统评估了所提框架的三个阶段，实验围绕以下四个核心问题展开： 1. **MMO 是否比之前的方法更好地保持演示中的手-物接触？** 2. **MMO 的运动学参考是否能提升下游动态重定向的效果？** 3. **动态重定向中，物体姿态与接触信息是否均不可或缺？** 4. **蒸馏后的视觉运动策略能否零样本迁移到真实世界，并在随机初始姿态与多样化物体上保持鲁棒？** —- ### A. 实验设置 **仿真平台与数据** - 使用 **10 条 GRAB 手-物交互轨迹**：alarm clock, apple, bowl, large cube, cup, flashlight, hammer, lightbulb, torus, wineglass。 - 使用 **3 只机器手**：Dex3（3 指）、Allegro（4 指）、Sharpa（5 指）。 - 轨迹包含从桌面上的 reaching、grasping、lifting，以及部分任务特定动作（如举杯、手电筒指向、锤头朝下重定向等）。 **真实世界平台** - **KUKA iiwa14** 机械臂 + **Sharpa Wave** 灵巧手 + **Intel RealSense L515** LiDAR 相机。 - 在硬质木桌上直接操作（无 compliant 表面），使桌碰撞成为高风险失败模式。 - 每个物体类别选用 **3 个物理实例**（共 30 个物体），在形状、尺寸、质量、质心、摩擦及 LiDAR 可观测性上存在差异。 - 每个实例测试 **10 个随机初始位姿**（ 10,cm × 10,cm  区域， ± 15^circ  偏航），共 **300 次真实世界试验**。 —- ### B. 评估指标 **运动学指标** - **Location-aware F1**：要求机器人在正确的帧、用正确的手部部位、在物体正确的空间位置复现接触。精确率惩罚多余的机器人接触，召回率惩罚遗漏的演示接触。 - **Contact patch distance**：计算演示接触区域上各顶点到对应机器人部位的面积加权平均距离，连续衡量空间误差。 **动态重定向指标** - **C-ADD (Contact-aware ADD)**：仅在机器人或参考人手与物体发生接触的时间步上计算平均点距离（ADD）位姿误差。 - **Task Success Rate (SR)**：需同时满足未触发提前终止（无桌碰撞、无过大接触力）、最终帧存在手-物接触、最终帧 ADD 低于阈值。 - **Final contact patch distance**：在动态重定向 rollout 的最终状态上评估接触保持。 **视觉运动策略指标** - **Simulation SR**：特权教师策略与蒸馏后的学生策略在未见仿真 rollout 上的成功率。 - **Real-world SR**：零样本硬件部署成功率。成功标准包括无硬桌碰撞、将物体抬升至少  5,cm  并完成预期任务轨迹、稳定抓取保持至少  5,s 。 —- ### C. 基线方法 运动学重定向与 5 个开源基线对比： - **DexPilot** </li>
+</ul>
+<p>3</p>
+<ul>
+<li>**AnyTeleop**<br>4</li>
+<li>**Position** (Dex-Retargeting 的位置离线重定向)<br>4</li>
+<li>**Contact-Aware PyRoki**<br>5</li>
+<li>**OmniRetarget**<br>6<br>动态重定向实验中，使用**相同的残差 RL 公式与超参数**，仅替换输入的运动学参考，以隔离运动学重定向质量对下游性能的影响。 —- ### D. 运动学重定向实验结果（Section VII-D） **定量结果（表 II）** - 在 Dex3、Allegro、Sharpa 三只手上，**MMO 均取得最高的 location-aware F1 与最低的 contact patch distance**。 - 以  5,mm  阈值为例，MMO 的 F1 相比每只股票最强基线分别提升 **27.8** (Dex3)、**8.3** (Allegro)、**10.5** (Sharpa) 个百分点。 - Patch distance 降至约  7.5 – 9.7,mm ，而最强基线分别为  18.9 、 18.7 、 10.7,mm 。 **定性分析（图 5）** - 对于 wineglass，MMO 恢复了人类手部的环绕式抓取，而基线要么遗漏部分抓取区域，要么将手指置于玻璃内部。 - 对于 bowl，MMO 保持了演示的手指排布与拇指浅放边缘的姿态，基线则改变了接触手指与接触位置。 —- ### E. 动态重定向实验结果（Section VII-E） **1. 运动学参考的影响（表 III）** - 使用 **MMO 参考**的残差 RL 在所有手上获得最高成功率与最低 C-ADD： - Dex3：SR  82.5%  vs 最强基线  53.2%  - Allegro：SR  69.9%  vs 最强基线  68.2%  - Sharpa：SR  91.8%  vs 最强基线  56.5%  - 最终接触块距离也显著降低，说明 MMO 的运动学优势传递到了物理 feasible 的任务执行与接触保持中。 **2. 物体姿态与接触信息的消融（表 IV）** - 在固定 MMO 参考下，从观察、奖励与终止条件中分别移除 contact 或 object pose： - **移除 contact 信息**：SR 降至  51.2%  /  47.6%  /  76.6%  - **移除 object pose 信息**：SR 降至  42.5%  /  41.6%  /  54.3%  - **同时使用两者**：SR 为  82.5%  /  69.9%  /  91.8%  - 结论：**物体姿态引导任务级运动，接触信息保持演示交互语义，二者互补**。 **3. 跨本体分析（图 4）** - Sharpa（5 指、22 DoF，最接近人手）表现最佳。 - 尽管 Dex3 仅 3 指 7 DoF，但其手指更细、更接近人类尺度，在靠近桌面或狭窄几何（如 torus、lightbulb）的操作中成功率反而高于 Allegro。 - 说明改进的重定向可减少但不能完全消除目标机器人形态带来的约束。 —- ### F. 视觉运动策略零样本 Sim-to-Real 实验结果（Section VII-F） **仿真蒸馏性能（表 V）** - 学生策略在仿真中 macro-average 成功率为 **93.8%**，与教师（91.8%）相当甚至略高，表明蒸馏过程未显著损失性能。 **真实世界部署（表 V、图 2、图 6）** - 在 **300 次真实试验**中，学生策略实现 **89.3%** 的零样本成功率。 - 所有类别成功率均不低于 **80%**，lightbulb 达到 **100%**（30/30）。 - 策略成功避免了与硬质桌面的硬碰撞，即使对于平放在桌上的 flashlight、hammer、lightbulb 也能安全抓取。 - 对于 LiDAR 几乎不可见的透明 wineglass（通过在杯内放置乒乓球提供部分观测），仍达到 **93.3%** 成功率。 **失败模式分析** - **无桌碰撞导致的失败**：观察到零例。 - **主要失败来源**： 1. **物体定位误差**：成功率与物体在  10,cm × 10,cm  区域内的初始位置强相关；部分类别的失败集中在特定区域（如近端行）。 2. **几何理解误差**：手到达了正确位置但预抓取张开不足，导致从侧面推挤物体。例如最厚的红色 alarm clock 实例出现此类失败。 - **最差类别**：torus（80.0%），原因是两个物理实例为胶带卷，其厚度与形状与 GRAB 参考 mesh（面包圈形）差异过大，超出了训练时的各向异性缩放随机化范围。 —- ### G. 附录中的补充实验 - **附录 A**：详细的接触评估协议，包括 location-aware 与 location-unaware 指标、穿透深度计算、失败调整评分等。 - **附录 B**：运动学重定向的附加定量结果（所有容差下的精确率/召回率/F1、穿透率、95 百分位距离）及全部基线的定性对比（图 7）。 - **附录 C**：动态重定向最终抓取状态的接触 F1、精确率、召回率（表 IX），以及在视觉 mesh 与凸分解 mesh 上评分的鲁棒性验证。 - **附录 D**：真实世界 30 个物理实例的详细参数与每实例成功率（表 X、XI）、不同物体在 LiDAR 下的点云观测可视化（图 9），以及按初始网格位置划分的成功率热图（图 10）。 Q5: 有什么可以进一步探索的点？ 基于论文结论与实验分析，以下几方面值得进一步探索： —- ### 1. 跨类别多任务策略与跨本体部署 目前框架为每个物体类别独立训练残差 RL 教师策略与视觉运动学生策略，且硬件验证仅局限于 KUKA iiwa14 + Sharpa Wave 单一系统。将不同类别的动态可行演示**蒸馏为统一的多任务策略**，并验证其在 Dex3、Allegro 等不同手指数量与自由度的机器人上的**跨本体零样本迁移**，是提升系统通用性的自然下一步。 —- ### 2. 从单目视频重建扩展到大规模数据 论文中的演示来源于十条动作捕捉轨迹，而人类运动数据的核心优势在于可从**单目视频大规模重建**。由于 MMO 直接运行于手部与物体网格，且处理速度达  180,fps ，将该框架扩展至基于单目视频重建的 HOI 数据（包括**双手交互**与室外场景），将显著降低数据收集门槛并验证系统的可扩展性。 —- ### 3. 增强对物体形状与姿态的泛化能力 真实实验表明，当物理实例与仿真训练 mesh 存在显著形状差异时（如 torus 类别的胶带卷与 GRAB 参考 bagel 形状），策略成功率明显下降。以**计算与数据高效**的方式提升泛化性至关重要，潜在方向包括： - 引入**隐式形状表示**或神经场（NeRF/3DGS）以编码更丰富的物体几何先验； - 在域随机化中采用**基于物理可行性约束的任意形状形变**，而非仅限于各向异性缩放； - 结合**在线适应**或元学习，使策略在遇见新物体时快速调整。 —- ### 4. 感知模态的增强与鲁棒性提升 现有视觉运动策略仅依赖单视角深度点云，导致在特定初始位姿（如近端行）出现定位错误，且对透明/深色物体（wineglass、黑色闹钟）观测不完整。未来可探索： - **融合 RGB 纹理信息**以弥补 LiDAR 对透明/低反射率物体的观测缺失； - 采用**时序点云融合**或神经 SLAM 改善部分观测下的物体位姿估计； - 针对**姿态依赖性失败**（图 10 中的空间分布模式）设计显式的空间注意力机制或记忆模块。 —- ### 5. 复杂交互场景与长期操作 当前任务以单臂抓取、抬升与简单重定向为主。将框架扩展至： - **双手协调操作**（bimanual manipulation），需要处理双手间的接触耦合与碰撞避免； - **工具使用**（tool use）与**铰接物体操作**（articulated objects），涉及更复杂的接触动力学与功能抓取（functional grasping）； - **多阶段长程任务**，要求策略在动态重定向阶段处理接触模式切换与高频碰撞事件。 —- ### 6. 接触评估与优化方法的精细化 论文附录指出，接触评估依赖于网格离散化与固定阈值，且机器人碰撞几何与视觉 mesh 存在毫米级差异。未来工作可包括： - 对接触评估协议进行**表面重采样收敛性分析**，以支持更精确的毫米级接触校准； - 在 MMO 中引入**可微分碰撞检测**或基于隐式场的 signed distance 约束，以进一步降低穿透与接触错位； - 将残差 RL 的奖励设计扩展至**力/力矩级接触对齐**，而非仅基于接触布尔状态。 Q6: 总结一下论文的主要内容 该论文提出 **Morphometric Imitation**，一个将重建的人类手部-物体交互（HOI）轨迹转化为零样本仿真到真实（sim-to-real）视觉运动策略的三阶段框架，用于多指灵巧机器人的模仿学习。 —- ### 1. 研究背景与核心问题 人类运动数据为机器人灵巧操作提供了丰富的示范来源，但直接利用这些数据面临三重挑战： - **形态与接触差异**：人类与机器人在手部骨骼比例、手指数量上存在本质差距，传统运动学重定向难以保持原始演示中的手-物接触语义与空间分布。 - **动态可行性与安全性**：运动学参考未考虑物理动力学，自然人类桌面动作易引入机器人-桌面碰撞与不稳定接触。 - **视觉运动策略的零样本迁移**：如何仅基于仿真中生成的可行演示，训练出可直接部署于真实硬件、且对物体几何与姿态变化鲁棒的策略。 —- ### 2. 方法：三阶段框架 #### 第一阶段 — 形态度量优化（Morphometric Optimization, MMO） 该阶段实现形态与接触感知的运动学重定向，包含三个递进步骤： 1. **形态匹配**：提出 **Scaled MANO** 模型，通过独立缩放手掌与手指比例匹配目标机器人（Dex3、Allegro、Sharpa）的骨骼长度。优化对应关节与指尖位置： </li>
+</ul>
+<p>L_(align) = w_j · L_j + w_f · L_f</p>
+<ol>
+<li>**接触匹配**：在每一时间步重新优化姿态，以恢复原始人类演示中的接触区域。通过最小化接触顶点对齐损失、耦合手指距离损失、桌面穿透损失与姿态正则化损失，生成形态与接触双重对齐的参考手型：<br>L<em>(contact) = w_c · L_c + w_d · L_d + w</em>(table) · L_(table) + w_p · L_p</li>
+<li>**机器人姿态恢复**：提出 **Linear Blend Retargeting**，利用热扩散法将 MANO 骨骼变换混合到机器人骨架，生成密集的 6-DoF 关节与指尖目标，再通过逆运动学求解机器人关节配置，并显式避免手-桌碰撞。 #### 第二阶段 — 残差强化学习（Residual RL） 在 ManiSkill 仿真器中，以 MMO 输出作为热启动，训练残差策略  π  输出关节级修正量  Delta q_t ，指令位置为： </li>
+</ol>
+<p>q<em>(cmd) = q</em>(ref) + Delta q<em>t<br> 观察空间融合本体感受、当前与未来参考轨迹、**物体位姿**与**接触状态**。奖励函数同时驱动物体轨迹跟踪与接触行为保持：<br>r_t = r</em>(obj),t · r<em>(contact),t<br> 其中  r</em>(obj),t = e^(-α D<em>(N_p,t))  基于 ADD 位姿误差， r</em>(contact),t  鼓励机器人接触手指数量与参考一致。通过提前终止机制（桌碰撞、过大接触力、跟踪失配）强制学习安全、物理可行的行为，并辅以广泛的域随机化。 #### 第三阶段 — 视觉运动策略蒸馏 将特权教师策略在域随机化下收集的仿真轨迹（包含深度点云、本体感受与指令关节目标）蒸馏为视觉运动学生策略。学生采用 ManiFlow 架构，基于当前与历史点云及本体感受预测未来关节目标块。训练中对点云进行额外随机化，最终实现对真实 KUKA iiwa14 + Sharpa Wave 系统的**零样本部署**。 —- ### 3. 实验与结果 论文在 **3 只机器手**（Dex3、Allegro、Sharpa）、**10 条 GRAB 轨迹**及 **300 次真实世界试验**上进行了系统评估： - **运动学重定向**：MMO 在 location-aware F1 上比五个强基线（DexPilot、AnyTeleop、Position、Contact-Aware PyRoki、OmniRetarget）提升至少 **8 个百分点**，contact patch distance 降至约  7.5 – 9.7,mm 。 - **动态重定向**：基于 MMO 参考的残差 RL 成功率相比最强基线提升高达 **35 个百分点**（如 Sharpa 上从  56.5%  提升至  91.8% ），且 C-ADD 更低、最终接触保持更优。消融实验表明**物体姿态与接触信息互补**，缺一不可。 - **零样本 sim-to-real**：蒸馏后的视觉运动策略在仿真中保持  93.8%  成功率，在真实世界 **30 个不同物理实例**上实现 ** 89.3%  的零样本成功率**，且成功避免硬质桌面碰撞，对 LiDAR 部分不可见的透明物体亦表现出鲁棒性。 —- ### 4. 结论 该论文的核心结论包括： - 在**运动学重定向阶段显式对齐形态并恢复接触**，能够产生更忠实的参考轨迹，并显著改善下游物理可行任务执行。 - 在**动态重定向阶段联合利用物体姿态与接触信息**，可同时保证任务级轨迹跟踪与演示交互语义的保持。 - 上述优势可有效传递至**真实机器人部署**，实现无需真实世界训练数据的零样本视觉运动控制。 未来工作方向包括：构建跨类别的统一多任务策略、扩展至单目视频重建与双手交互数据、增强对未见过物体形状与姿态的泛化能力，以及探索更复杂的工具使用与长程操作场景。 Q7: 想要进一步了解论文 以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是Morphometric%20Imitation%3A%20From%20Morphology%20and%20Contact%20Aware%20Hand%20Retargeting%20to%20Sim-to-Real%20Visuomotor%20Policy，链接是https://arxiv.org/pdf/2609.28660，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2609.28660。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=true"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Tara Sadjadpour,Siming He,C.K. Wolfe,Haozhi Qi,Lea Wilken,S. Shankar Sastry,Claire Tomlin,Jitendra Malik</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.28660.pdf">https://arxiv.org/pdf/2609.28660.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.28660">https://arxiv.org/abs/2609.28660</a></p>
+<p><strong>Arxiv ID</strong>: 2609.28660</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.28660">https://papers.cool/arxiv/2609.28660</a></p>
+<p><strong>Published</strong>: 2026-09-28T01:58:38.658Z</p>
+<p><strong>Updated</strong>: 2026-09-28T01:58:38.658Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202609/2026-09-28/">https://wdndev.github.io/daily/hf/202609/2026-09-28/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202606/2026-06-01/" title="HuggingFace Papers 2026-06-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-01</div></div></a></div><div><a href="/daily/hf/202606/2026-06-02/" title="HuggingFace Papers 2026-06-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-02</div></div></a></div><div><a href="/daily/hf/202606/2026-06-04/" title="HuggingFace Papers 2026-06-04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-04</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-FuseReg-Regularizing-Layer-Fusion-Mitigates-the-Reconstruction-Generation-Gap-in-Representation-Autoencoders"><span class="toc-text">1. FuseReg: Regularizing Layer Fusion Mitigates the Reconstruction-Generation Gap in Representation Autoencoders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Morphometric-Imitation-From-Morphology-and-Contact-Aware-Hand-Retargeting-to-Sim-to-Real-Visuomotor-Policy"><span class="toc-text">2. Morphometric Imitation: From Morphology and Contact Aware Hand Retargeting to Sim-to-Real Visuomotor Policy</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

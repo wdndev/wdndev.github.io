@@ -1,0 +1,404 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-10-02 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Retrieval-Augmented Skill Optimization via Cross-Harness AdaptationAbstract:An agent skill is a reusable, actionable natural-language artifact that guides an">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-10-02">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202610/2026-10-02/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Retrieval-Augmented Skill Optimization via Cross-Harness AdaptationAbstract:An agent skill is a reusable, actionable natural-language artifact that guides an">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-11T02:09:53.299Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202610/2026-10-02/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-10-02',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-11 10:09:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">349</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-10-02</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-10-11T02:09:53.299Z" title="Updated 2026-10-11 10:09:53">2026-10-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>26min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-10-02"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Retrieval-Augmented-Skill-Optimization-via-Cross-Harness-Adaptation"><a href="#1-Retrieval-Augmented-Skill-Optimization-via-Cross-Harness-Adaptation" class="headerlink" title="1. Retrieval-Augmented Skill Optimization via Cross-Harness Adaptation"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.38024">Retrieval-Augmented Skill Optimization via Cross-Harness Adaptation</a></h3><p>Abstract:An agent skill is a reusable, actionable natural-language artifact that guides an agent to perform a task effectively under a given harness. Recent studies have explored the optimization of agent skills, contributing to a growing collection of publicly available skills spanning diverse tasks, domains, and harnesses. Despite millions of publicly shared skills, existing skill optimization methods largely overlook this accumulated knowledge, instead relying solely on expensive agent rollouts to iteratively refine skills for a target task. To address this, we propose \textbf{Retrieval-Augmented Skill Optimization (RASO)}, a framework that leverages an external skill corpus as prior knowledge throughout skill optimization. RASO retrieves relevant knowledge from existing skills and adapts it to the target task and harness via Cross-Harness Adaptation, accounting for mismatches in both domain and harness. RASO comprises two complementary stages: \textbf{Retrieval-Augmented Skill Initialization (RASI)} constructs a knowledge-grounded initial skill without requiring agent rollouts, while \textbf{Retrieval-Augmented Skill Update (RASU)} iteratively refines the skill by retrieving external knowledge guided by execution feedback. Across four agent benchmarks and two models, extensive experiments show that RASO consistently outperforms baselines without retrieval-augmented skill initialization and updating.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2609.38024 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Jaewon Chu,Ji Soo Lee,Jihwan Park,Dohwan Ko,Jeehye Na,Seunghun Lee,Taehoon Lee,Minseo Yoon,Minseok Joo,Yunyang Xiong,Hyunwoo J. Kim</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.38024.pdf">https://arxiv.org/pdf/2609.38024.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.38024">https://arxiv.org/abs/2609.38024</a></p>
+<p><strong>Arxiv ID</strong>: 2609.38024</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.38024">https://papers.cool/arxiv/2609.38024</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:33.890Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:33.890Z</p>
+<hr>
+<h3 id="2-AutoGUIWorld-Image-Generators-as-Visual-World-Models-for-GUI-Agent"><a href="#2-AutoGUIWorld-Image-Generators-as-Visual-World-Models-for-GUI-Agent" class="headerlink" title="2. AutoGUIWorld: Image Generators as Visual World Models for GUI Agent"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.01215">AutoGUIWorld: Image Generators as Visual World Models for GUI Agent</a></h3><p>Abstract:GUI agents require high-quality interaction trajectories to learn how software environments respond to actions, maintain state, and support multi-step workflows. However, the diversity of available trajectories is constrained by the applications, interface states, and workflows accessible in the underlying environments. Expanding this coverage requires deploying increasingly diverse and complex software, with specialized applications imposing additional installation, configuration, and runtime costs. We introduce AutoGUIWorld, a data generation framework that combines the visual priors of image generators with the task knowledge of a planner to synthesize GUI interaction trajectories without deploying or running the corresponding software environments. AutoGUIWorld samples initial GUI scenes from structured specifications of operating-system context, visual appearance, and interface state, and generates tasks conditioned on those scenes. A planner then specifies atomic actions and their intended visual consequences, while an image generator iteratively edits the current screenshot to produce subsequent observations. Action grounding and transition-level quality filtering yield 79,266 spatially annotated step-level training samples across Ubuntu, Windows, macOS, and Chrome. Fine-tuning Qwen3.5-35B-A3B on AutoGUIWorld trajectories improves the mean task score on OSWorld from 33.0% to 40.8% and the task success rate on ScienceBoard from 14.0% to 32.2%. These results show that generated trajectories improve GUI-agent performance on real desktop and scientific tasks.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.01215</p>
+</div></details>
+<p><strong>Authors</strong>: Cheng Yang,Yifan Wu,Yutao Huang,Zhaohua Zhang,Beiduo Chen,Muxi Chen,Chenchen Zhao,Hexuan Deng,Haolin Yang,Geyuan Zhu,Sa Zhu,Jianhuan Zhuo,Qiuyong Xiao,Jianhao Ruan,Yiran Peng,Jiayi Zhang,Tian Ye,Xinlei Yu,Tianwen Jiang,Jihong Zhang,Yuyu Luo</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.01215.pdf">https://arxiv.org/pdf/2610.01215.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01215">https://arxiv.org/abs/2610.01215</a></p>
+<p><strong>Arxiv ID</strong>: 2610.01215</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.01215">https://papers.cool/arxiv/2610.01215</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:34.134Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:34.134Z</p>
+<hr>
+<h3 id="3-Scaling-and-Distilling-Text-Embeddings-for-Better-Diffusibility"><a href="#3-Scaling-and-Distilling-Text-Embeddings-for-Better-Diffusibility" class="headerlink" title="3. Scaling and Distilling Text Embeddings for Better Diffusibility"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.01016">Scaling and Distilling Text Embeddings for Better Diffusibility</a></h3><p>Abstract:Diffusion language models (DLMs) offer a promising alternative to autoregressive (AR) language generation. Recent advances in continuous DLMs, which apply latent diffusion to continuous text embeddings, raise a practical question: which embedding makes the best latent space, i.e., the most diffusible? To answer this, we search through different embeddings and find that scaling the embedding model to stronger ones within the same family (T5 to T5Gemma-1 to T5Gemma-2) greatly improves generative performance. But the raw T5Gemma-2 embeddings are still not optimal. They are so discriminative that even the embeddings of plausible alternative words are separated, which makes the generation vulnerable to imperfect sampling. Consequently, continuous diffusion often fails to reach any of them and ends up at an invalid embedding instead. To address this, we distill T5Gemma-2 into a student encoder that learns the teacher’s decoded probabilities as soft labels. Learning from such soft labels makes the student pull the alternative embeddings closer while maintaining the encoding-decoding mechanism. The distilled embeddings form a more connected and diffusible latent space, improving over the vanilla T5Gemma-2 embeddings. As a result, our medium-sized DLM achieves Gen. PPL 17.8 (against real-text PPL 15.4) at real-text entropy on OpenWebText, outperforming GPT-2-M on Gen. PPL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.01016 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Zekai Zhang,Yunjie Tian,Yanjin He,Xiaoyan Zhang,Dongdi Zhao,Qing Qu,Di Fu</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.01016.pdf">https://arxiv.org/pdf/2610.01016.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01016">https://arxiv.org/abs/2610.01016</a></p>
+<p><strong>Arxiv ID</strong>: 2610.01016</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.01016">https://papers.cool/arxiv/2610.01016</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:34.126Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:34.126Z</p>
+<hr>
+<h3 id="4-Hierarchical-Continuous-Diffusion-Language-Models"><a href="#4-Hierarchical-Continuous-Diffusion-Language-Models" class="headerlink" title="4. Hierarchical Continuous Diffusion Language Models"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.02193">Hierarchical Continuous Diffusion Language Models</a></h3><p>Abstract:Discrete diffusion language models offer a compelling alternative to autoregressive generation for tasks demanding bidirectional reasoning and global constraint satisfaction. Yet they share a structural bottleneck: when decoding in parallel, each token is sampled independently from its marginal, severing the statistical dependencies among the tokens decoded together. Continuous diffusion language models avoid this by denoising a shared continuous state, but their denoiser sees only that state, so nothing ties it to a valid token configuration until it is finally decoded. To address this, we propose Hierarchical Continuous Diffusion Language Models (HC-DLM), which couple discrete token generation with a continuous latent trajectory in a single, principled denoising process, whose training objective is derived from a variational bound on the token likelihood. In contrast to recent methods that attach continuous context to a self-contained discrete chain, HC-DLM makes the latent the only persistent generative state: tokens are read out from it at every step and feed back as a scaffold for the next latent update. On structured reasoning (Sudoku), mathematical planning (Countdown) and language modeling (LM1B), HC-DLM improves over discrete and continuous diffusion baselines at matched model size, in puzzle accuracy on Sudoku and Countdown and in generative perplexity on LM1B. Project page: this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.02193</p>
+</div></details>
+<p><strong>Authors</strong>: Hui Ren,Zihan Li,Chang Liu,Huidong Liu,Alexander Schwing</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.02193.pdf">https://arxiv.org/pdf/2610.02193.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.02193">https://arxiv.org/abs/2610.02193</a></p>
+<p><strong>Arxiv ID</strong>: 2610.02193</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.02193">https://papers.cool/arxiv/2610.02193</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:34.009Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:34.009Z</p>
+<hr>
+<h3 id="5-Adaptive-Reward-Routing-Dynamic-Multi-Reward-Optimization-for-Joint-Audio-Video-Diffusion-via-Forward-Process-RL"><a href="#5-Adaptive-Reward-Routing-Dynamic-Multi-Reward-Optimization-for-Joint-Audio-Video-Diffusion-via-Forward-Process-RL" class="headerlink" title="5. Adaptive Reward Routing: Dynamic Multi-Reward Optimization for Joint Audio-Video Diffusion via Forward-Process RL"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.37200">Adaptive Reward Routing: Dynamic Multi-Reward Optimization for Joint Audio-Video Diffusion via Forward-Process RL</a></h3><p>Abstract:Multi-reward guided reinforcement learning (i.e., RL) offers a promising way to improve joint audio-video diffusion models along several complementary objectives, including modality-specific quality, cross-modal semantic alignment, and temporal synchronization. Its effectiveness, however, depends on two quantities that change during training: where reward-driven updates should act, and how competing rewards should be combined. Existing methods tend to rely on fixed routing and reward weights, failing to track evolving model functions. To address these limitations, we propose Adaptive Reward Routing to jointly adapt update locations and reward coordination during forward-process RL (i.e., DiffusionNFT) of joint audio-video diffusion models. Our method consists of two components. (i) Cross-Modal Influence-Guided Routing (Localizing Updates): We use bidirectional cross-attention responses as an efficient proxy for evolving cross-modal influence, dynamically reweighting token-aware losses and scaling gradients across cross-modal layers without additional model interventions. (ii) Preference-Preserving Modality-Aware Reweighting (Coordinating Rewards): We preserve predefined weights as preference priors and use branch-specific reward-gradient interactions as residual corrections after warm-up. This resolves evolving conflicts without letting dominant rewards suppress weak but essential objectives. Extensive experiments demonstrate consistent improvements in modality quality, semantic consistency, and audio-video synchronization over strong RL baselines. Ablations and mechanism analyses further validate the complementary benefits of adaptive update routing and reward coordination.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2609.37200 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Songlin Yang,Xiaotong Zhao,Jiacheng Zhang,Zhe Wang,Toyota Li,Eric Liu,Alan Zhao,Anyi Rao</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.37200.pdf">https://arxiv.org/pdf/2609.37200.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.37200">https://arxiv.org/abs/2609.37200</a></p>
+<p><strong>Arxiv ID</strong>: 2609.37200</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.37200">https://papers.cool/arxiv/2609.37200</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:33.851Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:33.851Z</p>
+<hr>
+<h3 id="6-GraphForge-Training-Working-Agents-with-Graph-Anchored-Workspace-Synthesis"><a href="#6-GraphForge-Training-Working-Agents-with-Graph-Anchored-Workspace-Synthesis" class="headerlink" title="6. GraphForge: Training Working Agents with Graph-Anchored Workspace Synthesis"></a>6. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.38923">GraphForge: Training Working Agents with Graph-Anchored Workspace Synthesis</a></h3><p>Abstract:Working agents need to read diverse files, coordinate tools, and produce deliverables. Training such agents requires tasks built on many real files with verifiable results, but few pipelines exist to synthesize this kind of data. Existing pipelines either generate files with models, which lack realism and diversity, or build tasks on real files without task-specific verifiers, leaving result quality unchecked. We introduce GraphForge, an evidence-graph based framework that grounds both the task and its verification in real files. Starting from occupation-grounded seeds for controlled diversity, GraphForge assembles a workspace of real files for each seed and builds an evidence graph over their relations. Since the task statement and rubrics are both derived from this graph, task requirements are backed by the workspace files and each criterion is anchored to the files needed to verify it. An initial rollout further tests executability, and a revision agent repairs the task and rubrics against the original files before trajectories are collected. Fine-tuning Qwen3.6-27B on 2,169 GraphForge trajectories brings GDPVal to 1445.7 (+65.7) under OpenHands, and Workspace-Bench-Lite and SpreadsheetBench II to 63.7 (+7.7) and 24.0 (+13.7) under Claude Code. Rejection fine-tuning on the SFT model’s own rollouts, with candidates selected by the evidence-anchored rubrics, yields further improvements on all three benchmarks, suggesting that the rubrics provide a useful selection signal. The data and models are available.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2609.38923 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Qisheng Su,Hanchen Wang,Guanru Zhu,Huicheng Jiang,Qiuyinzhe Zhang,Kou Shi,Zhen Fang,Ziao Zhang,Qingnan Ren,Zehui Chen,Tao Gui,Feng Zhao</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.38923.pdf">https://arxiv.org/pdf/2609.38923.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.38923">https://arxiv.org/abs/2609.38923</a></p>
+<p><strong>Arxiv ID</strong>: 2609.38923</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.38923">https://papers.cool/arxiv/2609.38923</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:40.399Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:40.399Z</p>
+<hr>
+<h3 id="7-AutoDataBench-A-Data-centric-Testbed-for-Accelerating-Auto-Research"><a href="#7-AutoDataBench-A-Data-centric-Testbed-for-Accelerating-Auto-Research" class="headerlink" title="7. AutoDataBench: A Data-centric Testbed for Accelerating Auto Research"></a>7. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.40097">AutoDataBench: A Data-centric Testbed for Accelerating Auto Research</a></h3><p>Abstract:Existing auto-research benchmarks often entangle multiple sources of improvement, including training frameworks, hyperparameters, compute budgets, and data, making it difficult to attribute why one frontier agent outperforms another to specific research capabilities. In this work, we isolate and systematically evaluate Data Intelligence: an agent’s ability to understand, manipulate, and improve the data that shapes model capabilities. We introduce AutoDataBench, a controlled testbed built on a conceptual framework of data intelligence spanning data diagnosis, data organization, and data construction, instantiated through three highly curated optimization tasks while holding non-data factors fixed. Across tool use, retrieval, and knowledge injection, we evaluate frontier LLMs’ ability to improve training data through iterative experimentation under task-specific resource budgets. Beyond optimization performance, we ask: do LLMs understand what their data interventions do? We compare predictions made before training with observed outcomes to seek evidence of data-effect reasoning beyond trial and error, and explore whether iterative feedback helps LLMs better understand how changes to training data affect model performance. Finally, we show that reusing AutoDataBench trajectories for mid-training improves downstream coding performance, highlighting its value in both evaluating data intelligence and generating high-quality training data. Code and resources are available at this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2609.40097 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Ruifeng Yuan,Yizhi Li,Yaxin Du,Fengyu Cai,Yiqi Liu,Hou Pong Chan,Chenghua Lin,Yun Chen,Jian Yang,Bryan Dai,Pinyan Lu,Chenghao Xiao</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.40097.pdf">https://arxiv.org/pdf/2609.40097.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.40097">https://arxiv.org/abs/2609.40097</a></p>
+<p><strong>Arxiv ID</strong>: 2609.40097</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.40097">https://papers.cool/arxiv/2609.40097</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:40.761Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:40.761Z</p>
+<hr>
+<h3 id="8-ActiveSaddler-Automated-Curriculum-Learning-for-Agent-Harness-Optimization"><a href="#8-ActiveSaddler-Automated-Curriculum-Learning-for-Agent-Harness-Optimization" class="headerlink" title="8. ActiveSaddler: Automated Curriculum Learning for Agent Harness Optimization"></a>8. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.00906">ActiveSaddler: Automated Curriculum Learning for Agent Harness Optimization</a></h3><p>Abstract:Automated harness optimization can substantially improve LLM agents by iteratively updating their prompts, tool interfaces, and control logic from execution feedback. However, existing methods primarily optimize how the harness is updated while largely fixing which training scenarios generate the feedback that drives those updates. As the harness evolves, the scenarios most useful for further optimization can change, suggesting that the training curriculum itself should adapt alongside the harness. We formulate this missing dimension of harness optimization as an automated curriculum learning problem and introduce ActiveSaddler. ActiveSaddler models the evolving curriculum as a non-stationary bandit with dynamically instantiated optimization targets. It abstracts recurring failures into reusable failure-pattern arms, estimates the potential learning progress from further targeting each pattern, and adaptively balances revisiting known weaknesses with exploring unseen scenarios for new ones. Optimization outcomes continually update both the set of discovered failure patterns and their priorities, allowing the curriculum to co-evolve with the harness. Experiments on GAIA2 and Terminal-Bench 2.0 show that ActiveSaddler consistently discovers stronger harnesses, improving test Pass@1 by 4.4 and 7.5 percentage points over the same harness optimizer using a scenario order fixed before optimization, respectively. Ablations further show that these gains depend on dynamically constructing optimization targets, estimating their evolving utility, and balancing continued optimization with new failure discovery. Together, these results establish automated curriculum learning as a new crucial optimization dimension for harness optimization.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.00906</p>
+</div></details>
+<p><strong>Authors</strong>: Sungho Park,Wonjoong Kim,Jue Zhang,Wook-Shin Han,Pengfei Gao,Chanyoung Park,Yongqiang Yao,Rao Fu,Elsie Nallipogu,Qingwei Lin,Victor Rühle</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00906.pdf">https://arxiv.org/pdf/2610.00906.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00906">https://arxiv.org/abs/2610.00906</a></p>
+<p><strong>Arxiv ID</strong>: 2610.00906</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.00906">https://papers.cool/arxiv/2610.00906</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:40.999Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:40.999Z</p>
+<hr>
+<h3 id="9-ROWBench-Do-Video-Models-Render-What-the-Program-Specifies"><a href="#9-ROWBench-Do-Video-Models-Render-What-the-Program-Specifies" class="headerlink" title="9. ROWBench: Do Video Models Render What the Program Specifies?"></a>9. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.02205">ROWBench: Do Video Models Render What the Program Specifies?</a></h3><p>Abstract:Programmable world models separate executable dynamics from visual generation, offering a promising foundation for next-generation game engines. However, their visual adherence to explicit rules and interactions remains insufficiently evaluated. Existing benchmarks assess visual quality, controllability, and instruction or physical adherence, but rarely test fidelity to fine-grained, program-specified world events. We introduce PROWBench, comprising 170 programmatically constructed episodes and 600 proxy videos covering diverse scenes and interactions. PROWBench logs entity states and timestamped events, including those outside the camera’s field of view, as replayable world records, from which it renders synchronized views and proxy representations. This enables generated videos to be checked against the observable consequences of program execution. An extensible framework constructs scenes, controls behaviors, and can render each camera view in different representations, such as coarse 3D, and bounding boxes. The benchmark covers first- and third-person perspectives, with synchronized multi-view observations available for a subset of episodes. Grounded in these records, PROWBench evaluates entity control, long-horizon memory, and, with two VLM-based metrics, Logic-Render Alignment and Interaction Success Rate, adherence to the prescribed timeline and the visual realization of timestamped engine-recorded events.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.02205</p>
+</div></details>
+<p><strong>Authors</strong>: Zheng-Hui Huang,Guixu Lin,Yu-Ju Tsai,Jian-Kai Zhu,Fengbo Lan,Yu-Lun Liu,Yung-Yu Chuang,Kaipeng Zhang,Zhixiang Wang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.02205.pdf">https://arxiv.org/pdf/2610.02205.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.02205">https://arxiv.org/abs/2610.02205</a></p>
+<p><strong>Arxiv ID</strong>: 2610.02205</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.02205">https://papers.cool/arxiv/2610.02205</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:42.918Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:42.918Z</p>
+<hr>
+<h3 id="10-Predictive-Credit-Measuring-What-Scientific-Explanations-Add-to-Experimental-Forecasts"><a href="#10-Predictive-Credit-Measuring-What-Scientific-Explanations-Add-to-Experimental-Forecasts" class="headerlink" title="10. Predictive Credit: Measuring What Scientific Explanations Add to Experimental Forecasts"></a>10. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.00314">Predictive Credit: Measuring What Scientific Explanations Add to Experimental Forecasts</a></h3><p>Abstract:Research agents explain planned experiments. We measure predictive credit with paired forecasts sharing an intervention, forecaster, and outcome while varying description, matched explanation, and donor context. Five checks track commitment, delivery, predictive gain, alignment, and known-signal uptake. Across 336 prospective states in controlled learning, 12 Tox21 endpoints, and 24 OpenML tasks, v5’s frozen credit decision was inconclusive. Tox21’s preregistered ROC AUC interval-score harm test was unmet ($D-M=-.0026$, 95 percent interval [$-.0174$, .0104]); OpenML’s joint formation, point-equivalence, and repeatability rule was unmet. Matched point-accuracy gains over description remained unconfirmed, and Tox21/OpenML seed-donor intervals spanned zero. Under requested DeepSeek V4 Pro, matched and donor cards reduced secondary Tox21 drift by 64.5 and 59.1 percent. A DeepSeek V4 Flash replay raised matched point MAE from .01823 to .02020 and missed matched-donor interval-score equivalence. OpenML full-card assignment widened nominal 80 percent intervals by 21 percent, with 49.3 percent coverage versus 51.4 percent for description and content in 66/144 cards. Direct-text Flash delivered all 144 notes without detectable matched point-accuracy gain. A researcher-authored mechanism positive control lowered point MAE by 2.60 percentage points versus description. The protocol measures predictive credit for research-agent benchmarks and scientific forecasting; natural-explanation credit remained unconfirmed at the tested donor resolutions.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.00314</p>
+</div></details>
+<p><strong>Authors</strong>: Jingjie Ning,Xueqi Li,Yibo Kong,Dongting Li</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00314.pdf">https://arxiv.org/pdf/2610.00314.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00314">https://arxiv.org/abs/2610.00314</a></p>
+<p><strong>Arxiv ID</strong>: 2610.00314</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.00314">https://papers.cool/arxiv/2610.00314</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:43.352Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:43.352Z</p>
+<hr>
+<h3 id="11-Rules-to-Tools-Executable-Checks-for-LLM-Agents-in-Scientific-Computing"><a href="#11-Rules-to-Tools-Executable-Checks-for-LLM-Agents-in-Scientific-Computing" class="headerlink" title="11. Rules to Tools: Executable Checks for LLM Agents in Scientific Computing"></a>11. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.00313">Rules to Tools: Executable Checks for LLM Agents in Scientific Computing</a></h3><p>Abstract:Scientific coding agents receive equations, boundary conditions, and output requirements in writing, then must assess the programs they revise. Rules to Tools (R2T) supplies prepared executable checks of public scientific requirements. Matched SciCode repair groups share written checks, starting programs, model, and budgets; the tool group receives a callable implementation. Across two task-ID cohorts, complete repair is 26/30 with text and 29/30 with the prepared checks. Three task IDs favor tools, one favors text, and eleven tie. The eight-ID cohort scores 13/16 versus 15/16, with a task-cluster bootstrap 95% interval of [-12.5, 43.75] percentage points for the difference. The larger shared-definition SciCode cohort ties at 13/24 per group. Five development-exposed tasks with alternate starting programs score 3/10 versus 7/10. The tool group favors tasks 17, 77, and 11; initial checks flag task 17 and report no violation for tasks 77 and 11. Task 37 favors text and has no initial reported violation. A fresh source-through-Python arm also reaches 15/16, matching the dedicated command’s aggregate. In a matched PDE comparison, detailed text scores 23/24 and checks score 24/24, with 31.2% lower reported model output for checks. Agent-side output savings vary by cohort, while public CPU use rises in both task-ID cohorts. These results measure task-dependent repair outcomes and agent-side costs with prepared checks.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.00313</p>
+</div></details>
+<p><strong>Authors</strong>: Jingjie Ning,Guojiang Zhao,Chen Xu,Shanshan Zhong,Xiaochuan Li,Ji Zeng,Guolin Ke</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00313.pdf">https://arxiv.org/pdf/2610.00313.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00313">https://arxiv.org/abs/2610.00313</a></p>
+<p><strong>Arxiv ID</strong>: 2610.00313</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.00313">https://papers.cool/arxiv/2610.00313</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:46.344Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:46.344Z</p>
+<hr>
+<h3 id="12-Learning-What-to-Recall-Adaptive-Multi-Cue-Episodic-Memory-for-World-Models"><a href="#12-Learning-What-to-Recall-Adaptive-Multi-Cue-Episodic-Memory-for-World-Models" class="headerlink" title="12. Learning What to Recall: Adaptive Multi-Cue Episodic Memory for World Models"></a>12. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.34677">Learning What to Recall: Adaptive Multi-Cue Episodic Memory for World Models</a></h3><p>Abstract:World models predict future observations from current experience and actions, yet prediction can depend on observations seen far in the past. Episodic memory preserves past observations for later recall; however, as memory accumulates, it raises a fundamental question: which memories are useful for the current prediction, and which available retrieval cues should be trusted to find them? This is challenging because fixed criteria based on recency, pose overlap, or visual similarity can be unreliable across environments and queries. We propose Future-Aware Recall (FAR), a framework that learns episodic recall from future-aware predictive supervision and adaptive multi-cue scoring. During training, FAR measures predictive utility by the conditional log-likelihood of the realized future given recalled context, approximated by negative diffusion prediction loss, and uses it to train a retriever that remains future-blind at inference. The retriever learns cue-specific relevance and automatically determines which available retrieval cues, such as time, pose, vision, and audio, to trust for each query when selecting memories. Across three complementary settings, FAR outperforms hand-designed recall even with the same retrieval cues, automatically adapts which available cues to trust, and recalls the right history as the world changes. Together, these results establish FAR as a flexible, principled approach to episodic memory access in world models.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2609.34677 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Beomsu Kim,Chieh-Hsin Lai,Bac Nguyen,Amir Bar,Jong Chul Ye,Yuki Mitsufuji</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.34677.pdf">https://arxiv.org/pdf/2609.34677.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.34677">https://arxiv.org/abs/2609.34677</a></p>
+<p><strong>Arxiv ID</strong>: 2609.34677</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.34677">https://papers.cool/arxiv/2609.34677</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:46.501Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:46.501Z</p>
+<hr>
+<h3 id="13-It-Takes-Workflows-to-Evolve-Better-Workflows"><a href="#13-It-Takes-Workflows-to-Evolve-Better-Workflows" class="headerlink" title="13. It Takes Workflows to Evolve Better Workflows"></a>13. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.01026">It Takes Workflows to Evolve Better Workflows</a></h3><p>Abstract:Tackling complex real-world tasks can exceed the capabilities of a single large language model (LLM), motivating the use of multi-agent workflows that coordinate specialized agents to work together on these tasks. Recent methods train LLMs to construct better workflows from execution outcomes, but they optimize only the workflow generator, while the other agents that build or execute each workflow remain fixed even though every outcome depends on all of them. However, extending training beyond the generator is challenging: the agents are coupled, and a workflow’s outcome is a single sparse score that cannot tell which agent causes a failure. We propose FloWright, which leverages the workflow as a harness to optimize workflows. By introducing a hierarchical, structure-aware reward paradigm, FloWright enables one role to self-evolve and two or more roles to co-evolve, with no additional models, labels, or executions. Considering the limitation that workflows are commonly trained and evaluated on data that a single agent can already handle, we further propose DataWright, an adaptive data hardening approach that converts existing datasets into workflow-level tasks with increased difficulty. Across document, slide, chart, code, math, and finance tasks, small open models trained with FloWright achieve improved performance by up to $+7.41\%$, with co-evolving ($+5.03\%$) more roles gaining more than optimizing one of them alone ($+2.83\%$). Our project page: this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.01026</p>
+</div></details>
+<p><strong>Authors</strong>: Xuehang Guo,Haoyu Wang,Haifeng Chen,Yangyi Chen,Zhenhailong Wang,Qingyun Wang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.01026.pdf">https://arxiv.org/pdf/2610.01026.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01026">https://arxiv.org/abs/2610.01026</a></p>
+<p><strong>Arxiv ID</strong>: 2610.01026</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.01026">https://papers.cool/arxiv/2610.01026</a></p>
+<p><strong>Published</strong>: 2026-10-02T02:34:49.282Z</p>
+<p><strong>Updated</strong>: 2026-10-02T02:34:49.282Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202610/2026-10-02/">https://wdndev.github.io/daily/hf/202610/2026-10-02/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202606/2026-06-01/" title="HuggingFace Papers 2026-06-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-01</div></div></a></div><div><a href="/daily/hf/202606/2026-06-02/" title="HuggingFace Papers 2026-06-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-02</div></div></a></div><div><a href="/daily/hf/202606/2026-06-04/" title="HuggingFace Papers 2026-06-04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-06-04</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Retrieval-Augmented-Skill-Optimization-via-Cross-Harness-Adaptation"><span class="toc-text">1. Retrieval-Augmented Skill Optimization via Cross-Harness Adaptation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-AutoGUIWorld-Image-Generators-as-Visual-World-Models-for-GUI-Agent"><span class="toc-text">2. AutoGUIWorld: Image Generators as Visual World Models for GUI Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Scaling-and-Distilling-Text-Embeddings-for-Better-Diffusibility"><span class="toc-text">3. Scaling and Distilling Text Embeddings for Better Diffusibility</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Hierarchical-Continuous-Diffusion-Language-Models"><span class="toc-text">4. Hierarchical Continuous Diffusion Language Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Adaptive-Reward-Routing-Dynamic-Multi-Reward-Optimization-for-Joint-Audio-Video-Diffusion-via-Forward-Process-RL"><span class="toc-text">5. Adaptive Reward Routing: Dynamic Multi-Reward Optimization for Joint Audio-Video Diffusion via Forward-Process RL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-GraphForge-Training-Working-Agents-with-Graph-Anchored-Workspace-Synthesis"><span class="toc-text">6. GraphForge: Training Working Agents with Graph-Anchored Workspace Synthesis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-AutoDataBench-A-Data-centric-Testbed-for-Accelerating-Auto-Research"><span class="toc-text">7. AutoDataBench: A Data-centric Testbed for Accelerating Auto Research</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-ActiveSaddler-Automated-Curriculum-Learning-for-Agent-Harness-Optimization"><span class="toc-text">8. ActiveSaddler: Automated Curriculum Learning for Agent Harness Optimization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-ROWBench-Do-Video-Models-Render-What-the-Program-Specifies"><span class="toc-text">9. ROWBench: Do Video Models Render What the Program Specifies?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Predictive-Credit-Measuring-What-Scientific-Explanations-Add-to-Experimental-Forecasts"><span class="toc-text">10. Predictive Credit: Measuring What Scientific Explanations Add to Experimental Forecasts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Rules-to-Tools-Executable-Checks-for-LLM-Agents-in-Scientific-Computing"><span class="toc-text">11. Rules to Tools: Executable Checks for LLM Agents in Scientific Computing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Learning-What-to-Recall-Adaptive-Multi-Cue-Episodic-Memory-for-World-Models"><span class="toc-text">12. Learning What to Recall: Adaptive Multi-Cue Episodic Memory for World Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-It-Takes-Workflows-to-Evolve-Better-Workflows"><span class="toc-text">13. It Takes Workflows to Evolve Better Workflows</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
