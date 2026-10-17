@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-10-14 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. PANINI-DR: Controlled Deep Research through Generative Semantic WorkspacesAbstract:Deep research requires connecting multiple steps of search, reasoning, and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-10-14">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202610/2026-10-14/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. PANINI-DR: Controlled Deep Research through Generative Semantic WorkspacesAbstract:Deep research requires connecting multiple steps of search, reasoning, and">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-17T01:31:33.899Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202610/2026-10-14/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-10-14',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-17 09:31:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">159</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-10-14</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-10-17T01:31:33.899Z" title="Updated 2026-10-17 09:31:33">2026-10-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">11k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>38min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-10-14"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-PANINI-DR-Controlled-Deep-Research-through-Generative-Semantic-Workspaces"><a href="#1-PANINI-DR-Controlled-Deep-Research-through-Generative-Semantic-Workspaces" class="headerlink" title="1. PANINI-DR: Controlled Deep Research through Generative Semantic Workspaces"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.15208">PANINI-DR: Controlled Deep Research through Generative Semantic Workspaces</a></h3><p>Abstract:Deep research requires connecting multiple steps of search, reasoning, and computation, with intermediate findings guiding what to investigate next. As investigations grow, agents must maintain research state across model calls and check findings before errors propagate into subsequent work. We introduce PANINI-DR, a multi-agent harness that separates coordination of the overall investigation from the research and verification of individual subquestions. A shared workspace, built on the Generative Semantic Workspace representation, records subquestions, their dependencies, findings, and supporting evidence. Researchers investigate individual subquestions, while a separate verification agent checks proposed answers against those subquestions and their evidence. Verification feedback guides further investigation, and recorded findings inform subsequent assignments. We evaluate PANINI-DR on BrowseComp-Plus, FRAMES, and MoNaCo against seven state-of-the-art deep-research harnesses, all using a shared language-model backbone and frozen corpora. PANINI-DR achieves the strongest average performance across the three benchmarks. On BrowseComp-Plus, it achieves 73.3% accuracy, outperforming the next-best harness by 16.0 points. Its advantage is strongest on hard questions, where it answers nearly twice as many as the next-best harness. Ablations further show that structured planning and persistent state improve performance, as does checking each finding against its cited evidence before it is reused. Because a model can answer correctly from memory alone, we also analyze the evidence retained by each harness. PANINI-DR achieves the highest answer recoverability from saved evidence on all three benchmarks, while complementary claim-support audits show stronger evidence-backed answers. Accounting for this evidence changes how harnesses compare and further strengthens PANINI-DR’s advantage.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：深入研究需要连接多个搜索、推理和计算步骤，中间结果指导接下来的研究方向。随着调查的深入，研究主体必须在模型调用之间维护研究状态，并在错误传播到后续工作之前检查发现。我们提出了PANINI-DR，一种多主体框架，它将整体调查的协调与各个子问题的研究和验证分离开来。基于生成语义工作区（Generative Semantic Workspace）表示的共享工作区记录子问题、依赖关系、发现和支持证据。研究者负责调查各个子问题，而独立的验证代理则根据这些子问题及其证据检查提出的答案。验证反馈指导进一步的调查，已记录的发现则用于后续任务。我们在BrowseComp-Plus、FRAMES和MoNaCo上，对PANINI-DR进行了评估，并与七个最先进的深度研究框架进行了对比，这些框架均使用共享语言模型骨干和固定语料库。PANINI-DR在三个基准测试中表现出最强的平均性能。在BrowseComp-Plus上，它的准确率达到73.3%，比次优框架高出16.0个百分点。其优势在难题上最为明显，它几乎回答了次优框架一倍的问题。消融实验进一步显示，结构化规划和持久状态能够提升性能，对每个发现及其引用证据进行检查后再使用，也能提高性能。由于模型仅凭记忆就可能正确回答，我们还分析了各框架保留的证据。PANINI-DR在所有三个基准测试中实现了最高的答案可恢复性，同时互补的主张-支持审查显示出更有证据支撑的答案。将此证据纳入考虑会改变对各框架的比较，并进一步强化PANINI-DR的优势。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.15208</p>
+</div></details>
+<p><strong>Authors</strong>: M. Yigit Turali,Shreyas Rajesh,M. Efe Lorasdagi,Chenda Duan,Kartik Sharma,Vwani Roychowdhury</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.15208.pdf">https://arxiv.org/pdf/2610.15208.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.15208">https://arxiv.org/abs/2610.15208</a></p>
+<p><strong>Arxiv ID</strong>: 2610.15208</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.15208">https://papers.cool/arxiv/2610.15208</a></p>
+<p><strong>Published</strong>: 2026-10-14T02:09:03.591Z</p>
+<p><strong>Updated</strong>: 2026-10-14T02:09:03.591Z</p>
+<hr>
+<h3 id="2-PhyProbe-Rethinking-Physical-Consistency-Evaluation-in-Generated-Videos"><a href="#2-PhyProbe-Rethinking-Physical-Consistency-Evaluation-in-Generated-Videos" class="headerlink" title="2. PhyProbe: Rethinking Physical Consistency Evaluation in Generated Videos"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2609.38377">PhyProbe: Rethinking Physical Consistency Evaluation in Generated Videos</a></h3><p>Abstract:Evaluating the physical consistency of generated videos remains a fundamental challenge. Existing approaches rely on off-the-shelf vision-language models, which can often be myopic to physical dynamics, or fine-tuned evaluators trained on human annotations, which overfit to dataset-specific cues and fail to generalize. A key challenge is that existing supervision sources provide either relative ordering or absolute scores, but not both reliably and consistently across varied settings. To this end, we introduce PhyProbe, an evaluator that extracts features from a frozen pretrained spatio-temporal encoder and maps them to a scalar physical consistency violation score via a lightweight scoring head. PhyProbe is trained through a unified objective combining pairwise ranking, regression on noisy scalar annotations, and anchor-based calibration over a curated set of heterogeneous supervision sources. Experiments show that PhyProbe outperforms prior methods on most pairwise benchmarks spanning real-generated and generated-generated pairs under varying correspondence, with the largest gains in no-correspondence and generated-generated settings where existing fine-tuned evaluators degrade sharply. PhyProbe achieves strong correlation with human judgments, with close agreement between rank-based and linear metrics, indicating that scores are both well ordered and anchored to a stable [0, 1] scale. Further, despite being trained on supervision indicative of physical consistency, without explicit general-preference labels, PhyProbe also performs competitively on human preference benchmarks: consistent with the observation that physics violations are entangled with broader quality degradations.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：评估生成视频的物理一致性仍然是一个基本挑战。现有的方法依赖现成的视觉-语言模型，而这些模型往往对物理动态缺乏敏感性；或者依赖在人工标注数据上微调的评估器，但这些评估器容易对特定数据集的线索过拟合，且无法泛化。一个关键挑战是现有的监督来源要么提供相对顺序，要么提供绝对分数，但难以在各种设置下可靠且一致地同时提供两者。为此，我们引入了PhyProbe，一种评估器，它从冻结的预训练时空编码器中提取特征，并通过轻量级打分头将其映射为标量物理一致性违例分数。PhyProbe通过统一目标进行训练，该目标结合了成对排序、带噪声标量注释的回归，以及基于锚点的校准，利用精心挑选的异质监督源集合。实验表明，PhyProbe在大多数涵盖真实生成和生成生成对的成对基准测试中优于先前方法，在不同对应关系下，尤其在无对应关系和生成生成设置中表现出最大的提升，而现有微调评估器在这些情况下性能急剧下降。PhyProbe与人工判断具有较强的相关性，基于排序和线性指标的结果相互接近，表明其分数既有良好的排序性，又锚定在稳定的[0, 1]尺度上。此外，尽管训练时仅使用了物理一致性指示的监督而没有显式的通用偏好标签，PhyProbe在人工偏好基准测试中也表现出竞争力，这与观测结果一致，即物理违规与更广泛的质量下降相纠缠。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？ 该论文旨在解决\*\*生成视频中物理一致性（physical consistency）的可靠评估问题\*\*。具体而言，论文针对现有评估范式中的以下核心挑战： ### 1. 现有评估器对物理动态的建模不足 - \*\*视觉-语言模型（VLM）的局限性\*\*：当前主流的零样本或微调VLM评估器主要依赖语义推理和语言介导的代理信号，对物体如何运动、碰撞、变形等底层物理动态缺乏直接感知，容易忽略需要时空推理才能发现的细微违规。 - \*\*微调评估器的过拟合问题\*\*：基于人工注释微调的评估器往往学习的是数据集特定的表面线索（dataset-specific shortcuts），而非真正的物理规律，因此在分布偏移或语义不对应（no-correspondence）的场景下性能急剧退化。 ### 2. 监督信号的不一致性与不稳定性 - \*\*相对排序与绝对分数的割裂\*\*：现有的监督源通常只能提供可靠的\*\*成对偏好\*\*（哪个视频更不符合物理）或\*\*带噪声的绝对分数\*\*（严重程度几分），但缺乏一种机制能同时将这两种信号统一为稳定、可解释且跨数据集可比的连续度量。 - \*\*人类注释的漂移性\*\*：人类对物理违规的感知往往是粗粒度、阈值化的，且绝对评分会随生成模型整体视觉质量的提升而发生尺度漂移（annotation drift）。这使得单纯拟合人类分数的评估器难以获得跨时间、跨数据集稳定的物理一致性度量。 ### 3. 缺乏连续且锚定的违规严重度量 - 物理一致性评估不应只是二元判断（“是否违规”），而应是一个\*\*测量问题（measurement problem）\*\*，能够量化违规的“严重程度”（egregiousness）。例如，物体轻微滑移与物体在空中爆炸属于不同程度的违规。 - 现有方法难以输出一个在固定尺度上（如 $
+</p>
+
+<p>0,1<br> ）稳定锚定的连续分数，导致不同数据集或不同时间采集的分数无法直接比较。 ### 4. 对参考视频或语义对应的过度依赖 - 许多物理违规仅通过视频自身的时空动态即可识别，无需 paired reference 或 prompt alignment。但现有评估流程往往要求严格的语义对应（如相同文本提示生成的视频对），限制了其在开放场景下的适用性。 —- ### 论文的核心解决思路 为应对上述问题，论文提出了 <strong>PHYPROBE</strong>，其设计目标包括： - 基于<strong>冻结的预训练时空编码器</strong>直接提取物理动态表征，避免依赖语言语义代理； - 通过<strong>统一的目标函数</strong>融合三种互补监督：成对排序（pairwise ranking）、带噪声标量回归（noisy scalar regression）和锚点校准（anchor-based calibration）； - 在推理时仅接收<strong>单个视频</strong>即可输出连续、有界（ </p>
+<p>0,1<br>）且物理意义明确的违规严重程度分数 s(v) ，同时保证可靠的相对排序和跨数据集稳定的绝对尺度。 Q2: 有哪些相关研究？ 与这篇论文相关的研究主要集中在以下四个方向： ### 1. 直观物理学与人类感知 认知科学中的<strong>直观物理学（Intuitive Physics）</strong>长期关注人类如何感知和推理物理交互。相关研究表明，人类对视觉物理异常的判断具有显著的<strong>粗粒度和阈值化</strong>特征：观察者通常只能可靠地检测到显著的物理违规，而对细微的不一致缺乏敏感性或产生不稳定判断。代表性工作包括对婴儿物体恒存性（object permanence）的研究、电生理学研究揭示的物理直觉引导视觉追踪机制，以及关于AI合成面孔与真实场景判断的心理学研究。这些发现提示，直接将人类感知建模为评估标准可能导致不稳定和漂移，因此需要构建不直接依赖于人类感知本身、而是基于更稳定表征信号的测量框架。 ### 2. 视频物理基准测试与数据集 为评估生成视频的物理合理性，研究者构建了多种基准数据集，可分为两类： - <strong>综合物理预测基准</strong>：如 Physion、IntPhys/IntPhys2、Physics-IQ、PhyGenBench、WorldModelBench 等，用于测试人类与机器从视觉输入进行物理预测的能力。 - <strong>生成视频失败案例数据集</strong>：如 ImpossibleVideos 和 BrokenVideos，专门收集现代生成模型产出的包含物理违规的视频，并标注了错误类型或时空掩码。 此外，VideoPhy2 和 VideoFeedback2 等数据集提供了大规模的人工注释，包括成对偏好或1–5分的物理合理性评分。然而，这些人工注释存在固有局限：物理不一致往往与渲染伪影、构图错误共存，导致注释者倾向于响应整体感知质量而非纯粹的物理动态；且随着生成模型质量提升，绝对评分的尺度会发生隐性漂移（annotation drift），难以反映稳定的物理一致性概念。 ### 3. 视频物理一致性自动评估器 现有自动评估方法主要包括以下几类： - <strong>基于通用视觉-语言模型（VLM）的零样本评估</strong>：如使用 Gemini、GPT-4V 等模型通过精心设计的提示词进行语义推理和物理判断。这类方法无需训练，但通常对物理动态短视（myopic to physical dynamics），严重依赖语言介导的语义代理，且需要上下文相关的提示工程才能暴露违规。 - <strong>基于微调VLM的专用评估器</strong>：如 VideoPhy-2-AutoEval、VideoScore2 等，通过在人工注释上微调大型VLM来评估物理常识或人类偏好。这类方法在特定基准上表现较好，但其决策过程主要依赖于语义代理信号和数据集特定的注释捷径（shortcuts），而非直接建模底层时空动态，因此在分布偏移或语义不对应（no-correspondence）的场景下性能退化明显。 - <strong>基于检测与解释的方法</strong>：如 PhyDetEx、David-XR1、Galileo-0 等，致力于检测并定位生成视频中的特定物理违规。这些方法同样基于微调VLM架构，侧重于可解释的错误定位，但在处理细微或分布外（out-of-distribution）违规时鲁棒性不足。 - <strong>基于自监督时空表征的方法</strong>：如 V-JEPA Surprisal Score，利用自监督视频模型中的预测误差作为物理一致性的代理指标。这类方法直接利用时空表征，但缺乏针对物理一致性的显式校准，难以提供稳定、可解释且锚定于固定尺度的严重程度分数。 ### 4. 奖励模型与通用人类偏好评估 更广泛的视频质量评估领域发展了多种奖励模型，如 VisionReward、VideoReward 等，旨在通过人类反馈学习通用的视频生成质量与偏好。虽然这些模型在视觉质量（VQ）和运动质量（MQ）上表现优异，但它们并非专门为物理一致性设计。值得注意的是，PHYPROBE 的研究表明，物理一致性的表征与更广泛的感知质量存在纠缠（entanglement），因此专门针对物理违规训练的评估器能够在一定程度上泛化到通用人类偏好基准。 Q3: 论文如何解决这个问题？ 论文通过提出 <strong>PHYPROBE</strong> 来解决生成视频物理一致性的评估难题。该方法将物理一致性评估重新表述为一个<strong>测量问题（measurement problem）</strong>，核心在于同时获得可靠的<strong>相对排序</strong>与<strong>稳定锚定的绝对尺度</strong>。具体解决方案可从以下三个维度展开： —- ### 1. 架构设计：基于时空表征的轻量级评分器 PHYPROBE 摒弃了依赖语言语义代理的 VLM 范式，转而直接对视频的时空动态进行建模： - <strong>冻结的预训练时空编码器</strong>：选用大规模预训练的时空视觉编码器（如 Perception Encoder）作为特征提取器 f(·) 。该编码器通过自监督或弱监督目标在海量视频数据上训练，能够保留物体结构、运动连续性与交互动态，为物理一致性评估提供底层表征基础。 - <strong>统计聚合与轻量评分头</strong>：编码器输出的逐帧特征在时序上通过<strong>均值、标准差与最大值拼接</strong>（mean+std+max）聚合为视频级描述符，随后输入一个仅含约 <strong>1M 参数</strong>的三层 MLP 评分头 g_θ(·) 。这种设计让主干网络负责复杂的时空建模，而评分头专注于学习平滑且尺度一致的映射函数。 给定视频 v$，其物理违规分数通过下式计算：</p>
+<p>s(v) = g<em>θ(f(v))<br> 推理时仅接收**单个视频**，无需成对参考或提示对齐，输出被裁剪至 $<br>0, 1<br>区间的连续标量，表征违规严重程度。 —- ### 2. 异构监督数据策划：整合多源互补信号 为解决单一数据集监督信号不足且易漂移的问题，论文从 7 个异构数据源中策划了约 <strong>371K 视频对</strong>，刻意覆盖不同的语义对应层级（图像+文本对应、文本对应、无对应）与不同的配对类型（真实-真实、真实-生成、生成-生成）。这些数据涵盖物体穿透、非真实流体、瞬时形变、时间跳变等多样违规类型。 数据源被重组为三种互补的监督形式： | 监督类型 | 数据来源示例 | 作用 | |————-|——————|———| | 成对排序（Rank） | PAI-Bench、VideoPhy2、VideoFeedback2 | 提供稳定的相对顺序信号 | | 噪声幅度（Magnitude） | VideoPhy2、VideoFeedback2、BrokenVideos | 提供近似的违规严重程度 | | 锚点校准（Calibration） | Kinetics-700、ImpossibleVideos、TRAVL | 锚定绝对尺度的两端 | 通过数据集级采样权重平衡各源贡献，防止大数据集主导学习信号。 —- ### 3. 统一训练目标：排序、幅度与校准的三重分解 论文的核心方法论在于将测量问题分解为三个可优化的子目标，并统一于一个损失函数中： #### (a) 成对排序损失 L</em>(rank) ：保障相对顺序 采用 <strong>Bradley-Terry 模型</strong>将标量分数解释为隐式违规强度。对于视频对 (v_i, v_j) ， v_i 比 v_j 更违规的概率建模为 σ(s(v_i) - s(v_j)) ，其中 σ$ 为 logistic 函数。损失定义为：</p>
+<p>L<em>(rank) = -E</em>((v<em>i, v_j, y_ij)) sim D</em>(rank) [ y<em>(ij) log σ(s(v_i) - s(v_j)) + (1-y</em>(ij)) log σ(s(v<em>j) - s(v_i)) ]<br> 其中  y</em>(ij) ∈ 0, 0.5, 1 。该形式对人工标注噪声更具鲁棒性，且引入了真实-真实视频对（ y<em>(ij)=0.5 ）以强化等序约束。 #### (b) 幅度回归损失  L</em>(mag) ：锚定数值量级 针对带噪的标量人工注释（如 1–5 分的物理合理性评分），先通过单调变换统一至 $</p>
+<p>0,1<br>$ 区间，再采用 **Huber 损失**降低离群标注的敏感度：<br>Huber(s, y) = (1) / (2)(s-y)^2, &amp; if |s-y| ≤ δ δ(|s-y| - (1) / (2)δ), &amp; otherwise</p>
+<p>L<em>(mag) = E</em>(v sim D)<em>(noisy) [ Huber(s(v), y_v) ]<br> 这使得模型不仅知道“哪个更违规”，还能估计“违规多少”。 #### (c) 锚点校准损失  L</em>(cal) ：稳定绝对尺度 选取高置信度的真实视频作为低违规锚点（目标  ≈ 0 ），合成失败案例作为高违规锚点（目标  ≈ 1 ），通过均方误差强制锚定： </p>
+<p>L<em>(cal) = E</em>(v sim D)_(anchor) [ | s(v) - I(v) |_2^2 ]<br> 其中  I(v) = 0  若  v  属于真实/物理一致视频， I(v) = 1  若属于明显违规视频。 #### (d) 总体目标 三者通过加权求和结合： </p>
+<p>L = L<em>(rank) + λ</em>(mag) L<em>(mag) + λ</em>(cal) L<em>(cal)<br> 实践中取  λ</em>(mag) = 10 ， λ_(cal) = 100 。评分头本身**无显式输出约束**，但回归与锚点损失促使学习过程中分数自然集中于目标区间；推理时通过  clip(s(v), 0, 1)  获得可解释的最终分数。 —- ### 4. 关键设计优势 - **摆脱语义代理**：直接基于时空表征评估动态，无需语言描述或 VLM 推理，避免了对提示工程和数据集捷径的依赖。 - **异构对应泛化**：通过在无对应（no-correspondence）数据上训练，模型学会了不依赖共享提示或内容的物理判断，在真实-生成与生成-生成对比中均表现稳健。 - **尺度稳定性**：锚点损失与回归损失的联合监督使 $</p>
+<p>0,1<br>$ 区间具有跨数据集、跨时间的可比性，缓解了单纯拟合人类评分导致的分布漂移。 - **参数高效**：仅训练 1M 参数，可在 4 块 H100 GPU 上 24 小时内完成训练，具备良好的可扩展性。 Q4: 论文做了哪些实验？ 论文围绕 PHYPROBE 的评估性能、泛化能力、内在机理及数据特性，开展了系统性的实验验证。实验可归纳为以下五个层面： —- ### 1. 物理一致性基准测试的成对排序性能 在四个物理视频基准上评估成对准确率（pairwise accuracy），并按**语义对应级别**（image+text / text / none）与**配对类型**（real–generated / generated–generated）进行细粒度分解： - **ImplBp** </p>
+<p>36<br>：150 对真实与生成视频，具有图像+文本语义对应； - **VP2p**<br>6<br>：1,280 对生成–生成视频，具有文本对应； - **PhyDExp**<br>53<br>：2,000 对真实–生成视频，无语义对应； - **VF2p**<br>20<br>：2,000 对生成–生成视频，无语义对应。 PHYPROBE 在四项基准中的三项取得最高成对准确率，尤其在**无对应**（no-correspondence）与**生成–生成**（G–G）的困难设定下，显著优于基于微调的 VLM 评估器（如 VideoPhy-2-AutoEval、VideoScore2）与零样本 VLM（Gemini-3.1 系列）。与使用相同 V-JEPA2-H/16 骨干的基线相比，PHYPROBE 在所有四项基准上提升 **13.9–48.1** 个百分点。 —- ### 2. 与人类评分尺度的相关性分析 为验证模型输出的连续分数不仅是良序的，而且与人类绝对评分呈线性对齐，论文在两个具有逐视频标量注释的测试集上计算： - **Spearman 秩相关系数  rho **：衡量排序一致性； - **Pearson 线性相关系数  r **：衡量尺度对齐程度。 | 数据集 | PHYPROBE ( rho  /  r ) | 对比基线表现 | |————|————————————|——————-| | VideoPhy2 (VP2) | 0.293 / 0.302 | VP2-AutoEval 更高 (0.359/0.362)，但 VF2 上崩溃 | | VideoFeedback2 (VF2) | **0.596 / 0.604** | VideoScore2 更高 (0.462/0.430)，但 VP2 上较低 | 关键发现：现有基线往往各自**过拟合到特定数据集的标注分布**，在跨数据集迁移时相关性剧烈波动；PHYPROBE 通过异构监督联合训练，在两项基准上同时保持适中至强相关，实现了更稳定的跨数据集度量。 —- ### 3. 向通用人类偏好基准的迁移能力 尽管 PHYPROBE 仅在物理一致性相关的监督信号上训练，未使用显式的通用偏好或奖励标签，论文仍评估了其在三个视频质量/人类偏好基准上的表现： - **MonetBench** </p>
+<p>55</p>
+<ul>
+<li>**Rapidata-I2V**<br>45, 46</li>
+<li>**VideoGen-RewardBench**<br>29<br>（含 Overall、MQ、VQ 子维度） PHYPROBE 在 MonetBench 上以 **72.7%**（含平局）超过专用奖励模型 VisionReward（68.2%）与 VideoReward（56.1%）；在 Rapidata-I2V 上取得 **62.7%**；在 RewardBench 上保持竞争力。这一迁移现象表明，物理违规表征与整体感知质量退化存在**纠缠（entanglement）**。 —- ### 4. 系统性消融实验 #### 4.1 损失组件的贡献 通过逐一移除三个损失项，验证统一训练目标的必要性： - **移除  L<em>(rank) **：成对排序性能显著退化，尤其在 VP2p 与 PhyDExp 上； - **移除  L</em>(mag) **：排序能力基本保留，但分数输出范围**爆炸**至 $</li>
+</ul>
+<p>-1.89, 3.45<br>，失去可解释性； - <strong>移除 L_(cal) </strong>：真实–生成成对准确率骤降，分数范围同样发散，说明锚点对于固定尺度不可或缺。 完整目标在排序准确率、分数有界性与人类相关性之间取得最佳权衡。 #### 4.2 不同预训练骨干网络 对比了多种冻结视频编码器对评估性能的影响： - <strong>Wan-2.2 VAE</strong>（重建导向，300M 参数） - <strong>V-JEPA2</strong>（预测式时空表征，300M–1B 参数） - <strong>Perception Encoder (PE)</strong>（弱监督大规模预训练，2B 参数） 实验表明，<strong>PE-Core-G14-448</strong> 在全部基准上表现最强且最稳定，而 V-JEPA2 系列次之，Wan-2.2 VAE 最弱。这提示面向物理动态的评估高度依赖底层表征空间的质量，弱监督预训练在保留物体结构与交互动态方面更具优势。 #### 4.3 时空聚合策略 比较了三种将逐帧特征映射为视频级分数的聚合头： | 聚合方式 | 可训练参数量 | 相对规模 | 核心性能 | |————-|——————|————-|————-| | Mean (MLP) | 0.36M | 1× | 基线 | | Attention Pooling | 6.92M | 19.2× | 略优但重 | | <strong>Stat (mean+std+max)</strong> | <strong>1.02M</strong> | <strong>2.8×</strong> | <strong>最佳权衡</strong> | 统计聚合（均值+标准差+最大值）以极轻量设计有效捕获时间变异与显著事件，避免了注意力机制的优化困难与计算开销。 #### 4.4 其他消融与鲁棒性分析 - <strong>评估对最小分数间隔</strong>：在不同 ground-truth 分数差阈值（ ≥ 1 至 ≥ 4 ）下，PHYPROBE 均保持优势，证明其非依赖特定配对筛选标准； - <strong>留一数据集训练（LODO）</strong>：依次排除 TRAVL、VideoPhy2、VideoFeedback2 进行重训，发现部分信号可跨数据集迁移，但排除任一源均导致对应基准性能下降，验证了异构数据源的互补价值； - <strong>分数归一化策略</strong>：相比线性归一化，论文提出的 violation-flooring 归一化在所有四项基准上均提升成对准确率（+1.3 至 +6.1 点），并在小规模盲测中获人类标注者 <strong>73.3%</strong> 的偏好。 —- ### 5. 定性分析与失败案例 论文通过可视化展示了 PHYPROBE 在多种物理违规类型上的行为： - <strong>低违规分数</strong>：分配给运动连贯、交互自然的视频（包括真实视频与高质量生成视频）； - <strong>高违规分数</strong>：分配给物体爆炸、穿透、非自然形变、不一致动力学等明显违规； - <strong>跨对应级别泛化</strong>：在 image+text、text、none 三种对应条件下均能有效区分物理合理性（Figure 4）。 同时，论文在 Appendix 中报告了代表性<strong>失败案例</strong>（Figure 8）： - 对<strong>罕见但物理上合理的运动</strong>（如特殊运动模式的真实视频）可能赋予偏高的违规分数； - 对<strong>瞬时或极短时的违规</strong>（如物体突然出现/消失）敏感度不足，可能因时序聚合导致信号被稀释。 —- ### 6. 基线与数据特性补充研究 - <strong>平局感知分析（Tie-aware Analysis）</strong>：对 VideoPhy-2-AutoEval 与 VideoScore2 的离散输出进行平局率统计，发现它们在部分基准上平局率极高（如 VideoPhy-2-AutoEval 在 Rapidata-I2V 上达 81.4%），导致有效可区分对比例过低；而 PHYPROBE 的连续输出天然避免了这一问题。 - <strong>训练/测试重叠分析</strong>：验证了各评估基准与训练语料在监督实例、生成提示词、生成器三个层面上的重叠情况，确认监督标签无泄漏，同时指出 VideoFeedback2 测试集与训练集共享提示词分布，结果反映的是同分布泛化而非分布偏移。 - <strong>BrokenVideos 启发式标签验证</strong>：通过复合掩码统计构造伪标签，并经 4 名独立标注者验证，启发式标签与人类多数意见一致率达 <strong>80.6%</strong>，与人类–人类平均一致性相当，支持其作为可靠辅助监督。 Q5: 有什么可以进一步探索的点？ 基于论文的局限性分析与实验洞察，以下几个方向值得进一步探索： —- ### 1. 增强长程因果依赖与时序推理能力 当前时空表征对<strong>长程因果依赖</strong>的建模仍不完善。论文指出，仅在扩展时间跨度中逐渐显现的物理违规（例如缓慢的、由因果链引发的异常）可能被欠编码。未来工作可探索： - 引入具有显式因果机制或更长上下文窗口的视频编码器； - 设计分层时序聚合策略，而非简单的统计池化，以保留长程动态轨迹； - 结合世界模型（world models）或潜在动态模型进行推理时物理对齐。 —- ### 2. 瞬时与短暂违规的敏感检测 PHYPROBE 对<strong>极短暂或瞬时发生的违规</strong>（如物体突然出现/消失、突变状态）敏感度不足，因为统计聚合（mean+std+max）可能稀释短暂异常的信号。改进方向包括： - 开发对局部时序异常更敏感的聚合机制，例如时序注意力峰值检测或显著性采样； - 在训练阶段引入针对瞬时变化的数据增强或显式的局部时序对比学习； - 探索事件级（event-level）而非仅视频级（video-level）的物理一致性评估。 —- ### 3. 物理一致性与视觉质量的显式解耦 论文观察到物理违规常与其他视觉伪影（如模糊、闪烁）<strong>纠缠（entangled）</strong>，且人类注释往往同时反映物理合理性与整体感知质量。当前缺乏能在<strong>固定视觉质量、场景、提示词与生成器</strong>条件下系统变化物理一致性的基准数据。未来可： - 构建控制变量基准（controlled benchmarks），通过干预物理参数（重力、碰撞、材质）生成仅物理一致性变化、其他质量维度恒定的视频对； - 在模型设计中引入解耦表征学习（disentangled representation learning），显式分离物理动态因子与外观/质量因子； - 开发仅针对物理动态的人类注释协议，减少注释者因视觉伪影而产生的评分偏差。 —- ### 4. 低违规区间（Subtle Violations）的精细监督 论文图 10 揭示，人类标注主要集中在明显的物理违规（评分 ≥ 0.5 ），而**低违规区间</p>
+<p>0, 0.5) 内缺乏直接的细粒度监督<strong>。PHYPROBE 虽能在此区间产生区分性分数，但其解释性尚未被验证。未来可： - 设计更敏感的人类注释方案（如强制排序、细粒度 Likert 量表或连续滑块评分），专门采集 subtle violations 的标注； - 利用合成物理引擎（synthetic physics engines）生成带有参数化扰动的视频，获得连续且精确的违规强度标签； - 探索半监督或自监督策略，在缺乏人类标注的低违规区域利用物理先验进行正则化。 —- ### 5. 细粒度（帧级/像素级）违规定位 目前 PHYPROBE 输出的是视频级标量分数。虽然现有工作（如 BrokenVideos、PhyDetEx）已开始探索错误定位，但将</strong>连续严重程度分数与时空定位**结合仍具潜力： - 扩展评分头为时空注意力或热力图输出，实现物理违规的可解释定位； - 结合像素级或掩码级监督（如 BrokenVideos 的异常掩码），在保持视频级排序能力的同时训练细粒度检测头； - 开发分层评估框架：先进行视频级筛选，再对高违规候选进行帧级诊断。 —- ### 6. 作为奖励信号用于视频生成优化 PHYPROBE 提供了一个可微分的、连续且标量化的物理违规度量 s(v) ∈ [0,1</p>
+<p>，天然适合作为<strong>奖励模型（reward model）</strong>： - 探索基于 PHYPROBE 的强化学习（RL）或直接偏好优化（DPO），在视频生成阶段直接惩罚物理不一致； - 研究在线学习策略：利用 PHYPROBE 对新生成视频进行自动标注，迭代扩充训练数据； - 结合其他维度奖励（视觉质量、文本对齐）构建多目标奖励组合，验证物理奖励对最终人类偏好的独立贡献。 —- ### 7. 跨模态与多模态物理推理 当前 PHYPROBE 仅依赖视觉时空表征。然而物理事件常伴随<strong>音频信号</strong>（如碰撞声）或需要<strong>文本提示</strong>提供的物理约束信息： - 探索融合音频-视频表征以评估物理一致性（例如检测视听不同步或违背物理的声源定位）； - 利用文本提示中的物理约束（如“球应该下落”）作为显式条件，构建条件化物理评估器； - 研究跨模态一致性：验证生成视频是否不仅自身物理合理，而且与给定的物理描述或初始条件一致。 —- ### 8. 构建更可靠、抗漂移的评估生态 论文揭示了人类注释的尺度漂移问题。未来可从<strong>评估方法论</strong>层面进行改进： - 建立基于<strong>锚定参考视频集</strong>的持续评估协议，定期校准评估器，防止因生成质量进步导致的分数膨胀或收缩； - 开发<strong>元评估（meta-evaluation）</strong>框架，不仅测试评估器的准确性，还测试其<strong>尺度稳定性</strong>（scale stability）与<strong>跨时间一致性</strong>； - 推动物理一致性评估的标准化，例如定义通用的物理违规本体论（ontology），使不同数据集的注释可映射到统一的严重程度尺度。 Q6: 总结一下论文的主要内容 该论文针对生成视频中的<strong>物理一致性评估</strong>问题，提出了一个名为 <strong>PHYPROBE</strong> 的评估框架。以下是对主要内容的系统总结： —- ### 1. 研究背景与动机 近年来，视频生成模型在视觉质量与运动连贯性上取得显著进展，但其生成的视频仍常出现违背物理规律的现象（如物体穿透、重力失效、非自然形变）。评估这些物理一致性违规面临以下挑战： - <strong>现有视觉-语言模型（VLM）对物理动态短视</strong>：依赖语义推理与语言代理，难以捕捉需时空推理的细微违规。 - <strong>微调评估器过拟合数据集捷径</strong>：在人工注释上微调的模型易依赖特定数据分布的表面线索，在分布偏移或语义不对应场景下性能急剧退化。 - <strong>人类注释不稳定</strong>：人类感知对物理违规的敏感度呈粗粒度、阈值化特征，绝对评分随生成质量提升而发生尺度漂移（annotation drift），难以提供稳定、跨数据集可比的度量。 - <strong>缺乏连续的严重程度度量</strong>：物理一致性评估不仅是二元判断，而需一个连续、有界且锚定的标量来量化违规的“严重程度”。 —- ### 2. 核心贡献：PHYPROBE 论文提出 PHYPROBE，一种基于冻结预训练时空编码器的轻量级物理一致性评估器。其核心设计包括： #### 2.1 架构设计 给定输入视频 v ，PHYPROBE 通过冻结的预训练时空编码器 f(·) 提取表征，再经轻量级评分头 g_θ(·)$ 映射为标量违规分数：</p>
+<p>s(v) = g_θ(f(v))<br> 推理时仅需**单个视频**，无需成对参考或提示对齐。输出通过  clip(s(v), 0, 1)  约束在 $<br>0, 1<br>区间，其中 0 表示物理一致， 1 表示严重违规。 时序聚合采用<strong>均值、标准差与最大值拼接</strong>（mean+std+max）的策略，以极轻量设计（仅约 1M 可训练参数）捕获视频级动态分布。 #### 2.2 异构监督数据策划 论文从 7 个数据源策划约 <strong>371K 视频对</strong>，刻意覆盖不同语义对应层级（图像+文本对应、文本对应、无对应）与配对类型（真实-真实、真实-生成、生成-生成）。监督被重组为三种互补形式： - <strong>成对排序（Pairwise Ranking）</strong>：利用 Bradley-Terry 模型建模相对违规强度，对噪声更鲁棒； - <strong>噪声幅度回归（Noisy Magnitude Regression）</strong>：使用 Huber 损失拟合人工标量评分，提供绝对量级信息； - <strong>锚点校准（Anchor-based Calibration）</strong>：以高置信度真实视频锚定 s ≈ 0 ，以合成失败案例锚定 s ≈ 1$，稳定绝对尺度。 #### 2.3 统一训练目标 三者融合为单一损失函数：</p>
+<p>L = L<em>(rank) + λ</em>(mag)L<em>(mag) + λ</em>(cal)L<em>(cal)<br> 其中  λ</em>(mag) = 10 ， λ<em>(cal) = 100 。该分解将物理一致性测量问题拆解为**排序**、**幅度**与**尺度校准**三个子问题。 —- ### 3. 实验结果 #### 3.1 物理一致性成对评估 在四个物理基准（ImplBp、VideoPhy2、PhyDetEx、VideoFeedback2）上，PHYPROBE 在**无对应（no-correspondence）**与**生成-生成（G–G）**的困难设定下显著优于现有方法： - 在 ImplBp 与 PhyDetEx（真实-生成对）上达到 **98.0–98.9%** 的成对准确率； - 在 VideoPhy2 与 VideoFeedback2（生成-生成对）上达到 **66.1–75.2%**，而现有微调 VLM 评估器在此类设定下退化明显。 #### 3.2 与人类判断的相关性 - 在 VideoFeedback2 上取得最强的 Spearman ( rho = 0.596 ) 与 Pearson ( r = 0.604 ) 相关； - 在 VideoPhy2 上保持中等相关 ( rho = 0.293, r = 0.302 )，且跨数据集表现比专门拟合单一数据集的基线（如 VideoPhy-2-AutoEval、VideoScore2）更均衡稳定。 #### 3.3 向通用偏好的迁移 尽管未使用显式通用偏好标签训练，PHYPROBE 在人类偏好基准上表现出意外的迁移能力：在 MonetBench 上超过专用奖励模型 VisionReward 与 VideoReward，在 Rapidata-I2V 与 RewardBench 上也具竞争力。这提示物理违规表征与整体感知质量存在纠缠。 #### 3.4 消融研究 - **损失组件**：移除  L</em>(rank)  损害排序能力；移除  L<em>(mag)  或  L</em>(cal)  导致分数范围爆炸，验证了三者缺一不可。 - **骨干网络**：弱监督预训练的 Perception Encoder（2B）表现最优，优于预测式模型 V-JEPA2 与重建式 VAE。 - **聚合策略**：统计聚合（mean+std+max）在准确率与效率间取得最佳权衡，优于纯均值或注意力池化。 —- ### 4. 局限性与未来方向 - **长程与瞬时违规**：当前表征对长程因果依赖建模不足，且统计聚合可能稀释瞬时异常信号。 - **物理与质量的纠缠**：缺乏在控制视觉质量恒定条件下仅变化物理一致性的基准数据，难以完全解耦二者。 - **低违规区间验证**：人类标注在 subtle violations 区间（$</p>
+<p>0, 0.5) ）缺乏直接监督，模型在此区间的细粒度解释性有待验证。 —- ### 5. 结论 PHYPROBE 将物理一致性评估重新表述为<strong>测量问题</strong>，通过异构监督的统一目标与冻结时空表征，实现了： 1. 可靠的相对排序（成对准确率）； 2. 稳定锚定于 [0,1</p>
+<p>$ 尺度的连续违规分数（幅度与校准）； 3. 对语义不对应与生成-生成场景的强泛化； 4. 向通用人类偏好的意外迁移。 该工作为生成视频的物理保真度评估提供了一个更可靠、可扩展且语义解耦的度量基础。 Q7: 想要进一步了解论文 以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是PhyProbe%3A%20Rethinking%20Physical%20Consistency%20Evaluation%20in%20Generated%20Videos，链接是https://arxiv.org/pdf/2609.38377，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2609.38377。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Max Ku,Jiaojiao Fan,Zekun Hao,Francesco Ferroni,Heng Wang,Wenhu Chen,Ming-Yu Liu,Prithvijit Chattopadhyay</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.38377.pdf">https://arxiv.org/pdf/2609.38377.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.38377">https://arxiv.org/abs/2609.38377</a></p>
+<p><strong>Arxiv ID</strong>: 2609.38377</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2609.38377">https://papers.cool/arxiv/2609.38377</a></p>
+<p><strong>Published</strong>: 2026-10-14T02:09:03.582Z</p>
+<p><strong>Updated</strong>: 2026-10-14T02:09:03.582Z</p>
+<hr>
+<h3 id="3-LeWAM-End-to-End-World-and-Action-Modeling-with-JEPAs"><a href="#3-LeWAM-End-to-End-World-and-Action-Modeling-with-JEPAs" class="headerlink" title="3. LeWAM: End-to-End World and Action Modeling with JEPAs"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.12818">LeWAM: End-to-End World and Action Modeling with JEPAs</a></h3><p>Abstract:Joint-embedding predictive architectures (JEPAs) learn compact latent world models without pixel reconstruction. Existing JEPA pipelines typically train visual representations and action-conditioned dynamics before adding a control policy or solver. We introduce LeWAM, an end-to-end JEPA for control with: (1) a joint training objective over next latent state prediction and action flow matching, and (2) an isotropic Gaussian constraint on the latent state, enabling a single model to support direct policy execution and efficient planning by evaluating sampled actions with its learned latent dynamics. Compared with prior JEPAs in visual planning, LeWAM improves success rate from 28.6% to 89.7% on contact-rich tasks and from 10.9% to 46.2% on long-horizon tasks, and plans 32.3 times faster. On behavior cloning tasks in simulation and physical robots, LeWAM is also competitive with established methods. Interpretability analyses show that LeWAM learns control-relevant representations and action distributions effectively guiding test-time planning and control.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：联合嵌入预测架构（JEPAs）可以在不进行像素重建的情况下学习紧凑的潜在世界模型。现有的JEPA流程通常在添加控制策略或求解器之前，先训练视觉表示和动作条件下的动力学。我们提出了LeWAM，一种端到端的JEPA控制方法，其特点为：(1) 对下一个潜在状态预测和动作流匹配进行联合训练目标；(2) 对潜在状态施加各向同性高斯约束，使单一模型能够通过其学习到的潜在动力学支持直接策略执行和高效规划，通过评估采样动作实现。与先前在视觉规划中的JEPA相比，LeWAM在接触丰富任务中的成功率从28.6%提高到89.7%，在长时域任务中的成功率从10.9%提高到46.2%，规划速度快32.3倍。在模拟和物理机器人上的行为克隆任务中，LeWAM也与现有方法具有竞争力。可解释性分析表明，LeWAM有效地学习与控制相关的表示和动作分布，从而指导测试时的规划和控制。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.12818 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Minghao Fu,Tavis Siebert,Eryk Halicki,Randall Balestriero</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.12818.pdf">https://arxiv.org/pdf/2610.12818.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.12818">https://arxiv.org/abs/2610.12818</a></p>
+<p><strong>Arxiv ID</strong>: 2610.12818</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.12818">https://papers.cool/arxiv/2610.12818</a></p>
+<p><strong>Published</strong>: 2026-10-14T02:09:03.600Z</p>
+<p><strong>Updated</strong>: 2026-10-14T02:09:03.600Z</p>
+<hr>
+<h3 id="4-ShellElastic-Scalable-Elastic-Pretraining-with-Simultaneous-Maximal-Updates-and-Hyperparameter-Transfer"><a href="#4-ShellElastic-Scalable-Elastic-Pretraining-with-Simultaneous-Maximal-Updates-and-Hyperparameter-Transfer" class="headerlink" title="4. ShellElastic: Scalable Elastic Pretraining with Simultaneous Maximal Updates and Hyperparameter Transfer"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.15124">ShellElastic: Scalable Elastic Pretraining with Simultaneous Maximal Updates and Hyperparameter Transfer</a></h3><p>Abstract:Foundation models need to support diverse inference budgets, yet training a separate model for each budget duplicates pretraining effort. Elastic models train several nested sub-networks inside one weight-shared supernet, but existing recipes face three obstacles: variable per-step workloads that hinder distributed scaling, limited hyperparameter (HP) transfer across model sizes, and no guarantee that all sub-networks are maximally updated at once. We present \Ours, an elastic transformer that organizes hidden dimensions into a dense core and successive shells, so that every hidden matrix is block lower triangular. One full-width forward pass contains every sub-network’s exact hidden states as prefixes, so joint training keeps a fixed computation graph and costs about as much per step as training the widest sub-network alone. We further introduce \muE, an extension of maximal update parameterization (\mup) to \Ours and other elastic architectures. Its scaling rules provably keep all sub-networks of a supernet maximally updated simultaneously (\muI), and keep doing so when the supernet is widened or given more shells; sweeps confirm that HPs tuned on a small non-elastic proxy stay near-optimal for elastic families and larger supernets (\mbox{\muT}). A single \Ours run produces sub-networks that outperform MatFormer and fully elastic baselines at matched parameter counts, and approach separately trained models that together take several times the steps.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：基础模型需要支持多样化的推理预算，但为每个预算训练一个单独的模型会重复预训练工作。弹性模型在一个权重共享的超级网络中训练几个嵌套的子网络，但现有方法面临三大障碍：每步工作量变化阻碍分布式扩展、模型尺寸间超参数传递受限，以及无法保证所有子网络同时得到最大更新。我们提出了\Ours，一种弹性变换器，将隐藏维度组织为密集核心和连续外壳，使每个隐藏矩阵都是块下三角的。一次全宽前向传播包含每个子网络的精确隐藏状态作为前缀，因此联合训练保持固定计算图，每步的计算成本与训练最宽子网络相当。我们进一步引入了\muE，将最大更新参数化（\mup）扩展到\Ours及其他弹性架构。其缩放规则可证明在超级网络中所有子网络均同时获得最大更新（\muI），且在超级网络加宽或增加更多外壳时继续保持；实验表明，在一个小型非弹性代理上调优的超参数，在弹性模型族和更大超级网络中仍接近最优（\mbox{\muT}）。单次\Ours运行即可生成参数数量匹配下，性能优于MatFormer和完全弹性基线的子网络，并接近那些需要几倍训练步骤的单独训练模型。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.15124</p>
+</div></details>
+<p><strong>Authors</strong>: Can Jin,Yan Kang,Yifan Gong,Chongjian Ge,Mingze Xu,Yuanjun Xiong,Dimitris N. Metaxas,Hongwu Peng</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.15124.pdf">https://arxiv.org/pdf/2610.15124.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.15124">https://arxiv.org/abs/2610.15124</a></p>
+<p><strong>Arxiv ID</strong>: 2610.15124</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.15124">https://papers.cool/arxiv/2610.15124</a></p>
+<p><strong>Published</strong>: 2026-10-14T02:09:03.595Z</p>
+<p><strong>Updated</strong>: 2026-10-14T02:09:03.595Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202610/2026-10-14/">https://wdndev.github.io/daily/hf/202610/2026-10-14/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202610/2026-10-01/" title="HuggingFace Papers 2026-10-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-01</div></div></a></div><div><a href="/daily/hf/202610/2026-10-02/" title="HuggingFace Papers 2026-10-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-02</div></div></a></div><div><a href="/daily/hf/202610/2026-10-03/" title="HuggingFace Papers 2026-10-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-PANINI-DR-Controlled-Deep-Research-through-Generative-Semantic-Workspaces"><span class="toc-text">1. PANINI-DR: Controlled Deep Research through Generative Semantic Workspaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-PhyProbe-Rethinking-Physical-Consistency-Evaluation-in-Generated-Videos"><span class="toc-text">2. PhyProbe: Rethinking Physical Consistency Evaluation in Generated Videos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-LeWAM-End-to-End-World-and-Action-Modeling-with-JEPAs"><span class="toc-text">3. LeWAM: End-to-End World and Action Modeling with JEPAs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ShellElastic-Scalable-Elastic-Pretraining-with-Simultaneous-Maximal-Updates-and-Hyperparameter-Transfer"><span class="toc-text">4. ShellElastic: Scalable Elastic Pretraining with Simultaneous Maximal Updates and Hyperparameter Transfer</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
