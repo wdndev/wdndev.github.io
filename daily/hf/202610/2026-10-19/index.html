@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-10-19 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. Pack Light, CarryOn: Building Object-Oriented Context for Long-Horizon AgentsAbstract:Long-horizon agents accumulate progress in persistent task state, yet re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-10-19">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202610/2026-10-19/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. Pack Light, CarryOn: Building Object-Oriented Context for Long-Horizon AgentsAbstract:Long-horizon agents accumulate progress in persistent task state, yet re">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-24T01:56:56.430Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202610/2026-10-19/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-10-19',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-24 09:56:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">187</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-10-19</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-10-24T01:56:56.430Z" title="Updated 2026-10-24 09:56:56">2026-10-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">7.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>26min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-10-19"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-Pack-Light-CarryOn-Building-Object-Oriented-Context-for-Long-Horizon-Agents"><a href="#1-Pack-Light-CarryOn-Building-Object-Oriented-Context-for-Long-Horizon-Agents" class="headerlink" title="1. Pack Light, CarryOn: Building Object-Oriented Context for Long-Horizon Agents"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.18784">Pack Light, CarryOn: Building Object-Oriented Context for Long-Horizon Agents</a></h3><p>Abstract:Long-horizon agents accumulate progress in persistent task state, yet repeatedly process interaction histories describing how that progress was achieved. This raises a natural question: can long-horizon context instead be organized around reusable progress rather than the history that produced it? In this paper, we introduce CarryOn, an object-oriented context runtime that organizes continuation around reusable task objects. Rather than treating compressed histories or reconstructed accounts of progress as the primary basis for continuation, CarryOn builds a context view from continuation carriers, complementary execution context, and a live tail of recent interactions. A core challenge is keeping this reusable basis valid after its surrounding history is retired: how can CarryOn update the basis without reconstructing the full representation at every fold? CarryOn maintains carrier records across folds, revising affected records against bound evidence and applicable environment checks while carrying forward unaffected records and jointly updating execution context. Experiments on OSWorld 2.0 and BrowseComp-Plus show improved gains of 5.8% and 7.0% while reducing total token usage by 51.9% and 22.9%, respectively. Project page: this https URL</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.18784 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Yuchen Lu,Julian McAuley,Lei Zhang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.18784.pdf">https://arxiv.org/pdf/2610.18784.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.18784">https://arxiv.org/abs/2610.18784</a></p>
+<p><strong>Arxiv ID</strong>: 2610.18784</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.18784">https://papers.cool/arxiv/2610.18784</a></p>
+<p><strong>Published</strong>: 2026-10-19T01:39:45.021Z</p>
+<p><strong>Updated</strong>: 2026-10-19T01:39:45.021Z</p>
+<hr>
+<h3 id="2-PRISM-PRIvileged-Sibling-guided-Multi-Agent-Topology-Design"><a href="#2-PRISM-PRIvileged-Sibling-guided-Multi-Agent-Topology-Design" class="headerlink" title="2. PRISM: PRIvileged Sibling-guided Multi-Agent Topology Design"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.20628">PRISM: PRIvileged Sibling-guided Multi-Agent Topology Design</a></h3><p>Abstract:Multi-agent systems (MAS) based on large language models (LLMs) have become a powerful way to address complex problems, and their effectiveness depends critically on the collaboration topology that decides which agents participate and how they communicate. Recent work learns to generate this topology from the task query, fitting the generator to corpora of execution-verified graphs. The post-training method for such generators remains a limitation: a corpus lists the graphs that solved a query but never ranks them, leaving continued supervised fine-tuning (SFT) with no per-query preference to exploit. Without such a preference, the generator drifts toward the topologies the corpus contains most often rather than those that suit each query, so a gain on one task can come at a cost on another. We propose PRISM, which recovers per-query signal from the same corpus by learning with privileged information: a teacher reads, through a zero-initialized low-rank branch, a sibling graph that also solved the query and is unavailable at deployment, and the student matches its per-decision targets on trajectories the student samples itself. Across six diverse benchmarks PRISM improves over every topology-design baseline evaluated, and matched-teacher controls support the contribution of privileged query information. Code is available in this link.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>翻译失败: Translation limit exceeded. Please try it again later.<br>Response status: 401 (Unauthorized)<br>Response body  : “{\”ShowCaptcha\”:false}”</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？ 这篇论文针对的是\*\*基于大语言模型的多智能体系统（MAS）中，自动化的协作拓扑生成器在后训练阶段面临的核心监督信号缺失问题\*\*。 具体而言，现有方法通过收集执行验证的成功查询-图对（query-graph pairs）来训练拓扑生成器，但这种语料库存在两个根本性局限： 1. \*\*缺乏查询级别的偏好信号\*\*：语料库仅记录了哪些图成功解决了查询，却未对这些成功图按查询进行排序或标注优劣。这使得持续的监督微调（SFT）只能追求与记录图的最大似然匹配，导致生成器倾向于拟合语料库中最频繁出现的拓扑模式，而非针对每个特定查询选择最合适的拓扑——这往往造成在部分任务上提升、在另一些任务上退步的权衡现象。 2. \*\*训练与推理之间的轨迹不匹配（暴露偏差）\*\*：在SFT中，教师强制（teacher forcing）仅在记录的构造轨迹上提供监督。然而，在部署时，生成器必须基于自身先前决策所产生的部分图（partial graphs）进行自回归决策。一旦学生的采样轨迹偏离训练记录，就会进入语料库未覆盖的状态，从而缺乏直接的监督信号。 为解决上述问题，论文提出了 \*\*PRISM\*\*（Privileged Sibling-guided Multi-agent topology design）。该方法的核心思想是：在训练阶段引入\*\*特权信息\*\*——即一个与当前查询匹配、且同样成功解决了该查询的“兄弟图”（sibling graph）——作为教师模型的额外输入；学生模型则在自己采样得到的轨迹上，通过策略内蒸馏（on-policy self-distillation）来匹配该特权教师的决策分布。这样既修正了训练-推理轨迹不匹配的问题，又利用了查询相关的成功替代拓扑信息，且无需在部署时保留特权通道或进行额外的多智能体执行。 Q2: 有哪些相关研究？ 论文将相关研究归纳为以下两个主要方向： ### 1. 多智能体系统通信拓扑设计（MAS Communication Topology Design） 该方向的研究脉络可从预设结构逐步过渡到学习式生成： - \*\*早期预设结构\*\*：包括链式推理（Chain-of-Thought, Wei et al., 2022; Hong et al., 2024）、树状搜索（Tree of Thoughts, Yao et al., 2023）以及辩论协议（Du et al., 2024）。 - \*\*通信结构的重要性\*\*：研究表明，多智能体系统的性能高度依赖于通信结构（Qian et al., 2025; Shen et al., 2025），同时协作的计算成本也推动了效率优化方面的研究（Li et al., 2026a）。 - \*\*自动化拓扑设计\*\*： - \*\*AgentPrune\*\*（Zhang et al., 2025a）：通过剪枝通信边来优化拓扑。 - \*\*AgentDropout\*\*（Wang et al., 2025）：在通信轮次中动态移除智能体与边。 - \*\*G-Designer\*\*（Zhang et al., 2025b）：基于变分图自编码器（variational graph autoencoder）生成任务条件化的通信图。 - \*\*ARG-DESIGNER\*\*（Li et al., 2026b）：采用自回归方式生成智能体角色与通信边，允许智能体数量及其角色组成随查询动态变化，扩展了设计空间。 - \*\*补充研究\*\*：包括基于失败轨迹进行策略内细化以实现智能体安全对齐（Yin et al., 2026），以及通过对抗性操纵增加工具增强推理的计算开销（Li & Wang, 2026）。 本文的研究定位是在已基于执行验证图完成监督学习初始化的自回归拓扑生成器之上，进行后训练（post-training）的优化；研究保留了 ARG-DESIGNER 的部署架构，并通过引入特权教师（privileged teacher）在策略内提供额外监督。 ### 2. 策略内蒸馏（On-Policy Distillation） 该方向关注如何从学习策略自身访问的状态中进行蒸馏，以缓解训练与推理之间的分布不匹配： - \*\*DAgger\*\*（Ross et al., 2011）：从策略自身访问的状态中学习，而非仅从记录者（demonstrator）记录的轨迹中学习。 - \*\*GKD\*\*（Agarwal et al., 2024）与 \*\*MiniLLM\*\*（Gu et al., 2024）：将上述思想引入大语言模型蒸馏，即从学生模型采样并由教师模型打分；MiniLLM 还进一步启发了基于模式寻求（mode-seeking）的反向 KL 散度目标。 - \*\*自蒸馏（Self-Distillation）\*\*：近期研究将教师与学生设为同一模型，而非传统的大-小模型对： - Zhao et al.（2026）：基于模型自身的策略内样本蒸馏推理能力。 - Dat et al.（2026）：将类似方案扩展至扩散语言模型（diffusion language models）。 本文提出的 \*\*PRISM\*\* 属于策略内自蒸馏框架，其特点在于： - 教师与学生通过\*\*特权输入（privileged input）\*\*分离，而非通过模型规模差异或早期检查点分离。 - 决策空间为离散的小规模分类空间（角色选择 + END 标记；边存在/不存在），因此 KL 散度可被\*\*精确计算\*\*，无需估计。 Q3: 论文如何解决这个问题？ 该论文提出 \*\*PRISM\*\*（Privileged Sibling-guided Multi-agent topology design），通过引入\*\*训练时特权信息\*\*与\*\*策略内自蒸馏\*\*，解决自回归拓扑生成器在后训练阶段面临的监督信号缺失与训练-推理轨迹不匹配问题。具体解决方案可分为以下四个阶段及核心技术组件： ### 1. 总体思路 PRISM 的核心在于：对于每个训练查询，利用一个“兄弟图”（sibling graph）——即同一查询在语料库中另一个同样成功、但结构不同的已验证拓扑——作为\*\*仅在训练时可用\*\*的特权输入，构建一个特权教师模型。该教师模型在学生策略自身采样得到的轨迹上提供决策级软目标，使学生模型即使偏离了原始记录轨迹，仍能获得有效监督。同时，通过监督锚定损失保留对已验证图的直接拟合。部署时，特权通道被完全移除，学生模型以与基线相同的架构进行推理。 ### 2. 四阶段流程 #### Stage 0：冷启动（Cold Start） 遵循既有管线（ARG-DESIGNER），通过执行验证构建监督语料库  D = (G(c), Q) mid S(Q, G(c)) = 1 ，并训练初始拓扑生成器至收敛，获得部署检查点  θ_0 。 #### Stage 1：构建特权教师（Privileged Teacher） 从  θ_0  克隆一个教师模型，并为其注入一个额外的特权输入分支： - \*\*兄弟图采样\*\*：对于每个已验证目标图  G ，从其所在查询  Q  的其他成功图中均匀采样一个\*\*文本表示不同\*\*的兄弟图  a 。若查询仅有一个成功拓扑，则特权输入置为零向量。 - \*\*FiLM 调制\*\*：将兄弟图编码  f_a  通过一个小型编码器（层归一化、Dropout、线性映射至秩  r=16 、 tanh  激活）后，生成 FiLM 参数，调制查询条件向量：
+</p>
+
+<p>c<em>(teacher) = TaskProc(f_Q) odot (1 + γ(f_a)) + β(f_a)<br> 其中  γ, β: R^r to R^d  为可学习的仿射变换。 - **零初始化**： γ  与  β  的输出层初始化为零，确保教师模型在训练初期与学生模型行为完全一致，消除初始功能错配。 - **训练目标**：教师模型以加权负对数似然（Eq. 2）在完整语料库上进行监督微调，更新全部参数；此阶段学生模型保持冻结。 #### Stage 2：策略内自蒸馏（On-Policy Self-Distillation） 此阶段学生模型开始更新，教师模型冻结： - **策略内采样**：对每个训练查询，从当前学生策略  P</em>θ(· mid Q)  中采样  M=4  条完整拓扑轨迹。这些轨迹在**每个优化步骤都重新采样**，确保教师始终在**学生当前实际访问的状态**上提供纠正信号。 - **教师重打分**：对每条采样轨迹，教师模型在特权输入  a （同一查询的固定参考兄弟图）的条件下进行前向传播，输出每步的节点与边决策分布；学生模型在无特权输入的条件下对同一条轨迹进行打分。 - **精确 KL 蒸馏**：由于师生共享相同的节点与边符号集，每步的分类 KL 散度可被精确计算： </p>
+<p>L<em>(KL) = α · E</em>(node steps)[KL(P<em>θ ,|, P</em>(teacher))] + (1-α) · E<em>(edge slots)[KL(P</em>θ ,|, P<em>(teacher))]<br> 其中采用**反向 KL**（reverse KL），即  KL(P</em>θ | P<em>(teacher)) ，以鼓励学生模型集中于教师偏好的少数决策模式，避免在多个成功拓扑间简单平均。 - **监督锚定**：为防止学生偏离有效的拓扑模式，引入对已验证参考图  G</em>(real)  的监督损失：<br>L<em>(anchor) = -log P</em>θ(G_(real) mid Q)</p>
+<ul>
+<li>**联合目标**：<br>L<em>(PRISM) = (1-λ)L</em>(KL) + λ L<em>(anchor)<br>其中  λ = 0.3 。梯度仅通过重打分传播，采样过程本身不可微；教师不计算梯度。 #### Stage 3：推理部署（Inference） 部署时仅使用学生模型。特权输入通道被完全移除，因此： - 推理架构与 ARG-DESIGNER 完全一致； - 无需额外的多智能体执行或计算开销； - 每次查询仍保持约  3.04  个智能体、 4.04  次 LLM 调用的低成本。 ### 3. 关键设计动机 - **解决训练-推理不匹配**：不同于教师强制仅在记录轨迹上监督，PRISM 通过策略内采样确保监督覆盖学生自身决策所到达的离轨状态（off-trajectory states）。 - **恢复查询级偏好**：兄弟图提供了关于“同一查询的另一成功构造方式”的信息，使蒸馏目标包含查询相关的拓扑偏好，而非语料库全局的边际分布。 - **参数高效与可控**：秩  r=16  的 FiLM 分支仅增加约  20k  参数（约为全宽通道的  1/30 ），且通过零初始化与冻结教师策略，严格隔离训练特权与部署行为。 Q4: 论文做了哪些实验？ 论文在六个基准测试上开展了一系列系统实验，涵盖主结果、诊断分析、控制实验与消融研究，具体如下： ### 1. 主结果与基准对比 在 **GSM8K、MultiArith、SVAMP、AQuA、HumanEval、MMLU** 六个基准上，以 **Qwen2.5-7B-Instruct** 为骨干，将 PRISM 与以下基线/对照进行比较： - **Vanilla**（单智能体） - **AgentPrune、AgentDropout、G-Designer、ARG-DESIGNER**（既有拓扑设计方法） - **SFT（对照）**：从同一部署检查点  θ_0  出发，持续进行监督最大似然训练，与 PRISM 共享训练轮数与学习率 结果显示，PRISM 在所有六个基准上均取得最高 Pass@1/准确率（Table 1）。值得注意的是，SFT 在五个基准上持平或提升，但在 **AQuA 上较基线下降 12.60%**，而 PRISM 较基线提升；同时，PRISM 的平均每次查询调用成本仅从 4.00 增至 4.04 次 LLM 调用（Table 2）。 ### 2. 输出分布集中度分析 为验证持续 SFT 是否导致输出分布退化，论文测量了生成拓扑的 **top-1 形状占比**（即最频繁角色组合被发射的查询比例）： - ARG-DESIGNER（冷启动）：**0.171** - SFT：**0.346**（显著上升，分布更集中） - PRISM：**0.157**（低于冷启动，保持多样性） 此外，Table 3 报告了 SFT 模态角色分配在各数学基准上的条件准确率：该模态形状在 GSM8K 上带来  +2.0%  增益，但在 AQuA 上造成  -3.4%  损失，说明集中本身不等于更好。 ### 3. 难度匹配控制实验 为避免不同问题集难度差异干扰比较，论文按 **SFT 是否发射其默认角色组合** 将问题二分，并让两个臂在完全相同的问题子集上评分（Table 4）： - 在 AQuA 上，PRISM 在 SFT 默认组提升 ** +18.7% **（ p=0.0001 ），在非默认组提升 ** +11.0% **（ p=0.003 ） - 在 GSM8K 与 SVAMP 上，两组增益较小且不显著，说明 AQuA 的退化并非单纯由问题难度引起 ### 4. 特权通道信息含量验证 为证明 FiLM 通道确实读取了特权内容而非仅利用额外容量，论文设计了两种测量（§6.1）： - **特权增益**： Delta = log P</em>(teacher)(G mid Q, a) - log P<em>(teacher)(G mid Q) ，在留出的已验证图上真实通道达到 ** +2.45  nats**，而**乱序控制**（输入另一查询的图）始终接近零 - **FiLM 范数**：真实通道的  |film|  上升至 3.10，乱序通道仅上升至 1.15（Figure 4） 这表明优化器确实训练了通道，但只有真实兄弟图内容才产生可预测的似然增益。 ### 5. 内容 vs. 程序分离实验 为区分“策略内蒸馏过程本身”与“特权内容”各自的贡献，论文在 Stage 2 中固定其余所有设置（初始化、采样、超参数、计算预算），仅更换教师信号（Figure 2）： - **无教师（SFT）** - **乱序教师**（另一查询的图） - **常数教师**（固定特权输入） - **真实兄弟图教师（PRISM）** 结果显示： - 乱序教师平均劣于常数教师，说明错误匹配的查询信息会误导学生 - PRISM 在全部六个基准上均优于常数教师（平均  +1.66% ，符号检验  p=0.031 ），证明**查询匹配的特权内容**在蒸馏程序之外提供了额外收益 ### 6. 消融实验 #### 6.1 特权通道形式 固定 Stage 2 其余设置，比较向教师提供不同类型的特权输入（Figure 3）： - **context**（问题与答案文本） - **rationale**（推理过程/测试用例/正确选项） - **graph stats**（查询的成功图统计摘要） - **sibling graph**（默认，另一成功拓扑） **sibling graph** 在六个基准上均为最优，且在 AQuA 上领先次优对手达 14.96%。context 与 rationale 表现最差，甚至低于 SFT。 #### 6.2 KL 散度方向 在特权通道固定为 sibling graph 的条件下，比较三种散度目标（Figure 5）： - **Reverse KL**（默认）： KL(P</em>θ | P<em>(teacher))  - **Forward KL**： KL(P</em>(teacher) | P_θ)  - **JSD**（ β=0.5 ） Reverse KL 在数学基准上均最优，平均准确率最高（85.52），符合其“模式寻求”（mode-seeking）特性——避免在多个已验证拓扑间做简单平均。 ### 7. 附加诊断与稳健性实验 - **种子稳健性**（Appendix D）：每个臂在种子 42/43/44 下各运行三次。PRISM 与 SFT 的基准平均差距（约 3.18）远大于运行间波动（标准差多低于 0.6），且 SFT 在 AQuA 上持续低迷（约 63%），确认结果非随机噪声（Table 8） - **FiLM 秩**（Appendix E）：将低秩通道从  r=16  增至  r=64, 256  及全宽，各设定与默认差异不超过 2.7%，说明该超参数不敏感（Figure 6） - **语料库统计**（Appendix C, F）：报告 MIXCHAIN、MMLU、MBPP 三个语料库的蓝图家族构成、求解率、去重后规模，以及具备兄弟图的查询占比（76.9%、87.1%、90.3%） - **输出条件性**（Appendix G）：计算互信息  I(Q;G) ，PRISM 的查询条件熵盈余为 0.160 nats，显著高于 SFT（0.051）与冷启动（0.017），表明其输出更依赖查询（Table 10） - **拓扑干预**（Appendix H）：在 91 个 AQuA 问题上固定链式连接与推理超参数，仅替换角色组合。SFT 的模态组合仅达 53.85%–61.54%，而 PRISM 的随机排列组合与随机大小匹配组合均显著更高（约 75%–79%），为拓扑因果效应提供直接证据（Table 11, 12） - **定性案例**（Appendix J）：在 GSM8K 上展示 6 个具体案例，对比 ARG-DESIGNER 与 PRISM 构建的 crew 及最终答案，显示 PRISM 更倾向于分配 **Math Solver** 等针对性角色，而基线常重复 **Inspector** 或 **Programming Expert** 导致错误。 Q5: 有什么可以进一步探索的点？ 基于论文结论与实验诊断，以下方向值得进一步探索： —- ### 1. 查询级拓扑分配的因果验证 论文的结果表明 PRISM 优于基线，但并未严格确立**查询特定的角色分配（query-specific crew assignment）**本身是增益的来源。附录 H 的干预实验显示，将 PRISM 的 crew 随机排列后，在部分子集上仍能达到相近表现。未来可设计更具代表性的留出集实验，直接检验“将特定拓扑匹配到特定查询”相较于“从查询无关的成功拓扑池中随机选取”的因果效应。 ### 2. 匹配计算量下的方法比较 PRISM 的 Stage 1 需额外训练教师模型（40 epochs），Stage 2 涉及策略内采样与重打分，整体后训练开销高于 SFT。尽管论文在内容 vs. 程序对照中固定了 Stage 2 预算，但**全程匹配计算量**的严格比较（例如，将 SFT 的总梯度步数或浮点运算扩展至与 PRISM 相当时）尚未进行，这会影响对方法效率的公允评估。 ### 3. 跨骨干模型的迁移与通用性 全部实验基于 **Qwen2.5-7B-Instruct** 完成。需验证 PRISM 的增益是否可迁移至： - 不同规模的骨干模型（如 3B 或 70B）； - 不同架构或系列的模型（如 Llama、GPT 等）； - 更长的上下文窗口或多模态场景。 ### 4. 特权信息形式的进一步扩展 论文测试了 context、rationale、graph stats 与 sibling graph 等特权通道，其中 sibling graph 最优。其他潜在形式尚未探索： - **执行轨迹**：智能体间的完整消息传递序列； - **中间推理状态**：如思维链的中间步骤或程序执行的中间变量； - **对抗或失败案例**：提供未成功图作为负例特权信号，以明确禁止某些拓扑模式。 ### 5. 多轮通信（K &gt; 1）场景下的有效性 实验固定通信轮数 **K = 1**。当智能体进行多轮交互时，拓扑的动态变化（如每轮重连、AgentDropout 式的动态剪枝）可能引入新的训练-推理不匹配。需验证 PRISM 的特权蒸馏框架在动态或时变拓扑中的扩展性。 ### 6. 兄弟图采样策略的优化 当前 sibling 从查询的成功图中**均匀随机采样**。可探索更具结构意识的采样： - 基于与当前学生轨迹的相似度或互补性采样； - 基于图编辑距离或功能多样性选择，以最大化教师信号的覆盖范围； - 对无 sibling 的查询（MIXCHAIN 中占 23.1%）设计更好的回退机制，而非简单的零向量。 ### 7. 输出集中度与准确率的因果机制 论文观察到 SFT 提高输出集中度（top-1 share 从 0.171 升至 0.346）但伴随部分基准退化，而 PRISM 降低集中度至 0.157 却全面提升。需进一步厘清： - 集中度本身是否是准确率的充分/必要条件； - 是否存在“最优集中度”随任务或查询类型变化的规律； - 除 reverse KL 外，其他模式寻求目标（如基于能量的模型、GFlowNets）能否更精细地控制多样性-质量权衡。 ### 8. 教师-学生架构的替代设计 论文采用 **FiLM 调制 + 零初始化低秩分支** 注入特权信息。其他参数高效融合机制值得对比： - Cross-attention 层让查询表示 attend 到兄弟图编码； - Adapter 或 LoRA 在特定层插入； - 将特权信息作为软提示（soft prompts）前置到输入序列。 ### 9. 与统一跨域设计框架的结合 相关工作 **OFA-MAS**（Li et al., 2026c）提出基于混合专家图生成模型的统一拓扑设计。未来可探索将 PRISM 的特权蒸馏作为后训练阶段，嫁接到此类统一模型上，检验跨领域（如从数学推理迁移到代码生成）的泛化能力，而非为每个域单独构建语料库。 ### 10. 失败模式与鲁棒性分析 论文主要关注平均准确率提升，对以下失败模式缺乏深入剖析： - 哪些查询在 SFT 后显著退化、PRISM 又如何修复； - 特权教师本身在何种情况下产生误导性高置信度分布； - 学生策略在蒸馏过程中是否会出现模式坍塌（mode collapse）至某一特定兄弟图。 Q6: 总结一下论文的主要内容 该论文针对基于大语言模型的多智能体系统（MAS）中**查询条件化的协作拓扑生成器**的后训练问题，提出了一种利用特权信息进行策略内蒸馏的新方法。以下是主要内容的结构化总结： —- ### 1. 研究背景与核心挑战 - **问题设定**：多智能体系统的有效性依赖于协作拓扑（即哪些智能体参与、信息如何流动）。近期研究通过自回归生成器，从任务查询中直接生成拓扑图，并在执行验证的语料库上进行后训练。 - **核心局限**： - **缺乏查询级偏好信号**：验证语料库仅记录“哪些图成功解决了查询”，但未对同一查询的多个成功图进行优劣排序。持续的监督微调（SFT）因此只能追求与记录图的最大似然匹配，导致生成器倾向于拟合语料库中最频繁出现的拓扑模式，而非针对每个查询选择最合适的拓扑。实验发现，SFT 在部分基准（如 GSM8K）上提升，却在另一些基准（如 AQuA）上出现显著退化（下降  12.60% ）。 - **训练-推理轨迹不匹配**：SFT 采用教师强制（teacher forcing），仅在记录的构造轨迹上提供监督；而部署时生成器必须基于自身先前决策产生的部分图（partial graphs）自回归推理。一旦采样偏离记录轨迹，模型将进入缺乏直接监督的离轨状态（暴露偏差）。 —- ### 2. PRISM 方法概述 论文提出 **PRISM**（Privileged Sibling-guided Multi-agent topology design），其核心思想是：**在训练时引入一个仅在训练阶段可用、部署时移除的“兄弟图”（sibling graph）作为特权信息**，构建特权教师模型，对学生的策略内轨迹进行决策级蒸馏。 方法包含四个阶段： - **Stage 0（冷启动）**：基于执行验证构建查询-图语料库，训练初始生成器  θ_0 。 - **Stage 1（特权教师训练）**：克隆  θ_0  为教师，通过一个零初始化的低秩 FiLM 分支读取查询对应的另一成功拓扑（兄弟图），在完整语料库上进行监督微调。 - **Stage 2（策略内自蒸馏）**：学生模型从当前策略中采样多条轨迹（on-policy），由特权教师在这些轨迹的每个决策点提供软目标；学生通过反向 KL 散度匹配教师，同时以监督锚定损失保留对已验证图的直接拟合。 - **Stage 3（部署）**：完全移除特权通道，学生模型以与基线相同的架构进行推理。 —- ### 3. 关键技术组件 - **FiLM 特权调制**： </li>
+</ul>
+<p>c<em>(teacher) = TaskProc(f_Q) odot (1 + γ(f_a)) + β(f_a)<br> 其中  f_a  为兄弟图编码，经小型编码器（秩  r=16 ）生成 FiLM 参数  γ, β 。零初始化确保教师初始行为与学生一致。 - **兄弟图采样**：对每查询，从其成功图中均匀采样一个与目标图文本表示不同的兄弟图；若查询仅有一个成功拓扑，则特权输入置零。 - **精确反向 KL 蒸馏**：<br>L</em>(KL) = α · E<em>(node)[KL(P</em>θ ,|, P<em>(teacher))] + (1-α) · E</em>(edge)[KL(P<em>θ ,|, P</em>(teacher))]<br> 采用反向 KL（ KL(P<em>θ | P</em>(teacher)) ）以鼓励学生集中于教师偏好的模式，避免在多个成功图间做简单平均。 - **监督锚定**：<br>L<em>(PRISM) = (1-λ)L</em>(KL) + λ L<em>(anchor), quad L</em>(anchor) = -log P<em>θ(G</em>(real) mid Q)<br> 其中  λ=0.3 ，防止学生漂移出有效拓扑分布。 —- ### 4. 实验与主结果 在 **Qwen2.5-7B-Instruct** 骨干上，于 **GSM8K、MultiArith、SVAMP、AQuA、HumanEval、MMLU** 六个基准进行评估： - **主结果**（Table 1）：PRISM 在所有六个基准上均优于所有基线（ARG-DESIGNER、G-Designer、AgentPrune、AgentDropout 及单智能体 Vanilla）。相比 SFT 对照，PRISM 在 AQuA 上修复了  13.78%  的巨大差距，在其他基准上也取得一致提升。 - **成本**（Table 2）：PRISM 平均每次查询调用  3.04  个智能体、 4.04  次 LLM 调用，仅比基线增加  1%  的调用量。 - **输出分布**：SFT 使最频繁拓扑的占比从  0.171  上升至  0.346 （分布更集中），而 PRISM 将其降至  0.157 ；同时 PRISM 的查询条件互信息更高，表明其输出更依赖查询本身而非退化为常数。 —- ### 5. 诊断、控制实验与消融 - **难度匹配控制**（Table 4）：按 SFT 是否发射其默认角色组合将问题二分后，PRISM 在 AQuA 的两组子集上均显著提升（默认组  +18.7% ， p=0.0001 ；非默认组  +11.0% ， p=0.003 ），表明增益不限于修正单一退化模式。 - **特权信息含量验证**（§6.1, Figure 4）：通过“特权增益”  Delta = log P<em>(teacher)(G mid Q, a) - log P</em>(teacher)(G mid Q)  与 FiLM 范数监测，证明真实兄弟图通道产生  +2.45  nats 的似然增益，而乱序控制（另一查询的图）始终接近零，确认教师确实读取了特权内容。 - **内容 vs. 程序分离**（Figure 2）：固定 Stage 2 的全部设置，仅更换教师信号。结果显示“常数输入教师”优于“乱序教师”，而 PRISM（真实兄弟图）又在全部六个基准上优于常数教师（平均  +1.66% ， p=0.031 ），证明查询匹配的特权内容本身在蒸馏程序之外提供了额外收益。 - **特权通道形式**（Figure 3）：对比 context、rationale、graph stats 与 sibling graph，**sibling graph** 在全部基准上最优，且在 AQuA 上领先次优对手达  14.96% 。 - **KL 方向**（Figure 5）：反向 KL 在数学基准上全面优于前向 KL 与 JSD，支持其模式寻求（mode-seeking）特性更适合多成功拓扑场景。 - **拓扑干预**（Appendix H）：在固定连接方式与推理超参数的条件下，直接替换角色组合。SFT 的模态组合表现显著劣于 PRISM 的随机排列组合与大小匹配随机组合，为拓扑的因果效应提供了直接证据。 —- ### 6. 结论与待探索方向 - **结论**：PRISM 通过训练时特权兄弟图与策略内自蒸馏，有效缓解了 SFT 的查询级偏好缺失与训练-推理不匹配问题，在六个 diverse 基准上实现了稳定且显著的提升，且部署成本与架构均无额外负担。 - **局限与未来方向**： - 尚未在匹配总计算量的条件下与 SFT 进行严格对比； - 未完全确立“查询特定拓扑分配”对下游准确率的独立因果效应； - 需扩展至不同骨干模型规模与系列、多轮通信（ K&gt;1 ）场景； - 可探索兄弟图的结构化采样策略、其他特权信息形式（如执行轨迹、失败案例）以及教师-学生架构的替代融合机制。 Q7: 想要进一步了解论文 以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是PRISM%3A%20PRIvileged%20Sibling-guided%20Multi-Agent%20Topology%20Design，链接是https://arxiv.org/pdf/2610.20628，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2610.20628。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Phuong Tuan Dat,Qi Li,Xinchao Wang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20628.pdf">https://arxiv.org/pdf/2610.20628.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20628">https://arxiv.org/abs/2610.20628</a></p>
+<p><strong>Arxiv ID</strong>: 2610.20628</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.20628">https://papers.cool/arxiv/2610.20628</a></p>
+<p><strong>Published</strong>: 2026-10-19T01:39:44.959Z</p>
+<p><strong>Updated</strong>: 2026-10-19T01:39:44.959Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202610/2026-10-19/">https://wdndev.github.io/daily/hf/202610/2026-10-19/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202610/2026-10-01/" title="HuggingFace Papers 2026-10-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-01</div></div></a></div><div><a href="/daily/hf/202610/2026-10-02/" title="HuggingFace Papers 2026-10-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-02</div></div></a></div><div><a href="/daily/hf/202610/2026-10-03/" title="HuggingFace Papers 2026-10-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Pack-Light-CarryOn-Building-Object-Oriented-Context-for-Long-Horizon-Agents"><span class="toc-text">1. Pack Light, CarryOn: Building Object-Oriented Context for Long-Horizon Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-PRISM-PRIvileged-Sibling-guided-Multi-Agent-Topology-Design"><span class="toc-text">2. PRISM: PRIvileged Sibling-guided Multi-Agent Topology Design</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

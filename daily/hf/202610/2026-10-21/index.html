@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-10-21 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. EMBER: Predicting TCR—pMHC Binding Without a Docked ComplexAbstract:We propose EMBER, a structure-based framework for TCR—pMHC binding prediction that elimina">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-10-21">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202610/2026-10-21/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. EMBER: Predicting TCR—pMHC Binding Without a Docked ComplexAbstract:We propose EMBER, a structure-based framework for TCR—pMHC binding prediction that elimina">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-24T01:56:56.432Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202610/2026-10-21/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-10-21',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-24 09:56:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">187</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-10-21</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-10-24T01:56:56.432Z" title="Updated 2026-10-24 09:56:56">2026-10-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">11.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>41min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-10-21"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-EMBER-Predicting-TCR—pMHC-Binding-Without-a-Docked-Complex"><a href="#1-EMBER-Predicting-TCR—pMHC-Binding-Without-a-Docked-Complex" class="headerlink" title="1. EMBER: Predicting TCR—pMHC Binding Without a Docked Complex"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.27334">EMBER: Predicting TCR—pMHC Binding Without a Docked Complex</a></h3><p>Abstract:We propose EMBER, a structure-based framework for TCR—pMHC binding prediction that eliminates the need for a predicted docked complex, and with it the placement error that dominates such predictions. Traditional structure-based predictors utilize the co-folded complex structure of the receptor and the antigen and interpret binding from its contact surface. Consequently, every downstream feature inherits any deviation the structure-prediction tool introduced. Methodologically, EMBER folds the TCR and pMHC independently, encodes them as SE(3)-invariant residue graphs, and compares their learned representations without constructing a shared coordinate frame. A relative pose is therefore not an input of the model, so placement error cannot propagate into the prediction. Computationally, EMBER preprocesses $O(N{+}M)$ monomer folds where a complex-based predictor needs $O(NM)$ operations. Experimentally, under epitope-disjoint evaluation with six retrained baselines, EMBER is first on every metric under all four folding tools, by 0.9 to 14.4% in micro-AUROC, 18.5 to 25.3% in micro-AUPRC and 10.6 to 24.1% in MCC. Its ranking is also up to 85% more stable across folding tools.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：我们提出了 EMBER，一种基于结构的 TCR—pMHC 结合预测框架，它无需预测对接复合物，从而消除了此类预测中占主导地位的放置误差。传统的基于结构的预测器利用受体和抗原的共同折叠复合物结构，并从其接触表面解释结合。因此，每个下游特征都会继承结构预测工具引入的任何偏差。在方法上，EMBER 独立折叠 TCR 和 pMHC，将它们编码为 SE(3) 不变的残基图，并在不构建共享坐标系的情况下比较它们的学习表示。因此，相对姿态不是模型的输入，因此放置误差无法传播到预测中。在计算上，EMBER 预处理 $O(N{+}M)$ 单体折叠，而基于复合物的预测器需要 $O(NM)$ 次操作。在实验上，在六个重新训练的基线下进行表位不重叠评估时，EMBER 在所有四种折叠工具下的每个指标都是第一，微观 AUROC 提高 0.9% 到 14.4%，微观 AUPRC 提高 18.5% 到 25.3%，MCC 提高 10.6% 到 24.1%。其排名在所有折叠工具间的稳定性也提高了最多 85%。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.27334</p>
+</div></details>
+<p><strong>Authors</strong>: Lin Ha,Chen Zhou,Haozheng Luo,Han Liu,Xiaoyu Zhang,Yan Chen</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.27334.pdf">https://arxiv.org/pdf/2610.27334.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.27334">https://arxiv.org/abs/2610.27334</a></p>
+<p><strong>Arxiv ID</strong>: 2610.27334</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.27334">https://papers.cool/arxiv/2610.27334</a></p>
+<p><strong>Published</strong>: 2026-10-21T02:00:23.174Z</p>
+<p><strong>Updated</strong>: 2026-10-21T02:00:23.174Z</p>
+<hr>
+<h3 id="2-Focused-Omni-Modal-GUI-Agents"><a href="#2-Focused-Omni-Modal-GUI-Agents" class="headerlink" title="2. Focused Omni-Modal GUI Agents"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.26203">Focused Omni-Modal GUI Agents</a></h3><p>Abstract:Graphical User Interface (GUI) agents increasingly act over streaming omni-modal observations spanning screenshots, audio, video, interaction history, and device states. However, exposing this complete context uniformly at every step ignores that relevance is transient and sparse: the signal determining one action can become clutter at the next. Because executed actions feed back into the context, these errors compound into Sequential Distraction, driving the agent into irreversible trajectory drift. We formulate the underlying requirement as Focused Perception: a representation that is step-adaptive, action-sufficient, and non-intrusive. We realize this in FocusGUI, a lightweight adapter that dynamically prioritizes multimodal channels against a step-specific decision reference. Instead of uniformly processing all inputs, it compresses the most relevant evidence into a compact latent and subtly injects it into the frozen decoder’s embeddings, guiding the model’s attention without altering its native parameter space. FocusGUI trains from action supervision alone, requiring neither modality-relevance labels nor backbone fine-tuning. Across four omni-modal backbones, it raises overall Type Match by +33.2 and Exact Match by 3.0 times over the frozen backbone on average, and Type Match by +30.1 over the strongest existing enhancement method.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：图形用户界面（GUI）代理越来越多地在跨屏幕截图、音频、视频、交互历史和设备状态的流式全模态观测上执行操作。然而，在每一步都统一暴露完整上下文会忽略这样一点：相关性是短暂且稀疏的——决定某一动作的信号在下一步可能就变成了干扰。由于执行的动作会反馈到上下文中，这些错误会累积成序列分心（Sequential Distraction），使代理陷入不可逆的轨迹漂移。我们将这一基本需求表述为聚焦感知（Focused Perception）：一种在每一步自适应、足够执行动作且不具侵入性的表示。我们在 FocusGUI 中实现了这一点，这是一个轻量级适配器，可针对特定步骤的决策参考动态优先处理多模态通道。它不是统一处理所有输入，而是将最相关的证据压缩为紧凑的潜变量，并巧妙地注入到冻结解码器的嵌入中，引导模型的注意力而不改变其原生参数空间。FocusGUI 仅通过动作监督进行训练，既不需要模态相关性标签，也不需要骨干模型微调。在四种全模态骨干上，它平均将整体类型匹配提升 +33.2，精确匹配提升 3.0 倍，并在最强现有增强方法上将类型匹配提升 +30.1。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.26203 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Fuyao Zhang,Wenwen He,Jiaming Zhang,Yurong Hao,Xuan Wang,Guowei Guan,Che Wang,Longtao Huang,Wei Yang Bryan Lim</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.26203.pdf">https://arxiv.org/pdf/2610.26203.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.26203">https://arxiv.org/abs/2610.26203</a></p>
+<p><strong>Arxiv ID</strong>: 2610.26203</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.26203">https://papers.cool/arxiv/2610.26203</a></p>
+<p><strong>Published</strong>: 2026-10-21T02:00:23.154Z</p>
+<p><strong>Updated</strong>: 2026-10-21T02:00:23.154Z</p>
+<hr>
+<h3 id="3-MMEnterprise-Bench-Evaluating-Enterprise-Agents-over-Evolving-Multimodal-Records"><a href="#3-MMEnterprise-Bench-Evaluating-Enterprise-Agents-over-Evolving-Multimodal-Records" class="headerlink" title="3. MMEnterprise-Bench: Evaluating Enterprise Agents over Evolving Multimodal Records"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.27911">MMEnterprise-Bench: Evaluating Enterprise Agents over Evolving Multimodal Records</a></h3><p>Abstract:Enterprise agents answer questions over workplace records that evolve through team collaboration. As information is shared, corrected, and revised across documents, chats, and figures, multiple versions of the same information accumulate in the workspace. Reliable question answering therefore requires agents to reason over sufficient evidence, resolve cross-source and temporal conflicts, and recognize when the available evidence is insufficient to establish an answer. To systematically evaluate these capabilities, we introduce MMEnterprise-Bench, a benchmark comprising 1,613 questions grounded in evolving multimodal records from simulated collaboration projects, covering three categories: Evidence Reasoning, Conflict Resolution, and Unanswerability. We evaluate 10 proprietary and open-source multimodal LLMs and find that even the strongest models struggle when evidence contains cross-source or temporal conflicts or spans multiple images. Moreover, increasing the retrieval budget or employing a larger retriever improves evidence recall but does not consistently translate into higher answer accuracy. These findings highlight the persistent challenges of reasoning over evolving workplace records and establish MMEnterprise-Bench as a testbed for developing more reliable enterprise agents. Code and data are available at this https URL.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：企业代理通过回答关于不断通过团队协作演变的工作场所记录的问题来工作。随着信息在文档、聊天记录和图表中被共享、纠正和修订，相同信息的多个版本会在工作空间中累积。因此，可靠的问题回答要求代理能够基于足够的证据进行推理、解决跨来源和时间的冲突，并识别现有证据不足以得出答案的情况。为了系统地评估这些能力，我们引入了MMEnterprise-Bench，这是一个基准测试，包含1613个基于模拟协作项目中演变的多模态记录的问题，涵盖三个类别：证据推理、冲突解决和无法回答性。我们评估了10个专有和开源的多模态大语言模型（LLM），发现即便是最强的模型，在证据包含跨来源或时间冲突或跨多张图像时，也会表现困难。此外，增加检索预算或使用更大的检索器可以提高证据召回率，但并不总是能转化为更高的答案准确率。这些发现突显了在演变的工作场所记录上进行推理的持续挑战，并将MMEnterprise-Bench确立为开发更可靠企业代理的测试平台。代码和数据可在此https网址获取。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.27911 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Seohyun Lee,Jongha Kim,Dohwan Ko,Ji Soo Lee,Seoung Choi,Jayun Ku,Hyunwoo J. Kim</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.27911.pdf">https://arxiv.org/pdf/2610.27911.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.27911">https://arxiv.org/abs/2610.27911</a></p>
+<p><strong>Arxiv ID</strong>: 2610.27911</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.27911">https://papers.cool/arxiv/2610.27911</a></p>
+<p><strong>Published</strong>: 2026-10-21T02:00:23.167Z</p>
+<p><strong>Updated</strong>: 2026-10-21T02:00:23.167Z</p>
+<hr>
+<h3 id="4-SolarRenderer-Few-Step-Generative-Reference-Rendering"><a href="#4-SolarRenderer-Few-Step-Generative-Reference-Rendering" class="headerlink" title="4. SolarRenderer: Few-Step Generative Reference Rendering"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.28630">SolarRenderer: Few-Step Generative Reference Rendering</a></h3><p>Abstract:Game engines and coding agents can specify the layout, motion, and camera of a scene, yet turning such coarse structure into realistic video requires a renderer that follows the structure and completes the appearance it leaves open. Existing renderers are tied to the representation of one engine, need tens of denoising steps or a costly distillation of their own, and learn from conditions that are not aligned with their target videos. We present SolarRenderer, a structure-conditioned video renderer that adapts a frozen MiniMax-H3 33B backbone with two lightweight LoRAs. Structural videos enter the native reference pathway of the backbone at the positions of the frames they describe, without a type identifier and described only in plain text, so that a single control LoRA follows arbitrary structural representations. Starting from a pretrained four-step LoRA, structure-guided distribution matching renders in four steps, 12.3 times faster than 50-step sampling, while preserving the learned control. A block-causal variant extends the same design to streaming and renders 768p video in real time. To train the model, we build a frame-aligned corpus of 136K clips from game engines, simulators, and YouTube videos. Experiments on an in-distribution test set and a generalization benchmark of 16 structural representations show that SolarRenderer achieves state-of-the-art results across both, and generalizes to 11 unseen representations, including pose skeletons, drawings, and point clouds.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：游戏引擎和编码代理可以指定场景的布局、运动和摄像机，但将这种粗略结构转化为逼真视频需要一个遵循结构并完成其未覆盖外观的渲染器。现有的渲染器绑定于某个引擎的表示，需要数十步去噪或自身高成本的蒸馏，并且从与目标视频不一致的条件中学习。我们提出了 SolarRenderer，一种结构条件视频渲染器，它通过两个轻量级 LoRA 调整冻结的 MiniMax-H3 33B 主干。结构化视频在所描述帧的位置进入主干的原生参考通道，无需类型标识，仅用纯文本描述，从而使单一控制 LoRA 能遵循任意结构表示。从预训练的四步 LoRA 开始，结构引导的分布匹配以四步完成渲染，比 50 步采样快 12.3 倍，同时保留学习到的控制。块因果变体将相同设计扩展到流式渲染，并可实时渲染 768p 视频。为训练模型，我们构建了一个对齐帧的语料库，包含来自游戏引擎、模拟器和 YouTube 视频的 13.6 万个片段。在一个同分布测试集和由 16 个结构表示组成的泛化基准上的实验表明，SolarRenderer 在两者中均达到了最先进的结果，并能泛化到 11 个未见过的表示，包括姿态骨架、绘图和点云。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.28630</p>
+</div></details>
+<p><strong>Authors</strong>: Guian Fang,Shengju Qian,Dongyue Lu,Junchao Huang,Lutao Jiang,Xin Wang,Yiren Song,Li Jiang,Mike Zheng Shou</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.28630.pdf">https://arxiv.org/pdf/2610.28630.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28630">https://arxiv.org/abs/2610.28630</a></p>
+<p><strong>Arxiv ID</strong>: 2610.28630</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.28630">https://papers.cool/arxiv/2610.28630</a></p>
+<p><strong>Published</strong>: 2026-10-21T02:00:23.205Z</p>
+<p><strong>Updated</strong>: 2026-10-21T02:00:23.205Z</p>
+<hr>
+<h3 id="5-PhysSkin-Real-Time-and-Generalizable-Physics-Based-Animation-via-Self-Supervised-Neural-Skinning"><a href="#5-PhysSkin-Real-Time-and-Generalizable-Physics-Based-Animation-via-Self-Supervised-Neural-Skinning" class="headerlink" title="5. PhysSkin++: Real-Time and Generalizable Physics-Based Animation via Self-Supervised Neural Skinning"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.26067">PhysSkin++: Real-Time and Generalizable Physics-Based Animation via Self-Supervised Neural Skinning</a></h3><p>Abstract:Generalizing real-time physics-based animation across diverse 3D shapes and spatial discretizations remains challenging. In this paper, we introduce PhysSkin++, a physics-informed framework that learns continuous neural skinning fields from static geometries to construct compact deformation subspaces. Specifically, we propose a Neural Skinning Fields Autoencoder that predicts shape-dependent deformation subspaces without per-object network training. To learn these subspaces without simulation trajectories, we develop a Physics-Informed Self-Supervised Learning strategy that combines skinning-field normalization with conflict-aware gradient correction, stabilizing joint optimization under physical and orthogonality constraints. The learned representation supports efficient reduced dynamics with user control and contact interactions, together with direct animation binding to meshes, point clouds, and 3D Gaussians. For prescribed rig animation, we further introduce a self-supervised complementarity objective to learn complementary elastic responses without enforcing complementarity constraints at runtime. Experiments demonstrate cross-shape generalization of the learned skinning fields, real-time reduced simulation, and applications to controllable, collision-aware, and rig-complementary animation.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：在多样的3D形状和空间离散化条件下推广实时基于物理的动画仍然具有挑战性。在本文中，我们提出了PhysSkin++，一个物理启发的框架，从静态几何结构中学习连续的神经蒙皮场，以构建紧凑的变形子空间。具体来说，我们提出了一种神经蒙皮场自编码器，它无需对每个对象进行网络训练就能预测依赖形状的变形子空间。为了在没有模拟轨迹的情况下学习这些子空间，我们开发了一种物理启发的自监督学习策略，该策略结合了蒙皮场归一化和冲突感知梯度校正，稳定了在物理和正交约束下的联合优化。所学的表示支持高效的降维动力学，同时允许用户控制和接触交互，并可直接绑定到网格、点云和3D高斯分布进行动画。针对指定的绑定动画，我们进一步引入了一种自监督互补性目标，以在运行时无需强制互补性约束的情况下学习互补弹性响应。实验结果展示了所学蒙皮场的跨形状泛化能力、实时降维仿真，以及在可控、碰撞感知和绑定互补动画中的应用。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？ 该论文旨在解决\*\*实时物理动画（real-time physics-based animation）在跨多样三维形状与空间离散化时的泛化性与监督依赖问题\*\*。具体而言，其核心动机与待解决问题可归纳为以下几个方面： ### 1. 跨形状与离散化的泛化瓶颈 经典降阶动画方法（如子空间有限元）通常为\*\*特定网格拓扑与分辨率\*\*优化单一的线性子空间映射矩阵，无法泛化至不同的空间离散化。近期的神经方法虽能处理任意离散化，但仍需\*\*为每个物体单独训练一个网络\*\*，难以直接推广到未见过的三维形状。 ### 2. 对昂贵监督数据的强依赖 现有可泛化的物理仿真方法（如基于 Transformer 的轨迹预测方法）虽能跨物体学习，但依赖\*\*大量预计算的模拟轨迹\*\*作为监督；而现有的神经绑定/蒙皮方法又需要\*\*专家标注的骨骼与蒙皮权重数据集\*\*。这些监督数据获取成本高、难以规模化。 ### 3. 从纯几何学习物理一致子空间的优化难题 若直接从静态几何学习变形子空间，需满足多重物理与数值约束：低势能（反映物理合理的变形模式）、空间平滑性（保证变形连贯）以及正交性（保证模式间相互独立）。然而，这些约束在联合优化时存在\*\*梯度量级与方向的冲突\*\*，导致朴素的多目标优化极易不稳定。 ### 核心研究问题 基于上述背景，论文明确提出了以下核心问题： > \*\*如何直接从静态几何中，学习一个能够跨多样三维形状与空间离散化泛化、且物理一致的降阶变形子空间映射，而无需依赖任何模拟轨迹或标注数据的监督？\*\* 为回答该问题，论文提出了 \*\*PhysSkin++\*\* 框架，通过自监督的神经蒙皮场（neural skinning fields）构建连续的变形子空间映射，并设计了物理信息自监督学习策略（PISSL）以稳定地联合优化物理与正交约束，从而实现实时、可控、碰撞感知且可绑定至多种表征（网格、点云、三维高斯）的物理动画。 Q2: 有哪些相关研究？ 论文在第 II 节（Related Work）中系统梳理了相关研究，主要围绕以下两个方向展开： --- ### 1. 神经物理动画与降阶建模（Neural Physics-Based Animation） 该方向关注如何利用低维子空间映射加速物理仿真，并在最近逐步与神经网络结合。 - \*\*经典子空间物理动画\*\* 早期方法（如基于有限元的子空间仿真
+</p>
+
+<p>2<br>,<br>51<br>,<br>57<br>）通过为单个物体优化固定的线性子空间矩阵来实现降阶计算。这类方法的瓶颈在于子空间映射与**特定网格拓扑和分辨率**强耦合，无法泛化到不同的空间离散化。 - **数据驱动的神经子空间方法** 以 CROM<br>10<br> 为代表的方法利用神经网络直接从模拟轨迹中学习子空间映射。然而，这些方法通常为**单个物体单独训练一个网络**，难以泛化到未见形状或运动模式<br>9<br>,<br>17<br>,<br>50<br>,<br>68<br>。 - **跨系统轨迹学习方法** 近期基于 Transformer 的方法（如<br>12<br>,<br>15<br>,<br>19<br>,<br>58<br>）尝试从大规模模拟轨迹中直接学习跨物体、跨物理系统的动力学。这类数据驱动的路线虽然实现了一定的泛化性，但**依赖大量轨迹监督**，且不显式构造可用于实时降阶动画的低维变形子空间。 - **无数据（Data-Free）物理信息子空间方法** 另一类研究尝试不依赖模拟轨迹，仅通过物理约束（如低势能、正交性）学习子空间映射<br>8<br>,<br>41<br>,<br>44<br>,<br>49<br>,<br>59<br>。其中，Simplicits<br>44<br> 与本文最为接近：它通过自监督学习神经蒙皮权重函数作为物理信息子空间映射，并在二次能量与正交约束下稳定训练。然而，Simplicits 仍需**为每个物体单独训练网络**，限制了其在多样形状间的泛化能力。 —- ### 2. 神经绑定与蒙皮表示（Neural Rigging and Skinning Representations） 该方向关注如何从三维形状中自动推断骨骼、关节与蒙皮权重，是另一种经典的降阶变形表示。 - **经典骨骼驱动动画** 线性混合蒙皮（LBS）</p>
+<p>43<br> 及基于骨骼的绑定动画<br>5<br>,<br>16<br>,<br>39<br> 长期以来是角色动画的主流范式，但需要大量人工介入。 - **基于 3D Shape VAE 的监督学习方法** 近期工作（如 RigNet<br>62<br>、Make-It-Animatable<br>20<br>、Anymate<br>14<br>、Puppeteer<br>52<br>、MagicArticulate<br>53<br>、UniRig<br>66<br> 等）利用专家标注的绑定与蒙皮数据集，通过前馈网络预测物体的关节、骨骼与蒙皮权重。其中： - **类别特定方法**<br>20<br>,<br>55<br>,<br>60<br>,<br>62<br> 往往引入预定义的骨骼结构或语义先验（如人体、动物模板），难以推广到其他物体类别<br>39<br>,<br>69<br>。 - **类别无关方法**（如 Anymate<br>14<br>）虽然通过更通用的网络架构实现了跨类别泛化，但仍**严重依赖专家标注的数据**<br>14<br>,<br>34<br>,<br>35<br>,<br>40<br>,<br>60<br>，数据获取成本高且难以规模化。 - **与本文的对比** 与上述监督方法不同，PhysSkin++ 采用**物理信息自监督学习**，直接从静态三维几何中训练神经蒙皮场，无需任何专家标注的骨骼、蒙皮权重或模拟轨迹。 —- ### 总结性对比 | 方法类别 | 是否需要每物体训练 | 是否依赖模拟轨迹 | 是否依赖标注绑定数据 | 是否显式构建低维子空间 | |—-|—-|—-|—-|—-| | 经典子空间 FEM | — | 否 | 否 | 是，但无泛化性 | | 数据驱动神经子空间 (CROM 等) | 是 | 是 | 否 | 是 | | Transformer 跨系统动力学 | 否 | 是 | 否 | 否 | | Simplicits </p>
+<p>44<br> | 是 | 否 | 否 | 是 | | 监督神经绑定 (RigNet 等) | 否 | 否 | 是 | 是 | | **PhysSkin++ (本文)** | **否** | **否** | **否** | **是** | （注：上表仅用于直观对比各类方法的特性差异。） Q3: 论文如何解决这个问题？ 论文通过 **PhysSkin++** 框架，从表示学习、优化策略与运行时求解三个层面系统性地解决了上述问题。具体方法可概括为以下五个核心组成部分： —- ### 1. 连续神经蒙皮场：跨形状与离散化的降阶变形表示 为摆脱“每物体单独训练”与“固定网格拓扑”的束缚，论文采用 **Linear Blend Skinning (LBS)** 的连续化推广来定义降阶变形子空间。对于静止空间中的任意一点  X ∈ R^3 ，其变形后位置  x  由  m  个仿射手柄变换的加权求和给出： </p>
+<p>φ(X, z) = X + ∑_(i=1)^(m) W_i(X) Z_i X 1 ,<br> 其中  W_i: R^3 to R  为连续蒙皮权重场， Z_i ∈ R^(3 × 4)  为第  i  个手柄的仿射位移参数。全体手柄参数展平后构成降阶坐标  z ∈ R^(12m) 。该映射是 **无网格（mesh-free）** 的，只需在运行时于任意空间位置查询  W_i(X) ，即可驱动完整物体变形，天然支持不同分辨率与表征形式。 —- ### 2. 神经蒙皮场自编码器：单网络跨物体前馈预测 为实现从静态几何到蒙皮场的直接推断，论文设计了一个 **单一路由（single feed-forward）** 的自编码器，无需按物体训练： - **形状编码**：采用基于 Transformer 的点云编码器（Michelangelo）处理表面采样点，提取高度压缩的形状潜码  F_s 。 - **手柄潜码提取**：通过一组可学习的查询令牌（learnable queries）与  F_s  做交叉注意力，得到  m  个手柄潜码  F_h 。 - **空间解码**：对任意查询点  X ，以另一层交叉注意力从  F_h  中提取逐点特征  F_p ，经 MLP 输出蒙皮权重： </p>
+<p>W(X) = MLP(F_p oplus γ(X)).</p>
+<ul>
+<li>**正交化约束**：在 MLP 末端引入 **Newton 迭代正交化（ONI）** 模块，促进不同手柄变形模式的独立性。 此外，论文在物体表面与内部采样 **体素积分点（cubature points）**，用于后续物理能量计算与数值积分，从而捕捉体积变形行为。 —- ### 3. 物理信息自监督学习（PISSL）：无需仿真轨迹与标注 为在无任何蒙皮标注或预计算轨迹的条件下学习物理一致的子空间，论文提出了一套自监督目标与稳定优化策略： #### 3.1 多目标自监督损失 子空间学习损失由三项构成： </li>
+</ul>
+<p>L<em>(subspace)(θ) = L</em>(smooth)(θ) + λ<em>(pot) L</em>(pot)(θ) + λ<em>(orth) L</em>(orth)(θ).</p>
+<ul>
+<li>**低势能约束**：通过从分布  z sim N(0, μ^2 I<em>(12m))  中随机采样降阶坐标，最小化期望弹性势能，使学习到的子空间对应物理合理的低能量变形模式：<br>L</em>(pot)(θ) = E<em>(z sim N) [ E</em>(pot)^(θ)(φ(X, z)) ].<br>训练过程中，势能计算从线性弹性模型逐步插值至 Neo-Hookean 模型以提升稳定性。 - **空间平滑性**：约束蒙皮权重的空间梯度，确保变形在空间上连贯：<br>L<em>(smooth)(θ) = E</em>(X sim S) ∑<em>(i=1)^(m) | ∇ Phi</em>(θ)^i(X) |^2.</li>
+<li>**正交性约束**：促进不同手柄的蒙皮场相互独立，增强子空间表达能力：<br>L<em>(orth)(θ) = E</em>(D sim S) [ ∑<em>(i=1)^(m) ∑</em>(j=1 j ≠ i)^(m) ( Phi<em>(θ)^i(X_D)^top Phi</em>(θ)^j(X_D) )^2 ].<h4 id="3-2-稳定联合优化机制-上述多目标直接联合优化时，各项梯度在量级与方向上存在严重冲突，导致训练不稳定。为此，论文引入两项关键技术：-即时蒙皮场归一化（On-the-fly-Normalization）-：在每次前向传播时，对批次内-cubature-点上的蒙皮权重矩阵逐列进行-ell-2-归一化。这抑制了数值漂移，使正交性目标更易优化。-冲突感知梯度修正（Conflict-aware-Gradient-Correction）-：采用-ConFIG-方法"><a href="#3-2-稳定联合优化机制-上述多目标直接联合优化时，各项梯度在量级与方向上存在严重冲突，导致训练不稳定。为此，论文引入两项关键技术：-即时蒙皮场归一化（On-the-fly-Normalization）-：在每次前向传播时，对批次内-cubature-点上的蒙皮权重矩阵逐列进行-ell-2-归一化。这抑制了数值漂移，使正交性目标更易优化。-冲突感知梯度修正（Conflict-aware-Gradient-Correction）-：采用-ConFIG-方法" class="headerlink" title="3.2 稳定联合优化机制 上述多目标直接联合优化时，各项梯度在量级与方向上存在严重冲突，导致训练不稳定。为此，论文引入两项关键技术： - **即时蒙皮场归一化（On-the-fly Normalization）**：在每次前向传播时，对批次内 cubature 点上的蒙皮权重矩阵逐列进行  ell_2  归一化。这抑制了数值漂移，使正交性目标更易优化。 - **冲突感知梯度修正（Conflict-aware Gradient Correction）**：采用 ConFIG 方法"></a>3.2 稳定联合优化机制 上述多目标直接联合优化时，各项梯度在量级与方向上存在严重冲突，导致训练不稳定。为此，论文引入两项关键技术： - **即时蒙皮场归一化（On-the-fly Normalization）**：在每次前向传播时，对批次内 cubature 点上的蒙皮权重矩阵逐列进行  ell_2  归一化。这抑制了数值漂移，使正交性目标更易优化。 - **冲突感知梯度修正（Conflict-aware Gradient Correction）**：采用 ConFIG 方法</h4></li>
+</ul>
+<p>37<br> 修正各损失项梯度之间的破坏性干扰，实现多物理与数值约束下的平衡收敛。 —- ### 4. 实时降阶动力学：可控、碰撞感知的物理动画 在运行时，PhysSkin++ 仅在低维降阶空间  z  中推进物理状态，通过隐式时间积分实现实时仿真： </p>
+<p>z<em>(t+1) = argmin_z (1) / (2h^2) | z - 2z_t + z</em>(t-1) |<em>M^2 + E</em>(pot)(φ(X, z)).<br> 为支持复杂交互场景，论文将上述基本形式扩展为：<br>z<em>(t+1) = argmin_z (1) / (2h^2) | z - 2z_t + z</em>(t-1) |<em>M^2 + E</em>(pot)(φ<em>D(X, z)) + E</em>(force)(z, t) + E<em>(bnd)(z) + E</em>(coll)(z).<br> 各能量项对应如下控制与交互机制： - **Dirichlet 边界条件**：通过引入指示函数  d(X)  与预设位移场  g(X) ，构造边界兼容的变形映射：<br>φ<em>D(X, z) = X + g(X) + d(X) ∑</em>(i=1)^(m) W<em>i(X) Z_i X 1 ,<br> 确保约束区域位移仅由  g(X)  决定，与降阶坐标无关。 - **交互控制与外力**：将全空间外力  f_x(t)  通过变形映射的雅可比矩阵  J</em>φ  投影至降阶空间： f<em>z(t) = J</em>φ^top f<em>x(t) 。 - **环境碰撞**：对平面等环境边界采用惩罚势能  E</em>(bnd) 。 - **多物体接触**：基于 IPC（Incremental Potential Contact）思想，构建点对的归一化对数障碍函数：<br>E<em>(coll) = k_c ∑</em>(c ∈ C) E<em>(b,c),<br> 其中  E</em>(b,c)  在接触间隙  d<em>c ∈ (r_p, 1)  时取有限值，支持 **刚体–变形体** 与 **变形体–变形体** 交互。对后者，通过各物体变形映射的雅可比矩阵  J</em>(φ,a), J<em>(φ,b)  将接触力耦合进全局降阶 Hessian，实现多物体联合求解。 —- ### 5. 绑定补全动画：与艺术家骨骼的物理互补 当存在艺术家创作的 LBS 绑定时，PhysSkin++ 可进一步学习 **补全弹性子空间**，使物理变形与预设骨骼动画互补而非重复。 - **变形表示**：在标准蒙皮映射上叠加预设骨骼位移  u</em>(rig)(X, p) ： </p>
+<p>φ(X, p, z) = X + u<em>(rig)(X, p) + ∑</em>(i=1)^(m) W_(comp)^(θ,i)(X) Z_i X 1 .</p>
+<ul>
+<li>**绑定空间互补约束**：要求补全位移  u_(comp)  与绑定运动子空间正交，即不与骨骼已有能力重复。 Q4: 论文做了哪些实验？ 论文在第 IV 节（Experiments）中从学习到的蒙皮场质量、消融研究以及多样化实时动画应用三个层面展开了系统验证。具体实验内容可归纳如下： —- ### 1. 实现细节与训练配置 论文采用预训练的 Michelangelo 模型作为点云编码器，处理经归一化至 $</li>
+</ul>
+<p>-1,1<br>^3 的输入形状。对每一物体，表面采样 4096 个点送入编码器；同时通过体素化与光线追踪在内外采样体素积分点（cubature points），构建候选点集后每批次随机抽取 1000 个点用于势能计算，并采样 1024 组降阶坐标 z 进行训练。训练在 4 块 NVIDIA GeForce RTX 4090 GPU 上进行，学习率经热身阶段后按余弦退火衰减。 —- ### 2. 神经蒙皮场的定量与定性评估 #### 2.1 跨数据集基线对比 论文在 <strong>RigNet</strong> 与 <strong>ShapeNet</strong> 两个数据集的测试集上，将 PhysSkin++ 与以下基线进行了对比： - <strong>Simplicits</strong>（逐物体自监督神经蒙皮） - <strong>RigNet</strong>、<strong>M-I-A</strong>、<strong>Anymate</strong>、<strong>Puppeteer</strong>（基于专家标注的监督式神经绑定方法） #### 2.2 评估指标 鉴于该方法不依赖标注真值，论文从矩阵分析与谱理论出发，提出了三项评估指标： - <strong>正交性指标</strong>（ Omega<em>(orth) ）：衡量不同手柄权重向量间的去相关程度，值越小表示各变形模式越独立； - <strong>对数条件数</strong>（ kappa</em>(log) ）：反映蒙皮基数值稳定性，值越小表明微小变换对应的形变响应越稳定； - <strong>谱熵指标</strong>（ H<em>(spec) ）：刻画谱能量的分布均衡性，值越高表示各变形模式的表达力越均衡。 #### 2.3 结果 - <strong>RigNet 测试集</strong>（表 I）：PhysSkin++ 在 Omega</em>(orth) 、 kappa<em>(log) 、 H</em>(spec) 三项指标上均显著优于所有监督与自监督基线。 - <strong>ShapeNet 测试集</strong>（表 II）：在跨类别联合训练设置下，PhysSkin++ 同样全面优于基线；而 Simplicits 因需逐物体训练，仅能在单个物体上独立优化。 #### 2.4 定性可视化 - 图 8、图 9 展示了 RigNet 测试集上的蒙皮场可视化，表明该方法生成的场更加物理一致、几何正交且空间平滑。 - 图 10、图 11 展示了 ShapeNet 上的对比与泛化结果。 - 图 12 在可变形 Lego 形状族上验证了<strong>单一模型直接推断不同几何</strong>的蒙皮场，而 Simplicits 必须逐物体重新训练。 #### 2.5 绑定互补蒙皮场评估 利用 RigNet 提供的骨骼绑定，论文评估了引入绑定空间互补项 L<em>(comp) 后学习的神经蒙皮场。图 13 显示，加入该损失后，补全蒙皮场在头部、翅膀、肢体等区域的空间分布发生了显著且合理的变化，避免了与预设骨骼功能的重叠。 —- ### 3. 消融研究 论文在 RigNet 数据集上系统消融了 Physics-Informed Self-Supervised Learning（PISSL）策略的关键组件，结果汇总于表 III： - <strong>去除即时蒙皮归一化</strong>：正交性与条件数显著恶化； - <strong>去除 ONI 层</strong>：指标略有下降，但仍保持较好性能； - <strong>去除 ConFIG 冲突感知梯度修正</strong>：优化稳定性大幅下降，正交性指标从 0.0033 上升至 8.9247 ； - **去除正交性损失 L</em>(orth) <strong>：正交性完全丧失（ Omega_(orth) 达到 100.0 ），条件数急剧增大； - </strong>去除平滑性损失 L<em>(smooth) **：影响相对较小，但 L</em>(orth) 与 L<em>(pot) 至关重要。 此外： - 图 14 展示了**去除势能损失 L</em>(pot) <strong> 后的定性结果：蒙皮场失去物理可解释性，呈现无序分布； - 图 13 对比了</strong>去除与保留绑定互补损失 L<em>(comp) <strong> 的蒙皮场差异，验证了该损失对空间重分布的有效性。 —- ### 4. 多样化实时物理动画验证 #### 4.1 时间效率 论文对比了 PhysSkin++ 与全空间 FEM（隐式积分）及 MPM（显式积分）的每步求解耗时（表 IV）。在从 10K 到 127K 顶点不等的多个模型上，PhysSkin++ 的每步耗时稳定在约 </strong>12–14 ms<strong>，而 FEM 随分辨率增长可达 </strong>3000 ms<strong> 以上，MPM 则在 </strong>140–250 ms<strong> 量级。这验证了降阶动力学在实时性上的显著优势。 #### 4.2 可控与碰撞感知动画 - </strong>Dirichlet 边界条件<strong>（图 4a）：在物体预设区域施加零位移约束，其余部分在重力下变形； - </strong>交互式拖动控制<strong>（图 4b）：通过高斯核加权局部力实现运行时直接操控； - </strong>环境边界碰撞**（图 4c）：利用边界惩罚能量 E</em>(bnd) 模拟物体与倾斜平面等环境的接触； - <strong>刚体–变形体交互</strong>（图 5a）：刚体在重力下坠落并与可变形物体产生接触，使用 IPC 风格点对势进行建模； - <strong>变形体–变形体交互</strong>（图 5b）：多个可变形物体相互接触并堆积，通过耦合各物体的降阶坐标与接触 Hessian 联合求解。 #### 4.3 绑定互补动画 - <strong>交互式绑定控制</strong>（图 7a）：用户通过界面实时操纵骨骼姿态，PhysSkin++ 在预设骨骼运动基础上叠加补全弹性响应； - <strong>用户创作动画序列</strong>（图 7b）：将 Mixamo 骨骼动画重定向至目标角色，PhysSkin++ 为整条轨迹生成时变物理补全变形。 #### 4.4 离散化无关的三维高斯动画 论文在 ShapeSplat 数据集的 3D Gaussian Splatting（3DGS）模型上验证了离散化无关绑定。通过在学习到的神经蒙皮场上查询每个高斯基元的静止中心，构造局部仿射变换并更新其中心 μ_g 与各向异性协方差 Sigma_g ，实现了无需底层网格的物理驱动动画（图 15）。 —- 综上，实验从<strong>蒙皮场结构质量</strong>、<strong>优化策略有效性</strong>、<strong>实时仿真效率</strong>以及<strong>多场景动画能力</strong>四个维度，全面验证了 PhysSkin++ 的泛化性、物理一致性与实用性。 Q5: 有什么可以进一步探索的点？ 基于论文内容，可从<strong>论文明确指出的局限性</strong>与<strong>方法设计所延伸的潜在方向</strong>两个层面梳理可进一步探索的研究点： —- ### 1. 论文明确指出的未来工作 - <strong>引入语义先验以建模复杂几何</strong> 作者在结论中明确指出，当前框架未融入<strong>语义先验（semantic priors）</strong>，这在一定程度上限制了对复杂几何结构的建模能力。未来工作可探索将语义信息（如部件标签、功能区域划分）嵌入神经蒙皮场的学习过程，以提升子空间映射在复杂或结构化物体上的表达力与合理性。 —- ### 2. 由方法设计延伸的潜在探索方向 #### 2.1 更丰富的物理本构与现象 - <strong>塑性、粘弹性与断裂</strong>：当前实验主要聚焦于弹性与超弹性（Neo-Hookean）材料。将框架扩展至<strong>塑性变形</strong>、<strong>粘弹性</strong>乃至<strong>断裂与拓扑变化</strong>（如撕裂、切割），需要动态更新空间离散化与子空间基函数，是一个极具挑战性的延伸方向。 - <strong>自碰撞（Self-collision）与摩擦</strong>：论文展示了多物体间的刚体–变形体与变形体–变形体接触，但未显式处理<strong>物体自身的自碰撞</strong>及复杂摩擦模型。对于高度铰接的角色或软体，自碰撞处理对真实感至关重要。 #### 2.2 绑定互补性的进一步扩展 - <strong>非线性骨骼控制</strong>：当前的绑定互补动画假设骨骼具有<strong>线性控制参数化</strong>，从而得到恒定的绑定 Jacobian。未来可探索如何将互补动力学扩展至<strong>非线性绑定控制器</strong>或更复杂的逆运动学（IK）驱动系统。 - <strong>更紧耦合的绑定–物理协同</strong>：在运行时仅优化补全坐标而不强制正交约束，虽然高效，但是否可通过轻量级投影进一步减少与绑定运动的耦合误差仍有优化空间。 #### 2.3 离散化无关绑定的深化 - <strong>三维高斯外观的物理响应</strong>：在 3D Gaussian Splatting 绑定中，当前仅更新高斯基元的中心 μ_g 与协方差 Sigma_g ，而<strong>不透明度 α_g 与球谐（SH）外观系数保持静止</strong>。未来可探索在物理变形过程中，让外观属性（如颜色、光泽）也随应力或形变状态自适应变化，以模拟挤压、膨胀等引起的材质变化。 #### 2.4 监督与泛化的折中 - <strong>弱监督与混合监督学习</strong>：当前框架完全依赖自监督，无需任何轨迹或标注。未来可研究结合<strong>少量物理仿真轨迹</strong>、<strong>视频运动数据</strong>或<strong>稀疏用户标注</strong>进行半监督学习，以在保持泛化性的同时提升特定类别或特定物体的精度与收敛速度。 - <strong>更大规模与场景级动画</strong>：当前验证主要针对单个物体。将神经蒙皮场扩展至<strong>多部件装配体</strong>或<strong>场景级物理动画</strong>（如包含大量交互物体的环境），需要更高效的全局耦合与碰撞检测策略。 #### 2.5 优化与表示的改进 - <strong>动态子空间自适应</strong>：当前子空间维度 m$ 固定。可根据几何复杂度或运动剧烈程度，在运行时<strong>自适应调整手柄数量</strong>或进行局部子空间细化。 - <strong>更高级的梯度修正与多目标优化</strong>：虽然 ConFIG 已显著改善多损失联合优化，但针对物理约束、正交约束与数据驱动的深层特征之间的<strong>多任务学习动态</strong>，仍可探索更精细的梯度调度或层次化优化策略。 Q6: 总结一下论文的主要内容 该文提出 <strong>PhysSkin++</strong>，一个用于实时物理动画的通用化物理信息神经蒙皮框架。以下从研究背景、核心方法、技术贡献、实验验证与局限展望五个方面进行总结。 —- ### 1. 研究背景与问题 实时物理动画旨在以紧凑且富有表现力的运动表示，在计算受限条件下实现物理可信的变形。现有方法存在以下局限： - <strong>经典降阶方法</strong>（如子空间有限元）针对特定网格拓扑与分辨率优化，无法跨形状或离散化泛化； - <strong>现有神经方法</strong>虽能处理任意离散化，但通常为<strong>每个物体单独训练</strong>网络，缺乏跨形状泛化能力； - <strong>数据驱动的 Transformer 方法</strong>依赖大量预计算仿真轨迹作为监督，且不显式构造低维变形子空间； - <strong>监督式神经绑定方法</strong>需要昂贵且难以规模化的专家标注骨骼与蒙皮数据。 由此，论文提出核心问题：<strong>能否直接从静态三维几何中，学习一个跨多样形状与离散化泛化、且物理一致的降阶变形子空间，而无需任何仿真轨迹或标注数据？</strong> —- ### 2. 核心思想：连续神经蒙皮场 受线性混合蒙皮（Linear Blend Skinning, LBS）启发，论文将变形表示为连续空间中的仿射手柄变换加权求和：</p>
+<p>φ(X, z) = X + ∑_(i=1)^(m) W_i(X) Z_i X 1 ,<br> 其中  W_i: R^3 to R  为连续神经蒙皮权重场， Z_i ∈ R^(3 × 4)  为第  i  个手柄的仿射位移， z = flat(Z_i) ∈ R^(12m)  构成低维降阶坐标。该映射无网格、离散化无关，可在任意空间位置查询，从而天然支持跨分辨率与跨表征泛化。 —- ### 3. 关键技术贡献 #### 3.1 神经蒙皮场自编码器 论文设计了一个**单前馈网络**实现从静态几何到蒙皮场的直接推断： - **编码器**：采用预训练 Transformer 点云编码器（Michelangelo）从表面采样点提取形状潜码  F_s ； - **解码器**：通过可学习查询与两层交叉注意力，先提取  m  个手柄潜码  F_h ，再对任意查询点  X  解码逐点特征并输出蒙皮权重： </p>
+<p>W(X) = MLP(F_p oplus γ(X)).</p>
+<ul>
+<li>在 MLP 末端引入 **Newton 迭代正交化（ONI）** 层以促进模式独立性。 为捕捉体积变形，论文在物体表面与内部采样 **cubature points** 用于物理能量计算与数值积分。 #### 3.2 物理信息自监督学习（PISSL） 无需任何标注或仿真数据，论文通过自监督损失从静态几何学习物理一致的子空间： </li>
+</ul>
+<p>L<em>(subspace)(θ) = L</em>(smooth)(θ) + λ<em>(pot) L</em>(pot)(θ) + λ<em>(orth) L</em>(orth)(θ).<br> 各损失项分别为： - **低势能损失**：随机采样降阶坐标  z sim N(0, μ^2 I_(12m)) ，最小化期望弹性势能，使子空间对应物理合理的低能量变形； - **空间平滑性损失**：约束蒙皮权重的空间梯度，保证变形连贯； - **正交性损失**：促进不同手柄蒙皮场相互独立，增强子空间表达力。 为解决多目标联合优化中梯度冲突与数值漂移问题，论文提出两项稳定机制： 1. **即时蒙皮场归一化**：在训练过程中对批次 cubature 点上的蒙皮权重矩阵逐列进行  ell_2  归一化； 2. **冲突感知梯度修正**：采用 ConFIG 方法修正各损失项梯度间的破坏性干扰，实现稳定收敛。 #### 3.3 可控与碰撞感知的实时降阶动力学 运行时，系统仅在低维空间  z  中推进物理状态： </p>
+<p>z<em>(t+1) = argmin_z (1) / (2h^2) | z - 2z_t + z</em>(t-1) |<em>M^2 + E</em>(pot)(φ<em>D(X, z)) + E</em>(force) + E<em>(bnd) + E</em>(coll).<br> 该框架支持： - **Dirichlet 边界条件**：通过边界兼容变形映射  φ<em>D  在预设区域强制指定位移； - **交互控制**：利用变形映射雅可比矩阵  J</em>φ  将全空间外力（如重力、拖拽力）投影至降阶空间； - **环境交互**：基于惩罚势能建模平面等环境边界碰撞； - **多物体接触**：采用 IPC 风格点对数障碍函数  E_(coll) ，支持刚体–变形体与变形体–变形体交互，并通过各物体雅可比矩阵将接触力耦合进全局降阶 Hessian 联合求解。 #### 3.4 绑定互补动画 当存在艺术家创作的 LBS 绑定时，PhysSkin++ 可学习**与预设骨骼互补的弹性子空间**。变形表示为： </p>
+<p>φ(X, p, z) = X + u<em>(rig)(X, p) + ∑</em>(i=1)^(m) W<em>(comp)^(θ,i)(X) Z_i X 1 .<br> 通过绑定空间互补损失，要求补全位移与骨骼运动子空间正交：<br>L</em>(comp)(θ) = E<em>((D,R)) [ | J</em>(rig)^top B<em>(lbs)^(comp) |_F^2 ],<br> 其中  J</em>(rig)  为绑定雅可比矩阵。训练时施加该约束，运行时仅需优化补全坐标  z  而无需额外正交投影，即可在预设动画上叠加物理弹性响应。 #### 3.5 离散化无关的动画绑定 得益于连续场表示，PhysSkin++ 可直接绑定至： - **网格顶点与采样点云**：直接查询蒙皮权重； - **3D Gaussian Splatting**：在每个高斯基元的静止中心  μ_g^0  查询权重，构造局部仿射变换  T_g(z) ，进而更新高斯中心与协方差： </p>
+<p>μ<em>g(z) = A_g(z)μ_g^0 + t_g(z), quad Sigma_g(z) = A_g(z)Sigma_g^0 A_g(z)^top.<br> 这实现了无需底层网格的物理驱动神经渲染体动画。 —- ### 4. 实验验证 论文在 RigNet 与 ShapeNet 数据集上进行了系统评估： - **跨形状泛化性能**：在正交性指标  Omega</em>(orth) 、对数条件数  kappa<em>(log)  与谱熵  H</em>(spec)  三项指标上，PhysSkin++ 均显著优于 Simplicits、RigNet、Anymate 等自监督与监督基线； - **消融研究**：验证了即时归一化、ConFIG 梯度修正、ONI 层及各损失项（ L<em>(pot) 、 L</em>(orth) 、 L_(smooth) ）对稳定学习与物理一致性的关键作用； - **实时效率**：在 10K 至 127K 顶点模型上，每步求解耗时稳定在约 **12–14 ms**，远快于全空间 FEM（可达 3000 ms 以上）与 MPM； - **多样化动画场景**：展示了 Dirichlet 边界约束、交互式拖拽、刚体–变形体/变形体–变形体碰撞、绑定互补实时控制与动画序列，以及 3D Gaussian 物理动画的效果。 —- ### 5. 局限与未来方向 论文当前的主要局限在于**未引入语义先验**，对复杂几何结构的建模能力受限。未来工作可进一步探索： - 结合部件级语义信息以提升复杂结构化物体的子空间表达； - 扩展至塑性、粘弹性、断裂及自碰撞等更丰富的物理现象； - 探索半监督或弱监督设置，以在保持泛化性的同时提升特定类别精度； - 支持更大规模场景与动态自适应子空间维度。 Q7: 想要进一步了解论文 以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是PhysSkin%2B%2B%3A%20Real-Time%20and%20Generalizable%20Physics-Based%20Animation%20via%20Self-Supervised%20Neural%20Skinning，链接是https://arxiv.org/pdf/2610.26067，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2610.26067。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Yuanhang Lei,Baofei Liu,Xingxuan Li,Tao Cheng,Zixuan Wang,Boming Zhao,Yujun Shen,Siyuan Huang,Ruizhen Hu,Peter Yichen Chen,Hujun Bao,Zhaopeng Cui</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.26067.pdf">https://arxiv.org/pdf/2610.26067.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.26067">https://arxiv.org/abs/2610.26067</a></p>
+<p><strong>Arxiv ID</strong>: 2610.26067</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.26067">https://papers.cool/arxiv/2610.26067</a></p>
+<p><strong>Published</strong>: 2026-10-21T02:00:23.186Z</p>
+<p><strong>Updated</strong>: 2026-10-21T02:00:23.186Z</p>
+<hr>
+<h3 id="6-TRACE-Tracking-Multimodal-Clinical-Trajectories-for-Inpatient-Risk-Prediction"><a href="#6-TRACE-Tracking-Multimodal-Clinical-Trajectories-for-Inpatient-Risk-Prediction" class="headerlink" title="6. TRACE: Tracking Multimodal Clinical Trajectories for Inpatient Risk Prediction"></a>6. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.25765">TRACE: Tracking Multimodal Clinical Trajectories for Inpatient Risk Prediction</a></h3><p>Abstract:Accurate inpatient risk prediction requires modeling heterogeneous clinical evidence that accumulates irregularly over time. This challenge spans in-hospital mortality, prolonged length of stay, and readmission, each with task-specific observation windows. Existing multimodal approaches combine structured health record data, chest x-rays, and clinical text, but primarily focus on modality fusion or missing-modality compensation, with limited attention to temporal trajectories over an admission. We propose TRACE (TRAjectory modeling of multimodal Clinical Events), a daily-scale framework organizing clinical events into day-level trajectories, separating day-invariant global context from day-specific local events drawn from EHR data, chest x-rays, radiology reports, and discharge summaries. The trajectory is encoded using temporal attention, allowing unavailable modalities to emit no tokens. A phenotype-guided contrastive objective further organizes admissions under heterogeneous disease distributions. Across cohorts from MIMIC-IV, eICU, and MIMIC-III comprising nearly 180,000 total stays, we evaluate TRACE on mortality, length of stay, and readmission prediction. TRACE achieves the highest AUROC across all nine dataset-task settings and the highest ACC in eight, outperforming baselines. Ablation studies validate our attention masks and contrastive learning, while trajectory-level attribution localizes risk-associated hospital days and modalities.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：准确的住院患者风险预测需要对随时间不规则累积的异质临床证据进行建模。这一挑战涵盖院内死亡率、延长住院时间和再入院，每个任务都有特定的观察时间窗口。现有的多模态方法结合了结构化健康记录数据、胸部X光和临床文本，但主要关注模态融合或缺失模态补偿，对住院期间的时间轨迹关注有限。我们提出了TRACE（多模态临床事件轨迹建模），这是一个日级别框架，将临床事件组织为日级轨迹，区分日不变的全局上下文与来自EHR数据、胸部X光、放射学报告和出院摘要的日特定局部事件。该轨迹通过时间注意力进行编码，允许不可获得的模态不发出令牌。一个基于表型的对比目标进一步在异质疾病分布下组织住院信息。在来自MIMIC-IV、eICU和MIMIC-III的队列中，总计近180,000次住院，我们评估了TRACE在死亡率、住院时间和再入院预测上的表现。TRACE在所有九个数据集-任务设置中实现了最高AUROC，在八个设置中实现了最高ACC，优于基线方法。消融研究验证了我们的注意力掩码和对比学习，而轨迹级归因则定位了与风险相关的住院天数和模态。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.25765 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Minjun Kim,Jong Hak Moon</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.25765.pdf">https://arxiv.org/pdf/2610.25765.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.25765">https://arxiv.org/abs/2610.25765</a></p>
+<p><strong>Arxiv ID</strong>: 2610.25765</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.25765">https://papers.cool/arxiv/2610.25765</a></p>
+<p><strong>Published</strong>: 2026-10-21T02:00:27.199Z</p>
+<p><strong>Updated</strong>: 2026-10-21T02:00:27.199Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202610/2026-10-21/">https://wdndev.github.io/daily/hf/202610/2026-10-21/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202610/2026-10-01/" title="HuggingFace Papers 2026-10-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-01</div></div></a></div><div><a href="/daily/hf/202610/2026-10-02/" title="HuggingFace Papers 2026-10-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-02</div></div></a></div><div><a href="/daily/hf/202610/2026-10-03/" title="HuggingFace Papers 2026-10-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-EMBER-Predicting-TCR%E2%80%94pMHC-Binding-Without-a-Docked-Complex"><span class="toc-text">1. EMBER: Predicting TCR—pMHC Binding Without a Docked Complex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Focused-Omni-Modal-GUI-Agents"><span class="toc-text">2. Focused Omni-Modal GUI Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-MMEnterprise-Bench-Evaluating-Enterprise-Agents-over-Evolving-Multimodal-Records"><span class="toc-text">3. MMEnterprise-Bench: Evaluating Enterprise Agents over Evolving Multimodal Records</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-SolarRenderer-Few-Step-Generative-Reference-Rendering"><span class="toc-text">4. SolarRenderer: Few-Step Generative Reference Rendering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-PhysSkin-Real-Time-and-Generalizable-Physics-Based-Animation-via-Self-Supervised-Neural-Skinning"><span class="toc-text">5. PhysSkin++: Real-Time and Generalizable Physics-Based Animation via Self-Supervised Neural Skinning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E7%A8%B3%E5%AE%9A%E8%81%94%E5%90%88%E4%BC%98%E5%8C%96%E6%9C%BA%E5%88%B6-%E4%B8%8A%E8%BF%B0%E5%A4%9A%E7%9B%AE%E6%A0%87%E7%9B%B4%E6%8E%A5%E8%81%94%E5%90%88%E4%BC%98%E5%8C%96%E6%97%B6%EF%BC%8C%E5%90%84%E9%A1%B9%E6%A2%AF%E5%BA%A6%E5%9C%A8%E9%87%8F%E7%BA%A7%E4%B8%8E%E6%96%B9%E5%90%91%E4%B8%8A%E5%AD%98%E5%9C%A8%E4%B8%A5%E9%87%8D%E5%86%B2%E7%AA%81%EF%BC%8C%E5%AF%BC%E8%87%B4%E8%AE%AD%E7%BB%83%E4%B8%8D%E7%A8%B3%E5%AE%9A%E3%80%82%E4%B8%BA%E6%AD%A4%EF%BC%8C%E8%AE%BA%E6%96%87%E5%BC%95%E5%85%A5%E4%B8%A4%E9%A1%B9%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%EF%BC%9A-%E5%8D%B3%E6%97%B6%E8%92%99%E7%9A%AE%E5%9C%BA%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%88On-the-fly-Normalization%EF%BC%89-%EF%BC%9A%E5%9C%A8%E6%AF%8F%E6%AC%A1%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%97%B6%EF%BC%8C%E5%AF%B9%E6%89%B9%E6%AC%A1%E5%86%85-cubature-%E7%82%B9%E4%B8%8A%E7%9A%84%E8%92%99%E7%9A%AE%E6%9D%83%E9%87%8D%E7%9F%A9%E9%98%B5%E9%80%90%E5%88%97%E8%BF%9B%E8%A1%8C-ell-2-%E5%BD%92%E4%B8%80%E5%8C%96%E3%80%82%E8%BF%99%E6%8A%91%E5%88%B6%E4%BA%86%E6%95%B0%E5%80%BC%E6%BC%82%E7%A7%BB%EF%BC%8C%E4%BD%BF%E6%AD%A3%E4%BA%A4%E6%80%A7%E7%9B%AE%E6%A0%87%E6%9B%B4%E6%98%93%E4%BC%98%E5%8C%96%E3%80%82-%E5%86%B2%E7%AA%81%E6%84%9F%E7%9F%A5%E6%A2%AF%E5%BA%A6%E4%BF%AE%E6%AD%A3%EF%BC%88Conflict-aware-Gradient-Correction%EF%BC%89-%EF%BC%9A%E9%87%87%E7%94%A8-ConFIG-%E6%96%B9%E6%B3%95"><span class="toc-text">3.2 稳定联合优化机制 上述多目标直接联合优化时，各项梯度在量级与方向上存在严重冲突，导致训练不稳定。为此，论文引入两项关键技术： - **即时蒙皮场归一化（On-the-fly Normalization）**：在每次前向传播时，对批次内 cubature 点上的蒙皮权重矩阵逐列进行  ell_2  归一化。这抑制了数值漂移，使正交性目标更易优化。 - **冲突感知梯度修正（Conflict-aware Gradient Correction）**：采用 ConFIG 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-TRACE-Tracking-Multimodal-Clinical-Trajectories-for-Inpatient-Risk-Prediction"><span class="toc-text">6. TRACE: Tracking Multimodal Clinical Trajectories for Inpatient Risk Prediction</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
