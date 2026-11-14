@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-11-13 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. On the Design of Hyper-Connections: Simplification, Stability, and ScalabilityAbstract:Hyper-Connections (HC) architectures are increasingly adopted in fronti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-11-13">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202611/2026-11-13/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. On the Design of Hyper-Connections: Simplification, Stability, and ScalabilityAbstract:Hyper-Connections (HC) architectures are increasingly adopted in fronti">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-14T03:31:23.939Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202611/2026-11-13/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-11-13',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-11-14 11:31:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">271</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-11-13</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-11-14T03:31:23.939Z" title="Updated 2026-11-14 11:31:23">2026-11-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">7.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>25min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-11-13"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-On-the-Design-of-Hyper-Connections-Simplification-Stability-and-Scalability"><a href="#1-On-the-Design-of-Hyper-Connections-Simplification-Stability-and-Scalability" class="headerlink" title="1. On the Design of Hyper-Connections: Simplification, Stability, and Scalability"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.05984">On the Design of Hyper-Connections: Simplification, Stability, and Scalability</a></h3><p>Abstract:Hyper-Connections (HC) architectures are increasingly adopted in frontier language models, yet their components remain insufficiently understood and introduce non-negligible training overhead. In this work, we systematically study the HC architecture to understand its components and identify simpler, more efficient designs. We find that learned read/write gating without mixing and unconstrained mixing with fixed gates form two effective interaction groups: either alone achieves performance comparable to mHC. We also identify repeated access to the expanded residual state as a major source of training overhead, even without mixing. These findings lead to SimpleHC, which simplifies the architecture by removing residual mixing and simplifies execution through shared memory access, using the resulting additive structure and shared gate inputs. Layer-specific gates share a group-entry state, enabling batched reads and deferred writes; scalar corrections exactly preserve preceding sublayer output contributions. Our analyses support both the retained residual structure and the design of shared memory access. SimpleHC incurs only 2.4% extra end-to-end training time over a vanilla residual baseline at the largest tested scale. It maintains performance comparable to mHC when scaling from 15B to 30B MoE models, exhibits smoother gradient dynamics during standard training, and remains stable under stress. We hope SimpleHC will encourage a broader pursuit of simplicity in foundation model design, making performance gains more accessible and practical at scale.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：超连接（HC）架构在前沿语言模型中越来越多地被采用，但其组成部分仍然理解不足，并且会引入不可忽视的训练开销。在本工作中，我们系统地研究了 HC 架构，以理解其组成部分并识别更简单、更高效的设计。我们发现，学习的读/写门控而不混合，以及固定门控下的不受约束混合，形成了两类有效的交互组：任意单独使用都能达到与 mHC 相当的性能。我们还发现，即使不进行混合，对扩展残差状态的重复访问也是训练开销的主要来源。这些发现促成了 SimpleHC，它通过移除残差混合来简化架构，并通过共享内存访问简化执行，利用由此产生的加法结构和共享门控输入。特定层的门控共享组入口状态，从而实现批量读取和延迟写入；标量修正能精确保留前一子层输出的贡献。我们的分析支持保留残差结构以及共享内存访问的设计。SimpleHC 在最大测试规模下，仅比普通残差基线增加 2.4% 的端到端训练时间。在从 15B 扩展到 30B MoE 模型时，它保持与 mHC 相当的性能，在标准训练中表现出更平滑的梯度动态，并在压力下保持稳定。我们希望 SimpleHC 能够鼓励在基础模型设计中更广泛地追求简化，使性能提升在大规模下更易实现和实用。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？ 该论文旨在解决 Hyper-Connections (HC) 架构在规模应用中的\*\*效率瓶颈\*\*与\*\*设计复杂性\*\*问题，具体可归纳为以下几个方面： ### 1. 架构组件理解不足 尽管 HC 及其流形约束变体 mHC 已被前沿语言模型广泛采用，但其内部组件（包括读门、写门与残差混合）各自对模型性能和训练稳定性的贡献仍缺乏系统性的理解。这导致现有设计存在不必要的复杂性，且难以判断哪些机制是真正有效的。 ### 2. 非 negligible 的训练开销 HC 架构在高效实现下仍引入显著的端到端训练时间开销（mHC 在测试规模下增加 \*\*7%–27%\*\* 的训练时间），而这一开销的主要来源并非 FLOPs（增加不到 1%），而是\*\*对扩展残差状态（expanded residual state）的反复内存访问\*\*。每层的门控生成、输入聚合与状态更新都需要多次读写  n  路宽度为  C  的残差流，造成了高昂的内存流量成本。 ### 3. 残差混合带来的稳定性与效率权衡 无约束的残差混合（unconstrained mixing）虽能提升模型质量，但存在信号在深度传播中累积放大或衰减的风险；而 mHC 采用的 Sinkhorn 约束虽可缓解不稳定性，却大幅削弱了混合带来的收益，并增加了额外的计算与实现复杂度。 ### 4. 核心研究问题 基于以上观察，论文试图回答： > \*\*能否设计一种更简化的 Hyper-Connections 结构，在大幅降低执行成本的同时，保持与 mHC 相当的模型质量，并确保大规模训练稳定性？\*\* 为此，论文提出了 \*\*SimpleHC\*\*，通过移除残差混合、引入基于共享入口状态（group-entry state）的分层门控与标量修正机制，将最大测试规模下的额外训练开销从约 \*\*7.0%\*\* 降至 \*\*2.4%\*\*，同时在 15B 与 30B MoE 模型上保持了与 mHC 相当的下游任务性能与训练稳定性。 Q2: 有哪些相关研究？ 该论文的相关研究主要围绕\*\*残差连接扩展\*\*、\*\*Hyper-Connections 架构变体\*\*、\*\*架构理解与简化\*\*以及\*\*高效执行优化\*\*四个方面展开，具体如下： ### 1. 残差连接与多流基础架构 - \*\*He et al. (2016a,b)\*\*：提出 ResNet 残差连接，奠定了深度网络中通过跳跃连接支持优化与信息传播的基础。 - \*\*Vaswani et al. (2017)\*\*：引入 Transformer 架构，将残差连接与层归一化结合，成为现代语言模型的标准组件。 - \*\*Pagliardini et al. (2024)\*\*（Denseformer）、\*\*Xiao et al. (2025)\*\*（Muddformer）、\*\*Team et al. (2026)\*\*（Attention Residuals）、\*\*Qin et al. (2026)\*\*（Multi-stream Attention Residuals）：通过加权平均、多路动态稠密连接或多流注意力残差等方式丰富残差路径，改善信息流动与深度利用。 ### 2. Hyper-Connections 及其变体 - \*\*Zhu et al. (2025)\*\*：提出 \*\*Hyper-Connections (HC)\*\*，通过多路残差流配合学习的读门、写门与混合操作，实现灵活的信息路由。 - \*\*Xie et al. (2025)\*\*：提出 \*\*mHC (manifold-constrained HC)\*\*，利用 Sinkhorn 归一化将残差混合矩阵约束为近似双随机矩阵，以提升大规模训练稳定性。 - \*\*Yang and Gao (2026)\*\*、\*\*Zhou et al. (2026)\*\*、\*\*Dandachi and Diggs-Galligan (2026)\*\*：致力于降低流形约束（如 Sinkhorn）的执行开销，例如通过直接参数化或 Kronecker 积结构。 - \*\*Liu et al. (2026)\*\*、\*\*Guo et al. (2026)\*\*：探索双随机约束之外的替代方案（如谱球约束、正交四元数约束），以兼顾稳定传播与流多样性。 - \*\*Qiu et al. (2026a)\*\*、\*\*Zheng et al. (2026)\*\*：修改读写门结构或引入多门残差机制。 - \*\*Zhang et al. (2026)\*\*：提出 \*\*xHC (expanded HC)\*\*，通过稀疏更新支持更多残差流（如 16 路流），以扩展残差通道容量。 ### 3. Hyper-Connections 的理解与简化 - \*\*Peng et al. (2026)\*\*、\*\*Alimaskina et al. (2026)\*\*：对 HC 模型进行因果分析与诊断，发现流利用率不均、读写路由集中及残差流冗余等现象。 - \*\*Guo et al. (2026)\*\*：观察到移除残差混合（设置  H^(res) = I ）后，模型质量在很大程度上得以保留；该简化结构（identityHC）也已被 Hy4 preview 等模型采用。 - \*\*Oldenburg et al. (2026)\*\*：在参数高效微调场景下验证了流形约束超连接的有效性，提供了混合机制可简化或调整的额外证据。 ### 4. 残差聚合的高效执行优化 - \*\*Team et al. (2026)\*\*：采用块级聚合与分段计算，降低 richer residual pathways 带来的存储与数据搬运开销。 - \*\*Xie et al. (2025)\*\*、\*\*Zheng et al. (2026)\*\*：通过 CUDA 内核融合与激活重计算优化 HC 的多流执行效率。 - \*\*Zhang et al. (2026)\*\*：针对多流残差结构设计优化的执行策略，以缓解扩展残差状态带来的内存墙问题。 这些工作共同构成了 SimpleHC 的研究背景：既有文献表明残差混合可能非必需，也有文献致力于降低多流残差的执行成本，而 SimpleHC 在此基础上进一步\*\*系统解耦了读写门控与混合机制\*\*，并提出了\*\*共享内存访问（shared memory access）\*\*的执行方案，实现了架构简化与训练效率的双重提升。 Q3: 论文如何解决这个问题？ 论文通过提出 \*\*SimpleHC\*\* 解决上述问题，其核心思路是\*\*在保留多流残差与学习门控能力的前提下，同时简化架构设计与执行流程\*\*。具体解决方案可分为以下三个层面： ### 1. 简化残差结构：去除混合，保留学习的读/写门控 通过系统性的架构组件解耦实验，论文发现： - \*\*学习的读/写门控（无混合）\*\*与\*\*无约束混合（固定门控）\*\*是两个独立有效的交互组，各自即可达到与 mHC 相当的性能； - 无约束混合虽能提升质量，但存在信号在深度传播中累积放大或衰减的风险；而 Sinkhorn 约束显著削弱了其收益，且带来额外开销。 因此，SimpleHC 选择了一种\*\*最小有效结构\*\*： - \*\*完全移除残差混合矩阵\*\*  H^(res)_l ，将其替换为单位矩阵（identity transition）； - \*\*保留学习的读门\*\*  h^(pre)_l  \*\*与写门\*\*  h^(post)_l ，并继续使用完整的状态（full-state）作为门控输入。 更新公式简化为纯加性形式：
+</p>
+
+<p>X_(l+1) = X_l + h^(post)_l o_l^top<br> 其中  X_l ∈ R^(n × C)  为进入子层  l  的  n  路残差流， o_l ∈ R^(C × 1)  为子层输出。该结构避免了残差矩阵连乘带来的传播风险，同时维持了多流灵活路由的能力。 ### 2. 共享内存访问：减少重复的状态读写 即使去除了混合，传统执行方式仍需**在每个子层访问完整的  nC  维状态**以生成门控、聚合输入并写回更新。SimpleHC 引入**共享内存访问（shared memory access）**机制，利用加性结构避免中间状态的物化： #### (1) 基于组入口状态的门控生成 将连续的  K （取  K=4 ）个子层划分为一组。组内所有子层的门控不再从逐层更新后的状态生成，而是共享同一个**组入口状态**  X_L ： </p>
+<p>h^(pre)_j = g^(pre)_j(X_L), quad h^(post)_j = g^(post)_j(X_L), quad L le j &lt; L+K</p>
+<h4 id="2-标量修正重构子层输入-利用加性结构的线性性质，任意后续子层-j-的输入-u-j-可分解为-基础读取-与-标量修正-之和，无需写回中间残差状态："><a href="#2-标量修正重构子层输入-利用加性结构的线性性质，任意后续子层-j-的输入-u-j-可分解为-基础读取-与-标量修正-之和，无需写回中间残差状态：" class="headerlink" title="(2) 标量修正重构子层输入 利用加性结构的线性性质，任意后续子层  j  的输入  u_j  可分解为**基础读取**与**标量修正**之和，无需写回中间残差状态："></a>(2) 标量修正重构子层输入 利用加性结构的线性性质，任意后续子层  j  的输入  u_j  可分解为**基础读取**与**标量修正**之和，无需写回中间残差状态：</h4><p>u<em>j = X_L^top h^(pre)_j + ∑</em>(k=L)^(j-1) d<em>(j,k) o_k, quad d</em>(j,k) = (h^(pre)<em>j)^top h^(post)_k<br> 其中  X_L^top h^(pre)_j  为对组入口状态的一次批量读取，后续项仅通过标量系数  d</em>(j,k)  加权前面子层的  C  维输出  o_k 。 #### (3) 批量读取与延迟写回 - **前向读取**：组内  K  个基础读取被批处理为对  X_L  的一次扫描； - **组边界写回**：组内所有子层输出在边界处一次性累加回残差流： </p>
+<p>X<em>(L+K) = X_L + ∑</em>(k=L)^(L+K-1) h^(post)_k o_k^top<br> 这使得每 token 每子层的宽状态（wide-state）读写量从 fused mHC 的  18C  降至  9C （当  n=K=4  时）。 ### 3. 专门化内核与工程优化 为将算法层面的简化转化为实际训练效率，论文设计了基于 DeepGEMM 与 Triton 的专用内核： - **前向融合**：将分组门控生成、RMSNorm 统计、批量基础读取、标量修正累加与组边界写回融合为少数内核，避免宽的中间缓冲区； - **反向优化**：在反向传播中复用组级别的激活梯度扫描，将宽状态逻辑读取从  KnC  降至  nC ；门控梯度通过 Tensor Core 打包做通道维归约，消除额外的部分梯度缓冲区； - **显存节省**：通过保存组入口状态而非每层入口状态，反向所需保存的激活存储减少约 **31%**。 ### 4. 验证与稳定性保障 - **性能保持**：在 15B-A1B 与 30B-A2B MoE 模型上，SimpleHC 的下游任务平均表现与 mHC 及 identityHC 相当（30B 规模平均分为 63.1，对比 mHC 的 62.9）； - **效率提升**：在最大测试宽度（ C=6144 ）下，额外训练开销从 vanilla 基线的约 **7.0%**（mHC/identityHC）降至 **2.4%**； - **训练稳定性**：标准训练中梯度动态更平滑；在 10 倍学习率的压力测试中，mHC 出现剧烈梯度尖峰（达  1.9 × 10^6 ），而 SimpleHC 保持有界，验证了简化结构在稳定性上的优势。 综上，SimpleHC 通过**架构最小化**（去混合、保留学习门控）与**执行重构**（共享入口状态、标量修正、延迟写回）的协同设计，解决了 HC 架构在理解性、效率与稳定性方面的核心问题。 Q4: 论文做了哪些实验？ 论文围绕**架构组件解析**、**共享内存访问设计**、**大规模性能验证**、**训练效率测量**以及**稳定性与机制分析**五个维度展开实验，具体包括以下内容： —- ### 1. Hyper-Connections 架构组件解耦实验（15B-A1B MoE） **目的**：系统理解读门（read gate）、写门（write gate）与残差混合（residual mixing）各自的作用及交互方式。 - **模型**：15B 总参数 / 1B 激活参数的 MoE 模型，24 层。 - **对比配置**（Table 2）： - 基线：Vanilla Residual - 完整 HC/mHC 及其变体：HC（unconstrained mixing）、mHC（Sinkhorn constrained）、mHC w/o Sinkhorn - 去除混合：HC w/o mixing、identityHC（ H^(res) = I ） - 门控输入限制：Restricted read / Restricted write（使用 stream-local 而非 full-state 输入） - 固定门控：Fixed read / Fixed write / Fixed read and write（使用均匀权重） - **评估指标**：验证 loss；下游任务包括 MMLU、HellaSwag、MATH、MBPP、C3。 - **关键发现**： - Unconstrained mixing 可提升性能，但 Sinkhorn 约束大幅削弱其收益； - 学习的读/写门控（无混合）与 unconstrained mixing（固定门控）各自即可达到与 mHC 相当的性能，构成两个独立有效的交互组； - 使用 full-state（ nC  维）作为门控输入优于 stream-local（ C  维）输入。 —- ### 2. Shared Memory Access 设计消融实验（15B-A1B MoE） **目的**：验证组大小、门控共享方式及标量修正（scalar corrections）对性能和执行等价性的影响。 - **模型**：同上。 - **对比配置**（Table 3）： - 参考：mHC（per-sublayer）、identityHC（per-sublayer） - 共享粒度：Share 2、Share 4（SimpleHC）、Share 8（组大小  K  不同） - 门控参数共享 vs 层特定：Share 4 with reused gates（跨层共享同一对门控） - 去除标量修正：Share 4 w/o corrections（仅保留 base read 和组边界写回） - **关键发现**： -  K=4  时性能与 identityHC/mHC 持平， K=8  略有下降； - 层特定门控（layer-specific gates）显著优于跨层复用门控； - **标量修正至关重要**：移除后 loss 从 1.660 升至 1.705，平均成绩显著下降。 —- ### 3. 大规模扩展性评估（30B-A2B MoE） **目的**：验证 SimpleHC 在更大规模模型上的性能与可扩展性。 - **模型**：30B 总参数 / 2B 激活参数，32 层。 - **对比方法**：Vanilla Residual、mHC、identityHC、SimpleHC。 - **评估指标**：验证 loss；覆盖 14 个下游基准，分为四类： - **Knowledge**：MMLU、MMLU-Pro、MMLU-Redux、TriviaQA - **Reasoning**：HellaSwag、DROP、BBH - **Math &amp; Code**：GSM8K、MATH、HumanEval、MBPP - **Chinese**：CMMLU、CEval、C3 - **结果**（Table 4）： - 四者 loss 均为 1.561（SimpleHC、mHC、identityHC）vs 1.579（Vanilla）； - SimpleHC 平均得分为 **63.1**，与 mHC（62.9）和 identityHC（62.8）相当，且在 MMLU、MATH、C3 上更优。 —- ### 4. 端到端训练效率基准测试 **目的**：测量 SimpleHC 在实际训练中的额外时间开销与显存节省。 - **设置**：8 层模型，隐藏宽度从 1024 到 6144（对应 Table 6 配置），使用 BF16、序列长度 8192；分别测试了**高效内核实现**与**纯 PyTorch 实现**。 - **对比方法**：Vanilla、mHC、identityHC、SimpleHC，以及与 xHC 的对比（Figure 4）。 - **关键结果**： - **额外训练时间**（Figure 3(a)）：在  C=6144  时，SimpleHC 仅增加 **2.4%**，而 mHC 和 identityHC 约为 **7.0%**；在  C=1024  时，SimpleHC 为 6.3%，mHC 高达 26.8%。 - **PyTorch 实现**（Figure 3(b)）：SimpleHC 同样在所有宽度下保持最低开销（ C=6144  时为 22.5%，仍低于 mHC/identityHC 的 37–38%）。 - **激活存储**（Figure 1(b), Table 7）：SimpleHC 在子层边界保留的激活存储比 mHC 减少约 **31%**（例如  C=2048  时从 3044.5 MiB 降至 2092.9 MiB）。 - **内存流量**：每 token 每子层的逻辑宽状态访问从 fused mHC 的  18C  降至  9C （ n=K=4 ）。 —- ### 5. 训练稳定性与压力测试 **目的**：验证简化后的结构是否损害训练稳定性，尤其是在极端优化条件下。 - **标准训练动态**（Figure 6(a)）： - 在 15B 模型正常训练中，SimpleHC 的梯度范数波动更小，warmup 后的 1000-step 滚动标准差为 **0.032**，远低于 mHC（0.206）和 identityHC（0.248）。 - **压力测试**（Figure 6(b), Figure 9, Figure 10）： - **设置**：230B-A6B MoE（64 层，2816 宽度），使用 **10× 参考学习率**作为压力条件。 - **结果**：mHC 出现剧烈梯度尖峰（最高约  1.9 × 10^6 ）和 loss spike；SimpleHC 与 identityHC 的梯度范数始终保持有界，分支输出（attention/FFN）标准差亦无持续发散。 —- ### 6. 门控机制与可预测性分析 **目的**：为共享内存访问的设计提供实证支持，分析门控的跨层特性及从组入口状态预测的可行性。 - **残差路径系数分析**（Figure 7）： - 对比 unconstrained mixing with fixed gates 与 learned gates with identity； - 发现前者存在更大的残差路径系数峰值，支持其存在累积放大风险，而后者更稳定。 - **门控跨层变化**（Figure 5(a), Figure 8(a)）： - 测量 identityHC 各子层间读/写门控的 MAE，显示不同子层具有显著不同的门控分配模式，支持保留 layer-specific gates。 - **组入口状态可预测性**（Figure 5(b), Figure 8(b)）： - 训练小型预测器，仅基于组入口状态  X_L  预测后续子层的门控； - 结果表明后续门控可从共享入口状态被准确预测（写门 MAE 降至 0.0103），为共享内存访问的合理性提供依据。 —- ### 7. xHC 对比实验（补充效率基准） - **设置**：在相同效率测试协议下，对比 xHC（16 路流，4 路激活）、mHC 与 SimpleHC。 - **结果**（Figure 4）：在  C=6144  时，xHC 额外开销为 **27.7%**，而 SimpleHC 仅 **2.4%**，凸显 SimpleHC 在扩展残差通道容量方法中的效率优势。 Q5: 有什么可以进一步探索的点？ 基于论文的发现并延伸其设计空间，以下几方面值得进一步探索： ### 1. 自适应与动态组大小的设计 论文将组大小  K  固定为 4，并观察到  K=8  会轻微增加损失且提高修正开销。然而，最优  K  可能在不同层深度或训练阶段动态变化。可探索： - **层依赖的组大小**：浅层与深层是否应使用不同的  K ？例如，浅层残差变化快，宜用较小  K ；深层变化缓，可增大  K 。 - **动态调度策略**：根据训练步数或梯度统计自动调整  K ，在训练初期使用较小分组保证稳定性，后期增大分组提升吞吐量。 ### 2. 流数量  n  与组大小  K  的联合优化 论文固定  n=4  和  K=4 。在更大模型中， n  和  K  的耦合关系尚不明确： </p>
+<p>Memory traffic propto (4nC) / (K) + Q<em>(corr)(K)<br> 可构建搜索空间，联合优化  n （残差流数量）与  K （共享粒度），甚至引入**稀疏激活的残差流**（如 xHC 的  N=16, k=4  思想与 SimpleHC 的共享访问机制结合），在保持低内存占用的同时扩展残差通道容量。 ### 3. 与 MoE 路由机制的协同设计 论文采用 MoE backbone，但 HC 门控与专家路由是独立优化的。可进一步探索： - **统一门控架构**：将残差流读/写门控与 MoE 的 top- k  路由决策联合建模，共享部分投影计算或状态表示。 - **流-专家对齐**：分析 SimpleHC 的  n  路残差流是否与特定专家或功能（如数学、代码）自发对齐，并据此设计结构化稀疏性。 ### 4. 理论分析：加性残差结构的表达能力边界 SimpleHC 采用纯加性更新  X</em>(l+1) = X<em>l + h^(post)_l o_l^top ，移除了混合矩阵的连乘。可深入研究： - 在深度  L  下，加性结构与带混合的结构的**函数逼近能力**差异； - 标量修正项  d</em>(j,k) = (h^(pre)_j)^top h^(post)_k  构成的**历史输出权重矩阵**的秩与条件数，及其对梯度传播的影响； - 为何 Sinkhorn 约束会削弱混合收益：是约束本身限制了表达，还是 Sinkhorn 迭代的数值误差导致？ ### 5. 超长上下文下的效率与稳定性验证 论文在 8192 序列长度上验证。随着前沿模型支持 128K+ 上下文，SimpleHC 的共享内存访问在长序列场景面临新的问题： - 组入口状态  X_L  在注意力层的 KV cache 压力下是否仍具内存优势？ - 跨子层的标量修正累积是否会引入长程数值误差？ - 与**序列并行**（sequence parallelism）或**上下文并行**（context parallelism）结合时，组边界如何与 ring attention 等机制对齐。 ### 6. 训练后阶段（Post-training）的稳定性与效率 论文聚焦预训练，但 SimpleHC 的简化结构在监督微调（SFT）与 RLHF 中的表现尚不明确： - 预训练的最优门控模式是否在微调后**快速失效**或需重新适应？ - 在 RLHF 的高方差梯度环境下，SimpleHC 的平滑梯度动态是否带来更稳定的策略更新？ - 是否可以**冻结残差门控**仅微调子层参数，实现参数高效迁移？ ### 7. 跨模态迁移：视觉与多模态架构 HC 类架构目前主要应用于语言模型。可探索 SimpleHC 在以下场景的适用性： - **视觉 Transformer**：在 ViT 或扩散模型的 Transformer backbone 中，多流残差是否能分离低频结构与高频纹理信息？ - **多模态对齐**：利用独立的残差流分别编码模态特定信息与模态融合信息，通过读/写门控实现动态融合，避免传统 cross-attention 的高开销。 ### 8. 流功能分化的可解释性研究 论文提到 HC 存在流利用率不均（stream collapse）现象。SimpleHC 去除混合后，各流的功能角色是否更清晰？ - 通过因果中介分析（causal mediation analysis）或受控消融，识别特定残差流是否专门承担**低阶语义**、**高阶推理**或**位置编码**等功能； - 若存在自发分化，可进一步施加**结构化稀疏约束**（如强制某流仅参与注意力或仅参与 FFN），验证是否能提升可解释性与效率。 ### 9. 与门控注意力及非线性残差结合 近期工作如 Gated Attention（Qiu et al., 2026b）和 Multi-gate Residuals（Zheng et al., 2026）在注意力输出或残差路径上引入非线性门控。可探索： - 将 SimpleHC 的读/写门控与 sigmoid 门控注意力结合，形成**分层门控体系**：子层内控制信息流动，子层间控制残差路由； - 在标量修正中引入轻量级非线性（如 ReLU 或 SwiGLU 风格的门控），在不增加宽状态访问的前提下提升历史输出的加权灵活性。 ### 10. 自动化架构搜索（NAS）与混合尺度策略 鉴于 SimpleHC 仅保留读/写门控，其搜索空间大幅缩小，适合纳入 NAS： - 以层为单位搜索最优的  n 、 K  甚至门控激活函数； - 探索**异构深度模型**：部分 Transformer block 使用 SimpleHC，部分使用 vanilla residual，根据层的“残差交互需求”动态分配计算资源。 Q6: 总结一下论文的主要内容 该论文系统研究了 Hyper-Connections (HC) 架构的组件作用与训练效率问题，并提出了一种更简洁、高效的变体 **SimpleHC**。以下是论文核心内容的结构化总结： —- ### 1. 研究背景与动机 - **Hyper-Connections (HC)** 及其流形约束变体 **mHC** 已被前沿语言模型广泛采用，通过多路残差流与学习的读/写/混合操作增强信息路由。 - 然而，这些架构的组件贡献理解不足，且引入显著的**训练开销**：mHC 在高效实现下仍增加 **7%–27%** 的端到端训练时间（图 1(a)），主要瓶颈并非 FLOPs，而是对扩展残差状态（expanded residual state）的**反复内存访问**。 - 核心问题：能否设计一种更简化的 HC 结构，在降低执行成本的同时，保持模型质量与训练稳定性？ —- ### 2. 架构组件的系统解析 论文通过大量消融实验（15B-A1B MoE，Table 2）发现： - **两个独立有效的交互组**： 1. **学习的读/写门控（无混合）**：单独即可达到与 mHC 相当的性能。 2. **无约束残差混合（固定门控）**：单独也可达到类似性能，进一步结合可略有提升。 - **Sinkhorn 约束的副作用**：虽然能稳定训练，但大幅削弱了残差混合带来的收益，使其接近 identity 过渡。 - **无约束混合的风险**：存在跨深度累积的信号放大或衰减风险（图 7）。 据此，论文选择**学习的读/写门控配合 identity 过渡**作为最小有效结构，移除残差混合矩阵  H^(res) 。 —- ### 3. SimpleHC：结构与执行的双重简化 #### 3.1 架构简化 移除残差混合，更新公式变为纯加性： </p>
+<p>X_(l+1) = X_l + h^(post)_l o_l^top<br> 其中  X_l ∈ R^(n × C)  为  n  路残差流， h^(pre)_l, h^(post)_l ∈ R^(n × 1)  为学习的读/写门控。 #### 3.2 共享内存访问（Shared Memory Access） 即使去除混合，逐层生成门控仍需反复访问  nC  维状态。SimpleHC 引入分组执行策略（组大小  K=4 ）： - **共享组入口状态**：组内  K  个子层的门控均从共同的组入口状态  X_L  生成，保留**层特定参数**（layer-specific gates）： </p>
+<p>h^(pre)_j = g^(pre)_j(X_L), quad h^(post)_j = g^(post)_j(X_L)</p>
+<ul>
+<li>**标量修正（Scalar Corrections）**：利用加性结构的线性性质，后续子层输入可重构为无需中间残差状态的计算：<br>u<em>j = X_L^top h^(pre)_j + ∑</em>(k=L)^(j-1) (barh^(pre)<em>j)^top h^(post)_k</em>(标量系数) o_k</li>
+<li>**批量读取与延迟写回**：组内基础读取批量完成，所有输出仅在组边界一次性累加回写，显著降低宽状态内存流量。 该设计在代数上等价于顺序执行（附录 B），但每 token 每子层的宽状态访问从 ** 18C （fused mHC）降至  9C **（ n=K=4  时）。 —- ### 4. 工程实现与效率 论文开发了基于 DeepGEMM 和 Triton 的专用融合内核： - **前向**：融合分组门控生成、RMSNorm、批量基础读取、标量修正与延迟写回。 - **反向**：跨子层复用激活梯度扫描，门控梯度通过 Tensor Core 打包归约。 - **效果**：在最大测试宽度（ C=6144 ）下，SimpleHC 的额外训练时间从 mHC/identityHC 的约 **7.0%** 降至 **2.4%**（图 1(a)），且激活存储节省约 **31%**（图 1(b)）。 —- ### 5. 实验验证 #### 5.1 性能保持 - **15B-A1B 模型**：SimpleHC 在验证 loss 与下游任务（MMLU、HellaSwag、MATH 等）上与 mHC 和 identityHC 持平（Table 3）。 - **30B-A2B 模型**：在 14 项基准测试上，SimpleHC 平均得分 **63.1**，与 mHC（62.9）和 identityHC（62.8）相当，部分任务（如 MATH）更优（Table 4）。 #### 5.2 消融验证 - **组大小**： K=4  为最佳平衡点， K=8  性能轻微下降且修正开销上升。 - **层特定门控**：跨层复用门控（reused gates）会显著降低性能，支持保留独立参数。 - **标量修正必要性**：移除修正后 loss 从 1.660 升至 1.705，证明其不可或缺。 #### 5.3 训练稳定性 - **标准训练**：SimpleHC 的梯度范数波动更小，warmup 后滚动标准差（0.032）显著低于 mHC（0.206）和 identityHC（0.248）。 - **压力测试**：在 230B-A6B 模型上使用 10× 学习率，mHC 出现剧烈梯度尖峰（ 1.9 × 10^6 ），而 SimpleHC 与 identityHC 保持稳定（图 6(b)）。 —- ### 6. 核心结论 - **简洁性即优势**：学习的读/写门控已构成 HC 的最小有效结构，残差混合可被安全移除。 - **执行重构是关键**：共享内存访问通过代数等价变换减少内存流量，是效率提升的主要来源。 - **简单与 scalable 可兼得**：SimpleHC 在 15B 至 30B MoE 模型上实现了性能、效率与稳定性的帕累托改进，为基础模型的设计简洁性提供了实证支持。 Q7: 想要进一步了解论文 以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是On%20the%20Design%20of%20Hyper-Connections%3A%20Simplification%2C%20Stability%2C%20and%20Scalability，链接是https://arxiv.org/pdf/2611.05984，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2611.05984。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</li>
+</ul>
+</div></details>
+<p><strong>Authors</strong>: Xiangdong Zhang,Xiaohan Qin,Sunan Zou,Tuo Dai,Bizhao Shi,Zhuo Xia,Yebin Yang,Yizhou Chen,Yuliang Liu,Yu Cheng,Junchi Yan</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05984.pdf">https://arxiv.org/pdf/2611.05984.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05984">https://arxiv.org/abs/2611.05984</a></p>
+<p><strong>Arxiv ID</strong>: 2611.05984</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.05984">https://papers.cool/arxiv/2611.05984</a></p>
+<p><strong>Published</strong>: 2026-11-13T03:34:19.525Z</p>
+<p><strong>Updated</strong>: 2026-11-13T03:34:19.525Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202611/2026-11-13/">https://wdndev.github.io/daily/hf/202611/2026-11-13/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202610/2026-10-01/" title="HuggingFace Papers 2026-10-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-01</div></div></a></div><div><a href="/daily/hf/202610/2026-10-02/" title="HuggingFace Papers 2026-10-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-02</div></div></a></div><div><a href="/daily/hf/202610/2026-10-03/" title="HuggingFace Papers 2026-10-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-On-the-Design-of-Hyper-Connections-Simplification-Stability-and-Scalability"><span class="toc-text">1. On the Design of Hyper-Connections: Simplification, Stability, and Scalability</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%A0%87%E9%87%8F%E4%BF%AE%E6%AD%A3%E9%87%8D%E6%9E%84%E5%AD%90%E5%B1%82%E8%BE%93%E5%85%A5-%E5%88%A9%E7%94%A8%E5%8A%A0%E6%80%A7%E7%BB%93%E6%9E%84%E7%9A%84%E7%BA%BF%E6%80%A7%E6%80%A7%E8%B4%A8%EF%BC%8C%E4%BB%BB%E6%84%8F%E5%90%8E%E7%BB%AD%E5%AD%90%E5%B1%82-j-%E7%9A%84%E8%BE%93%E5%85%A5-u-j-%E5%8F%AF%E5%88%86%E8%A7%A3%E4%B8%BA-%E5%9F%BA%E7%A1%80%E8%AF%BB%E5%8F%96-%E4%B8%8E-%E6%A0%87%E9%87%8F%E4%BF%AE%E6%AD%A3-%E4%B9%8B%E5%92%8C%EF%BC%8C%E6%97%A0%E9%9C%80%E5%86%99%E5%9B%9E%E4%B8%AD%E9%97%B4%E6%AE%8B%E5%B7%AE%E7%8A%B6%E6%80%81%EF%BC%9A"><span class="toc-text">(2) 标量修正重构子层输入 利用加性结构的线性性质，任意后续子层  j  的输入  u_j  可分解为**基础读取**与**标量修正**之和，无需写回中间残差状态：</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>

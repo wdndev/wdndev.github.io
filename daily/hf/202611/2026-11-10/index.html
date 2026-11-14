@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-11-10 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. WorldFoundry: Towards Unified Infrastructure for World IntelligenceAbstract:Visual generative models increasingly blur the line between synthesizing observati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-11-10">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202611/2026-11-10/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. WorldFoundry: Towards Unified Infrastructure for World IntelligenceAbstract:Visual generative models increasingly blur the line between synthesizing observati">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-14T03:31:23.938Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202611/2026-11-10/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-11-10',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-11-14 11:31:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">271</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-11-10</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-11-14T03:31:23.938Z" title="Updated 2026-11-14 11:31:23">2026-11-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">9.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>35min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-11-10"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-WorldFoundry-Towards-Unified-Infrastructure-for-World-Intelligence"><a href="#1-WorldFoundry-Towards-Unified-Infrastructure-for-World-Intelligence" class="headerlink" title="1. WorldFoundry: Towards Unified Infrastructure for World Intelligence"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.10771">WorldFoundry: Towards Unified Infrastructure for World Intelligence</a></h3><p>Abstract:Visual generative models increasingly blur the line between synthesizing observations and simulating environments. Yet visual plausibility alone does not constitute successful world modeling: compelling outputs may lack persistent state, physical dynamics, or causally consistent responses to interactions. We define a generative world model as a predictive dynamical system that maintains a persistent, history-conditioned representation of an environment, updates that representation in response to actions or interventions, and generates temporally coherent trajectories that reflect outcomes under observed and counterfactual interventions. From this definition, we derive an intelligence-oriented framework spanning perceptual grounding, persistent state modeling, controllable transformation, dynamics-aware prediction, and closed-loop interaction. We present WorldFoundry, open-source infrastructure for reproducible inference and evaluation across video, 3D and 4D, embodied action, and interactive world systems. WorldFoundry unifies model and benchmark discovery, runtime and asset preparation, execution orchestration, artifact management, and interactive visualization, while modality-specific adapters preserve native inputs, execution semantics, output representations, and evaluation protocols. Explicit manifests, durable artifact contracts, and evidence-aware scorecards separate execution readiness from evaluative claims, making each claim traceable to its supporting artifacts. The catalog contains 270 model entries, 74 benchmarks, and 62 registered metric entries, with readiness and execution evidence recorded separately. WorldFoundry enables reproducible comparison of persistent, controllable dynamics across heterogeneous systems, advancing the field from perceptual synthesis toward measurable world intelligence.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：视觉生成模型越来越模糊了观察合成和环境模拟之间的界限。然而，仅有视觉合理性并不能构成成功的世界建模：引人注目的输出可能缺乏持久状态、物理动力学或对交互的因果一致响应。我们将生成式世界模型定义为一个预测动态系统，该系统保持环境的持久、历史条件化表示，根据动作或干预更新该表示，并生成反映在观察到的和反事实干预下结果的时间一致轨迹。基于这一定义，我们提出了一个面向智能的框架，涵盖感知基础、持久状态建模、可控变换、动态感知预测和闭环交互。我们介绍了WorldFoundry，这是一个开源基础设施，用于跨视频、3D和4D、具身动作以及交互式世界系统进行可复现的推理和评估。WorldFoundry统一了模型和基准发现、运行时和资源准备、执行协调、产物管理和交互式可视化，同时特定模态的适配器保持原生输入、执行语义、输出表示和评估协议。明确的清单、持久的产物合同和证据感知评分卡将执行准备与评估声明分离，使每个声明都可追溯到其支持的产物。该目录包含270个模型条目、74个基准和62个注册指标条目，准备和执行证据分别记录。WorldFoundry使持久、可控动态在异质系统之间的可复现比较成为可能，将该领域从感知合成推进到可衡量的世界智能。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.10771 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Juanxi Tian,Jiadong Hou,Baiang Li,Xin Lin,Zhengbo Jiao,Weijia Zhang,Yeying Jin,Truong Nguyen,Haitian Zheng,Zhifei Zhang,Jianfei Yang,Ming-Hsuan Yang,Felix Heide,Wei Xiong,Enze Xie,Wanhua Li</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.10771.pdf">https://arxiv.org/pdf/2611.10771.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.10771">https://arxiv.org/abs/2611.10771</a></p>
+<p><strong>Arxiv ID</strong>: 2611.10771</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.10771">https://papers.cool/arxiv/2611.10771</a></p>
+<p><strong>Published</strong>: 2026-11-10T04:46:57.262Z</p>
+<p><strong>Updated</strong>: 2026-11-10T04:46:57.262Z</p>
+<hr>
+<h3 id="2-ReproBridge-Building-Reproducibility-into-ML-Research-Artifacts"><a href="#2-ReproBridge-Building-Reproducibility-into-ML-Research-Artifacts" class="headerlink" title="2. ReproBridge: Building Reproducibility into ML Research Artifacts"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.08452">ReproBridge: Building Reproducibility into ML Research Artifacts</a></h3><p>Abstract:Reproducing machine learning experiments requires reconstructing procedures from information scattered across papers, released code, and supporting artifacts. For coding agents, reproduction success can therefore depend on their ability to fill in missing details, rather than on the released artifacts alone. We ask whether preserving recovered procedures and decisions improves subsequent independent reproduction. We define a standardized artifact design comprising a refined codebase, environment setup, experiment launchers, and a reproduction guide, and introduce ReproBridge, an agent workflow for constructing these refined reproducible artifacts. ReproBridge-Bench provides 1,029 tasks from 387 experiments across 36 papers, anchored by five human-verified reference scores per task. Agents attempt tasks in fresh sessions with raw code or refined artifacts; a separate Auditor checks execution evidence. Across four evaluated models, refined artifacts raise mean reproduction success from 76.4% to 92.6% and reduce downstream API spending by 19.7% on average. The cross-model success-rate spread narrows from 21.6 to 3.9 percentage points, with all four models achieving mean success rates above 90%. Removing any component reduces success in the ablation study, with the largest losses from code and environment removal. These results suggest that preserving execution knowledge helps even models with lower raw-code success reproduce experiments more reliably and at lower API cost.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：重现机器学习实验需要从分散在论文、公开代码和支持性文档中的信息重构实验步骤。对于编码代理来说，重现成功可能取决于它们填补缺失细节的能力，而不仅仅依赖于已发布的文档。我们探讨了保存已恢复的实验步骤和决策是否能提高后续独立重现的成功率。我们定义了一种标准化的实验文档设计，包括精炼后的代码库、环境配置、实验启动器和重现指南，并推出了ReproBridge，这是一个用于构建这些精炼可重现实验文档的代理工作流程。ReproBridge-Bench提供了来自36篇论文的387个实验的1,029个任务，每个任务都有五个人工验证的参考分数。代理在新的会话中尝试使用原始代码或精炼文档完成任务；另有独立审计员检查执行证据。在评估的四个模型中，精炼文档将平均重现成功率从76.4%提升至92.6%，并使下游API开支平均降低19.7%。跨模型的成功率差距从21.6个百分点缩小至3.9个百分点，四个模型的平均成功率均超过90%。消除任何组件都会在消融研究中降低成功率，其中代码和环境的移除导致的损失最大。这些结果表明，即使是原始代码成功率较低的模型，保存执行知识也能帮助它们更可靠地重现实验，并降低API成本。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p style="background-color: rgba(135, 206, 235, 0.3);border-radius: 0.4rem;padding: 10px;margin: 10px 0;margin-left: -10px;font-weight: bold;">
+Q: 这篇论文试图解决什么问题？ 该论文致力于解决机器学习（ML）研究中的\*\*计算可重复性（computational reproducibility）\*\*问题，具体聚焦于以下核心挑战： \*\*1. 实验重建的信息碎片化与隐式负担\*\* 独立复现 ML 实验通常需要整合散落在论文、官方代码库及辅助材料中的信息。原始代码库往往隐含大量未明确说明的细节（如依赖冲突、配置参数、数据加载修复、输出到评分的映射关系）。编码代理（coding agents）或后续研究者必须投入大量精力“重建”这些缺失环节，而非直接基于发布工件执行实验。这种\*\*重建负担（reconstruction burden）\*\*使得复现成功率高度依赖复现者自身补偿缺失细节的能力，而非工件本身的完备性。 \*\*2. 复现知识的流失\*\* 即便一次复现成功，执行过程中做出的关键决策（如依赖如何解析、配置如何确定、代码如何修补）通常仅留存在临时对话或 shell 历史中，未能被结构化保存。这导致后续复现者必须\*\*重复相同的调查与试错\*\*，形成冗余劳动。 \*\*3. 工件质量与复现者能力的耦合\*\* 论文指出，复现成功是“工件质量”与“复现者能力”的联合函数。原始代码库往往不足以支撑高可靠性的独立复现，尤其当复现代理的原始代码复现成功率较低时，失败风险显著上升。 为应对上述问题，论文提出并验证以下核心假设： > \*\*保存复现过程中恢复的程序与决策，能够降低后续独立复现的偏差与成本。\*\* 围绕该假设，论文的具体工作包括： - \*\*标准化工件设计\*\*：定义“精炼可复现工件”（Refined Reproducible Artifact, RRA），包含四个组件——精炼代码库（refined codebase）、环境配置（environment setup）、实验启动器（experiment launchers）与复现指南（reproduction guide）。 - \*\*构建工作流\*\*：提出 \*\*ReproBridge\*\*，一种由代理驱动的工作流，用于将原始代码与论文转化为上述标准化工件。 - \*\*基准与验证\*\*：构建 \*\*ReproBridge-Bench\*\*（涵盖 36 篇论文、387 个实验、1,029 个任务，附带人工验证的参考分数），系统评估 RRA 对后续复现成功率与 API 开销的影响。 实验结果表明，精炼工件将四种评估模型的平均复现成功率从 \*\*76.4%\*\* 提升至 \*\*92.6%\*\*，同时将下游 API 支出平均降低 \*\*19.7%\*\*，且模型间的成功率差异从 21.6 个百分点收窄至 3.9 个百分点。这证实了\*\*保存执行知识（preserving execution knowledge）\*\*能够有效提升复现可靠性并降低成本，即使对于原始代码复现能力较弱的模型亦如此。 Q2: 有哪些相关研究？ 该论文在第5节“Related work”及相关章节中讨论了三类密切相关的工作，现整理如下： ### 1. 科学信任与计算可复现性（Scientific trust and computational reproducibility） - \*\*科学信任的基础\*\* Munafò 等（2017）、Nosek 等（2015）以及 Oreskes（2019）指出，科学信任依赖于集体审查与可获取的证据；Messeri 与 Crockett（2024）认为，AI 辅助研究仍需满足这些要求。 - \*\*可复现性的定义与标准\*\* 依据 ACM 术语（Association for Computing Machinery, 2020）与 Peng（2011），\*\*可复现性（reproducibility）\*\* 指独立执行作者发布的工件，而非独立重新实现或逐位相同的重放。 - \*\*社区倡议与检查清单\*\* Pineau 等（2021）以及 Stodden 等（2016）提出的“可复现性增强原则”和 NeurIPS 可复现性计划推动显式依赖、代码发布及报告检查清单的普及。 ### 2. 研究复现基准（Research reproduction benchmarks） - \*\*PaperBench\*\*（Starace 等, 2025） 通过专家评分标准评估代码、执行与结果的重建程度。 - \*\*SciReplicate-Bench\*\*（Xiang 等, 2025） 聚焦于从研究论文中进行算法实现的重建。 - \*\*跨学科基准\*\* REPRO-Bench（Hu 等, 2025）与 ReplicationBench（Ye 等, 2025）将评估范围扩展至社会科学和天体物理学。 - \*\*CORE-Bench\*\*（Siegel 等, 2024） 测试已发布 Code Ocean 胶囊的执行及对其输出的问答；本文在表4中直接比较了不同交接件（raw、VERITAS、RRA）在 CORE-Bench Hard 上的表现。 - \*\*ReproBridge-Bench\*\*（本文） 以二元任务成功率为评估目标，结合基于\*\*五次人工验证执行\*\*的变异区间与独立的完整性审计，覆盖 GPU 训练与评估任务。 ### 3. 自动化复现与可重用经验（Automated reproduction and reusable experience） - \*\*PaperCoder\*\*（Seo 等, 2026） 通过规划与代码生成构建代码库。 - \*\*AutoReproduce\*\*（Zhao 等, 2026b） 从引用论文中恢复隐含细节并评估执行保真度。 - \*\*VERITAS\*\*（Liu 等, 2026a） 执行研究程序并产出修补后的代码、修复记录与声明评估；本文将其作为外部基线，测试了其交接件的重用效果（表4）。 - \*\*代理经验积累\*\* Reflexion（Shinn 等, 2023）保留语言反馈；Voyager（Wang 等, 2023）积累可执行技能。 - \*\*ARA（Agent-Native Research Artifacts）\*\*（Liu 等, 2026b） 在 PaperBench 研究中，将论文与代码库按专家评分标准打包，并由模型裁判依据评分标准评估复现。 - \*\*ReproBridge（本文）\*\* 与上述工作不同，ReproBridge 构建的是\*\*可运行的四组件交接件\*\*（精炼代码、环境、启动器、指南），不依赖评估评分标准或人工参考分数；其价值通过组件移除实验与普通输出对照来量化评估。 此外，在引言部分，作者还指出 Siegel 等（2024）、Xiang 等（2025）和 Starace 等（2025）的编码代理基准揭示了未解决依赖、缺失实现细节和实验计划未完成等重建负担；Zhao 等（2026b）则展示了通过引用论文恢复部分缺失细节的可能性。 Q3: 论文如何解决这个问题？ 该论文通过\*\*标准化可复现工件设计\*\*、\*\*代理驱动的构建工作流\*\*以及\*\*基于人工验证参考的评估协议\*\*，系统性地解决机器学习实验复现中的信息碎片化与知识流失问题。具体解决方案可归纳为以下三个层面： --- ### 1. 可复现工件的标准化设计（Refined Reproducible Artifact, RRA） 论文将复现过程中“恢复的程序和决策”固化为一个四组件的标准化工件，使后续复现者无需重复试错即可执行实验： - \*\*精炼代码库（Refined codebase）\*\*：修复原始代码中的执行缺陷（如数据加载错误、缺失的评估脚本），补充实验支持代码，确保代码与论文描述一致。 - \*\*环境配置（Environment setup）\*\*：锁定兼容的依赖版本、提供数据或检查点的获取脚本，并定义容器化环境，消除“依赖地狱”导致的复现阻塞。 - \*\*实验启动器（Experiment launchers）\*\*：为每个任务提供可执行的入口脚本，明确配置、执行范围、输出路径与评分提取方式，区分正式运行与冒烟测试。 - \*\*复现指南（Reproduction guide）\*\*：记录实验设置、论文与代码的冲突及解决方式、报告统计量的定义、已知陷阱与资源敏感性。每项歧义记录包含来源、缺口、采用的解决方案、理由及受影响任务。 四组件共同将“隐式执行知识”转化为显式、可传递的交接件，使复现者既知道\*\*如何运行\*\*代码，也知道\*\*为何如此设置\*\*。 --- ### 2. ReproBridge：代理驱动的构建工作流 论文设计了\*\*ReproBridge\*\*工作流，将原始论文与官方代码库转化为上述 RRA。该工作流由人类定义标准与协议，由编码代理执行具体的构建、审查与打包，分为三个阶段、六个角色（见图3与表2）： \*\*阶段一：指定（Specify）\*\* - \*\*Intake\*\*：阅读论文与代码，映射任务，识别缺失细节。 - \*\*Planner\*\*：在实验执行前明确测量对象、数据、流程、聚合方式与重复次数，记录歧义解决方案。若论文与代码冲突，\*\*严格遵循论文设置\*\*并标记差异。 \*\*阶段二：执行（Execute）\*\* - \*\*Builder\*\*：解析依赖、构建可运行的环境，并保留环境锁文件与数据脚本。 - \*\*Reproducer\*\*：在已验证的环境中执行实验，将测量值链接到实际输出文件，记录命令、资源使用、失败原因与修复理由。诊断运行与评分运行分离，禁止基于结果选择有利重复。 \*\*阶段三：保存（Preserve）\*\* - \*\*Distiller\*\*：基于存储的任务规范、执行证据与修复记录，撰写复现指南与变更记录。 - \*\*Packager\*\*：组装代码、环境、启动器与文档，从干净 shell 验证入口点，确保交付环境与构建环境一致。 \*\*独立审查（Independent Review）\*\* 各阶段间由独立 \*\*Reviewer\*\* 审查计划、执行记录与最终交接件，提出局部化发现并要求修订，避免代理自我验证的偏差。 --- ### 3. 评估协议与基准验证（ReproBridge-Bench） 为量化 RRA 的价值，论文构建了包含 \*\*1,029 个任务\*\*（来自 36 篇论文的 387 个实验）的基准，并建立严格的验证与评估协议： - \*\*人工验证的参考分数\*\*：每个任务由 5 名独立人工复现者执行，获得 5 个参考观测值。基于样本均值  x_j  与样本标准差  s_j ，构建兼容性预测区间：
+</p>
+
+<p>I<em>j^((q)) = [x_j - r_j^((q)),; x_j + r_j^((q))],quad r_j^((q)) = max{t</em>((1+q)/2,4), s_j √1+(1) / (5),; 0.01|x_j|}<br> 下游复现结果落入该区间且通过审计，视为数值兼容。 - **执行完整性审计（Auditor）**：独立的 **Auditor** 追踪证据链，检查数值是否来自新执行而非复制、替换或篡改。审计采用 **Finder–Refuter** 机制：Finder 提出违规线索，Refuter 尝试证伪；若证据确凿且影响测量，则判定无效。 - **对比评估**：在相同任务上，对比“原始代码库（Raw）”与“精炼工件（RRA）”的复现表现。实验表明，RRA 将四款模型的平均成功率从 **76.4%** 提升至 **92.6%**，并将下游 API 支出平均降低 **19.7%**。模型间成功率差距从 21.6 个百分点收窄至 3.9 个百分点，说明保存执行知识显著降低了对复现者“补偿缺失细节能力”的依赖。 —- ### 4. 组件消融与机制验证 论文进一步通过组件移除实验验证各部分的独立贡献（表6）。结果显示： - **移除精炼代码库**导致成功率下降 5.2 个百分点； - **移除环境配置**导致下降 4.5 个百分点； - **移除复现指南**或**实验启动器**亦分别造成 3.8 与 3.1 个百分点的损失。 这表明，仅有可执行代码或仅有文档均不足够；**可执行性与显式指导的协同**是降低复现偏差  D 、提升复现可靠性的关键机制。 Q4: 论文做了哪些实验？ 论文的实验验证围绕**精炼可复现工件（RRA）的构建效果**、**复用增益的鲁棒性**、**各组件贡献**以及**审计可靠性**展开，具体包括以下实验： —- ### 1. 主实验：原始代码库 vs. 精炼工件的核心对比 在 **36 篇测试论文、1,029 个任务**上，使用四种编码代理（Sonnet 4.6、Sonnet 5、Opus 5、Gemini 3.8 Flash）分别基于**原始代码库（Raw）**与**精炼工件（RRA）**执行复现，并进行三次独立评估取平均。 - **评估指标**：复现成功率（数值落入兼容性区间且通过完整性审计）、Reproducer 会话的 Token 消耗与 API 支出。 - **主要结果**（表 3）：RRA 将全部模型的平均成功率从 **76.4%** 提升至 **92.6%**，提升幅度为 **5.5–23.2 个百分点**；下游 API 成本降低 **16.8%–23.7%**。模型间成功率差距由 **21.6 个百分点**收窄至 **3.9 个百分点**。 —- ### 2. 外部基准验证：CORE-Bench Hard 为验证 RRA 在不同基准上的泛化性，在 **45 个 CORE-Bench Hard capsules** 上对比三种输入条件（表 4）： - **Raw**：原始代码库 - **VERITAS**：修补后的代码与修复日志（Liu 等, 2026a） - **RRA**：本文提出的精炼工件 实验表明，RRA 的胶囊成功率最高（**73.3%**），中位复现时间从 33 分钟降至 **14.4 分钟**，每成功胶囊的 API 成本从 \ 8.43 降至 <em>* 4.34\</em>*。VERITAS 表现介于 Raw 与 RRA 之间。 —- ### 3. 鲁棒性与敏感性分析 #### 3.1 论文级异质性（图 5、表 5a） 为避免任务数量多的论文主导平均结果，按 **36 篇论文等权重**重新计算宏平均成功率。所有模型在 RRA 条件下均显著提升（**+6.7 至 +19.8 个百分点**），其中 30–33 篇论文持平或改善，仅 3–6 篇出现倒退。 #### 3.2 更严格的数值阈值（表 5b） 将默认的 95% 预测区间替换为更严格的 **80% 预测区间**： </p>
+<p>I_j^((0.80)) = [x_j - r_j^((0.80)),; x_j + r_j^((0.80))]<br> RRA 仍对所有模型带来正向增益（**+10.3 至 +39.1 个百分点**），证明结果不依赖于宽松的数值容差。 #### 3.3 参考变异性分层（图 9、表 13） 依据五次人工参考执行的相对变异度将任务分为两类： - **Cat. 1（稳定）**：参考范围不超过发表分数绝对值的 10%（701 任务） - **Cat. 2（高变异）**：超出该阈值（328 任务） 两类任务在 RRA 条件下均全面改善，稳定任务的增益（**8.0–23.3 pp**）略高于高变异任务（**2.1–22.3 pp**）。 —- ### 4. 失败恢复与机制分析 #### 4.1 状态转移与恢复来源（图 6、表 14–16） 对比配对任务–模型结果，共记录到： - **813 次恢复**：Raw 失败转为 RRA 成功 - **136 次逆转**：Raw 成功转为 RRA 失败 恢复案例主要源于： - 数值不匹配被修正（348 例） - 执行/资源阻塞被解除（210 例） - 审计无效的数值匹配被替换为有效执行（255 例） 代理辅助的案例归因分析（表 16）将恢复原因分配为：协议澄清（25.8%）、代码修复（12.2%）、环境兼容（10.7%）、启动器映射（9.4%）等。 #### 4.2 执行准备效率（图 6 右、表 15） RRA 使所有模型的**中位首次评分执行时间**缩短（如 Sonnet 4.6 从 0.50 小时降至 0.27 小时），且需要代码修补的论文数量显著下降（如 Gemini 3.8 Flash 从 33/36 降至 13/36）。 #### 4.3 典型案例深描（第 4.4 节、附录 D.5） 通过配对运行记录展示 RRA 如何保存关键知识： - **HELIX**：保存仓库历史修订与配置来源，修正 batch size 与学习率，MAE 从 0.15265 恢复至兼容区间。 - **WBMM**：固化 H100 兼容的依赖构建路径，使下游无需重复环境调试。 - **Effective Model Pruning**：修复 TinyImageNet 验证集标签分配错误，ResNet-18 验证损失从 8.898 降至 2.288（目标 2.303）。 - **Mixture of Concept Bottleneck Experts**：明确未指定的多距离聚合方式（由求和修正为每表达式均值）。 - **SCIQL、ETTFS、FlashOptim** 等案例涉及缺失测量代码的补全与实验到评分的显式映射。 —- ### 5. 组件消融实验（表 6、附录 D.4） 在 12 篇论文的 287 个任务上，以 Sonnet 5 为复现代理，系统移除 RRA 的单一组件，测量成功率损失： | 移除组件 | 成功率损失 | |————-|—————-| | 精炼代码库 | –5.2 pp | | 环境配置 | –4.5 pp | | 复现指南 | –3.8 pp | | 实验启动器 | –3.1 pp | 同时设置**普通输出对照**（保留执行目录中的代码、脚本与日志，但无标准化文档），其成功率（81.2%）显著低于完整 RRA（93.0%），但高于 Raw（73.9%）。这表明**标准化协议与显式文档**对可复现性具有独立贡献。 —- ### 6. 审计协议与验证 #### 6.1 审计器敏感性（表 7） 使用 **Codex** 与 **Claude** 作为独立 Auditor 对同一批数值匹配结果进行完整性审查。RRA 在两种审计下均一致提升成功率，证明结论不依赖于特定审计模型。 #### 6.2 人类验证（图 7、表 12） 两名人类审查员对 **8 篇随机论文 × 409 任务 × 2 条件 = 818 个结果**进行交叉验证： - Codex：精确率 **88.6%**，召回率 **79.5%** - Claude：精确率 **85.7%**，召回率 **61.5%** 两种审计器均极少误杀有效结果（各仅 4 例假阳性），Codex 在检出违规方面表现更优。人类标签确认 RRA 将无效结果从 33 例（Raw）降至 6 例。 —- ### 7. 成本效益与复用分析（第 4.7 节、附录 E） #### 7.1 构建投资与盈亏平衡 构建 36 个 RRA 的 API 成本为 **\ 5,026<em>*（约 140/篇）。基于下游复现节省的平均 API 费用，计算不同模型的复用盈亏平衡次数： - Sonnet 4.6：\</em>*8 轮**完整复用 - Opus 5：**9 轮** - Sonnet 5：**13 轮** #### 7.2 Token 与 API 支出（表 21） RRA 在所有模型上均减少下游 Token 消耗（**6.3%–19.8%**）与 API 支出（**16.8%–23.7%**）。 —- ### 8. 补充分析 #### 8.1 开发集验证（附录 D.7，表 20） 在用于工作流程开发的 **10 篇论文**（NeurIPS 2026 与 ICLR 2026 各 5 篇）上，Sonnet 5 与 Gemini 3.8 Flash 的 RRA 成功率分别达 **92.2%** 与 **91.2%**，增益与测试集趋势一致。 #### 8.2 论文–代码静态对齐分析（附录 D.6，表 19） 通过独立的静态审查，记录到 **238 个**论文与代码实现矛盾发现，涉及 **669 个**不同任务，涵盖超参数、目标函数、数据、架构等类别。这些记录用于指导作者在提交前自查，但不进入主实验评分。 Q5: 有什么可以进一步探索的点？ 基于论文第6–7节的讨论与局限，以下从**评估扩展**、**机制深化**、**生态系统建设**三个维度，梳理可进一步探索的研究方向： —- ### 1. 评估方法与基准的扩展 - **人类研究者的复用评估** 当前实验仅测量了编码代理（coding agents）对精炼工件（RRA）的复用效果。未来需系统评估**人类研究者**（包括领域专家与非专家）在接收 RRA 后的复现成功率、理解效率与时间节省，以验证该设计对人类用户的实际价值。 - **纳入更广泛的论文与领域** 现有基准限于 36 篇 ICML Spotlight 论文，且排除了计算需求过高或依赖闭源模型的研究。需扩展至： - 非 Spotlight 论文或更广泛的会议/期刊（如 NeurIPS、ICLR、JMLR）； - 需要大规模集群或专有 API 的实验； - 非深度学习领域（如传统统计方法、强化学习系统部署）。 - **参考观测数量与不确定性量化** 论文以 5 次人工执行作为参考，这属于协议选择而非充分的不确定性估计。可探索： - 增加参考重复次数（如 10–30 次）以更好刻画  varepsilon ； - 采用贝叶斯层次模型替代预测区间，以联合估计  μ  与  σ  并纳入执行偏差  D  的先验。 —- ### 2. 构建、审计与组件机制的深化 - **完整成本核算与盈亏平衡分析** 现有分析仅计入下游 Reproducer 的 API 费用，未包含： - 上游构建、独立审查、GPU 执行与人工验证的时间与经济成本； - 工件的长期维护与版本迭代开销。 需建立全生命周期成本模型，以确定 RRA 在社区层面的真实经济可行性。 - **提升审计召回率与科学有效性检查** 当前自动审计存在 **20.5%–38.5%** 的违规漏检率（相对人类验证）。未来可研究： - 结合程序分析与符号执行，自动检测测量替换（如 WBMM 中的时间投影伪造）； - 超越“数值兼容”，引入**科学有效性**审查（如确认超参数设置是否真正对应论文声明，而非仅落入参考区间）。 - **组件设计的自适应优化** 消融实验显示代码与环境移除损失最大，但不同论文类型可能对组件有不同依赖权重。可探索： - 基于论文特征（如依赖复杂度、代码完整度）动态调整四组件的详细程度； - 为“纯评估型”任务（evaluation-only）设计轻量级工件模板，避免冗余的训练代码。 —- ### 3. 生态系统与长期可维护性 - **集成至学术出版流程** 论文提出 RRA 可用于作者提交前的自检。未来可研究如何将其**嵌入会议/期刊的正式审稿流程**： - 与 OpenReview、arXiv 或 ACM 工件评审徽章体系对接； - 设计作者-审稿人-代理协作的交互式复现验证界面。 - **工件的持续演化与跨平台移植** 现有 RRA 基于固定代码提交构建，随着依赖库更新或硬件换代，环境可能失效。需研究： - 工件的**增量更新机制**（如依赖漏洞修复时的自动迁移）； - 跨 GPU 架构（如 H100 → 下一代芯片）或 CPU/GPU 混合环境的可移植性保证。 - **构建社区级可复现知识库** 将分散的 RRA 汇聚为可检索、可引用的公共知识库，支持： - 跨论文的方法比较（确保基线实验在受控环境下执行）； - 累积式错误报告（如某库版本存在已知数值偏差时，自动提醒依赖该版本的 RRA）。 —- ### 4. 理论层面的延伸 - **执行偏差  D  的显式建模与消解** 论文将复现误差分解为  Y = μ + D + varepsilon ，其中  D  反映程序选择导致的系统性偏移。未来可尝试： - 利用因果推断框架识别  D  的主要来源（如特定依赖版本、随机种子策略）； - 设计“偏差感知”的工件，不仅记录修复步骤，还量化其对测量指标的敏感性。 - **多智能体协作的优化** ReproBridge 采用六角色分工（Intake、Planner、Builder 等）。可进一步探索： - 角色间的通信协议标准化，降低上下文传递损耗； - 引入对抗性角色（如专门寻找论文–代码矛盾的 Red Teamer），在构建阶段主动暴露潜在  D 。 Q6: 总结一下论文的主要内容 该论文围绕机器学习（ML）研究的计算可复现性展开，核心内容可概括如下： —- ### 1. 研究背景与问题 独立复现 ML 实验通常需要整合散落在论文、官方代码库及辅助材料中的信息。原始代码库往往隐含大量未明示的细节，例如依赖冲突、配置歧义、数据加载缺陷、以及实验输出到报告评分的映射方式。后续复现者（包括编码代理）必须反复投入大量工作来“重建”这些缺失环节，且一次成功复现所积累的关键决策（如环境修复、参数选择）常流失于临时对话或 shell 历史中，导致下一次复现仍需重复相同的调查与试错。论文指出，复现成功是**工件质量**与**复现者能力**的联合函数，而现有发布工件远未充分发挥其可复用潜力。 —- ### 2. 核心方法：ReproBridge 与精炼可复现工件（RRA） 为将复现过程中恢复的程序与决策固化为可重用的知识载体，论文提出两项核心贡献： **（1）标准化四组件工件设计（RRA）** - **精炼代码库（Refined codebase）**：修复执行缺陷，补充缺失的实验支持代码。 - **环境配置（Environment setup）**：锁定兼容依赖版本，提供数据/检查点获取脚本与容器定义。 - **实验启动器（Experiment launchers）**：为每个任务提供可执行入口，明确配置、输出路径、评分提取方式，并区分正式运行与冒烟测试。 - **复现指南（Reproduction guide）**：记录实验设置、论文与代码冲突的解决方案、报告统计量定义、已知陷阱与资源敏感性。 **（2）ReproBridge 构建工作流** 该工作流由人类定义标准与协议，由编码代理分三阶段六角色执行： - **Specify**（Intake, Planner）：映射任务、明确测量规范、记录歧义解决方案。 - **Execute**（Builder, Reproducer）：构建环境、执行实验、将测量值链接到实际输出文件，并记录修复理由。 - **Preserve**（Distiller, Packager）：基于执行证据撰写指南与变更记录，组装可移植交接件，并从干净 shell 验证入口点。 各阶段间由独立 **Reviewer** 审查，确保交接件不依赖于构建会话的隐式上下文。 —- ### 3. 评估基准：ReproBridge-Bench 论文构建了包含 **36 篇论文、387 个实验、1,029 个任务**的基准，每个任务配备 **5 个人工验证的参考观测**。数值兼容性通过基于参考均值  x_j  与标准差  s_j  的预测区间判定： </p>
+<p>I_j^((q)) = [x_j - r_j^((q)),; x_j + r_j^((q))]<br> 其中半径  r_j^((q))  融合 Student- t  不确定性估计与显式容差下限。此外，独立的 **Auditor** 对每次复现执行完整性审计，追踪证据链以检测数值复制、测量替换或结果篡改。 —- ### 4. 主要实验结果 在四种编码代理（Sonnet 4.6、Sonnet 5、Opus 5、Gemini 3.8 Flash）上的系统评估表明： - **成功率显著提升**：RRA 将平均复现成功率从 **76.4%** 提升至 **92.6%**，单个模型增益达 **5.5–23.2 个百分点**。 - **成本显著降低**：下游 API 支出平均减少 **16.8%–23.7%**，Token 消耗下降 **6.3%–19.8%**。 - **缩小模型间差距**：模型间成功率极差从 **21.6 个百分点**收窄至 **3.9 个百分点**，表明保存执行知识可降低对复现者个体能力的依赖。 - **外部基准验证**：在 CORE-Bench Hard 的 45 个 capsules 上，RRA 成功率（**73.3%**）优于原始代码（62.2%）与 VERITAS 交接件（68.9%），且复现时间中位数从 33 分钟降至 14.4 分钟。 **组件消融实验**（Sonnet 5，12 篇论文，287 任务）显示： - 移除精炼代码库导致成功率下降 **5.2 pp**； - 移除环境配置导致下降 **4.5 pp**； - 移除复现指南或实验启动器分别导致下降 **3.8 pp** 与 **3.1 pp**。 这表明代码修复、环境兼容性与显式文档对可复现性具有互补且不可替代的贡献。 —- ### 5. 结论与意义 论文通过标准化工件设计与代理驱动构建流程，验证了**保存复现过程中恢复的执行知识**能够： - 显著降低系统性执行偏差； - 提升复现可靠性并压缩下游成本； - 使能力较弱的复现代理也能达到与强模型相近的成功率。 该工作为 ML 研究的预提交自检、第三方复现知识积累以及可复现工件的社区标准化提供了可行路径。 Q7: 想要进一步了解论文 以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a target="_blank" rel="noopener" href="http://kimi.com/_prefill_chat?prefill_prompt=我们要讨论的论文是ReproBridge%3A%20Building%20Reproducibility%20into%20ML%20Research%20Artifacts，链接是https://arxiv.org/pdf/2611.08452，已有的FAQ链接是https://papers.cool/arxiv/kimi?paper=2611.08452。请以此为基础，继续回答我后面的问题。&amp;system_prompt=你是一个学术助手，后面的对话将围绕着以下论文内容进行，已经通过链接给出了论文的PDF和论文已有的FAQ。用户将继续向你咨询论文的相关问题，请你作出专业的回答，不要出现第一人称，当涉及到分点回答时，鼓励你以markdown格式输出。&amp;send_immediately=false"><strong>这里</strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></details>
+<p><strong>Authors</strong>: Yubo Wang,Rui Meng,Jaehyun Nam,Tomas Pfister,Jinsung Yoon</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.08452.pdf">https://arxiv.org/pdf/2611.08452.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08452">https://arxiv.org/abs/2611.08452</a></p>
+<p><strong>Arxiv ID</strong>: 2611.08452</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.08452">https://papers.cool/arxiv/2611.08452</a></p>
+<p><strong>Published</strong>: 2026-11-10T04:46:57.238Z</p>
+<p><strong>Updated</strong>: 2026-11-10T04:46:57.238Z</p>
+<hr>
+<h3 id="3-Flide-Accelerating-Decision-Inference-with-Exact-State-Forking"><a href="#3-Flide-Accelerating-Decision-Inference-with-Exact-State-Forking" class="headerlink" title="3. Flide: Accelerating Decision Inference with Exact State Forking"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2610.42148">Flide: Accelerating Decision Inference with Exact State Forking</a></h3><p>Abstract:Decision models such as Jev have emerged as a highly promising paradigm for LLM agent systems, providing lightweight and reliable categorical reasoning for rapid System One execution. However, existing generation-oriented inference engines fail to support these workloads effectively, suffering from severe prefix recomputation overheads or distorted output probabilities. To address this challenge, we propose Flide, an efficient and exact inference engine that decouples the logical tree structure of a decision request from its physical execution within a single flattened token stream. Through ForkAttention, Flide navigates request dependencies using GPU-resident indices across both standard attention and recurrent Gated DeltaNet layers, guaranteeing in exact arithmetic that every query branch evaluates identically to an isolated forward pass. By expressing branch topologies directly in GPU-resident metadata, Flide accommodates diverse request mixtures with a compact set of pre-recorded execution graphs while enabling expanding agent histories to resume from checkpoints saved in earlier passes. Extensive evaluations on public hybrid and decision models demonstrate that Flide answers queries up to 9.5 times faster than vLLM and SGLang while staying closest to a float32 reference in total variation distance. By unifying physical execution throughput with mathematical exactness, Flide establishes a principled foundation for scalable, latency-critical decision intelligence in agent systems.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：像Jev这样的决策模型已经成为LLM代理系统中一种极具前景的范式，为快速的系统一执行提供了轻量且可靠的分类推理。然而，现有面向生成的推理引擎无法有效支持这些工作负载，存在严重的前缀重计算开销或输出概率失真问题。为了解决这一挑战，我们提出了Flide，一种高效且精确的推理引擎，它将决策请求的逻辑树结构与其在单一扁平化令牌流中的物理执行分离。通过ForkAttention，Flide利用GPU驻留的索引在标准注意力层和循环Gated DeltaNet层中导航请求依赖，确保在精确算术下每个查询分支的评估结果与独立前向计算完全一致。通过在GPU驻留的元数据中直接表达分支拓扑结构，Flide能够以紧凑的预录执行图集容纳多样的请求混合，同时允许扩展的代理历史从早期保存的检查点恢复。针对公共混合模型和决策模型的广泛评测显示，Flide的查询响应速度比vLLM和SGLang快多达9.5倍，同时在总体变差距离上最接近float32参考值。通过统一物理执行吞吐量与数学精确性，Flide为可扩展、延迟关键的代理系统决策智能奠定了原则性基础。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2610.42148 (stream has been aborted)</p>
+</div></details>
+<p><strong>Authors</strong>: Bobo Li,Jiajia Song,Hao Fei,Wynne Hsu,Mong Li Lee</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.42148.pdf">https://arxiv.org/pdf/2610.42148.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.42148">https://arxiv.org/abs/2610.42148</a></p>
+<p><strong>Arxiv ID</strong>: 2610.42148</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2610.42148">https://papers.cool/arxiv/2610.42148</a></p>
+<p><strong>Published</strong>: 2026-11-10T04:46:57.283Z</p>
+<p><strong>Updated</strong>: 2026-11-10T04:46:57.283Z</p>
+<hr>
+<h3 id="4-JoVox-Joint-Hierarchical-Flow-Matching-for-Lightweight-Voxel-Generation"><a href="#4-JoVox-Joint-Hierarchical-Flow-Matching-for-Lightweight-Voxel-Generation" class="headerlink" title="4. JoVox: Joint Hierarchical Flow Matching for Lightweight Voxel Generation"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.10690">JoVox: Joint Hierarchical Flow Matching for Lightweight Voxel Generation</a></h3><p>Abstract:Generating high-fidelity voxels while keeping their lightweight nature remains an open problem in computer vision. Current generators are either high-fidelity but computationally heavy, or lightweight but of lower fidelity. Hierarchical methods keep the lightweight nature of voxels. However, their coarse levels, which decide where all finer cells can appear, are generated with the least information about the shape and are never revisited, so they are often plausible but wrong. Our key insight is to let finer cells take part in deciding coarse cells. To this end, we propose JoVox, a discrete flow matching framework that learns the joint distribution of all levels of the voxel hierarchy, instead of a separate distribution for each level, so that coarse cells can be predicted with finer cells already generated nearby. Within this framework, we further introduce a two-level prediction, which outputs the cells two levels finer at once instead of one level finer, halving the number of levels that the network processes and yielding voxels of higher fidelity. We also introduce an unmasking strategy that revisits early decisions once finer cells are generated and corrects inconsistencies in masked diffusion models. Our framework outperforms the baselines on both unconditional and image-conditioned voxel generation. Compared with the current state-of-the-art TRELLIS.2, we achieve 8x higher training throughput, 1/15 of the FLOPs in a forward pass, train on 4 vs. 32 GPUs, and obtain higher quality with an 11% lower Chamfer distance.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：在保持体素轻量化的同时生成高保真体素仍然是计算机视觉中的一个未解决问题。现有生成器要么高保真但计算量大，要么轻量但保真度较低。分层方法保持了体素的轻量特性。然而，它们的粗粒度层——决定所有更细单元格出现位置的层——是在对形状信息最少的情况下生成的，且从不重新访问，因此经常看似合理但实际上错误。我们的关键见解是让更细的单元格参与粗单元格的决策。为此，我们提出了 JoVox，一种离散流匹配框架，它学习体素层次所有层的联合分布，而不是每层的独立分布，从而可以在粗单元格被预测时，附近已有更细单元格生成。在此框架下，我们进一步引入了两层预测，它一次输出两层更细的单元格，而不是一层，从而将网络处理的层数减少一半，并生成更高保真的体素。我们还引入了一种解掩策略，在生成更细单元格后重新审视早期决策，并修正掩码扩散模型中的不一致性。我们的框架在无条件和图像条件的体素生成上均优于基线方法。与当前最先进的 TRELLIS.2 相比，我们实现了 8 倍的训练吞吐量，前向传递的 FLOPs 只有 1/15，使用 4 个 GPU 训练而非 32 个，同时获得了更高质量的结果，Chamfer 距离降低了 11%。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.10690 (HTTP 429)</p>
+</div></details>
+<p><strong>Authors</strong>: Xiangjun Tang,Jianqi Chen,Peter Wonka</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.10690.pdf">https://arxiv.org/pdf/2611.10690.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.10690">https://arxiv.org/abs/2611.10690</a></p>
+<p><strong>Arxiv ID</strong>: 2611.10690</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.10690">https://papers.cool/arxiv/2611.10690</a></p>
+<p><strong>Published</strong>: 2026-11-10T04:46:57.274Z</p>
+<p><strong>Updated</strong>: 2026-11-10T04:46:57.274Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202611/2026-11-10/">https://wdndev.github.io/daily/hf/202611/2026-11-10/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202610/2026-10-01/" title="HuggingFace Papers 2026-10-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-01</div></div></a></div><div><a href="/daily/hf/202610/2026-10-02/" title="HuggingFace Papers 2026-10-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-02</div></div></a></div><div><a href="/daily/hf/202610/2026-10-03/" title="HuggingFace Papers 2026-10-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-WorldFoundry-Towards-Unified-Infrastructure-for-World-Intelligence"><span class="toc-text">1. WorldFoundry: Towards Unified Infrastructure for World Intelligence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ReproBridge-Building-Reproducibility-into-ML-Research-Artifacts"><span class="toc-text">2. ReproBridge: Building Reproducibility into ML Research Artifacts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Flide-Accelerating-Decision-Inference-with-Exact-State-Forking"><span class="toc-text">3. Flide: Accelerating Decision Inference with Exact State Forking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-JoVox-Joint-Hierarchical-Flow-Matching-for-Lightweight-Voxel-Generation"><span class="toc-text">4. JoVox: Joint Hierarchical Flow Matching for Lightweight Voxel Generation</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
