@@ -1,0 +1,502 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HuggingFace Papers 2026-11-25 | 37.2° Blog</title><meta name="author" content="Firefly"><meta name="copyright" content="Firefly"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据来源：HuggingFace Papers  Latest Papers1. S-Mind: Internalizing Multi-View Geometry for Spatial IntelligenceAbstract:Spatial intelligence, the ability to reason about 3D space from visual observations">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HuggingFace Papers 2026-11-25">
+<meta property="og:url" content="https://wdndev.github.io/daily/hf/202611/2026-11-25/index.html">
+<meta property="og:site_name" content="37.2° Blog">
+<meta property="og:description" content="数据来源：HuggingFace Papers  Latest Papers1. S-Mind: Internalizing Multi-View Geometry for Spatial IntelligenceAbstract:Spatial intelligence, the ability to reason about 3D space from visual observations">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wdndev.github.io/img/wdn_icon.png">
+<meta property="article:published_time" content="2019-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-28T04:56:46.583Z">
+<meta property="article:author" content="Firefly">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="HuggingFace">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wdndev.github.io/img/wdn_icon.png"><link rel="shortcut icon" href="/img/wdn_icon.png"><link rel="canonical" href="https://wdndev.github.io/daily/hf/202611/2026-11-25/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search/.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"Author: Firefly","link":"Link: ","source":"Source: 37.2° Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HuggingFace Papers 2026-11-25',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-11-28 12:56:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/wdn_icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">327</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="37.2° Blog"><span class="site-name">37.2° Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> Content</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/paper_reading/pr_content"><i class="fa-fw fas fa-newspaper"></i><span> Paper</span></a></li><li><a class="site-page child" href="/llms/llms_idx"><i class="fa-fw fa-regular fa-bookmark"></i><span> LLMs</span></a></li><li><a class="site-page child" href="/jupyter"><i class="fa-fw fa-solid fa-file"></i><span> Jupyter</span></a></li><li><a class="site-page child" href="/dsa/dsa_idx"><i class="fa-fw fas fa-tree"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/program_language/pl_idx"><i class="fa-fw fas fa-code"></i><span> PLs</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-calendar-days"></i><span> Daily</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/daily/github/index"><i class="fa-fw fas fa-arrow-trend-up"></i><span> Github</span></a></li><li><a class="site-page child" href="/daily/hot_news/index"><i class="fa-fw fas fa-brands fa-message"></i><span> HotNews</span></a></li><li><a class="site-page child" href="/daily/hf/index"><i class="fa-fw fas fa-face-smile"></i><span> HF</span></a></li><li><a class="site-page child" href="/daily/domain/index"><i class="fa-fw fas fa-book-open"></i><span> Arxiv</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">HuggingFace Papers 2026-11-25</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-06-17T16:00:00.000Z" title="Created 2019-06-18 00:00:00">2019-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-11-28T04:56:46.583Z" title="Updated 2026-11-28 12:56:46">2026-11-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">14.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>61min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HuggingFace Papers 2026-11-25"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://huggingface.co/papers">HuggingFace Papers</a></p>
+</blockquote>
+<h2 id="Latest-Papers"><a href="#Latest-Papers" class="headerlink" title="Latest Papers"></a>Latest Papers</h2><h3 id="1-S-Mind-Internalizing-Multi-View-Geometry-for-Spatial-Intelligence"><a href="#1-S-Mind-Internalizing-Multi-View-Geometry-for-Spatial-Intelligence" class="headerlink" title="1. S-Mind: Internalizing Multi-View Geometry for Spatial Intelligence"></a>1. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.28649">S-Mind: Internalizing Multi-View Geometry for Spatial Intelligence</a></h3><p>Abstract:Spatial intelligence, the ability to reason about 3D space from visual observations, becomes essential as multimodal large language models (MLLMs) move into the physical world. Beyond perceiving each view, it rests on two cornerstones of human cognition: fusing multiple views into one coherent 3D scene and mentally transforming that scene to new viewpoints as reasoning unfolds. Yet our spatial probes reveal that MLLMs largely lack both capabilities, even after spatial fine-tuning. We therefore present S-Mind, which internalizes multi-view geometry within the MLLM through a compact set of spatial tokens. It supervises these tokens to hold the fused 3D scene and re-emits them to re-express this scene from every viewpoint the reasoning adopts. Across four spatial benchmarks, S-Mind improves its Qwen3.5 backbones by up to 22.26 points and surpasses frontier general models such as GPT-6-Astra (+0.45), Kimi-K3.1-Pro (+1.97), and GLM-5.3-Flash (+7.80) in average accuracy. Moreover, the same probes confirm that it acquires both capabilities, reaching fusion and transformation accuracies of 65.11% and 82.17%, against at most 16.02% and 37.28% for the baselines. At inference, S-Mind also runs about 100x faster than a tool-based agent on the same backbone. Instilled through these spatial tokens during training, spatial capability becomes intrinsic to the backbone and persists even when the tokens are withheld, offering a promising path toward spatial intelligence in MLLMs.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：空间智能，即从视觉观察中推理三维空间的能力，随着多模态大语言模型（MLLMs）进入物理世界变得至关重要。除了感知每个视角，它还建立在人类认知的两个基石之上：将多个视角融合为一个连贯的三维场景，以及在推理展开时在脑中将该场景变换到新的视角。然而，我们的空间探测显示，MLLMs在这两方面能力上基本缺失，即使在经过空间微调之后也是如此。因此，我们提出了S-Mind，通过一组紧凑的空间标记将多视角几何内化到MLLM中。它监督这些标记以保持融合的三维场景，并重新发出它们以从推理采用的每个视角重新呈现该场景。在四个空间基准上，S-Mind使其Qwen3.5骨干模型的性能提升高达22.26点，并在平均准确率上超过前沿通用模型，如GPT-6-Astra（+0.45）、Kimi-K3.1-Pro（+1.97）和GLM-5.3-Flash（+7.80）。此外，同样的探测确认其同时获得了这两种能力，融合和转换的准确率分别达到65.11%和82.17%，而基线模型最多仅为16.02%和37.28%。在推理阶段，S-Mind在相同骨干上运行速度也大约比基于工具的代理快100倍。通过训练中这些空间标记的灌输，空间能力成为骨干模型的内在属性，即便标记被保留，仍然得以保持，为MLLMs的空间智能提供了一个有前景的路径。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.28649 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Muxin Fu,Peike Yu,Guibin Zhang,Wenrui Zhou,Runze Liu,Lang Feng,Fuchao Yang,Feng Chen,Yixuan Li,Mengao Zhang,Shiying Zhang,Wen Shen,Ling Pan,Shuicheng Yan,Bo An</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.28649.pdf">https://arxiv.org/pdf/2611.28649.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.28649">https://arxiv.org/abs/2611.28649</a></p>
+<p><strong>Arxiv ID</strong>: 2611.28649</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.28649">https://papers.cool/arxiv/2611.28649</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:40:29.362Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:40:29.362Z</p>
+<hr>
+<h3 id="2-Rewirable-Circuits-in-Transformers-with-Loom-Attention"><a href="#2-Rewirable-Circuits-in-Transformers-with-Loom-Attention" class="headerlink" title="2. Rewirable Circuits in Transformers with Loom Attention"></a>2. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.30634">Rewirable Circuits in Transformers with Loom Attention</a></h3><p>Abstract:We propose loom attention, which allows a Transformer to dynamically rewire its circuits at every token by interweaving a head’s vertical attention over the outputs of earlier heads (to obtain its query, key and value) with its horizontal attention over tokens. We instantiate vertical attention efficiently with normalized and gated linear attention over a per-token matrix memory, which stores the compressed head outputs and serves as a second residual stream. This yields LoomFormer, a dual-stream architecture that splits control and content between the vector and matrix streams. Across model sizes and training token budgets in language modeling and downstream tasks, LoomFormer matches Transformers trained with over 3x compute and recent residual-stream baselines (HC/mHC, MUDDFormer, AttnRes) trained with ~1.7-2.8x. For example, trained on the same 300B tokens with only 2% extra FLOPs, LoomPythia-2.8B achieves ~1.6x the average downstream gain of mHC-Pythia-2.8B over Pythia-2.8B, and matches (0-shot) or surpasses (5-shot) Pythia-12B. Code is available at this https URL</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：我们提出了loom注意力，它允许Transformer在每个token上动态地重新连接其电路，通过将一个head对早期head输出的垂直注意力（用于获取其query、key和value）与其对token的水平注意力交织来实现。我们通过在每个token的矩阵记忆上使用归一化和门控的线性注意力有效地实现垂直注意力，该记忆存储压缩后的head输出，并作为第二个残差流。这产生了LoomFormer，一种双流架构，在向量流和矩阵流之间分配控制和内容。在语言建模和下游任务中，跨模型大小和训练token预算，LoomFormer与使用超过3倍计算训练的Transformer以及最近的残差流基线（HC/mHC、MUDDFormer、AttnRes），在使用约1.7-2.8倍计算的情况下相匹配。例如，在相同的300B token上训练，仅增加2% FLOPs，LoomPythia-2.8B实现了mHC-Pythia-2.8B相对于Pythia-2.8B平均下游增益的约1.6倍，并且（0-shot）匹配或（5-shot）超过Pythia-12B。代码可在此https URL获得。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.30634 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Da Xiao,Qingye Meng,Shengping Li,Xingyuan Yuan</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.30634.pdf">https://arxiv.org/pdf/2611.30634.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.30634">https://arxiv.org/abs/2611.30634</a></p>
+<p><strong>Arxiv ID</strong>: 2611.30634</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.30634">https://papers.cool/arxiv/2611.30634</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:40:29.343Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:40:29.343Z</p>
+<hr>
+<h3 id="3-ACAP-Asynchronous-Coding-Agents-for-Efficient-Robot-Control"><a href="#3-ACAP-Asynchronous-Coding-Agents-for-Efficient-Robot-Control" class="headerlink" title="3. ACAP: Asynchronous Coding Agents for Efficient Robot Control"></a>3. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.31205">ACAP: Asynchronous Coding Agents for Efficient Robot Control</a></h3><p>Abstract:Coding agents can construct and revise robot behavior during execution, but using one agent for the whole robot can delay otherwise independent work. We introduce Asynchronous Coding Agents as Policy (ACAP), an asynchronous framework that organizes one robot as a team of persistent agents. Each member reasons and acts for a configurable control group, such as an arm with its gripper or the torso and chassis, enabling asynchronous reasoning and execution. However, different robot components often have physical dependencies that require coordination. To address this challenge, ACAP introduces a hyper-agent that assigns tasks, coordinates dependencies, and dynamically allocates control between the lead and member agents. This allows independent work to progress concurrently while supporting tightly coupled manipulation when necessary. Across 72 real-world rollouts covering 25 task/platform settings, ACAP reduces task-balanced time cost by 28.2% compared with a single-agent Direct Policy, with improvements across Fully Parallel, Parallel-Sequential, and Collaborative tasks. Across all eight Collaborative settings, ACAP also achieves lower mean time cost than Fixed Delegation, where only member agents can control their assigned groups. An additional 90-rollout study shows lower mean 30-minute-capped time cost than Direct on all six tasks. We further demonstrate mobile manipulation using the same member interface for chassis and torso control. We present the framework and a real-world rollout dataset containing observations, generated programs, actions, and feedback to support research on how coding agents reason and act in the physical world.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：编码智能体能够在执行过程中构建和修改机器人行为，但使用一个智能体控制整个机器人可能会延迟本可独立完成的工作。我们提出了异步编码智能体策略（ACAP），这是一种异步框架，将一个机器人组织为由持久智能体组成的团队。每个成员为可配置控制组进行推理和行动，例如带抓手的机械臂或躯干与底盘，从而支持异步推理和执行。然而，不同的机器人组件通常存在物理依赖关系，需要协调。为了解决这一挑战，ACAP引入了超智能体，负责分配任务、协调依赖关系，并在主智能体和成员智能体之间动态分配控制权限。这使得独立工作可以同时进行，同时在必要时支持紧密耦合的操作。在覆盖25种任务/平台设置的72个真实世界实验中，与单智能体直接策略相比，ACAP将任务平衡时间成本降低了28.2%，并在全并行、并行-顺序和协作任务中都有改进。在所有八个协作设置中，ACAP的平均时间成本也低于固定分配策略（Fixed Delegation），后者仅允许成员智能体控制其分配的组。额外的90次实验显示，在所有六个任务中，ACAP的平均30分钟上限时间成本均低于直接策略。我们进一步展示了使用相同成员接口进行底盘和躯干控制的移动操作。我们展示了该框架及一个包含观测数据、生成程序、动作和反馈的真实世界实验数据集，以支持研究编码智能体如何在物理世界中进行推理和行动。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.31205 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Zexin He,Rui Li,Yushi Lan,Chengkai Jin,Zhi Hou,Xingang Pan</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.31205.pdf">https://arxiv.org/pdf/2611.31205.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.31205">https://arxiv.org/abs/2611.31205</a></p>
+<p><strong>Arxiv ID</strong>: 2611.31205</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.31205">https://papers.cool/arxiv/2611.31205</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:40:29.401Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:40:29.401Z</p>
+<hr>
+<h3 id="4-Antom-3-in-1-Transformer-A-Payment-Foundation-Model"><a href="#4-Antom-3-in-1-Transformer-A-Payment-Foundation-Model" class="headerlink" title="4. Antom 3-in-1 Transformer: A Payment Foundation Model"></a>4. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.25403">Antom 3-in-1 Transformer: A Payment Foundation Model</a></h3><p>Abstract:We report the development of Antom 3-in-1 Transformer, a payment foundation model that integrates sequence, tabular, and graph representations for payment risk detection. The model contains approximately 7B parameters, with approximately 1.7B activated per task route. Antom 3-in-1 Transformer is pretrained to learn reusable behavioral and relational representations, primarily on Ant International’s internal payment data. In a cross-business transfer experiment, pretraining improves the target business metric by 34.5% over the same architecture trained from scratch. With only 25% of the training labels, the pretrained model outperforms the full-label scratch baseline in Average Precision (AP) and Recall@0.5% on different merchant domains. In a four-month online experiment on Ant International’s billion-scale payment platform, the model reduced the overall loss rate by 37.88% relative to XGB-Online.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：我们报告了 Antom 3合1 Transformer 的开发，这是一种支付基础模型，整合了序列、表格和图表示，用于支付风险检测。该模型包含大约 70 亿参数，每个任务路径激活约 17 亿参数。Antom 3合1 Transformer 经过预训练以学习可重用的行为和关系表示，主要基于蚂蚁国际的内部支付数据。在一次跨业务迁移实验中，预训练相比从零开始训练的相同架构，将目标业务指标提升了 34.5%。仅使用 25% 的训练标签，预训练模型在不同商户领域的平均精度（AP）和 Recall@0.5% 上超越了全标签从零训练的基线。在蚂蚁国际十亿级支付平台进行的为期四个月的在线实验中，该模型将整体损失率相比 XGB-Online 降低了 37.88%。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.25403 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Weiyu Han,Haoyu Jiang,Jie Sheng,Youxi Pan,Xianglong Liu,Zeqi Ren,Dongquan Yi,Yinhao Liu,Ruobing Zuo,Ze Zhao,Huilin He,Nairong Zhang,Xinyi He,Xiao Tan,Jun Wang,Pan Fang,Wei Zeng,Jianan Su,Kaixin Shen,Jingtong Wu,Hao Li,Shuai Chen,Jiangming Yang,Tianyi Zhang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25403.pdf">https://arxiv.org/pdf/2611.25403.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25403">https://arxiv.org/abs/2611.25403</a></p>
+<p><strong>Arxiv ID</strong>: 2611.25403</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.25403">https://papers.cool/arxiv/2611.25403</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:40:29.388Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:40:29.388Z</p>
+<hr>
+<h3 id="5-KMed-31B-Technical-Report"><a href="#5-KMed-31B-Technical-Report" class="headerlink" title="5. KMed-31B Technical Report"></a>5. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.28719">KMed-31B Technical Report</a></h3><p>Abstract:We present KMed-31B, a medical large language model post-trained from an open-weight model for on-premises deployment with limited hardware. Post-training a model for diverse medical tasks remains difficult, because improving one kind of task can lower performance on another. We attribute this to differences between tasks in expected output and available feedback. Medical question answering and diagnosis prediction have reference answers, whereas clinical inquiry has no single correct response and is judged with rubrics. We therefore divide medical training tasks into four categories by these two properties, train one specialist per category with a reward that its feedback supports, and integrate the specialists into a single student with Multi-teacher On-policy Delta Distillation (MOPD$^2$). For clinical inquiry, we build Synthetic Health Dialogue, a simulated corpus of consultations with lay users and clinicians whose patient cases span common clinical presentations in primary care. Relative to its base model, KMed-31B raises HealthBench Hard from 22.95 to 41.87 and HealthBench Professional from 37.92 to 50.20 in non-thinking mode, and from 23.80 to 51.48 and from 41.97 to 59.18 in thinking mode, while its scores on four multiple-choice medical benchmarks are maintained or slightly improved. KMed-31B has the highest unadjusted HealthBench Hard score among the compared models, including proprietary ones, and scores higher on HealthBench Professional than every open-weight model we compare, including models with more than ten times as many total parameters. Applied to another base model, Qwen3.8-27B, the same training recipe also raises both HealthBench scores. We describe the training recipe, data construction, and settings in detail so that institutions requiring on-premises deployment can develop medical models from open-weight foundations.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：我们提出了 KMed-31B，这是一种医疗大语言模型，从一个开放权重模型进行后训练，以支持有限硬件的本地部署。为各种医疗任务后训练模型仍然具有挑战性，因为改善某一类任务可能会降低另一类任务的性能。我们将其归因于任务在预期输出和可用反馈上的差异。医疗问答和诊断预测有参考答案，而临床咨询没有单一正确的响应，其评价依赖评分标准。因此，我们根据这两种属性将医疗训练任务分为四类，为每类训练一个专家模型，并使用其反馈所支持的奖励进行训练，然后通过多教师在线 Delta 蒸馏（Multi-teacher On-policy Delta Distillation，MOPD²）将这些专家整合成一个学生模型。针对临床咨询，我们构建了合成健康对话（Synthetic Health Dialogue），这是一个模拟的咨询语料库，涵盖普通用户和临床医生的交流，其患者案例覆盖基层医疗常见临床表现。相对于其基础模型，KMed-31B 在非思考模式下将 HealthBench Hard 从 22.95 提升至 41.87，将 HealthBench Professional 从 37.92 提升至 50.20；在思考模式下，分别从 23.80 提升至 51.48 和从 41.97 提升至 59.18，同时在四个多选医疗基准测试上的成绩保持不变或略有提升。KMed-31B 在所比较的模型中，包括专有模型，拥有最高的未调整 HealthBench Hard 分数，并且在 HealthBench Professional 上的分数高于我们比较的所有开放权重模型，包括参数总量超过十倍的模型。将相同训练方法应用于另一基础模型 Qwen3.8-27B 时，同样提高了两个 HealthBench 分数。我们详细描述了训练方法、数据构建和设定，以便需要本地部署的机构能够从开放权重基础上开发医疗模型。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.28719 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: KMed Team at NAVER</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.28719.pdf">https://arxiv.org/pdf/2611.28719.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.28719">https://arxiv.org/abs/2611.28719</a></p>
+<p><strong>Arxiv ID</strong>: 2611.28719</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.28719">https://papers.cool/arxiv/2611.28719</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:40:29.435Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:40:29.435Z</p>
+<hr>
+<h3 id="6-PartAgent-Agentic-3D-Part-Segmentation-via-Expert-Integration-and-Closed-Loop-Refinement"><a href="#6-PartAgent-Agentic-3D-Part-Segmentation-via-Expert-Integration-and-Closed-Loop-Refinement" class="headerlink" title="6. PartAgent: Agentic 3D Part Segmentation via Expert Integration and Closed-Loop Refinement"></a>6. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.32554">PartAgent: Agentic 3D Part Segmentation via Expert Integration and Closed-Loop Refinement</a></h3><p>Abstract:Segmenting a 3D object into semantically meaningful parts requires joint reasoning about geometric structure and semantic context. Pretrained 3D experts provide spatially grounded region proposals, while 2D experts provide semantic cues for identifying object parts. The challenge is to integrate these complementary capabilities into a framework that can both produce meaningful part segmentations and progressively refine them. We present PartAgent, a training-free agentic framework for 3D part segmentation built upon two complementary modules: (i) Structural-Semantic Expert Integration combines regions predicted by the 3D expert with multiview semantic evidence from the 2D expert through image-to-surface correspondences, constructing compositional part partitions at multiple granularities. (ii) Observation-Driven Closed-Loop Partition Refinement observes the current partition and its supporting evidence to select targeted inspection, evidence repair, composition, or reselection actions. It verifies proposed changes and uses the updated state and action outcomes to guide subsequent decisions. On PartObjaverse-Tiny-WT, PartAgent achieves 68.41 mIoU, outperforming the strongest competing method by 8.53 points. Across 3DCoMPaT200, PartNeXt, PartNetE, and PartObjaverse-Tiny, PartAgent achieves the highest mIoU on each dataset, averaging 69.36 across the four datasets, 7.28 points above the highest mean among competing methods.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：将三维物体分割为语义上有意义的部分需要对几何结构和语义上下文进行联合推理。预训练的三维专家提供空间上定位的区域建议，而二维专家提供识别物体部分的语义线索。挑战在于将这些互补能力整合到一个既能生成有意义部分分割又能逐步优化分割的框架中。我们提出了PartAgent，一个无需训练的三维部分分割智能框架，基于两个互补模块：(i) 结构-语义专家整合，通过图像到表面的对应关系，将三维专家预测的区域与二维专家的多视角语义证据结合起来，在多种粒度上构建组成部分划分。(ii) 基于观察的闭环分区优化，观察当前分区及其支持证据，以选择针对性的检查、证据修复、组合或重新选择操作。它验证提出的修改，并利用更新后的状态和操作结果指导后续决策。在PartObjaverse-Tiny-WT上，PartAgent实现了68.41的mIoU，领先最强竞争方法8.53个百分点。在3DCoMPaT200、PartNeXt、PartNetE和PartObjaverse-Tiny上，PartAgent在每个数据集中均取得最高mIoU，四个数据集的平均值达69.36，比竞争方法的最高平均值高出7.28个百分点。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.32554 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Yang Cao,Zhe Zhu,Yiheng Zhang,Zhengqiang Zhang,Haoyuan Li,Le Wan,Dan Xu</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.32554.pdf">https://arxiv.org/pdf/2611.32554.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.32554">https://arxiv.org/abs/2611.32554</a></p>
+<p><strong>Arxiv ID</strong>: 2611.32554</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.32554">https://papers.cool/arxiv/2611.32554</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:41:22.634Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:41:22.634Z</p>
+<hr>
+<h3 id="7-PhyCoVE-Benchmarking-Physical-Counterfactual-Video-Editing-across-Diverse-Material-Dynamics"><a href="#7-PhyCoVE-Benchmarking-Physical-Counterfactual-Video-Editing-across-Diverse-Material-Dynamics" class="headerlink" title="7. PhyCoVE: Benchmarking Physical Counterfactual Video Editing across Diverse Material Dynamics"></a>7. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.29184">PhyCoVE: Benchmarking Physical Counterfactual Video Editing across Diverse Material Dynamics</a></h3><p>Abstract:Physical counterfactual video editing turns a source video and a language-specified physical edit at a given execution frame into a counterfactual video that shows how the scene would evolve after the edit. Existing evaluations with counterfactual target videos mainly cover object removal or specific rigid-body motions, although real scenes also involve elastic deformation, fluid flow, and interactions among rigid bodies, elastic solids, and fluids. We introduce PhyCoVE, a benchmark of 533 cases on 110 source videos that covers rigid, elastic, and fluid dynamics in five interaction patterns, with edits that remove an object, change a physical quantity, or insert a new object. For the simulated cases, a language model proposes scene designs, coding agents build them with solvers suited to each material and physically based rendering and then simulate each edit from the source scene state, and humans check every stage. For the real cases, we record continuously from one camera position before and after each edit. We also propose counterfactual fidelity, a metric that applies across materials and their interactions and measures how much of the physical change from the source video to the target video a generated video reproduces. We evaluate seven open-source and commercial video editing models and find that counterfactual fidelity ranks them nearly as human preference does, but even the best model reproduces only about one seventh of the physical change. The models change how a scene looks but rarely how it evolves, whereas a physical edit requires understanding the dynamics that it changes. Physical counterfactual video editing thus remains far from solved, and PhyCoVE provides a foundation for developing and evaluating methods for it.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：物理反事实视频编辑将源视频和语言指定的物理编辑在给定执行帧上转换为反事实视频，展示编辑后场景如何演变。现有针对反事实目标视频的评估主要涵盖对象移除或特定的刚体运动，尽管真实场景还涉及弹性变形、流体流动以及刚体、弹性固体和流体之间的相互作用。我们介绍了 PhyCoVE，这是一个包含533个案例、涉及110个源视频的基准，涵盖五种相互作用模式下的刚体、弹性和流体动力学，编辑操作包括移除对象、更改物理量或插入新对象。对于模拟案例，语言模型提出场景设计，编码机构使用适合每种材料的求解器进行构建并进行基于物理的渲染，然后从源场景状态模拟每次编辑，并由人工检查每个阶段。对于真实案例，我们在每次编辑前后从单摄像机位置进行连续录制。我们还提出了反事实保真度，这是一种适用于各种材料及其相互作用的指标，用于衡量生成视频从源视频到目标视频重现物理变化的程度。我们评估了七种开源和商业视频编辑模型，发现反事实保真度对它们的排序几乎与人类偏好一致，但即使是表现最好的模型，也仅重现了约七分之一的物理变化。这些模型改变了场景的外观，但很少改变其演变方式，而物理编辑需要理解其改变的动力学。因此，物理反事实视频编辑仍远未解决，而 PhyCoVE 为开发和评估相关方法提供了基础。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.29184 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Conghan Yue,Yuanjie Chen,Yunyan Xiao,Zeyu Peng,Xingsong Ye,Ya Gao,Yanglin Huang,WeiYao Zhang,Yue Han,Zhineng Chen,Yu-Gang Jiang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.29184.pdf">https://arxiv.org/pdf/2611.29184.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.29184">https://arxiv.org/abs/2611.29184</a></p>
+<p><strong>Arxiv ID</strong>: 2611.29184</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.29184">https://papers.cool/arxiv/2611.29184</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:41:24.484Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:41:24.484Z</p>
+<hr>
+<h3 id="8-Self-Evolving-Evaluation-Environments-for-Computer-Use-Agents"><a href="#8-Self-Evolving-Evaluation-Environments-for-Computer-Use-Agents" class="headerlink" title="8. Self-Evolving Evaluation Environments for Computer-Use Agents"></a>8. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.30962">Self-Evolving Evaluation Environments for Computer-Use Agents</a></h3><p>Abstract:Computer-use agents (CUAs) are rapidly improving, yet their evaluation remains largely static. Existing benchmarks provide a strong foundation, but fixed difficulty ceilings, limited feature coverage, and coarse aggregate scores progressively weaken their discriminative and diagnostic value. We introduce CUA-SEE, a closed-loop evaluation environment that co-evolves tasks and executable verifiers from rollout evidence. It disentangles three objectives: benchmark evolution expands evaluation scope through cohort-calibrated difficulty and coverage growth; diagnostic evolution increases resolution through agent-conditional capability-boundary probes; and verifier evolution improves precision by translating changing requirements into state-grounded checkpoints with adversarial validation. Across multiple agents, applications, and rounds, CUA-SEE generates challenging, measurable tasks while preserving process-level evidence. Our results position adaptive evaluation as a scalable counterpart to self-evolving agents, continuously tracking what agents can do, where their boundaries lie, and how reliably progress is measured.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：计算机使用代理（CUAs）正在快速改进，但其评估仍然大多停滞不前。现有基准提供了坚实的基础，但固定的难度上限、有限的特性覆盖以及粗略的综合评分逐渐削弱了其判别和诊断价值。我们引入了CUA-SEE，这是一种闭环评估环境，通过回滚证据共同演化任务和可执行验证器。它将三个目标区分开来：基准演化通过群体校准的难度和覆盖度增长扩展评估范围；诊断演化通过基于代理条件的能力边界探测提高分辨率；验证器演化通过将变化的需求转化为基于状态的检查点并进行对抗验证来提高精度。在多个代理、应用和轮次中，CUA-SEE生成具有挑战性且可测量的任务，同时保留过程级证据。我们的结果将自适应评估定位为自我进化代理的可扩展对应方法，持续跟踪代理能做什么、其边界在哪里以及进展测量的可靠性如何。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.30962 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Wenhao Wang,Panrong Tong,Quyu Kong,Pengxiang Li,Haowen Yang,chenglin Cai,Siheng Chen,Yue Wang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.30962.pdf">https://arxiv.org/pdf/2611.30962.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.30962">https://arxiv.org/abs/2611.30962</a></p>
+<p><strong>Arxiv ID</strong>: 2611.30962</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.30962">https://papers.cool/arxiv/2611.30962</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:41:24.786Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:41:24.786Z</p>
+<hr>
+<h3 id="9-LeadVLA-Learning-Follower-Aware-Route-Execution-for-Robot-Leading"><a href="#9-LeadVLA-Learning-Follower-Aware-Route-Execution-for-Robot-Leading" class="headerlink" title="9. LeadVLA: Learning Follower-Aware Route Execution for Robot Leading"></a>9. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.30149">LeadVLA: Learning Follower-Aware Route Execution for Robot Leading</a></h3><p>Abstract:Robot leading requires executing a route while continuously adapting to a designated follower. Existing robot-leading systems often mediate follower understanding and physical route execution through explicit states, planners, or modular interfaces; directly learning this coupling through end-to-end trajectory prediction can instead entangle route execution with follower response. We introduce LeadVLA, a structured multimodal policy that preserves the route as an explicit Path reference while learning a Pace for route progress and a Residual for local follower- and scene-conditioned adaptation. To make this problem trainable and measurable, we develop LeadInfra, a configurable Unreal Engine-based closed-loop data-generation infrastructure from which we instantiate an approximately 4M-sample training corpus, and LeadBench, a standardized benchmark with 108 fully held-out closed-loop episodes. LeadVLA achieves the highest task success (39.6%) among evaluated robot policies on LeadBench while maintaining strong route fidelity and follower responsiveness, and transfers to unseen real-world environments without real-world policy fine-tuning. Project Page: this https URL</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：机器人引导需要在持续适应指定跟随者的情况下执行路线。现有的机器人引导系统通常通过显式状态、规划器或模块化接口来调节跟随者理解与实际路线执行；而通过端到端轨迹预测直接学习这种耦合，则可能将路线执行与跟随者反应纠缠在一起。我们提出了 LeadVLA，一种结构化多模态策略，它将路线作为显式路径参考进行保留，同时学习用于路线进度的节奏（Pace）以及用于局部跟随者和场景条件适应的残差（Residual）。为了使该问题可训练且可衡量，我们开发了 LeadInfra，这是一个基于 Unreal Engine 的可配置闭环数据生成基础设施，从中我们实例化了约 400 万样本的训练语料库；同时，我们还创建了 LeadBench，这是一个包含 108 个完全保留闭环实验的标准化基准。LeadVLA 在 LeadBench 上的各种机器人策略中实现了最高的任务成功率（39.6%），同时保持了较强的路线保真度和跟随者响应能力，并且在未经过现实世界策略微调的情况下可以迁移到未知的现实环境中。项目页面：此 https URL</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.30149 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Tianle Zeng,Hanjing Ye,Bingyi Xia,Yuchen Zhou,Zibo Zhang,Yufei Huang,Yonggen Ling,Hong Zhang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.30149.pdf">https://arxiv.org/pdf/2611.30149.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.30149">https://arxiv.org/abs/2611.30149</a></p>
+<p><strong>Arxiv ID</strong>: 2611.30149</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.30149">https://papers.cool/arxiv/2611.30149</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:41:24.809Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:41:24.809Z</p>
+<hr>
+<h3 id="10-RoomTokens-Masked-Diffusion-over-Structured-Tokens-for-Indoor-Scene-Synthesis"><a href="#10-RoomTokens-Masked-Diffusion-over-Structured-Tokens-for-Indoor-Scene-Synthesis" class="headerlink" title="10. RoomTokens: Masked Diffusion over Structured Tokens for Indoor Scene Synthesis"></a>10. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.30219">RoomTokens: Masked Diffusion over Structured Tokens for Indoor Scene Synthesis</a></h3><p>Abstract:Generating 3D indoor scenes requires a representation that captures object semantics, instance identity, height structure, and orientation while respecting room geometry. Methods that model scenes as sequences of object vectors learn spatial constraints implicitly, leaving collisions and boundary violations to losses or post-processing; semantic-map methods make occupancy explicit, but collapse instance and directional structure. We introduce RoomTokens, a sliced structured-token representation in which each token stores semantic class, instance-color identity, and facing field. This representation allows a scene to be generated as a discrete grid while preserving cues for instance grouping, orientation estimation, and 3D extent prediction. To learn the RoomToken distribution, we propose MDIRT (Masked Diffusion over RoomTokens), a masked discrete diffusion model that denoises semantic/instance-color/facing channels jointly with a shared cross-slice backbone. Architectural tokens are clamped as explicit floor- plan constraints, so the model samples furniture layouts that respect room geometry while retaining instance and object-attribute structure. Experiments on 3D-FRONT show that RoomTokens with MDIRT improve layout fidelity and physical consistency over sequence/vector- and map-based methods, suggesting structured spatial tokens as a practical choice for discrete 3D scene synthesis.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：生成3D室内场景需要一种能够捕捉物体语义、实例身份、高度结构和方向，同时遵循房间几何的表示方法。将场景建模为对象向量序列的方法隐式地学习空间约束，但碰撞和边界违规问题需通过损失函数或后处理解决；语义地图方法显式表示占据情况，但会丧失实例和方向结构。我们提出了RoomTokens，一种切片结构化令牌表示方法，每个令牌存储语义类别、实例颜色身份和朝向信息。这种表示方法使得场景可以作为离散网格生成，同时保留实例分组、方向估计和三维范围预测的线索。为了学习RoomToken分布，我们提出了MDIRT（RoomTokens上的掩码扩散），这是一种掩码离散扩散模型，可以通过共享的切片间主干网络联合去噪语义/实例颜色/朝向通道。建筑令牌被固定为显式平面图约束，因此模型能够采样符合房间几何的家具布局，同时保留实例和物体属性结构。在3D-FRONT上的实验表明，RoomTokens结合MDIRT在布局保真度和物理一致性方面优于基于序列/向量和地图的方法，表明结构化空间令牌是离散3D场景生成的实用选择。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.30219 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Xiaohao Sun,Angel X. Chang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.30219.pdf">https://arxiv.org/pdf/2611.30219.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.30219">https://arxiv.org/abs/2611.30219</a></p>
+<p><strong>Arxiv ID</strong>: 2611.30219</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.30219">https://papers.cool/arxiv/2611.30219</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:41:25.501Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:41:25.501Z</p>
+<hr>
+<h3 id="11-MAGPIE-Agentic-Multi-Reference-Image-Generation-via-Executable-Scene-Construction"><a href="#11-MAGPIE-Agentic-Multi-Reference-Image-Generation-via-Executable-Scene-Construction" class="headerlink" title="11. MAGPIE: Agentic Multi-Reference Image Generation via Executable Scene Construction"></a>11. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.32462">MAGPIE: Agentic Multi-Reference Image Generation via Executable Scene Construction</a></h3><p>Abstract:Multi-reference image generation requires a model to preserve the appearance of selected subjects while arranging them according to an instruction. Despite recent progress in reference-based generation and compositional control, reliably organizing selected subjects into the intended scene remains challenging. Although existing methods provide various forms of compositional guidance, the planned relationships are not always explicitly instantiated for inspection and refinement before image synthesis. To address this limitation, we introduce MAGPIE, which represents the intended composition as a simplified 3D scene defined by an executable Blender program. A coding agent links each scene instance to its reference, checks the geometry and rendered view against the instruction, and revises the program to correct discrepancies. The final proxy rendering serves as a visual plan for the image generator. Using MAGPIE-Instruct-3K, we train the generator to follow this plan while drawing each subject’s appearance from its reference. MAGPIE improves both Qwen and FLUX on DreamOmni2 and SconeEval. With FLUX, it improves overall success on DreamOmni2 by 28.21 percentage points over the original backbone and achieves the highest overall score among the models evaluated on SconeEval.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：多参考图像生成需要模型在保持所选对象外观的同时，根据指令对它们进行排列。尽管基于参考的生成和组合控制在近期取得了进展，但可靠地将所选对象组织到预期场景中仍然具有挑战性。虽然现有方法提供了各种形式的组合指导，但计划中的关系并不总是在图像合成前明确实例化以便检查和修改。为了解决这一限制，我们引入了MAGPIE，它将预期组合表示为由可执行Blender程序定义的简化3D场景。一种编码代理将每个场景实例与其参考链接，检查几何形状和渲染视图是否符合指令，并修改程序以纠正差异。最终的代理渲染作为图像生成器的视觉规划。使用MAGPIE-Instruct-3K，我们训练生成器在遵循该计划的同时，从其参考中绘制每个对象的外观。MAGPIE在DreamOmni2和SconeEval上提升了Qwen和FLUX的表现。在FLUX上，它比原始骨干在DreamOmni2上的整体成功率提高了28.21个百分点，并在SconeEval评估的模型中取得了最高的总体分数。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.32462 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Yifan Dai,Daili Hua,Bohan Zeng,Yuran Wang,Jialing Liu,Bozhou Li,Chengzhuo Tong,Yang Shi,Kai Zeng,Liu Yang,Xinyu Liu,Shujie Li,Yiyan Ji,Bingyin Mei,Yushuo Guan,Yuanxing Zhang,Fangcheng Fu,Wentao Zhang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.32462.pdf">https://arxiv.org/pdf/2611.32462.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.32462">https://arxiv.org/abs/2611.32462</a></p>
+<p><strong>Arxiv ID</strong>: 2611.32462</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.32462">https://papers.cool/arxiv/2611.32462</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:42:17.740Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:42:17.740Z</p>
+<hr>
+<h3 id="12-LoopDVR-Looped-Transformer-for-Efficient-Dense-Visual-Recognition"><a href="#12-LoopDVR-Looped-Transformer-for-Efficient-Dense-Visual-Recognition" class="headerlink" title="12. LoopDVR: Looped Transformer for Efficient Dense Visual Recognition"></a>12. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.32067">LoopDVR: Looped Transformer for Efficient Dense Visual Recognition</a></h3><p>Abstract:We propose LoopDVR, a framework for converting pretrained Transformer-based dense visual recognition models into parameter-efficient looped networks. Rather than reducing the network width or depth directly, LoopDVR reuses Transformer blocks across layers in both the ViT backbone and Transformer decoder, reducing the number of parameters while retaining the original computational structure. However, naively sharing parameters can disrupt the distinct transformations learned at different depths. To address this challenge, we identify suitable sharing groups based on inter-layer representation dissimilarity and keep the final backbone block independent for multi-scale feature construction. We then initialize each shared backbone block with the pretrained weights of its group’s terminal layer to better preserve the learned representations. An independent Loop Adapter at each layer further helps retain depth-specific transformations within shared blocks. Subsequently, we distill visual representations into the looped backbone and integrate it with a looped decoder for task-specific training. Experiments demonstrate that LoopDVR achieves the best accuracy—parameter trade-offs across dense recognition tasks. Compared with the reference models, it reduces parameters by approximately 28% while maintaining competitive accuracy. Notably, LoopDet-S achieves 50.9 box AP with only 7.0M parameters, highlighting its effectiveness in compact models.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：我们提出了 LoopDVR，一种将预训练的基于 Transformer 的密集视觉识别模型转换为参数高效循环网络的框架。LoopDVR 并不是直接减少网络的宽度或深度，而是在 ViT 骨干网络和 Transformer 解码器的各层之间重用 Transformer 块，从而在保留原有计算结构的同时减少参数数量。然而，天真地共享参数可能会破坏在不同深度学习到的独特变换。为了解决这一挑战，我们根据层间表示的不相似性确定适合的共享组，并保持最终的骨干块独立，以构建多尺度特征。然后，我们使用共享组终端层的预训练权重初始化每个共享骨干块，以更好地保留学习到的表示。在每一层的独立 Loop Adapter 进一步帮助在共享块中保留特定深度的变换。随后，我们将视觉表示蒸馏到循环骨干网络中，并将其与循环解码器集成以进行任务特定训练。实验表明，LoopDVR 在密集识别任务中实现了最佳的准确性与参数折衷。与参考模型相比，它在保持竞争性准确度的同时，将参数减少了约 28%。值得注意的是，LoopDet-S 仅用 7.0M 参数就实现了 50.9 的框精准度（box AP），突显了其在紧凑模型中的有效性。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.32067 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Sirui Liang,Xuanlong Yu,Longfei Liu,Xiaodong Cun,Xi Shen</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.32067.pdf">https://arxiv.org/pdf/2611.32067.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.32067">https://arxiv.org/abs/2611.32067</a></p>
+<p><strong>Arxiv ID</strong>: 2611.32067</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.32067">https://papers.cool/arxiv/2611.32067</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:42:18.316Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:42:18.316Z</p>
+<hr>
+<h3 id="13-On-Policy-Codec-Distillation-for-Efficient-All-in-One-Video-Generation"><a href="#13-On-Policy-Codec-Distillation-for-Efficient-All-in-One-Video-Generation" class="headerlink" title="13. On-Policy Codec Distillation for Efficient All-in-One Video Generation"></a>13. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.31184">On-Policy Codec Distillation for Efficient All-in-One Video Generation</a></h3><p>Abstract:Modern visual generative models operate on tokens, and every visual asset they receive, whether an identity, a scribble, a depth map, or a motion video, is tokenized and appended to the input token sequence. Consequently, conditioning quickly dominates the computation cost. Yet most of these tokens carry redundant spatiotemporal information. Our key insight is that identifying what is genuinely new is exactly the problem that classical video codecs have long solved. Thus, we first introduce a codec-based token pruning method that discards redundant tokens. Then, we propose an on-policy self-distillation (OPSD) strategy to train a DiT adapter capable of learning the codec pruning pattern well without quality degradation. Together, they form On-Policy Codec Distillation (CodecOPSD). We scale CodecOPSD to 16 condition modalities on our own video diffusion model, where it prunes 66% of the condition tokens on average with almost no quality drop. Therefore, denoising becomes 2x faster, and the cache memory shrinks by up to 73% in KV cache mode. CodecOPSD also extends to other state-of-the-art pretrained image and video generative models, where its benefit grows further with more conditions, longer frames, and higher resolution.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：现代视觉生成模型以令牌为操作单元，无论它们接收到的是身份、涂鸦、深度图还是动态图视频，都会被进行令牌化并附加到输入令牌序列中。因此，条件输入很快就成为计算成本的主导。然而，大多数这些令牌都携带冗余的时空信息。我们的关键洞察是，识别真正新颖内容正是经典视频编解码器长期以来已解决的问题。因此，我们首先引入了一种基于编解码器的令牌剪枝方法，以丢弃冗余令牌。然后，我们提出了一种策略自蒸馏（OPSD）策略，用于训练能够很好地学习编解码器剪枝模式而不降低质量的DiT适配器。两者结合形成了策略编解码器蒸馏（CodecOPSD）。我们将CodecOPSD扩展到我们自有的视频扩散模型上的16种条件模态，其中平均可剪枝66%的条件令牌，同时几乎不降低质量。因此，去噪速度提升了2倍，并且在KV缓存模式下缓存内存最多缩小了73%。CodecOPSD也可扩展到其他最先进的预训练图像和视频生成模型，其优势在条件数量更多、帧数更长和分辨率更高时进一步增强。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.31184 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Boyang Wang,Kevin Blackburn-Matzen,Oindrila Saha,Matheus Gadelha,Zezhou Cheng</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.31184.pdf">https://arxiv.org/pdf/2611.31184.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.31184">https://arxiv.org/abs/2611.31184</a></p>
+<p><strong>Arxiv ID</strong>: 2611.31184</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.31184">https://papers.cool/arxiv/2611.31184</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:42:19.028Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:42:19.028Z</p>
+<hr>
+<h3 id="14-Don’t-Sleep-Keep-Watch-Proactive-Perception-for-Computer-Use-Agents"><a href="#14-Don’t-Sleep-Keep-Watch-Proactive-Perception-for-Computer-Use-Agents" class="headerlink" title="14. Don’t Sleep, Keep Watch: Proactive Perception for Computer-Use Agents"></a>14. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.28947">Don’t Sleep, Keep Watch: Proactive Perception for Computer-Use Agents</a></h3><p>Abstract:Computer-use agents (CUAs) built on vision-language models are increasingly entrusted with long-horizon tasks in live desktop, web, and mobile environments, where the screen keeps changing on its own. However, current CUAs lack real-time situational awareness: they perceive the environment through discrete snapshots, and the substantial inference latency of VLMs, compounded by highly dynamic interfaces, opens a perception-action gap in which the observed state frequently becomes stale before the corresponding action is executed. To bridge this gap, we present NightWatch, a plug-and-play framework that endows any CUA with continuous, temporally grounded perception without changing the agent’s model, prompt, or action space. NightWatch couples the VLM agent with NightWatch-0.8B, a lightweight System-1 model that performs streaming monitoring of the interface state and keeps the agent synchronized with the evolving environment at low computational cost and latency, thereby grounding each decision in the current state rather than an outdated snapshot and reducing both stale actions and idle waiting while preserving task success. Experiments on desktop and dynamic web environments (OSWorld-Verified and DynaCU-Bench) show that NightWatch, driven by a watcher of only 0.8B parameters, reduces non-reasoning wall-clock time by 33% and wasted time by 53% on OSWorld while keeping task success on par, raises success on DynaCU-Bench from 39.5% to 44.2% with the large VLM agent, and is more efficient than passive-watching baselines such as AOI and PUSV under the same screenshot-only input, as well as a System-1 decision model more than $30\times$ its size. Overall, NightWatch demonstrates that the timing of perception is as critical as its content, marking a step toward agents that maintain continuous awareness of their environment rather than perceiving it turn by turn.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：基于视觉-语言模型（VLM）的计算机使用代理（CUAs）越来越多地被委以在实时桌面、网页和移动环境中完成长时间任务，这些环境的屏幕会自行变化。然而，当前的CUAs缺乏实时情境感知：它们通过离散快照感知环境，而VLMs的推理延迟，再加上高度动态的界面，会产生感知-行动间隙，在此间隙中，观察到的状态在相应动作执行之前经常变得过时。为了弥合这一差距，我们提出了NightWatch，一种即插即用的框架，使任何CUA都能够实现连续、时间上有依据的感知，而无需更改代理的模型、提示或动作空间。NightWatch将VLM代理与NightWatch-0.8B结合，这是一种轻量的System-1模型，可对界面状态进行流式监控，并以低计算成本和低延迟使代理与不断变化的环境保持同步，从而将每个决策基于当前状态而非过时快照，减少过时动作和空闲等待，同时保持任务成功率。在桌面和动态网页环境（OSWorld-Verified和DynaCU-Bench）上的实验表明，仅由0.8B参数的观察器驱动的NightWatch，在OSWorld上将非推理墙时钟时间减少了33%，浪费时间减少了53%，同时保持任务成功率不变；在大VLM代理下，将DynaCU-Bench的成功率从39.5%提高到44.2%；在仅使用截图输入的情况下，它比被动观察基线如AOI和PUSV更高效，并且比其大小超过30倍的System-1决策模型更高效。总体而言，NightWatch表明感知的时机与内容同样关键，这标志着朝着能够持续感知环境而非轮流感知的代理迈出了重要一步。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.28947 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Jiaqi Su,Jie-Jing Shao,Yichen Liu,Long-Kai Huang,Haiyan Yin</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.28947.pdf">https://arxiv.org/pdf/2611.28947.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.28947">https://arxiv.org/abs/2611.28947</a></p>
+<p><strong>Arxiv ID</strong>: 2611.28947</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.28947">https://papers.cool/arxiv/2611.28947</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:42:19.403Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:42:19.403Z</p>
+<hr>
+<h3 id="15-PINE-Point-Instance-and-Normal-Estimation-in-One-Step-Diffusion-Model"><a href="#15-PINE-Point-Instance-and-Normal-Estimation-in-One-Step-Diffusion-Model" class="headerlink" title="15. PINE: Point, Instance and Normal Estimation in One-Step Diffusion Model"></a>15. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.29389">PINE: Point, Instance and Normal Estimation in One-Step Diffusion Model</a></h3><p>Abstract:Understanding a scene requires both geometry and semantics: geometry recovers its spatial structure, and semantics separates it into objects. Current models obtain the two from separate networks or separate passes. We present PINE, a one-step Omni Diffusion Transformer that predicts the point map, the surface normals, and the instance map of an image in one forward pass. PINE treats each map as a token stream, and a stream mask decides which streams interact. A camera-aware ray encoding positions every token by its camera ray rather than its pixel. Grounding attention adds the affinity of pretrained DINOv3 features to the attention logits. Trained on only 139K synthetic images for geometry, PINE achieves state-of-the-art point maps whether or not intrinsics are given and the best average rank on surface normals. It also exceeds SAM on large objects with less than 1 percent of its training images, and it predicts all three maps 5.7x faster than MoGe-3 with SAM.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：理解一个场景需要几何和语义：几何用于恢复其空间结构，语义用于将其分离成对象。当前的模型通过不同的网络或不同的处理步骤获取这两者。我们提出了PINE，一种一步式全能扩散Transformer，它在一次前向传递中预测图像的点图、表面法线和实例图。PINE将每个地图视为一个令牌流，并使用流掩码决定哪些流可以相互作用。摄像机感知的光线编码通过其摄像机光线而非像素定位每个令牌。基础注意力将预训练的DINOv3特征的相似度加入到注意力对数中。仅在139K合成图像上进行几何训练，PINE无论是否给定内参都能实现最先进的点图，并在表面法线上获得最佳平均排名。它在大型物体上也超越了SAM，且训练图像仅不到其1%，并且预测三张地图的速度比MoGe-3结合SAM快5.7倍。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.29389 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Zeyu Ren,Jie Ni,Rui Qian,Jiahao Wei,Hao Tang,Yongtai Liu,Zeyu Zhang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.29389.pdf">https://arxiv.org/pdf/2611.29389.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.29389">https://arxiv.org/abs/2611.29389</a></p>
+<p><strong>Arxiv ID</strong>: 2611.29389</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.29389">https://papers.cool/arxiv/2611.29389</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:42:19.450Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:42:19.450Z</p>
+<hr>
+<h3 id="16-LoopedWAM-Looped-World-Action-Models-for-Elastic-Inference"><a href="#16-LoopedWAM-Looped-World-Action-Models-for-Elastic-Inference" class="headerlink" title="16. LoopedWAM: Looped World Action Models for Elastic Inference"></a>16. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.25595">LoopedWAM: Looped World Action Models for Elastic Inference</a></h3><p>Abstract:World action models (WAMs) couple generative video modeling with robotic action prediction but typically require large video and action transformers, limiting deployment efficiency. We present LoopedWAM, a compact WAM that recurrently applies a shared six-block core in each expert, executing 30 transformer layers while storing only 12 blocks per expert. To account for their asymmetric inference costs, the video and action experts can operate at different depths: visual features are computed once per query, whereas action computation repeats at every sampling step. We further propose elastic self-distillation, which trains a single elastic checkpoint, LoopedWAM-E, across action-depth and sampling-step budgets. With only 0.58B policy parameters and no robot pretraining, LoopedWAM achieves 96.1% success on LIBERO, 91.9% on RoboTwin 2.0, and 52.2% on RoboCasaGR1, while using $7.4\times$ less peak GPU memory than Fast-WAM under matched inference measurements. On LIBERO, LoopedWAM-E achieves 96.0% success in 27.6 ms or 95.2% in 24.7 ms on an H100, providing multiple accuracy-latency operating points from a single checkpoint; with two sampling steps and four action loops, it stays within 0.5 points of LoopedWAM on all three benchmarks. Ablations demonstrate that weight-shared depth preserves competitive performance, while aggressive action-depth reduction requires explicit budget-aware training. On a real AgileX PiPER arm, LoopedWAM succeeds in 71.3% of 80 trials across four tasks.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：世界动作模型（World Action Models, WAMs）将生成式视频建模与机器人动作预测结合，但通常需要大型的视频和动作变换器，从而限制了部署效率。我们提出了 LoopedWAM，这是一种紧凑的 WAM，在每个专家中循环应用共享的六块核心，执行 30 层变换器，同时每个专家仅存储 12 块。为了考虑它们非对称的推理成本，视频和动作专家可以在不同深度上工作：视觉特征每次查询只计算一次，而动作计算在每个采样步骤重复进行。我们进一步提出了弹性自蒸馏，该方法在动作深度和采样步骤预算下训练单一弹性检查点 LoopedWAM-E。在仅有 0.58B 策略参数且无需机器人预训练的情况下，LoopedWAM 在 LIBERO 上实现 96.1% 的成功率，在 RoboTwin 2.0 上实现 91.9%，在 RoboCasaGR1 上实现 52.2%，同时在匹配的推理测量下使用的峰值 GPU 内存比 Fast-WAM 少 $7.4\times$。在 LIBERO 上，LoopedWAM-E 在 H100 上以 27.6 毫秒实现 96.0% 的成功率，或以 24.7 毫秒实现 95.2%，通过单个检查点提供多个精度-延迟操作点；在两个采样步骤和四个动作循环下，它在所有三个基准测试中保持在 LoopedWAM 成绩的 0.5 点之内。消融实验表明，共享权重深度可以保持竞争性能，而激进的动作深度减少则需要显式的预算感知训练。在真实的 AgileX PiPER 机械臂上，LoopedWAM 在四个任务的 80 次试验中成功率达到 71.3%。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.25595 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Anh Dao,Xinxin Liu,Hang Yu,Jeffrey A Chan Santiago,Yuzhang Shang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25595.pdf">https://arxiv.org/pdf/2611.25595.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25595">https://arxiv.org/abs/2611.25595</a></p>
+<p><strong>Arxiv ID</strong>: 2611.25595</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.25595">https://papers.cool/arxiv/2611.25595</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:43:12.295Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:43:12.295Z</p>
+<hr>
+<h3 id="17-Coding4Games-Can-Modern-Coding-Agents-Play-Modern-Video-Games"><a href="#17-Coding4Games-Can-Modern-Coding-Agents-Play-Modern-Video-Games" class="headerlink" title="17. Coding4Games: Can Modern Coding Agents Play Modern Video Games?"></a>17. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.31974">Coding4Games: Can Modern Coding Agents Play Modern Video Games?</a></h3><p>Abstract:Games, especially modern AAA games, challenge language models to perceive complex scenes, control actions, and make decisions over long horizons. Existing game benchmarks primarily test language models as computer-use agents that query a language model throughout play, incurring repeated inference cost and, in real-time games, acting while the environment continues to evolve. We ask whether coding agents can learn from game interaction to develop standalone game-playing programs that run without language model inference. We thus introduce Coding4Games, a benchmark for evaluating whether coding agents can develop standalone programs that play modern games through visual observations and standard game inputs. Coding4Games has three defining features: 1) Diverse Modern Games, covering 15 games with diverse visual, strategic, and control demands; 2) Development-Test Separation, in which a coding agent uses a sandbox and the standard player interface to iteratively develop a program, after which the selected program is frozen and independently tested without language-model inference; and 3) Outcome and Process Evaluation, which measures not only game performance and reliability but also how agents use feedback, revise programs, and resolve problems during development. Across 15 games, the best program per game outscores the strongest GUI baseline on 13 and ties it on one. The human player outscores all agents on 10 games. We additionally examine the effects of development budgets. Coding4Games evaluates whether coding agents can turn their understanding of complex interactive environments into programs that work reliably on their own.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：游戏，特别是现代大型 AAA 游戏，对语言模型提出了挑战，需要其感知复杂场景、控制动作并在长时间范围内做出决策。现有的游戏基准主要测试语言模型作为电脑使用代理的能力，在整个游戏过程中查询语言模型，这会产生重复推理成本，并在实时游戏中在环境持续变化的情况下执行动作。我们提出疑问：编码代理能否通过游戏交互学习，从而开发出无需语言模型推理即可运行的独立游戏程序。因此，我们引入了 Coding4Games，这是一个评估编码代理是否可以通过视觉观察和标准游戏输入开发独立游戏程序的基准。Coding4Games 有三个定义特征：1）多样化的现代游戏，涵盖 15 款在视觉、策略和控制需求上各不相同的游戏；2）开发-测试分离，编码代理使用沙箱和标准玩家界面迭代开发程序，然后将所选程序冻结，并在没有语言模型推理的情况下进行独立测试；3）结果与过程评估，不仅衡量游戏性能和可靠性，还评估代理在开发过程中如何使用反馈、修改程序以及解决问题。在 15 款游戏中，每款游戏的最佳程序在 13 款游戏中超过最强 GUI 基线，并在 1 款游戏中持平。人类玩家在 10 款游戏中超过所有代理。我们还考察了开发预算的影响。Coding4Games 评估编码代理是否能够将其对复杂互动环境的理解转化为能够独立可靠运行的程序。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.31974 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Shifang Zhao,Haoyu Wang,Yuyang Yin,Dong Chen,Xingyilang Yin,Yunkang Tao,Honghao Chen,Guangzhi Wang,Yiran Wang,Junfu Pu,Cheng Cheng,Xiaodong Cun,Ying Shan</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.31974.pdf">https://arxiv.org/pdf/2611.31974.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.31974">https://arxiv.org/abs/2611.31974</a></p>
+<p><strong>Arxiv ID</strong>: 2611.31974</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.31974">https://papers.cool/arxiv/2611.31974</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:43:12.612Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:43:12.612Z</p>
+<hr>
+<h3 id="18-Can-an-Agent-Trust-Its-Own-Zoom-Cross-Magnification-Provenance-Verification-for-Whole-Slide-Images"><a href="#18-Can-an-Agent-Trust-Its-Own-Zoom-Cross-Magnification-Provenance-Verification-for-Whole-Slide-Images" class="headerlink" title="18. Can an Agent Trust Its Own Zoom? Cross-Magnification Provenance Verification for Whole-Slide Images"></a>18. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.29150">Can an Agent Trust Its Own Zoom? Cross-Magnification Provenance Verification for Whole-Slide Images</a></h3><p>Abstract:Visual agents navigate whole-slide images through magnified observations associated with claimed locations. However, a visually plausible observation does not necessarily originate from its claimed location, particularly across magnifications and in regions with similar tissue structures. We formulate cross-magnification provenance verification (CMPV) to evaluate whether visual evidence supports a claimed spatial association, recover the source when possible, and abstain when evidence is insufficient. We introduce PyraFault, a benchmark of 3.06 million coordinate-supervised examples from 2,200 cases across five TCGA cohorts, covering within-context substitutions, absent-source faults, and geometric perturbations. We further propose ZoomTrace, a claim-independent verifier that estimates the observation’s source before evaluating its agreement with the claimed location. It combines physical-scale alignment, visual retrieval, geometric refinement, and reliability estimation using spatially disjoint competing matches. On 503,320 test examples, ZoomTrace achieves 0.969 AUPRC and 0.987 AUROC, compared with 0.789 and 0.903 for Efficient LoFTR. Further evaluations reveal trade-offs in reliability estimation and limitations in vision-language models, cross-dataset retrieval, and calibration. Integrating ZoomTrace into visual agent tool paths reduces exposure to corrupted observations and silent failures, while downstream accuracy improvements depend on the agent and verification threshold.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：视觉代理通过与声称位置相关的放大观察来导航整张切片图像。然而，一个视觉上合理的观察并不一定源自其声称的位置，尤其是在不同放大倍数以及组织结构相似的区域。我们提出了跨放大倍数溯源验证（CMPV），用于评估视觉证据是否支持声称的空间关联，在可能的情况下恢复来源，并在证据不足时选择放弃。我们引入了PyraFault，这是一个包含来自五个TCGA队列的2,200个病例的306万个坐标监督示例的基准，涵盖上下文内替换、缺失源故障和几何扰动。我们进一步提出了ZoomTrace，一种与声称无关的验证器，在评估观察与声称位置的一致性之前先估计观察的来源。它结合了物理尺度对齐、视觉检索、几何精修和利用空间不相交的竞争匹配进行可靠性估计。在503,320个测试示例上，ZoomTrace实现了0.969的AUPRC和0.987的AUROC，而Efficient LoFTR的对应值为0.789和0.903。进一步评估显示了可靠性估计中的权衡以及视觉-语言模型、跨数据集检索和校准的局限性。将ZoomTrace整合到视觉代理工具路径中可以减少暴露于被破坏的观察和静默故障的风险，而下游的准确性提升则依赖于代理及验证阈值。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.29150 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Yan Wang,Yiran Song,Zizhuo Gong,Jianxiang Qi,Zhongxing Xu,Lingfei Qian,Minquan Lin</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.29150.pdf">https://arxiv.org/pdf/2611.29150.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.29150">https://arxiv.org/abs/2611.29150</a></p>
+<p><strong>Arxiv ID</strong>: 2611.29150</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.29150">https://papers.cool/arxiv/2611.29150</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:43:12.740Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:43:12.740Z</p>
+<hr>
+<h3 id="19-Residual-Guidance-for-Real-Time-Interactive-Video-Generation"><a href="#19-Residual-Guidance-for-Real-Time-Interactive-Video-Generation" class="headerlink" title="19. Residual Guidance for Real-Time Interactive Video Generation"></a>19. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.32820">Residual Guidance for Real-Time Interactive Video Generation</a></h3><p>Abstract:Real-time interactive video generation allows users to change the prompt during generation to steer the evolving video. However, existing streaming models, which generate videos chunk by chunk, often keep following the previous prompt after a switch. We trace this failure to context inertia, where the previous chunk acts as a strong prior that suppresses the new prompt. Furthermore, we find that this inertia persists even when the cache retains only the previous chunk, yet discarding the context breaks visual continuity, which limits approaches that edit the cache. Rather than editing the cache, we propose Residual Guidance (RG), a simple, training-free method that counteracts context inertia with a correction measured outside the cache. Specifically, RG denoises the re-noised previous chunk once under the new prompt without the cache and adds the resulting residual to the early denoising steps of the next chunk, where its content is largely decided and the new prompt is most suppressed. Across settings ranging from a single switch to long multi-switch generation, RG substantially improves prompt switching capability on existing streaming models, including those with dedicated switching mechanisms, while largely retaining visual quality. As it requires no training or per-model tuning and adds only one forward pass per chunk, RG can be easily integrated into existing real-time video generation pipelines.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：实时交互视频生成允许用户在生成过程中更改提示以引导视频的演变。然而，现有的流式模型按块生成视频时，经常在提示切换后仍跟随之前的提示。我们将这一失败归因于上下文惯性，即前一个块作为强先验抑制了新的提示。此外，我们发现，即使缓存中仅保留前一个块，这种惯性仍然存在，而丢弃上下文会破坏视觉连续性，从而限制了编辑缓存的方法。与其编辑缓存，我们提出了残差指导（Residual Guidance, RG），这是一种简单、无需训练的方法，通过在缓存外测量的修正来抵消上下文惯性。具体而言，RG在没有缓存的情况下，在新提示下对重新加噪的前一个块进行一次去噪，并将得到的残差添加到下一个块的早期去噪步骤中，此时内容已基本确定且新提示受到抑制最大。在从单次切换到长多次切换生成的各种设置下，RG显著提升了现有流式模型的提示切换能力，包括那些具有专用切换机制的模型，同时在很大程度上保持了视觉质量。由于它不需要训练或每个模型的调优，并且每个块只增加一次前向传播，RG可以轻松集成到现有的实时视频生成流程中。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.32820 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: NaHyeon Park,Kyeong-Hwan Moon,Youjin Jeon,Hyunjung Shim</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.32820.pdf">https://arxiv.org/pdf/2611.32820.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.32820">https://arxiv.org/abs/2611.32820</a></p>
+<p><strong>Arxiv ID</strong>: 2611.32820</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.32820">https://papers.cool/arxiv/2611.32820</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:43:13.862Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:43:13.862Z</p>
+<hr>
+<h3 id="20-Align-the-Pair-Not-the-Sample-Representation-Alignment-for-Faster-and-Better-One-Step-Generato"><a href="#20-Align-the-Pair-Not-the-Sample-Representation-Alignment-for-Faster-and-Better-One-Step-Generato" class="headerlink" title="20. Align the Pair, Not the Sample: Representation Alignment for Faster and Better One-Step Generato"></a>20. <a target="_blank" rel="noopener" href="https://huggingface.co/papers/2611.29547">Align the Pair, Not the Sample: Representation Alignment for Faster and Better One-Step Generato</a></h3><p>Abstract:Representation alignment markedly accelerates diffusion training, but one-step generators raise a question that diffusion does not: \emph{which training path should receive the loss?} A one-step generator sees two kinds of inputs. Corrupted real images come with their clean counterpart, which provides an instance-paired target. Samples generated from pure noise have no corresponding real image, yet this is where the final model operates. We study this question on Priming, which trains one-step generators from scratch by reconstructing corrupted images and then matching feature distributions with optimal transport. Aligning the generative path, the natural choice, collapses recall ($0.45!\to!0.15$—$0.25$) in all 17 configurations we test, including five target constructions and loss weights down to $0.05$. Aligning the paired reconstruction path with a frozen DINOv2 encoder instead helps in every setting we test. A short analysis explains this asymmetry: when the target carries no instance information about the input, the optimal aligned feature is constant within each class, so the loss pulls samples toward class prototypes. A control confirms this: aligning the paired path to a random same-class image instead of the input’s own image removes most of the gain. Inside the generator, paired-path alignment creates an interface block through which post-training routes noise, and the image semantics carried through it predict sample quality across 16 models. The resulting recipe, \method, accelerates \emph{both} training stages on ImageNet $256!\times!256$: it matches the 160-epoch baseline with $2\times$ fewer priming epochs, surpasses its final quality with $4\times$ fewer post-training updates, and lowers FID to 1.30 (B) and 1.155 (L) at the standard budget. A joint single-stage variant trains native one-step generators and reaches FID 1.22 with 115M parameters.</p>
+<details class="toggle" ><summary class="toggle-button" style="">中文摘要</summary><div class="toggle-content"><p>摘要：表示对齐显著加快扩散训练，但一步生成器提出了一个扩散无法满足的问题：\emph{哪条训练路径应接收损失？}一步生成器会看到两种输入。损坏的真实图像带有其干净的对应，提供实例配对的目标。由纯噪声生成的样本没有对应的真实图像，但最终模型的工作正是在此处。我们在Priming中研究这个问题，Priming通过重建损坏图像，然后匹配特征分布以实现最佳传输，从零开始训练单步生成器。对齐生成路径——这是自然选择——在我们测试的17种配置中，召回率会崩塌（$0.45\！到\！0.15$-$0.25$），包括五种目标构造，损失权重降至0.05美元。将配对重建路径与冻结的 DINOv2 编码器对齐，反而在我们测试的每种环境中都有所帮助。简短分析解释了这种不对称性：当目标在每个类别中不携带实例信息时，最优比对特征在每个类别内保持恒定，因此丢失会将样本拉向类原型。一个控制点证实了这一点：将配对路径对齐到随机的同类图像，而非输入自身图像，可以去除大部分增益。在生成器内部，配对路径比对形成了一个界面块，后训练时通过该模块将噪声路由，而通过该模块传输的图像语义预测了16个模型的样本质量。最终的配方 \method 在 ImageNet 上加速了 \emph{both 两个}训练阶段，成本为 $256\！\times\！256$：它以少 2\times$ 的初始化周期匹配 160 个纪元的基线，以减少 $4\times$ 的训练后更新次数超越最终质量，并在标准预算下将 FID 降至 1.30（B）和 1.155（L）。联合单阶段变体训练原生一步生成器，参数为1.15万，达到FID 1.22。</p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">LLM Analysis</summary><div class="toggle-content"><p>LLM Analysis Failed: Error: Kimi内容未就绪或抓取失败: 2611.29547 (timeout of 15000ms exceeded)</p>
+</div></details>
+<p><strong>Authors</strong>: Mingxiao Li,Xuantuo Huang,Encheng Su,Aoran Wang,Han Zhang,Jinouwen Zhang,Shixiang Tang</p>
+<p><strong>Categories</strong>: </p>
+<p><strong>PDF URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.29547.pdf">https://arxiv.org/pdf/2611.29547.pdf</a></p>
+<p><strong>Arxiv URL</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.29547">https://arxiv.org/abs/2611.29547</a></p>
+<p><strong>Arxiv ID</strong>: 2611.29547</p>
+<p><strong>CoolPaper URL</strong>: <a target="_blank" rel="noopener" href="https://papers.cool/arxiv/2611.29547">https://papers.cool/arxiv/2611.29547</a></p>
+<p><strong>Published</strong>: 2026-11-25T05:43:17.365Z</p>
+<p><strong>Updated</strong>: 2026-11-25T05:43:17.365Z</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://wdndev.github.io">Firefly</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://wdndev.github.io/daily/hf/202611/2026-11-25/">https://wdndev.github.io/daily/hf/202611/2026-11-25/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/HuggingFace/">HuggingFace</a><a class="post-meta__tags" href="/tags/Papers/">Papers</a></div><div class="post_share"><div class="social-share" data-image="/img/wdn_icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/daily/hf/202610/2026-10-01/" title="HuggingFace Papers 2026-10-01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-01</div></div></a></div><div><a href="/daily/hf/202610/2026-10-02/" title="HuggingFace Papers 2026-10-02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-02</div></div></a></div><div><a href="/daily/hf/202610/2026-10-03/" title="HuggingFace Papers 2026-10-03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-18</div><div class="title">HuggingFace Papers 2026-10-03</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Latest-Papers"><span class="toc-text">Latest Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-S-Mind-Internalizing-Multi-View-Geometry-for-Spatial-Intelligence"><span class="toc-text">1. S-Mind: Internalizing Multi-View Geometry for Spatial Intelligence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Rewirable-Circuits-in-Transformers-with-Loom-Attention"><span class="toc-text">2. Rewirable Circuits in Transformers with Loom Attention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ACAP-Asynchronous-Coding-Agents-for-Efficient-Robot-Control"><span class="toc-text">3. ACAP: Asynchronous Coding Agents for Efficient Robot Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Antom-3-in-1-Transformer-A-Payment-Foundation-Model"><span class="toc-text">4. Antom 3-in-1 Transformer: A Payment Foundation Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-KMed-31B-Technical-Report"><span class="toc-text">5. KMed-31B Technical Report</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-PartAgent-Agentic-3D-Part-Segmentation-via-Expert-Integration-and-Closed-Loop-Refinement"><span class="toc-text">6. PartAgent: Agentic 3D Part Segmentation via Expert Integration and Closed-Loop Refinement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-PhyCoVE-Benchmarking-Physical-Counterfactual-Video-Editing-across-Diverse-Material-Dynamics"><span class="toc-text">7. PhyCoVE: Benchmarking Physical Counterfactual Video Editing across Diverse Material Dynamics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Self-Evolving-Evaluation-Environments-for-Computer-Use-Agents"><span class="toc-text">8. Self-Evolving Evaluation Environments for Computer-Use Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-LeadVLA-Learning-Follower-Aware-Route-Execution-for-Robot-Leading"><span class="toc-text">9. LeadVLA: Learning Follower-Aware Route Execution for Robot Leading</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-RoomTokens-Masked-Diffusion-over-Structured-Tokens-for-Indoor-Scene-Synthesis"><span class="toc-text">10. RoomTokens: Masked Diffusion over Structured Tokens for Indoor Scene Synthesis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-MAGPIE-Agentic-Multi-Reference-Image-Generation-via-Executable-Scene-Construction"><span class="toc-text">11. MAGPIE: Agentic Multi-Reference Image Generation via Executable Scene Construction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-LoopDVR-Looped-Transformer-for-Efficient-Dense-Visual-Recognition"><span class="toc-text">12. LoopDVR: Looped Transformer for Efficient Dense Visual Recognition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-On-Policy-Codec-Distillation-for-Efficient-All-in-One-Video-Generation"><span class="toc-text">13. On-Policy Codec Distillation for Efficient All-in-One Video Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-Don%E2%80%99t-Sleep-Keep-Watch-Proactive-Perception-for-Computer-Use-Agents"><span class="toc-text">14. Don’t Sleep, Keep Watch: Proactive Perception for Computer-Use Agents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-PINE-Point-Instance-and-Normal-Estimation-in-One-Step-Diffusion-Model"><span class="toc-text">15. PINE: Point, Instance and Normal Estimation in One-Step Diffusion Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-LoopedWAM-Looped-World-Action-Models-for-Elastic-Inference"><span class="toc-text">16. LoopedWAM: Looped World Action Models for Elastic Inference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-Coding4Games-Can-Modern-Coding-Agents-Play-Modern-Video-Games"><span class="toc-text">17. Coding4Games: Can Modern Coding Agents Play Modern Video Games?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-Can-an-Agent-Trust-Its-Own-Zoom-Cross-Magnification-Provenance-Verification-for-Whole-Slide-Images"><span class="toc-text">18. Can an Agent Trust Its Own Zoom? Cross-Magnification Provenance Verification for Whole-Slide Images</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-Residual-Guidance-for-Real-Time-Interactive-Video-Generation"><span class="toc-text">19. Residual Guidance for Real-Time Interactive Video Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-Align-the-Pair-Not-the-Sample-Representation-Alignment-for-Faster-and-Better-One-Step-Generato"><span class="toc-text">20. Align the Pair, Not the Sample: Representation Alignment for Faster and Better One-Step Generato</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Firefly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async src="/js/title.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":180,"height":360,"hOffset":0,"vOffset":-100},"mobile":{"show":true},"react":{"opacity":0.85},"log":false});</script></body></html>
